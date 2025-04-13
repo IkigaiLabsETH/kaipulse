@@ -55,10 +55,9 @@ export function calculateFreedomMetrics(
 
   // Portfolio allocation calculations
   const mstyInvestment = totalInvestment;
-  const remainingInvestment = mstyInvestment / PORTFOLIO_ALLOCATION.MSTY_INCOME_PERCENTAGE - mstyInvestment;
-  const btcInvestment = remainingInvestment * PORTFOLIO_ALLOCATION.BTC_MSTR_SPLIT;
-  const mstrInvestment = remainingInvestment * PORTFOLIO_ALLOCATION.BTC_MSTR_SPLIT;
-  const totalPortfolio = mstyInvestment + btcInvestment + mstrInvestment;
+  const totalPortfolio = mstyInvestment / PORTFOLIO_ALLOCATION.MSTY_INCOME_PERCENTAGE;
+  const mstrInvestment = totalPortfolio * PORTFOLIO_ALLOCATION.MSTR_PERCENTAGE;
+  const btcInvestment = totalPortfolio * PORTFOLIO_ALLOCATION.BTC_PERCENTAGE;
 
   return {
     sharesNeeded,

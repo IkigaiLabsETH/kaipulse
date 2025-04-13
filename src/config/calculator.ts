@@ -12,8 +12,9 @@ export const TAX_RATES = {
 };
 
 export const PORTFOLIO_ALLOCATION = {
-  MSTY_INCOME_PERCENTAGE: 0.30, // 30% of portfolio in MSTY for income
-  BTC_MSTR_SPLIT: 0.50, // 50/50 split between BTC and MSTR
+  MSTY_INCOME_PERCENTAGE: 0.10, // 10% of portfolio in MSTY for income
+  MSTR_PERCENTAGE: 0.10, // 10% in MSTR for growth
+  BTC_PERCENTAGE: 0.80, // 80% in BTC cold storage
 };
 
 export const TIERS = [
