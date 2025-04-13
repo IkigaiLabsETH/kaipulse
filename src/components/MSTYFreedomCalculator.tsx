@@ -4,10 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
 import { ArrowRight, Bitcoin, TrendingUp, Target, DollarSign, Euro, Percent, PieChart } from 'lucide-react';
-import { DEFAULT_VALUES, TIERS, INPUT_CONFIG } from '@/config/calculator';
+import { DEFAULT_VALUES, INPUT_CONFIG } from '@/config/calculator';
 import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
 interface InputEvent extends React.ChangeEvent<HTMLInputElement> {
@@ -20,7 +19,7 @@ export function MSTYFreedomCalculator() {
   const [monthlyIncome, setMonthlyIncome] = useState<number>(DEFAULT_VALUES.MONTHLY_INCOME);
   const [mstPrice, setMstPrice] = useState<number>(DEFAULT_VALUES.MST_PRICE);
   const [monthlyDividend, setMonthlyDividend] = useState<number>(DEFAULT_VALUES.MONTHLY_DIVIDEND);
-  const [btcPrice, setBtcPrice] = useState<number>(DEFAULT_VALUES.BTC_PRICE);
+  const [btcPrice] = useState<number>(DEFAULT_VALUES.BTC_PRICE);
   const [usdEurRate, setUsdEurRate] = useState<number>(DEFAULT_VALUES.USD_EUR_RATE);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
