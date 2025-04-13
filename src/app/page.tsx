@@ -95,12 +95,12 @@ export default function HomePage() {
               {
                 icon: TrendingUp,
                 title: "Strategic Growth",
-                description: "Capture additional Bitcoin exposure through MSTR&apos;s corporate treasury strategy."
+                description: "Capture additional Bitcoin exposure through MSTR corporate treasury strategy."
               },
               {
                 icon: DollarSign,
                 title: "Income Generation",
-                description: "Generate monthly income through MSTY&apos;s option premium strategy without selling your core Bitcoin."
+                description: "Generate monthly income through MSTY option premium strategy without selling your core Bitcoin."
               }
             ].map((item, index) => (
               <motion.div
