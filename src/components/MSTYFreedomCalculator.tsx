@@ -118,7 +118,7 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="container max-w-[98%] 2xl:max-w-9xl mx-auto">
+      <div className="w-full px-4 md:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -126,11 +126,11 @@ export function MSTYFreedomCalculator() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8"
         >
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+            <Card className="bg-zinc-900/50 border-zinc-800">
               <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
-                  <DollarSign className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Your Freedom Parameters</h2>
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+                  <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Your Freedom Parameters</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div>
@@ -191,32 +191,32 @@ export function MSTYFreedomCalculator() {
           </motion.div>
 
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+            <Card className="bg-zinc-900/50 border-zinc-800">
               <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
-                  <Target className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Your Freedom Metrics</h2>
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+                  <Target className="w-8 h-8 text-yellow-400 shrink-0" />
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Your Freedom Metrics</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-8">
-                  <div className="flex items-center gap-4">
-                    <Target className="w-7 h-7 text-yellow-400" />
-                    <div className="flex-1 min-w-0">
+                  <div className="flex items-start gap-4">
+                    <Target className="w-8 h-8 text-yellow-400 shrink-0" />
+                    <div className="flex-1">
                       <div className="text-base text-yellow-100/60">Shares Needed</div>
-                      <div className="text-2xl md:text-3xl font-bold text-white truncate">{formatNumber(sharesNeeded)} shares</div>
+                      <div className="text-2xl xl:text-3xl font-bold text-white">{formatNumber(sharesNeeded)} shares</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <TrendingUp className="w-7 h-7 text-yellow-400" />
-                    <div className="flex-1 min-w-0">
+                  <div className="flex items-start gap-4">
+                    <TrendingUp className="w-8 h-8 text-yellow-400 shrink-0" />
+                    <div className="flex-1">
                       <div className="text-base text-yellow-100/60">Total Investment</div>
-                      <div className="text-2xl md:text-3xl font-bold text-white truncate">{formatCurrency(totalInvestment)}</div>
+                      <div className="text-2xl xl:text-3xl font-bold text-white">{formatCurrency(totalInvestment)}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Bitcoin className="w-7 h-7 text-yellow-400" />
-                    <div className="flex-1 min-w-0">
+                  <div className="flex items-start gap-4">
+                    <Bitcoin className="w-8 h-8 text-yellow-400 shrink-0" />
+                    <div className="flex-1">
                       <div className="text-base text-yellow-100/60">BTC Required</div>
-                      <div className="text-2xl md:text-3xl font-bold text-white truncate">{formatNumber(btcRequired, 2)} BTC</div>
+                      <div className="text-2xl xl:text-3xl font-bold text-white">{formatNumber(btcRequired, 2)} BTC</div>
                     </div>
                   </div>
 
@@ -252,11 +252,11 @@ export function MSTYFreedomCalculator() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8 mt-6 xl:mt-8"
         >
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+            <Card className="bg-zinc-900/50 border-zinc-800">
               <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
-                  <DollarSign className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Tax Calculations</h2>
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+                  <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Tax Calculations</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-8">
                   <div className="flex-1 min-w-0">
@@ -277,11 +277,11 @@ export function MSTYFreedomCalculator() {
           </motion.div>
 
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+            <Card className="bg-zinc-900/50 border-zinc-800">
               <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
-                  <PieChart className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Portfolio Allocation</h2>
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+                  <PieChart className="w-8 h-8 text-yellow-400 shrink-0" />
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Portfolio Allocation</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-8">
                   <div className="flex-1 min-w-0">
