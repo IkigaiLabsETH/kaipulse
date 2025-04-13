@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
-import { ArrowRight, DollarSign, Target, PieChart } from 'lucide-react';
+import { ArrowRight, DollarSign, Target, PieChart, TrendingUp, Bitcoin } from 'lucide-react';
 import { DEFAULT_VALUES, INPUT_CONFIG } from '@/config/calculator';
 import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
@@ -146,18 +146,21 @@ export function MSTYFreedomCalculator() {
               </h2>
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
+                  <Target className="w-6 h-6 text-yellow-400" />
                   <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Shares Needed</div>
                     <div className="text-2xl font-bold text-white">{formatNumber(sharesNeeded)} shares</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
+                  <TrendingUp className="w-6 h-6 text-yellow-400" />
                   <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Total Investment</div>
                     <div className="text-2xl font-bold text-white">{formatCurrency(totalInvestment)}</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
+                  <Bitcoin className="w-6 h-6 text-yellow-400" />
                   <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">BTC Required</div>
                     <div className="text-2xl font-bold text-white">{formatNumber(btcRequired, 2)} BTC</div>
