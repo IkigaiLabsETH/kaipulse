@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Bitcoin, TrendingUp, DollarSign, PieChart, Target, ShieldCheck } from 'lucide-react';
 
 export default function AboutPage() {
