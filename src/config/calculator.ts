@@ -22,42 +22,42 @@ export const TIERS = [
     label: 'Beginner', 
     target: 20, 
     color: 'bg-blue-500',
-    description: 'Start your journey to financial freedom',
+    description: 'Start your journey',
     monthlyIncome: 20
   },
   { 
     label: 'Intermediate', 
     target: 500, 
     color: 'bg-green-500',
-    description: 'Building momentum in your investment journey',
+    description: 'Building momentum',
     monthlyIncome: 500
   },
   { 
     label: 'Advanced', 
     target: 3000, 
     color: 'bg-purple-500',
-    description: 'Significant progress towards financial independence',
+    description: 'Significant progress',
     monthlyIncome: 3000
   },
   { 
     label: 'Elite', 
     target: 6000, 
     color: 'bg-yellow-500',
-    description: 'Elite status achieved - substantial passive income',
+    description: 'Elite status achieved',
     monthlyIncome: 6000
   },
   { 
     label: 'Supreme', 
     target: 10000, 
     color: 'bg-orange-500',
-    description: 'Supreme level - major financial milestone',
+    description: 'Supreme level',
     monthlyIncome: 10000
   },
   { 
     label: 'Legend', 
     target: 50000, 
     color: 'bg-red-500',
-    description: 'Legendary status - ultimate financial freedom',
+    description: 'Legendary status',
     monthlyIncome: 50000
   },
 ] as const;
