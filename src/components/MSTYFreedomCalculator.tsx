@@ -118,19 +118,19 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black font-satoshi">
-      <div className="w-full px-1">
+      <div className="w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-2"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6"
         >
           <motion.div variants={cardVariants}>
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
               <CardContent className="p-4 sm:p-6">
                 <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Your Freedom Parameters</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Parameters</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div>
@@ -191,11 +191,11 @@ export function MSTYFreedomCalculator() {
           </motion.div>
 
           <motion.div variants={cardVariants}>
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
               <CardContent className="p-4 sm:p-6">
                 <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <Target className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Your Freedom Metrics</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Metrics</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -243,20 +243,13 @@ export function MSTYFreedomCalculator() {
               </CardContent>
             </Card>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-2 mt-2"
-        >
           <motion.div variants={cardVariants}>
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
               <CardContent className="p-4 sm:p-6">
                 <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Tax Calculations</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Tax</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex-1">
@@ -277,11 +270,11 @@ export function MSTYFreedomCalculator() {
           </motion.div>
 
           <motion.div variants={cardVariants}>
-            <Card className="bg-zinc-900/50 border-zinc-800">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
               <CardContent className="p-4 sm:p-6">
                 <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <PieChart className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Portfolio Allocation</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Portfolio</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex-1">
@@ -317,20 +310,37 @@ export function MSTYFreedomCalculator() {
             stiffness: 100,
             damping: 15
           }}
-          className="mt-2 text-center"
+          className="mt-12 flex flex-col items-center gap-4 w-full"
         >
           <Button 
-            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black text-xl font-bold py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-400/20"
             size="lg"
             onClick={() => window.open('https://yieldmaxetfs.com/msty', '_blank')}
           >
             <motion.div
-              className="flex items-center"
+              className="flex items-center gap-3"
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              🚀 Become a Legend
-              <ArrowRight className="ml-2" />
+              <span className="text-2xl">🚀</span>
+              <span>Become a Legend</span>
+              <ArrowRight className="w-6 h-6" />
+            </motion.div>
+          </Button>
+
+          <Button 
+            className="bg-zinc-800 hover:bg-zinc-700 text-yellow-400 text-xl font-bold py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-400/10 border border-yellow-400/20"
+            size="lg"
+            onClick={() => window.location.href = '/'}
+          >
+            <motion.div
+              className="flex items-center gap-3"
+              whileHover={{ x: -5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <ArrowRight className="w-6 h-6 rotate-180" />
+              <span>Back to Home</span>
+              <span className="text-2xl">🏠</span>
             </motion.div>
           </Button>
         </motion.div>

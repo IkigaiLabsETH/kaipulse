@@ -58,10 +58,9 @@ export default function HomePage() {
           className="relative z-10 text-center px-4"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-yellow-400 mb-6">
-            Your Path to Financial Freedom
+            MSTR Option Income Strategy
           </h1>
           <p className="text-xl text-yellow-100/80 max-w-3xl mx-auto mb-8">
-            A sophisticated calculator for planning your journey to financial independence through a 
             Bitcoin-first strategy, complemented by strategic positions in MSTY and MSTR.
           </p>
           <Link
@@ -91,17 +90,17 @@ export default function HomePage() {
               {
                 icon: Bitcoin,
                 title: "Bitcoin Savings",
-                description: "Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation and sovereignty."
+                description: "Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation."
               },
               {
                 icon: TrendingUp,
                 title: "Strategic Growth",
-                description: "Capture additional Bitcoin exposure through MSTR's corporate treasury strategy."
+                description: "Capture additional Bitcoin exposure through MSTR&apos;s corporate treasury strategy."
               },
               {
                 icon: DollarSign,
                 title: "Income Generation",
-                description: "Generate monthly income through MSTY's option premium strategy without selling your core Bitcoin."
+                description: "Generate monthly income through MSTY&apos;s option premium strategy without selling your core Bitcoin."
               }
             ].map((item, index) => (
               <motion.div
@@ -133,22 +132,75 @@ export default function HomePage() {
           <AccordionItem title="How does the strategy work?" defaultOpen>
             <p className="text-yellow-100/80">
               Our strategy combines Bitcoin self-custody (80%) with strategic positions in MSTY (10%) 
-              for monthly income and MSTR (10%) for additional Bitcoin exposure. This approach provides 
-              both wealth preservation and regular income without compromising your core Bitcoin position.
+              for monthly income and MSTR (10%) for additional Bitcoin exposure. MSTY generates income through 
+              an options-based strategy on MSTR stock, utilizing covered call writing and put option selling, 
+              while also holding short-term U.S. Treasuries as collateral. This approach provides both wealth 
+              preservation and regular income without compromising your core Bitcoin position.
             </p>
           </AccordionItem>
-          <AccordionItem title="What are the tax implications?">
+          <AccordionItem title="What are MSTY&apos;s dividend yields and sustainability?">
             <p className="text-yellow-100/80">
-              For French residents, MSTY distributions are subject to a 15% U.S. withholding tax, 
-              which can be claimed as a tax credit against French taxes. The French PFU (30% flat tax) 
-              applies to investment income, while Bitcoin and MSTR holdings are only taxed when sold.
+              MSTY currently offers a distribution rate of approximately 101.29% annually. However, these yields 
+              can fluctuate based on several factors:
+              <br/><br/>
+              • MSTR&apos;s stock price volatility and Bitcoin&apos;s value movements<br/>
+              • Market conditions and options market dynamics<br/>
+              • Changes in implied volatility affecting option premiums<br/>
+              <br/>
+              While the yield is attractive, it&apos;s important to understand that distributions aren&apos;t guaranteed 
+              and can vary monthly based on market conditions.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="What are the tax implications for MSTY distributions?">
+            <p className="text-yellow-100/80">
+              For French residents, MSTY distributions are subject to a 15% U.S. withholding tax. It&apos;s important 
+              to understand that:
+              <br/><br/>
+              • The 15% tax is automatically withheld at source<br/>
+              • You&apos;ll need to declare these distributions on your French tax return<br/>
+              • The withheld tax can often be credited against your French tax liability<br/>
+              <br/>
+              We recommend consulting with a tax professional for personalized advice on your situation.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="What are the risks involved?">
+            <p className="text-yellow-100/80">
+              Key risks to consider include:
+              <br/><br/>
+              • Dividend Variability: Monthly income can fluctuate based on market conditions<br/>
+              • Capital Risk: MSTR stock price and Bitcoin value declines can lead to losses<br/>
+              • Market Liquidity: Performance is tied to MSTR and Bitcoin volatility<br/>
+              • Tax Implications: Converting Bitcoin to MSTY may trigger taxable events<br/>
+              <br/>
+              It&apos;s recommended to consult with a financial advisor before making substantial investments.
             </p>
           </AccordionItem>
           <AccordionItem title="How do I get started?">
             <p className="text-yellow-100/80">
               Start by using our calculator to determine your target monthly income and required MSTY 
-              shares. Then, develop a plan to accumulate your positions while maintaining a strong 
-              Bitcoin foundation in cold storage.
+              shares. Follow these steps:
+              <br/><br/>
+              1. Determine your desired monthly income<br/>
+              2. Calculate required shares (approximately $1 monthly distribution per share)<br/>
+              3. Ensure you maintain 80% in Bitcoin cold storage<br/>
+              4. Consider tax implications and documentation requirements<br/>
+              5. Set up proper tracking for distributions and tax reporting<br/>
+              <br/>
+              Remember to maintain your Bitcoin-first approach while using MSTY for income generation.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="How do I track my investments and taxes?">
+            <p className="text-yellow-100/80">
+              We recommend maintaining detailed records:
+              <br/><br/>
+              • Number of MSTY shares and monthly distributions<br/>
+              • U.S. withholding tax amounts (15%)<br/>
+              • EUR/USD exchange rates for tax reporting<br/>
+              • Form W-8BEN filing with your broker<br/>
+              • Monthly income tracking for tax purposes<br/>
+              <br/>
+              Consider using a spreadsheet to track gross dividends, taxes withheld, and net income in both 
+              USD and EUR.
             </p>
           </AccordionItem>
         </motion.div>
@@ -206,10 +258,20 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="text-center py-16"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-6">Ready to Start Your Journey?</h2>
-          <p className="text-xl text-yellow-100/80 mb-8 max-w-2xl mx-auto">
-            Use our calculator to determine your path to financial freedom and start building your 
-            Bitcoin-first portfolio today.
+          <h2 className="text-3xl font-bold text-yellow-400 mb-6">Ready to Start?</h2>
+          <p className="text-xl text-yellow-100/80 mb-8 max-w-2xl mx-auto space-y-2">
+            <div className="flex items-center justify-center gap-3">
+              <Bitcoin className="w-6 h-6 text-yellow-400" />
+              <span>BTC = Saving</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <TrendingUp className="w-6 h-6 text-yellow-400" />
+              <span>MSTR = Investment</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <DollarSign className="w-6 h-6 text-yellow-400" />
+              <span>MSTY = Income</span>
+            </div>
           </p>
           <Link
             href="/calculator"
