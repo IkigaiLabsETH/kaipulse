@@ -183,28 +183,29 @@ export function MSTYFreedomCalculator() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
+          className="h-full"
         >
-          <Card className="bg-zinc-900 border-yellow-500/20">
+          <Card className="bg-zinc-900 border-yellow-500/20 h-full">
             <CardContent className="space-y-6 p-6">
-              <h2 className="text-2xl font-semibold mb-4 text-yellow-400">Tax Calculations</h2>
-              <div className="space-y-4">
+              <h2 className="text-2xl font-semibold mb-4 text-yellow-400 flex items-center gap-2">
+                <DollarSign className="w-6 h-6" />
+                Tax Calculations
+              </h2>
+              <div className="space-y-6">
                 <div className="flex items-center space-x-2">
-                  <DollarSign className="text-yellow-400" />
-                  <div>
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Gross Monthly Income</div>
                     <div className="text-xl font-bold text-white">{formatCurrency(taxCalculations.grossMonthlyIncome)}</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Percent className="text-yellow-400" />
-                  <div>
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">US Withholding Tax (15%)</div>
                     <div className="text-xl font-bold text-white">{formatCurrency(taxCalculations.usWithholdingTax)}</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Euro className="text-yellow-400" />
-                  <div>
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Net Income in EUR</div>
                     <div className="text-xl font-bold text-white">{formatCurrency(taxCalculations.netInEur, 'EUR')}</div>
                   </div>
@@ -218,30 +219,39 @@ export function MSTYFreedomCalculator() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
+          className="h-full"
         >
-          <Card className="bg-zinc-900 border-yellow-500/20">
+          <Card className="bg-zinc-900 border-yellow-500/20 h-full">
             <CardContent className="space-y-6 p-6">
-              <h2 className="text-2xl font-semibold mb-4 text-yellow-400">Portfolio Allocation</h2>
-              <div className="space-y-4">
+              <h2 className="text-2xl font-semibold mb-4 text-yellow-400 flex items-center gap-2">
+                <PieChart className="w-6 h-6" />
+                Portfolio Allocation
+              </h2>
+              <div className="space-y-6">
                 <div className="flex items-center space-x-2">
-                  <PieChart className="text-yellow-400" />
-                  <div>
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Total Portfolio Value</div>
                     <div className="text-xl font-bold text-white">{formatCurrency(portfolioAllocation.totalPortfolio)}</div>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-yellow-100/60">MSTY (Income)</span>
-                    <span className="text-white">{formatCurrency(portfolioAllocation.mstyInvestment)}</span>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex-1">
+                      <div className="text-sm text-yellow-100/60">MSTY (Income)</div>
+                      <div className="text-xl font-bold text-white">{formatCurrency(portfolioAllocation.mstyInvestment)}</div>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-yellow-100/60">BTC (Savings)</span>
-                    <span className="text-white">{formatCurrency(portfolioAllocation.btcInvestment)}</span>
+                  <div className="flex justify-between items-center">
+                    <div className="flex-1">
+                      <div className="text-sm text-yellow-100/60">BTC (Savings)</div>
+                      <div className="text-xl font-bold text-white">{formatCurrency(portfolioAllocation.btcInvestment)}</div>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-yellow-100/60">MSTR (Growth)</span>
-                    <span className="text-white">{formatCurrency(portfolioAllocation.mstrInvestment)}</span>
+                  <div className="flex justify-between items-center">
+                    <div className="flex-1">
+                      <div className="text-sm text-yellow-100/60">MSTR (Growth)</div>
+                      <div className="text-xl font-bold text-white">{formatCurrency(portfolioAllocation.mstrInvestment)}</div>
+                    </div>
                   </div>
                 </div>
               </div>
