@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MSTY Freedom Calculator",
-  description: "Calculate your path to financial freedom with MSTY",
+  description: "Calculate your path to financial freedom with a Bitcoin-first strategy",
+  keywords: ["Bitcoin", "MSTY", "MSTR", "Calculator", "Financial Freedom", "Investment"],
+  authors: [{ name: "Your Name" }],
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
 };
 
 export default function RootLayout({
@@ -18,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
+        <ErrorBoundary>
           {children}
-        </Providers>
+        </ErrorBoundary>
       </body>
     </html>
   );

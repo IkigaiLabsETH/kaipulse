@@ -2,12 +2,14 @@
 
 ![MSTY Banner](https://github.com/thirdweb-example/next-starter/assets/57885104/20c8ce3b-4e55-4f10-ae03-2fe4743a5ee8)
 
-A powerful calculator application that helps investors plan their path to financial freedom using the YieldMax MSTR Option Income Strategy ETF (MSTY). This tool helps you calculate the required investment to achieve your desired monthly income through MSTY distributions.
+A powerful calculator application that helps investors plan their path to financial freedom using a conservative Bitcoin-first approach, complemented by strategic positions in YieldMax MSTR Option Income Strategy ETF (MSTY) and MicroStrategy (MSTR) for additional yield and growth potential.
 
 ## 🌟 Key Features
 
 - **Income Tier Calculator**: Calculate the MSTY shares needed for different income levels
-- **Portfolio Optimization**: Balance between BTC, MSTR, and MSTY allocations
+- **Bitcoin-First Portfolio**: 80% core allocation to cold storage BTC
+- **Strategic Yield**: 10% MSTY allocation for monthly income
+- **Growth Component**: 10% MSTR allocation for additional Bitcoin exposure
 - **Tax Planning**: Special considerations for international investors
 - **Real-time Updates**: Track current MSTY prices and distributions
 - **Interactive Dashboard**: Visualize your path to financial freedom
@@ -25,11 +27,21 @@ A powerful calculator application that helps investors plan their path to financ
 
 ## 🧠 Strategy Layer
 
-| Asset | Role | Tax Treatment |
-|-------|------|---------------|
-| MSTY | Income stream | Taxed annually as ordinary income |
-| MSTR | Bitcoin yield-on-yield | Capital gains tax only if sold |
-| BTC | Long-term savings | Capital gains tax only if sold |
+### Core Philosophy: Bitcoin-First (80%)
+The foundation of our strategy is a significant allocation to cold storage Bitcoin, representing 80% of the total portfolio. This aligns with the principle of self-custody and long-term value preservation.
+
+### Strategic Components
+
+| Asset | Allocation | Role | Tax Treatment | Strategy |
+|-------|------------|------|---------------|-----------|
+| BTC | 80% | Core Holdings | Capital gains only if sold | Self-custodied in cold storage for long-term preservation of wealth |
+| MSTY | 10% | Income Stream | Taxed annually as ordinary income | Generate monthly income through covered call premiums on MSTR |
+| MSTR | 10% | Growth | Capital gains only if sold | Additional Bitcoin exposure through corporate treasury strategy |
+
+### Why This Allocation?
+- **80% BTC**: Maintains Bitcoin as the primary asset while ensuring self-custody
+- **10% MSTY**: Provides steady monthly income without selling core BTC position
+- **10% MSTR**: Offers additional Bitcoin exposure with potential corporate advantages
 
 ## 🚀 Getting Started
 
