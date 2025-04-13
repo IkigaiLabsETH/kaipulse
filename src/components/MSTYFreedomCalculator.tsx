@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
-import { ArrowRight, Bitcoin, TrendingUp, Target, DollarSign, PieChart } from 'lucide-react';
+import { ArrowRight, DollarSign, Target, PieChart } from 'lucide-react';
 import { DEFAULT_VALUES, INPUT_CONFIG } from '@/config/calculator';
 import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
