@@ -66,13 +66,17 @@ export function MSTYFreedomCalculator() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
+          className="h-full"
         >
-          <Card className="bg-zinc-900 border-yellow-500/20">
+          <Card className="bg-zinc-900 border-yellow-500/20 h-full">
             <CardContent className="space-y-6 p-6">
-              <h2 className="text-2xl font-semibold mb-4 text-yellow-400">Your Freedom Parameters</h2>
-              <div className="space-y-4">
+              <h2 className="text-2xl font-semibold mb-4 text-yellow-400 flex items-center gap-2">
+                <DollarSign className="w-6 h-6" />
+                Your Freedom Parameters
+              </h2>
+              <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-yellow-100/80 mb-2">
+                  <label className="block text-sm font-medium text-yellow-100/60 mb-2">
                     {INPUT_CONFIG.MONTHLY_INCOME.label}
                   </label>
                   <Input
@@ -85,7 +89,7 @@ export function MSTYFreedomCalculator() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-yellow-100/80 mb-2">
+                  <label className="block text-sm font-medium text-yellow-100/60 mb-2">
                     {INPUT_CONFIG.MST_PRICE.label}
                   </label>
                   <Input
@@ -98,7 +102,7 @@ export function MSTYFreedomCalculator() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-yellow-100/80 mb-2">
+                  <label className="block text-sm font-medium text-yellow-100/60 mb-2">
                     {INPUT_CONFIG.MONTHLY_DIVIDEND.label}
                   </label>
                   <Input
@@ -111,7 +115,7 @@ export function MSTYFreedomCalculator() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-yellow-100/80 mb-2">
+                  <label className="block text-sm font-medium text-yellow-100/60 mb-2">
                     {INPUT_CONFIG.USD_EUR_RATE.label}
                   </label>
                   <Input
@@ -132,46 +136,47 @@ export function MSTYFreedomCalculator() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 }}
+          className="h-full"
         >
-          <Card className="bg-zinc-900 border-yellow-500/20">
+          <Card className="bg-zinc-900 border-yellow-500/20 h-full">
             <CardContent className="space-y-6 p-6">
-              <h2 className="text-2xl font-semibold mb-4 text-yellow-400">Your Freedom Metrics</h2>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-2">
-                  <Target className="text-yellow-400" />
-                  <div>
+              <h2 className="text-2xl font-semibold mb-4 text-yellow-400 flex items-center gap-2">
+                <Target className="w-6 h-6" />
+                Your Freedom Metrics
+              </h2>
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Shares Needed</div>
-                    <div className="text-xl font-bold text-white">{formatNumber(sharesNeeded)} shares</div>
+                    <div className="text-2xl font-bold text-white">{formatNumber(sharesNeeded)} shares</div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="text-yellow-400" />
-                  <div>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">Total Investment</div>
-                    <div className="text-xl font-bold text-white">{formatCurrency(totalInvestment)}</div>
+                    <div className="text-2xl font-bold text-white">{formatCurrency(totalInvestment)}</div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Bitcoin className="text-yellow-400" />
-                  <div>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-1">
                     <div className="text-sm text-yellow-100/60">BTC Required</div>
-                    <div className="text-xl font-bold text-white">{formatNumber(btcRequired, 2)} BTC</div>
+                    <div className="text-2xl font-bold text-white">{formatNumber(btcRequired, 2)} BTC</div>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-6">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-yellow-100/60">Current Tier: {currentTier.label}</span>
-                  <span className="text-yellow-100/60">Next Tier: {nextTier.label}</span>
+                <div className="pt-2">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-yellow-100/60">Current Tier: {currentTier.label}</span>
+                    <span className="text-yellow-100/60">Next Tier: {nextTier.label}</span>
+                  </div>
+                  <div className="relative w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
+                    <div 
+                      className="absolute top-0 left-0 h-full bg-yellow-400 transition-all duration-300"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-yellow-100/60 mt-2">{currentTier.description}</p>
                 </div>
-                <div className="relative w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div 
-                    className="absolute top-0 left-0 h-full bg-yellow-400 transition-all duration-300"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <p className="text-sm text-yellow-100/60 mt-2">{currentTier.description}</p>
               </div>
             </CardContent>
           </Card>
