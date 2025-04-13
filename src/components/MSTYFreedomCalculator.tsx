@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
-import { ArrowRight, DollarSign, Target, PieChart, TrendingUp, Bitcoin } from 'lucide-react';
+import { DollarSign, Target, PieChart, ArrowRight } from 'lucide-react';
 import { DEFAULT_VALUES, INPUT_CONFIG } from '@/config/calculator';
 import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
@@ -118,7 +118,7 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black font-satoshi">
-      <div className="w-full">
+      <div className="container mx-auto px-4 py-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -198,26 +198,17 @@ export function MSTYFreedomCalculator() {
                   <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Metrics</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <Target className="w-8 h-8 text-yellow-400 shrink-0" />
-                    <div className="flex-1">
-                      <div className="text-base text-yellow-100/60 font-satoshi">Shares Needed</div>
-                      <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatNumber(sharesNeeded)} shares</div>
-                    </div>
+                  <div className="flex-1">
+                    <div className="text-base text-yellow-100/60 font-satoshi">Shares Needed</div>
+                    <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatNumber(sharesNeeded)} shares</div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <TrendingUp className="w-8 h-8 text-yellow-400 shrink-0" />
-                    <div className="flex-1">
-                      <div className="text-base text-yellow-100/60 font-satoshi">Total Investment</div>
-                      <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(totalInvestment)}</div>
-                    </div>
+                  <div className="flex-1">
+                    <div className="text-base text-yellow-100/60 font-satoshi">Total Investment</div>
+                    <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(totalInvestment)}</div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <Bitcoin className="w-8 h-8 text-yellow-400 shrink-0" />
-                    <div className="flex-1">
-                      <div className="text-base text-yellow-100/60 font-satoshi">BTC Required</div>
-                      <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatNumber(btcRequired, 2)} BTC</div>
-                    </div>
+                  <div className="flex-1">
+                    <div className="text-base text-yellow-100/60 font-satoshi">BTC Required</div>
+                    <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatNumber(btcRequired, 2)} BTC</div>
                   </div>
 
                   <div className="pt-2">
@@ -310,7 +301,7 @@ export function MSTYFreedomCalculator() {
             stiffness: 100,
             damping: 15
           }}
-          className="mt-12 flex flex-col items-center gap-4 w-full"
+          className="mt-12 mb-16 flex flex-col items-center gap-4"
         >
           <Button 
             className="bg-yellow-400 hover:bg-yellow-500 text-black text-xl font-bold py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-400/20"
@@ -343,6 +334,29 @@ export function MSTYFreedomCalculator() {
               <span className="text-2xl">🏠</span>
             </motion.div>
           </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            delay: 1.5,
+            duration: 0.8,
+            ease: "easeOut"
+          }}
+          className="text-center max-w-3xl mx-auto mb-12 px-4"
+        >
+          <div className="relative">
+            <div className="absolute -left-4 -top-4 text-4xl text-yellow-400 opacity-50">&ldquo;</div>
+            <div className="absolute -right-4 -bottom-4 text-4xl text-yellow-400 opacity-50">&rdquo;</div>
+            <p className="text-xl md:text-2xl text-yellow-100/80 font-epilogue italic">
+              Now you live off MSTY distributions and let MSTR &amp; BTC stack over time, tax-deferred. 
+              You&apos;re cashflow-rich, compounding hard money, and never touching the principal.
+            </p>
+            <div className="mt-4 text-yellow-400/60 font-satoshi">
+              — YieldMax™ MSTR Option Income Strategy ETF
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
