@@ -118,19 +118,19 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="w-full px-4 md:px-6 lg:px-8">
+      <div className="p-2 sm:p-4">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4"
         >
-          <motion.div variants={cardVariants} className="w-full">
+          <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+              <CardContent className="p-4 sm:p-6">
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Your Freedom Parameters</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400">Your Freedom Parameters</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div>
@@ -190,14 +190,14 @@ export function MSTYFreedomCalculator() {
             </Card>
           </motion.div>
 
-          <motion.div variants={cardVariants} className="w-full">
+          <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+              <CardContent className="p-4 sm:p-6">
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <Target className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Your Freedom Metrics</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400">Your Freedom Metrics</h2>
                 </motion.div>
-                <motion.div variants={contentVariants} className="space-y-8">
+                <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex items-start gap-4">
                     <Target className="w-8 h-8 text-yellow-400 shrink-0" />
                     <div className="flex-1">
@@ -249,16 +249,16 @@ export function MSTYFreedomCalculator() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8 mt-6 xl:mt-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4"
         >
-          <motion.div variants={cardVariants} className="w-full">
+          <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+              <CardContent className="p-4 sm:p-6">
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Tax Calculations</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400">Tax Calculations</h2>
                 </motion.div>
-                <motion.div variants={contentVariants} className="space-y-8">
+                <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex-1 min-w-0">
                     <div className="text-base text-yellow-100/60">Gross Monthly Income</div>
                     <div className="text-2xl md:text-3xl font-bold text-white truncate">{formatCurrency(taxCalculations.grossMonthlyIncome)}</div>
@@ -276,14 +276,14 @@ export function MSTYFreedomCalculator() {
             </Card>
           </motion.div>
 
-          <motion.div variants={cardVariants} className="w-full">
+          <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 xl:p-8">
-                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-8">
+              <CardContent className="p-4 sm:p-6">
+                <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <PieChart className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400">Portfolio Allocation</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400">Portfolio Allocation</h2>
                 </motion.div>
-                <motion.div variants={contentVariants} className="space-y-8">
+                <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex-1 min-w-0">
                     <div className="text-base text-yellow-100/60">Total Portfolio Value</div>
                     <div className="text-2xl md:text-3xl font-bold text-white truncate">{formatCurrency(portfolioAllocation.totalPortfolio)}</div>
@@ -317,7 +317,7 @@ export function MSTYFreedomCalculator() {
             stiffness: 100,
             damping: 15
           }}
-          className="mt-4 lg:mt-8 text-center"
+          className="mt-4 text-center"
         >
           <Button 
             className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
