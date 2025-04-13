@@ -118,19 +118,19 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="w-full max-w-[1920px] mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container max-w-[98%] 2xl:max-w-9xl mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8"
         >
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 lg:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-8">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+              <CardContent className="p-6 xl:p-8">
+                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
                   <DollarSign className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-yellow-400">Your Freedom Parameters</h2>
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Your Freedom Parameters</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div>
@@ -191,11 +191,11 @@ export function MSTYFreedomCalculator() {
           </motion.div>
 
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 lg:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-8">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+              <CardContent className="p-6 xl:p-8">
+                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
                   <Target className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-yellow-400">Your Freedom Metrics</h2>
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Your Freedom Metrics</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-8">
                   <div className="flex items-center gap-4">
@@ -249,14 +249,14 @@ export function MSTYFreedomCalculator() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mt-4 lg:mt-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8 mt-6 xl:mt-8"
         >
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 lg:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-8">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+              <CardContent className="p-6 xl:p-8">
+                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
                   <DollarSign className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-yellow-400">Tax Calculations</h2>
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Tax Calculations</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-8">
                   <div className="flex-1 min-w-0">
@@ -277,11 +277,11 @@ export function MSTYFreedomCalculator() {
           </motion.div>
 
           <motion.div variants={cardVariants} className="w-full">
-            <Card className="bg-zinc-900/50 border-zinc-800">
-              <CardContent className="p-6 lg:p-8">
-                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-8">
+            <Card className="bg-zinc-900/50 border-zinc-800 h-full">
+              <CardContent className="p-6 xl:p-8">
+                <motion.div variants={contentVariants} className="flex items-center gap-3 mb-6 xl:mb-8">
                   <PieChart className="w-7 h-7 text-yellow-400" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-yellow-400">Portfolio Allocation</h2>
+                  <h2 className="text-2xl xl:text-3xl font-bold text-yellow-400 whitespace-nowrap">Portfolio Allocation</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-8">
                   <div className="flex-1 min-w-0">
