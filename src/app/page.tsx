@@ -2,14 +2,15 @@
 
 import { ConnectButton } from "thirdweb/react";
 import { client } from "./client";
+import { MSTYFreedomCalculator } from "@/components/MSTYFreedomCalculator";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main className="flex min-h-screen flex-col items-center p-24 bg-black text-white">
       <div className="max-w-2xl w-full">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">MSTY Freedom Calculator</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">Calculate your path to financial freedom</p>
+          <h1 className="text-4xl font-bold mb-4 text-yellow-400">MSTY Freedom Calculator</h1>
+          <p className="text-xl text-yellow-100/80">Calculate your path to financial freedom</p>
         </div>
 
         <div className="flex justify-center mb-8">
@@ -22,11 +23,8 @@ export default function Home() {
           />
         </div>
 
-        {/* Calculator form will go here */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-          <p className="text-center text-gray-600 dark:text-gray-300">
-            Connect your wallet to start calculating your path to freedom
-          </p>
+        <div className="bg-zinc-900 rounded-lg shadow-lg shadow-yellow-500/10 p-6 border border-yellow-500/20">
+          <MSTYFreedomCalculator />
         </div>
       </div>
     </main>
