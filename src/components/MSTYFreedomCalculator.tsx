@@ -118,12 +118,12 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black p-4 md:p-8">
-      <div className="mx-auto max-w-[90%] md:max-w-[75%]">
+      <div className="mx-auto max-w-[95%] md:max-w-[85%] lg:max-w-[90%] xl:max-w-[95%]">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden">
