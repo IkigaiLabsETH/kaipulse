@@ -43,7 +43,7 @@ function AccordionItem({ title, children, defaultOpen = false }: AccordionItemPr
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white font-satoshi">
       {/* Hero Section with Parallax */}
       <motion.div 
         initial={{ opacity: 0 }}
@@ -57,16 +57,16 @@ export default function AboutPage() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="relative z-10 text-center px-4"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-yellow-400 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-yellow-400 mb-6 font-epilogue">
             Your Path to Financial Freedom
           </h1>
-          <p className="text-xl text-yellow-100/80 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-yellow-100/80 max-w-3xl mx-auto mb-8 font-satoshi">
             A sophisticated calculator for planning your journey to financial independence through a 
             Bitcoin-first strategy, complemented by strategic positions in MSTY and MSTR.
           </p>
           <Link
             href="/calculator"
-            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 transition-colors"
+            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 transition-colors font-satoshi font-bold"
           >
             <Calculator className="w-5 h-5" />
             Try the Calculator
@@ -85,7 +85,7 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-8">Core Strategy</h2>
+          <h2 className="text-3xl font-bold text-yellow-400 mb-8 font-epilogue">Core Strategy</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -114,8 +114,8 @@ export default function AboutPage() {
                 className="bg-zinc-900 p-6 rounded-lg border border-yellow-500/20 hover:border-yellow-500/40 transition-all"
               >
                 <item.icon className="w-12 h-12 text-yellow-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-yellow-100/80">{item.description}</p>
+                <h3 className="text-xl font-semibold mb-2 font-epilogue">{item.title}</h3>
+                <p className="text-yellow-100/80 font-satoshi">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -129,23 +129,23 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="bg-zinc-900 rounded-lg border border-yellow-500/20 p-6"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-8">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-yellow-400 mb-8 font-epilogue">Frequently Asked Questions</h2>
           <AccordionItem title="How does the strategy work?" defaultOpen>
-            <p className="text-yellow-100/80">
+            <p className="text-yellow-100/80 font-satoshi">
               Our strategy combines Bitcoin self-custody (80%) with strategic positions in MSTY (10%) 
               for monthly income and MSTR (10%) for additional Bitcoin exposure. This approach provides 
               both wealth preservation and regular income without compromising your core Bitcoin position.
             </p>
           </AccordionItem>
           <AccordionItem title="What are the tax implications?">
-            <p className="text-yellow-100/80">
+            <p className="text-yellow-100/80 font-satoshi">
               For French residents, MSTY distributions are subject to a 15% U.S. withholding tax, 
               which can be claimed as a tax credit against French taxes. The French PFU (30% flat tax) 
               applies to investment income, while Bitcoin and MSTR holdings are only taxed when sold.
             </p>
           </AccordionItem>
           <AccordionItem title="How do I get started?">
-            <p className="text-yellow-100/80">
+            <p className="text-yellow-100/80 font-satoshi">
               Start by using our calculator to determine your target monthly income and required MSTY 
               shares. Then, develop a plan to accumulate your positions while maintaining a strong 
               Bitcoin foundation in cold storage.
@@ -161,8 +161,8 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="overflow-x-auto"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-8">Freedom Status Levels</h2>
-          <table className="w-full bg-zinc-900 rounded-lg border border-yellow-500/20">
+          <h2 className="text-3xl font-bold text-yellow-400 mb-8 font-epilogue">Freedom Status Levels</h2>
+          <table className="w-full bg-zinc-900 rounded-lg border border-yellow-500/20 font-satoshi">
             <thead>
               <tr className="border-b border-yellow-500/20">
                 <th className="p-4 text-left text-yellow-400">Status</th>
@@ -206,14 +206,14 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="text-center py-16"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-6">Ready to Start Your Journey?</h2>
-          <p className="text-xl text-yellow-100/80 mb-8 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold text-yellow-400 mb-6 font-epilogue">Ready to Start Your Journey?</h2>
+          <p className="text-xl text-yellow-100/80 mb-8 max-w-2xl mx-auto font-satoshi">
             Use our calculator to determine your path to financial freedom and start building your 
             Bitcoin-first portfolio today.
           </p>
           <Link
             href="/calculator"
-            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-lg hover:bg-yellow-500 transition-colors text-lg font-semibold"
+            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-lg hover:bg-yellow-500 transition-colors text-lg font-semibold font-satoshi"
           >
             <Calculator className="w-6 h-6" />
             Calculate Your Freedom
@@ -226,7 +226,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-sm text-yellow-100/60 max-w-2xl mx-auto"
+          className="text-center text-sm text-yellow-100/60 max-w-2xl mx-auto font-satoshi"
         >
           <p>
             This calculator is for educational purposes only. It is not financial advice. 
