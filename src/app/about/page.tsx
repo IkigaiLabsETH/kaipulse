@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Bitcoin, TrendingUp, DollarSign, PieChart, Target, ShieldCheck, ChevronDown, Calculator } from 'lucide-react';
+import { Bitcoin, TrendingUp, DollarSign, ChevronDown, Calculator } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
