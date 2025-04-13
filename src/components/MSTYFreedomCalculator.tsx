@@ -118,7 +118,7 @@ export function MSTYFreedomCalculator() {
 
   return (
     <div className="min-h-screen bg-black p-4 md:p-8">
-      <div className="mx-auto max-w-[95%] md:max-w-[85%] lg:max-w-[90%] xl:max-w-[95%]">
+      <div className="mx-auto w-full max-w-[98%] xl:max-w-[1400px]">
         <motion.div
           variants={containerVariants}
           initial="hidden"
