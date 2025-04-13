@@ -117,17 +117,17 @@ export function MSTYFreedomCalculator() {
   }
 
   return (
-    <div className="min-h-screen bg-black p-2 md:p-4">
-      <div className="mx-auto w-[99%]">
+    <div className="min-h-screen bg-black px-1 sm:px-2">
+      <div className="w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4"
         >
           <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-5 md:p-6">
                 <motion.div variants={contentVariants} className="flex items-center space-x-2 mb-6">
                   <DollarSign className="w-6 h-6 text-yellow-400" />
                   <h2 className="text-2xl font-bold text-yellow-400">Your Freedom Parameters</h2>
@@ -192,7 +192,7 @@ export function MSTYFreedomCalculator() {
 
           <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-5 md:p-6">
                 <motion.div variants={contentVariants} className="flex items-center space-x-2 mb-6">
                   <Target className="w-6 h-6 text-yellow-400" />
                   <h2 className="text-2xl font-bold text-yellow-400">Your Freedom Metrics</h2>
@@ -249,11 +249,11 @@ export function MSTYFreedomCalculator() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-2 sm:mt-3 md:mt-4"
         >
           <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-5 md:p-6">
                 <motion.div variants={contentVariants} className="flex items-center space-x-2 mb-6">
                   <DollarSign className="w-6 h-6 text-yellow-400" />
                   <h2 className="text-2xl font-bold text-yellow-400">Tax Calculations</h2>
@@ -284,7 +284,7 @@ export function MSTYFreedomCalculator() {
 
           <motion.div variants={cardVariants}>
             <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-5 md:p-6">
                 <motion.div variants={contentVariants} className="flex items-center space-x-2 mb-6">
                   <PieChart className="w-6 h-6 text-yellow-400" />
                   <h2 className="text-2xl font-bold text-yellow-400">Portfolio Allocation</h2>
@@ -323,7 +323,7 @@ export function MSTYFreedomCalculator() {
             stiffness: 100,
             damping: 15
           }}
-          className="mt-8 text-center"
+          className="mt-2 sm:mt-3 md:mt-4 text-center"
         >
           <Button 
             className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
