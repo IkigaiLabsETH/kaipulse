@@ -8,7 +8,7 @@ import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
 import { ArrowRight, Bitcoin, TrendingUp, Target, DollarSign, Euro, Percent, PieChart } from 'lucide-react';
 import { DEFAULT_VALUES, TIERS, INPUT_CONFIG } from '@/config/calculator';
-import { calculateFreedomMetrics, formatCurrency, formatNumber, formatPercentage } from '@/utils/calculator';
+import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
 interface InputEvent extends React.ChangeEvent<HTMLInputElement> {
   target: HTMLInputElement & {
