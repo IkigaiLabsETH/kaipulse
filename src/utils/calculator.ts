@@ -8,12 +8,11 @@ export interface CalculatorResult {
   nextTier: typeof TIERS[number];
   progress: number;
   taxCalculations: {
-    grossMonthlyIncome: number;
+    grossYearlyIncome: number;
     usWithholdingTax: number;
-    netAfterUsTax: number;
-    frenchTaxCredit: number;
-    frenchTax: number;
-    netAfterAllTaxes: number;
+    europeanTax: number;
+    totalTax: number;
+    netIncomeUSD: number;
     netInEur: number;
   };
   portfolioAllocation: {
@@ -44,16 +43,19 @@ export function calculateFreedomMetrics(
   const nextTier = TIERS.find(tier => tier.target > sharesNeeded) || currentTier;
   const progress = (sharesNeeded / nextTier.target) * 100;
 
-  // Tax calculations
-  const grossMonthlyIncome = monthlyIncome;
-  const usWithholdingTax = grossMonthlyIncome * TAX_RATES.US_WITHHOLDING;
-  const netAfterUsTax = grossMonthlyIncome - usWithholdingTax;
-  const frenchTaxCredit = usWithholdingTax;
-  const frenchTax = grossMonthlyIncome * TAX_RATES.FRENCH_FLAT_TAX;
-  const netAfterAllTaxes = grossMonthlyIncome - frenchTax + frenchTaxCredit;
-  const netInEur = netAfterAllTaxes * usdEurRate;
+  // Tax calculations based on actual dividend income
+  const actualMonthlyIncome = sharesNeeded * monthlyDividend;
+  const actualYearlyIncome = actualMonthlyIncome * 12;
+  const grossYearlyIncome = actualYearlyIncome;
+  
+  // Calculate taxes based on yearly income
+  const usWithholdingTax = grossYearlyIncome * TAX_RATES.US_WITHHOLDING;
+  const europeanTax = grossYearlyIncome * TAX_RATES.EUROPEAN_TAX;
+  const totalTax = usWithholdingTax + europeanTax;
+  const netIncomeUSD = grossYearlyIncome - totalTax;
+  const netInEur = netIncomeUSD * usdEurRate;
 
-  // Portfolio allocation calculations
+  // Portfolio allocation calculations based on actual MSTY investment
   const mstyInvestment = totalInvestment;
   const totalPortfolio = mstyInvestment / PORTFOLIO_ALLOCATION.MSTY_INCOME_PERCENTAGE;
   const mstrInvestment = totalPortfolio * PORTFOLIO_ALLOCATION.MSTR_PERCENTAGE;
@@ -67,12 +69,11 @@ export function calculateFreedomMetrics(
     nextTier,
     progress,
     taxCalculations: {
-      grossMonthlyIncome,
+      grossYearlyIncome,
       usWithholdingTax,
-      netAfterUsTax,
-      frenchTaxCredit,
-      frenchTax,
-      netAfterAllTaxes,
+      europeanTax,
+      totalTax,
+      netIncomeUSD,
       netInEur
     },
     portfolioAllocation: {

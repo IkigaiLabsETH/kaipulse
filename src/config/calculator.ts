@@ -8,8 +8,8 @@ export const DEFAULT_VALUES = {
 
 export const TAX_RATES = {
   US_WITHHOLDING: 0.15, // 15% US withholding tax
-  FRENCH_FLAT_TAX: 0.30, // 30% French flat tax (12.8% income tax + 17.2% social contributions)
-};
+  EUROPEAN_TAX: 0.15, // 15% European tax
+} as const;
 
 export const PORTFOLIO_ALLOCATION = {
   MSTY_INCOME_PERCENTAGE: 0.10, // 10% of portfolio in MSTY for income

@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
-import { DollarSign, Target, PieChart, ArrowRight } from 'lucide-react';
+import { Settings, Target, PieChart, ArrowRight, DollarSign } from 'lucide-react';
 import { DEFAULT_VALUES, INPUT_CONFIG } from '@/config/calculator';
 import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
@@ -84,6 +84,14 @@ export function MSTYFreedomCalculator() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<number>>) => 
+    (e: InputEvent) => {
+      const value = parseFloat(e.target.value);
+      if (!isNaN(value)) {
+        setter(value);
+      }
+    };
+
   const {
     sharesNeeded,
     totalInvestment,
@@ -94,14 +102,6 @@ export function MSTYFreedomCalculator() {
     taxCalculations,
     portfolioAllocation
   } = calculateFreedomMetrics(monthlyIncome, mstPrice, monthlyDividend, btcPrice, usdEurRate);
-
-  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<number>>) => 
-    (e: InputEvent) => {
-      const value = parseFloat(e.target.value);
-      if (!isNaN(value)) {
-        setter(value);
-      }
-    };
 
   if (isLoading) {
     return (
@@ -129,7 +129,7 @@ export function MSTYFreedomCalculator() {
             <Card className="bg-zinc-900/50 border-zinc-800 h-full">
               <CardContent className="p-4 sm:p-6">
                 <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
-                  <DollarSign className="w-8 h-8 text-yellow-400 shrink-0" />
+                  <Settings className="w-8 h-8 text-yellow-400 shrink-0" />
                   <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Parameters</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
@@ -244,12 +244,16 @@ export function MSTYFreedomCalculator() {
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex-1">
-                    <div className="text-base text-yellow-100/60 font-satoshi">Gross Monthly Income</div>
-                    <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(taxCalculations.grossMonthlyIncome)}</div>
+                    <div className="text-base text-yellow-100/60 font-satoshi">Gross Yearly Income</div>
+                    <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(taxCalculations.grossYearlyIncome)}</div>
                   </div>
                   <div className="flex-1">
                     <div className="text-base text-yellow-100/60 font-satoshi">US Withholding Tax (15%)</div>
                     <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(taxCalculations.usWithholdingTax)}</div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-base text-yellow-100/60 font-satoshi">European Tax (15%)</div>
+                    <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(taxCalculations.europeanTax)}</div>
                   </div>
                   <div className="flex-1">
                     <div className="text-base text-yellow-100/60 font-satoshi">Net Income in EUR</div>
@@ -265,25 +269,25 @@ export function MSTYFreedomCalculator() {
               <CardContent className="p-4 sm:p-6">
                 <motion.div variants={contentVariants} className="flex items-start gap-4 mb-6">
                   <PieChart className="w-8 h-8 text-yellow-400 shrink-0" />
-                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Portfolio</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-yellow-400 font-epilogue">Allocation</h2>
                 </motion.div>
                 <motion.div variants={contentVariants} className="space-y-6">
                   <div className="flex-1">
-                    <div className="text-base text-yellow-100/60 font-satoshi">Total Portfolio Value</div>
+                    <div className="text-base text-yellow-100/60 font-satoshi">Recommended Portfolio</div>
                     <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(portfolioAllocation.totalPortfolio)}</div>
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div className="flex-1">
                       <div className="text-base text-yellow-100/60 font-satoshi">MSTY (Income)</div>
-                      <div className="text-xl xl:text-2xl font-semibold text-white font-satoshi">{formatCurrency(portfolioAllocation.mstyInvestment)}</div>
+                      <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(portfolioAllocation.mstyInvestment)}</div>
                     </div>
                     <div className="flex-1">
                       <div className="text-base text-yellow-100/60 font-satoshi">BTC (Savings)</div>
-                      <div className="text-xl xl:text-2xl font-semibold text-white font-satoshi">{formatCurrency(portfolioAllocation.btcInvestment)}</div>
+                      <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(portfolioAllocation.btcInvestment)}</div>
                     </div>
                     <div className="flex-1">
                       <div className="text-base text-yellow-100/60 font-satoshi">MSTR (Growth)</div>
-                      <div className="text-xl xl:text-2xl font-semibold text-white font-satoshi">{formatCurrency(portfolioAllocation.mstrInvestment)}</div>
+                      <div className="text-2xl xl:text-3xl font-bold text-white font-satoshi">{formatCurrency(portfolioAllocation.mstrInvestment)}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -350,7 +354,7 @@ export function MSTYFreedomCalculator() {
             <div className="absolute -left-4 -top-4 text-4xl text-yellow-400 opacity-50">&ldquo;</div>
             <div className="absolute -right-4 -bottom-4 text-4xl text-yellow-400 opacity-50">&rdquo;</div>
             <p className="text-xl md:text-2xl text-yellow-100/80 font-epilogue italic">
-              Now you live off MSTY distributions and let MSTR &amp; BTC stack over time, tax-deferred. 
+              Live Life off MSTY distributions and let MSTR &amp; BTC stack over time, tax-deferred (not in EUR). 
               You&apos;re cashflow-rich, compounding hard money, and never touching the principal.
             </p>
             <div className="mt-4 text-yellow-400/60 font-satoshi">
