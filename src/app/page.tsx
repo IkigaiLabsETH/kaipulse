@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Bitcoin, TrendingUp, DollarSign, ChevronDown, Calculator } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import PriceTicker from '@/components/PriceTicker';
 
 interface AccordionItemProps {
   title: string;
@@ -44,81 +45,102 @@ function AccordionItem({ title, children, defaultOpen = false }: AccordionItemPr
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative h-[60vh] flex items-center justify-center overflow-hidden"
+        className="relative sm:min-h-screen flex flex-col items-center justify-start pt-4 sm:pt-32 pb-2 sm:pb-16"
       >
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="relative z-10 text-center px-4"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold text-yellow-400 mb-6">
-            MSTR Option Income Strategy
-          </h1>
-          <p className="text-xl text-yellow-100/80 max-w-3xl mx-auto mb-8">
-            Bitcoin-first strategy, complemented by strategic positions in MSTY and MSTR.
-          </p>
-          <Link
-            href="/calculator"
-            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 transition-colors"
+        <div className="w-full max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="relative z-10 flex flex-col items-center space-y-3 sm:space-y-4 max-w-md mx-auto md:max-w-4xl md:mx-auto text-center"
           >
-            <Calculator className="w-5 h-5" />
-            Try the Calculator
-          </Link>
-        </motion.div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-bold text-yellow-400 text-center whitespace-nowrap max-w-4xl mx-auto">
+              MSTR Option Income Strategy
+            </h1>
+            <p className="text-sm sm:text-lg md:text-xl lg:text-lg xl:text-base text-gray-300 text-center whitespace-normal sm:whitespace-nowrap max-w-xs mx-auto md:max-w-2xl font-light">
+              Bitcoin-first strategy, complemented by strategic positions in MSTY and MSTR.
+            </p>
+          </motion.div>
+
+          <div className="relative z-10 -mx-2 md:mx-0 hidden sm:block mt-8">
+            <PriceTicker />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            className="relative z-10 mt-4 sm:mt-8 w-full flex justify-center"
+          >
+            <Link
+              href="/calculator"
+              className="w-full max-w-xs md:max-w-md inline-flex items-center justify-center gap-2 bg-yellow-400 text-black px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-lg font-semibold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105"
+            >
+              <Calculator className="w-5 h-5" />
+              Try the Calculator
+            </Link>
+          </motion.div>
+
+          {/* Divider between hero and core strategy */}
+          <div className="border-t border-yellow-500/10 mt-6 mb-4 w-full max-w-md mx-auto md:max-w-4xl md:mx-auto" />
+        </div>
+
         {/* Abstract Background Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))]" />
       </motion.div>
 
-      <div className="container mx-auto px-4 py-16 space-y-16">
+      <div className="container mx-auto px-4 py-4 md:py-16 space-y-16">
         {/* Core Strategy with Hover Effects */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-8">Core Strategy</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Bitcoin,
-                title: "Bitcoin Savings",
-                description: "Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation."
-              },
-              {
-                icon: TrendingUp,
-                title: "Strategic Growth",
-                description: "Capture additional Bitcoin exposure through MSTR corporate treasury strategy."
-              },
-              {
-                icon: DollarSign,
-                title: "Income Generation",
-                description: "Generate monthly income through MSTY option premium strategy without selling your core Bitcoin."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.5 }}
-                whileHover={{ scale: 1.02 }}
-                className="bg-zinc-900 p-6 rounded-lg border border-yellow-500/20 hover:border-yellow-500/40 transition-all"
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16 mt-2 md:mt-12"
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-yellow-500 text-center">Core Strategy</h2>
+            <div className="mt-8 grid gap-8 grid-cols-1 md:grid-cols-3">
+              <Link 
+                href="/platforms/msty/bitcoin"
+                className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
               >
-                <item.icon className="w-12 h-12 text-yellow-400 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-yellow-100/80">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <div className="text-yellow-500 text-4xl mb-4">₿</div>
+                <h3 className="text-2xl font-bold text-white">Bitcoin Savings</h3>
+                <p className="mt-4 text-gray-300">
+                  Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation.
+                </p>
+              </Link>
+
+              <Link 
+                href="/platforms/msty/mstr"
+                className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
+              >
+                <div className="text-yellow-500 text-4xl mb-4">↗</div>
+                <h3 className="text-2xl font-bold text-white">Strategic Growth</h3>
+                <p className="mt-4 text-gray-300">
+                  Capture additional Bitcoin exposure through MSTR corporate treasury strategy.
+                </p>
+              </Link>
+
+              <Link 
+                href="/platforms/msty"
+                className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
+              >
+                <div className="text-yellow-500 text-4xl mb-4">$</div>
+                <h3 className="text-2xl font-bold text-white">Income Generation</h3>
+                <p className="mt-4 text-gray-300">
+                  Generate monthly income through MSTY option premium strategy without selling your core Bitcoin.
+                </p>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Interactive FAQ Accordion */}
         <motion.div

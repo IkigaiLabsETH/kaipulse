@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const AccordionItem = ({
   title,
@@ -69,6 +70,15 @@ export default function MSTYPlatformsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        {/* Navigation */}
+        <div className="mb-8">
+          <Link 
+            href="/" 
+            className="text-yellow-500 hover:text-yellow-400 transition-colors"
+          >
+            ← Back to Home
+          </Link>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
