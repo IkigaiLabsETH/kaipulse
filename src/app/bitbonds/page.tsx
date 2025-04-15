@@ -121,7 +121,7 @@ export default function BitBondsPage() {
         >
           <h3 className="text-2xl font-bold text-yellow-400 mb-2">Why BitBonds?</h3>
           <p className="text-lg text-yellow-100/90">
-            BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It's a win-win for mismatched needs in a new era of finance.
+            BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It&apos;s a win-win for mismatched needs in a new era of finance.
           </p>
         </motion.div>
       </section>
