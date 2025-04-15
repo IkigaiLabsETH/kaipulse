@@ -62,7 +62,7 @@ const brokers = [
     ],
     fees: "Varies by broker",
     minDeposit: "Varies by broker",
-    link: "#broker-list"
+    link: "/platforms/msty/brokers"
   }
 ]
 
@@ -120,14 +120,23 @@ export default function MSTYPlatformsPage() {
                 <p>Fees: {broker.fees}</p>
                 <p>Minimum Deposit: {broker.minDeposit}</p>
               </div>
-              <a
-                href={broker.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-lg bg-yellow-500 px-4 py-2 text-sm font-semibold text-black hover:bg-yellow-400 transition-colors"
-              >
-                Visit Official Site
-              </a>
+              {broker.link.startsWith('/') ? (
+                <Link
+                  href={broker.link}
+                  className="mt-6 inline-block rounded-lg bg-yellow-500 px-4 py-2 text-sm font-semibold text-black hover:bg-yellow-400 transition-colors"
+                >
+                  Visit Official Site
+                </Link>
+              ) : (
+                <a
+                  href={broker.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-block rounded-lg bg-yellow-500 px-4 py-2 text-sm font-semibold text-black hover:bg-yellow-400 transition-colors"
+                >
+                  Visit Official Site
+                </a>
+              )}
             </motion.div>
           ))}
         </div>

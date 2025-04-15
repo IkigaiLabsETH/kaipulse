@@ -37,6 +37,7 @@ const BitwisePage = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Link href="/" className="text-yellow-400 font-bold text-lg mb-8 inline-block">&larr; Back to Home</Link>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4, color: '#eab308', fontFamily: 'Epilogue' }}>
           Bitwise Investment Funds
         </Typography>

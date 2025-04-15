@@ -3,14 +3,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Providers } from "./providers";
+import { Header } from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "MSTY Freedom Calculator",
-  description: "Calculate your path to financial freedom with a Bitcoin-first strategy",
-  keywords: ["Bitcoin", "MSTY", "MSTR", "Calculator", "Financial Freedom", "Investment"],
-  authors: [{ name: "Your Name" }],
+  title: "IKIGAI Labs",
+  description: "Your path to financial freedom with a Bitcoin-first strategy",
+  keywords: ["Bitcoin", "IKIGAI", "Calculator", "Financial Freedom", "Investment"],
+  authors: [{ name: "IKIGAI Labs" }],
   robots: "index, follow",
 };
 
@@ -31,7 +32,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <ErrorBoundary>
           <Providers>
-            {children}
+            <Header />
+            <main className="pt-16 min-h-screen">
+              {children}
+            </main>
           </Providers>
         </ErrorBoundary>
       </body>

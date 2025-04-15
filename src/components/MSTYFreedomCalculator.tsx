@@ -322,22 +322,6 @@ export function MSTYFreedomCalculator() {
               <ArrowRight className="w-6 h-6" />
             </motion.div>
           </Button>
-
-          <Button 
-            className="bg-zinc-800 hover:bg-zinc-700 text-yellow-400 text-xl font-bold py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-400/10 border border-yellow-400/20"
-            size="lg"
-            onClick={() => window.location.href = '/'}
-          >
-            <motion.div
-              className="flex items-center gap-3"
-              whileHover={{ x: -5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              <ArrowRight className="w-6 h-6 rotate-180" />
-              <span>Back to Home</span>
-              <span className="text-2xl">🏠</span>
-            </motion.div>
-          </Button>
         </motion.div>
 
         <motion.div

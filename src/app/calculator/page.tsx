@@ -1,11 +1,13 @@
 'use client';
 
 import { MSTYFreedomCalculator } from "@/components/MSTYFreedomCalculator";
+import Link from 'next/link';
 
 export default function CalculatorPage() {
   return (
     <main className="min-h-screen bg-black text-white font-satoshi">
       <div className="container mx-auto px-4 py-12">
+        <Link href="/" className="text-yellow-400 font-bold text-lg mb-8 inline-block">&larr; Back to Home</Link>
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-yellow-400 font-epilogue">LIVE OFF MSTR OPTIONS</h1>
           <p className="text-xl text-yellow-100/80 font-satoshi max-w-3xl mx-auto">YieldMax™ MSTR Option Income Strategy ETF</p>
