@@ -124,6 +124,41 @@ export default function AboutPage() {
           </AnimatePresence>
         </div>
       </section>
+      {/* STRF and STRK Explanation Section */}
+      <section className="w-full flex flex-col items-center justify-center py-12 bg-zinc-900 border-t border-yellow-500/20">
+        <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+          {/* STRF Card */}
+          <div className="bg-zinc-800 rounded-xl p-8 shadow-lg border-l-4 border-[#FFD600] flex flex-col">
+            <h3 className="text-3xl font-bold text-yellow-300 mb-4">STRF</h3>
+            <p className="text-yellow-100/90 mb-4 text-lg">
+              STRF is a cash alternative product designed for capital preservation and liquidity, offering a stable yield with minimal risk. It is ideal for parking funds you may need in the short term, while still earning a return.
+            </p>
+            <a
+              href="https://www.strategy.com/strf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-auto text-yellow-400 hover:text-yellow-200 font-semibold underline"
+            >
+              Learn more about STRF
+            </a>
+          </div>
+          {/* STRK Card */}
+          <div className="bg-zinc-800 rounded-xl p-8 shadow-lg border-l-4 border-[#FFA726] flex flex-col">
+            <h3 className="text-3xl font-bold text-yellow-400 mb-4">STRK</h3>
+            <p className="text-yellow-100/90 mb-4 text-lg">
+              STRK is a cash alternative strategy focused on maximizing yield while maintaining high liquidity and safety. It is suitable for those seeking a flexible, low-risk place to hold cash with the potential for enhanced returns.
+            </p>
+            <a
+              href="https://www.strategy.com/strk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-auto text-yellow-400 hover:text-yellow-200 font-semibold underline"
+            >
+              Learn more about STRK
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 } 

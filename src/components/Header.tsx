@@ -13,11 +13,13 @@ export function Header() {
   const navigation = [
     { name: 'HOME', href: '/' },
     { name: 'CALCULATOR', href: '/calculator' },
-    { name: 'BITCOIN', href: '/platforms/msty/bitcoin' },
+    { name: 'BTC', href: '/platforms/msty/bitcoin' },
     { name: 'MSTR', href: '/platforms/msty/mstr' },
     { name: 'MSTY', href: '/platforms/msty' },
+    { name: 'IMST', href: '/platforms/bitwise' },
+    { name: 'BITBONDS', href: '/bitbonds' },
     { name: 'BROKERS', href: '/platforms/msty/brokers' },
-    { name: 'BITWISE', href: '/platforms/bitwise' },
+    { name: 'SUMMARY', href: '/about' },
   ];
 
   return (
@@ -38,7 +40,7 @@ export function Header() {
                 height={32}
                 className="w-8 h-8 flex-shrink-0"
               />
-              <span className="text-yellow-400 font-bold text-xl truncate">...</span>
+              <span className="text-yellow-400 font-bold text-xl truncate">TRIPLEMAXI</span>
             </Link>
           </div>
           {/* Desktop nav */}
