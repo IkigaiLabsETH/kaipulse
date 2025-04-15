@@ -7,10 +7,10 @@ export default function BitBondsPage() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
     {
-      q: "What is Saylor's Speculative Attack thesis?",
+      q: "What is Saylor&apos;s Speculative Attack thesis?",
       a: (
         <span>
-          MicroStrategy, under Michael Saylor, is using the global bond market as a capital reallocation machine—issuing yield-enhanced instruments like $STRK and $STRF to turn low-yield capital into high-performing Bitcoin. This is a macro-level "speculative attack" on fiat: borrow at 10%, buy BTC, and let Bitcoin's appreciation outpace the cost of capital.
+          MicroStrategy, under Michael Saylor, is using the global bond market as a capital reallocation machine—issuing yield-enhanced instruments like $STRK and $STRF to turn low-yield capital into high-performing Bitcoin. This is a macro-level &quot;speculative attack&quot; on fiat: borrow at 10%, buy BTC, and let Bitcoin&apos;s appreciation outpace the cost of capital.
         </span>
       ),
     },
@@ -31,7 +31,7 @@ export default function BitBondsPage() {
       ),
     },
     {
-      q: "How do these instruments impact Bitcoin's price?",
+      q: "How do these instruments impact Bitcoin&apos;s price?",
       a: (
         <span>
           Every time MicroStrategy issues these bonds and buys BTC, it creates direct buy pressure and removes supply from the market. If this model scales (e.g., more companies or even countries issue Bitcoin-backed bonds), it could create a persistent, institutional bid for Bitcoin, supporting price and reducing circulating supply.
@@ -42,7 +42,7 @@ export default function BitBondsPage() {
       q: "How are STRK/STRF different from a Bitcoin ETF or a traditional bond?",
       a: (
         <span>
-          Unlike a Bitcoin ETF, STRK/STRF pay high yields but don't offer pure BTC price exposure (except STRK's conversion feature). Unlike traditional bonds, they have no maturity, can defer payments, and are backed by a company with massive BTC holdings. They blend fixed income and crypto in a unique way.
+          Unlike a Bitcoin ETF, STRK/STRF pay high yields but don&apos;t offer pure BTC price exposure (except STRK&apos;s conversion feature). Unlike traditional bonds, they have no maturity, can defer payments, and are backed by a company with massive BTC holdings. They blend fixed income and crypto in a unique way.
         </span>
       ),
     },
@@ -50,7 +50,7 @@ export default function BitBondsPage() {
       q: "What are the risks?",
       a: (
         <span>
-          These are not risk-free: if Bitcoin's price crashes, MicroStrategy could struggle to pay dividends, and the preferreds could lose value. STRK/STRF are junior to debt and not directly collateralized by BTC. Investors are betting on both MicroStrategy's solvency and Bitcoin's long-term success.
+          These are not risk-free: if Bitcoin&apos;s price crashes, MicroStrategy could struggle to pay dividends, and the preferreds could lose value. STRK/STRF are junior to debt and not directly collateralized by BTC. Investors are betting on both MicroStrategy&apos;s solvency and Bitcoin&apos;s long-term success.
         </span>
       ),
     },
@@ -58,7 +58,7 @@ export default function BitBondsPage() {
       q: "Could this model go global?",
       a: (
         <span>
-          Yes. El Salvador's "Volcano Bonds" and other corporate Bitcoin bonds show the model is spreading. If sovereigns or more corporations adopt this approach, it could institutionalize Bitcoin demand and reshape global capital flows.
+          Yes. El Salvador&apos;s &quot;Volcano Bonds&quot; and other corporate Bitcoin bonds show the model is spreading. If sovereigns or more corporations adopt this approach, it could institutionalize Bitcoin demand and reshape global capital flows.
         </span>
       ),
     },
