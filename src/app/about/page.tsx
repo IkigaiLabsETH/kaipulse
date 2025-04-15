@@ -2,44 +2,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bitcoin, TrendingUp, DollarSign, ChevronDown, Calculator } from 'lucide-react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-
-interface AccordionItemProps {
-  title: string;
-  children: React.ReactNode;
-  defaultOpen?: boolean;
-}
-
-function AccordionItem({ title, children, defaultOpen = false }: AccordionItemProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
-  return (
-    <div className="border-b border-yellow-500/20 last:border-0">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full py-4 text-left"
-      >
-        <span className="text-xl font-semibold text-yellow-400">{title}</span>
-        <ChevronDown
-          className={cn(
-            "w-5 h-5 text-yellow-400 transition-transform",
-            isOpen && "transform rotate-180"
-          )}
-        />
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="overflow-hidden"
-      >
-        <div className="pb-4">{children}</div>
-      </motion.div>
-    </div>
-  );
-}
 
 export default function AboutPage() {
   // Interactive pyramid state
@@ -114,7 +76,7 @@ export default function AboutPage() {
             className="mx-auto select-none"
             {...floatAnim}
           >
-            {pyramidTiers.map((tier, idx) => (
+            {pyramidTiers.map((tier) => (
               <motion.g key={tier.key}>
                 <motion.polygon
                   points={tier.points}
