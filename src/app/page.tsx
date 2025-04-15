@@ -110,9 +110,11 @@ export default function HomePage() {
                 href="/platforms/msty/bitcoin"
                 className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
               >
-                <div className="text-yellow-500 text-4xl mb-4">₿</div>
-                <h3 className="text-2xl font-bold text-white">Bitcoin Savings</h3>
-                <p className="mt-4 text-gray-300">
+                <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
+                  <div className="text-yellow-500 text-4xl">₿</div>
+                  <h3 className="text-2xl font-bold text-white">Bitcoin Savings</h3>
+                </div>
+                <p className="text-gray-300">
                   Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation.
                 </p>
               </Link>
@@ -121,9 +123,11 @@ export default function HomePage() {
                 href="/platforms/msty/mstr"
                 className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
               >
-                <div className="text-yellow-500 text-4xl mb-4">↗</div>
-                <h3 className="text-2xl font-bold text-white">Strategic Growth</h3>
-                <p className="mt-4 text-gray-300">
+                <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
+                  <div className="text-yellow-500 text-4xl">↗</div>
+                  <h3 className="text-2xl font-bold text-white">Strategic Growth</h3>
+                </div>
+                <p className="text-gray-300">
                   Capture additional Bitcoin exposure through MSTR corporate treasury strategy.
                 </p>
               </Link>
@@ -132,9 +136,11 @@ export default function HomePage() {
                 href="/platforms/msty"
                 className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
               >
-                <div className="text-yellow-500 text-4xl mb-4">$</div>
-                <h3 className="text-2xl font-bold text-white">Income Generation</h3>
-                <p className="mt-4 text-gray-300">
+                <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
+                  <div className="text-yellow-500 text-4xl">$</div>
+                  <h3 className="text-2xl font-bold text-white">Income Generation</h3>
+                </div>
+                <p className="text-gray-300">
                   Generate monthly income through MSTY option premium strategy without selling your core Bitcoin.
                 </p>
               </Link>
