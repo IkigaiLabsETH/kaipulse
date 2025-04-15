@@ -201,26 +201,6 @@ const brokers: Broker[] = [
     rating: 3.5,
     website: "https://www.firstrade.com",
     regulators: ["SEC", "FINRA"]
-  },
-  {
-    name: "Tradier",
-    countries: ["Selected EU countries"],
-    features: [
-      "Low stock and ETF fees",
-      "Seamless account opening",
-      "Great API trading service",
-      "Developer-friendly"
-    ],
-    ucitsAccess: true,
-    fees: {
-      trading: "$3.5 per 10 contracts",
-      custody: "Free",
-      inactivity: "None"
-    },
-    minDeposit: "$0",
-    rating: 3.4,
-    website: "https://www.tradier.com",
-    regulators: ["SEC", "FINRA"]
   }
 ]
 
