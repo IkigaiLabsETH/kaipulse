@@ -26,13 +26,10 @@ const DEFAULT_PRICES: Price[] = [
 
 export default function PriceTicker() {
   const [prices, setPrices] = useState<Price[]>(DEFAULT_PRICES);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        setIsLoading(true);
-        
         // Fetch BTC data
         const btcResponse = await fetch(
           'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=1&page=1&sparkline=false&price_change_percentage=24h',
@@ -81,8 +78,6 @@ export default function PriceTicker() {
       } catch (error) {
         console.error('Error fetching prices:', error);
         // Keep showing default prices on error
-      } finally {
-        setIsLoading(false);
       }
     };
 

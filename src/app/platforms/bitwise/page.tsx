@@ -106,7 +106,7 @@ const BitwisePage = () => {
             OWNB, BTOP, BITC, BITQ, AETH, and BWEB do not invest directly in crypto assets, including bitcoin and ether.
           </Typography>
           <Typography variant="body2" paragraph sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi', fontStyle: 'italic' }}>
-            BITB and ETHW are exchange-traded products that are not registered under the Investment Company Act of 1940 (the "1940 Act") and therefore are not subject to the same regulations as mutual funds or ETFs registered under the 1940 Act. BITB and ETHW are not suitable for all investors. An investment in BITB or ETHW is subject to a high degree of risk, has the potential for significant volatility, and could result in significant or complete loss of investment. An investment in either Fund is not a direct investment in bitcoin or ether.
+            BITB and ETHW are exchange-traded products that are not registered under the Investment Company Act of 1940 (the &quot;1940 Act&quot;) and therefore are not subject to the same regulations as mutual funds or ETFs registered under the 1940 Act. BITB and ETHW are not suitable for all investors. An investment in BITB or ETHW is subject to a high degree of risk, has the potential for significant volatility, and could result in significant or complete loss of investment. An investment in either Fund is not a direct investment in bitcoin or ether.
           </Typography>
           <Typography variant="body2" paragraph sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi' }}>
             Past performance does not predict future results. Investment involves risk. The value of investments may go down as well as up and investors may not get back the full amount invested.
