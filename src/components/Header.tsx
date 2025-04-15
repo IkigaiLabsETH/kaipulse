@@ -38,7 +38,7 @@ export function Header() {
                 height={32}
                 className="w-8 h-8 flex-shrink-0"
               />
-              <span className="text-yellow-400 font-bold text-xl truncate">IKIGAI</span>
+              <span className="text-yellow-400 font-bold text-xl truncate">...</span>
             </Link>
           </div>
           {/* Desktop nav */}

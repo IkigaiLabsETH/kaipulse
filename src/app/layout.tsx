@@ -4,6 +4,7 @@ import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Providers } from "./providers";
 import { Header } from "@/components/Header";
+import { GradientBackground } from "@/components/GradientBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ErrorBoundary>
           <Providers>
+            <GradientBackground />
             <Header />
             <main className="pt-16 min-h-screen">
               {children}

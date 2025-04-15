@@ -134,7 +134,7 @@ export default function MSTYPlatformsPage() {
                   rel="noopener noreferrer"
                   className="mt-6 inline-block rounded-lg bg-yellow-500 px-4 py-2 text-sm font-semibold text-black hover:bg-yellow-400 transition-colors"
                 >
-                  Visit Official Site
+                  Overview All Brokers
                 </a>
               )}
             </motion.div>
