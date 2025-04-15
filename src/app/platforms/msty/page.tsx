@@ -79,7 +79,7 @@ export default function MSTYPlatformsPage() {
             MSTY Trading in Europe
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Access the Yieldmax MSTR Option Income Strategy ETF (MSTY) through YieldMax's official European UCITS fund structure.
+            Access the Yieldmax MSTR Option Income Strategy ETF (MSTY) through YieldMax&apos;s official European UCITS fund structure.
           </p>
         </motion.div>
 
@@ -126,7 +126,7 @@ export default function MSTYPlatformsPage() {
           <h2 className="text-2xl font-bold">How to Trade MSTY in Europe</h2>
           <div className="mt-8 space-y-4">
             <AccordionItem title="1. Understanding MSTY in Europe">
-              MSTY is now available to European investors through YieldMax's UCITS fund structure. This provides EU investors with a regulated way to access MSTY's option income strategy while maintaining compliance with European regulations.
+              MSTY is now available to European investors through YieldMax&apos;s UCITS fund structure. This provides EU investors with a regulated way to access MSTY&apos;s option income strategy while maintaining compliance with European regulations.
             </AccordionItem>
             <AccordionItem title="2. Finding a Local Broker">
               To trade MSTY in Europe, follow these steps:

@@ -101,7 +101,7 @@ export default function BitcoinPage() {
             Bitcoin & MSTY
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Understanding Bitcoin's impact on MSTY and MicroStrategy's Bitcoin strategy
+            Understanding Bitcoin&apos;s impact on MSTY and MicroStrategy&apos;s Bitcoin strategy
           </p>
         </motion.div>
 
@@ -144,8 +144,8 @@ export default function BitcoinPage() {
                 </ul>
               </AccordionItem>
               
-              <AccordionItem title="Bitcoin's Role in MSTY">
-                Bitcoin's price movements directly affect MSTY through MicroStrategy's significant Bitcoin holdings:
+              <AccordionItem title="Bitcoin&apos;s Role in MSTY">
+                Bitcoin&apos;s price movements directly affect MSTY through MicroStrategy&apos;s significant Bitcoin holdings:
                 <ul className="mt-4 list-disc pl-4 space-y-2">
                   <li>MSTR stock price correlation with Bitcoin</li>
                   <li>Impact on MSTY options premiums</li>

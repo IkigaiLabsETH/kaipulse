@@ -97,7 +97,7 @@ export default function MSTRPage() {
             MicroStrategy & MSTY
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Understanding MicroStrategy's business model and its impact on MSTY performance
+            Understanding MicroStrategy&apos;s business model and its impact on MSTY performance
           </p>
         </motion.div>
 
