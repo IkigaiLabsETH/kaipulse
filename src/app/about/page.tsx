@@ -74,7 +74,7 @@ export default function AboutPage() {
           <motion.svg
             viewBox="0 0 800 800"
             width="100%"
-            height="800"
+            height="600"
             className="mx-auto select-none"
             {...floatAnim}
           >
@@ -114,7 +114,7 @@ export default function AboutPage() {
           </motion.svg>
         </div>
         {/* Animated Info Box for Active Tier */}
-        <div className="w-full max-w-3xl min-h-[96px] flex items-center justify-center px-4 mb-8">
+        <div className="w-full max-w-3xl min-h-[96px] flex items-center justify-center px-4 -mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTierObj.key}
@@ -122,7 +122,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="w-full bg-[#1c1f26] border-2 border-yellow-500 p-8 rounded-lg text-2xl font-semibold flex items-center"
+              className="w-full bg-[#1c1f26] border-2 border-yellow-500 p-6 rounded-lg text-xl font-semibold flex items-center"
             >
               <span className="font-bold mr-4 text-yellow-500">{activeTierObj.label}:</span> 
               <span className="text-white/90">{activeTierObj.description}</span>
