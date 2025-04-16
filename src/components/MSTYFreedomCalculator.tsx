@@ -295,12 +295,12 @@ export function MSTYFreedomCalculator() {
           className="mt-8 flex justify-center"
         >
           <Button 
-            className="bg-[#1c1f26] w-[400px] h-[80px] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-xl rounded-[40px] flex items-center justify-center gap-2 transition-all duration-300"
+            className="bg-[#1c1f26] w-[400px] h-[80px] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-xl rounded-[40px] transition-all duration-300"
             onClick={() => window.open('https://yieldmaxetfs.com/msty', '_blank')}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center w-full space-x-3">
               <Calculator className="w-6 h-6" />
-              <span>Try the Calculator</span>
+              <span>YieldMaxETFS</span>
             </div>
           </Button>
         </motion.div>
