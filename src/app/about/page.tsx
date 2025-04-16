@@ -69,7 +69,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-black text-white font-satoshi flex flex-col items-center">
-      <section className="w-full flex flex-col items-center pt-12 md:pt-16">
+      <section className="w-full flex flex-col items-center pt-4 md:pt-8">
         <div className="w-full max-w-6xl mb-8">
           <motion.svg
             viewBox="0 0 800 800"
