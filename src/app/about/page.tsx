@@ -72,16 +72,15 @@ export default function AboutPage() {
       <section className="w-full flex flex-col items-center pt-12 md:pt-16">
         <div className="w-full max-w-6xl mb-8">
           <motion.svg
-            viewBox="0 0 800 600"
+            viewBox="0 0 800 800"
             width="100%"
-            height="600"
+            height="800"
             className="mx-auto select-none"
             {...floatAnim}
           >
-            {/* Yellow glow effect */}
             <defs>
               <filter id="glow">
-                <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                 <feMerge>
                   <feMergeNode in="coloredBlur"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -89,42 +88,21 @@ export default function AboutPage() {
               </filter>
             </defs>
             
-            {pyramidTiers.map((tier) => (
-              <motion.g key={tier.key}>
-                <motion.polygon
-                  points={tier.points}
-                  fill={activeTier === tier.key ? tier.fill : tier.fill + 'CC'}
-                  stroke={activeTier === tier.key ? '#FFD600' : '#333'}
-                  strokeWidth={activeTier === tier.key ? 8 : 3}
-                  style={{ 
-                    cursor: 'pointer', 
-                    transition: 'all 0.2s',
-                    filter: activeTier === tier.key ? 'url(#glow)' : 'none'
-                  }}
-                  onMouseEnter={() => setActiveTier(tier.key)}
-                  onMouseLeave={() => setActiveTier(null)}
-                  onClick={() => setActiveTier(tier.key)}
-                  animate={activeTier === tier.key ? 
-                    { scale: 1.02, filter: 'drop-shadow(0 0 40px #FFD600AA)' } : 
-                    { scale: 1, filter: 'none' }
-                  }
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                />
-                <motion.text
-                  x="400"
-                  y={tier.labelY}
-                  textAnchor="middle"
-                  fontSize={tier.labelSize}
-                  fontWeight="bold"
-                  fill={activeTier === tier.key ? '#000' : '#222'}
-                  style={{ pointerEvents: 'none', userSelect: 'none' }}
-                  animate={activeTier === tier.key ? { scale: 1.12 } : { scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  {tier.label}
-                </motion.text>
-              </motion.g>
-            ))}
+            {/* BTC - Base */}
+            <polygon points="200,600 600,600 500,500 300,500" className="fill-yellow-600" filter="url(#glow)" />
+            <text x="400" y="560" className="text-[64px] font-bold" textAnchor="middle" fill="white">BTC</text>
+            
+            {/* MSTR - Second Level */}
+            <polygon points="300,500 500,500 450,400 350,400" className="fill-yellow-500" filter="url(#glow)" />
+            <text x="400" y="460" className="text-[48px] font-bold" textAnchor="middle" fill="white">MSTR</text>
+            
+            {/* IMST MSTY - Third Level */}
+            <polygon points="350,400 450,400 425,300 375,300" className="fill-yellow-400" filter="url(#glow)" />
+            <text x="400" y="360" className="text-[36px] font-bold" textAnchor="middle" fill="white">IMST MSTY</text>
+            
+            {/* STRK STRF - Top */}
+            <polygon points="375,300 425,300 412,200 388,200" className="fill-gray-300" filter="url(#glow)" />
+            <text x="400" y="260" className="text-[20px] font-bold" textAnchor="middle" fill="white">STRK STRF</text>
           </motion.svg>
         </div>
         {/* Animated Info Box for Active Tier */}
