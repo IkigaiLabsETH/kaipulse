@@ -89,20 +89,28 @@ export default function AboutPage() {
             </defs>
             
             {/* BTC - Base */}
-            <polygon points="200,600 600,600 500,500 300,500" className="fill-yellow-600" filter="url(#glow)" />
-            <text x="400" y="560" className="text-[64px] font-bold" textAnchor="middle" fill="white">BTC</text>
+            <g onClick={() => setActiveTier('btc')} className="cursor-pointer hover:opacity-90 transition-opacity">
+              <polygon points="200,600 600,600 500,500 300,500" className="fill-yellow-600" filter="url(#glow)" />
+              <text x="400" y="560" className="text-[64px] font-bold" textAnchor="middle" fill="white">BTC</text>
+            </g>
             
             {/* MSTR - Second Level */}
-            <polygon points="300,500 500,500 450,400 350,400" className="fill-yellow-500" filter="url(#glow)" />
-            <text x="400" y="460" className="text-[48px] font-bold" textAnchor="middle" fill="white">MSTR</text>
+            <g onClick={() => setActiveTier('mstr')} className="cursor-pointer hover:opacity-90 transition-opacity">
+              <polygon points="300,500 500,500 450,400 350,400" className="fill-yellow-500" filter="url(#glow)" />
+              <text x="400" y="460" className="text-[48px] font-bold" textAnchor="middle" fill="white">MSTR</text>
+            </g>
             
             {/* IMST MSTY - Third Level */}
-            <polygon points="350,400 450,400 425,300 375,300" className="fill-yellow-400" filter="url(#glow)" />
-            <text x="400" y="360" className="text-[36px] font-bold" textAnchor="middle" fill="white">IMST MSTY</text>
+            <g onClick={() => setActiveTier('imst_msty')} className="cursor-pointer hover:opacity-90 transition-opacity">
+              <polygon points="350,400 450,400 425,300 375,300" className="fill-yellow-400" filter="url(#glow)" />
+              <text x="400" y="360" className="text-[36px] font-bold" textAnchor="middle" fill="white">IMST MSTY</text>
+            </g>
             
             {/* STRK STRF - Top */}
-            <polygon points="375,300 425,300 412,200 388,200" className="fill-gray-300" filter="url(#glow)" />
-            <text x="400" y="260" className="text-[20px] font-bold" textAnchor="middle" fill="white">STRK STRF</text>
+            <g onClick={() => setActiveTier('strk_strf')} className="cursor-pointer hover:opacity-90 transition-opacity">
+              <polygon points="375,300 425,300 412,200 388,200" className="fill-gray-300" filter="url(#glow)" />
+              <text x="400" y="260" className="text-[20px] font-bold" textAnchor="middle" fill="white">STRK STRF</text>
+            </g>
           </motion.svg>
         </div>
         {/* Animated Info Box for Active Tier */}
