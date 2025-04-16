@@ -20,10 +20,6 @@ const TICKERS: Price[] = [
 export default function PriceTicker() {
   const [selectedSymbol, setSelectedSymbol] = useState<string>('MSTY');
 
-  const getTradingViewUrl = (tradingViewSymbol: string) => {
-    return `https://www.tradingview.com/symbols/${tradingViewSymbol.replace(':', '-')}/`;
-  };
-
   const handleSymbolClick = (symbol: string) => {
     if (symbol === selectedSymbol) {
       return;

@@ -42,9 +42,6 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   ({ className, variant, size, buttonColor, asChild = false, href, children, loading = false, target = '_self', ...props }, ref) => {
-    const Component = asChild ? Slot : href ? 'a' : 'button'
-    const baseClassName = cn(buttonVariants({ variant, size, buttonColor, className }))
-
     const content = (
       <>
         <span className={cn(
@@ -69,7 +66,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
       return (
         <a 
           href={href} 
-          className={baseClassName} 
+          className={cn(buttonVariants({ variant, size, buttonColor, className }))} 
           target={target} 
           ref={ref as React.Ref<HTMLAnchorElement>}
           {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
@@ -79,14 +76,15 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
       )
     }
 
+    const Component = asChild ? Slot : 'button'
     return (
-      <button 
-        className={cn(baseClassName, "disabled:cursor-not-allowed")} 
+      <Component 
+        className={cn(buttonVariants({ variant, size, buttonColor, className }), "disabled:cursor-not-allowed")} 
         ref={ref as React.Ref<HTMLButtonElement>}
         {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}
-      </button>
+      </Component>
     )
   }
 )
