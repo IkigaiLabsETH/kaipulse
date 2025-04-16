@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -33,7 +34,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center min-w-0">
             <Link href="/" className="flex items-center space-x-2 min-w-0">
-              <img
+              <Image
                 src="/IKIGAI_LABS_logo.svg"
                 alt="IKIGAI Labs Logo"
                 width={32}
@@ -50,11 +51,19 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "text-base font-bold transition-colors hover:text-yellow-400",
-                  pathname === item.href ? "text-yellow-400" : "text-yellow-100/80"
+                  "relative py-4 text-base font-bold transition-colors",
+                  pathname === item.href ? "text-yellow-400" : "text-white/60 hover:text-white"
                 )}
               >
                 {item.name}
+                {pathname === item.href && (
+                  <motion.div
+                    layoutId="activeNavTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-500"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </Link>
             ))}
           </div>
@@ -78,12 +87,20 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "px-4 py-2 text-base font-bold transition-colors hover:text-yellow-400 hover:bg-yellow-900/20",
-                    pathname === item.href ? "text-yellow-400" : "text-yellow-100/80"
+                    "relative px-4 py-2 text-base font-bold transition-colors",
+                    pathname === item.href ? "text-yellow-400" : "text-white/60 hover:text-white"
                   )}
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.name}
+                  {pathname === item.href && (
+                    <motion.div
+                      layoutId="activeMobileNavTab"
+                      className="absolute left-0 w-1 top-0 bottom-0 bg-yellow-500"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
                 </Link>
               ))}
             </div>

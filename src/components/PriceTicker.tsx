@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Camera } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Camera } from 'lucide-react';
 
 interface Price {
   symbol: string;

@@ -42,7 +42,7 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   ({ className, variant, size, buttonColor, asChild = false, href, children, loading = false, target = '_self', ...props }, ref) => {
-    const Comp = asChild ? Slot : href ? 'a' : 'button'
+    const Component = asChild ? Slot : href ? 'a' : 'button'
     const baseClassName = cn(buttonVariants({ variant, size, buttonColor, className }))
 
     const content = (

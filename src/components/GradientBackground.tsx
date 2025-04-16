@@ -1,19 +1,9 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
-export const GradientBackground = () => {
+export function GradientBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
-
-  useEffect(() => {
-    console.log('GradientBackground mounted');
-    const updateDimensions = () => {
-      setDimensions({ width: window.innerWidth, height: window.innerHeight });
-    };
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -53,15 +43,15 @@ export const GradientBackground = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [dimensions]);
+  }, []);
 
   return (
-    <canvas
+    <motion.canvas
       ref={canvasRef}
-      width={dimensions.width}
-      height={dimensions.height}
-      className="fixed top-0 left-0 w-full h-full -z-10"
-      style={{ opacity: 1, background: 'red', border: '4px solid red' }}
+      className="fixed inset-0 w-full h-full -z-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     />
   );
-}; 
+} 
