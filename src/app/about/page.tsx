@@ -70,17 +70,17 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi flex flex-col items-center">
       <section className="w-full flex flex-col items-center pt-4 md:pt-8">
-        <div className="w-full max-w-6xl mb-8">
+        <div className="w-full max-w-7xl mb-4">
           <motion.svg
-            viewBox="0 0 800 800"
+            viewBox="0 0 800 600"
             width="100%"
-            height="600"
+            height="580"
             className="mx-auto select-none"
             {...floatAnim}
           >
             <defs>
               <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
                 <feMerge>
                   <feMergeNode in="coloredBlur"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -90,31 +90,31 @@ export default function AboutPage() {
             
             {/* BTC - Base */}
             <g onClick={() => setActiveTier('btc')} className="cursor-pointer hover:opacity-90 transition-opacity">
-              <polygon points="200,600 600,600 500,500 300,500" className="fill-yellow-600" filter="url(#glow)" />
-              <text x="400" y="560" className="text-[64px] font-bold" textAnchor="middle" fill="white">BTC</text>
+              <polygon points="50,550 750,550 400,200" className="fill-yellow-600" filter="url(#glow)" />
+              <text x="400" y="480" className="text-[72px] font-bold" textAnchor="middle" fill="white">BTC</text>
             </g>
             
             {/* MSTR - Second Level */}
             <g onClick={() => setActiveTier('mstr')} className="cursor-pointer hover:opacity-90 transition-opacity">
-              <polygon points="300,500 500,500 450,400 350,400" className="fill-yellow-500" filter="url(#glow)" />
-              <text x="400" y="460" className="text-[48px] font-bold" textAnchor="middle" fill="white">MSTR</text>
+              <polygon points="150,425 650,425 400,150" className="fill-yellow-500" filter="url(#glow)" />
+              <text x="400" y="360" className="text-[56px] font-bold" textAnchor="middle" fill="white">MSTR</text>
             </g>
             
             {/* IMST MSTY - Third Level */}
             <g onClick={() => setActiveTier('imst_msty')} className="cursor-pointer hover:opacity-90 transition-opacity">
-              <polygon points="350,400 450,400 425,300 375,300" className="fill-yellow-400" filter="url(#glow)" />
-              <text x="400" y="360" className="text-[36px] font-bold" textAnchor="middle" fill="white">IMST MSTY</text>
+              <polygon points="225,300 575,300 400,100" className="fill-yellow-400" filter="url(#glow)" />
+              <text x="400" y="250" className="text-[42px] font-bold" textAnchor="middle" fill="white">IMST MSTY</text>
             </g>
             
             {/* STRK STRF - Top */}
             <g onClick={() => setActiveTier('strk_strf')} className="cursor-pointer hover:opacity-90 transition-opacity">
-              <polygon points="375,300 425,300 412,200 388,200" className="fill-gray-300" filter="url(#glow)" />
-              <text x="400" y="260" className="text-[20px] font-bold" textAnchor="middle" fill="white">STRK STRF</text>
+              <polygon points="300,200 500,200 400,50" className="fill-gray-300" filter="url(#glow)" />
+              <text x="400" y="160" className="text-[32px] font-bold" textAnchor="middle" fill="white">STRK STRF</text>
             </g>
           </motion.svg>
         </div>
         {/* Animated Info Box for Active Tier */}
-        <div className="w-full max-w-3xl min-h-[96px] flex items-center justify-center px-4 -mt-8">
+        <div className="w-full max-w-3xl min-h-[96px] flex items-center justify-center px-4 -mt-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTierObj.key}
