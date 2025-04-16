@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
-import { Settings, Target, PieChart, ArrowRight, DollarSign } from 'lucide-react';
+import { Settings, Target, PieChart, ArrowRight, DollarSign, Calculator } from 'lucide-react';
 import { DEFAULT_VALUES, INPUT_CONFIG } from '@/config/calculator';
 import { calculateFreedomMetrics, formatCurrency, formatNumber } from '@/utils/calculator';
 
@@ -295,13 +295,11 @@ export function MSTYFreedomCalculator() {
           className="mt-8 flex justify-center"
         >
           <Button 
-            className="bg-[#1c1f26] w-[400px] h-[80px] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-2xl rounded-[24px] flex items-center justify-center gap-4 transition-all duration-300"
+            className="bg-[#1c1f26] w-[400px] h-[80px] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-xl rounded-[32px] flex items-center justify-center gap-3 transition-all duration-300"
             onClick={() => window.open('https://yieldmaxetfs.com/msty', '_blank')}
           >
-            <span>🚀</span>
-            <span className="tracking-wide">LFG</span>
-            <span>🚀</span>
-            <ArrowRight className="w-7 h-7 ml-1" />
+            <Calculator className="w-6 h-6" />
+            <span>Try the Calculator</span>
           </Button>
         </motion.div>
 
