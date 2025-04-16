@@ -295,13 +295,13 @@ export function MSTYFreedomCalculator() {
           className="mt-8 flex justify-center"
         >
           <Button 
-            className="bg-[#1c1f26] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-xl w-[300px] px-8 py-6 rounded-xl flex items-center justify-center gap-3 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] transition-all duration-300"
+            className="bg-[#1c1f26] w-[400px] h-[80px] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-2xl rounded-[24px] flex items-center justify-center gap-4 transition-all duration-300"
             onClick={() => window.open('https://yieldmaxetfs.com/msty', '_blank')}
           >
             <span>🚀</span>
-            <span>LFG</span>
+            <span className="tracking-wide">LFG</span>
             <span>🚀</span>
-            <ArrowRight className="w-6 h-6" />
+            <ArrowRight className="w-7 h-7 ml-1" />
           </Button>
         </motion.div>
 
