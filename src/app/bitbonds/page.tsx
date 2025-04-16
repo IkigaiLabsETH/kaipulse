@@ -66,84 +66,119 @@ export default function BitBondsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white font-satoshi flex flex-col items-center justify-center px-4 py-12">
-      {/* Hero Section */}
-      <section className="w-full max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold text-yellow-400 mb-6 font-epilogue">
-          BitBonds: The Aligned Solution
-        </h1>
-        <p className="text-xl md:text-2xl text-yellow-100/90 mb-6">
-          The U.S. needs to refinance <span className="font-bold text-yellow-300">$14T</span> in debt.<br />
-          Investors want protection from inflation and asset debasement.
-        </p>
-        <p className="text-lg md:text-xl text-yellow-200/80 mb-4">
-          <span className="font-bold text-yellow-400">Enter BitBonds:</span>
-        </p>
-      </section>
+    <div className="min-h-screen bg-black text-white font-satoshi">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div className="space-y-16">
+          {/* Hero Section */}
+          <div className="text-center space-y-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-yellow-400">
+              BitBonds: The Aligned Solution
+            </h1>
+            <div className="max-w-3xl mx-auto space-y-4">
+              <p className="text-xl md:text-2xl">
+                The U.S. needs to refinance <span className="text-yellow-400">$14T</span> in debt.
+              </p>
+              <p className="text-xl md:text-2xl">
+                Investors want protection from inflation and asset debasement.
+              </p>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-yellow-400">
+              Enter BitBonds:
+            </h2>
+          </div>
 
-      {/* Visual Breakdown */}
-      <section className="w-full max-w-2xl mx-auto flex flex-col items-center mb-10">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
-          <Card className="w-full md:w-1/2 text-center">
-            <span className="text-5xl mb-2 block">🇺🇸</span>
-            <span className="text-2xl font-bold text-yellow-500 mb-2 block">90% Treasury</span>
-            <span className="text-white/90 text-lg">Stable, government-backed bond</span>
-          </Card>
-          <Card className="w-full md:w-1/2 text-center">
-            <span className="text-5xl mb-2 block">₿</span>
-            <span className="text-2xl font-bold text-yellow-500 mb-2 block">10% Bitcoin</span>
-            <span className="text-white/90 text-lg">Full BTC upside exposure</span>
-          </Card>
+          {/* Visual Breakdown */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+              <div className="flex justify-center mb-6">
+                <span className="text-4xl">🇺🇸</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 text-center mb-4">
+                90% Treasury
+              </h3>
+              <p className="text-center text-lg md:text-xl">
+                Stable, government-backed bond
+              </p>
+            </div>
+            <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+              <div className="flex justify-center mb-6">
+                <span className="text-4xl">₿</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 text-center mb-4">
+                10% Bitcoin
+              </h3>
+              <p className="text-center text-lg md:text-xl">
+                Full BTC upside exposure
+              </p>
+            </div>
+          </div>
+
+          {/* How It Works */}
+          <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
+              How It Works
+            </h3>
+            <ul className="space-y-4 text-lg md:text-xl">
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-400">🔗</span>
+                <span>
+                  <strong>Full BTC upside</strong> until you reach a <span className="text-yellow-400">4.5% annual return</span>.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-400">🔗</span>
+                <span>
+                  <strong>After 4.5% YTM</strong>, any additional BTC gains are split <span className="text-yellow-400">50/50</span> between the investor and the US government.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-400">🔗</span>
+                <span>
+                  <strong>Sale Value: $100</strong> → <span className="text-yellow-400">Redemption: $90 + BTC Value</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Alignment Summary */}
+          <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
+              Why BitBonds?
+            </h3>
+            <p className="text-white/90 text-lg">
+              BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It&apos;s a win-win for mismatched needs in a new era of finance.
+            </p>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
+              FAQ: The Big Picture of Bitcoin Bonds
+            </h3>
+            <div className="space-y-4">
+              {faqs.map((item, i) => (
+                <Card key={i} className="border-yellow-500">
+                  <button
+                    className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
+                    onClick={() => setOpen(open === i ? null : i)}
+                  >
+                    <span className="text-lg font-semibold text-white">{item.q}</span>
+                    <span className={`ml-4 transition-transform text-yellow-500 ${open === i ? 'rotate-180' : ''}`}>▼</span>
+                  </button>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: open === i ? 'auto' : 0, opacity: open === i ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden px-6"
+                  >
+                    {open === i && <div className="py-4 text-white/90 text-base">{item.a}</div>}
+                  </motion.div>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
-      </section>
-
-      {/* Key Features */}
-      <section className="w-full max-w-2xl mx-auto mb-10">
-        <Card>
-          <h2 className="text-2xl font-bold text-yellow-500 mb-4">How It Works</h2>
-          <ul className="text-white/90 text-lg space-y-3 text-left">
-            <li>📎 <span className="font-bold">Full BTC upside</span> until you reach a <span className="text-yellow-500">4.5% annual return</span>.</li>
-            <li>📎 <span className="font-bold">After 4.5% YTM</span>, any additional BTC gains are split <span className="text-yellow-500">50/50</span> between the investor and the US government.</li>
-            <li>📎 <span className="font-bold">Sale Value:</span> $100 → <span className="text-yellow-500">Redemption: $90 + BTC Value</span></li>
-          </ul>
-        </Card>
-      </section>
-
-      {/* Alignment Summary */}
-      <section className="w-full max-w-2xl mx-auto mb-10">
-        <Card>
-          <h3 className="text-2xl font-bold text-yellow-500 mb-2">Why BitBonds?</h3>
-          <p className="text-white/90 text-lg">
-            BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It&apos;s a win-win for mismatched needs in a new era of finance.
-          </p>
-        </Card>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="w-full max-w-2xl mx-auto mt-16 mb-10">
-        <h2 className="text-3xl font-bold text-yellow-500 mb-8 text-center font-epilogue">FAQ: The Big Picture of Bitcoin Bonds</h2>
-        <div className="space-y-4">
-          {faqs.map((item, i) => (
-            <Card key={i} className="border-yellow-500/20">
-              <button
-                className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span className="text-lg font-semibold text-white">{item.q}</span>
-                <span className={`ml-4 transition-transform text-yellow-500 ${open === i ? 'rotate-180' : ''}`}>▼</span>
-              </button>
-              <motion.div
-                initial={false}
-                animate={{ height: open === i ? 'auto' : 0, opacity: open === i ? 1 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden px-6"
-              >
-                {open === i && <div className="py-4 text-white/90 text-base">{item.a}</div>}
-              </motion.div>
-            </Card>
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 } 
