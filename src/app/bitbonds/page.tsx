@@ -89,7 +89,7 @@ export default function BitBondsPage() {
 
           {/* Visual Breakdown */}
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
               <div className="flex justify-center mb-6">
                 <span className="text-4xl">🇺🇸</span>
               </div>
@@ -100,7 +100,7 @@ export default function BitBondsPage() {
                 Stable, government-backed bond
               </p>
             </div>
-            <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
               <div className="flex justify-center mb-6">
                 <span className="text-4xl">₿</span>
               </div>
@@ -114,7 +114,7 @@ export default function BitBondsPage() {
           </div>
 
           {/* How It Works */}
-          <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
               How It Works
             </h3>
@@ -141,7 +141,7 @@ export default function BitBondsPage() {
           </div>
 
           {/* Alignment Summary */}
-          <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
               Why BitBonds?
             </h3>
@@ -151,13 +151,13 @@ export default function BitBondsPage() {
           </div>
 
           {/* FAQ Section */}
-          <div className="bg-[#1c1f26] p-8 rounded-3xl border-2 border-yellow-500">
+          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
               FAQ: The Big Picture of Bitcoin Bonds
             </h3>
             <div className="space-y-4">
               {faqs.map((item, i) => (
-                <Card key={i} className="border-yellow-500">
+                <Card key={i} className="border-yellow-500 rounded-xl overflow-hidden">
                   <button
                     className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                     onClick={() => setOpen(open === i ? null : i)}
