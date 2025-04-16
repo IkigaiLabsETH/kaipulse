@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { TrendingUp, Clock, Shield, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { Card } from "@/components/ui/card"
 
 const AccordionItem = ({
   title,
@@ -21,15 +22,15 @@ const AccordionItem = ({
         className="flex w-full items-center justify-between py-4 text-left"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="text-xl font-medium">{title}</span>
+        <span className="text-xl font-medium text-white">{title}</span>
         <ChevronDown
-          className={cn('h-6 w-6 transition-transform', {
+          className={cn('h-6 w-6 transition-transform text-yellow-500', {
             '-rotate-180': isOpen,
           })}
         />
       </button>
       {isOpen && (
-        <div className="pb-4 text-gray-300">
+        <div className="pb-4 text-white/80">
           {children}
         </div>
       )}
@@ -89,13 +90,13 @@ const keyEvents = [
 
 export default function BitcoinPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
+    <div className="min-h-screen bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Navigation */}
         <div className="mb-8">
           <Link 
             href="/" 
-            className="text-yellow-500 hover:text-yellow-400 transition-colors"
+            className="text-yellow-500 hover:text-yellow-400 transition-colors font-bold text-lg"
           >
             ← Back to Home
           </Link>
@@ -108,10 +109,10 @@ export default function BitcoinPage() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl text-yellow-500">
             Bitcoin & MSTY
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-300">
+          <p className="mt-6 text-lg leading-8 text-white/90">
             Understanding Bitcoin&apos;s impact on MSTY and MicroStrategy&apos;s Bitcoin strategy
           </p>
         </motion.div>
@@ -124,11 +125,14 @@ export default function BitcoinPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-2xl bg-gray-800/50 p-6 text-center"
             >
-              <h3 className="text-lg font-medium text-gray-400">{stat.title}</h3>
-              <p className="mt-2 text-3xl font-bold text-yellow-500">{stat.value}</p>
-              <p className="mt-1 text-sm text-gray-400">{stat.description}</p>
+              <Card>
+                <div className="p-6 text-center">
+                  <h3 className="text-lg font-medium text-white/80">{stat.title}</h3>
+                  <p className="mt-2 text-3xl font-bold text-yellow-500">{stat.value}</p>
+                  <p className="mt-1 text-sm text-white/60">{stat.description}</p>
+                </div>
+              </Card>
             </motion.div>
           ))}
         </div>
@@ -140,41 +144,44 @@ export default function BitcoinPage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-2xl bg-gray-800/50 p-8"
           >
-            <h2 className="text-2xl font-bold">Bitcoin Fundamentals</h2>
-            <div className="mt-8 space-y-4">
-              <AccordionItem title="What is Bitcoin?">
-                Bitcoin is a decentralized digital currency created in 2009. It operates on a peer-to-peer network 
-                without the need for intermediaries. Key features include:
-                <ul className="mt-4 list-disc pl-4 space-y-2">
-                  <li>Limited supply of 21 million BTC</li>
-                  <li>Transparent and immutable transaction ledger</li>
-                  <li>Secured by proof-of-work consensus</li>
-                  <li>Global, borderless transactions</li>
-                </ul>
-              </AccordionItem>
-              
-              <AccordionItem title="Bitcoin&apos;s Role in MSTY">
-                Bitcoin&apos;s price movements directly affect MSTY through MicroStrategy&apos;s significant Bitcoin holdings:
-                <ul className="mt-4 list-disc pl-4 space-y-2">
-                  <li>MSTR stock price correlation with Bitcoin</li>
-                  <li>Impact on MSTY options premiums</li>
-                  <li>Influence on strategy performance</li>
-                  <li>Volatility considerations</li>
-                </ul>
-              </AccordionItem>
+            <Card>
+              <div className="p-8">
+                <h2 className="text-2xl font-bold text-yellow-500">Bitcoin Fundamentals</h2>
+                <div className="mt-8 space-y-4">
+                  <AccordionItem title="What is Bitcoin?">
+                    Bitcoin is a decentralized digital currency created in 2009. It operates on a peer-to-peer network 
+                    without the need for intermediaries. Key features include:
+                    <ul className="mt-4 list-disc pl-4 space-y-2">
+                      <li>Limited supply of 21 million BTC</li>
+                      <li>Transparent and immutable transaction ledger</li>
+                      <li>Secured by proof-of-work consensus</li>
+                      <li>Global, borderless transactions</li>
+                    </ul>
+                  </AccordionItem>
+                  
+                  <AccordionItem title="Bitcoin&apos;s Role in MSTY">
+                    Bitcoin&apos;s price movements directly affect MSTY through MicroStrategy&apos;s significant Bitcoin holdings:
+                    <ul className="mt-4 list-disc pl-4 space-y-2">
+                      <li>MSTR stock price correlation with Bitcoin</li>
+                      <li>Impact on MSTY options premiums</li>
+                      <li>Influence on strategy performance</li>
+                      <li>Volatility considerations</li>
+                    </ul>
+                  </AccordionItem>
 
-              <AccordionItem title="Market Dynamics">
-                Understanding Bitcoin market dynamics is crucial for MSTY traders:
-                <ul className="mt-4 list-disc pl-4 space-y-2">
-                  <li>24/7 global trading</li>
-                  <li>High volatility opportunities</li>
-                  <li>Institutional vs retail flows</li>
-                  <li>Regulatory impacts</li>
-                </ul>
-              </AccordionItem>
-            </div>
+                  <AccordionItem title="Market Dynamics">
+                    Understanding Bitcoin market dynamics is crucial for MSTY traders:
+                    <ul className="mt-4 list-disc pl-4 space-y-2">
+                      <li>24/7 global trading</li>
+                      <li>High volatility opportunities</li>
+                      <li>Institutional vs retail flows</li>
+                      <li>Regulatory impacts</li>
+                    </ul>
+                  </AccordionItem>
+                </div>
+              </div>
+            </Card>
           </motion.div>
 
           {/* Timeline and Events */}
@@ -182,25 +189,28 @@ export default function BitcoinPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="rounded-2xl bg-gray-800/50 p-8"
           >
-            <h2 className="text-2xl font-bold">Key Events & Timeline</h2>
-            <div className="mt-8 space-y-8">
-              {keyEvents.map((period) => (
-                <div key={period.year} className="relative pl-8">
-                  <div className="absolute left-0 top-0 h-full w-px bg-yellow-500/20" />
-                  <div className="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-yellow-500" />
-                  <h3 className="text-xl font-bold text-yellow-500">{period.year}</h3>
-                  <ul className="mt-4 space-y-3">
-                    {period.events.map((event, index) => (
-                      <li key={index} className="text-gray-300">
-                        {event}
-                      </li>
-                    ))}
-                  </ul>
+            <Card>
+              <div className="p-8">
+                <h2 className="text-2xl font-bold text-yellow-500">Key Events & Timeline</h2>
+                <div className="mt-8 space-y-8">
+                  {keyEvents.map((period) => (
+                    <div key={period.year} className="relative pl-8">
+                      <div className="absolute left-0 top-0 h-full w-px bg-yellow-500/20" />
+                      <div className="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-yellow-500" />
+                      <h3 className="text-xl font-bold text-yellow-500">{period.year}</h3>
+                      <ul className="mt-4 space-y-3">
+                        {period.events.map((event, index) => (
+                          <li key={index} className="text-white/80">
+                            {event}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </Card>
           </motion.div>
         </div>
 
@@ -209,32 +219,36 @@ export default function BitcoinPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 rounded-2xl bg-gray-800/50 p-8"
+          className="mt-16"
         >
-          <h2 className="text-2xl font-bold">Trading Implications</h2>
-          <div className="mt-8 grid gap-8 md:grid-cols-3">
-            <div className="flex flex-col items-center text-center">
-              <TrendingUp className="h-12 w-12 text-yellow-500" />
-              <h3 className="mt-4 text-xl font-bold">Price Action</h3>
-              <p className="mt-2 text-gray-300">
-                Bitcoin price movements create opportunities in MSTY options trading through their impact on MSTR stock.
-              </p>
+          <Card>
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-yellow-500">Trading Implications</h2>
+              <div className="mt-8 grid gap-8 md:grid-cols-3">
+                <div className="flex flex-col items-center text-center">
+                  <TrendingUp className="h-12 w-12 text-yellow-500" />
+                  <h3 className="mt-4 text-xl font-bold text-white">Price Action</h3>
+                  <p className="mt-2 text-white/80">
+                    Bitcoin price movements create opportunities in MSTY options trading through their impact on MSTR stock.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <Clock className="h-12 w-12 text-yellow-500" />
+                  <h3 className="mt-4 text-xl font-bold text-white">Timing</h3>
+                  <p className="mt-2 text-white/80">
+                    Key Bitcoin events and market cycles can influence optimal entry and exit points for MSTY positions.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <Shield className="h-12 w-12 text-yellow-500" />
+                  <h3 className="mt-4 text-xl font-bold text-white">Risk Management</h3>
+                  <p className="mt-2 text-white/80">
+                    Understanding Bitcoin volatility is crucial for managing risk in MSTY options strategies.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-center text-center">
-              <Clock className="h-12 w-12 text-yellow-500" />
-              <h3 className="mt-4 text-xl font-bold">Timing</h3>
-              <p className="mt-2 text-gray-300">
-                Key Bitcoin events and market cycles can influence optimal entry and exit points for MSTY positions.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <Shield className="h-12 w-12 text-yellow-500" />
-              <h3 className="mt-4 text-xl font-bold">Risk Management</h3>
-              <p className="mt-2 text-gray-300">
-                Understanding Bitcoin volatility is crucial for managing risk in MSTY options strategies.
-              </p>
-            </div>
-          </div>
+          </Card>
         </motion.div>
       </div>
     </div>

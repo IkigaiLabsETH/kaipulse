@@ -1,22 +1,42 @@
 'use client';
 
-import { MSTYFreedomCalculator } from "@/components/MSTYFreedomCalculator";
+import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { MSTYFreedomCalculator } from '@/components/MSTYFreedomCalculator';
 
 export default function CalculatorPage() {
   return (
-    <main className="min-h-screen bg-black text-white font-satoshi">
-      <div className="container mx-auto px-4 py-12">
-        <Link href="/" className="text-yellow-400 font-bold text-lg mb-8 inline-block">&larr; Back to Home</Link>
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-yellow-400 font-epilogue">LIVE OFF MSTR OPTIONS</h1>
-          <p className="text-xl text-yellow-100/80 font-satoshi max-w-3xl mx-auto">YieldMax™ MSTR Option Income Strategy ETF</p>
+    <div className="min-h-screen bg-black text-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        {/* Navigation */}
+        <div className="mb-8">
+          <Link 
+            href="/" 
+            className="text-yellow-500 hover:text-yellow-400 transition-colors font-bold text-lg"
+          >
+            ← Back to Home
+          </Link>
         </div>
 
-        <div className="max-w-[1600px] mx-auto bg-zinc-900/50 rounded-xl shadow-2xl shadow-yellow-500/5 p-4 sm:p-6 lg:p-8 border border-yellow-500/20">
-          <MSTYFreedomCalculator />
-        </div>
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl text-yellow-500">
+            MSTY Freedom Calculator
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-white/90 max-w-3xl mx-auto">
+            Calculate your path to financial freedom with MSTY. Understand how many shares you need, 
+            tax implications, and optimal portfolio allocation based on your income goals.
+          </p>
+        </motion.div>
+
+        {/* Calculator Component */}
+        <MSTYFreedomCalculator />
       </div>
-    </main>
-  );
+    </div>
+  )
 } 

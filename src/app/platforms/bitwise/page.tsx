@@ -1,121 +1,137 @@
 'use client'
 
-import React from 'react';
-import { Container, Typography, Box, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Card } from "@/components/ui/card";
 
-const StyledVideo = styled('video')({
-  width: '100%',
-  maxWidth: '1200px',
-  marginBottom: '2rem',
-  borderRadius: '12px',
-});
-
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginBottom: theme.spacing(3),
-  backgroundColor: 'rgba(24, 24, 27, 0.5)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(234, 179, 8, 0.2)',
-}));
-
-const HighlightedProduct = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginBottom: theme.spacing(3),
-  backgroundColor: 'rgba(24, 24, 27, 0.7)',
-  border: '2px solid rgba(234, 179, 8, 0.4)',
-  borderRadius: '12px',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    backgroundColor: 'rgba(24, 24, 27, 0.9)',
-    border: '2px solid rgba(234, 179, 8, 0.6)',
+const products = [
+  {
+    name: "BITB",
+    description: "Bitwise Bitcoin ETF",
+    link: "https://bitbetf.com/"
   },
-}));
+  {
+    name: "IMST",
+    description: "Bitwise MSTR Option Income Strategy ETF",
+    link: "https://imstetf.com/"
+  },
+  {
+    name: "OWNB",
+    description: "Bitwise Bitcoin Standard Corporations ETF",
+    link: "https://ownbetf.com/"
+  }
+];
 
-const BitwisePage = () => {
+export default function BitwisePage() {
   return (
     <div className="min-h-screen bg-black text-white">
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Link href="/" className="text-yellow-400 font-bold text-lg mb-8 inline-block">&larr; Back to Home</Link>
-        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4, color: '#eab308', fontFamily: 'Epilogue' }}>
-          Bitwise Investment Funds
-        </Typography>
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        {/* Navigation */}
+        <div className="mb-8">
+          <Link 
+            href="/" 
+            className="text-yellow-500 hover:text-yellow-400 transition-colors font-bold text-lg"
+          >
+            ← Back to Home
+          </Link>
+        </div>
 
-        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 6 }}>
-          <StyledVideo controls autoPlay muted>
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl text-yellow-500">
+            Bitwise Investment Funds
+          </h1>
+        </motion.div>
+
+        {/* Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-12 flex justify-center"
+        >
+          <video 
+            controls 
+            autoPlay 
+            muted 
+            className="w-full max-w-[1200px] rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+          >
             <source src="/bitwise.mp4" type="video/mp4" />
             Your browser does not support the video tag.
-          </StyledVideo>
-        </Box>
+          </video>
+        </motion.div>
 
-        {/* Highlighted Products */}
-        <Box sx={{ mb: 6 }}>
-          <Typography variant="h4" gutterBottom sx={{ color: '#eab308', fontFamily: 'Epilogue', mb: 4 }}>
-            Featured Products
-          </Typography>
-          
-          <HighlightedProduct>
-            <Typography variant="h6" sx={{ color: '#eab308', fontFamily: 'Epilogue', mb: 2 }}>
-              BITB
-            </Typography>
-            <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi' }}>
-              Bitwise Bitcoin ETF
-            </Typography>
-            <Link href="https://bitbetf.com/" target="_blank" rel="noopener noreferrer">
-              <Typography variant="body2" sx={{ color: '#eab308', mt: 2, fontFamily: 'Satoshi' }}>
-                Learn More →
-              </Typography>
-            </Link>
-          </HighlightedProduct>
-
-          <HighlightedProduct>
-            <Typography variant="h6" sx={{ color: '#eab308', fontFamily: 'Epilogue', mb: 2 }}>
-              IMST
-            </Typography>
-            <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi' }}>
-              Bitwise MSTR Option Income Strategy ETF
-            </Typography>
-            <Link href="https://imstetf.com/" target="_blank" rel="noopener noreferrer">
-              <Typography variant="body2" sx={{ color: '#eab308', mt: 2, fontFamily: 'Satoshi' }}>
-                Learn More →
-              </Typography>
-            </Link>
-          </HighlightedProduct>
-
-          <HighlightedProduct>
-            <Typography variant="h6" sx={{ color: '#eab308', fontFamily: 'Epilogue', mb: 2 }}>
-              OWNB
-            </Typography>
-            <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi' }}>
-              Bitwise Bitcoin Standard Corporations ETF
-            </Typography>
-            <Link href="https://ownbetf.com/" target="_blank" rel="noopener noreferrer">
-              <Typography variant="body2" sx={{ color: '#eab308', mt: 2, fontFamily: 'Satoshi' }}>
-                Learn More →
-              </Typography>
-            </Link>
-          </HighlightedProduct>
-        </Box>
+        {/* Featured Products */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-16"
+        >
+          <h2 className="text-2xl font-bold text-yellow-500 mb-8 font-epilogue">Featured Products</h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            {products.map((product, index) => (
+              <motion.div
+                key={product.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+              >
+                <Card>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-yellow-500 font-epilogue mb-4">
+                      {product.name}
+                    </h3>
+                    <p className="text-white/80 mb-6 font-satoshi">
+                      {product.description}
+                    </p>
+                    <a
+                      href={product.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-4 py-2 text-sm font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                    >
+                      Learn More →
+                    </a>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Important Disclosures */}
-        <StyledPaper elevation={3}>
-          <Typography variant="h5" gutterBottom sx={{ color: '#eab308', fontFamily: 'Epilogue' }}>
-            Important Disclosures
-          </Typography>
-          <Typography variant="body2" paragraph sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi', fontStyle: 'italic' }}>
-            OWNB, BTOP, BITC, BITQ, AETH, and BWEB do not invest directly in crypto assets, including bitcoin and ether.
-          </Typography>
-          <Typography variant="body2" paragraph sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi', fontStyle: 'italic' }}>
-            BITB and ETHW are exchange-traded products that are not registered under the Investment Company Act of 1940 (the &quot;1940 Act&quot;) and therefore are not subject to the same regulations as mutual funds or ETFs registered under the 1940 Act. BITB and ETHW are not suitable for all investors. An investment in BITB or ETHW is subject to a high degree of risk, has the potential for significant volatility, and could result in significant or complete loss of investment. An investment in either Fund is not a direct investment in bitcoin or ether.
-          </Typography>
-          <Typography variant="body2" paragraph sx={{ color: 'rgba(255, 255, 255, 0.8)', fontFamily: 'Satoshi' }}>
-            Past performance does not predict future results. Investment involves risk. The value of investments may go down as well as up and investors may not get back the full amount invested.
-          </Typography>
-        </StyledPaper>
-      </Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-16"
+        >
+          <Card>
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-yellow-500 mb-6 font-epilogue">
+                Important Disclosures
+              </h2>
+              <div className="space-y-4 text-white/80 font-satoshi">
+                <p className="italic">
+                  OWNB, BTOP, BITC, BITQ, AETH, and BWEB do not invest directly in crypto assets, including bitcoin and ether.
+                </p>
+                <p className="italic">
+                  BITB and ETHW are exchange-traded products that are not registered under the Investment Company Act of 1940 (the &quot;1940 Act&quot;) and therefore are not subject to the same regulations as mutual funds or ETFs registered under the 1940 Act. BITB and ETHW are not suitable for all investors. An investment in BITB or ETHW is subject to a high degree of risk, has the potential for significant volatility, and could result in significant or complete loss of investment. An investment in either Fund is not a direct investment in bitcoin or ether.
+                </p>
+                <p>
+                  Past performance does not predict future results. Investment involves risk. The value of investments may go down as well as up and investors may not get back the full amount invested.
+                </p>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+      </div>
     </div>
   );
-};
-
-export default BitwisePage; 
+} 

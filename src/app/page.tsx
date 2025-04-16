@@ -6,6 +6,7 @@ import { Bitcoin, TrendingUp, DollarSign, ChevronDown, Calculator } from 'lucide
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import PriceTicker from '@/components/PriceTicker';
+import { Card } from "@/components/ui/card"
 
 interface AccordionItemProps {
   title: string;
@@ -79,7 +80,7 @@ export default function HomePage() {
           >
             <Link
               href="/calculator"
-              className="w-full max-w-xs md:max-w-md inline-flex items-center justify-center gap-2 bg-yellow-400 text-black px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-lg font-semibold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105"
+              className="w-full max-w-xs md:max-w-md inline-flex items-center justify-center gap-2 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-6 py-3 sm:px-8 sm:py-4 text-lg font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
             >
               <Calculator className="w-5 h-5" />
               Try the Calculator
@@ -106,43 +107,40 @@ export default function HomePage() {
           >
             <h2 className="text-2xl md:text-4xl font-bold text-yellow-500 text-center">Core Strategy</h2>
             <div className="mt-8 grid gap-8 grid-cols-1 md:grid-cols-3">
-              <Link 
-                href="/platforms/msty/bitcoin"
-                className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
-              >
-                <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
-                  <div className="text-yellow-500 text-4xl">₿</div>
-                  <h3 className="text-2xl font-bold text-white">Bitcoin Savings</h3>
-                </div>
-                <p className="text-gray-300">
-                  Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation.
-                </p>
+              <Link href="/platforms/msty/bitcoin">
+                <Card>
+                  <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
+                    <div className="text-yellow-500 text-4xl">₿</div>
+                    <h3 className="text-2xl font-bold text-white">Bitcoin Savings</h3>
+                  </div>
+                  <p className="text-white/90">
+                    Your foundation - 80% allocation to cold storage Bitcoin for long-term wealth preservation.
+                  </p>
+                </Card>
               </Link>
 
-              <Link 
-                href="/platforms/msty/mstr"
-                className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
-              >
-                <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
-                  <div className="text-yellow-500 text-4xl">↗</div>
-                  <h3 className="text-2xl font-bold text-white">Strategic Growth</h3>
-                </div>
-                <p className="text-gray-300">
-                  Capture additional Bitcoin exposure through MSTR corporate treasury strategy.
-                </p>
+              <Link href="/platforms/msty/mstr">
+                <Card>
+                  <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
+                    <div className="text-yellow-500 text-4xl">↗</div>
+                    <h3 className="text-2xl font-bold text-white">Strategic Growth</h3>
+                  </div>
+                  <p className="text-white/90">
+                    Capture additional Bitcoin exposure through MSTR corporate treasury strategy.
+                  </p>
+                </Card>
               </Link>
 
-              <Link 
-                href="/platforms/msty"
-                className="group relative rounded-2xl bg-gray-800/50 p-6 sm:p-8 transition-colors hover:bg-gray-800/70 max-w-md mx-auto my-4 md:max-w-none md:mx-0"
-              >
-                <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
-                  <div className="text-yellow-500 text-4xl">$</div>
-                  <h3 className="text-2xl font-bold text-white">Income Generation</h3>
-                </div>
-                <p className="text-gray-300">
-                  Generate monthly income through MSTY option premium strategy without selling your core Bitcoin.
-                </p>
+              <Link href="/platforms/msty">
+                <Card>
+                  <div className="flex flex-row items-center gap-3 mb-4 md:mb-2">
+                    <div className="text-yellow-500 text-4xl">$</div>
+                    <h3 className="text-2xl font-bold text-white">Income Generation</h3>
+                  </div>
+                  <p className="text-white/90">
+                    Generate monthly income through MSTY option premium strategy without selling your core Bitcoin.
+                  </p>
+                </Card>
               </Link>
             </div>
           </motion.div>
@@ -154,11 +152,11 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-zinc-900 rounded-lg border border-yellow-500/20 p-6"
+          className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-6"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-8">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-yellow-500 mb-8">Frequently Asked Questions</h2>
           <AccordionItem title="How does the strategy work?" defaultOpen>
-            <p className="text-yellow-100/80">
+            <p className="text-white/90">
               Our strategy combines Bitcoin self-custody (80%) with strategic positions in MSTY (10%) 
               for monthly income and MSTR (10%) for additional Bitcoin exposure. MSTY generates income through 
               an options-based strategy on MSTR stock, utilizing covered call writing and put option selling, 
@@ -167,7 +165,7 @@ export default function HomePage() {
             </p>
           </AccordionItem>
           <AccordionItem title="What are MSTY&apos;s dividend yields and sustainability?">
-            <p className="text-yellow-100/80">
+            <p className="text-white/90">
               MSTY currently offers a distribution rate of approximately 101.29% annually. However, these yields 
               can fluctuate based on several factors:
               <br/><br/>
@@ -180,7 +178,7 @@ export default function HomePage() {
             </p>
           </AccordionItem>
           <AccordionItem title="What are the tax implications for MSTY distributions?">
-            <p className="text-yellow-100/80">
+            <p className="text-white/90">
               For French residents, MSTY distributions are subject to a 15% U.S. withholding tax. It&apos;s important 
               to understand that:
               <br/><br/>
@@ -192,7 +190,7 @@ export default function HomePage() {
             </p>
           </AccordionItem>
           <AccordionItem title="What are the risks involved?">
-            <p className="text-yellow-100/80">
+            <p className="text-white/90">
               Key risks to consider include:
               <br/><br/>
               • Dividend Variability: Monthly income can fluctuate based on market conditions<br/>
@@ -204,7 +202,7 @@ export default function HomePage() {
             </p>
           </AccordionItem>
           <AccordionItem title="How do I get started?">
-            <p className="text-yellow-100/80">
+            <p className="text-white/90">
               Start by using our calculator to determine your target monthly income and required MSTY 
               shares. Follow these steps:
               <br/><br/>
@@ -218,7 +216,7 @@ export default function HomePage() {
             </p>
           </AccordionItem>
           <AccordionItem title="How do I track my investments and taxes?">
-            <p className="text-yellow-100/80">
+            <p className="text-white/90">
               We recommend maintaining detailed records:
               <br/><br/>
               • Number of MSTY shares and monthly distributions<br/>
@@ -241,14 +239,14 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="overflow-x-auto"
         >
-          <h2 className="text-3xl font-bold text-yellow-400 mb-8">Freedom Status Levels</h2>
-          <table className="w-full bg-zinc-900 rounded-lg border border-yellow-500/20">
+          <h2 className="text-3xl font-bold text-yellow-500 mb-8">Freedom Status Levels</h2>
+          <table className="w-full bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <thead>
               <tr className="border-b border-yellow-500/20">
-                <th className="p-4 text-left text-yellow-400">Status</th>
-                <th className="p-4 text-left text-yellow-400">Monthly Income</th>
-                <th className="p-4 text-left text-yellow-400">MSTY Shares</th>
-                <th className="p-4 text-left text-yellow-400">Capital @ $20/Share</th>
+                <th className="p-4 text-left text-yellow-500">Status</th>
+                <th className="p-4 text-left text-yellow-500">Monthly Income</th>
+                <th className="p-4 text-left text-yellow-500">MSTY Shares</th>
+                <th className="p-4 text-left text-yellow-500">Capital @ $20/Share</th>
               </tr>
             </thead>
             <tbody>
@@ -266,12 +264,12 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.3 }}
-                  className="border-b border-yellow-500/10 hover:bg-yellow-400/5 transition-colors"
+                  className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors"
                 >
-                  <td className="p-4 font-medium">{level.status}</td>
-                  <td className="p-4">{level.income}</td>
-                  <td className="p-4">{level.shares}</td>
-                  <td className="p-4">{level.capital}</td>
+                  <td className="p-4 font-medium text-white">{level.status}</td>
+                  <td className="p-4 text-white/90">{level.income}</td>
+                  <td className="p-4 text-white/90">{level.shares}</td>
+                  <td className="p-4 text-white/90">{level.capital}</td>
                 </motion.tr>
               ))}
             </tbody>
@@ -303,7 +301,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/calculator"
-            className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-lg hover:bg-yellow-500 transition-colors text-lg font-semibold"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-lg font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
           >
             <Calculator className="w-6 h-6" />
             Calculate Your Freedom
