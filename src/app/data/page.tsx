@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { Bitcoin, AlertCircle, Network, Clock, Coins } from 'lucide-react';
+import { Bitcoin, AlertCircle, Network, Coins } from 'lucide-react';
 import { clientLogger } from '@/utils/clientLogger';
 import { formatNumber } from '@/lib/utils';
 
@@ -233,6 +233,75 @@ export default function DataPage() {
               </CardContent>
             </Card>
 
+            {/* Mempool Size */}
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-medium text-yellow-500">Mempool Size</h3>
+                  <Network className="h-6 w-6 text-yellow-500" />
+                </div>
+                <div className="text-2xl font-bold text-white">
+                  {loading ? "..." : data?.network?.mempoolSize 
+                    ? `${(data.network.mempoolSize / 1024 / 1024).toFixed(2)} MB` 
+                    : "..."
+                  }
+                </div>
+                <div className="text-sm text-white/60 mt-1">
+                  {loading ? "..." : data?.network?.mempoolTxs 
+                    ? `${formatNumber(data.network.mempoolTxs)} transactions` 
+                    : "..."
+                  }
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Mempool Fees */}
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-medium text-yellow-500">Transaction Fees</h3>
+                  <Coins className="h-6 w-6 text-yellow-500" />
+                </div>
+                <div className="text-2xl font-bold text-white">
+                  {loading ? "..." : data?.network?.mempoolFees?.fastestFee 
+                    ? `${data.network.mempoolFees.fastestFee} sat/vB` 
+                    : "..."
+                  }
+                </div>
+                <div className="text-sm text-white/60 mt-1">
+                  {!loading && data?.network?.mempoolFees && (
+                    <>
+                      Medium: {data.network.mempoolFees.halfHourFee} sat/vB
+                      <br />
+                      Economy: {data.network.mempoolFees.economyFee} sat/vB
+                    </>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Mining Revenue */}
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-medium text-yellow-500">Mining Revenue</h3>
+                  <Coins className="h-6 w-6 text-yellow-500" />
+                </div>
+                <div className="text-2xl font-bold text-white">
+                  {loading ? "..." : data?.network?.miningRevenue 
+                    ? `$${formatNumber(data.network.miningRevenue)}` 
+                    : "..."
+                  }
+                </div>
+                <div className="text-sm text-white/60 mt-1">
+                  24h: {loading ? "..." : data?.network?.miningRevenue24h 
+                    ? `$${formatNumber(data.network.miningRevenue24h)}` 
+                    : "..."
+                  }
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Total BTC Supply */}
             <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <CardContent className="p-6">
@@ -255,28 +324,6 @@ export default function DataPage() {
               </CardContent>
             </Card>
 
-            {/* Next Halving */}
-            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-medium text-yellow-500">Next Halving</h3>
-                  <Clock className="h-6 w-6 text-yellow-500" />
-                </div>
-                <div className="text-2xl font-bold text-white">
-                  {loading ? "..." : data?.network?.nextHalving?.blocks 
-                    ? `${formatNumber(data.network.nextHalving.blocks)} blocks` 
-                    : "..."
-                  }
-                </div>
-                <div className="text-sm text-white/60 mt-1">
-                  {loading ? "..." : data?.network?.nextHalving?.estimatedDate 
-                    ? new Date(data.network.nextHalving.estimatedDate).toLocaleDateString() 
-                    : "..."
-                  }
-                </div>
-              </CardContent>
-            </Card>
-
             {/* Fear & Greed */}
             <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <CardContent className="p-6">
@@ -290,25 +337,6 @@ export default function DataPage() {
                 {!loading && data?.sentiment?.fearGreedValue && (
                   <div className="text-gray-400">{data.sentiment.fearGreedValue}</div>
                 )}
-              </CardContent>
-            </Card>
-
-            {/* Total Liquidity */}
-            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-medium text-yellow-500">Total Liquidity</h3>
-                  <Coins className="h-6 w-6 text-yellow-500" />
-                </div>
-                <div className="text-2xl font-bold text-white">
-                  {loading ? "..." : data?.network?.liquidity 
-                    ? `$${formatNumber(data.network.liquidity)}` 
-                    : "..."
-                  }
-                </div>
-                <div className="text-sm text-white/60 mt-1">
-                  24h Trading Volume
-                </div>
               </CardContent>
             </Card>
 
