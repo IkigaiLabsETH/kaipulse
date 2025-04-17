@@ -2,7 +2,50 @@
 
 ![MSTY Banner](https://github.com/thirdweb-example/next-starter/assets/57885104/20c8ce3b-4e55-4f10-ae03-2fe4743a5ee8)
 
-A powerful calculator application that helps investors plan their path to financial freedom using a conservative Bitcoin-first approach, complemented by strategic positions in YieldMax MSTR Option Income Strategy ETF (MSTY) and MicroStrategy (MSTR) for additional yield and growth potential.
+An educational portfolio planning tool that helps users explore Bitcoin investment concepts and portfolio allocation strategies. This tool is for educational purposes only and not financial advice.
+
+## ⚠️ Important Disclaimer
+
+This tool is for educational purposes only. It is not financial, investment, or tax advice. The information provided is for general informational purposes only and should not be considered as a recommendation to buy, sell, or hold any particular investment. Always do your own research and consult with qualified financial advisors before making any investment decisions.
+
+## 🌟 Educational Features
+
+- **Portfolio Analysis Tools**: Explore different portfolio allocation scenarios
+- **Bitcoin Education**: Learn about Bitcoin&apos;s properties and potential role in portfolios
+- **Strategic Planning**: Understand different investment approaches
+- **Tax Considerations**: Educational resources about tax implications
+- **Real-time Market Data**: Track current market information
+- **Interactive Learning**: Visualize different portfolio scenarios
+
+## 🏆 Portfolio Analysis Levels
+
+| Level | Monthly Income Target | MSTY Shares Example | Capital Example @ $20/Share |
+|--------|----------------------|-------------------|---------------------------|
+| Basic | $20 | 20 shares | $400 |
+| Intermediate | $500 | 500 shares | $10,000 |
+| Advanced | $3,000 | 3,000 shares | $60,000 |
+| Complex | $6,000 | 6,000 shares | $120,000 |
+| Comprehensive | $10,000 | 10,000 shares | $200,000 |
+| Advanced | $50,000+ | 50,000+ shares | $1,000,000+ |
+
+## 🧠 Educational Concepts
+
+### Bitcoin Fundamentals
+Learn about Bitcoin&apos;s properties and potential role in portfolio planning. This section provides educational resources about Bitcoin&apos;s characteristics and historical context.
+
+### Portfolio Analysis Tools
+
+| Asset | Example Allocation | Educational Focus | Tax Considerations |
+|-------|------------|------|---------------|
+| BTC | 80% | Core Holdings | Educational resources about tax implications |
+| MSTY | 10% | Income Strategies | Learning about different income approaches |
+| MSTR | 10% | Growth Analysis | Understanding corporate strategies |
+
+### Educational Resources
+- **Bitcoin Fundamentals**: Learn about Bitcoin&apos;s properties
+- **Portfolio Analysis**: Explore different allocation strategies
+- **Income Strategies**: Understand various income approaches
+- **Tax Education**: Learn about tax implications
 
 ## 🌟 Key Features
 
@@ -240,8 +283,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## ⚠️ Disclaimer
 
-This calculator is for educational purposes only. It is not financial advice. Always do your own research and consult with a financial advisor before making investment decisions.
+This tool is for educational purposes only. It is not financial, investment, or tax advice. The information provided is for general informational purposes only and should not be considered as a recommendation to buy, sell, or hold any particular investment. Always do your own research and consult with qualified financial advisors before making any investment decisions.
 
 ## 📞 Support
 
-For support or questions, please [open an issue](https://github.com/yourusername/msty-freedom-calculator/issues) or contact us at support@example.com.
+For support or questions about the educational tools, please [open an issue](https://github.com/yourusername/msty-freedom-calculator/issues) or contact us at support@example.com.
