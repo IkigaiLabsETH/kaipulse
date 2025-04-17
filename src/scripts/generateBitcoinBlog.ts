@@ -1,15 +1,14 @@
 import { BlogPostGenerator } from '../services/ghost/blogGenerator';
 import { logger } from '../services/lib/logger';
+import { BlogPost } from '../services/ghost/types';
 
-async function publishBitcoinBlog(postType: string) {
+async function generateBitcoinBlog(postType: string): Promise<BlogPost> {
   try {
-    let marketAnalysisPost;
-    let adoptionNewsPost;
-    let technicalUpdatePost;
+    let post: BlogPost;
 
     switch (postType) {
       case 'market':
-        marketAnalysisPost = await BlogPostGenerator.generateMarketAnalysisPost(
+        post = BlogPostGenerator.generateMarketAnalysisPost(
           'Bitcoin Market Analysis: Q1 2024 Review',
           'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80',
           {
@@ -25,12 +24,11 @@ async function publishBitcoinBlog(postType: string) {
             marketSentiment: 'Positive, with growing institutional interest and retail FOMO'
           }
         );
-        await BlogPostGenerator.publishPost(marketAnalysisPost);
-        logger.info('Published market analysis post');
+        logger.info('Generated market analysis post');
         break;
 
       case 'adoption':
-        adoptionNewsPost = await BlogPostGenerator.generateAdoptionNewsPost(
+        post = BlogPostGenerator.generateAdoptionNewsPost(
           'Major Bank Announces Bitcoin Custody Services',
           'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80',
           {
@@ -46,12 +44,11 @@ async function publishBitcoinBlog(postType: string) {
             ]
           }
         );
-        await BlogPostGenerator.publishPost(adoptionNewsPost);
-        logger.info('Published adoption news post');
+        logger.info('Generated adoption news post');
         break;
 
       case 'technical':
-        technicalUpdatePost = await BlogPostGenerator.generateTechnicalUpdatePost(
+        post = BlogPostGenerator.generateTechnicalUpdatePost(
           'Bitcoin Layer 2 Solutions: Latest Developments',
           'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80',
           {
@@ -67,19 +64,18 @@ async function publishBitcoinBlog(postType: string) {
             impact: 'This growth in Layer 2 adoption could significantly improve Bitcoin\'s utility as a medium of exchange while maintaining its store of value properties.'
           }
         );
-        await BlogPostGenerator.publishPost(technicalUpdatePost);
-        logger.info('Published technical update post');
+        logger.info('Generated technical update post');
         break;
 
       default:
-        logger.error('Invalid post type. Use: market, adoption, or technical');
-        process.exit(1);
+        throw new Error('Invalid post type. Use: market, adoption, or technical');
     }
 
-    logger.info('Successfully published blog post!');
+    logger.info('Successfully generated blog post:', post.title);
+    return post;
   } catch (error) {
-    logger.error('Error publishing blog post:', error instanceof Error ? error.message : String(error));
-    process.exit(1);
+    logger.error('Error generating blog post:', error instanceof Error ? error.message : String(error));
+    throw error;
   }
 }
 
@@ -91,4 +87,12 @@ if (!postType) {
 }
 
 // Run the script
-publishBitcoinBlog(postType); 
+generateBitcoinBlog(postType).then(post => {
+  logger.info('Generated post details:', {
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt
+  });
+}).catch(() => {
+  process.exit(1);
+}); 
