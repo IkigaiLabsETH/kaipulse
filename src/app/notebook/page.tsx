@@ -4,66 +4,24 @@ import { useState } from 'react';
 import { BlogPostIdea } from '@/services/notebook/types';
 import { logger } from '@/services/lib/logger';
 
-type ToneType = 'technical' | 'educational' | 'conversational' | 'professional';
-type LengthType = 'short' | 'medium' | 'long';
-
 export default function NotebookPage() {
   const [idea, setIdea] = useState<BlogPostIdea>({
     title: '',
     tweetUrl: '',
-    keyPoints: [],
-    targetAudience: '',
-    tone: 'professional',
-    desiredLength: 'medium',
-    references: [],
-    tags: ['Bitcoin']
+    keyPoints: ['']
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
   const [status, setStatus] = useState<string>('');
+  const [generatedContent, setGeneratedContent] = useState<string>('');
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
 
-  const addKeyPoint = () => {
+  const updateKeyPoints = (value: string) => {
     setIdea(prev => ({
       ...prev,
-      keyPoints: [...(prev.keyPoints || []), '']
-    }));
-  };
-
-  const addReference = () => {
-    setIdea(prev => ({
-      ...prev,
-      references: [...(prev.references || []), '']
-    }));
-  };
-
-  const updateKeyPoint = (index: number, value: string) => {
-    setIdea(prev => ({
-      ...prev,
-      keyPoints: (prev.keyPoints || []).map((point, i) => i === index ? value : point)
-    }));
-  };
-
-  const updateReference = (index: number, value: string) => {
-    setIdea(prev => ({
-      ...prev,
-      references: prev.references?.map((ref, i) => i === index ? value : ref) || []
-    }));
-  };
-
-  const addTag = (tag: string) => {
-    if (!idea.tags?.includes(tag)) {
-      setIdea(prev => ({
-        ...prev,
-        tags: [...(prev.tags || []), tag]
-      }));
-    }
-  };
-
-  const removeTag = (tagToRemove: string) => {
-    setIdea(prev => ({
-      ...prev,
-      tags: prev.tags?.filter(tag => tag !== tagToRemove) || []
+      keyPoints: [value]
     }));
   };
 
@@ -89,10 +47,8 @@ export default function NotebookPage() {
       // Update the form with analyzed tweet data
       setIdea(prev => ({
         ...prev,
-        keyPoints: result.keyPoints || [],
-        title: result.suggestedTitle || prev.title,
-        tags: Array.from(new Set([...(prev.tags || []), ...(result.suggestedTags || [])])),
-        references: [...(prev.references || []), url]
+        keyPoints: [result.keyPoints?.join('\n') || ''],
+        title: result.suggestedTitle || prev.title
       }));
 
       setStatus('Tweet analyzed successfully!');
@@ -122,8 +78,10 @@ export default function NotebookPage() {
       }
 
       const result = await response.json();
-      setStatus('Blog post generated and published successfully!');
-      logger.info('Blog post generated:', result.slug);
+      setGeneratedContent(result.content);
+      setIsPreviewMode(true);
+      setStatus('Blog post generated successfully!');
+      logger.info('Blog post generated');
     } catch (error) {
       setStatus('Error generating blog post');
       logger.error('Error generating blog post:', error);
@@ -132,184 +90,154 @@ export default function NotebookPage() {
     }
   };
 
+  const publishPost = async () => {
+    try {
+      setIsPublishing(true);
+      setStatus('Publishing blog post...');
+      
+      const response = await fetch('/api/publish-post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...idea,
+          content: generatedContent
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to publish post');
+      }
+
+      const result = await response.json();
+      setStatus('Blog post published successfully!');
+      logger.info('Blog post published:', result.slug);
+      
+      // Reset the form
+      setIdea({
+        title: '',
+        tweetUrl: '',
+        keyPoints: ['']
+      });
+      setGeneratedContent('');
+      setIsPreviewMode(false);
+    } catch (error) {
+      setStatus('Error publishing blog post');
+      logger.error('Error publishing blog post:', error);
+    } finally {
+      setIsPublishing(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">Bitcoin Blog Notebook</h1>
         
-        <div className="space-y-6">
-          {/* Twitter URL */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Twitter URL</label>
-            <div className="flex gap-2">
+        {!isPreviewMode ? (
+          <div className="space-y-6">
+            {/* Twitter URL */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Twitter URL</label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={idea.tweetUrl}
+                  onChange={e => setIdea(prev => ({ ...prev, tweetUrl: e.target.value }))}
+                  className="flex-1 bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
+                  placeholder="Paste a tweet URL to auto-populate fields"
+                />
+                <button
+                  onClick={() => idea.tweetUrl && analyzeTweet(idea.tweetUrl)}
+                  disabled={isAnalyzing || !idea.tweetUrl}
+                  className={`bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg transition-colors ${
+                    isAnalyzing || !idea.tweetUrl ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                >
+                  {isAnalyzing ? 'Analyzing...' : 'Analyze'}
+                </button>
+              </div>
+            </div>
+
+            {/* Title */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Title (optional)</label>
               <input
                 type="text"
-                value={idea.tweetUrl}
-                onChange={e => setIdea(prev => ({ ...prev, tweetUrl: e.target.value }))}
-                className="flex-1 bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-                placeholder="Paste a tweet URL to auto-populate fields"
+                value={idea.title}
+                onChange={e => setIdea(prev => ({ ...prev, title: e.target.value }))}
+                className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
+                placeholder="Enter a title or let AI generate one"
               />
+            </div>
+
+            {/* Notes & Ideas */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Notes & Ideas</label>
+              <textarea
+                value={idea.keyPoints?.[0] || ''}
+                onChange={e => updateKeyPoints(e.target.value)}
+                className="w-full h-64 bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white resize-none"
+                placeholder="Paste your notes, ideas, or bullet points here..."
+              />
+            </div>
+
+            {/* Generate Button */}
+            <div className="pt-6">
               <button
-                onClick={() => idea.tweetUrl && analyzeTweet(idea.tweetUrl)}
-                disabled={isAnalyzing || !idea.tweetUrl}
-                className={`bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg transition-colors ${
-                  isAnalyzing || !idea.tweetUrl ? 'opacity-50 cursor-not-allowed' : ''
+                onClick={generatePost}
+                disabled={isGenerating}
+                className={`w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-6 rounded-lg transition-colors ${
+                  isGenerating ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
-                {isAnalyzing ? 'Analyzing...' : 'Analyze'}
+                {isGenerating ? 'Generating...' : 'Generate Blog Post'}
               </button>
+              {status && (
+                <p className="mt-4 text-center text-sm text-yellow-500/80">{status}</p>
+              )}
             </div>
           </div>
-
-          {/* Title */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Title (optional)</label>
-            <input
-              type="text"
-              value={idea.title}
-              onChange={e => setIdea(prev => ({ ...prev, title: e.target.value }))}
-              className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-              placeholder="Enter a title or let AI generate one"
-            />
-          </div>
-
-          {/* Key Points */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Key Points</label>
-            <div className="space-y-3">
-              {(idea.keyPoints || []).map((point, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  value={point}
-                  onChange={e => updateKeyPoint(index, e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-                  placeholder="Enter a key point"
-                />
-              ))}
+        ) : (
+          <div className="space-y-6">
+            {/* Preview Header */}
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold">Preview</h2>
               <button
-                onClick={addKeyPoint}
-                className="text-yellow-500 hover:text-yellow-400 text-sm"
+                onClick={() => setIsPreviewMode(false)}
+                className="text-yellow-500 hover:text-yellow-400"
               >
-                + Add Key Point
+                Back to Edit
               </button>
             </div>
-          </div>
 
-          {/* Target Audience */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Target Audience</label>
-            <input
-              type="text"
-              value={idea.targetAudience}
-              onChange={e => setIdea(prev => ({ ...prev, targetAudience: e.target.value }))}
-              className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-              placeholder="Who is this article for?"
-            />
-          </div>
-
-          {/* Tone */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Tone</label>
-            <select
-              value={idea.tone}
-              onChange={e => setIdea(prev => ({ ...prev, tone: e.target.value as ToneType }))}
-              className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-            >
-              <option value="technical">Technical</option>
-              <option value="educational">Educational</option>
-              <option value="conversational">Conversational</option>
-              <option value="professional">Professional</option>
-            </select>
-          </div>
-
-          {/* Length */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Article Length</label>
-            <select
-              value={idea.desiredLength}
-              onChange={e => setIdea(prev => ({ ...prev, desiredLength: e.target.value as LengthType }))}
-              className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-            >
-              <option value="short">Short (~800 words)</option>
-              <option value="medium">Medium (~1500 words)</option>
-              <option value="long">Long (~2500 words)</option>
-            </select>
-          </div>
-
-          {/* References */}
-          <div>
-            <label className="block text-sm font-medium mb-2">References (optional)</label>
-            <div className="space-y-3">
-              {idea.references?.map((ref, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  value={ref}
-                  onChange={e => updateReference(index, e.target.value)}
-                  className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-                  placeholder="Enter a reference"
-                />
-              ))}
-              <button
-                onClick={addReference}
-                className="text-yellow-500 hover:text-yellow-400 text-sm"
-              >
-                + Add Reference
-              </button>
-            </div>
-          </div>
-
-          {/* Tags */}
-          <div>
-            <label className="block text-sm font-medium mb-2">Tags</label>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {idea.tags?.map(tag => (
-                <span
-                  key={tag}
-                  className="bg-yellow-500/20 text-yellow-300 px-3 py-1 rounded-full text-sm flex items-center"
-                >
-                  {tag}
-                  <button
-                    onClick={() => removeTag(tag)}
-                    className="ml-2 text-yellow-300 hover:text-yellow-400"
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Add a tag"
-                className="flex-1 bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-                onKeyPress={e => {
-                  if (e.key === 'Enter') {
-                    addTag(e.currentTarget.value);
-                    e.currentTarget.value = '';
-                  }
-                }}
+            {/* Preview Content */}
+            <div className="prose prose-invert max-w-none">
+              <textarea
+                value={generatedContent}
+                onChange={e => setGeneratedContent(e.target.value)}
+                className="w-full h-[600px] bg-zinc-900 border border-zinc-700 rounded-lg p-6 text-white resize-none"
               />
             </div>
-          </div>
 
-          {/* Generate Button */}
-          <div className="pt-6">
-            <button
-              onClick={generatePost}
-              disabled={isGenerating}
-              className={`w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-6 rounded-lg transition-colors ${
-                isGenerating ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-            >
-              {isGenerating ? 'Generating...' : 'Generate Blog Post'}
-            </button>
-            {status && (
-              <p className="mt-4 text-center text-sm text-yellow-500/80">{status}</p>
-            )}
+            {/* Publish Button */}
+            <div className="pt-6">
+              <button
+                onClick={publishPost}
+                disabled={isPublishing}
+                className={`w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 px-6 rounded-lg transition-colors ${
+                  isPublishing ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                {isPublishing ? 'Publishing...' : 'Publish Blog Post'}
+              </button>
+              {status && (
+                <p className="mt-4 text-center text-sm text-yellow-500/80">{status}</p>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
