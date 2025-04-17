@@ -36,6 +36,9 @@
     "@radix-ui/react-slot": "^1.2.0",
     "@tanstack/react-query": "^5.73.3",
     "@tryghost/content-api": "^1.11.22",
+    "@types/redis": "^4.0.11",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.5",
@@ -44,8 +47,10 @@
     "openai": "^4.95.0",
     "react": "^18",
     "react-dom": "^18",
+    "redis": "^4.7.0",
     "tailwind-merge": "^2.6.0",
-    "thirdweb": "^5.0.0-beta-0c28573eec3111e724870f2832c1d3446a505e78-20240328000332"
+    "thirdweb": "^5.0.0-beta-0c28573eec3111e724870f2832c1d3446a505e78-20240328000332",
+    "twitter-api-v2": "^1.22.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
