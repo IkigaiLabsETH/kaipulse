@@ -6,6 +6,19 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy-key-for-build',
 });
 
+interface Tweet {
+  author: {
+    name: string;
+    username: string;
+  };
+  text: string;
+  createdAt: string;
+  metrics?: {
+    likes: number;
+    retweets: number;
+  };
+}
+
 interface TweetAnalysis {
   keyPoints: string[];
   suggestedTitle?: string;
@@ -21,11 +34,15 @@ export class TweetAnalyzer {
     return process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'dummy-key-for-build';
   }
 
-  private static getFallbackAnalysis(tweetData: any): TweetAnalysis {
+  private static getFallbackAnalysis(tweetData: Tweet): TweetAnalysis {
     return {
-      keyPoints: ["OpenAI API key not configured - please add OPENAI_API_KEY to your environment variables"],
-      suggestedTitle: "Analysis Not Available",
-      suggestedTags: ["setup-required"]
+      keyPoints: [
+        "OpenAI API key not configured - please add OPENAI_API_KEY to your environment variables",
+        `Tweet by ${tweetData.author.name} (@${tweetData.author.username})`,
+        `Content: ${tweetData.text}`
+      ],
+      suggestedTitle: "Analysis Not Available - Configuration Required",
+      suggestedTags: ["setup-required", "configuration-needed"]
     };
   }
 
