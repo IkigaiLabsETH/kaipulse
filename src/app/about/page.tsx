@@ -134,39 +134,167 @@ export default function AboutPage() {
       <section className="w-full flex flex-col items-center justify-center py-12 bg-[#1c1f26] border-t border-yellow-500/20">
         <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
           {/* STRF Card */}
-          <Card>
-            <div className="flex flex-col h-full">
-              <h3 className="text-3xl font-bold text-yellow-500 mb-4">STRF</h3>
-              <p className="text-white/90 mb-6 text-lg">
-                STRF is a cash alternative product designed for capital preservation and liquidity, offering a stable yield with minimal risk. It is ideal for parking funds you may need in the short term, while still earning a return.
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold text-yellow-500">STRF</h3>
+                <div className="text-2xl font-bold text-white">$88</div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Liquidation Preference</span>
+                  <span className="text-white font-semibold">$100</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Dividend</span>
+                  <span className="text-white font-semibold">$10</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Effective Dividend</span>
+                  <span className="text-green-500 font-semibold">11.4%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">MSTR Correlation</span>
+                  <span className="text-white font-semibold">N/A</span>
+                </div>
+              </div>
+
+              <p className="text-white/90 mb-6 text-lg leading-relaxed">
+                STRF is a BTC market neutral income strategy - the perfect choice for those who want to insulate themselves from short-term price movements while still benefiting from the network. It&apos;s a bet that no $2T asset class has ever ceased to exist, with investors being second in Strategy&apos;s capital stack and assured of dividend payments unless BTC goes to zero.
               </p>
+
               <div className="mt-auto">
                 <Button
                   href="https://www.strategy.com/strf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
                 >
                   Learn more about STRF
                 </Button>
               </div>
             </div>
           </Card>
+
           {/* STRK Card */}
-          <Card>
-            <div className="flex flex-col h-full">
-              <h3 className="text-3xl font-bold text-yellow-500 mb-4">STRK</h3>
-              <p className="text-white/90 mb-6 text-lg">
-                STRK is a cash alternative strategy focused on maximizing yield while maintaining high liquidity and safety. It is suitable for those seeking a flexible, low-risk place to hold cash with the potential for enhanced returns.
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold text-yellow-500">STRK</h3>
+                <div className="text-2xl font-bold text-white">$84</div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Liquidation Preference</span>
+                  <span className="text-white font-semibold">$100</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Dividend</span>
+                  <span className="text-white font-semibold">$8</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Effective Dividend</span>
+                  <span className="text-green-500 font-semibold">9.5%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">MSTR Correlation</span>
+                  <span className="text-white font-semibold">16%</span>
+                </div>
+              </div>
+
+              <p className="text-white/90 mb-6 text-lg leading-relaxed">
+                STRK represents the optimal combination of holding Superior MSTR Class A shares and a fixed income product backed by BTC with minimal directional risk. It&apos;s ideal for those who want to maintain long exposure to MSTR Class A shares while benefiting from a BTC bond component. Think of it as tying up 30% of your STRK investment in MSTR Shares, with the rest in the BTC bond.
               </p>
+
               <div className="mt-auto">
                 <Button
                   href="https://www.strategy.com/strk"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
                 >
                   Learn more about STRK
                 </Button>
               </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* MSTY Card - Additional Info */}
+        <div className="max-w-4xl w-full mt-8 px-4">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold text-yellow-500">MSTY</h3>
+                <div className="text-2xl font-bold text-white">83% Dividend</div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">MSTR Correlation</span>
+                  <span className="text-white font-semibold">89%</span>
+                </div>
+              </div>
+
+              <p className="text-white/90 mb-6 text-lg leading-relaxed">
+                MSTY is a specialized product that depends on increasing MSTR price coupled with sustained volatility. It&apos;s best suited for bull markets where volatility remains high. While it can be a valuable addition to a portfolio, it&apos;s more of a trade on underlying MSTR volatility rather than a traditional investment product. Investors must rely on volatility distributions to maintain their position during sideways markets.
+              </p>
+            </div>
+          </Card>
+        </div>
+
+        {/* MSTR Card */}
+        <div className="max-w-4xl w-full mt-8 px-4">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold text-yellow-500">MSTR</h3>
+                <div className="text-2xl font-bold text-white">Superior Class A Shares</div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">BTC Holdings</span>
+                  <span className="text-white font-semibold">190,000+ BTC</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">BTC Correlation</span>
+                  <span className="text-white font-semibold">High</span>
+                </div>
+              </div>
+
+              <p className="text-white/90 mb-6 text-lg leading-relaxed">
+                MSTR represents the modern-day Berkshire Hathaway for the Bitcoin era. As the world&apos;s largest corporate holder of Bitcoin, it provides investors with exposure to BTC through traditional equity markets. The company&apos;s strategic accumulation of Bitcoin, combined with its software business, creates a unique value proposition for those seeking Bitcoin exposure with additional upside potential.
+              </p>
+            </div>
+          </Card>
+        </div>
+
+        {/* BTC Card */}
+        <div className="max-w-4xl w-full mt-8 px-4 mb-12">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-3xl font-bold text-yellow-500">BTC</h3>
+                <div className="text-2xl font-bold text-white">Digital Gold</div>
+              </div>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Supply Cap</span>
+                  <span className="text-white font-semibold">21 Million</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-white/70">Network Security</span>
+                  <span className="text-white font-semibold">Unmatched</span>
+                </div>
+              </div>
+
+              <p className="text-white/90 mb-6 text-lg leading-relaxed">
+                Bitcoin is the foundation of digital scarcity and the first truly decentralized monetary network. As a generational store of value, it provides unparalleled security, transparency, and sovereignty. Its fixed supply of 21 million coins, combined with growing institutional adoption, positions BTC as the premier asset for long-term wealth preservation in the digital age.
+              </p>
             </div>
           </Card>
         </div>
