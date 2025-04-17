@@ -18,6 +18,12 @@ interface CryptoData {
     blockHeight: number;
     avgBlockTime: number;
     avgBlockSize: number;
+    totalBTC: number | null;
+    marketCap: number | null;
+    nextHalving: {
+      blocks: number | null;
+      estimatedDate: string | null;
+    } | null;
     mempoolSize: number;
     mempoolFees: {
       fastestFee: number;
@@ -25,14 +31,6 @@ interface CryptoData {
       economyFee: number;
     };
     mempoolTxs: number;
-    totalBTC: number | null;
-    marketCap: number | null;
-    nextHalving: {
-      blocks: number | null;
-      estimatedDate: string | null;
-    } | null;
-    transactionVolume: number | null;
-    transactionCount: number | null;
     miningRevenue: number | null;
     miningRevenue24h: number | null;
     lightningCapacity: number | null;
@@ -80,20 +78,31 @@ export default function DataPage() {
         
         const result = await response.json();
         
-        // Log the received data for debugging
-        clientLogger.info('Received API data:', result);
-        
+        // Debug log the options data specifically
+        clientLogger.info('Options Data Response:', {
+          optionsData: result?.network?.optionsData,
+          status: response.status,
+          ok: response.ok
+        });
+
         // Validate the response data structure
         if (!result || typeof result !== 'object') {
           throw new Error('Invalid response format');
         }
 
-        // Set the data only if we have a valid response
+        if (!result.network?.optionsData) {
+          clientLogger.warn('Missing options data in response:', result);
+        }
+
         setData(result);
         setLastUpdated(new Date().toLocaleTimeString());
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Failed to fetch data';
-        clientLogger.error('Error fetching crypto data:', error);
+        clientLogger.error('Error fetching crypto data:', {
+          error,
+          message: errorMessage,
+          timestamp: new Date().toISOString()
+        });
         setError(errorMessage);
       } finally {
         setLoading(false);
@@ -124,7 +133,7 @@ export default function DataPage() {
         >
           <div className="flex items-center justify-between">
             <h1 className="text-4xl font-bold text-yellow-500">
-              Real-Time Crypto Data
+              Bitcoin Network Dashboard
             </h1>
             <div className="text-sm text-white/60">
               {lastUpdated && `Last updated: ${lastUpdated}`}
