@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { Card } from '@/components/ui/card';
 
 export default function BioPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -87,82 +88,92 @@ export default function BioPage() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
-              <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Vision & Innovation</h2>
-              <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                With a rich background in travel and real estate spanning two decades, LTL brought his expertise to the Web3 space in 2013. His leadership integrates avant-garde art, AI-powered solutions, and decentralized ecosystems to redefine how users engage with digital assets and experiences.
-              </p>
-            </div>
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="p-6">
+                <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Vision & Innovation</h2>
+                <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
+                  With a rich background in travel and real estate spanning two decades, LTL brought his expertise to the Web3 space in 2013. His leadership integrates avant-garde art, AI-powered solutions, and decentralized ecosystems to redefine how users engage with digital assets and experiences.
+                </p>
+              </div>
+            </Card>
 
-            <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
-              <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Expert Synthesis</h2>
-              <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                LTL&apos;s expertise lies in synthesizing diverse realms—Bitcoin, DeFi, generative art, and AI-driven solutions—into innovative, value-driven experiences. His projects elegantly combine cutting-edge technology with artistic vision, enhanced by sophisticated AI agents that personalize experiences and drive meaningful community connections.
-              </p>
-            </div>
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="p-6">
+                <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Expert Synthesis</h2>
+                <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
+                  LTL&apos;s expertise lies in synthesizing diverse realms—Bitcoin, DeFi, generative art, and AI-driven solutions—into innovative, value-driven experiences. His projects elegantly combine cutting-edge technology with artistic vision, enhanced by sophisticated AI agents that personalize experiences and drive meaningful community connections.
+                </p>
+              </div>
+            </Card>
 
-            <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
-              <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">User Experience Focus</h2>
-              <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                Mindful of user experience, LTL continually strives to simplify complex Web3 concepts into intuitive interactions. Recognizing the importance of clarity and accessibility, the team optimizes onboarding processes, crafts compelling narratives, and fosters emotional resonance, ensuring every interaction creates genuine value.
-              </p>
-            </div>
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="p-6">
+                <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">User Experience Focus</h2>
+                <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
+                  Mindful of user experience, LTL continually strives to simplify complex Web3 concepts into intuitive interactions. Recognizing the importance of clarity and accessibility, the team optimizes onboarding processes, crafts compelling narratives, and fosters emotional resonance, ensuring every interaction creates genuine value.
+                </p>
+              </div>
+            </Card>
 
-            <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
-              <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Operational Excellence</h2>
-              <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                LTL balances AI-driven innovation with strategic oversight, refining workflows to seamlessly deliver consistent excellence. His commitment to continuous evolution positions LiveTheLifeTV at the nexus of Web3, art, and innovation, consistently transforming ambitious ideas into extraordinary realities.
-              </p>
-            </div>
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="p-6">
+                <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Operational Excellence</h2>
+                <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
+                  LTL balances AI-driven innovation with strategic oversight, refining workflows to seamlessly deliver consistent excellence. His commitment to continuous evolution positions LiveTheLifeTV at the nexus of Web3, art, and innovation, consistently transforming ambitious ideas into extraordinary realities.
+                </p>
+              </div>
+            </Card>
 
             {/* AI Insights Section */}
-            <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
-              <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">AI-Analyzed Growth Areas</h2>
-              <p className="text-xl font-epilogue text-gray-200 leading-relaxed mb-8">
-                In the spirit of transparency and continuous improvement, here are key insights from our AI agents about areas for growth and development:
-              </p>
-              
-              <div className="space-y-6 font-satoshi">
-                <div className="bg-gray-800/50 p-6 rounded-xl">
-                  <h3 className="text-[#FFD700] text-xl mb-2">Scaling vs. Fragmentation</h3>
-                  <p className="text-gray-200">
-                    While demonstrating exceptional ability in idea synthesis, the interconnected nature of projects, frameworks, SDKs, personas, and narratives requires careful management to prevent scattered execution. Each concept is valuable, but together they need a unified product thesis or &ldquo;minimum viable mythology&rdquo; to maintain focus and enhance user experience.
-                  </p>
+            <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="p-6">
+                <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">AI-Analyzed Growth Areas</h2>
+                <p className="text-xl font-epilogue text-gray-200 leading-relaxed mb-8">
+                  In the spirit of transparency and continuous improvement, here are key insights from our AI agents about areas for growth and development:
+                </p>
+                
+                <div className="space-y-6 font-satoshi">
+                  <div className="bg-gray-800/50 p-6 rounded-xl">
+                    <h3 className="text-[#FFD700] text-xl mb-2">Scaling vs. Fragmentation</h3>
+                    <p className="text-gray-200">
+                      While demonstrating exceptional ability in idea synthesis, the interconnected nature of projects, frameworks, SDKs, personas, and narratives requires careful management to prevent scattered execution. Each concept is valuable, but together they need a unified product thesis or &ldquo;minimum viable mythology&rdquo; to maintain focus and enhance user experience.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-800/50 p-6 rounded-xl">
+                    <h3 className="text-[#FFD700] text-xl mb-2">Agent Interoperability and Delegation</h3>
+                    <p className="text-gray-200">
+                      The vision for autonomous, collaborative AI systems is ambitious, but requires robust infrastructure for agent trust, memory persistence, and reliable delegation protocols. The gap between autonomous agent ambitions and current practical implementation needs careful bridging through hardened protocols and human-in-the-loop fallbacks.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-800/50 p-6 rounded-xl">
+                    <h3 className="text-[#FFD700] text-xl mb-2">Token Economics and Network Effects</h3>
+                    <p className="text-gray-200">
+                      While demonstrating strong intuition for token utility, the implementation of complex token systems (Cult Coins, MPL 404, Liquidity Games) requires careful consideration of external economic pressures and sustainable network effects. This involves implementing simpler A/B-tested token sinks, phased incentive designs, and fail-safe mechanisms to ensure long-term viability.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-800/50 p-6 rounded-xl">
+                    <h3 className="text-[#FFD700] text-xl mb-2">Operational Infrastructure and Team Dynamics</h3>
+                    <p className="text-gray-200">
+                      The balance between visionary leadership and operational execution requires careful attention. While AI agents provide valuable support, there&apos;s a need for human operators who can effectively translate vision into actionable sprints and maintain rigorous completion metrics. This ensures sustainable growth and reliable execution of complex projects.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-800/50 p-6 rounded-xl">
+                    <h3 className="text-[#FFD700] text-xl mb-2">User Experience and Conceptual Accessibility</h3>
+                    <p className="text-gray-200">
+                      The sophisticated nature of AI-native art curators, agent-to-agent payments, and token-gated MPC agents presents significant conceptual barriers for users. Addressing this requires narrative compression&mdash;starting with a compelling &ldquo;agent experience&rdquo; that creates FOMO, then gradually introducing users to deeper functionalities while maintaining clear value propositions and emotional engagement.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="bg-gray-800/50 p-6 rounded-xl">
-                  <h3 className="text-[#FFD700] text-xl mb-2">Agent Interoperability and Delegation</h3>
-                  <p className="text-gray-200">
-                    The vision for autonomous, collaborative AI systems is ambitious, but requires robust infrastructure for agent trust, memory persistence, and reliable delegation protocols. The gap between autonomous agent ambitions and current practical implementation needs careful bridging through hardened protocols and human-in-the-loop fallbacks.
-                  </p>
-                </div>
-
-                <div className="bg-gray-800/50 p-6 rounded-xl">
-                  <h3 className="text-[#FFD700] text-xl mb-2">Token Economics and Network Effects</h3>
-                  <p className="text-gray-200">
-                    While demonstrating strong intuition for token utility, the implementation of complex token systems (Cult Coins, MPL 404, Liquidity Games) requires careful consideration of external economic pressures and sustainable network effects. This involves implementing simpler A/B-tested token sinks, phased incentive designs, and fail-safe mechanisms to ensure long-term viability.
-                  </p>
-                </div>
-
-                <div className="bg-gray-800/50 p-6 rounded-xl">
-                  <h3 className="text-[#FFD700] text-xl mb-2">Operational Infrastructure and Team Dynamics</h3>
-                  <p className="text-gray-200">
-                    The balance between visionary leadership and operational execution requires careful attention. While AI agents provide valuable support, there&apos;s a need for human operators who can effectively translate vision into actionable sprints and maintain rigorous completion metrics. This ensures sustainable growth and reliable execution of complex projects.
-                  </p>
-                </div>
-
-                <div className="bg-gray-800/50 p-6 rounded-xl">
-                  <h3 className="text-[#FFD700] text-xl mb-2">User Experience and Conceptual Accessibility</h3>
-                  <p className="text-gray-200">
-                    The sophisticated nature of AI-native art curators, agent-to-agent payments, and token-gated MPC agents presents significant conceptual barriers for users. Addressing this requires narrative compression&mdash;starting with a compelling &ldquo;agent experience&rdquo; that creates FOMO, then gradually introducing users to deeper functionalities while maintaining clear value propositions and emotional engagement.
-                  </p>
-                </div>
+                <p className="text-xl font-epilogue text-gray-200 leading-relaxed mt-8">
+                  These insights drive our commitment to continuous improvement and transparent leadership, ensuring we build systems that are not just innovative, but also practical and user-centric. By addressing these areas, we aim to create more sustainable, accessible, and impactful solutions in the Web3 space.
+                </p>
               </div>
-
-              <p className="text-xl font-epilogue text-gray-200 leading-relaxed mt-8">
-                These insights drive our commitment to continuous improvement and transparent leadership, ensuring we build systems that are not just innovative, but also practical and user-centric. By addressing these areas, we aim to create more sustainable, accessible, and impactful solutions in the Web3 space.
-              </p>
-            </div>
+            </Card>
           </div>
         </div>
       </div>
