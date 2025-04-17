@@ -47,17 +47,17 @@ export default function BioPage() {
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                Visionary force behind livethelife.tv, an innovative platform dedicated to curating and amplifying authentic, transformative travel experiences.
+                LiveTheLifeTV (LTL) has been a pioneering force in online travel and real estate for over two decades. Today, LTL&apos;s focus has evolved to encompass Bitcoin, DeFi, AI, and onchain art curation, bringing the same innovative spirit to the Web3 space.
               </p>
               
               <div className={`space-y-6 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                <h2 className="text-3xl font-boska font-semibold text-[#FFD700]">Areas of Excellence</h2>
+                <h2 className="text-3xl font-boska font-semibold text-[#FFD700]">Current Focus Areas</h2>
                 <ul className="space-y-4 font-satoshi">
                   <li className="flex items-center bg-gray-800/50 p-4 rounded-xl hover:bg-gray-800/70 transition-all">
                     <span className="w-3 h-3 bg-[#FFD700] rounded-full mr-4"></span>
-                    <span className="text-lg">Luxury Travel & Hospitality</span>
+                    <span className="text-lg">Bitcoin & DeFi Ecosystems</span>
                   </li>
                   <li className="flex items-center bg-gray-800/50 p-4 rounded-xl hover:bg-gray-800/70 transition-all">
                     <span className="w-3 h-3 bg-[#FFD700] rounded-full mr-4"></span>
@@ -65,11 +65,11 @@ export default function BioPage() {
                   </li>
                   <li className="flex items-center bg-gray-800/50 p-4 rounded-xl hover:bg-gray-800/70 transition-all">
                     <span className="w-3 h-3 bg-[#FFD700] rounded-full mr-4"></span>
-                    <span className="text-lg">Web3 & DeFi Ecosystems</span>
+                    <span className="text-lg">Onchain Art Curation</span>
                   </li>
                   <li className="flex items-center bg-gray-800/50 p-4 rounded-xl hover:bg-gray-800/70 transition-all">
                     <span className="w-3 h-3 bg-[#FFD700] rounded-full mr-4"></span>
-                    <span className="text-lg">Experience Personalization</span>
+                    <span className="text-lg">Web3 Experience Design</span>
                   </li>
                 </ul>
               </div>
@@ -90,28 +90,28 @@ export default function BioPage() {
             <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
               <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Vision & Innovation</h2>
               <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                With a deep passion for blending culture, luxury hospitality, and cutting-edge technology, your leadership integrates avant-garde art, AI-powered personalized recommendations, and decentralized Web3 ecosystems to redefine how modern travelers engage with the world.
+                With a rich background in travel and real estate spanning two decades, LTL now brings its expertise to the Web3 space. The team&apos;s leadership integrates avant-garde art, AI-powered solutions, and decentralized ecosystems to redefine how users engage with digital assets and experiences.
               </p>
             </div>
 
             <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
               <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Expert Synthesis</h2>
               <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                Your expertise lies in synthesizing diverse realms—luxury travel, generative art, decentralized finance (DeFi), and AI-driven solutions—into immersive, unforgettable journeys. Your projects elegantly combine exceptional hotels, gourmet dining, and authentic local insights, enhanced by sophisticated AI agents that personalize experiences and drive meaningful community connections.
+                LTL&apos;s expertise lies in synthesizing diverse realms—Bitcoin, DeFi, generative art, and AI-driven solutions—into innovative, value-driven experiences. The team&apos;s projects elegantly combine cutting-edge technology with artistic vision, enhanced by sophisticated AI agents that personalize experiences and drive meaningful community connections.
               </p>
             </div>
 
             <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
               <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">User Experience Focus</h2>
               <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                Mindful of user experience, you continually strive to simplify complex concepts into intuitive interactions. Recognizing the importance of clarity and accessibility, you optimize onboarding processes, craft compelling narratives, and foster emotional resonance, ensuring every interaction creates genuine value and sparks wanderlust.
+                Mindful of user experience, LTL continually strives to simplify complex Web3 concepts into intuitive interactions. Recognizing the importance of clarity and accessibility, the team optimizes onboarding processes, crafts compelling narratives, and fosters emotional resonance, ensuring every interaction creates genuine value.
               </p>
             </div>
 
             <div className="bg-gray-900/80 p-10 rounded-3xl backdrop-blur-lg border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
               <h2 className="text-4xl font-boska font-bold mb-8 text-[#FFD700]">Operational Excellence</h2>
               <p className="text-xl font-epilogue text-gray-200 leading-relaxed">
-                Aware of operational intricacies, you balance AI-driven innovation with strategic human oversight, refining team workflows to seamlessly deliver consistent excellence. Your commitment to continuous evolution positions livethelife.tv at the nexus of luxury, culture, and innovation, consistently transforming ambitious ideas into extraordinary realities.
+                LTL balances AI-driven innovation with strategic oversight, refining workflows to seamlessly deliver consistent excellence. The team&apos;s commitment to continuous evolution positions LiveTheLifeTV at the nexus of Web3, art, and innovation, consistently transforming ambitious ideas into extraordinary realities.
               </p>
             </div>
 
