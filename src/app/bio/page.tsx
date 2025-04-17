@@ -184,7 +184,7 @@ export default function BioPage() {
                 </svg>
               </div>
             </a>
-            <a href="https://instagram.com/livethelifetv" className="group">
+            <a href="https://instagram.com/livethelife.tv" className="group">
               <div className="bg-gray-900/80 p-6 rounded-2xl border border-[#FFD700]/10 hover:border-[#FFD700]/20 transition-all">
                 <span className="sr-only">Instagram</span>
                 <svg className="h-8 w-8 text-gray-400 group-hover:text-[#FFD700] transition-colors" fill="currentColor" viewBox="0 0 24 24">
