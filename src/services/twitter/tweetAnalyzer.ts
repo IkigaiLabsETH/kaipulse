@@ -14,15 +14,17 @@ interface TweetAnalysis {
 
 export class TweetAnalyzer {
   private static twitterService = new TwitterService({
-    apiKey: process.env.TWITTER_API_KEY || '',
-    apiSecret: process.env.TWITTER_API_SECRET || '',
-    accessToken: process.env.TWITTER_ACCESS_TOKEN || '',
-    accessSecret: process.env.TWITTER_ACCESS_SECRET || '',
     bearerToken: process.env.TWITTER_BEARER_TOKEN || '',
   });
 
   static async analyzeTweet(tweetUrl: string): Promise<TweetAnalysis> {
     try {
+      // Check quota status first
+      const quotaStatus = this.twitterService.getQuotaStatus();
+      if (quotaStatus.remainingReads <= 0) {
+        throw new Error(`API quota exceeded. Next reset: ${quotaStatus.nextReset.toLocaleDateString()}`);
+      }
+
       // Extract tweet ID from URL
       const tweetId = this.extractTweetId(tweetUrl);
       if (!tweetId) {
@@ -47,9 +49,18 @@ ${tweetData.text}
 
       return analysis;
     } catch (error) {
-      logger.error('Error analyzing tweet:', error);
+      if (error instanceof Error && error.message.includes('API quota exceeded')) {
+        logger.warn('Twitter API quota exceeded:', error);
+      } else {
+        logger.error('Error analyzing tweet:', error);
+      }
       throw error;
     }
+  }
+
+  // Get current API quota status
+  static getQuotaStatus() {
+    return this.twitterService.getQuotaStatus();
   }
 
   private static extractTweetId(url: string): string | null {
