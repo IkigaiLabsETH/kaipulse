@@ -78,6 +78,17 @@ OPENAI_API_KEY=your_openai_api_key
 
 # Optional: Analytics and Monitoring
 NEXT_PUBLIC_GA_ID=your_google_analytics_id  # Optional
+
+# Twitter API
+TWITTER_API_KEY=your_twitter_api_key
+TWITTER_API_SECRET=your_twitter_api_secret
+TWITTER_ACCESS_TOKEN=your_twitter_access_token
+TWITTER_ACCESS_SECRET=your_twitter_access_secret
+TWITTER_BEARER_TOKEN=your_twitter_bearer_token
+
+# Optional Redis Configuration
+REDIS_URL=your_redis_url  # Optional
+REDIS_TTL=3600           # Optional, defaults to 1 hour
 ```
 
 4. Start the development server:
@@ -138,6 +149,7 @@ Our integrated news section provides two powerful ways to keep users informed:
 1. Access the Notebook interface (`/notebook`)
 2. Input article parameters:
    - Optional title (or let AI generate one)
+   - Twitter URL for instant analysis and content generation
    - Key points for coverage
    - Target audience
    - Desired tone and length
@@ -146,6 +158,28 @@ Our integrated news section provides two powerful ways to keep users informed:
 3. Generate article using AI
 4. Automatic publication to your Ghost CMS
 5. Instant availability in the news section
+
+### Twitter Integration Features
+- **Tweet Analysis**: Automatically extract insights from Bitcoin-related tweets
+- **Smart Content Generation**:
+  - Extract key points from tweets
+  - Generate suggested titles
+  - Auto-tag content based on tweet context
+  - Engagement metrics integration
+- **URL Support**:
+  - Handles both twitter.com and x.com URLs
+  - Automatic tweet ID extraction
+  - Validates tweet URLs before processing
+- **AI-Powered Analysis**:
+  - Technical analysis of Bitcoin-related content
+  - Market implications assessment
+  - Historical context consideration
+  - Adoption impact analysis
+  - Trend identification
+- **Caching Support**:
+  - Optional Redis caching for high-traffic scenarios
+  - Configurable cache TTL
+  - Improved response times for frequently accessed tweets
 
 ## 🌍 International Tax Considerations
 
@@ -166,6 +200,8 @@ The calculator includes special features for international investors:
 - Chart.js
 - Ghost Content API (Headless CMS)
 - OpenAI API (Content Generation)
+- Twitter API v2 (Tweet Analysis)
+- Redis (Optional Caching)
 - TailwindCSS Typography Plugin
 
 ## 📈 Project Structure
@@ -180,6 +216,9 @@ src/
 ├── services/      # API and service integrations
 │   ├── ghost/    # Ghost CMS integration
 │   ├── ai/       # OpenAI integration
+│   ├── twitter/  # Twitter API integration
+│   │   ├── client.ts        # Twitter API client
+│   │   └── tweetAnalyzer.ts # Tweet analysis service
 │   └── lib/      # Shared utilities
 ├── utils/         # Helper functions
 └── types/         # TypeScript type definitions
