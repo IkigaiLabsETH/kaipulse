@@ -43,7 +43,7 @@ function AccordionItem({ title, children, defaultOpen = false }: AccordionItemPr
   );
 }
 
-export default function HomePage() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}

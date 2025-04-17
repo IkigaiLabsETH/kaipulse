@@ -48,7 +48,7 @@
     "react": "^18",
     "react-dom": "^18",
     "redis": "^4.7.0",
-    "tailwind-merge": "^2.6.0",
+    "tailwind-merge": "^3.2.0",
     "thirdweb": "^5.0.0-beta-0c28573eec3111e724870f2832c1d3446a505e78-20240328000332",
     "twitter-api-v2": "^1.22.0"
   },
