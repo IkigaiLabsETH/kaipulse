@@ -55,17 +55,77 @@ export default function Home() {
       >
         <div className="w-full max-w-4xl mx-auto px-4">
           <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative z-10 flex flex-col items-center space-y-3 sm:space-y-4 max-w-md mx-auto md:max-w-4xl md:mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-bold text-yellow-400 text-center whitespace-nowrap max-w-4xl mx-auto">
-              MSTR Option Income Strategy
+            <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl text-yellow-500">
+              Bitcoin Investment Education & Portfolio Tools
             </h1>
-            <p className="text-sm sm:text-lg md:text-xl lg:text-lg xl:text-base text-gray-300 text-center whitespace-normal sm:whitespace-nowrap max-w-xs mx-auto md:max-w-2xl font-light">
-              Bitcoin-first strategy, complemented by strategic positions in MSTY and MSTR.
+            <p className="mt-6 text-lg leading-8 text-white/90 max-w-3xl mx-auto">
+              Explore Bitcoin investment concepts and portfolio planning tools. Our educational resources 
+              help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. 
+              For educational purposes only - not financial advice.
             </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/calculator"
+                className="rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-lg font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+              >
+                Explore Portfolio Tools
+              </Link>
+              <Link
+                href="/about"
+                className="text-lg font-semibold leading-6 text-yellow-500 hover:text-yellow-400"
+              >
+                Learn More <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Disclaimer Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-8 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 text-center"
+          >
+            <p className="text-sm text-white/80">
+              DISCLAIMER: This website and its tools are for educational purposes only. Not financial advice. 
+              Always do your own research and consult with qualified professionals before making investment decisions. 
+              Past performance is not indicative of future results. Investing involves risk of loss.
+            </p>
+          </motion.div>
+
+          {/* Key Benefits Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-16 grid gap-8 md:grid-cols-3"
+          >
+            <div className="flex flex-col items-center text-center">
+              <Bitcoin className="h-12 w-12 text-yellow-500" />
+              <h3 className="mt-4 text-xl font-bold text-white">Bitcoin Education</h3>
+              <p className="mt-2 text-white/80">
+                Learn about Bitcoin&apos;s unique properties, scarcity, and long-term value proposition.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <TrendingUp className="h-12 w-12 text-yellow-500" />
+              <h3 className="mt-4 text-xl font-bold text-white">Portfolio Analysis</h3>
+              <p className="mt-2 text-white/80">
+                Explore different portfolio allocation strategies between Bitcoin, MSTR, and MSTY.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <DollarSign className="h-12 w-12 text-yellow-500" />
+              <h3 className="mt-4 text-xl font-bold text-white">Income Strategies</h3>
+              <p className="mt-2 text-white/80">
+                Understand various approaches to generating income while maintaining Bitcoin exposure.
+              </p>
+            </div>
           </motion.div>
 
           <div className="relative z-10 -mx-2 md:mx-0 hidden sm:block mt-8">

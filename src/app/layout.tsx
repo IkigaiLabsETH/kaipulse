@@ -55,30 +55,35 @@ const satoshi = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
-  title: "LiveTheLifeTV - Bitcoin Investment Calculator & Financial Freedom Guide",
-  description: "Master your financial future with LiveTheLifeTV's Bitcoin-first investment strategy. Use our advanced calculator to plan your path to financial freedom through Bitcoin investment and wealth management.",
+  title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
+  description: "Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
   keywords: [
-    "Bitcoin", 
-    "LIVETHELIFETV",
-    "LTL",
+    "Bitcoin Education",
+    "Portfolio Planning",
     "Bitcoin Calculator",
-    "Financial Freedom",
-    "Investment",
-    "Bitcoin Investment",
-    "Wealth Management",
-    "Crypto Calculator",
-    "Bitcoin Strategy",
-    "Financial Planning",
+    "MSTR Analysis",
+    "Investment Education",
+    "Wealth Education",
     "Bitcoin ROI",
-    "Investment Calculator",
+    "Portfolio Tools",
+    "Crypto Education",
+    "Bitcoin Strategy",
+    "Financial Education",
     "Bitcoin Returns",
-    "Crypto Investment"
+    "Investment Calculator",
+    "Bitcoin Allocation",
+    "Crypto Learning",
+    "Bitcoin Portfolio",
+    "Digital Asset Education",
+    "Bitcoin Investment Guide",
+    "Wealth Education",
+    "Portfolio Planning"
   ],
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
   openGraph: {
-    title: "LiveTheLifeTV - Bitcoin Investment Calculator & Financial Freedom Guide",
-    description: "Master your financial future with LiveTheLifeTV's Bitcoin-first investment strategy. Use our advanced calculator to plan your path to financial freedom through Bitcoin investment and wealth management.",
+    title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
+    description: "Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
     type: "website",
     locale: "en_US",
     siteName: "LiveTheLifeTV",
@@ -87,14 +92,14 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "LiveTheLifeTV Bitcoin Investment Calculator"
+        alt: "LiveTheLifeTV Bitcoin Education Tools - For Educational Purposes Only"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "LiveTheLifeTV - Bitcoin Investment Calculator & Financial Freedom Guide",
-    description: "Master your financial future with LiveTheLifeTV's Bitcoin-first investment strategy. Use our advanced calculator to plan your path to financial freedom through Bitcoin investment and wealth management.",
+    title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
+    description: "Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
     images: ["/twitter-image.jpg"],
     creator: "@LiveTheLifeTV"
   },
