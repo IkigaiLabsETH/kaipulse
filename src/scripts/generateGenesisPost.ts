@@ -1,9 +1,9 @@
-import { ghostService } from '../services/ghost';
+import { BlogPost } from '../services/ghost/types';
 import { logger } from '../services/lib/logger';
 
-async function publishGenesisPost() {
+async function generateGenesisPost(): Promise<BlogPost> {
   try {
-    const post = {
+    const post: BlogPost = {
       title: "The Genesis Block: Bitcoin's Revolutionary Beginning",
       slug: "the-genesis-block-bitcoins-revolutionary-beginning",
       feature_image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80",
@@ -57,14 +57,21 @@ async function publishGenesisPost() {
       excerpt: "Journey through the pivotal moments of Bitcoin's history, from Satoshi Nakamoto's first block to the confluence of minds that shaped its revolutionary impact. Discover how the genesis of Bitcoin sparked a financial revolution that continues to reshape our world."
     };
 
-    const result = await ghostService.createPost(post);
-    logger.info('Successfully published Genesis Block article:', result.slug);
-    return result;
+    logger.info('Successfully generated Genesis Block article:', post.title);
+    return post;
   } catch (error) {
-    logger.error('Failed to publish Genesis Block article:', error);
+    logger.error('Failed to generate Genesis Block article:', error);
     throw error;
   }
 }
 
 // Run the script
-publishGenesisPost(); 
+generateGenesisPost().then(post => {
+  logger.info('Generated post details:', {
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt
+  });
+}).catch(() => {
+  process.exit(1);
+}); 
