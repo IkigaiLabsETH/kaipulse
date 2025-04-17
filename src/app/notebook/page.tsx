@@ -39,6 +39,11 @@ export default function NotebookPage() {
       });
 
       if (!response.ok) {
+        const error = await response.json();
+        if (error.error?.includes('API key not configured')) {
+          setStatus('Twitter analysis not available - using manual input mode');
+          return;
+        }
         throw new Error('Failed to analyze tweet');
       }
 
@@ -53,7 +58,7 @@ export default function NotebookPage() {
 
       setStatus('Tweet analyzed successfully!');
     } catch (error) {
-      setStatus('Error analyzing tweet');
+      setStatus('Using manual input mode - enter your content directly');
       logger.error('Error analyzing tweet:', error);
     } finally {
       setIsAnalyzing(false);
@@ -139,14 +144,14 @@ export default function NotebookPage() {
           <div className="space-y-6">
             {/* Twitter URL */}
             <div>
-              <label className="block text-sm font-medium mb-2">Twitter URL</label>
+              <label className="block text-sm font-medium mb-2">Twitter URL (optional)</label>
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={idea.tweetUrl}
                   onChange={e => setIdea(prev => ({ ...prev, tweetUrl: e.target.value }))}
                   className="flex-1 bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
-                  placeholder="Paste a tweet URL to auto-populate fields"
+                  placeholder="Paste a tweet URL or enter content manually below"
                 />
                 <button
                   onClick={() => idea.tweetUrl && analyzeTweet(idea.tweetUrl)}
@@ -158,6 +163,9 @@ export default function NotebookPage() {
                   {isAnalyzing ? 'Analyzing...' : 'Analyze'}
                 </button>
               </div>
+              <p className="mt-2 text-sm text-zinc-400">
+                You can either analyze a tweet or directly enter your content in the fields below
+              </p>
             </div>
 
             {/* Title */}
