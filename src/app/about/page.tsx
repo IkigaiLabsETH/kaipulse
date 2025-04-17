@@ -171,6 +171,117 @@ export default function AboutPage() {
           </Card>
         </div>
       </section>
+      {/* The Genesis Block Story Section */}
+      <section className="w-full flex flex-col items-center justify-center py-16 bg-black border-t border-yellow-500/20">
+        <div className="max-w-4xl w-full px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-yellow-500 mb-4">The Genesis Block</h2>
+            <div className="w-24 h-1 bg-yellow-500 mx-auto mb-8"></div>
+          </motion.div>
+
+          <div className="space-y-12">
+            {/* Genesis Block */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-yellow-500/30"></div>
+              <div className="pl-8">
+                <h3 className="text-2xl font-bold text-yellow-500 mb-4">The Birth of Bitcoin</h3>
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Satoshi Nakamoto sat quietly at a modest desk, illuminated only by the glow of monitors. The date was January 3rd, 2009, a cold day that seemed fitting for the birth of a revolutionary idea. With a final keystroke, the Bitcoin blockchain sprang to life. Embedded forever in the very first block, the words &ldquo;The Times 03/Jan/2009 Chancellor on brink of second bailout for banks&rdquo; served as both a timestamp and a statement: Bitcoin was born as a direct response to financial instability and centralized trust.
+                </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
+                  &ldquo;Trust,&rdquo; Satoshi mused, &ldquo;is the central problem we&rsquo;re solving.&rdquo;
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Security */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="relative"
+            >
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-yellow-500/30"></div>
+              <div className="pl-8">
+                <h3 className="text-2xl font-bold text-yellow-500 mb-4">Security from First Principles</h3>
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Across the ocean, Hal Finney&rsquo;s computer chimed—a new message arrived. It was from Satoshi: &ldquo;I&rsquo;ve created something called Bitcoin. It&rsquo;s a peer-to-peer electronic cash system. Interested in giving it a try?&rdquo;
+                </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4">
+                  Hal, an experienced cryptographic engineer, immediately grasped Bitcoin&rsquo;s revolutionary core. He downloaded the software, received the first-ever Bitcoin transaction from Satoshi, and marveled at its elegant simplicity. &ldquo;This network&rsquo;s cryptographic security is remarkable,&rdquo; Hal observed, recognizing Bitcoin&rsquo;s use of elliptic curve cryptography to create secure, tamper-proof digital signatures.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Voice of Adoption */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="relative"
+            >
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-yellow-500/30"></div>
+              <div className="pl-8">
+                <h3 className="text-2xl font-bold text-yellow-500 mb-4">The Voice of Adoption</h3>
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Years passed, and Bitcoin began spreading quietly among technologists and libertarians. It wasn&rsquo;t until Andreas Antonopoulos took the stage in conference halls and classrooms worldwide that Bitcoin&rsquo;s message began to reach the masses. With passion, Andreas explained Bitcoin&rsquo;s practical impact:
+                </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
+                  &ldquo;Bitcoin isn&rsquo;t just digital money. It&rsquo;s freedom from financial censorship. It empowers anyone with an internet connection, regardless of nationality, gender, or economic status, to participate equally in the global economy.&rdquo;
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Economic Prophet */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="relative"
+            >
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-yellow-500/30"></div>
+              <div className="pl-8">
+                <h3 className="text-2xl font-bold text-yellow-500 mb-4">The Economic Prophet</h3>
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Meanwhile, Michael Saylor watched from afar, initially skeptical but increasingly intrigued. As CEO of MicroStrategy, he saw the cracks forming in the global financial system: endless money printing, rising debts, negative real interest rates. His epiphany came in 2020, amid unprecedented stimulus measures by central banks.
+                </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
+                  &ldquo;Bitcoin isn&rsquo;t just a currency,&rdquo; Michael reflected, &ldquo;It&rsquo;s digital gold. An asset immune to inflation, confiscation, and political interference.&rdquo;
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Epilogue */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="relative"
+            >
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-yellow-500/30"></div>
+              <div className="pl-8">
+                <h3 className="text-2xl font-bold text-yellow-500 mb-4">Epilogue: A Digital Legacy</h3>
+                <p className="text-white/90 text-lg leading-relaxed">
+                  Satoshi Nakamoto&rsquo;s original vision, Hal Finney&rsquo;s cryptographic ingenuity, Andreas Antonopoulos&rsquo;s real-world advocacy, and Michael Saylor&rsquo;s economic insight have intertwined to forge a powerful investment narrative. Bitcoin stands as both a technological breakthrough and a profound financial innovation, uniquely suited for an age of uncertainty and digital transformation.
+                </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4">
+                  As new investors step into this narrative, they carry forward a legacy begun by a handful of visionaries—a legacy defined by decentralization, resilience, and freedom from centralized trust. The next chapters, yet unwritten, promise to be just as revolutionary.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 } 
