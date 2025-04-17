@@ -47,7 +47,7 @@ export default function BioPage() {
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                LiveTheLifeTV (LTL) has been a pioneering force in online travel and real estate for over two decades. Today, LTL&apos;s focus has evolved to encompass Bitcoin, DeFi, AI, and onchain art curation, bringing the same innovative spirit to the Web3 space.
+                LiveTheLifeTV (LTL) has been a pioneering force in online travel and real estate for over two decades. Today, LTL&apos;s focus has evolved to encompass Bitcoin, DeFi, AI, and onchain art curation, bringing the same innovative spirit to the Web3 space. LTL is now a TripleMaxi.
               </p>
               
               <div className={`space-y-6 ${
