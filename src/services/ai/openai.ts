@@ -1,42 +1,25 @@
 import OpenAI from 'openai';
-import { BlogPostIdea, GeneratedPost } from '../notebook/types';
+import { BlogPostIdea } from '../notebook/types';
 import { logger } from '../lib/logger';
 
+// Make API key optional during build time
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY || 'dummy-key-for-build',
+});
+
 export class OpenAIService {
-  private openai: OpenAI;
-
-  constructor() {
-    this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-  }
-
-  private async generateBlogContent(idea: BlogPostIdea): Promise<string> {
-    const prompt = `
-      Write a comprehensive blog post about Bitcoin with the following specifications:
-      ${idea.title ? `Title: ${idea.title}` : 'Generate an engaging title'}
-      
-      Key Points to Cover:
-      ${idea.keyPoints.map(point => `- ${point}`).join('\n')}
-      
-      Target Audience: ${idea.targetAudience || 'General Bitcoin enthusiasts and investors'}
-      Tone: ${idea.tone || 'professional'}
-      Length: ${idea.desiredLength || 'medium'} (short: ~800 words, medium: ~1500 words, long: ~2500 words)
-      
-      ${idea.references ? `References to Include:\n${idea.references.map(ref => `- ${ref}`).join('\n')}` : ''}
-      
-      Please structure the article with clear sections, engaging subheadings, and a compelling narrative flow.
-      Include relevant technical details while maintaining accessibility.
-      End with a strong conclusion that ties back to the main themes.
-    `;
-
+  async generateBlogPost(idea: BlogPostIdea) {
     try {
-      const completion = await this.openai.chat.completions.create({
-        model: "gpt-4-turbo-preview",
+      // Create a detailed prompt from the blog post idea
+      const prompt = this.createPrompt(idea);
+
+      // Generate content using GPT-4
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: "You are an expert Bitcoin writer who creates engaging, accurate, and insightful content. Your articles are well-researched, technically sound, and accessible to your target audience."
+            content: "You are a conductor of Bitcoin expertise, bringing together the world's foremost minds to collaboratively create insightful content. Your responses should follow the specified structure with expert dialogue and a final polished article."
           },
           {
             role: "user",
@@ -44,96 +27,161 @@ export class OpenAIService {
           }
         ],
         temperature: 0.7,
-        max_tokens: 4000
       });
 
-      return completion.choices[0].message.content || '';
-    } catch (error) {
-      logger.error('Error generating blog content:', error);
-      throw error;
-    }
-  }
+      const content = completion.choices[0].message?.content;
+      if (!content) throw new Error('No content generated');
 
-  private async generateMetadata(content: string): Promise<{ title: string; description: string; excerpt: string; }> {
-    try {
-      const completion = await this.openai.chat.completions.create({
-        model: "gpt-4-turbo-preview",
+      // Extract the final article from the <answer> section
+      const answerMatch = content.match(/<answer>([\s\S]*?)<\/answer>/);
+      if (!answerMatch) throw new Error('No answer section found in response');
+      const articleContent = answerMatch[1].trim();
+
+      // Generate metadata using a separate call
+      const metaCompletion = await openai.chat.completions.create({
+        model: "gpt-4",
         messages: [
           {
             role: "system",
-            content: "Generate SEO-optimized metadata for a Bitcoin blog post. Include a compelling title, meta description, and excerpt."
+            content: "Generate SEO metadata for the following Bitcoin article. Include a title (if not provided), meta description, and excerpt."
           },
           {
             role: "user",
-            content: `Based on this article content, generate:\n1. An SEO title (max 60 chars)\n2. A meta description (max 155 chars)\n3. An engaging excerpt (max 200 chars)\n\nContent:\n${content.substring(0, 2000)}...`
+            content: articleContent
           }
         ],
-        temperature: 0.7
+        temperature: 0.7,
       });
 
-      const response = completion.choices[0].message.content || '';
-      const [title, description, excerpt] = response.split('\n').map((line: string) => line.replace(/^\d\.\s*/, ''));
-
-      return {
-        title: title || 'Bitcoin Blog Post',
-        description: description || '',
-        excerpt: excerpt || ''
-      };
-    } catch (error) {
-      logger.error('Error generating metadata:', error);
-      throw error;
-    }
-  }
-
-  private async suggestTags(content: string): Promise<string[]> {
-    try {
-      const completion = await this.openai.chat.completions.create({
-        model: "gpt-4-turbo-preview",
-        messages: [
-          {
-            role: "system",
-            content: "Generate relevant tags for a Bitcoin blog post. Focus on key themes, technologies, and concepts mentioned."
-          },
-          {
-            role: "user",
-            content: `Based on this article content, suggest 5-8 relevant tags:\n\n${content.substring(0, 2000)}...`
-          }
-        ],
-        temperature: 0.7
-      });
-
-      const response = completion.choices[0].message.content || '';
-      return response.split(',').map((tag: string) => tag.trim());
-    } catch (error) {
-      logger.error('Error generating tags:', error);
-      throw error;
-    }
-  }
-
-  async generateBlogPost(idea: BlogPostIdea): Promise<GeneratedPost> {
-    try {
-      // Generate the main content
-      const content = await this.generateBlogContent(idea);
+      const metaContent = metaCompletion.choices[0].message?.content;
+      if (!metaContent) {
+        throw new Error('No metadata generated');
+      }
       
-      // Generate metadata and tags in parallel
-      const [metadata, tags] = await Promise.all([
-        this.generateMetadata(content),
-        idea.tags || this.suggestTags(content)
-      ]);
+      // Type guard to ensure metaContent is a string
+      if (typeof metaContent !== 'string') {
+        throw new Error('Invalid metadata format');
+      }
+      
+      // At this point, TypeScript knows metaContent is a string
+      const metadata = this.parseMetadata(metaContent);
+
+      // Ensure tags is always an array
+      const tags = Array.isArray(idea.tags) ? idea.tags : ['Bitcoin'];
+
+      // Ensure title is always a string
+      const title = idea.title || metadata.title || 'Bitcoin Article';
+
+      // Ensure metadata title is always a string
+      const metaTitle = metadata.title || title;
+
+      // Ensure metadata description is always a string
+      const metaDescription = metadata.description || 'A comprehensive analysis of Bitcoin and its implications.';
+
+      // Ensure excerpt is always a string
+      const excerpt = metadata.excerpt || 'An in-depth exploration of Bitcoin and its impact on the financial landscape.';
 
       return {
-        title: metadata.title,
-        content,
-        excerpt: metadata.excerpt,
-        tags,
+        title,
+        content: articleContent,
         meta: {
-          title: metadata.title,
-          description: metadata.description
-        }
+          title: metaTitle,
+          description: metaDescription
+        },
+        excerpt,
+        tags
       };
     } catch (error) {
-      logger.error('Error in blog post generation pipeline:', error);
+      logger.error('Error generating blog post with OpenAI:', error);
       throw error;
     }
+  }
+
+  private createPrompt(idea: BlogPostIdea): string {
+    return `
+You are a conductor of Bitcoin expertise, bringing together the world's foremost minds to collaboratively create an insightful article. Your response should follow this structure:
+
+<reasoning>
+Your analytical process, expert dialogues, and content development
+</reasoning>
+
+<answer>
+Complete, self-contained article that includes necessary context, rationale, and key insights from expert collaboration. The article must stand alone without requiring access to the reasoning section.
+</answer>
+
+## Expert Panel
+Choose from these Bitcoin experts based on the topic and tone:
+- Satoshi Nakamoto (Technical Foundations)
+- Hal Finney (Cryptography & Security)
+- Andreas Antonopoulos (Adoption & Education)
+- Michael Saylor (Institutional Investment)
+- Elizabeth Stark (Layer 2 & Scaling)
+- Adam Back (Mining & Economics)
+- Nick Szabo (Smart Contracts & History)
+- Saifedean Ammous (Economics & Philosophy)
+- Pierre Rochard (Technical Analysis)
+- Jimmy Song (Development & Education)
+
+## Article Specifications
+${idea.title ? `Title: ${idea.title}` : 'Generate an engaging title for this topic'}
+
+Key Points to Cover:
+${idea.keyPoints?.map(point => `- ${point}`).join('\n') || '- Generate key points based on the topic'}
+
+Target Audience: ${idea.targetAudience || 'Bitcoin enthusiasts and investors'}
+Tone: ${idea.tone || 'professional'}
+Length: ${this.getLengthGuide(idea.desiredLength || 'medium')}
+
+${idea.references?.length ? `
+References to Include:
+${idea.references.map(ref => `- ${ref}`).join('\n')}
+` : ''}
+
+## Expert Tags
+Use these tags to structure the expert dialogue:
+<expert name="" field="">Question or insight</expert>
+<speaks name="">Response in expert's authentic voice</speaks>
+<draft version="" by="">Content iteration</draft>
+<feedback by="" on="">Specific critique</feedback>
+<revision version="" by="">Updated content</revision>
+
+## Core Principles
+- Let experts drive the content naturally
+- Follow threads of insight where they lead
+- Allow disagreement to spark improvement
+- Build on moments of unexpected connection
+- Test and validate through expert dialogue
+- Refine and iterate until the content feels complete
+
+Format the final article in HTML with proper semantic structure, including h1, h2, p tags, etc.
+Include relevant subheadings, bullet points where appropriate, and a conclusion.
+`;
+  }
+
+  private getLengthGuide(length: string): string {
+    switch (length) {
+      case 'short':
+        return 'approximately 800 words';
+      case 'medium':
+        return 'approximately 1500 words';
+      case 'long':
+        return 'approximately 2500 words';
+      default:
+        return 'approximately 1500 words';
+    }
+  }
+
+  private parseMetadata(metadataResponse: string): {
+    title: string;
+    description: string;
+    excerpt: string;
+  } {
+    // Simple parsing - in real implementation, you might want to use a more robust method
+    const lines = metadataResponse.split('\n');
+    return {
+      title: lines.find(l => l.startsWith('Title:'))?.replace('Title:', '').trim() || 'Bitcoin Analysis',
+      description: lines.find(l => l.startsWith('Description:'))?.replace('Description:', '').trim() || '',
+      excerpt: lines.find(l => l.startsWith('Excerpt:'))?.replace('Excerpt:', '').trim() || ''
+    };
   }
 } 

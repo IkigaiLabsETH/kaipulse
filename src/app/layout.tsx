@@ -1,12 +1,57 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { Providers } from "./providers";
+import { Providers } from "@/app/providers";
 import { Header } from "@/components/Header";
-import { GradientBackground } from "@/components/GradientBackground";
+import localFont from 'next/font/local';
 
-const inter = Inter({ subsets: ["latin"] });
+const boska = localFont({
+  src: [
+    {
+      path: '../../public/fonts/boska/Boska-Variable.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/boska/Boska-VariableItalic.woff',
+      weight: '400',
+      style: 'italic',
+    }
+  ],
+  variable: '--font-boska',
+});
+
+const epilogue = localFont({
+  src: [
+    {
+      path: '../../public/fonts/epilogue/Epilogue-Variable.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/epilogue/Epilogue-VariableItalic.woff',
+      weight: '400',
+      style: 'italic',
+    }
+  ],
+  variable: '--font-epilogue',
+});
+
+const satoshi = localFont({
+  src: [
+    {
+      path: '../../public/fonts/satoshi/Satoshi-Variable.woff',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/satoshi/Satoshi-VariableItalic.woff',
+      weight: '400',
+      style: 'italic',
+    }
+  ],
+  variable: '--font-satoshi',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
@@ -67,7 +112,6 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
 };
 
 export default function RootLayout({
@@ -76,11 +120,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${boska.variable} ${epilogue.variable} ${satoshi.variable}`}>
+      <body className="font-satoshi">
         <ErrorBoundary>
           <Providers>
-            <GradientBackground />
             <Header />
             <main className="pt-16 min-h-screen">
               {children}

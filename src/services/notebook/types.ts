@@ -10,7 +10,8 @@ export interface NotebookEntry {
 
 export interface BlogPostIdea {
   title?: string;
-  keyPoints: string[];
+  tweetUrl?: string;
+  keyPoints?: string[];
   targetAudience?: string;
   tone?: 'technical' | 'educational' | 'conversational' | 'professional';
   desiredLength?: 'short' | 'medium' | 'long';

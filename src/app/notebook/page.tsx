@@ -10,21 +10,23 @@ type LengthType = 'short' | 'medium' | 'long';
 export default function NotebookPage() {
   const [idea, setIdea] = useState<BlogPostIdea>({
     title: '',
-    keyPoints: [''],
+    tweetUrl: '',
+    keyPoints: [],
     targetAudience: '',
     tone: 'professional',
     desiredLength: 'medium',
-    references: [''],
+    references: [],
     tags: ['Bitcoin']
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [status, setStatus] = useState<string>('');
 
   const addKeyPoint = () => {
     setIdea(prev => ({
       ...prev,
-      keyPoints: [...prev.keyPoints, '']
+      keyPoints: [...(prev.keyPoints || []), '']
     }));
   };
 
@@ -38,7 +40,7 @@ export default function NotebookPage() {
   const updateKeyPoint = (index: number, value: string) => {
     setIdea(prev => ({
       ...prev,
-      keyPoints: prev.keyPoints.map((point, i) => i === index ? value : point)
+      keyPoints: (prev.keyPoints || []).map((point, i) => i === index ? value : point)
     }));
   };
 
@@ -63,6 +65,43 @@ export default function NotebookPage() {
       ...prev,
       tags: prev.tags?.filter(tag => tag !== tagToRemove) || []
     }));
+  };
+
+  const analyzeTweet = async (url: string) => {
+    try {
+      setIsAnalyzing(true);
+      setStatus('Analyzing tweet...');
+      
+      const response = await fetch('/api/analyze-tweet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze tweet');
+      }
+
+      const result = await response.json();
+      
+      // Update the form with analyzed tweet data
+      setIdea(prev => ({
+        ...prev,
+        keyPoints: result.keyPoints || [],
+        title: result.suggestedTitle || prev.title,
+        tags: Array.from(new Set([...(prev.tags || []), ...(result.suggestedTags || [])])),
+        references: [...(prev.references || []), url]
+      }));
+
+      setStatus('Tweet analyzed successfully!');
+    } catch (error) {
+      setStatus('Error analyzing tweet');
+      logger.error('Error analyzing tweet:', error);
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const generatePost = async () => {
@@ -99,6 +138,29 @@ export default function NotebookPage() {
         <h1 className="text-3xl font-bold mb-8">Bitcoin Blog Notebook</h1>
         
         <div className="space-y-6">
+          {/* Twitter URL */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Twitter URL</label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={idea.tweetUrl}
+                onChange={e => setIdea(prev => ({ ...prev, tweetUrl: e.target.value }))}
+                className="flex-1 bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white"
+                placeholder="Paste a tweet URL to auto-populate fields"
+              />
+              <button
+                onClick={() => idea.tweetUrl && analyzeTweet(idea.tweetUrl)}
+                disabled={isAnalyzing || !idea.tweetUrl}
+                className={`bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg transition-colors ${
+                  isAnalyzing || !idea.tweetUrl ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                {isAnalyzing ? 'Analyzing...' : 'Analyze'}
+              </button>
+            </div>
+          </div>
+
           {/* Title */}
           <div>
             <label className="block text-sm font-medium mb-2">Title (optional)</label>
@@ -115,7 +177,7 @@ export default function NotebookPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Key Points</label>
             <div className="space-y-3">
-              {idea.keyPoints.map((point, index) => (
+              {(idea.keyPoints || []).map((point, index) => (
                 <input
                   key={index}
                   type="text"
