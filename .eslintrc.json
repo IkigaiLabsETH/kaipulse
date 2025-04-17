@@ -11,8 +11,21 @@
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/no-explicit-any": "error",
 		"react/no-unescaped-entities": "error",
-		"no-console": ["warn", { "allow": ["warn", "error"] }],
+		"no-console": "error",
+		"no-restricted-globals": ["error", {
+			"name": "console",
+			"message": "Use the logger service instead of console"
+		}],
+		"no-process-env": "off",
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn"
-	}
+	},
+	"overrides": [
+		{
+			"files": ["src/services/lib/logger.ts"],
+			"rules": {
+				"no-restricted-globals": "off"
+			}
+		}
+	]
 }

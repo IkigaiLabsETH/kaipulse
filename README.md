@@ -66,7 +66,18 @@ yarn install
 
 3. Create a `.env` file with your environment variables:
 ```env
+# Thirdweb
 CLIENT_ID=your_thirdweb_client_id
+
+# Ghost CMS
+GHOST_URL=your_ghost_cms_url
+GHOST_CONTENT_API_KEY=your_ghost_content_api_key
+
+# OpenAI
+OPENAI_API_KEY=your_openai_api_key
+
+# Optional: Analytics and Monitoring
+NEXT_PUBLIC_GA_ID=your_google_analytics_id  # Optional
 ```
 
 4. Start the development server:
@@ -84,6 +95,58 @@ yarn dev
    - Projected monthly income
    - Tax implications
 
+## 📰 News & Content Features
+
+### Bitcoin News Hub
+Our integrated news section provides two powerful ways to keep users informed:
+
+1. **Ghost CMS Integration**
+   - Real-time Bitcoin news and insights
+   - Beautifully formatted articles with featured images
+   - Tag-based categorization
+   - Responsive grid layout
+   - Automatic date formatting
+
+2. **AI-Powered Content Generation**
+   - Built-in Notebook interface for content ideation
+   - Generate full articles using OpenAI API
+   - Customizable parameters:
+     - Content tone (technical, educational, conversational, professional)
+     - Article length (short ~800, medium ~1500, long ~2500 words)
+     - Target audience specification
+     - Key points and references
+   - Automatic tagging system
+   - Bitcoin-focused content generation
+
+### Content Management Features
+- **Ghost Content API Integration**: Seamless fetching and display of articles
+- **Dynamic Routing**: Clean URLs for individual articles (`/news/[slug]`)
+- **Responsive Design**: 
+  - Grid layout for article listings
+  - Full-width article views
+  - Mobile-friendly interface
+- **Rich Media Support**:
+  - Featured images
+  - Default Bitcoin imagery
+  - Proper image optimization
+- **Content Organization**:
+  - Tag-based navigation
+  - Publication date display
+  - Excerpt previews
+
+### Content Generation Workflow
+1. Access the Notebook interface (`/notebook`)
+2. Input article parameters:
+   - Optional title (or let AI generate one)
+   - Key points for coverage
+   - Target audience
+   - Desired tone and length
+   - Optional references
+   - Relevant tags
+3. Generate article using AI
+4. Automatic publication to your Ghost CMS
+5. Instant availability in the news section
+
 ## 🌍 International Tax Considerations
 
 The calculator includes special features for international investors:
@@ -95,20 +158,29 @@ The calculator includes special features for international investors:
 
 ## 🛠️ Technical Stack
 
-- Next.js
+- Next.js 14 (App Router)
 - Thirdweb
 - React
 - TypeScript
 - Tailwind CSS
 - Chart.js
+- Ghost Content API (Headless CMS)
+- OpenAI API (Content Generation)
+- TailwindCSS Typography Plugin
 
 ## 📈 Project Structure
 
 ```
 src/
+├── app/            # Next.js 14 app directory
+│   ├── news/      # News section pages
+│   ├── notebook/  # Content generation interface
+│   └── ...        # Other app routes
 ├── components/     # React components
-├── pages/         # Next.js pages
-├── services/      # API and calculation services
+├── services/      # API and service integrations
+│   ├── ghost/    # Ghost CMS integration
+│   ├── ai/       # OpenAI integration
+│   └── lib/      # Shared utilities
 ├── utils/         # Helper functions
 └── types/         # TypeScript type definitions
 ```
