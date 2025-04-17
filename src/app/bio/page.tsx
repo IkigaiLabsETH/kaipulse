@@ -126,7 +126,7 @@ export default function BioPage() {
                 <div className="bg-gray-800/50 p-6 rounded-xl">
                   <h3 className="text-[#FFD700] text-xl mb-2">Vision vs. Execution Balance</h3>
                   <p className="text-gray-200">
-                    While excelling at idea synthesis and system architecture, there's a recognized need to focus on ruthless prioritization and establishing a "minimum viable mythology" to guide execution.
+                    While excelling at idea synthesis and system architecture, there&apos;s a recognized need to focus on ruthless prioritization and establishing a &ldquo;minimum viable mythology&rdquo; to guide execution.
                   </p>
                 </div>
 
