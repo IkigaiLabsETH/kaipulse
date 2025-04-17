@@ -3,7 +3,7 @@ import OpenAI from 'openai';
 import { TwitterService } from './client';
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || 'dummy-key-for-build',
 });
 
 interface TweetAnalysis {
@@ -16,6 +16,18 @@ export class TweetAnalyzer {
   private static twitterService = new TwitterService({
     bearerToken: process.env.TWITTER_BEARER_TOKEN || '',
   });
+
+  private static isOpenAIKeyAvailable() {
+    return process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'dummy-key-for-build';
+  }
+
+  private static getFallbackAnalysis(tweetData: any): TweetAnalysis {
+    return {
+      keyPoints: ["OpenAI API key not configured - please add OPENAI_API_KEY to your environment variables"],
+      suggestedTitle: "Analysis Not Available",
+      suggestedTags: ["setup-required"]
+    };
+  }
 
   static async analyzeTweet(tweetUrl: string): Promise<TweetAnalysis> {
     try {
@@ -33,6 +45,11 @@ export class TweetAnalyzer {
 
       // Fetch tweet content using Twitter API
       const tweetData = await this.twitterService.getTweet(tweetId);
+
+      // If OpenAI key is not available, return fallback response
+      if (!this.isOpenAIKeyAvailable()) {
+        return this.getFallbackAnalysis(tweetData);
+      }
 
       // Prepare context for analysis
       const analysisContext = `
@@ -123,4 +140,4 @@ Focus on providing actionable insights and thorough analysis.`
       throw new Error('Invalid analysis format');
     }
   }
-} 
+}
