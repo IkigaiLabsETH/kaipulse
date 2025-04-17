@@ -26,9 +26,9 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        'epilogue': ['Epilogue', 'sans-serif'],
-        'boska': ['Boska', 'serif'],
-        'satoshi': ['Satoshi', 'sans-serif'],
+        boska: ['var(--font-boska)'],
+        epilogue: ['var(--font-epilogue)'],
+        satoshi: ['var(--font-satoshi)'],
       },
       maxWidth: {
         '8xl': '88rem',
