@@ -21,6 +21,7 @@ export function Header() {
     { name: 'BITBONDS', href: '/bitbonds' },
     { name: 'BROKERS', href: '/platforms/msty/brokers' },
     { name: 'SUMMARY', href: '/about' },
+    { name: 'BIO', href: '/bio' },
   ];
 
   return (
