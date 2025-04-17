@@ -1,22 +1,14 @@
-import { BlogPost } from './index';
-import { ghostService } from './index';
-import { logger } from '../lib/logger';
+import { BlogPost, MarketAnalysis, AdoptionNews, TechnicalUpdate } from './types';
 
 export class BlogPostGenerator {
   /**
    * Generate a blog post about Bitcoin market analysis
    */
-  static async generateMarketAnalysisPost(
+  static generateMarketAnalysisPost(
     title: string,
     featuredImage: string,
-    analysis: {
-      currentPrice: string;
-      marketTrend: string;
-      keyEvents: string[];
-      technicalAnalysis: string;
-      marketSentiment: string;
-    }
-  ): Promise<BlogPost> {
+    analysis: MarketAnalysis
+  ): BlogPost {
     const slug = `bitcoin-market-analysis-${title.toLowerCase().replace(/\s+/g, '-')}`;
     
     const html = `
@@ -56,17 +48,11 @@ export class BlogPostGenerator {
   /**
    * Generate a blog post about Bitcoin adoption news
    */
-  static async generateAdoptionNewsPost(
+  static generateAdoptionNewsPost(
     title: string,
     featuredImage: string,
-    news: {
-      entity: string;
-      type: 'Corporate' | 'Government' | 'Institutional' | 'Retail';
-      details: string;
-      impact: string;
-      timeline: string[];
-    }
-  ): Promise<BlogPost> {
+    news: AdoptionNews
+  ): BlogPost {
     const slug = `bitcoin-adoption-${title.toLowerCase().replace(/\s+/g, '-')}`;
     
     const html = `
@@ -106,17 +92,11 @@ export class BlogPostGenerator {
   /**
    * Generate a blog post about Bitcoin technical developments
    */
-  static async generateTechnicalUpdatePost(
+  static generateTechnicalUpdatePost(
     title: string,
     featuredImage: string,
-    update: {
-      development: string;
-      description: string;
-      benefits: string[];
-      implementation: string;
-      impact: string;
-    }
-  ): Promise<BlogPost> {
+    update: TechnicalUpdate
+  ): BlogPost {
     const slug = `bitcoin-technical-${title.toLowerCase().replace(/\s+/g, '-')}`;
     
     const html = `
@@ -153,19 +133,5 @@ export class BlogPostGenerator {
       meta_title: `${title} - Bitcoin Technical Update`,
       meta_description: `Detailed analysis of ${update.development}, including benefits, implementation details, and network impact.`
     };
-  }
-
-  /**
-   * Publish a generated blog post
-   */
-  static async publishPost(post: BlogPost) {
-    try {
-      const result = await ghostService.createPost(post);
-      logger.info(`Successfully published blog post: ${result.title}`);
-      return result;
-    } catch (error) {
-      logger.error('Error publishing blog post', error);
-      throw error;
-    }
   }
 } 
