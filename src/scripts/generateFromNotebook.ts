@@ -10,19 +10,19 @@ interface PostData {
   update?: TechnicalUpdate;
 }
 
-export async function generateAndPublishPost(
+export async function generatePostPreview(
   type: 'market' | 'adoption' | 'technical',
   data: PostData
 ): Promise<BlogPost> {
   try {
-    logger.info('Generating blog post...');
+    logger.info('Generating blog post preview...');
     
-    let ghostPost: BlogPost;
+    let post: BlogPost;
     
     switch (type) {
       case 'market':
         if (!data.analysis) throw new Error('Market analysis data is required');
-        ghostPost = BlogPostGenerator.generateMarketAnalysisPost(
+        post = BlogPostGenerator.generateMarketAnalysisPost(
           data.title,
           data.featuredImage,
           data.analysis
@@ -31,7 +31,7 @@ export async function generateAndPublishPost(
         
       case 'adoption':
         if (!data.news) throw new Error('Adoption news data is required');
-        ghostPost = BlogPostGenerator.generateAdoptionNewsPost(
+        post = BlogPostGenerator.generateAdoptionNewsPost(
           data.title,
           data.featuredImage,
           data.news
@@ -40,7 +40,7 @@ export async function generateAndPublishPost(
         
       case 'technical':
         if (!data.update) throw new Error('Technical update data is required');
-        ghostPost = BlogPostGenerator.generateTechnicalUpdatePost(
+        post = BlogPostGenerator.generateTechnicalUpdatePost(
           data.title,
           data.featuredImage,
           data.update
@@ -51,31 +51,16 @@ export async function generateAndPublishPost(
         throw new Error(`Unsupported post type: ${type}`);
     }
     
-    // Publish to Ghost via API route
-    logger.info('Publishing generated post...');
-    const response = await fetch('/api/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(ghostPost),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to publish post: ${response.statusText}`);
-    }
-    
-    const result = await response.json();
-    logger.info('Successfully published generated post:', result.slug);
-    return result;
+    logger.info('Successfully generated post preview:', post.title);
+    return post;
   } catch (error) {
-    logger.error('Error generating and publishing post:', error);
+    logger.error('Error generating post preview:', error);
     throw error;
   }
 }
 
 // Example usage:
-generateAndPublishPost('market', {
+generatePostPreview('market', {
   title: "The Bitcoin Halving: A Catalyst for Price Discovery",
   featuredImage: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80",
   analysis: {
