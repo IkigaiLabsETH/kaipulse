@@ -96,6 +96,7 @@ export function MSTYFreedomCalculator() {
     sharesNeeded,
     totalInvestment,
     btcRequired,
+    currentTier,
     progress,
     taxCalculations,
     portfolioAllocation
@@ -198,7 +199,7 @@ export function MSTYFreedomCalculator() {
                 <motion.div variants={contentVariants} className="space-y-4">
                   <div>
                     <div className="text-white/60 mb-2">Shares Needed</div>
-                    <div className="text-3xl font-bold text-white">{formatNumber(sharesNeeded)} shares</div>
+                    <div className="text-3xl font-bold text-white">{formatNumber(sharesNeeded)}</div>
                   </div>
                   <div>
                     <div className="text-white/60 mb-2">Total Investment</div>
@@ -213,10 +214,10 @@ export function MSTYFreedomCalculator() {
                       <motion.div 
                         variants={progressVariants}
                         custom={progress}
-                        className="h-2 bg-yellow-500 rounded-full"
+                        className={`h-2 rounded-full ${currentTier.color}`}
                       />
                     </div>
-                    <p className="text-sm text-white/60 mt-2">Building momentum</p>
+                    <p className="text-sm text-white/60 mt-2">{currentTier.description}</p>
                   </div>
                 </motion.div>
               </CardContent>

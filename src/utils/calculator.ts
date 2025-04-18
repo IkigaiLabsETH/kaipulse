@@ -38,10 +38,13 @@ export function calculateFreedomMetrics(
   // Tier calculations
   const currentTier = [...TIERS]
     .reverse()
-    .find(tier => sharesNeeded >= tier.target) || TIERS[TIERS.length - 1];
+    .find(tier => sharesNeeded >= tier.target) || TIERS[0];
   
   const nextTier = TIERS.find(tier => tier.target > sharesNeeded) || currentTier;
-  const progress = (sharesNeeded / nextTier.target) * 100;
+  
+  // Calculate progress relative to total journey
+  const legendTarget = TIERS[TIERS.length - 1].target; // 50000 shares
+  const progress = Math.min((sharesNeeded / legendTarget) * 100, 100);
 
   // Tax calculations based on actual dividend income
   const actualMonthlyIncome = sharesNeeded * monthlyDividend;
