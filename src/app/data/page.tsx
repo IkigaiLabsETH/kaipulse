@@ -362,6 +362,48 @@ export default function DataPage() {
               </CardContent>
             </Card>
           </div>
+
+          {/* Summary Card */}
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mt-8">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-medium text-yellow-500">Bitcoin Network Summary</h3>
+                <AlertCircle className="h-6 w-6 text-yellow-500" />
+              </div>
+              <div className="space-y-4 text-white/80">
+                <p className="text-sm">
+                  Bitcoin has evolved from a niche experiment into a mainstream digital asset, often dubbed &quot;digital gold.&quot; 
+                  Its hard-capped supply and decentralized network give it unique properties of scarcity and resilience, 
+                  driving an investment thesis that Bitcoin can serve as both a growth asset and an inflation hedge.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <h4 className="text-yellow-500 font-medium mb-2">Key Strengths</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Fixed supply of 21 million coins</li>
+                      <li>• Decentralized and censorship-resistant</li>
+                      <li>• Global 24/7 trading</li>
+                      <li>• Growing institutional adoption</li>
+                    </ul>
+                  </div>
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <h4 className="text-yellow-500 font-medium mb-2">Market Outlook</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Increasing institutional participation</li>
+                      <li>• Maturing financial infrastructure</li>
+                      <li>• Growing regulatory clarity</li>
+                      <li>• Expanding use cases</li>
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-sm italic text-white/60">
+                  Note: Following the 2024 halving, block rewards were reduced from 6.25 to 3.125 BTC. 
+                  This latest halving has further tightened Bitcoin&apos;s supply issuance, with the next halving 
+                  expected in 2028, which will reduce rewards to 1.5625 BTC per block.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </div>
