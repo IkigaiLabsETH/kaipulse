@@ -205,6 +205,8 @@ const keyEvents = [
 ]
 
 export default function BitcoinPage() {
+  const [isTimelineExpanded, setIsTimelineExpanded] = useState(false);
+  
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -387,8 +389,14 @@ export default function BitcoinPage() {
               <div className="p-8">
                 <h2 className="text-2xl font-bold text-yellow-500">Key Events & Timeline</h2>
                 <div className="mt-8 space-y-8">
-                  {keyEvents.map((period) => (
-                    <div key={period.year} className="relative pl-8">
+                  {(isTimelineExpanded ? keyEvents : keyEvents.slice(0, 3)).map((period) => (
+                    <motion.div
+                      key={period.year}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="relative pl-8"
+                    >
                       <div className="absolute left-0 top-0 h-full w-px bg-yellow-500/20" />
                       <div className="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-yellow-500" />
                       <h3 className="text-xl font-bold text-yellow-500">{period.year}</h3>
@@ -399,8 +407,27 @@ export default function BitcoinPage() {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </motion.div>
                   ))}
+                  
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex justify-center mt-6"
+                  >
+                    <button
+                      onClick={() => setIsTimelineExpanded(!isTimelineExpanded)}
+                      className="group px-4 py-2 text-sm font-semibold text-yellow-500 border border-yellow-500/20 rounded-lg hover:bg-yellow-500/10 transition-colors flex items-center space-x-2"
+                    >
+                      <span>{isTimelineExpanded ? 'Show Less' : 'Show Full Timeline'}</span>
+                      <ChevronDown
+                        className={cn('h-4 w-4 transition-transform', {
+                          '-rotate-180': isTimelineExpanded,
+                        })}
+                      />
+                    </button>
+                  </motion.div>
                 </div>
               </div>
             </Card>
