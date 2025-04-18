@@ -114,7 +114,7 @@ export default function AboutPage() {
           </motion.svg>
         </div>
         {/* Animated Info Box for Active Tier */}
-        <div className="w-full max-w-3xl min-h-[96px] flex items-center justify-center px-4 -mt-12">
+        <div className="w-full max-w-4xl min-h-[96px] flex items-center justify-center px-4 -mt-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTierObj.key}
@@ -122,10 +122,14 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="w-full bg-[#1c1f26] border-2 border-yellow-500 p-6 rounded-lg text-xl font-semibold flex items-center"
+              className="w-full"
             >
-              <span className="font-bold mr-4 text-yellow-500">{activeTierObj.label}:</span> 
-              <span className="text-white/90">{activeTierObj.description}</span>
+              <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:border-yellow-500/50 transition-all duration-300">
+                <div className="p-6 text-xl font-semibold flex items-center">
+                  <span className="font-bold mr-4 text-yellow-500">{activeTierObj.label}:</span> 
+                  <span className="text-white/90">{activeTierObj.description}</span>
+                </div>
+              </Card>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -134,7 +138,7 @@ export default function AboutPage() {
       <section className="w-full flex flex-col items-center justify-center py-12 bg-[#1c1f26] border-t border-yellow-500/20">
         <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
           {/* STRF Card */}
-          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:border-yellow-500/50 transition-all duration-300">
             <div className="flex flex-col h-full p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-3xl font-bold text-yellow-500">STRF</h3>
@@ -178,7 +182,7 @@ export default function AboutPage() {
           </Card>
 
           {/* STRK Card */}
-          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:border-yellow-500/50 transition-all duration-300">
             <div className="flex flex-col h-full p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-3xl font-bold text-yellow-500">STRK</h3>
@@ -224,7 +228,7 @@ export default function AboutPage() {
 
         {/* MSTY Card - Additional Info */}
         <div className="max-w-4xl w-full mt-8 px-4">
-          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:border-yellow-500/50 transition-all duration-300">
             <div className="flex flex-col h-full p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-3xl font-bold text-yellow-500">MSTY</h3>
@@ -247,7 +251,7 @@ export default function AboutPage() {
 
         {/* MSTR Card */}
         <div className="max-w-4xl w-full mt-8 px-4">
-          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:border-yellow-500/50 transition-all duration-300">
             <div className="flex flex-col h-full p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-3xl font-bold text-yellow-500">MSTR</h3>
@@ -274,7 +278,7 @@ export default function AboutPage() {
 
         {/* BTC Card */}
         <div className="max-w-4xl w-full mt-8 px-4 mb-12">
-          <Card className="bg-[#1c1f26] border-2 border-yellow-500/30 hover:border-yellow-500/50 transition-all duration-300">
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:border-yellow-500/50 transition-all duration-300">
             <div className="flex flex-col h-full p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-3xl font-bold text-yellow-500">BTC</h3>
