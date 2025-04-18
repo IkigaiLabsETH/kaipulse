@@ -55,8 +55,8 @@ const satoshi = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
-  title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
-  description: "Fix Money, Fix The World. Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
+  title: "LiveTheLifeTV - Bitcoin Investment Education & Life Balance Tools",
+  description: "Fix Money, Fix The World. Life isn't about the biggest stack - it's about living your best life with BTC. Explore Bitcoin investment strategies and portfolio planning tools that help you achieve financial freedom while embracing life's true value. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
   keywords: [
     "Bitcoin Education",
     "Portfolio Planning",
@@ -80,13 +80,18 @@ export const metadata: Metadata = {
     "Portfolio Planning",
     "Fix Money Fix The World",
     "Bitcoin Freedom",
-    "Financial Sovereignty"
+    "Financial Sovereignty",
+    "Live Your Best Life",
+    "Bitcoin Life Balance",
+    "BTC Lifestyle",
+    "Financial Freedom",
+    "Life with Bitcoin"
   ],
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
   openGraph: {
-    title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
-    description: "Fix Money, Fix The World. Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
+    title: "LiveTheLifeTV - Bitcoin Investment Education & Life Balance Tools",
+    description: "Fix Money, Fix The World. Life isn't about the biggest stack - it's about living your best life with BTC. Explore Bitcoin investment strategies and portfolio planning tools that help you achieve financial freedom while embracing life's true value. For educational purposes only - not financial advice.",
     type: "website",
     locale: "en_US",
     siteName: "LiveTheLifeTV",
@@ -101,8 +106,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
-    description: "Fix Money, Fix The World. Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
+    title: "LiveTheLifeTV - Bitcoin Investment Education & Life Balance Tools",
+    description: "Fix Money, Fix The World. Life isn't about the biggest stack - it's about living your best life with BTC. Explore Bitcoin investment strategies and portfolio planning tools that help you achieve financial freedom while embracing life's true value. For educational purposes only - not financial advice.",
     images: ["/twitter-image.jpg"],
     creator: "@LiveTheLifeTV"
   },
