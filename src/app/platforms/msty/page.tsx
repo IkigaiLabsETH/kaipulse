@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card } from "@/components/ui/card";
 
 const AccordionItem = ({
@@ -103,8 +104,30 @@ export default function MSTYPlatformsPage() {
         >
           <div className="relative p-4 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              {/* Custom Thumbnail */}
+              <div className="absolute top-0 left-0 w-full h-full cursor-pointer group" onClick={(e) => {
+                const iframe = e.currentTarget.nextElementSibling as HTMLIFrameElement;
+                iframe.style.display = 'block';
+                e.currentTarget.style.display = 'none';
+              }}>
+                <Image 
+                  src="/magicformula.jpg" 
+                  alt="MSTY Trading Video Thumbnail"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-all duration-300">
+                  <div className="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-black" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              {/* YouTube iframe */}
               <iframe
-                className="absolute top-0 left-0 w-full h-full"
+                className="absolute top-0 left-0 w-full h-full hidden"
                 src="https://www.youtube.com/embed/rOnlvaB8hIU"
                 title="MSTY Trading Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
