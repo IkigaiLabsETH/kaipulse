@@ -496,7 +496,7 @@ export default function BitcoinPage() {
                 </motion.h2>
                 <div className="flex space-x-2">
                   <span className="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-500 rounded-full">
-                    Updated 2025
+                    Updated April 16, 2025
                   </span>
                 </div>
               </motion.div>
