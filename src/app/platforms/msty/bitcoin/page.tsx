@@ -313,8 +313,8 @@ export default function BitcoinPage() {
                   <AccordionItem title="What is Bitcoin?">
                     Bitcoin is a decentralized digital currency created in 2009 by the pseudonymous Satoshi Nakamoto. It operates on a peer-to-peer network without the need for intermediaries, revolutionizing the concept of money. Key features include:
                     <ul className="mt-4 list-disc pl-4 space-y-2">
-                      <li>Limited supply of 21 million BTC - mathematically enforced scarcity</li>
-                      <li>Transparent and immutable transaction ledger secured by 400K+ nodes</li>
+                      <li>Supply of 21 million BTC - mathematically enforced scarcity</li>
+                      <li>Transparent transaction ledger secured by 400K+ nodes</li>
                       <li>Secured by proof-of-work consensus with 400+ EH/s hash rate</li>
                       <li>Global, borderless transactions processed 24/7/365</li>
                       <li>Self-custodial ownership with cryptographic security</li>
@@ -496,7 +496,7 @@ export default function BitcoinPage() {
                 </motion.h2>
                 <div className="flex space-x-2">
                   <span className="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-500 rounded-full">
-                    Updated 2024
+                    Updated 2025
                   </span>
                 </div>
               </motion.div>
@@ -527,7 +527,7 @@ export default function BitcoinPage() {
                       <div className="ml-4">
                         <h4 className="font-medium text-white">Institutional Adoption</h4>
                         <p className="text-white/80 mt-2">
-                          Major financial institutions and corporations now hold Bitcoin as a treasury reserve asset, with MicroStrategy leading the charge with over 150,000 BTC. By 2025, 83% of institutional investors plan to increase crypto allocations, signaling Bitcoin&apos;s growing acceptance as a strategic asset class. A Fidelity survey in 2023 found 58% of institutional investors owned digital assets, with Bitcoin being the top choice.
+                          Major financial institutions and corporations now hold Bitcoin as a treasury reserve asset, with MicroStrategy leading the charge with over 531,644 BTC. By 2025, 83% of institutional investors plan to increase crypto allocations, signaling Bitcoin&apos;s growing acceptance as a strategic asset class. A Fidelity survey in 2023 found 58% of institutional investors owned digital assets, with Bitcoin being the top choice.
                         </p>
                       </div>
                     </motion.div>
