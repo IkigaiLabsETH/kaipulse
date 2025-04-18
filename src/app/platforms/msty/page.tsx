@@ -94,6 +94,26 @@ export default function MSTYPlatformsPage() {
           </p>
         </motion.div>
 
+        {/* YouTube Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-12"
+        >
+          <div className="relative p-4 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/rOnlvaB8hIU"
+                title="MSTY Trading Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </motion.div>
+
         <div className="mt-16 grid gap-8 lg:grid-cols-1">
           {brokers.map((broker, index) => (
             <motion.div
@@ -127,7 +147,7 @@ export default function MSTYPlatformsPage() {
                       href={broker.link}
                       className="mt-6 inline-block rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-4 py-2 text-sm font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
                     >
-                      Visit Official Site
+                      Overview All Brokers
                     </Link>
                   ) : (
                     <a
@@ -136,7 +156,7 @@ export default function MSTYPlatformsPage() {
                       rel="noopener noreferrer"
                       className="mt-6 inline-block rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-4 py-2 text-sm font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
                     >
-                      Overview All Brokers
+                      Visit Official Site
                     </a>
                   )}
                 </div>
