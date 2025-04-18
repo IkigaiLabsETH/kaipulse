@@ -344,7 +344,7 @@ export default function MSTRPage() {
               <Coins className="h-12 w-12 text-yellow-500" />
               <h3 className="mt-4 text-xl font-bold text-white">Bitcoin Strategy</h3>
               <p className="mt-2 text-white/90">
-                Significant Bitcoin holdings make MSTR a leveraged proxy for Bitcoin exposure. The company's aggressive accumulation strategy and long-term holding approach provide unique value.
+                Significant Bitcoin holdings make MSTR a leveraged proxy for Bitcoin exposure. The company&apos;s aggressive accumulation strategy and long-term holding approach provide unique value.
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
@@ -367,7 +367,7 @@ export default function MSTRPage() {
           <h2 className="text-2xl font-bold text-yellow-500">Additional Insights</h2>
           <div className="mt-8 space-y-4">
             <AccordionItem title="Corporate Bitcoin Adoption">
-              <p className="mb-4 text-white/90">MicroStrategy's impact on corporate Bitcoin adoption:</p>
+              <p className="mb-4 text-white/90">MicroStrategy&apos;s impact on corporate Bitcoin adoption:</p>
               <ul className="list-disc pl-4 space-y-2 text-white/90">
                 <li>Pioneered corporate Bitcoin treasury strategy in 2020</li>
                 <li>Inspired other public companies to follow suit</li>
@@ -379,7 +379,7 @@ export default function MSTRPage() {
             </AccordionItem>
 
             <AccordionItem title="Technical Infrastructure">
-              <p className="mb-4 text-white/90">Key technical aspects of MicroStrategy's Bitcoin operations:</p>
+              <p className="mb-4 text-white/90">Key technical aspects of MicroStrategy&apos;s Bitcoin operations:</p>
               <ul className="list-disc pl-4 space-y-2 text-white/90">
                 <li>Multi-signature cold storage security</li>
                 <li>Distributed custody across multiple providers</li>
@@ -391,13 +391,13 @@ export default function MSTRPage() {
             </AccordionItem>
 
             <AccordionItem title="Market Impact">
-              <p className="mb-4 text-white/90">MicroStrategy's influence on Bitcoin markets:</p>
+              <p className="mb-4 text-white/90">MicroStrategy&apos;s influence on Bitcoin markets:</p>
               <ul className="list-disc pl-4 space-y-2 text-white/90">
                 <li>Significant buyer in institutional markets</li>
                 <li>Regular purchases provide consistent demand</li>
                 <li>Transparent reporting sets market standards</li>
                 <li>Influences corporate Bitcoin adoption trends</li>
-                <li>Contributes to Bitcoin's institutional narrative</li>
+                <li>Contributes to Bitcoin&apos;s institutional narrative</li>
                 <li>Sets benchmarks for corporate Bitcoin strategies</li>
               </ul>
             </AccordionItem>
