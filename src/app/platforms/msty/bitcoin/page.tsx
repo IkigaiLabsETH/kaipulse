@@ -42,7 +42,7 @@ const marketStats = [
   {
     title: "Market Cap",
     value: "$1.6T+",
-    description: "Total Bitcoin market capitalization"
+    description: "Total Bitcoin MC"
   },
   {
     title: "24h Volume",
@@ -52,7 +52,7 @@ const marketStats = [
   {
     title: "Dominance",
     value: "60%+",
-    description: "Share of total crypto market cap"
+    description: "Share of total crypto MC"
   },
   {
     title: "Circulating Supply",
