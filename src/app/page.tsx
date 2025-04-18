@@ -265,7 +265,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center py-24"
         >
-          <h2 className="text-4xl font-bold text-yellow-400 mb-8">Ready to Start Your Journey?</h2>
+          <h2 className="text-4xl font-bold text-yellow-400 mb-8">Bitcoin-First Strategy</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mb-12">
             <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-[#1c1f26]/50 border border-yellow-500/30">
               <Bitcoin className="w-8 h-8 text-yellow-400" />
