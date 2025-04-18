@@ -261,7 +261,7 @@ export default function AboutPage() {
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between items-center">
                   <span className="text-white/70">BTC Holdings</span>
-                  <span className="text-white font-semibold">190,000+ BTC</span>
+                  <span className="text-white font-semibold">531,644+ BTC</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-white/70">BTC Correlation</span>
