@@ -295,6 +295,9 @@ export default function AboutPage() {
               <p className="text-white/90 mb-6 text-lg leading-relaxed">
                 Bitcoin is the foundation of digital scarcity and the first truly decentralized monetary network. As a generational store of value, it provides unparalleled security, transparency, and sovereignty. Its fixed supply of 21 million coins, combined with growing institutional adoption, positions BTC as the premier asset for long-term wealth preservation in the digital age.
               </p>
+              <blockquote className="text-yellow-500 text-xl italic mb-6">
+                &ldquo;Fix Money, Fix The World - Bitcoin is the solution to the broken monetary system&rdquo;
+              </blockquote>
             </div>
           </Card>
         </div>
@@ -367,6 +370,9 @@ export default function AboutPage() {
                 <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
                   &ldquo;Bitcoin isn&rsquo;t just digital money. It&rsquo;s freedom from financial censorship. It empowers anyone with an internet connection, regardless of nationality, gender, or economic status, to participate equally in the global economy.&rdquo;
                 </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
+                  &ldquo;Bitcoin is the first time in human history where we can have absolute scarcity in the digital realm.&rdquo;
+                </p>
               </div>
             </motion.div>
 
@@ -385,6 +391,9 @@ export default function AboutPage() {
                 </p>
                 <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
                   &ldquo;Bitcoin isn&rsquo;t just a currency,&rdquo; Michael reflected, &ldquo;It&rsquo;s digital gold. An asset immune to inflation, confiscation, and political interference.&rdquo;
+                </p>
+                <p className="text-white/90 text-lg leading-relaxed mt-4 italic">
+                  &ldquo;Bitcoin is the exit strategy from the traditional financial system.&rdquo;
                 </p>
               </div>
             </motion.div>

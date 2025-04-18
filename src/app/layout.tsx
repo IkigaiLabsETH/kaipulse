@@ -56,7 +56,7 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
   title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
-  description: "Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
+  description: "Fix Money, Fix The World. Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
   keywords: [
     "Bitcoin Education",
     "Portfolio Planning",
@@ -77,13 +77,16 @@ export const metadata: Metadata = {
     "Digital Asset Education",
     "Bitcoin Investment Guide",
     "Wealth Education",
-    "Portfolio Planning"
+    "Portfolio Planning",
+    "Fix Money Fix The World",
+    "Bitcoin Freedom",
+    "Financial Sovereignty"
   ],
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
   openGraph: {
     title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
-    description: "Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
+    description: "Fix Money, Fix The World. Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
     type: "website",
     locale: "en_US",
     siteName: "LiveTheLifeTV",
@@ -99,7 +102,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "LiveTheLifeTV - Bitcoin Investment Education & Portfolio Planning Tools",
-    description: "Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
+    description: "Fix Money, Fix The World. Explore Bitcoin investment strategies and portfolio planning tools. Our educational resources and calculators help you understand Bitcoin allocation, MSTR exposure, and income generation strategies. For educational purposes only - not financial advice.",
     images: ["/twitter-image.jpg"],
     creator: "@LiveTheLifeTV"
   },

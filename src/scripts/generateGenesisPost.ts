@@ -12,6 +12,7 @@ async function generateGenesisPost(): Promise<BlogPost> {
           <section class="introduction">
             <h2>The Genesis Block</h2>
             <p>Satoshi Nakamoto sat quietly at a modest desk, illuminated only by the glow of monitors. The date was January 3rd, 2009, a cold day that seemed fitting for the birth of a revolutionary idea. With a final keystroke, the Bitcoin blockchain sprang to life. Embedded forever in the very first block, the words "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks" served as both a timestamp and a statement: Bitcoin was born as a direct response to financial instability and centralized trust.</p>
+            <blockquote>"Fix Money, Fix The World" - The Bitcoin Mantra</blockquote>
             <blockquote>"Trust," Satoshi mused, "is the central problem we're solving."</blockquote>
           </section>
 
@@ -26,6 +27,7 @@ async function generateGenesisPost(): Promise<BlogPost> {
             <h2>The Voice of Adoption</h2>
             <p>Years passed, and Bitcoin began spreading quietly among technologists and libertarians. It wasn't until Andreas Antonopoulos took the stage in conference halls and classrooms worldwide that Bitcoin's message began to reach the masses. With passion, Andreas explained Bitcoin's practical impact:</p>
             <blockquote>"Bitcoin isn't just digital money. It's freedom from financial censorship. It empowers anyone with an internet connection, regardless of nationality, gender, or economic status, to participate equally in the global economy."</blockquote>
+            <blockquote>"Bitcoin is the first time in human history where we can have absolute scarcity in the digital realm."</blockquote>
             <p>Andreas saw firsthand Bitcoin's adoption in troubled economies—Argentina, Turkey, Nigeria—where inflation eroded purchasing power. "People aren't speculating here," he declared emphatically, "They're surviving."</p>
             <p>His stories drew listeners in, demonstrating Bitcoin's power not just as a speculative investment but as a lifeline in times of financial turmoil and censorship.</p>
           </section>
@@ -34,6 +36,7 @@ async function generateGenesisPost(): Promise<BlogPost> {
             <h2>The Economic Prophet</h2>
             <p>Meanwhile, Michael Saylor watched from afar, initially skeptical but increasingly intrigued. As CEO of MicroStrategy, he saw the cracks forming in the global financial system: endless money printing, rising debts, negative real interest rates. His epiphany came in 2020, amid unprecedented stimulus measures by central banks.</p>
             <blockquote>"Bitcoin isn't just a currency," Michael reflected, "It's digital gold. An asset immune to inflation, confiscation, and political interference."</blockquote>
+            <blockquote>"Bitcoin is the exit strategy from the traditional financial system."</blockquote>
             <p>With the conviction of a convert, he placed billions of his company's treasury into Bitcoin, reshaping perceptions on Wall Street. His rationale resonated widely: "With every new dollar printed, your cash is diluted. Bitcoin, with its hard-capped 21 million supply, is the ultimate protection against fiat debasement."</p>
           </section>
 
