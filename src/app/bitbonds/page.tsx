@@ -8,10 +8,10 @@ export default function BitBondsPage() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
     {
-      q: "What is Saylor&apos;s Speculative Attack thesis?",
+      q: "What is the Saylor Speculative Attack thesis?",
       a: (
         <span>
-          MicroStrategy, under Michael Saylor, is using the global bond market as a capital reallocation machine—issuing yield-enhanced instruments like $STRK and $STRF to turn low-yield capital into high-performing Bitcoin. This is a macro-level &quot;speculative attack&quot; on fiat: borrow at 10%, buy BTC, and let Bitcoin&apos;s appreciation outpace the cost of capital.
+          MicroStrategy, under Michael Saylor, is using the global bond market as a capital reallocation machine—issuing yield-enhanced instruments like $STRK and $STRF to turn low-yield capital into high-performing Bitcoin. This is a macro-level &ldquo;speculative attack&rdquo; on fiat: borrow at 10%, buy BTC, and let Bitcoin&rsquo;s appreciation outpace the cost of capital.
         </span>
       ),
     },
@@ -32,7 +32,7 @@ export default function BitBondsPage() {
       ),
     },
     {
-      q: "How do these instruments impact Bitcoin&apos;s price?",
+      q: "How do these instruments impact the Bitcoin price?",
       a: (
         <span>
           Every time MicroStrategy issues these bonds and buys BTC, it creates direct buy pressure and removes supply from the market. If this model scales (e.g., more companies or even countries issue Bitcoin-backed bonds), it could create a persistent, institutional bid for Bitcoin, supporting price and reducing circulating supply.
@@ -43,7 +43,7 @@ export default function BitBondsPage() {
       q: "How are STRK/STRF different from a Bitcoin ETF or a traditional bond?",
       a: (
         <span>
-          Unlike a Bitcoin ETF, STRK/STRF pay high yields but don&apos;t offer pure BTC price exposure (except STRK&apos;s conversion feature). Unlike traditional bonds, they have no maturity, can defer payments, and are backed by a company with massive BTC holdings. They blend fixed income and crypto in a unique way.
+          Unlike a Bitcoin ETF, STRK/STRF pay high yields but don&rsquo;t offer pure BTC price exposure (except STRK&rsquo;s conversion feature). Unlike traditional bonds, they have no maturity, can defer payments, and are backed by a company with massive BTC holdings. They blend fixed income and crypto in a unique way.
         </span>
       ),
     },
@@ -51,7 +51,7 @@ export default function BitBondsPage() {
       q: "What are the risks?",
       a: (
         <span>
-          These are not risk-free: if Bitcoin&apos;s price crashes, MicroStrategy could struggle to pay dividends, and the preferreds could lose value. STRK/STRF are junior to debt and not directly collateralized by BTC. Investors are betting on both MicroStrategy&apos;s solvency and Bitcoin&apos;s long-term success.
+          These are not risk-free: if Bitcoin&rsquo;s price crashes, MicroStrategy could struggle to pay dividends, and the preferreds could lose value. STRK/STRF are junior to debt and not directly collateralized by BTC. Investors are betting on both MicroStrategy&rsquo;s solvency and Bitcoin&rsquo;s long-term success.
         </span>
       ),
     },
@@ -59,7 +59,7 @@ export default function BitBondsPage() {
       q: "Could this model go global?",
       a: (
         <span>
-          Yes. El Salvador&apos;s &quot;Volcano Bonds&quot; and other corporate Bitcoin bonds show the model is spreading. If sovereigns or more corporations adopt this approach, it could institutionalize Bitcoin demand and reshape global capital flows.
+          Yes. El Salvador&rsquo;s &ldquo;Volcano Bonds&rdquo; and other corporate Bitcoin bonds show the model is spreading. If sovereigns or more corporations adopt this approach, it could institutionalize Bitcoin demand and reshape global capital flows.
         </span>
       ),
     },
@@ -89,24 +89,24 @@ export default function BitBondsPage() {
 
           {/* Visual Breakdown */}
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
-              <div className="flex justify-center mb-6">
+            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
                 <span className="text-4xl">🇺🇸</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-400">
+                  90% Treasury
+                </h3>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 text-center mb-4">
-                90% Treasury
-              </h3>
               <p className="text-center text-lg md:text-xl">
                 Stable, government-backed bond
               </p>
             </div>
-            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
-              <div className="flex justify-center mb-6">
+            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
                 <span className="text-4xl">₿</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-400">
+                  10% Bitcoin
+                </h3>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 text-center mb-4">
-                10% Bitcoin
-              </h3>
               <p className="text-center text-lg md:text-xl">
                 Full BTC upside exposure
               </p>
@@ -114,7 +114,7 @@ export default function BitBondsPage() {
           </div>
 
           {/* How It Works */}
-          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
+          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
               How It Works
             </h3>
@@ -141,23 +141,23 @@ export default function BitBondsPage() {
           </div>
 
           {/* Alignment Summary */}
-          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
+          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
               Why BitBonds?
             </h3>
             <p className="text-white/90 text-lg">
-              BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It&apos;s a win-win for mismatched needs in a new era of finance.
+              BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It&rsquo;s a win-win for mismatched needs in a new era of finance.
             </p>
           </div>
 
           {/* FAQ Section */}
-          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500">
+          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
               FAQ: The Big Picture of Bitcoin Bonds
             </h3>
             <div className="space-y-4">
               {faqs.map((item, i) => (
-                <Card key={i} className="border-yellow-500 rounded-xl overflow-hidden">
+                <Card key={i} className="border-yellow-500 rounded-xl overflow-hidden shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                   <button
                     className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                     onClick={() => setOpen(open === i ? null : i)}
