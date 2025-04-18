@@ -96,8 +96,6 @@ export function MSTYFreedomCalculator() {
     sharesNeeded,
     totalInvestment,
     btcRequired,
-    currentTier,
-    nextTier,
     progress,
     taxCalculations,
     portfolioAllocation
@@ -210,11 +208,7 @@ export function MSTYFreedomCalculator() {
                     <div className="text-white/60 mb-2">BTC Required</div>
                     <div className="text-3xl font-bold text-white">{formatNumber(btcRequired, 2)} BTC</div>
                   </div>
-                  <div className="pt-2">
-                    <div className="flex justify-between text-white/60 text-sm mb-2">
-                      <span>Current Tier: {currentTier.label}</span>
-                      <span>Next Tier: {nextTier.label}</span>
-                    </div>
+                  <div className="pt-8">
                     <div className="h-2 w-full bg-yellow-500/20 rounded-full">
                       <motion.div 
                         variants={progressVariants}
