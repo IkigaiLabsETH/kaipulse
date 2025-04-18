@@ -63,27 +63,143 @@ const marketStats = [
 
 const keyEvents = [
   {
+    year: "2026",
+    events: [
+      "Fifth Bitcoin halving preparation",
+      "Global regulatory frameworks mature",
+      "Quantum-resistant signature implementation",
+      "Nation-state adoption expands",
+      "DeFi-Bitcoin integration acceleration"
+    ]
+  },
+  {
+    year: "2025",
+    events: [
+      "Expected central bank digital currency launches",
+      "Layer 2 daily transactions surpass 1M",
+      "Major sovereign wealth fund adoption",
+      "Enhanced privacy features deployment",
+      "Cross-chain interoperability expansion"
+    ]
+  },
+  {
     year: "2024",
     events: [
-      "Bitcoin ETF approval by SEC",
-      "Fourth Bitcoin halving expected",
-      "Institutional adoption acceleration"
+      "Spot Bitcoin ETF approval by SEC (January)",
+      "Fourth Bitcoin halving (April) - Block reward reduces to 3.125 BTC",
+      "Major banks launch Bitcoin custody services",
+      "Lightning Network capacity exceeds 10,000 BTC",
+      "Global institutional inflows reach new highs"
     ]
   },
   {
     year: "2023",
     events: [
-      "Bitcoin surpasses $40,000",
-      "Major banks offer Bitcoin services",
-      "Lightning Network growth"
+      "Bitcoin surpasses $44,000 (December)",
+      "BlackRock files for spot Bitcoin ETF",
+      "Lightning Network reaches 5,000+ BTC capacity",
+      "MicroStrategy holdings exceed 150,000 BTC",
+      "El Salvador Bitcoin bonds development"
     ]
   },
   {
     year: "2022",
     events: [
-      "Market correction",
-      "Mining difficulty adjustments",
-      "Layer 2 scaling solutions"
+      "Market correction to $15,700 (November)",
+      "Mining hash rate hits 300 EH/s",
+      "Taproot adoption reaches 50%",
+      "Lightning Network growth +400%",
+      "FTX collapse impacts market"
+    ]
+  },
+  {
+    year: "2021",
+    events: [
+      "Bitcoin reaches ATH of $69,000 (November)",
+      "El Salvador adopts Bitcoin as legal tender",
+      "China bans Bitcoin mining",
+      "Taproot upgrade activation",
+      "Tesla adds Bitcoin to balance sheet"
+    ]
+  },
+  {
+    year: "2020",
+    events: [
+      "Third Bitcoin halving - Block reward to 6.25 BTC",
+      "MicroStrategy adopts Bitcoin standard",
+      "PayPal enables Bitcoin trading",
+      "Bitcoin surpasses $20,000 previous ATH",
+      "Institutional adoption begins"
+    ]
+  },
+  {
+    year: "2017",
+    events: [
+      "Bitcoin reaches $20,000 first time",
+      "SegWit activation",
+      "Bitcoin Cash hard fork",
+      "Lightning Network whitepaper",
+      "Crypto market cap exceeds $100B"
+    ]
+  },
+  {
+    year: "2016",
+    events: [
+      "Second Bitcoin halving - Block reward to 12.5 BTC",
+      "Ethereum DAO hack impacts crypto markets",
+      "Bitfinex hack of 120,000 BTC",
+      "Lightning Network development begins",
+      "Bitcoin scaling debate intensifies"
+    ]
+  },
+  {
+    year: "2013",
+    events: [
+      "Bitcoin surpasses $1,000 first time",
+      "First Bitcoin ATM installed in Vancouver",
+      "Mt. Gox handles 70% of all Bitcoin trades",
+      "China&apos;s first crypto ban",
+      "US Senate holds first Bitcoin hearing"
+    ]
+  },
+  {
+    year: "2012",
+    events: [
+      "First Bitcoin halving - Block reward to 25 BTC",
+      "Coinbase founded",
+      "Bitcoin Foundation established",
+      "Payment processor BitPay exceeds 1,000 merchants",
+      "Bitcoin Magazine launches"
+    ]
+  },
+  {
+    year: "2011",
+    events: [
+      "Bitcoin reaches price parity with USD",
+      "WikiLeaks begins accepting Bitcoin",
+      "Mt. Gox becomes dominant exchange",
+      "First major security breach (Mt. Gox)",
+      "Silk Road marketplace launches"
+    ]
+  },
+  {
+    year: "2010",
+    events: [
+      "First Bitcoin transaction (10,000 BTC for pizza)",
+      "Bitcoin Market established",
+      "Mt. Gox cryptocurrency exchange founded",
+      "Bitcoin reaches $0.10",
+      "Mining pool launched"
+    ]
+  },
+  {
+    year: "2009",
+    events: [
+      "Genesis block mined by Satoshi Nakamoto (January 3)",
+      "First Bitcoin transaction to Hal Finney",
+      "Bitcoin software v0.1 released",
+      "First Bitcoin exchange rate established",
+      "New Liberty Standard sets BTC at $0.00076"
     ]
   }
 ]
@@ -115,6 +231,49 @@ export default function BitcoinPage() {
           <p className="mt-6 text-lg leading-8 text-white/90">
             Understanding Bitcoin&apos;s impact on MSTY and MicroStrategy&apos;s Bitcoin strategy
           </p>
+        </motion.div>
+
+        {/* Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-12"
+        >
+          <div className="relative p-4 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <video 
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                autoPlay 
+                loop 
+                controls
+                playsInline
+                onError={(e) => {
+                  const target = e.target as HTMLVideoElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    parent.innerHTML += `
+                      <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/90">
+                        <div class="text-center p-8">
+                          <p class="text-yellow-500 text-xl mb-4">Video Loading...</p>
+                          <p class="text-white/60">Please ensure aha_moment_bitcoin.mp4 is in the public/visuals directory</p>
+                        </div>
+                      </div>
+                    `;
+                  }
+                }}
+              >
+                <source src="/visuals/aha_moment_bitcoin.mp4" type="video/mp4" />
+                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/90">
+                  <div className="text-center p-8">
+                    <p className="text-yellow-500 text-xl mb-4">Video Not Available</p>
+                    <p className="text-white/60">Please ensure video file is in the public/visuals directory</p>
+                  </div>
+                </div>
+              </video>
+            </div>
+          </div>
         </motion.div>
 
         {/* Market Stats */}
@@ -150,33 +309,67 @@ export default function BitcoinPage() {
                 <h2 className="text-2xl font-bold text-yellow-500">Bitcoin Fundamentals</h2>
                 <div className="mt-8 space-y-4">
                   <AccordionItem title="What is Bitcoin?">
-                    Bitcoin is a decentralized digital currency created in 2009. It operates on a peer-to-peer network 
-                    without the need for intermediaries. Key features include:
+                    Bitcoin is a decentralized digital currency created in 2009 by the pseudonymous Satoshi Nakamoto. It operates on a peer-to-peer network without the need for intermediaries, revolutionizing the concept of money. Key features include:
                     <ul className="mt-4 list-disc pl-4 space-y-2">
-                      <li>Limited supply of 21 million BTC</li>
-                      <li>Transparent and immutable transaction ledger</li>
-                      <li>Secured by proof-of-work consensus</li>
-                      <li>Global, borderless transactions</li>
+                      <li>Limited supply of 21 million BTC - mathematically enforced scarcity</li>
+                      <li>Transparent and immutable transaction ledger secured by 400K+ nodes</li>
+                      <li>Secured by proof-of-work consensus with 400+ EH/s hash rate</li>
+                      <li>Global, borderless transactions processed 24/7/365</li>
+                      <li>Self-custodial ownership with cryptographic security</li>
+                      <li>10-minute block time with 7 transactions per second</li>
+                      <li>Layer 2 scaling solutions enabling millions of transactions</li>
                     </ul>
                   </AccordionItem>
                   
                   <AccordionItem title="Bitcoin&apos;s Role in MSTY">
                     Bitcoin&apos;s price movements directly affect MSTY through MicroStrategy&apos;s significant Bitcoin holdings:
                     <ul className="mt-4 list-disc pl-4 space-y-2">
-                      <li>MSTR stock price correlation with Bitcoin</li>
-                      <li>Impact on MSTY options premiums</li>
-                      <li>Influence on strategy performance</li>
-                      <li>Volatility considerations</li>
+                      <li>MSTR stock price correlation with Bitcoin exceeds 0.9 correlation coefficient</li>
+                      <li>Impact on MSTY options premiums through volatility dynamics</li>
+                      <li>Strategic influence on delta-neutral trading opportunities</li>
+                      <li>Volatility skew considerations in options pricing</li>
+                      <li>Institutional holding patterns affect liquidity profiles</li>
+                      <li>Arbitrage opportunities between MSTR and BTC markets</li>
+                      <li>Leverage and margin considerations for position sizing</li>
                     </ul>
                   </AccordionItem>
 
                   <AccordionItem title="Market Dynamics">
                     Understanding Bitcoin market dynamics is crucial for MSTY traders:
                     <ul className="mt-4 list-disc pl-4 space-y-2">
-                      <li>24/7 global trading</li>
-                      <li>High volatility opportunities</li>
-                      <li>Institutional vs retail flows</li>
-                      <li>Regulatory impacts</li>
+                      <li>24/7 global trading across all major exchanges</li>
+                      <li>Average daily volume exceeding $25 billion</li>
+                      <li>Institutional vs retail flow analysis</li>
+                      <li>On-chain metrics for market intelligence</li>
+                      <li>Derivatives market impact on spot prices</li>
+                      <li>Regulatory developments across jurisdictions</li>
+                      <li>Macro correlation patterns with traditional markets</li>
+                    </ul>
+                  </AccordionItem>
+
+                  <AccordionItem title="Technical Architecture">
+                    Bitcoin&apos;s technical foundation ensures security and reliability:
+                    <ul className="mt-4 list-disc pl-4 space-y-2">
+                      <li>SHA-256 cryptographic security backbone</li>
+                      <li>Decentralized network of 15,000+ listening nodes</li>
+                      <li>Multi-signature and time-lock capabilities</li>
+                      <li>Lightning Network for instant payments</li>
+                      <li>Taproot upgrade for enhanced privacy</li>
+                      <li>SegWit adoption exceeding 80% of transactions</li>
+                      <li>Regular protocol improvements via soft forks</li>
+                    </ul>
+                  </AccordionItem>
+
+                  <AccordionItem title="Investment Thesis">
+                    The case for Bitcoin as a strategic asset:
+                    <ul className="mt-4 list-disc pl-4 space-y-2">
+                      <li>Digital gold narrative with fixed supply economics</li>
+                      <li>Network effect driving exponential adoption</li>
+                      <li>Institutional acceptance as treasury reserve asset</li>
+                      <li>Portfolio diversification benefits</li>
+                      <li>Asymmetric return potential</li>
+                      <li>Sovereign wealth fund allocation potential</li>
+                      <li>Central bank digital currency hedge</li>
                     </ul>
                   </AccordionItem>
                 </div>
