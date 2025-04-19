@@ -1,12 +1,10 @@
-import { Suspense } from 'react';
 import Image from 'next/image';
 import { OpenSeaAPI, OpenSeaAPIError } from '@/services/opensea/api';
-import { NFTCard } from '@/components/nft/NFTCard';
-import { NFTLayout } from '@/components/nft/NFTLayout';
 import { formatEther } from 'viem';
 import Link from 'next/link';
 import { ActivityTab } from '@/components/nft/ActivityTab';
 import CollectionPageClient from './CollectionPageClient';
+import { logger } from '@/services/lib/logger';
 
 // Initialize API instance
 const openSeaApi = new OpenSeaAPI();
@@ -46,40 +44,40 @@ async function fetchCollectionData(slugOrContract: string) {
     ]);
     return { collection, stats };
   } catch (error) {
-    console.error('Error fetching collection:', error);
+    logger.error('Error fetching collection:', error);
     return null;
   }
 }
 
 async function fetchCollectionNFTs(slug: string) {
   try {
-    console.log('Fetching NFTs for collection:', slug);
+    logger.info('Fetching NFTs for collection:', slug);
     const response = await openSeaApi.getCollectionNFTs(slug, { 
       limit: 20,
       order_by: 'sale_price',
       order_direction: 'desc'
     });
     
-    console.log('OpenSea API Response:', JSON.stringify(response, null, 2));
+    logger.info('OpenSea API Response:', response);
     
     // More detailed validation
     if (!response) {
-      console.error('Response is null or undefined');
+      logger.error('Response is null or undefined');
       throw new Error('No response from OpenSea API');
     }
 
     if (!response.results) {
-      console.error('Response has no results array:', response);
+      logger.error('Response has no results array:', response);
       throw new Error('Invalid response format from OpenSea API');
     }
 
     if (!Array.isArray(response.results)) {
-      console.error('Results is not an array:', response.results);
+      logger.error('Results is not an array:', response.results);
       throw new Error('Invalid results format from OpenSea API');
     }
 
     if (response.results.length === 0) {
-      console.error('Results array is empty');
+      logger.error('Results array is empty');
       throw new Error('No NFTs found in collection');
     }
     
@@ -90,9 +88,9 @@ async function fetchCollectionNFTs(slug: string) {
       description: nft.description || 'No description available'
     }));
   } catch (error: unknown) {
-    console.error('Error fetching NFTs:', error);
+    logger.error('Error fetching NFTs:', error);
     if (error instanceof OpenSeaAPIError) {
-      console.error('OpenSea API Error:', {
+      logger.error('OpenSea API Error:', {
         message: error.message,
         status: error.status,
         code: error.code
@@ -107,7 +105,7 @@ async function fetchCollectionEvents(slug: string) {
     const events = await openSeaApi.getCollectionEvents(slug, { limit: 20 });
     return events.results;
   } catch (error) {
-    console.error('Error fetching events:', error);
+    logger.error('Error fetching events:', error);
     return null;
   }
 }

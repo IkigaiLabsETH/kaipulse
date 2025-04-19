@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { OpenSeaAPI } from '@/services/opensea/api';
-import { ArrowLeft, Tag, Heart, Share2, ImageIcon } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { NFTActions } from '@/components/nft/NFTActions';
 import { NFTDetails } from '@/components/nft/NFTDetails';
 import { NFTActivity } from '@/components/nft/NFTActivity';
@@ -9,6 +9,7 @@ import { NFTTraits } from '@/components/nft/NFTTraits';
 import { RelatedNFTs } from '@/components/nft/RelatedNFTs';
 import { PriceHistory } from '@/components/nft/PriceHistory';
 import { NFTImage } from '@/components/nft/NFTImage';
+import { logger } from '@/services/lib/logger';
 
 // Initialize API instance
 const openSeaApi = new OpenSeaAPI();
@@ -22,7 +23,7 @@ interface NFTPageProps {
 
 async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) {
   try {
-    console.log('Fetching NFT data for:', { slug, tokenId });
+    logger.info('Fetching NFT data for:', { slug, tokenId });
     
     const nftPromise = openSeaApi.getNFT(slug, tokenId);
     const eventsPromise = openSeaApi.getNFTEvents(slug, tokenId, {
@@ -32,21 +33,21 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
 
     const [nft, events] = await Promise.all([
       nftPromise.catch(error => {
-        console.error('Error fetching NFT:', error);
+        logger.error('Error fetching NFT:', error);
         throw error;
       }),
       eventsPromise.catch(error => {
-        console.error('Error fetching events:', error);
+        logger.error('Error fetching events:', error);
         return { results: [] };
       })
     ]);
 
     if (!nft) {
-      console.error('NFT data is null or undefined');
+      logger.error('NFT data is null or undefined');
       throw new Error('NFT not found');
     }
 
-    console.log('NFT data received:', nft);
+    logger.info('NFT data received:', nft);
 
     // Get the latest sale price from events
     const latestSale = events.results
@@ -175,9 +176,9 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
       </div>
     );
   } catch (error) {
-    console.error('Error in NFTContent:', error);
+    logger.error('Error in NFTContent:', error);
     if (error instanceof Error) {
-      console.error('Error details:', {
+      logger.error('Error details:', {
         message: error.message,
         stack: error.stack
       });

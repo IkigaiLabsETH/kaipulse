@@ -23,7 +23,7 @@ const formatOutput = (level: LogLevel, message: string, args: LogArgs): string =
 };
 
 // Safe console access that works in both browser and Node.js environments
-/* eslint-disable no-console */
+/* eslint-disable no-restricted-globals, no-console */
 const safeConsole = {
   log: (...args: unknown[]) => {
     if (typeof console !== 'undefined') {
@@ -46,7 +46,7 @@ const safeConsole = {
     }
   }
 };
-/* eslint-enable no-console */
+/* eslint-enable no-restricted-globals, no-console */
 
 class Logger {
   private log(level: LogLevel, message: string, ...args: LogArgs): void {

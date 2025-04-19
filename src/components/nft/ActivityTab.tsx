@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
 import { formatEther } from 'viem';
 
