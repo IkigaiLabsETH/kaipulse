@@ -2,7 +2,7 @@
 
 ![MSTY Banner](https://github.com/thirdweb-example/next-starter/assets/57885104/20c8ce3b-4e55-4f10-ae03-2fe4743a5ee8)
 
-An educational portfolio planning tool that helps users explore Bitcoin investment concepts and portfolio allocation strategies. This tool is for educational purposes only and not financial advice.
+An educational portfolio planning tool that helps users explore Bitcoin investment concepts and portfolio allocation strategies, featuring a curated NFT gallery experience. This tool is for educational purposes only and not financial advice.
 
 ## ⚠️ Important Disclaimer
 
@@ -53,9 +53,41 @@ Learn about Bitcoin&apos;s properties and potential role in portfolio planning. 
 - **Bitcoin-First Portfolio**: 80% core allocation to cold storage BTC
 - **Strategic Yield**: 10% MSTY allocation for monthly income
 - **Growth Component**: 10% MSTR allocation for additional Bitcoin exposure
+- **NFT Gallery Experience**: Curated collection of digital art and collectibles
+- **OpenSea Integration**: Real-time NFT market data and trading insights
 - **Tax Planning**: Special considerations for international investors
 - **Real-time Updates**: Track current MSTY prices and distributions
 - **Interactive Dashboard**: Visualize your path to financial freedom
+
+## 🎨 NFT Gallery Features
+
+### Collection Showcase
+- **Curated Collections**: Handpicked NFT collections with artistic and cultural significance
+- **Dynamic Grid Layout**: Responsive gallery design with smooth animations
+- **Collection Details**: Comprehensive metadata, traits, and historical data
+- **Price History**: Interactive charts showing collection performance
+- **Activity Feed**: Real-time updates on sales, transfers, and listings
+
+### OpenSea Integration
+- **Real-time Market Data**: Live pricing and trading activity
+- **Collection Stats**: Floor price, volume, and market cap tracking
+- **Token Details**: Individual NFT metadata, traits, and ownership history
+- **Trading Interface**: Direct links to OpenSea marketplace
+- **Activity Tracking**: Sales, transfers, and listing history
+
+### Gallery Components
+- **NFT Cards**: Beautiful presentation of digital assets
+- **Collection Cards**: Showcase featured collections
+- **Activity Tabs**: Track market movements
+- **Price Charts**: Historical price visualization
+- **Trait Explorer**: Filter and analyze NFT attributes
+
+### Visual Design
+- **Grain Overlay Effects**: Subtle texture for enhanced visuals
+- **Smooth Animations**: Polished transitions and hover effects
+- **Responsive Layout**: Optimal viewing across all devices
+- **Dark Theme**: Elegant, gallery-style presentation
+- **Custom Typography**: Refined typographic hierarchy
 
 ## 🏆 MSTY Status Levels
 
@@ -244,27 +276,35 @@ The calculator includes special features for international investors:
 - Ghost Content API (Headless CMS)
 - OpenAI API (Content Generation)
 - Twitter API v2 (Tweet Analysis)
+- OpenSea API (NFT Data)
 - Redis (Optional Caching)
 - TailwindCSS Typography Plugin
+- Framer Motion (Animations)
 
 ## 📈 Project Structure
 
 ```
 src/
-├── app/            # Next.js 14 app directory
-│   ├── news/      # News section pages
-│   ├── notebook/  # Content generation interface
-│   └── ...        # Other app routes
-├── components/     # React components
-├── services/      # API and service integrations
-│   ├── ghost/    # Ghost CMS integration
-│   ├── ai/       # OpenAI integration
-│   ├── twitter/  # Twitter API integration
-│   │   ├── client.ts        # Twitter API client
-│   │   └── tweetAnalyzer.ts # Tweet analysis service
-│   └── lib/      # Shared utilities
-├── utils/         # Helper functions
-└── types/         # TypeScript type definitions
+├── app/                # Next.js 14 app directory
+│   ├── news/          # News section pages
+│   ├── notebook/      # Content generation interface
+│   ├── collections/   # NFT collection pages
+│   └── ...            # Other app routes
+├── components/         # React components
+│   ├── nft/           # NFT-related components
+│   │   ├── NFTCard.tsx       # NFT display card
+│   │   ├── CollectionCard.tsx# Collection display
+│   │   ├── NFTDetails.tsx    # Detailed NFT view
+│   │   └── ...               # Other NFT components
+│   └── ui/            # Shared UI components
+├── services/          # API and service integrations
+│   ├── ghost/         # Ghost CMS integration
+│   ├── ai/            # OpenAI integration
+│   ├── twitter/       # Twitter API integration
+│   ├── opensea/       # OpenSea API integration
+│   └── lib/           # Shared utilities
+├── utils/             # Helper functions
+└── types/             # TypeScript type definitions
 ```
 
 ## 🤝 Contributing
