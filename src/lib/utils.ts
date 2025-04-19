@@ -10,4 +10,8 @@ export function formatNumber(value: number, options: Intl.NumberFormatOptions = 
     maximumFractionDigits: 2,
     ...options
   }).format(value)
+}
+
+export function formatEthPrice(price: number): string {
+  return price.toFixed(3);
 } 

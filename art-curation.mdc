@@ -1,0 +1,108 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Art Curation Guidelines
+
+## Collection Display System
+
+Our art curation system follows the Ikigai Labs aesthetic with a focus on clean grid layouts, distinctive card styling, and smooth interactions.
+
+### Grid Layout
+```tsx
+// Collection Grid with Responsive Design
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  {collections.map((item) => (
+    <CollectionCard key={item.tokenId} {...item} />
+  ))}
+</div>
+```
+
+### Collection Card
+```tsx
+interface CollectionCardProps {
+  tokenId: string
+  name: string
+  imageUrl: string
+  floorPrice: number
+  lastSale?: { price: number; currency: string }
+}
+
+const CollectionCard: FC<CollectionCardProps> = ({
+  tokenId, name, imageUrl, floorPrice, lastSale
+}) => (
+  <div className="
+    group relative border-2 border-black bg-white 
+    shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] 
+    transition-all duration-200 ease-in-out
+    hover:-translate-x-1 hover:-translate-y-1
+    hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]
+  ">
+    {/* Image with Aspect Ratio */}
+    <div className="aspect-square overflow-hidden">
+      <img src={imageUrl} alt={name} className="w-full h-full object-cover"/>
+    </div>
+    
+    {/* Card Content */}
+    <div className="p-4 border-t-2 border-black">
+      <h3 className="epilogue font-bold text-lg mb-2">{name}</h3>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-neutral-600">Floor:</span>
+          <span className="font-bold">Ξ {floorPrice}</span>
+        </div>
+        {lastSale && (
+          <div className="text-sm text-neutral-600">
+            Last sale: {lastSale.price} {lastSale.currency}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)
+```
+
+## OpenSea API Integration
+
+### API Setup and Authentication
+```typescript
+// lib/opensea.ts
+import { OpenSeaAPI } from '@opensea/core-sdk';
+
+const OPENSEA_API_KEY = process.env.NEXT_PUBLIC_OPENSEA_API_KEY;
+const BASE_URL = 'https://api.opensea.io/v2';
+
+export const openSeaApi = new OpenSeaAPI({
+  apiKey: OPENSEA_API_KEY,
+  baseUrl: BASE_URL
+});
+```
+
+### Collection Data Fetching
+```typescript
+// services/collection.ts
+export const getCollectionData = async (slug: string) => {
+  try {
+    // Fetch collection details
+    const collection = await openSeaApi.getCollection(slug);
+    
+    // Get collection stats
+    const stats = await openSeaApi.getCollectionStats(slug);
+    
+    // Get collection NFTs
+    const nfts = await openSeaApi.getNFTs({
+      collection: slug,
+      limit: 50
+    });
+
+    return {
+      collection,
+      stats,
+      nfts: nfts.nfts
+    };
+  } catch (error) {
+    throw new Error(`Failed to fetch collection: ${error.message}`);
+  }
+};
+```

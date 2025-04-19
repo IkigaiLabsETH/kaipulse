@@ -50,7 +50,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative min-h-[80vh] flex flex-col items-center justify-center"
+        className="relative min-h-[80vh] flex flex-col items-center justify-center pt-24"
       >
         <div className="w-full max-w-4xl mx-auto px-4 pt-12 pb-8">
           <motion.div

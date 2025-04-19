@@ -1,0 +1,409 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Your rule content
+
+# Brand DNA Guidelines
+
+## Core Components
+
+### Cards
+
+The card component is a fundamental building block of our UI, featuring our iconic shadow and border styling.
+
+#### Base Card
+```tsx
+// Basic Card Implementation
+interface CardProps {
+  children: React.ReactNode
+  className?: string
+}
+
+export const Card: FC<CardProps> = ({ children, className = '' }) => (
+  <div className={`border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] p-4 mb-6 ${className}`}>
+    {children}
+  </div>
+)
+```
+
+#### Card Variations
+```css
+/* Primary Card - White background */
+.card-primary {
+  @apply border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] 
+         p-4 mb-6 bg-white;
+}
+
+/* Interactive Card - With hover effects */
+.card-interactive {
+  @apply border-2 border-black transition-all duration-200 ease-in-out
+         hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] 
+         hover:-translate-x-1 hover:-translate-y-1;
+}
+
+/* Branded Card - Yellow background */
+.card-yellow {
+  @apply border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] 
+         p-4 mb-6 bg-yellow-500;
+}
+
+/* Dark Mode Card - White borders */
+.card-dark {
+  @apply border-2 border-white shadow-[5px_5px_0px_0px_rgba(255,255,255,1)] 
+         p-4 mb-6 bg-neutral-900 text-white;
+}
+```
+
+#### Card Guidelines
+
+1. **Structure**
+   - Always use 2px borders
+   - Maintain 5px shadow offset
+   - Use consistent 1rem (p-4) padding
+   - Include 1.5rem (mb-6) bottom margin
+
+2. **Interaction**
+   - Add hover effects for clickable cards
+   - Use transition-all for smooth animations
+   - Consider -translate transforms for depth
+
+3. **Content Layout**
+```tsx
+<Card>
+  <h3 className="epilogue font-bold mb-4">Card Title</h3>
+  <div className="satoshi">
+    {/* Main content */}
+  </div>
+  <div className="mt-4 flex justify-end">
+    {/* Card actions */}
+  </div>
+</Card>
+```
+
+4. **Accessibility**
+   - Ensure sufficient color contrast
+   - Use semantic HTML structure
+   - Add hover/focus states for interactive cards
+
+### Buttons
+
+Our button system features dynamic hover effects, loading states, and consistent styling across both button and link variants.
+
+#### Base Button Implementation
+```tsx
+interface ButtonProps {
+  variant?: 'solid' | 'outline'
+  color?: 'yellow' | 'white'
+  href?: string
+  className?: string
+  children: React.ReactNode
+  onClick?: (arg: unknown) => void
+  loading?: boolean
+  target?: '_blank' | '_self'
+  disabled?: boolean
+}
+
+// Base styles for all buttons
+const baseStyles = {
+  solid: 'shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]',
+  outline: 'group inline-flex ring-1 items-center justify-center py-2 px-4 text-sm',
+}
+
+// Variant-specific styles
+const variantStyles = {
+  solid: {
+    yellow: [
+      'text-yellow border-yellow active:text-yellow focus-visible:outline-yellow',
+      'bg-yellow',
+      'group-hover:text-black',
+    ],
+    white: [
+      'text-black border-black active:text-yellow bg-yellow',
+      'bg-black',
+      'group-hover:text-yellow'
+    ],
+  }
+}
+```
+
+#### Button Variations
+
+1. **Link Button**
+```tsx
+<Link
+  href={href}
+  className={`
+    relative inline-flex items-center justify-start p-4
+    overflow-hidden font-semibold
+    transition-all duration-150 ease-in-out
+    border-2 group ${className}
+  `}
+>
+  {/* Animated background fill */}
+  <span className="
+    absolute bottom-0 left-0 w-full h-1
+    transition-all duration-150 ease-in-out
+    group-hover:h-full ${backgroundColorClass}
+  "/>
+  
+  {/* Button text */}
+  <span className="
+    relative w-full text-center
+    transition-colors duration-200 ease-in-out
+    ${textColorClass}
+  ">
+    {children}
+  </span>
+</Link>
+```
+
+2. **Regular Button**
+```tsx
+<button
+  className={`
+    relative inline-flex items-center justify-center p-4
+    overflow-hidden font-semibold
+    transition-all duration-150 ease-in-out
+    border-2 group ${className}
+    disabled:cursor-not-allowed
+  `}
+>
+  {/* Animated background fill */}
+  <span className="
+    absolute bottom-0 left-0 flex w-full h-0 mb-0
+    transition-all duration-200 ease-out
+    transform translate-y-0 opacity-90
+    group-hover:h-full ${backgroundColorClass}
+  "/>
+  
+  {/* Button content with loader */}
+  <span className="
+    relative w-full text-center
+    transition-colors duration-200 ease-in-out
+    leading-none pb-1 ${textColorClass}
+  ">
+    <span className={`
+      overflow-hidden inline-block
+      translate-y-1 -translate-x-0.5
+      ${loading ? 'w-5' : 'w-0'}
+    `}>
+      <Loader size={Size.s} color={loaderColor} />
+    </span>
+    {children}
+  </span>
+</button>
+```
+
+#### Button Guidelines
+
+1. **Structure**
+   - Use consistent padding (p-4)
+   - Maintain 2px borders
+   - Include 5px shadow offset for solid variants
+   - Keep font-semibold weight
+
+2. **Animations**
+### Font Declarations
+```css
+/* Epilogue - Primary Heading Font */
+@font-face {
+  font-family: 'Epilogue';
+  src: url('../public/assets/fonts/epilogue/Epilogue-Variable.woff2') format('woff2'),
+       url('../public/assets/fonts/epilogue/Epilogue-Variable.woff') format('woff'),
+       url('../public/assets/fonts/epilogue/Epilogue-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Boska - Serif Accent Font */
+@font-face {
+  font-family: 'Boska';
+  src: url('../public/assets/fonts/boska/Boska-Variable.woff2') format('woff2'),
+       url('../public/assets/fonts/boska/Boska-Variable.woff') format('woff'),
+       url('../public/assets/fonts/boska/Boska-Variable.ttf') format('truetype');
+  font-weight: 200 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Satoshi - Primary Body Font */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../public/assets/fonts/satoshi/Satoshi-Variable.woff2') format('woff2'),
+       url('../public/assets/fonts/satoshi/Satoshi-Variable.woff') format('woff'),
+       url('../public/assets/fonts/satoshi/Satoshi-Variable.ttf') format('truetype');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+```
+
+### Base Typography
+```css
+@layer base {
+  body {
+    font-family: 'satoshi';
+    @apply text-white bg-neutral-900;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-bold leading-none mb-4 tracking-tighter text-yellow;
+    font-family: 'epilogue';
+  }
+
+  h1, h2 {
+    @apply text-5xl;
+  }
+
+  p {
+    font-family: 'satoshi';
+    @apply mb-6;
+  }
+
+  /* Font Utility Classes */
+  .boska { font-family: 'boska'; }
+  .epilogue { 
+    font-family: 'epilogue';
+    @apply tracking-wide;
+  }
+  .satoshi { font-family: 'satoshi'; }
+}
+```
+
+## Component System
+
+### Interactive Elements
+
+#### Tabs
+```css
+.tab {
+  @apply text-lg text-black bg-white border-2 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] p-2;
+}
+
+.tab.inactive {
+  @apply border-black hover:border-red hover:-translate-x-2 hover:-translate-y-2 
+         hover:shadow-[8px_8px_0px_0px_rgba(127,29,29,1)] transition-all hover:text-red;
+}
+
+.tab.active {
+  @apply border-white hover:text-yellow text-yellow bg-black 
+         hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] p-[10px];
+}
+```
+
+#### Links & Buttons
+```css
+a {
+  @apply transition-colors;
+}
+
+a:hover {
+  @apply text-yellow;
+}
+
+.info-tab a {
+  @apply text-yellow hover:text-yellow-600;
+}
+```
+
+### Form Elements
+
+#### Inputs
+```css
+.without-ring {
+  @apply focus:ring-0 focus:ring-offset-0;
+}
+
+input[readonly] {
+  @apply border-t-0 border-l-0 border-r-0 border-b-2 border-black outline-none font-bold;
+  cursor: pointer;
+}
+```
+
+### Notifications
+
+#### Toast
+```css
+.Toastify__toast {
+  @apply shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] satoshi font-bold text-black 
+         rounded-none border-2 border-black;
+}
+
+.Toastify__progress-bar {
+  @apply bg-black;
+}
+```
+
+## Animation System
+
+### Background Effects
+```css
+.bg-gradient {
+  background: linear-gradient(-45deg, #141100, #171717, #090909, #000000);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0 50% }
+}
+```
+
+### Transitions
+```css
+@keyframes fpFadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+```
+
+## Shadow System
+```css
+/* Primary Shadows */
+.shadow-primary {
+  @apply shadow-[5px_5px_0px_0px_rgba(0,0,0,1)];
+}
+
+/* Hover Shadows */
+.shadow-hover {
+  @apply shadow-[8px_8px_0px_0px_rgba(127,29,29,1)];
+}
+```
+
+## Best Practices
+
+### Typography
+- Use variable fonts for optimal performance
+- Maintain consistent font weights across components
+- Use appropriate font families for different content types
+
+### Interactions
+- Implement smooth transitions for all interactive elements
+- Use consistent hover and focus states
+- Maintain accessible contrast ratios
+
+### Layout
+- Use the grid system for complex layouts
+- Maintain consistent spacing with Tailwind's scale
+- Follow mobile-first responsive design
+
+### Accessibility
+- Ensure sufficient color contrast
+- Provide clear focus indicators
+- Maintain semantic HTML structure
+
+### Performance
+- Optimize font loading with `font-display: swap`
+- Use variable fonts for better performance
+- Implement efficient animations
