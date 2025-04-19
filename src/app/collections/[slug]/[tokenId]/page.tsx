@@ -92,11 +92,11 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
 
     // Log price information
     logger.info('Price information:', {
-      bestListing: bestListing.status === 'fulfilled' ? bestListing.value?.orders?.[0] : null,
-      bestOffer: bestOffer.status === 'fulfilled' ? bestOffer.value?.orders?.[0] : null
+      bestListing: bestListing.status === 'fulfilled' ? bestListing.value?.results?.[0] : null,
+      bestOffer: bestOffer.status === 'fulfilled' ? bestOffer.value?.results?.[0] : null
     });
 
-    const listing = bestListing.status === 'fulfilled' ? bestListing.value?.orders?.[0] : null;
+    const listing = bestListing.status === 'fulfilled' ? bestListing.value?.results?.[0] : null;
 
     // Update NFT with current price information
     const nftWithPrice: OpenSeaNFT = {
