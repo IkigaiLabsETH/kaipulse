@@ -12,10 +12,8 @@ export const FEATURED_COLLECTIONS: CollectionCategory[] = [
     name: 'Generative Art',
     description: 'Algorithmic and generative art collections pushing the boundaries of creative coding.',
     contractAddresses: [
-      '0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270', // Art Blocks
-      '0x059EDD72Cd353dF5106D2B9cC5ab83a52287aC3a', // Chromie Squiggle
-      '0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270', // Fidenza (Art Blocks contract)
-      '0xa7d8d9ef8D8Ce8992Df33D8b8CF4Aebabd5bD270'  // Ringers (Art Blocks contract)
+      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d', // Bored Ape Yacht Club
+      '0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b'  // Clone X
     ]
   },
   {
@@ -23,9 +21,8 @@ export const FEATURED_COLLECTIONS: CollectionCategory[] = [
     name: 'Photography',
     description: 'Fine art photography and photographic collections from renowned artists.',
     contractAddresses: [
-      '0x9D90669665607F08005CAe4A7098143f43b4355b', // Cognition
-      '0x27A3e410c4Ec4D30bED399E428Ce1A28Af45C2E4', // DRIFT Genesis
-      '0x2B9fd4363782D9460eFce1143A6957CfFF503058'  // Where My Vans Go
+      '0x8a90cab2b38dba80c64b7734e58ee1db38b8992e', // Doodles
+      '0x60e4d786628fea6478f785a6d7e704777c86a7c6'  // Mutant Ape Yacht Club
     ]
   },
   {
@@ -33,9 +30,8 @@ export const FEATURED_COLLECTIONS: CollectionCategory[] = [
     name: 'AI-Powered Art',
     description: 'Collections leveraging artificial intelligence and machine learning.',
     contractAddresses: [
-      '0x892848074ddeA461A15f337250Da3ce55580CA85', // Archetype
-      '0x6d4530149e5B4483d9c26E9497783a104085cF8f', // Artificial Dreams
-      '0x7fD8Ca23F0ee13C866EC8DDea73F01c2e86C5A16'  // Memory Machines
+      '0xed5af388653567af2f388e6224dc7c4b3241c544', // Azuki
+      '0x23581767a106ae21c074b2276d25e5c3e136a68b'  // Moonbirds
     ]
   },
   {
@@ -43,9 +39,8 @@ export const FEATURED_COLLECTIONS: CollectionCategory[] = [
     name: 'Other Collections',
     description: 'Notable collections spanning various styles and mediums.',
     contractAddresses: [
-      '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D', // BAYC
-      '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB', // CryptoPunks
-      '0x23581767a106ae21c074b2276D25e5C3e136a68b'  // Moonbirds
+      '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb', // CryptoPunks
+      '0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258'  // Otherdeed
     ]
   }
 ];

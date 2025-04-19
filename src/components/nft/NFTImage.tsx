@@ -5,14 +5,32 @@ import { ImageIcon, Maximize2 } from 'lucide-react';
 import { useState } from 'react';
 
 interface NFTImageProps {
-  imageUrl: string | null;
-  name: string | null;
-  identifier: string;
-  collection?: string;
+  src: string | null;
+  alt: string;
 }
 
-export function NFTImage({ imageUrl, name, identifier, collection }: NFTImageProps) {
+const IPFS_GATEWAY = 'https://ipfs.io/ipfs/';
+const ARWEAVE_GATEWAY = 'https://arweave.net/';
+
+function transformImageUrl(url: string | null): string {
+  if (!url) return '/images/nft-placeholder.png';
+
+  // Handle IPFS URLs
+  if (url.startsWith('ipfs://')) {
+    return IPFS_GATEWAY + url.slice(7);
+  }
+
+  // Handle Arweave URLs
+  if (url.startsWith('ar://')) {
+    return ARWEAVE_GATEWAY + url.slice(5);
+  }
+
+  return url;
+}
+
+export function NFTImage({ src, alt }: NFTImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(transformImageUrl(src));
 
   return (
     <div className="group relative">
@@ -24,11 +42,11 @@ export function NFTImage({ imageUrl, name, identifier, collection }: NFTImagePro
         {/* Loading state */}
         <div className={`absolute inset-0 bg-neutral-900 animate-pulse transition-opacity duration-700 ${isLoaded ? 'opacity-0' : 'opacity-100'}`} />
         
-        {imageUrl ? (
+        {imageSrc ? (
           <>
             <Image
-              src={imageUrl}
-              alt={name || `NFT #${identifier}`}
+              src={imageSrc}
+              alt={alt}
               fill
               className={`
                 object-contain p-2 
@@ -40,9 +58,9 @@ export function NFTImage({ imageUrl, name, identifier, collection }: NFTImagePro
               onLoadingComplete={() => {
                 setIsLoaded(true);
               }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = '/images/nft-placeholder.png';
+              onError={() => {
+                setImageSrc('/images/nft-placeholder.png');
+                setIsLoaded(true);
               }}
             />
 
@@ -60,13 +78,8 @@ export function NFTImage({ imageUrl, name, identifier, collection }: NFTImagePro
         {/* Info overlay */}
         <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <h3 className="text-white font-bold text-xl truncate mb-1">
-            {name || `#${identifier}`}
+            {alt}
           </h3>
-          {collection && (
-            <p className="text-gray-300 text-sm truncate">
-              {collection}
-            </p>
-          )}
         </div>
       </div>
     </div>

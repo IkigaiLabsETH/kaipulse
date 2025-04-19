@@ -1,36 +1,58 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { OpenSeaNFT } from '@/services/opensea/types';
+import type { OpenSeaNFT } from '@/services/opensea/types';
+import { useState } from 'react';
+import { logger } from '@/lib/logger';
 
-interface NFTCardProps {
+export interface NFTCardProps {
   nft: OpenSeaNFT;
-  collectionSlug: string;
+  href: string;
 }
 
-export function NFTCard({ nft, collectionSlug }: NFTCardProps) {
+export function NFTCard({ nft, href }: NFTCardProps) {
+  const [imageError, setImageError] = useState(false);
+
+  const formatPrice = (price?: { currentPrice?: number }) => {
+    if (!price?.currentPrice) return 'Not listed';
+    return `${price.currentPrice.toFixed(3)} ETH`;
+  };
+
+  const imageUrl = !imageError && nft.image_url 
+    ? nft.image_url 
+    : '/images/placeholder-nft.svg';
+
+  const handleImageError = () => {
+    logger.warn('Failed to load NFT image:', { 
+      nftId: nft.identifier,
+      imageUrl: nft.image_url 
+    });
+    setImageError(true);
+  };
+
   return (
-    <Link href={`/collections/${collectionSlug}/${nft.identifier}`}>
-      <div className="group relative flex flex-col overflow-hidden rounded-lg border-2 border-yellow-500 bg-[#1c1f26] shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)]">
-        <div className="relative aspect-square w-full overflow-hidden bg-neutral-800">
-          <Image
-            src={nft.image_url}
-            alt={nft.name || `NFT #${nft.identifier}`}
-            fill
-            className="object-contain transition-transform duration-200 group-hover:scale-105"
-          />
-        </div>
-
-        <div className="flex flex-col gap-1 p-4">
-          <h3 className="text-lg font-bold text-white font-epilogue">
-            {nft.name || `#${nft.identifier}`}
-          </h3>
-
-          {nft.description && (
-            <p className="text-sm text-gray-400 line-clamp-2 font-satoshi">
-              {nft.description}
-            </p>
-          )}
-        </div>
+    <Link
+      href={href}
+      className="group block rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden border-2 border-transparent hover:border-yellow-500/20"
+    >
+      <div className="aspect-square relative overflow-hidden">
+        <Image
+          src={imageUrl}
+          alt={nft.name || `#${nft.identifier}`}
+          fill
+          className="object-cover transform transition-transform duration-700 group-hover:scale-110"
+          onError={handleImageError}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+      <div className="p-4">
+        <h3 className="font-medium text-white truncate">
+          {nft.name || `#${nft.identifier}`}
+        </h3>
+        <p className="text-sm text-white/60 mt-1">
+          {formatPrice(nft.price)}
+        </p>
       </div>
     </Link>
   );
