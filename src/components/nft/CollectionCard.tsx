@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { OpenSeaCollection } from '@/services/opensea/types';
+import { OpenSeaCollection, OpenSeaCollectionStats } from '@/services/opensea/types';
 import { TrendingUp, Users, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { logger } from '@/lib/logger';
 
 interface CollectionCardProps {
-  collection: OpenSeaCollection & { stats?: any };
+  collection: OpenSeaCollection & { stats?: Partial<OpenSeaCollectionStats> };
   index: number;
 }
 

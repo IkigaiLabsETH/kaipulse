@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { OpenSeaAPI } from '@/services/opensea/api';
 import { NFTCard } from '@/components/nft/NFTCard';
 import { logger } from '@/lib/logger';
-import type { OpenSeaNFT, OpenSeaCollectionTraits } from '@/services/opensea/types';
+import type { OpenSeaNFT } from '@/services/opensea/types';
+import type { OpenSeaCollectionTraits } from '@/services/opensea/types';
 
 interface CollectionGridProps {
   collectionSlug: string;
@@ -20,6 +21,10 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState<string | undefined>(undefined);
   const [actualSlug, setActualSlug] = useState<string | undefined>(undefined);
+  const [selectedTraits, setSelectedTraits] = useState<Array<{
+    trait_type: string;
+    values: string[];
+  }>>([]);
 
   useEffect(() => {
     async function fetchNFTs() {
@@ -51,16 +56,17 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
           throw new Error('No contract address found for collection');
         }
 
-        logger.info('Fetching NFTs by contract:', { contractAddress });
+        logger.info('Fetching NFTs by contract:', { contractAddress, selectedTraits });
 
-        // Use getNFTsByContract instead of getCollectionNFTs
+        // Use getNFTsByContract with trait filters if selected
         const response = await api.getNFTsByContract({
           chain: 'ethereum',
           address: contractAddress,
           limit: 20,
           include_orders: true,
           order_by: 'sale_price',
-          order_direction: 'desc'
+          order_direction: 'desc',
+          traits: selectedTraits.length > 0 ? selectedTraits : undefined
         });
 
         logger.info('NFTs fetched:', {
@@ -83,7 +89,7 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
     if (collectionSlug) {
       fetchNFTs();
     }
-  }, [collectionSlug]);
+  }, [collectionSlug, selectedTraits]);
 
   const loadMore = async () => {
     if (!nextCursor || !hasMore) return;

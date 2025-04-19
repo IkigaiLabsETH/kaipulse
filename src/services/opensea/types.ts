@@ -97,6 +97,7 @@ export interface OpenSeaNFT {
   identifier: string;
   collection: string;
   contract: string;
+  chain: string;
   token_standard: 'erc721' | 'erc1155' | 'erc20' | 'cryptopunks';
   name: string;
   description: string;
@@ -120,15 +121,7 @@ export interface OpenSeaNFT {
     username?: string;
   }>;
   traits: OpenSeaTrait[];
-  rarity?: {
-    strategy_id: string;
-    strategy_version: string;
-    rank: number;
-    score: number;
-    calculated_at: string;
-    max_rank: number;
-    tokens_scored: number;
-  };
+  rarity?: OpenSeaRarityInfo;
   ownership?: {
     owner: {
       address: string;
@@ -166,6 +159,9 @@ export interface OpenSeaNFT {
       timestamp: string;
     };
   };
+  bestListing?: OpenSeaListing;
+  bestOffer?: OpenSeaOffer;
+  lastSale?: OpenSeaMetadata;
 }
 
 export interface OpenSeaCollectionStats {
@@ -388,72 +384,119 @@ export interface OpenSeaListing {
 export interface OpenSeaOffer {
   order_hash: string;
   chain: string;
-  type: 'offer';
+  type: string;
+  price: {
+    current: {
+      value: string;
+      decimals: number;
+    };
+  };
+  protocol_data: {
+    parameters: {
+      consideration: Array<{
+        token: string;
+        amount: string;
+        endAmount: string;
+      }>;
+      offer: Array<{
+        token: string;
+        amount: string;
+        endAmount: string;
+      }>;
+    };
+  };
   protocol_address: string;
-  protocol_data: OpenSeaProtocolData;
-  protocol: 'seaport';
-  maker: {
-    address: string;
-    profile_img_url?: string;
-    username?: string;
-  };
-  taker?: {
-    address: string;
-    profile_img_url?: string;
-    username?: string;
-  };
-  current_price: string;
-  maker_fees: Array<{
-    account: {
-      address: string;
-    };
-    basis_points: string;
-  }>;
-  taker_fees: Array<{
-    account: {
-      address: string;
-    };
-    basis_points: string;
-  }>;
-  side: 'bid';
-  order_type: 'basic' | 'dutch' | 'english' | 'criteria';
-  cancelled: boolean;
-  finalized: boolean;
-  marked_invalid: boolean;
-  remaining_quantity: number;
-  relay_id: string;
-  created_date: string;
-  closing_date: string | null;
-  updated_date: string;
   criteria?: {
-    collection: {
-      slug: string;
-      name: string;
-      contract: string;
-      chain: string;
-      safelist_status: 'not_requested' | 'requested' | 'approved' | 'verified';
-      description?: string;
-      image_url?: string;
-    };
     trait?: {
       type: string;
       value: string;
-      count?: number;
-      percent?: number;
+    };
+    collection?: {
+      slug: string;
+      name?: string;
+      contract?: string;
+      chain?: string;
+      safelist_status?: 'not_requested' | 'requested' | 'approved' | 'verified';
+      description?: string;
+      image_url?: string;
     };
   };
+  created_date: string;
+  closing_date: string;
+  maker: {
+    address: string;
+  };
+  taker: {
+    address: string;
+  };
+  current_price: string;
+  payment_token: OpenSeaPaymentToken;
   nft?: {
     identifier: string;
     contract: string;
     chain: string;
     metadata?: NFTMetadata;
   };
-  payment_token: {
-    address: string;
-    chain: string;
-    symbol: string;
-    decimals: number;
-    eth_price?: string;
-    usd_price?: string;
+}
+
+export interface OpenSeaNFTParams {
+  chain: string;
+  address: string;
+  limit?: number;
+  next?: string;
+  include_orders?: boolean;
+  token_ids?: string[];
+  available_for_sale?: boolean;
+  order_by?: 'created_date' | 'sale_date' | 'sale_count' | 'sale_price' | 'total_price';
+  order_direction?: 'asc' | 'desc';
+  traits?: Array<{
+    trait_type: string;
+    values: string[];
+  }>;
+}
+
+export interface OpenSeaRarityInfo {
+  strategy_id: string;
+  strategy_version: string;
+  rank: number;
+  score: number;
+  calculated_at: string;
+  max_rank: number;
+  tokens_scored: number;
+}
+
+export interface OpenSeaListingResponse {
+  orders: OpenSeaListing[];
+  next: string | null;
+}
+
+export interface OpenSeaOfferResponse {
+  orders: OpenSeaOffer[];
+  next: string | null;
+}
+
+export interface OpenSeaMetadata {
+  event_type?: 'listing' | 'sale' | 'offer' | 'transfer' | 'mint' | 'cancel';
+  timestamp?: string;
+  price?: {
+    current?: {
+      value: number;
+      decimals: number;
+    };
   };
+  payment_token?: {
+    symbol: string;
+    address: string;
+    decimals: number;
+    eth_price: string;
+    usd_price: string;
+  };
+  from_address?: string;
+  to_address?: string;
+  transaction?: {
+    transaction_hash: string;
+    block_hash: string;
+    block_number: number;
+  };
+  [key: string]: any; // Allow additional properties while keeping specific ones typed
 } 

@@ -1,5 +1,5 @@
 /* eslint-disable no-console, no-restricted-globals */
-import { OpenSeaCollection, OpenSeaNFT, OpenSeaCollectionStats, PaginatedResponse, OpenSeaEvent, OpenSeaAccount, OpenSeaContract, OpenSeaPaymentToken, OpenSeaCollectionTraits, OpenSeaListing, OpenSeaOffer } from './types';
+import { OpenSeaCollection, OpenSeaNFT, OpenSeaCollectionStats, PaginatedResponse, OpenSeaEvent, OpenSeaAccount, OpenSeaContract, OpenSeaPaymentToken, OpenSeaCollectionTraits, OpenSeaListing, OpenSeaOffer, OpenSeaNFTParams, OpenSeaRarityInfo, OpenSeaListingResponse, OpenSeaOfferResponse, OpenSeaMetadata } from './types';
 import { logger } from '@/lib/logger';
 
 const OPENSEA_API_URL = 'https://api.opensea.io/api/v2';
@@ -234,10 +234,10 @@ export class OpenSeaAPI {
         const nftsWithPrices = await Promise.all(
           response.results.map(async (nft) => {
             try {
-              const priceInfo = await this.getNFTPriceInfo(nft.contract, nft.identifier);
+              const priceInfo = await this.getNFTPriceInfo(nft);
     return {
                 ...nft,
-                price: priceInfo
+                price: priceInfo.price
               };
             } catch (priceError) {
               logger.warn('Failed to fetch NFT price info:', {
@@ -310,10 +310,10 @@ export class OpenSeaAPI {
       // Fetch additional price information if include_orders wasn't specified
       if (!include_orders) {
         try {
-          const priceInfo = await this.getNFTPriceInfo(normalizedAddress, identifier);
+          const priceInfo = await this.getNFTPriceInfo(nft);
       return {
         ...nft,
-        price: priceInfo
+        price: priceInfo.price
       };
         } catch (priceError) {
           logger.warn('Failed to fetch NFT price info:', {
@@ -328,7 +328,7 @@ export class OpenSeaAPI {
       // Fetch rarity data if not included
       if (!nft.rarity) {
         try {
-          const rarityInfo = await this.fetchWithRetry<any>(
+          const rarityInfo = await this.fetchWithRetry<OpenSeaRarityInfo>(
             `/chain/${normalizedChain}/contract/${normalizedAddress}/nfts/${identifier}/rarity`
           );
           if (rarityInfo) {
@@ -373,108 +373,43 @@ export class OpenSeaAPI {
   }
 
   // Get NFT price information
-  private async getNFTPriceInfo(contractAddress: string, tokenId: string): Promise<{
-    currentPrice?: number;
-    paymentToken?: {
-      symbol: string;
-      address: string;
-      decimals: number;
-      eth_price: string;
-      usd_price: string;
-    };
-    lastSale?: {
-      price: number;
-      timestamp: string;
-    };
-  }> {
+  private async getNFTPriceInfo(nft: OpenSeaNFT): Promise<OpenSeaNFT> {
     try {
-      // Get best listing for the NFT
-      const bestListing = await this.fetchWithRetry<any>(
-        `/orders/ethereum/seaport/listings`, {
-          asset_contract_address: contractAddress.toLowerCase(),
-          token_ids: tokenId,
-          order_by: 'eth_price',
-          order_direction: 'asc',
-          limit: '1'
-        }
-      );
-
-      // Get best offer for the NFT
-      const bestOffer = await this.fetchWithRetry<any>(
-        `/orders/ethereum/seaport/offers`, {
-          asset_contract_address: contractAddress.toLowerCase(),
-          token_ids: tokenId,
-          order_by: 'eth_price',
-          order_direction: 'desc',
-          limit: '1'
-        }
-      );
-
-      // Get last sale from events
-      const salesResponse = await this.fetchWithRetry<PaginatedResponse<OpenSeaEvent>>(
-        `/events/chain/ethereum/contract/${contractAddress.toLowerCase()}/nfts/${tokenId}`,
-        {
-          limit: '1',
-          event_type: 'sale'
-        }
-      );
-
-      logger.info('Price info responses:', {
-        bestListing,
-        bestOffer,
-        lastSale: salesResponse.results?.[0]
-      });
-
-      const latestSale = salesResponse.results?.[0];
-      const listing = bestListing?.orders?.[0];
-      const offer = bestOffer?.orders?.[0];
-
+      const priceInfo = await this.getNFTFullPriceInfo(nft);
       return {
-        currentPrice: listing?.current_price ? Number(listing.current_price) / 1e18 : undefined,
-        paymentToken: {
-          symbol: 'ETH',
-          address: '0x0000000000000000000000000000000000000000',
-          decimals: 18,
-          eth_price: '1',
-          usd_price: '1'
-        },
-        lastSale: latestSale?.price?.current?.value ? {
-          price: Number(latestSale.price.current.value),
-          timestamp: latestSale.created_date
-        } : undefined
+        ...nft,
+        bestListing: priceInfo.bestListing || undefined,
+        bestOffer: priceInfo.bestOffer || undefined,
+        lastSale: priceInfo.lastSale || undefined
       };
     } catch (error) {
       logger.error('Error fetching NFT price info:', error);
-      return {};
+      return nft;
     }
   }
 
   // Get best listing for an NFT
-  async getBestListing(contractAddress: string, tokenId: string): Promise<any> {
-    return this.fetchWithRetry<any>(
-      `/orders/ethereum/seaport/listings`,
-      {
-        asset_contract_address: contractAddress.toLowerCase(),
-        token_ids: tokenId,
-        order_by: 'eth_price',
-        order_direction: 'asc',
-        limit: '1'
-      }
-    );
+  async getBestListing(contractAddress: string, tokenId: string): Promise<PaginatedResponse<OpenSeaListing>> {
+    return this.getListings({
+      chain: 'ethereum',
+      asset_contract_address: contractAddress,
+      token_ids: [tokenId],
+      limit: 1,
+      order_by: 'eth_price',
+      order_direction: 'asc'
+    });
   }
 
   // Get best offer for an NFT
-  async getBestOffer(contractAddress: string, tokenId: string): Promise<any> {
-    return this.fetchWithRetry<any>(
-      `/orders/ethereum/seaport/offers`,
-      {
-        asset_contract_address: contractAddress.toLowerCase(),
-        token_ids: tokenId,
-        order_by: 'eth_price',
-        order_direction: 'desc',
-        limit: '1'
-      }
-    );
+  async getBestOffer(contractAddress: string, tokenId: string): Promise<PaginatedResponse<OpenSeaOffer>> {
+    return this.getItemOffers({
+      chain: 'ethereum',
+      asset_contract_address: contractAddress,
+      token_ids: [tokenId],
+      limit: 1,
+      order_by: 'eth_price',
+      order_direction: 'desc'
+    });
   }
 
   // Get NFT events by contract address and token ID
@@ -718,10 +653,10 @@ export class OpenSeaAPI {
         const nftsWithPrices = await Promise.all(
           response.results.map(async (nft) => {
             try {
-              const priceInfo = await this.getNFTPriceInfo(nft.contract, nft.identifier);
+              const priceInfo = await this.getNFTPriceInfo(nft);
               return {
                 ...nft,
-                price: priceInfo
+                price: priceInfo.price
               };
             } catch (priceError) {
               logger.warn('Failed to fetch NFT price info:', {
@@ -749,122 +684,63 @@ export class OpenSeaAPI {
   }
 
   // Get NFTs by contract address
-  async getNFTsByContract(params: {
-    chain: string;
-    address: string;
-    limit?: number;
-    next?: string;
-    include_orders?: boolean;
-    token_ids?: string[];
-    available_for_sale?: boolean;
-    order_by?: 'created_date' | 'sale_date' | 'sale_count' | 'sale_price' | 'total_price';
-    order_direction?: 'asc' | 'desc';
-  }): Promise<PaginatedResponse<OpenSeaNFT>> {
-    const { 
+  async getNFTsByContract(params: OpenSeaNFTParams): Promise<PaginatedResponse<OpenSeaNFT>> {
+    const {
       chain,
       address,
-      limit = 50,
+      limit = DEFAULT_LIMIT,
       next,
       include_orders,
       token_ids,
       available_for_sale,
       order_by,
-      order_direction
+      order_direction,
+      traits
     } = params;
-
-    if (!chain) {
-      throw new OpenSeaAPIError('Chain parameter is required');
-    }
 
     if (!address || !/^0x[a-fA-F0-9]{40}$/i.test(address)) {
       throw new OpenSeaAPIError('Invalid contract address format');
     }
 
-    logger.info('Fetching NFTs by contract:', { chain, address });
+    const queryParams: Record<string, string> = {
+      limit: limit.toString()
+    };
 
-    try {
-      const normalizedAddress = address.toLowerCase();
-      const normalizedChain = chain.toLowerCase();
-
-      const queryParams: Record<string, string> = {
-        limit: limit.toString()
-      };
-
-      // Add optional query parameters
-      if (next) queryParams.next = next;
-      if (include_orders !== undefined) {
-        queryParams.include_orders = include_orders.toString();
-      }
-      if (token_ids?.length) {
-        queryParams.token_ids = token_ids.join(',');
-      }
-      if (available_for_sale !== undefined) {
-        queryParams.available_for_sale = available_for_sale.toString();
-      }
-      if (order_by) queryParams.order_by = order_by;
-      if (order_direction) queryParams.order_direction = order_direction;
-
-      const response = await this.fetchWithRetry<PaginatedResponse<OpenSeaNFT>>(
-        `/chain/${normalizedChain}/contract/${normalizedAddress}/nfts`,
-        queryParams
-      );
-
-      // If orders weren't included, fetch additional price information for each NFT
-      if (!include_orders) {
-        const nftsWithPrices = await Promise.all(
-          response.results.map(async (nft) => {
-            try {
-              const priceInfo = await this.getNFTPriceInfo(normalizedAddress, nft.identifier);
-              return {
-                ...nft,
-                price: priceInfo
-              };
-            } catch (priceError) {
-              logger.warn('Failed to fetch NFT price info:', {
-                chain,
-                contract: normalizedAddress,
-                identifier: nft.identifier,
-                error: priceError
-              });
-              return nft;
-            }
-          })
-        );
-
-        return {
-          ...response,
-          results: nftsWithPrices
-        };
-      }
-
-      // Try to fetch and include contract metadata for all NFTs
-      try {
-        const contractData = await this.getContract({ chain, address: normalizedAddress });
-        return {
-          ...response,
-          results: response.results.map(nft => ({
-            ...nft,
-            contract_metadata: {
-              name: contractData.name,
-              symbol: contractData.symbol,
-              type: contractData.type,
-              total_supply: contractData.total_supply,
-              verified: contractData.verified
-            }
-          }))
-        };
-      } catch (contractError) {
-        logger.warn('Failed to fetch contract metadata:', {
-          chain,
-          address: normalizedAddress,
-          error: contractError
-        });
-        return response;
-      }
-    } catch (error) {
-      logger.error('Error fetching NFTs by contract:', error);
-      throw error;
+    if (next) {
+      queryParams.next = next;
     }
+
+    if (include_orders) {
+      queryParams.include_orders = 'true';
+    }
+
+    if (token_ids) {
+      queryParams.token_ids = token_ids.join(',');
+    }
+
+    if (available_for_sale) {
+      queryParams.available_for_sale = 'true';
+    }
+
+    if (order_by) {
+      queryParams.order_by = order_by;
+    }
+
+    if (order_direction) {
+      queryParams.order_direction = order_direction;
+    }
+
+    if (traits && traits.length > 0) {
+      traits.forEach((trait: { trait_type: string; values: string[] }, index: number) => {
+        queryParams[`traits[${index}][trait_type]`] = trait.trait_type;
+        queryParams[`traits[${index}][values]`] = trait.values.join(',');
+      });
+    }
+
+    return this.fetchWithRetry<PaginatedResponse<OpenSeaNFT>>(
+      `/chain/${chain}/contract/${address.toLowerCase()}/nfts`,
+      queryParams
+    );
   }
 
   // Get traits for a collection
@@ -1189,163 +1065,18 @@ export class OpenSeaAPI {
     collection_slug: string;
     token_identifier: string;
   }): Promise<OpenSeaListing | null> {
-    const { collection_slug, token_identifier } = params;
-
-    if (!collection_slug) {
-      throw new OpenSeaAPIError('Collection slug is required');
-    }
-
-    if (!token_identifier) {
-      throw new OpenSeaAPIError('Token identifier is required');
-    }
-
-    logger.info('Fetching best listing for NFT:', { collection_slug, token_identifier });
-
     try {
-      // First verify the collection exists
-      const collection = await this.getCollection(collection_slug);
-
-      const response = await this.fetchWithRetry<{ listing: OpenSeaListing | null }>(
-        `/listings/collection/${collection_slug}/nfts/${token_identifier}/best`
-      );
-
-      if (!response.listing) {
-        logger.info('No active listing found for NFT:', { collection_slug, token_identifier });
-        return null;
-      }
-
-      // Enrich listing with additional data if payment token is not native ETH
-      if (response.listing.payment_token.address !== '0x0000000000000000000000000000000000000000') {
-        try {
-          const tokenDetails = await this.getPaymentToken({
-            chain: response.listing.chain,
-            address: response.listing.payment_token.address
-          });
-
-          return {
-            ...response.listing,
-            payment_token: {
-              ...response.listing.payment_token,
-              eth_price: tokenDetails.eth_price,
-              usd_price: tokenDetails.usd_price
-            }
-          };
-        } catch (error) {
-          logger.warn('Failed to enrich listing with payment token details:', {
-            listing_hash: response.listing.order_hash,
-            error
-          });
-        }
-      }
-
-      return response.listing;
-    } catch (error) {
-      logger.error('Error fetching best listing for NFT:', error);
-      throw error;
-    }
-  }
-
-  // Get best (cheapest) listings for a collection
-  async getBestCollectionListings(params: {
-    collection_slug: string;
-    limit?: number;
-    payment_token_address?: string;
-    maker?: string;
-    taker?: string;
-    protocol?: 'seaport';
-  }): Promise<PaginatedResponse<OpenSeaListing>> {
-    const { 
-      collection_slug,
-      limit = 50,
-      payment_token_address,
-      maker,
-      taker,
-      protocol = 'seaport'
-    } = params;
-
-    if (!collection_slug) {
-      throw new OpenSeaAPIError('Collection slug is required');
-    }
-
-    logger.info('Fetching best listings for collection:', { collection_slug, params });
-
-    try {
-      // First verify the collection exists
-      await this.getCollection(collection_slug);
-
-      const queryParams: Record<string, string> = {
-        limit: limit.toString(),
-        protocol
-      };
-
-      if (payment_token_address) {
-        if (!/^0x[a-fA-F0-9]{40}$/i.test(payment_token_address)) {
-          throw new OpenSeaAPIError('Invalid payment token address format');
-        }
-        queryParams.payment_token_address = payment_token_address.toLowerCase();
-      }
-      if (maker) {
-        if (!/^0x[a-fA-F0-9]{40}$/i.test(maker)) {
-          throw new OpenSeaAPIError('Invalid maker address format');
-        }
-        queryParams.maker = maker.toLowerCase();
-      }
-      if (taker) {
-        if (!/^0x[a-fA-F0-9]{40}$/i.test(taker)) {
-          throw new OpenSeaAPIError('Invalid taker address format');
-        }
-        queryParams.taker = taker.toLowerCase();
-      }
-
-      const response = await this.fetchWithRetry<PaginatedResponse<OpenSeaListing>>(
-        `/listings/collection/${collection_slug}/best`,
-        queryParams
-      );
-
-      // Enrich listings with additional data
-      const enrichedListings = await Promise.all(
-        response.results.map(async (listing) => {
-          try {
-            // If payment token is not native ETH, fetch token details
-            if (listing.payment_token.address !== '0x0000000000000000000000000000000000000000') {
-              const tokenDetails = await this.getPaymentToken({
-                chain: listing.chain,
-                address: listing.payment_token.address
-              });
-              return {
-                ...listing,
-                payment_token: {
-                  ...listing.payment_token,
-                  eth_price: tokenDetails.eth_price,
-                  usd_price: tokenDetails.usd_price
-                }
-              };
-            }
-            return listing;
-          } catch (error) {
-            logger.warn('Failed to enrich listing with payment token details:', {
-              listing_hash: listing.order_hash,
-              error
-            });
-            return listing;
-          }
-        })
-      );
-
-      // Sort listings by price in ascending order (cheapest first)
-      const sortedListings = enrichedListings.sort((a, b) => {
-        const aPrice = BigInt(a.current_price);
-        const bPrice = BigInt(b.current_price);
-        return aPrice < bPrice ? -1 : aPrice > bPrice ? 1 : 0;
+      const listings = await this.getAllCollectionListings({
+        collection_slug: params.collection_slug,
+        limit: 1,
+        order_by: 'eth_price',
+        order_direction: 'asc'
       });
 
-      return {
-        ...response,
-        results: sortedListings
-      };
+      return listings.results[0] || null;
     } catch (error) {
-      logger.error('Error fetching best listings for collection:', error);
-      throw error;
+      logger.error('Error getting best NFT listing:', error);
+      return null;
     }
   }
 
@@ -1354,96 +1085,18 @@ export class OpenSeaAPI {
     collection_slug: string;
     token_identifier: string;
   }): Promise<OpenSeaOffer | null> {
-    const { collection_slug, token_identifier } = params;
-
-    if (!collection_slug) {
-      throw new OpenSeaAPIError('Collection slug is required');
-    }
-
-    if (!token_identifier) {
-      throw new OpenSeaAPIError('Token identifier is required');
-    }
-
-    logger.info('Fetching best offer for NFT:', { collection_slug, token_identifier });
-
     try {
-      // First verify the collection exists
-      const collection = await this.getCollection(collection_slug);
+      const offers = await this.getAllCollectionOffers({
+        collection_slug: params.collection_slug,
+        limit: 1,
+        order_by: 'eth_price',
+        order_direction: 'desc'
+      });
 
-      const response = await this.fetchWithRetry<{ offer: OpenSeaOffer | null }>(
-        `/offers/collection/${collection_slug}/nfts/${token_identifier}/best`
-      );
-
-      if (!response.offer) {
-        logger.info('No active offers found for NFT:', { collection_slug, token_identifier });
-        return null;
-      }
-
-      const offer = response.offer;
-
-      // Enrich offer with additional data if payment token is not native ETH
-      if (offer.payment_token.address !== '0x0000000000000000000000000000000000000000') {
-        try {
-          const tokenDetails = await this.getPaymentToken({
-            chain: offer.chain,
-            address: offer.payment_token.address
-          });
-
-          return {
-            ...offer,
-            payment_token: {
-              ...offer.payment_token,
-              eth_price: tokenDetails.eth_price,
-              usd_price: tokenDetails.usd_price
-            }
-          };
-        } catch (error) {
-          logger.warn('Failed to enrich offer with payment token details:', {
-            offer_hash: offer.order_hash,
-            error
-          });
-        }
-      }
-
-      // Check if this is a criteria-based offer
-      if (offer.criteria) {
-        const criteria = offer.criteria;
-        try {
-          // Verify the criteria matches the NFT's traits
-          const nft = await this.getNFT({
-            chain: offer.chain,
-            address: criteria.collection.contract,
-            identifier: token_identifier
-          });
-
-          if (criteria.trait) {
-            const trait = criteria.trait;
-            const matchingTrait = nft.traits.find(
-              nftTrait => 
-                nftTrait.trait_type === trait.type &&
-                nftTrait.value === trait.value
-            );
-
-            if (!matchingTrait) {
-              logger.warn('Criteria offer trait does not match NFT traits:', {
-                offer_hash: offer.order_hash,
-                criteria: trait,
-                nft_traits: nft.traits
-              });
-            }
-          }
-        } catch (error) {
-          logger.warn('Failed to verify criteria offer against NFT traits:', {
-            offer_hash: offer.order_hash,
-            error
-          });
-        }
-      }
-
-      return offer;
+      return offers.results[0] || null;
     } catch (error) {
-      logger.error('Error fetching best offer for NFT:', error);
-      throw error;
+      logger.error('Error getting best NFT offer:', error);
+      return null;
     }
   }
 
@@ -1461,103 +1114,65 @@ export class OpenSeaAPI {
   }): Promise<PaginatedResponse<OpenSeaOffer>> {
     const { 
       collection_slug,
-      limit = 50,
+      limit = DEFAULT_LIMIT,
       next,
       payment_token_address,
       maker,
       taker,
-      order_by = 'created_date',
-      order_direction = 'desc',
-      include_criteria = true
+      order_by,
+      order_direction,
+      include_criteria
     } = params;
 
     if (!collection_slug) {
       throw new OpenSeaAPIError('Collection slug is required');
     }
 
-    logger.info('Fetching collection offers:', { collection_slug, params });
+    const queryParams: Record<string, string> = {
+      limit: limit.toString()
+    };
 
-    try {
-      // First verify the collection exists
-      await this.getCollection(collection_slug);
-
-      const queryParams: Record<string, string> = {
-        limit: limit.toString(),
-        order_by,
-        order_direction,
-        include_criteria: include_criteria.toString()
-      };
-
-      if (next) queryParams.next = next;
-      if (payment_token_address) {
-        if (!/^0x[a-fA-F0-9]{40}$/i.test(payment_token_address)) {
-          throw new OpenSeaAPIError('Invalid payment token address format');
-        }
-        queryParams.payment_token_address = payment_token_address.toLowerCase();
-      }
-      if (maker) {
-        if (!/^0x[a-fA-F0-9]{40}$/i.test(maker)) {
-          throw new OpenSeaAPIError('Invalid maker address format');
-        }
-        queryParams.maker = maker.toLowerCase();
-      }
-      if (taker) {
-        if (!/^0x[a-fA-F0-9]{40}$/i.test(taker)) {
-          throw new OpenSeaAPIError('Invalid taker address format');
-        }
-        queryParams.taker = taker.toLowerCase();
-      }
-
-      const response = await this.fetchWithRetry<PaginatedResponse<OpenSeaOffer>>(
-        `/offers/collection/${collection_slug}`,
-        queryParams
-      );
-
-      // Enrich offers with additional data
-      const enrichedOffers = await Promise.all(
-        response.results.map(async (offer) => {
-          try {
-            // If payment token is not native ETH, fetch token details
-            if (offer.payment_token.address !== '0x0000000000000000000000000000000000000000') {
-              const tokenDetails = await this.getPaymentToken({
-                chain: offer.chain,
-                address: offer.payment_token.address
-              });
-              return {
-                ...offer,
-                payment_token: {
-                  ...offer.payment_token,
-                  eth_price: tokenDetails.eth_price,
-                  usd_price: tokenDetails.usd_price
-                }
-              };
-            }
-            return offer;
-          } catch (error) {
-            logger.warn('Failed to enrich offer with payment token details:', {
-              offer_hash: offer.order_hash,
-              error
-            });
-            return offer;
-          }
-        })
-      );
-
-      // Sort criteria offers first if they exist
-      const sortedOffers = enrichedOffers.sort((a, b) => {
-        if (a.criteria && !b.criteria) return -1;
-        if (!a.criteria && b.criteria) return 1;
-        return 0;
-      });
-
-      return {
-        ...response,
-        results: sortedOffers
-      };
-    } catch (error) {
-      logger.error('Error fetching collection offers:', error);
-      throw error;
+    if (next) {
+      queryParams.next = next;
     }
+
+    if (payment_token_address) {
+      if (!/^0x[a-fA-F0-9]{40}$/i.test(payment_token_address)) {
+        throw new OpenSeaAPIError('Invalid payment token address format');
+      }
+      queryParams.payment_token_address = payment_token_address.toLowerCase();
+    }
+
+    if (maker) {
+      if (!/^0x[a-fA-F0-9]{40}$/i.test(maker)) {
+        throw new OpenSeaAPIError('Invalid maker address format');
+      }
+      queryParams.maker = maker.toLowerCase();
+    }
+
+    if (taker) {
+      if (!/^0x[a-fA-F0-9]{40}$/i.test(taker)) {
+        throw new OpenSeaAPIError('Invalid taker address format');
+      }
+      queryParams.taker = taker.toLowerCase();
+    }
+
+    if (order_by) {
+      queryParams.order_by = order_by;
+    }
+
+    if (order_direction) {
+      queryParams.order_direction = order_direction;
+    }
+
+    if (include_criteria) {
+      queryParams.include_criteria = 'true';
+    }
+
+    return this.fetchWithRetry<PaginatedResponse<OpenSeaOffer>>(
+      `/offers/collection/${collection_slug}`,
+      queryParams
+    );
   }
 
   // Get individual NFT offers
@@ -1969,16 +1584,18 @@ export class OpenSeaAPI {
         }
 
         // If this is a criteria offer
-        if ('criteria' in order && order.criteria) {
+        if ('criteria' in order && order.criteria?.collection?.slug) {
           try {
             const collection = await this.getCollection(order.criteria.collection.slug);
             if (collection) {
               order.criteria.collection = {
-                ...order.criteria.collection,
+                slug: order.criteria.collection.slug, // Keep the original slug
                 name: collection.name,
                 description: collection.description,
                 image_url: collection.image_url,
-                safelist_status: collection.safelist_status
+                safelist_status: collection.safelist_status,
+                contract: collection.primary_contract,
+                chain: 'ethereum'
               };
             }
           } catch (collectionError) {
@@ -2149,6 +1766,78 @@ export class OpenSeaAPI {
     } catch (error) {
       logger.error('Error fetching trait offers:', error);
       throw error;
+    }
+  }
+
+  // Get NFT rarity information
+  async getRarityInfo(nft: OpenSeaNFT): Promise<OpenSeaRarityInfo | null> {
+    try {
+      if (!this.apiKey) {
+        logger.error('OpenSea API key is not configured');
+        return null;
+      }
+
+      const data = await this.fetchWithRetry<OpenSeaRarityInfo>(
+        `/v2/collections/${nft.collection}/nfts/${nft.identifier}/rarity`
+      );
+
+      return data;
+    } catch (error) {
+      logger.error('Error fetching rarity info:', error);
+      return null;
+    }
+  }
+
+  // Get NFT price information including best listing, best offer, and last sale
+  async getNFTFullPriceInfo(nft: OpenSeaNFT): Promise<{
+    bestListing: OpenSeaListing | null;
+    bestOffer: OpenSeaOffer | null;
+    lastSale: OpenSeaMetadata | null;
+  }> {
+    try {
+      if (!this.apiKey) {
+        logger.error('OpenSea API key is not configured');
+        return {
+          bestListing: null,
+          bestOffer: null,
+          lastSale: null
+        };
+      }
+
+      const [bestListing, bestOffer] = await Promise.all([
+        this.getBestListing(nft.contract, nft.identifier),
+        this.getBestOffer(nft.contract, nft.identifier)
+      ]);
+
+      // Get the last sale event
+      const events = await this.getNFTEvents(nft.contract, nft.identifier, {
+        event_type: 'sale',
+        limit: 1
+      });
+
+      const lastSaleEvent = events.results[0];
+      const lastSaleMetadata: OpenSeaMetadata | null = lastSaleEvent ? {
+        event_type: lastSaleEvent.type,
+        timestamp: lastSaleEvent.created_date,
+        price: lastSaleEvent.price,
+        payment_token: lastSaleEvent.payment_token,
+        from_address: lastSaleEvent.from_address,
+        to_address: lastSaleEvent.to_address,
+        transaction: lastSaleEvent.transaction
+      } : null;
+
+      return {
+        bestListing: bestListing.results[0] || null,
+        bestOffer: bestOffer.results[0] || null,
+        lastSale: lastSaleMetadata || nft.lastSale || null,
+      };
+    } catch (error) {
+      logger.error('Error fetching price info:', error);
+      return {
+        bestListing: null,
+        bestOffer: null,
+        lastSale: null,
+      };
     }
   }
 
