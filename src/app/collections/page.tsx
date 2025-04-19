@@ -1,19 +1,16 @@
 'use client';
 
 import { Suspense } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { OpenSeaAPI } from '@/services/opensea/api';
-import { formatEther } from 'viem';
-import { Search, TrendingUp, BarChart2, AlertCircle, Sparkles } from 'lucide-react';
+import { Search, AlertCircle, Sparkles } from 'lucide-react';
 import { CollectionCard } from '@/components/nft/CollectionCard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { Input } from '@/components/ui/input';
-import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { useDebounce } from '@/hooks/useDebounce';
 import { trackEvent } from '@/lib/analytics';
 import { FEATURED_COLLECTIONS } from '@/constants/collections';
+import { logger } from '@/services/lib/logger';
 
 // Initialize API instance
 const openSeaApi = new OpenSeaAPI();
@@ -28,7 +25,7 @@ async function FeaturedCollections() {
           const collection = await openSeaApi.getCollectionByContract(contractAddress);
           return collection;
         } catch (error) {
-          console.error(`Failed to fetch collection for ${contractAddress}:`, error);
+          logger.error(`Failed to fetch collection for ${contractAddress}:`, error);
           return null;
         }
       })
@@ -58,20 +55,16 @@ async function FeaturedCollections() {
       </div>
     );
   } catch (error) {
-    console.error('Failed to fetch featured collections:', error);
+    logger.error('Failed to fetch featured collections:', error);
     return null;
   }
 }
 
 async function CollectionsGrid({ 
   searchQuery = '', 
-  category = 'all', 
-  timeframe = '24h',
   page = 1 
 }: { 
   searchQuery?: string;
-  category?: string;
-  timeframe?: string;
   page?: number;
 }) {
   try {
@@ -105,7 +98,7 @@ async function CollectionsGrid({
       </div>
     );
   } catch (error) {
-    console.error('Failed to fetch collections:', error);
+    logger.error('Failed to fetch collections:', error);
     return (
       <div className="text-center py-12">
         <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
@@ -145,9 +138,9 @@ function LoadingSkeleton() {
 export default function CollectionsPage({
   searchParams,
 }: {
-  searchParams: { q?: string; category?: string; timeframe?: string; page?: string };
+  searchParams: { q?: string; page?: string };
 }) {
-  const { q = '', category = 'all', timeframe = '24h', page = '1' } = searchParams;
+  const { q = '', page = '1' } = searchParams;
   const debouncedSearch = useDebounce(q, 300);
 
   return (
@@ -187,81 +180,6 @@ export default function CollectionsPage({
               className="w-full bg-[#1A1A1A] text-white border-[3px] border-yellow-500 rounded-xl pl-12 pr-4 py-3 shadow-[4px_4px_0px_0px_rgba(234,179,8,1)] hover:shadow-[6px_6px_0px_0px_rgba(234,179,8,1)] transition-all duration-200 focus:outline-none focus:border-yellow-400 placeholder-gray-500"
             />
           </div>
-
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-4">
-              <Button
-                variant="default"
-                onClick={() => {
-                  const newParams = new URLSearchParams(searchParams);
-                  newParams.set('timeframe', '24h');
-                  window.history.pushState(null, '', `?${newParams.toString()}`);
-                  trackEvent('collection_filter', { timeframe: '24h' });
-                }}
-                className={`text-white font-bold relative group flex items-center gap-2 ${
-                  timeframe === '24h' ? 'bg-yellow-500' : 'bg-transparent'
-                }`}
-              >
-                <TrendingUp size={18} />
-                <span className="relative z-10">Trending</span>
-              </Button>
-              <Button
-                variant="default"
-                onClick={() => {
-                  const newParams = new URLSearchParams(searchParams);
-                  newParams.set('timeframe', '7d');
-                  window.history.pushState(null, '', `?${newParams.toString()}`);
-                  trackEvent('collection_filter', { timeframe: '7d' });
-                }}
-                className={`text-gray-400 hover:text-white transition-colors relative group flex items-center gap-2 ${
-                  timeframe === '7d' ? 'bg-yellow-500' : 'bg-transparent'
-                }`}
-              >
-                <BarChart2 size={18} />
-                <span className="relative z-10">Top Volume</span>
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              {/* Category Filter */}
-              <Select
-                value={category}
-                onValueChange={(value: string) => {
-                  const newParams = new URLSearchParams(searchParams);
-                  newParams.set('category', value);
-                  window.history.pushState(null, '', `?${newParams.toString()}`);
-                  trackEvent('collection_filter', { category: value });
-                }}
-                options={[
-                  { value: 'all', label: 'All Categories' },
-                  { value: 'art', label: 'Art' },
-                  { value: 'gaming', label: 'Gaming' },
-                  { value: 'pfps', label: 'PFPs' },
-                  { value: 'photography', label: 'Photography' },
-                ]}
-                className="min-w-[160px]"
-              />
-
-              {/* Time Period */}
-              <Select
-                value={timeframe}
-                onValueChange={(value: string) => {
-                  const newParams = new URLSearchParams(searchParams);
-                  newParams.set('timeframe', value);
-                  window.history.pushState(null, '', `?${newParams.toString()}`);
-                  trackEvent('collection_filter', { timeframe: value });
-                }}
-                options={[
-                  { value: '24h', label: 'Last 24 hours' },
-                  { value: '7d', label: 'Last 7 days' },
-                  { value: '30d', label: 'Last 30 days' },
-                  { value: 'all', label: 'All time' },
-                ]}
-                className="min-w-[160px]"
-              />
-            </div>
-          </div>
         </div>
 
         {/* Main Collections Grid */}
@@ -269,8 +187,6 @@ export default function CollectionsPage({
           <Suspense fallback={<LoadingSkeleton />}>
             <CollectionsGrid
               searchQuery={debouncedSearch}
-              category={category}
-              timeframe={timeframe}
               page={parseInt(page)}
             />
           </Suspense>

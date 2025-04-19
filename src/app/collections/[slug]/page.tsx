@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ActivityTab } from '@/components/nft/ActivityTab';
 import CollectionPageClient from './CollectionPageClient';
 import { logger } from '@/services/lib/logger';
+import { Suspense } from 'react';
 
 // Initialize API instance
 const openSeaApi = new OpenSeaAPI();
@@ -119,7 +120,7 @@ export async function CollectionHeader({ slug }: { slug: string }) {
         <div className="max-w-lg mx-auto rounded-2xl border-[3px] border-yellow-500 bg-[#1A1A1A] p-8 shadow-[4px_4px_0px_0px_rgba(234,179,8,1)] text-center">
           <h2 className="text-xl font-bold text-white mb-4">Collection Not Found</h2>
           <p className="text-gray-400 mb-6">
-            The collection you're looking for could not be found.
+            The collection you&apos;re looking for could not be found.
           </p>
           <Link
             href="/collections"
@@ -326,5 +327,18 @@ export async function CollectionActivity({ slug }: { slug: string }) {
 }
 
 export default function CollectionPage({ params }: CollectionPageProps) {
-  return <CollectionPageClient params={params} />;
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#111111] flex items-center justify-center">
+          <div className="animate-pulse space-y-4 text-center">
+            <div className="h-8 w-48 bg-yellow-500/20 rounded-full mx-auto"></div>
+            <div className="h-4 w-64 bg-yellow-500/10 rounded-full"></div>
+          </div>
+        </div>
+      }
+    >
+      <CollectionPageClient params={params} />
+    </Suspense>
+  );
 } 

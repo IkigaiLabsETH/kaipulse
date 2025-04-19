@@ -30,8 +30,16 @@ const nextConfig = {
     minimumCacheTTL: 3600,
   },
   typescript: {
-    ignoreBuildErrors: true,
-  }
+    // Only ignore build errors in production
+    ignoreBuildErrors: process.env.NODE_ENV === 'production',
+  },
+  // Add some performance optimizations
+  poweredByHeader: false,
+  reactStrictMode: true,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 }
 
 module.exports = nextConfig 
