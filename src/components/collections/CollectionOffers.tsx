@@ -15,7 +15,6 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
   const [offers, setOffers] = useState<OpenSeaOffer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [actualSlug, setActualSlug] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     async function fetchOffers() {
@@ -33,7 +32,6 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
           const collection = await api.getCollectionByContract(collectionSlug);
           slug = collection.collection;
           contractAddress = collectionSlug;
-          setActualSlug(slug);
           logger.info('Converted to collection slug:', { slug });
         } else {
           // Get the collection to get the contract address

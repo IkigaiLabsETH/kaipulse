@@ -97,7 +97,6 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
     });
 
     const listing = bestListing.status === 'fulfilled' ? bestListing.value?.orders?.[0] : null;
-    const offer = bestOffer.status === 'fulfilled' ? bestOffer.value?.orders?.[0] : null;
 
     // Update NFT with current price information
     const nftWithPrice: OpenSeaNFT = {

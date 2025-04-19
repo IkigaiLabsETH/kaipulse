@@ -1,6 +1,5 @@
 'use client';
 
-import { formatEther } from 'viem';
 import type { OpenSeaCollectionStats } from '@/services/opensea/types';
 import { useEffect } from 'react';
 import { logger } from '@/lib/logger';

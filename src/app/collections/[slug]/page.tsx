@@ -11,6 +11,7 @@ import {
 } from '@/components/collections';
 import { logger } from '@/lib/logger';
 import { AlertCircle } from 'lucide-react';
+import type { OpenSeaCollection, OpenSeaCollectionStats, OpenSeaCollectionTraits } from '@/services/opensea/types';
 
 interface CollectionPageProps {
   params: {
@@ -21,9 +22,9 @@ interface CollectionPageProps {
 const api = new OpenSeaAPI();
 
 export default function CollectionPage({ params }: CollectionPageProps) {
-  const [collection, setCollection] = useState<any>(null);
-  const [stats, setStats] = useState<any>(null);
-  const [traits, setTraits] = useState<any>(null);
+  const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
+  const [stats, setStats] = useState<Partial<OpenSeaCollectionStats> | null>(null);
+  const [traits, setTraits] = useState<OpenSeaCollectionTraits | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -105,7 +106,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <Suspense fallback={<div className="animate-pulse">Loading stats...</div>}>
-          <CollectionStats stats={stats} />
+          <CollectionStats stats={stats || {}} />
         </Suspense>
 
         <Suspense fallback={<div className="animate-pulse">Loading NFTs...</div>}>
