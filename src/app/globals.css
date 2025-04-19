@@ -64,34 +64,34 @@
 
 :root {
 	--background: 0 0% 0%;
-	--foreground: 60 100% 97%;
+	--foreground: 60 100% 98%;
 
-	--card: 0 0% 4%;
-	--card-foreground: 60 100% 97%;
+	--card: 0 0% 2%;
+	--card-foreground: 60 100% 98%;
 
-	--popover: 0 0% 4%;
-	--popover-foreground: 60 100% 97%;
+	--popover: 0 0% 2%;
+	--popover-foreground: 60 100% 98%;
 
-	--primary: 47 95% 50%;
+	--primary: 47 95% 52%;
 	--primary-foreground: 0 0% 0%;
 
-	--secondary: 0 0% 9%;
-	--secondary-foreground: 60 100% 97%;
+	--secondary: 0 0% 4%;
+	--secondary-foreground: 60 100% 98%;
 
-	--muted: 0 0% 9%;
-	--muted-foreground: 60 5% 65%;
+	--muted: 0 0% 4%;
+	--muted-foreground: 60 5% 70%;
 
-	--accent: 47 95% 50%;
+	--accent: 47 95% 52%;
 	--accent-foreground: 0 0% 0%;
 
 	--destructive: 0 84% 60%;
 	--destructive-foreground: 60 100% 97%;
 
-	--border: 47 95% 50%;
-	--input: 0 0% 9%;
-	--ring: 47 95% 50%;
+	--border: 47 95% 52%;
+	--input: 0 0% 4%;
+	--ring: 47 95% 52%;
 
-	--radius: 0.5rem;
+	--radius: 0px;
 }
 
 .dark {
@@ -131,4 +131,139 @@
 body {
 	background-color: hsl(var(--background));
 	color: hsl(var(--foreground));
+}
+
+/* Custom Typography Classes */
+.heading-xl {
+	font-family: var(--font-boska);
+	font-size: 3.75rem;
+	line-height: 1;
+	letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+	.heading-xl {
+		font-size: 4.5rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.heading-xl {
+		font-size: 6rem;
+	}
+}
+
+.heading-lg {
+	font-family: var(--font-boska);
+	font-size: 2.25rem;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+	.heading-lg {
+		font-size: 3rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.heading-lg {
+		font-size: 3.75rem;
+	}
+}
+
+.heading-md {
+	font-family: var(--font-epilogue);
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+	.heading-md {
+		font-size: 1.875rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.heading-md {
+		font-size: 2.25rem;
+	}
+}
+
+/* Gallery Grid */
+.gallery-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+}
+
+@media (min-width: 768px) {
+	.gallery-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.gallery-grid {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 4rem;
+	}
+}
+
+/* Gallery Card */
+.gallery-card {
+	aspect-ratio: 3/4;
+	background-color: hsl(var(--card));
+	border: 1px solid hsl(var(--border) / 0.1);
+	transition: all 500ms;
+}
+
+.gallery-card:hover {
+	border-color: hsl(var(--border) / 0.4);
+}
+
+/* Animations */
+.hover-lift {
+	transition: all 500ms;
+}
+
+.hover-lift:hover {
+	transform: scale(1.02);
+	box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.fade-in {
+	opacity: 0;
+	animation: fadeIn 1000ms forwards;
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}
+
+.slide-up {
+	opacity: 0;
+	transform: translateY(1rem);
+	animation: slideUp 700ms forwards;
+}
+
+@keyframes slideUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Cursor and Container */
+.cursor-magnetic {
+	position: relative;
+	transition: transform 200ms ease-out;
+}
+
+.parallax-wrapper {
+	position: relative;
+	overflow: hidden;
 }

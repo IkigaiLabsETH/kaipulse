@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { Providers } from "@/app/providers";
-import { Header } from "@/components/Header";
 import localFont from 'next/font/local';
+import { Header } from "@/components/Header";
+import { Analytics } from '@vercel/analytics/react';
+import { cn } from "@/lib/utils";
 
 const boska = localFont({
   src: [
@@ -130,20 +130,25 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${boska.variable} ${epilogue.variable} ${satoshi.variable}`}>
-      <body className="font-satoshi">
-        <ErrorBoundary>
-          <Providers>
-            <Header />
-            <main className="pt-16 min-h-screen">
+    <html lang="en" className="dark">
+      <body className={cn(
+        `min-h-screen bg-background font-satoshi antialiased ${boska.variable} ${epilogue.variable} ${satoshi.variable}`,
+        "selection:bg-accent selection:text-accent-foreground",
+        "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30"
+      )}>
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            <div className="parallax-wrapper">
               {children}
-            </main>
-          </Providers>
-        </ErrorBoundary>
+            </div>
+          </main>
+        </div>
+        <Analytics />
       </body>
     </html>
-  );
+  )
 }
