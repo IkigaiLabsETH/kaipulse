@@ -11,7 +11,6 @@ import { PriceHistory } from '@/components/nft/PriceHistory';
 import { NFTImageGallery } from '@/components/nft/NFTImageGallery';
 import { logger } from '@/lib/logger';
 import type { OpenSeaEvent, OpenSeaNFT } from '@/services/opensea/types';
-import type { EnhancedNFT } from '@/types/nft';
 
 // Initialize API instance with API key
 logger.info('Initializing OpenSea API with config:', {
@@ -28,27 +27,6 @@ interface NFTPageProps {
     slug: string;
     tokenId: string;
   };
-}
-
-type EventType = 'sale' | 'list' | 'transfer' | 'mint';
-
-interface ActivityEvent {
-  type: EventType;
-  price?: string;
-  from: string;
-  to: string;
-  timestamp: string;
-  tokenId: string;
-  image?: string | null;
-  transaction_hash?: string;
-  payment_token?: string;
-}
-
-interface FormattedNFT {
-  id: string;
-  name: string;
-  image_url: string | null;
-  price: string;
 }
 
 // Add error boundary component

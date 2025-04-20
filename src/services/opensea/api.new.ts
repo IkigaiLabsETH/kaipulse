@@ -30,14 +30,6 @@ interface PaginatedResponse<T> {
   data: T[];  // Alias for results to maintain backward compatibility
 }
 
-// Contract response interface
-interface ContractResponse {
-  collection?: string;
-  name?: string;
-  description?: string;
-  [key: string]: string | number | boolean | null | undefined; // More specific types for additional fields
-}
-
 // OpenSea specific interfaces
 import type { 
   OpenSeaCollection, 
@@ -147,7 +139,11 @@ export class OpenSeaAPI {
               `OpenSea API Error (${response.status}): ${JSON.stringify(errorJson)}`,
               response.status
             );
-          } catch (e) {
+          } catch (error) {
+            logger.error('Failed to parse error response:', {
+              error: error instanceof Error ? error.message : 'Unknown error',
+              responseText
+            });
             throw new OpenSeaAPIError(
               `OpenSea API Error (${response.status}): ${responseText}`,
               response.status
@@ -170,9 +166,9 @@ export class OpenSeaAPI {
           });
           
           return data;
-        } catch (e) {
+        } catch (error) {
           logger.error('Failed to parse API response:', {
-            error: e instanceof Error ? e.message : 'Unknown error',
+            error: error instanceof Error ? error.message : 'Unknown error',
             responseText: responseText.slice(0, 200) + '...' // Log first 200 chars
           });
           throw new Error(`Invalid JSON response: ${responseText}`);
@@ -211,7 +207,7 @@ export class OpenSeaAPI {
         logger.info('Fetching collection by contract address:', { address: slugOrAddress });
         
         // First get the collection details from the contract endpoint
-        const response = await this.fetchWithRetry<any>(
+        const response = await this.fetchWithRetry<{ collection: OpenSeaCollection }>(
           `/api/v2/chain/ethereum/contract/${slugOrAddress.toLowerCase()}`
         );
         
@@ -222,53 +218,18 @@ export class OpenSeaAPI {
           collectionData: response?.collection
         });
 
-        // Handle different response formats
-        let collectionSlug: string | undefined;
-        
-        if (response?.collection?.slug) {
-          // New format where slug is directly in the collection object
-          collectionSlug = response.collection.slug;
-        } else if (response?.collection) {
-          // Old format where collection might be the slug itself
-          collectionSlug = typeof response.collection === 'string' ? response.collection : undefined;
-        }
-
-        if (!collectionSlug) {
-          logger.error('No collection slug found in response:', { response });
-          throw new Error('No collection slug found in OpenSea API response');
-        }
-
-        logger.info('Found collection slug:', { collectionSlug });
-
-        // Now fetch the full collection data
-        const collectionResponse = await this.fetchWithRetry<any>(
-          `/api/v2/collections/${collectionSlug}`
-        );
-
-        logger.info('Collection API Response:', {
-          hasResponse: !!collectionResponse,
-          responseKeys: Object.keys(collectionResponse || {}),
-          hasCollection: !!collectionResponse?.collection
-        });
-
-        if (!collectionResponse?.collection) {
+        if (!response?.collection) {
           throw new Error('Collection data not found in response');
         }
 
-        return collectionResponse.collection;
+        return response.collection;
       }
 
       // If it's a slug, fetch directly
       logger.info('Fetching collection by slug:', { slug: slugOrAddress });
-      const response = await this.fetchWithRetry<any>(
+      const response = await this.fetchWithRetry<{ collection: OpenSeaCollection }>(
         `/api/v2/collections/${slugOrAddress.toLowerCase()}`
       );
-
-      logger.info('Collection API Response:', {
-        hasResponse: !!response,
-        responseKeys: Object.keys(response || {}),
-        hasCollection: !!response?.collection
-      });
 
       if (!response?.collection) {
         throw new Error('Collection data not found in response');
@@ -344,7 +305,7 @@ export class OpenSeaAPI {
     
     logger.info('Fetching NFT:', { url, params });
     
-    const response = await this.fetchWithRetry<any>(url, rest);
+    const response = await this.fetchWithRetry<{ nft: OpenSeaNFT }>(url, rest);
     
     logger.info('NFT API Response:', {
       hasResponse: !!response,
@@ -358,29 +319,12 @@ export class OpenSeaAPI {
       } : null
     });
 
-    // Handle different response formats
-    let nft: OpenSeaNFT | undefined;
-    
-    if (response?.nft) {
-      // New format where NFT is nested under 'nft' key
-      nft = response.nft;
-    } else if (response?.identifier) {
-      // Old format where NFT data is at the root
-      nft = response;
-    }
-
-    if (!nft) {
+    if (!response?.nft) {
       logger.error('NFT data not found in response:', { response });
       throw new OpenSeaAPIError('NFT not found in response');
     }
 
-    // Ensure required fields are present
-    if (!nft.identifier || !nft.contract) {
-      logger.error('Invalid NFT data:', { nft });
-      throw new OpenSeaAPIError('Invalid NFT data received from API');
-    }
-
-    return nft;
+    return response.nft;
   }
 
   /**
@@ -445,7 +389,10 @@ export class OpenSeaAPI {
     });
 
     // Use the correct events endpoint for NFTs
-    const response = await this.fetchWithRetry<any>(
+    const response = await this.fetchWithRetry<{
+      events?: OpenSeaEvent[];
+      asset_events?: OpenSeaEvent[];
+    }>(
       `/api/v2/events/chain/ethereum/contract/${contractAddress.toLowerCase()}/nfts/${tokenId}`,
       { 
         limit,
