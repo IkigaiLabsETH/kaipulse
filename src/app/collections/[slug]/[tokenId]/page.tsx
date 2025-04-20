@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { OpenSeaAPI } from '@/services/opensea/api.new';
 import { ArrowLeft } from 'lucide-react';
 import { NFTActions } from '@/components/nft/NFTActions';
 import { NFTDetails } from '@/components/nft/NFTDetails';
@@ -12,15 +11,10 @@ import { NFTImageGallery } from '@/components/nft/NFTImageGallery';
 import { logger } from '@/lib/logger';
 import type { OpenSeaEvent, OpenSeaNFT } from '@/services/opensea/types';
 
-// Initialize API instance with API key
-logger.info('Initializing OpenSea API with config:', {
-  hasApiKey: !!process.env.NEXT_PUBLIC_OPENSEA_API_KEY,
-  apiKeyLength: process.env.NEXT_PUBLIC_OPENSEA_API_KEY?.length
-});
-
-const openSeaApi = new OpenSeaAPI({ 
-  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY 
-});
+// Initialize API base URL
+const API_BASE_URL = process.env.VERCEL_URL 
+  ? `https://${process.env.VERCEL_URL}/api/opensea`
+  : 'http://localhost:3000/api/opensea';
 
 interface NFTPageProps {
   params: {
@@ -63,109 +57,62 @@ function ErrorDisplay({ error }: { error: Error }) {
 
 async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) {
   try {
+    // Check if the slug is a contract address
+    const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(slug);
+    let contractAddress = isContractAddress ? slug.toLowerCase() : '';
+    let collectionSlug: string = slug;
+
+    if (isContractAddress) {
+      logger.info('Fetching collection by contract:', { contractAddress });
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}?path=collection&contract=${contractAddress}`);
+        if (!response.ok) throw new Error('Failed to fetch collection');
+        const data = await response.json();
+        collectionSlug = data.slug;
+      } catch (error) {
+        logger.error('Failed to fetch collection:', { 
+          contractAddress,
+          error: error instanceof Error ? error.message : 'Unknown error'
+        });
+        throw new Error('Failed to fetch collection details');
+      }
+    }
+
     // Log initial request parameters
     logger.info('NFTContent: Starting request with params:', {
       slug,
       tokenId,
-      isContractAddress: /^0x[a-fA-F0-9]{40}$/i.test(slug),
-      apiKeyPresent: !!process.env.NEXT_PUBLIC_OPENSEA_API_KEY
-    });
-
-    // Validate API key first
-    if (!process.env.NEXT_PUBLIC_OPENSEA_API_KEY) {
-      logger.error('NFTContent: Missing OpenSea API key');
-      throw new Error('OpenSea API key is not configured');
-    }
-
-    logger.info('Starting NFT data fetch:', { 
-      slug, 
-      tokenId,
       isContractAddress: /^0x[a-fA-F0-9]{40}$/i.test(slug)
     });
+
+    // Fetch NFT data through our API route
+    const nftResponse = await fetch(
+      `${API_BASE_URL}?path=nft&contract=${contractAddress}&tokenId=${tokenId}`
+    );
+    if (!nftResponse.ok) throw new Error('Failed to fetch NFT');
+    const nft: OpenSeaNFT = await nftResponse.json();
     
-    // Check if the slug is a contract address
-    const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(slug);
-    let nft: OpenSeaNFT;
-    let contractAddress: string;
-    let collectionSlug: string = slug;
-
-    if (isContractAddress) {
-      contractAddress = slug.toLowerCase();
-      logger.info('Fetching collection by contract:', { 
-        contractAddress,
-        apiKey: !!process.env.NEXT_PUBLIC_OPENSEA_API_KEY 
-      });
-      
-      try {
-        const collection = await openSeaApi.getCollection(contractAddress);
-        collectionSlug = collection.slug;
-        logger.info('Collection details fetched:', { 
-          contractAddress, 
-          collectionSlug,
-          collectionName: collection.name,
-          safelistStatus: collection.safelist_status
-        });
-      } catch (error) {
-        logger.error('Failed to fetch collection:', { 
-          contractAddress,
-          error: error instanceof Error ? error.message : 'Unknown error',
-          stack: error instanceof Error ? error.stack : undefined
-        });
-        throw new Error(`Failed to fetch collection details: ${error instanceof Error ? error.message : 'Unknown error'}`);
-      }
-
-      // Now fetch the NFT using the contract address
-      logger.info('Fetching NFT by contract:', { 
-        chain: 'ethereum',
-        contractAddress, 
-        tokenId,
-        includeOrders: true 
-      });
-      
-      try {
-        nft = await openSeaApi.getNFT({
-          chain: 'ethereum',
-          address: contractAddress,
-          identifier: tokenId,
-          include_orders: true
-        });
-        
-        logger.info('NFT fetched successfully:', {
-          identifier: nft.identifier,
-          name: nft.name,
-          tokenStandard: nft.token_standard,
-          imageUrl: nft.image_url,
-          hasTraits: !!nft.traits?.length,
-          hasPrice: !!nft.price
-        });
-      } catch (error) {
-        logger.error('Failed to fetch NFT:', {
-          contractAddress,
-          tokenId,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        });
-        throw error;
-      }
-    } else {
-      // If it's a collection slug, use the collection endpoint directly
-      try {
-        logger.info('Fetching NFT by collection:', { slug, tokenId });
-        nft = await openSeaApi.getNFTByCollection({
-          collection: slug,
-          identifier: tokenId,
-          include_orders: true
-        });
-        contractAddress = nft.contract;
-      } catch (error) {
-        logger.error('Error fetching NFT by collection:', error);
-        throw new Error('Failed to fetch NFT data');
-      }
-    }
-
     if (!nft) {
       logger.error('NFT data is null or undefined');
       throw new Error('NFT not found');
     }
+
+    // Update contract address from NFT data if we didn't have it
+    contractAddress = nft.contract;
+
+    logger.info('NFT data fetched successfully:', { 
+      identifier: nft.identifier,
+      name: nft.name,
+      contract: nft.contract
+    });
+
+    // Fetch events
+    const eventsResponse = await fetch(
+      `${API_BASE_URL}?path=events&contract=${contractAddress}&tokenId=${tokenId}`
+    );
+    if (!eventsResponse.ok) throw new Error('Failed to fetch events');
+    const events = await eventsResponse.json();
 
     // Log detailed NFT data for debugging
     logger.info('Raw NFT data:', {
@@ -245,7 +192,10 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
     logger.info('Fetching price data:', { contractAddress, tokenId });
     
     const [bestListing, bestOffer] = await Promise.allSettled([
-      openSeaApi.getBestListing(contractAddress, tokenId).catch(error => {
+      fetch(`${API_BASE_URL}?path=bestListing&contract=${contractAddress}&tokenId=${tokenId}`).then(response => {
+        if (!response.ok) throw new Error('Failed to fetch best listing');
+        return response.json();
+      }).catch(error => {
         logger.error('Failed to fetch best listing:', {
           contractAddress,
           tokenId,
@@ -253,7 +203,10 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
         });
         return { results: [] };
       }),
-      openSeaApi.getBestOffer(contractAddress, tokenId).catch(error => {
+      fetch(`${API_BASE_URL}?path=bestOffer&contract=${contractAddress}&tokenId=${tokenId}`).then(response => {
+        if (!response.ok) throw new Error('Failed to fetch best offer');
+        return response.json();
+      }).catch(error => {
         logger.error('Failed to fetch best offer:', {
           contractAddress,
           tokenId,
@@ -275,15 +228,10 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
     });
 
     // Fetch events with all event types
-    const [events, relatedNFTs] = await Promise.allSettled([
-      openSeaApi.getNFTEvents(contractAddress, tokenId, {
-        limit: 50,
-        event_type: 'created,successful,transfer,cancelled,offer_entered,approve'
-      }),
-      // Always use collection slug for related NFTs
-      openSeaApi.getNFTsByCollection({
-        collection: collectionSlug,
-        limit: 12
+    const [relatedNFTs] = await Promise.allSettled([
+      fetch(`${API_BASE_URL}?path=relatedNFTs&collection=${collectionSlug}&limit=12`).then(response => {
+        if (!response.ok) throw new Error('Failed to fetch related NFTs');
+        return response.json();
       })
     ]);
 
@@ -297,79 +245,73 @@ async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) 
     // Sort events by date for price history
     const sortedEvents = events.status === 'fulfilled' && events.value?.results ? 
       events.value.results
-        .filter(event => 
+        .filter((event: OpenSeaEvent) => 
           event.event_type === 'sale' && 
           event.total_price
         )
-        .sort((a, b) => new Date(b.created_date).getTime() - new Date(a.created_date).getTime())
+        .sort((a: OpenSeaEvent, b: OpenSeaEvent) => 
+          new Date(b.created_date).getTime() - new Date(a.created_date).getTime()
+        )
       : [];
 
     // Convert events to the format expected by NFTActivity
-    const activityEvents: NFTEvent[] = (events.status === 'fulfilled' && events.value?.results) ? 
-      events.value.results
-        .filter(event => {
-          const isValid = event.event_type && event.created_date;
-          logger.info('Validating event:', { event, isValid });
-          return isValid;
-        })
-        .map((event: OpenSeaEvent) => {
-          // Format price to ETH with 4 decimal places if available
-          const formattedPrice = event.total_price 
-            ? (Number(event.total_price) / 1e18).toFixed(4)
-            : undefined;
+    const activityEvents: NFTEvent[] = events.value?.results
+      .filter((event: OpenSeaEvent) => {
+        const isValid = event.event_type && event.created_date;
+        logger.info('Validating event:', { event, isValid });
+        return isValid;
+      })
+      .map((event: OpenSeaEvent) => {
+        // Format price to ETH with 4 decimal places if available
+        const formattedPrice = event.total_price 
+          ? (Number(event.total_price) / 1e18).toFixed(4)
+          : undefined;
 
-          // Map event type to our supported types (case insensitive)
-          let eventType: NFTEvent['type'];
-          const eventTypeLower = event.event_type.toLowerCase();
-          
-          // Map OpenSea event types to our types
-          if (eventTypeLower.includes('sale') || eventTypeLower === 'successful') {
-            eventType = 'sale';
-          } else if (eventTypeLower.includes('list') || eventTypeLower === 'created') {
-            eventType = 'list';
-          } else if (eventTypeLower.includes('transfer')) {
-            eventType = 'transfer';
-          } else if (eventTypeLower.includes('mint') || eventTypeLower === 'approve') {
-            eventType = 'mint';
-          } else {
-            logger.info('Unknown event type:', { 
-              originalType: event.event_type,
-              defaultingTo: 'transfer'
-            });
-            eventType = 'transfer';
-          }
-
-          const transformedEvent = {
-            type: eventType,
-            price: formattedPrice,
-            from: event.from_account || '0x0000000000000000000000000000000000000000',
-            to: event.to_account || '0x0000000000000000000000000000000000000000',
-            timestamp: event.created_date
-          };
-
-          logger.info('Event transformation:', { 
-            original: {
-              type: event.event_type,
-              price: event.total_price,
-              from: event.from_account,
-              to: event.to_account,
-              timestamp: event.created_date
-            },
-            transformed: transformedEvent
+        // Map event type to our supported types (case insensitive)
+        let eventType: NFTEvent['type'];
+        const eventTypeLower = event.event_type.toLowerCase();
+        
+        // Map OpenSea event types to our types
+        if (eventTypeLower.includes('sale') || eventTypeLower === 'successful') {
+          eventType = 'sale';
+        } else if (eventTypeLower.includes('list') || eventTypeLower === 'created') {
+          eventType = 'list';
+        } else if (eventTypeLower.includes('transfer')) {
+          eventType = 'transfer';
+        } else if (eventTypeLower.includes('mint') || eventTypeLower === 'approve') {
+          eventType = 'mint';
+        } else {
+          logger.info('Unknown event type:', { 
+            originalType: event.event_type,
+            defaultingTo: 'transfer'
           });
+          eventType = 'transfer';
+        }
 
-          return transformedEvent;
-        })
-        .filter(event => {
-          // Filter out invalid events
-          const isValid = event.type !== 'transfer' || event.from !== event.to;
-          if (!isValid) {
-            logger.info('Filtering out invalid event:', { event });
-          }
-          return isValid;
-        })
-        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-      : [];
+        const transformedEvent = {
+          type: eventType,
+          price: formattedPrice,
+          from: event.from_account || '0x0000000000000000000000000000000000000000',
+          to: event.to_account || '0x0000000000000000000000000000000000000000',
+          timestamp: event.created_date
+        };
+
+        logger.info('Event transformation:', { 
+          original: {
+            type: event.event_type,
+            price: event.total_price,
+            from: event.from_account,
+            to: event.to_account,
+            timestamp: event.created_date
+          },
+          transformed: transformedEvent
+        });
+
+        return transformedEvent;
+      })
+      .sort((a: NFTEvent, b: NFTEvent) => 
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      );
 
     // Log final events
     logger.info('Activity events after processing:', {

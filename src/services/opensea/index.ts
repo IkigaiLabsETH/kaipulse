@@ -3,7 +3,7 @@ import { MockOpenSeaAPI } from './mock';
 
 // Factory function to get the appropriate API instance
 export function getOpenSeaAPI(): OpenSeaAPI | MockOpenSeaAPI {
-  const apiKey = process.env.NEXT_PUBLIC_OPENSEA_API_KEY;
+  const apiKey = process.env.OPENSEA_API_KEY;
   
   if (!apiKey || process.env.NODE_ENV === 'development') {
     return new MockOpenSeaAPI();
@@ -12,4 +12,8 @@ export function getOpenSeaAPI(): OpenSeaAPI | MockOpenSeaAPI {
   return new OpenSeaAPI({ apiKey });
 }
 
-export * from './api.new'; 
+// Initialize OpenSea API client
+const apiKey = process.env.OPENSEA_API_KEY;
+export const openSeaApi = new OpenSeaAPI({ apiKey });
+
+export * from './types'; 

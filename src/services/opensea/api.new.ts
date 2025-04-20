@@ -64,7 +64,7 @@ export class OpenSeaAPI {
 
     if (!this.apiKey) {
       logger.error('OpenSea API key is not configured');
-      throw new OpenSeaAPIError('OpenSea API key is required but not configured. Please set NEXT_PUBLIC_OPENSEA_API_KEY in your environment.');
+      throw new OpenSeaAPIError('OpenSea API key is required but not configured. Please set OPENSEA_API_KEY in your environment.');
     }
   }
 

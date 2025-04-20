@@ -294,6 +294,12 @@ export interface OpenSeaOffer {
   client_signature: string;
   relay_id: string;
   criteria_proof: string | null;
+  criteria?: {
+    trait?: {
+      type: string;
+      value?: string;
+    };
+  };
 }
 
 export interface OpenSeaNFTParams {

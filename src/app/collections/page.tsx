@@ -5,6 +5,7 @@ import { AlertCircle, Sparkles } from 'lucide-react';
 import { CollectionCard } from '@/components/nft/CollectionCard';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { FEATURED_COLLECTIONS } from '@/constants/collections';
+import { NFTLayout } from '@/components/nft/NFTLayout';
 import { logger } from '@/lib/logger';
 import type { OpenSeaCollection } from '@/services/opensea/types';
 
@@ -68,89 +69,27 @@ function CuratedCollections() {
           return collectionsCache.current.get(contractAddress)!;
         }
 
-        // First, get the collection slug using the contract address
-        const slugResponse = await fetch(
-          `https://api.opensea.io/api/v2/chain/ethereum/contract/${contractAddress}`,
-          {
-            headers: {
-              'X-API-KEY': process.env.NEXT_PUBLIC_OPENSEA_API_KEY || '',
-              'Accept': 'application/json'
-            },
-          }
+        // Fetch collection data through our API route
+        const response = await fetch(
+          `/api/opensea?path=collection&contract=${contractAddress}`,
+          { headers: { 'Accept': 'application/json' } }
         );
 
-        if (!slugResponse.ok) {
-          throw new Error(`OpenSea API error: ${slugResponse.status} - ${slugResponse.statusText}`);
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status} - ${response.statusText}`);
         }
 
-        const slugData = await slugResponse.json();
-        const collectionSlug = slugData.collection;
-
-        if (!collectionSlug) {
-          throw new Error('Could not find collection slug');
-        }
-
-        logger.info('Found collection slug', { contractAddress, collectionSlug });
-
-        // Then, get the detailed collection data using the slug
-        const detailsResponse = await fetch(
-          `https://api.opensea.io/api/v2/collections/${collectionSlug}`,
-          {
-            headers: {
-              'X-API-KEY': process.env.NEXT_PUBLIC_OPENSEA_API_KEY || '',
-              'Accept': 'application/json'
-            },
-          }
-        );
-
-        if (!detailsResponse.ok) {
-          throw new Error(`OpenSea API error: ${detailsResponse.status} - ${detailsResponse.statusText}`);
-        }
-
-        const detailsData = await detailsResponse.json();
+        const collectionData = await response.json();
         
         // Add a delay between requests to avoid rate limiting
         await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // Also fetch collection stats for floor price
-        const statsResponse = await fetch(
-          `https://api.opensea.io/api/v2/collections/${collectionSlug}/stats`,
-          {
-            headers: {
-              'X-API-KEY': process.env.NEXT_PUBLIC_OPENSEA_API_KEY || '',
-              'Accept': 'application/json'
-            },
-          }
-        );
-
-        if (!statsResponse.ok) {
-          throw new Error(`OpenSea API error: ${statsResponse.status} - ${statsResponse.statusText}`);
-        }
-
-        const statsData = await statsResponse.json();
-
-        // Log the raw responses for debugging
-        logger.info('OpenSea API responses:', {
-          contractAddress,
-          collectionSlug,
-          details: detailsData,
-          stats: statsData
-        });
-
-        // Combine collection details with stats
-        const collectionData = {
-          ...detailsData,
-          stats: statsData,
-          collection: collectionSlug
-        };
 
         collectionsCache.current.set(contractAddress, collectionData);
         return collectionData;
       } catch (err) {
         logger.error('Error fetching collection', { 
           contractAddress, 
-          error: err instanceof Error ? err.message : 'Unknown error',
-          stack: err instanceof Error ? err.stack : undefined
+          error: err instanceof Error ? err.message : 'Unknown error'
         });
         return null;
       }
@@ -158,12 +97,6 @@ function CuratedCollections() {
 
     setIsLoading(true);
     setError(null);
-
-    if (!process.env.NEXT_PUBLIC_OPENSEA_API_KEY) {
-      setError('OpenSea API key is not configured');
-      setIsLoading(false);
-      return;
-    }
 
     try {
       const categorizedResults: CategoryCollections[] = [];
@@ -285,18 +218,20 @@ function LoadingSkeleton() {
 
 export default function CollectionsPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-4">NFT Collections</h1>
-        <p className="text-gray-400 max-w-3xl">
-          Explore our curated selection of NFT collections, featuring the most innovative and influential
-          projects across different categories.
-        </p>
-      </div>
+    <NFTLayout>
+      <div className="container mx-auto px-4 py-12">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-white mb-4">NFT Collections</h1>
+          <p className="text-gray-400 max-w-3xl">
+            Explore our curated selection of NFT collections, featuring the most innovative and influential
+            projects across different categories.
+          </p>
+        </div>
 
-      <ErrorBoundary fallback={<div className="text-red-500">Error loading collections</div>}>
-        <CuratedCollections />
-      </ErrorBoundary>
-    </div>
+        <ErrorBoundary fallback={<div className="text-red-500">Error loading collections</div>}>
+          <CuratedCollections />
+        </ErrorBoundary>
+      </div>
+    </NFTLayout>
   );
 } 

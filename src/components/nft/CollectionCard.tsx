@@ -14,15 +14,71 @@ function SafeImage({ src, alt, className, fill = false, priority = false, onErro
   priority?: boolean;
   onError?: () => void;
 }) {
+  const [imgSrc, setImgSrc] = useState(src);
+  
+  // Log image loading attempt
+  useEffect(() => {
+    logger.info('Loading image:', {
+      originalSrc: src,
+      processedSrc: imgSrc,
+      alt,
+      isOpenseaUrl: src.includes('opensea') || src.includes('i.seadn.io')
+    });
+  }, [src, imgSrc, alt]);
+
+  // Process the URL when src changes
+  useEffect(() => {
+    let processedSrc = src;
+    try {
+      // Ensure HTTPS
+      processedSrc = processedSrc.replace(/^http:/, 'https:');
+      
+      // Handle special characters
+      processedSrc = processedSrc.replace(/[()]/g, encodeURIComponent);
+      
+      // Handle relative URLs
+      if (processedSrc.startsWith('/')) {
+        processedSrc = `${window.location.origin}${processedSrc}`;
+      }
+      
+      // Validate URL
+      new URL(processedSrc);
+      
+      setImgSrc(processedSrc);
+    } catch (error) {
+      logger.error('Invalid image URL:', {
+        originalSrc: src,
+        processedSrc,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+      onError?.();
+    }
+  }, [src, onError]);
+
+  const handleImageError = (e: any) => {
+    logger.error('Image load error:', {
+      originalSrc: src,
+      processedSrc: imgSrc,
+      alt,
+      error: e.toString()
+    });
+    onError?.();
+  };
+
   return (
     <Image
-      src={src}
+      src={imgSrc}
       alt={alt}
       className={className}
       fill={fill}
       priority={priority}
-      onError={onError}
-      unoptimized={src.includes('stream.mux.com')}
+      onError={handleImageError}
+      unoptimized={
+        imgSrc.includes('stream.mux.com') || 
+        imgSrc.includes('opensea') || 
+        imgSrc.includes('i.seadn.io') ||
+        imgSrc.includes('ipfs')
+      }
     />
   );
 }
@@ -48,17 +104,18 @@ export function CollectionCard({ collection, index }: CollectionCardProps) {
       collection: collection.collection,
       slug: collection.slug,
       imageUrl: collection.image_url,
-      bannerUrl: collection.banner_image_url
+      bannerUrl: collection.banner_image_url,
+      description: collection.description?.slice(0, 100)
     });
   }, [collection]);
 
   // Default images if not provided or on error
   const bannerUrl = !bannerError && collection.banner_image_url 
-    ? collection.banner_image_url.replace(/^http:/, 'https:')
+    ? collection.banner_image_url
     : '/images/placeholder-banner.jpg';
   
   const logoUrl = !logoError && collection.image_url 
-    ? collection.image_url.replace(/^http:/, 'https:')
+    ? collection.image_url
     : '/images/placeholder-logo.jpg';
 
   // Format numbers for display
@@ -75,7 +132,11 @@ export function CollectionCard({ collection, index }: CollectionCardProps) {
 
   // Handle image loading errors
   const handleImageError = (type: 'banner' | 'logo', url: string) => {
-    logger.error(`Failed to load ${type} image:`, { url });
+    logger.error(`Failed to load ${type} image:`, { 
+      url,
+      collection: collection.collection,
+      name: collection.name
+    });
     if (type === 'banner') {
       setBannerError(true);
     } else {
