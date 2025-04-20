@@ -1,4 +1,4 @@
-import { OpenSeaAPI } from './api';
+import { OpenSeaAPI } from './api.new';
 import { MockOpenSeaAPI } from './mock';
 
 // Factory function to get the appropriate API instance
@@ -9,5 +9,7 @@ export function getOpenSeaAPI(): OpenSeaAPI | MockOpenSeaAPI {
     return new MockOpenSeaAPI();
   }
   
-  return new OpenSeaAPI(apiKey);
-} 
+  return new OpenSeaAPI({ apiKey });
+}
+
+export * from './api.new'; 

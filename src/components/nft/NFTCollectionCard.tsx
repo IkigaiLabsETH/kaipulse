@@ -10,7 +10,7 @@ interface NFTCollectionCardProps {
 
 export function NFTCollectionCard({ collection, stats }: NFTCollectionCardProps) {
   return (
-    <Link href={`/collections/${collection.collection}`}>
+    <Link href={`/collections/${collection.slug}`}>
       <div className="group relative flex flex-col overflow-hidden rounded-lg border-2 border-yellow-500 bg-[#1c1f26] shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)]">
         {/* Banner Image */}
         <div className="relative h-48 w-full overflow-hidden bg-neutral-800">

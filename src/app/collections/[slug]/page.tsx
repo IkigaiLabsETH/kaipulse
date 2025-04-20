@@ -1,7 +1,8 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
-import { OpenSeaAPI } from '@/services/opensea/api';
+import { OpenSeaAPI, OpenSeaAPIError } from '@/services/opensea/api.new';
+import type { OpenSeaCollection, OpenSeaCollectionStats } from '@/services/opensea/types';
 import {
   CollectionHeader,
   CollectionStats,
@@ -11,7 +12,6 @@ import {
 } from '@/components/collections';
 import { logger } from '@/lib/logger';
 import { AlertCircle } from 'lucide-react';
-import type { OpenSeaCollection, OpenSeaCollectionStats, OpenSeaCollectionTraits } from '@/services/opensea/types';
 
 interface CollectionPageProps {
   params: {
@@ -19,12 +19,13 @@ interface CollectionPageProps {
   };
 }
 
-const api = new OpenSeaAPI();
+const api = new OpenSeaAPI({ 
+  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY 
+});
 
 export default function CollectionPage({ params }: CollectionPageProps) {
   const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
   const [stats, setStats] = useState<Partial<OpenSeaCollectionStats> | null>(null);
-  const [traits, setTraits] = useState<OpenSeaCollectionTraits | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,41 +36,74 @@ export default function CollectionPage({ params }: CollectionPageProps) {
         setError(null);
 
         let collectionData;
-        let collectionSlug = params.slug;
 
-        // Check if the slug is a contract address
+        // Check if the slug is a contract address and normalize it
         const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(params.slug);
+        const normalizedAddress = isContractAddress ? params.slug.toLowerCase() : params.slug;
         
         logger.info('Fetching collection data:', { 
-          slug: params.slug,
+          slug: normalizedAddress,
           isContractAddress 
         });
 
         if (isContractAddress) {
-          // If it's a contract address, first get the collection data by contract
-          const contractData = await api.getCollectionByContract(params.slug);
-          logger.info('Contract data:', { contractData });
-          
-          // Get the collection slug from the contract data
-          collectionSlug = contractData.collection;
-          
-          // Now fetch the full collection data using the slug
-          collectionData = await api.getCollection(collectionSlug);
+          // First get the collection details to get the proper slug
+          try {
+            const collection = await api.getCollection(normalizedAddress);
+            logger.info('Found collection by contract:', { 
+              contractAddress: normalizedAddress,
+              collectionSlug: collection.slug 
+            });
+            
+            // Now get the full collection data using the slug
+            collectionData = await api.getCollection(collection.slug);
+            logger.info('Collection data by slug:', { 
+              slug: collection.slug,
+              name: collectionData?.name
+            });
+          } catch (error: unknown) {
+            const apiError = error as OpenSeaAPIError;
+            logger.error('Error fetching collection by contract:', { 
+              error: apiError.message,
+              status: apiError.statusCode,
+              contractAddress: normalizedAddress 
+            });
+            throw apiError;
+          }
         } else {
           // If it's a slug, fetch directly
-          collectionData = await api.getCollection(params.slug);
+          try {
+            collectionData = await api.getCollection(normalizedAddress);
+            logger.info('Collection data by slug:', { 
+              slug: normalizedAddress,
+              responseSlug: collectionData?.slug,
+              name: collectionData?.name
+            });
+          } catch (error: unknown) {
+            const apiError = error as OpenSeaAPIError;
+            logger.error('Detailed collection fetch error:', { 
+              error: apiError.message,
+              status: apiError.statusCode,
+              slug: normalizedAddress 
+            });
+            throw apiError;
+          }
         }
 
-        logger.info('Collection data:', { collectionData });
-        
-        // Fetch traits using the correct slug
-        const traitsData = await api.getCollectionTraits(collectionSlug);
-        logger.info('Collection traits:', { traitsData });
+        // Extract stats from collection data
+        const statsData: Partial<OpenSeaCollectionStats> = {
+          floor_price: collectionData.stats?.floor_price || null,
+          total_volume: collectionData.stats?.total_volume || null,
+          total_supply: collectionData.stats?.total_supply || null,
+          num_owners: collectionData.stats?.num_owners || null,
+          one_day_volume: collectionData.stats?.one_day_volume || null,
+          seven_day_volume: collectionData.stats?.seven_day_volume || null,
+          thirty_day_volume: collectionData.stats?.thirty_day_volume || null
+        };
 
         setCollection(collectionData);
-        setStats(collectionData.stats || {});
-        setTraits(traitsData);
-      } catch (error) {
+        setStats(statsData);
+      } catch (error: unknown) {
         logger.error('Error fetching collection data:', error);
         setError('Failed to load collection data. Please try again later.');
       } finally {
@@ -110,19 +144,16 @@ export default function CollectionPage({ params }: CollectionPageProps) {
         </Suspense>
 
         <Suspense fallback={<div className="animate-pulse">Loading NFTs...</div>}>
-          <CollectionGrid 
-            collectionSlug={collection.collection}
-            traits={traits}
-          />
+          <CollectionGrid collectionSlug={collection.slug} />
         </Suspense>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Suspense fallback={<div className="animate-pulse">Loading activity...</div>}>
-            <CollectionActivity collectionSlug={collection.collection} />
+            <CollectionActivity collectionSlug={collection.slug} />
           </Suspense>
 
           <Suspense fallback={<div className="animate-pulse">Loading offers...</div>}>
-            <CollectionOffers collectionSlug={collection.collection} />
+            <CollectionOffers collectionSlug={collection.slug} />
           </Suspense>
         </div>
       </div>

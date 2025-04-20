@@ -3,7 +3,7 @@
 import { Activity, ArrowUpRight, ArrowDownRight, Filter, Tag, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 
-interface NFTEvent {
+export interface NFTEvent {
   type: 'sale' | 'transfer' | 'mint' | 'list';
   price?: string;
   from: string;

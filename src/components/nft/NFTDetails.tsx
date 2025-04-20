@@ -1,77 +1,53 @@
 'use client';
 
-interface NFTDetailsProps {
-  name: string;
-  description: string;
-  tokenId: string;
-  contractAddress: string;
-  owner?: string;
-  creator?: string;
+import { OpenSeaNFT } from '@/services/opensea/types';
+
+export interface NFTDetailsProps {
+  nft: OpenSeaNFT;
+  collection: {
+    name: string;
+    slug: string;
+  };
 }
 
-export function NFTDetails({
-  name,
-  description,
-  tokenId,
-  contractAddress,
-  owner,
-  creator
-}: NFTDetailsProps) {
-  // Format contract address for display
-  const displayAddress = contractAddress ? `${contractAddress.slice(0, 6)}...${contractAddress.slice(-4)}` : '';
-
+export function NFTDetails({ nft, collection }: NFTDetailsProps) {
   return (
-    <div className="space-y-4">
-      <div>
-        <h1 className="text-3xl font-bold text-white mb-2">{name}</h1>
-        <p className="text-neutral-400">{description}</p>
-      </div>
+    <div className="bg-[#1A1A1A] rounded-2xl p-6">
+      <div className="space-y-4">
+        <div>
+          <h1 className="text-2xl font-bold">{nft.name || `${collection.name} #${nft.identifier}`}</h1>
+          <p className="text-neutral-400">{collection.name}</p>
+        </div>
 
-      <div className="space-y-2">
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-neutral-400">Token ID</span>
-          <span className="text-white font-medium">{tokenId}</span>
-        </div>
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-neutral-400">Contract</span>
-          <div className="flex items-center gap-3">
-            <span className="text-white font-medium">{displayAddress}</span>
-            {contractAddress && (
-              <button 
-                onClick={() => navigator.clipboard.writeText(contractAddress)}
-                className="text-yellow-500 hover:text-yellow-400 text-xs font-medium transition-colors"
-              >
-                Copy
-              </button>
-            )}
-          </div>
-        </div>
-        {owner && (
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-neutral-400">Owner</span>
-            <a
-              href={`https://etherscan.io/address/${owner}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 font-medium"
-            >
-              {owner.slice(0, 6)}...{owner.slice(-4)}
-            </a>
-          </div>
+        {nft.description && (
+          <p className="text-neutral-300 whitespace-pre-wrap">{nft.description}</p>
         )}
-        {creator && (
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-neutral-400">Creator</span>
-            <a
-              href={`https://etherscan.io/address/${creator}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 font-medium"
-            >
-              {creator.slice(0, 6)}...{creator.slice(-4)}
-            </a>
+
+        <div className="grid grid-cols-2 gap-4 pt-4">
+          {nft.creator && (
+            <div>
+              <p className="text-sm text-neutral-400">Creator</p>
+              <p className="text-sm font-medium truncate">{nft.creator}</p>
+            </div>
+          )}
+          
+          {nft.owners?.[0] && (
+            <div>
+              <p className="text-sm text-neutral-400">Owner</p>
+              <p className="text-sm font-medium truncate">{nft.owners[0]}</p>
+            </div>
+          )}
+
+          <div>
+            <p className="text-sm text-neutral-400">Contract Address</p>
+            <p className="text-sm font-medium truncate">{nft.contract}</p>
           </div>
-        )}
+
+          <div>
+            <p className="text-sm text-neutral-400">Token ID</p>
+            <p className="text-sm font-medium truncate">{nft.identifier}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,1 @@
+export type Chain = 'ethereum' | 'polygon' | 'optimism' | 'arbitrum' | 'base'; 

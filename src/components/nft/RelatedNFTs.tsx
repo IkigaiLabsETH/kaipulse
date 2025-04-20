@@ -1,36 +1,46 @@
 'use client';
 
-import Image from 'next/image';
+import { NFTImage } from '@/components/nft/NFTImage';
+import Link from 'next/link';
 
-interface RelatedNFTsProps {
-  nfts: Array<{
-    id: string;
-    name: string;
-    image_url: string | null;
-    price: string;
-  }>;
+interface FormattedNFT {
+  id: string;
+  name: string;
+  image_url: string | null;
+  price: string;
 }
 
-export function RelatedNFTs({ nfts }: RelatedNFTsProps) {
+interface RelatedNFTsProps {
+  nfts: FormattedNFT[];
+  slug: string;
+}
+
+export function RelatedNFTs({ nfts, slug }: RelatedNFTsProps) {
   return (
     <div className="rounded-xl border border-neutral-800 bg-[#1A1A1A] p-4">
       <h3 className="text-lg font-semibold text-white mb-4">More from this Collection</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {nfts.map((nft) => (
-          <div key={nft.id} className="group relative">
-            <div className="aspect-square w-full overflow-hidden rounded-lg relative">
-              <Image
-                src={nft.image_url || '/images/nft-placeholder.png'}
+          <Link 
+            key={nft.id} 
+            href={`/collections/${slug}/${nft.id}`}
+            className="block group"
+          >
+            <div className="relative aspect-square overflow-hidden rounded-xl bg-[#1A1A1A]">
+              <NFTImage
+                src={nft.image_url}
                 alt={nft.name}
                 fill
                 className="object-cover object-center"
               />
             </div>
             <div className="mt-2">
-              <h3 className="text-sm font-medium text-white truncate">{nft.name}</h3>
-              <p className="text-sm text-neutral-400">{nft.price} ETH</p>
+              <h3 className="text-sm font-medium text-white group-hover:text-neutral-300">{nft.name}</h3>
+              {nft.price !== '—' && (
+                <p className="text-sm text-neutral-400">{nft.price} ETH</p>
+              )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

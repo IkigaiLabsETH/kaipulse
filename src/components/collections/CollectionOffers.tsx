@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { OpenSeaAPI } from '@/services/opensea/api';
+import { OpenSeaAPI, OpenSeaEvent } from '@/services/opensea/api.new';
+import { OpenSeaOffer, OpenSeaAccount } from '@/services/opensea/types';
 import { logger } from '@/lib/logger';
-import type { OpenSeaOffer } from '@/services/opensea/types';
 
 interface CollectionOffersProps {
   collectionSlug: string;
 }
 
-const api = new OpenSeaAPI();
+const api = new OpenSeaAPI({
+  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY
+});
 
 export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
   const [offers, setOffers] = useState<OpenSeaOffer[]>([]);
@@ -24,59 +26,109 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
 
         // Check if the slug is a contract address
         const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(collectionSlug);
-        let slug = collectionSlug;
-        let contractAddress: string | undefined;
+        let contractAddress: string;
 
         if (isContractAddress) {
-          logger.info('Converting contract address to collection slug:', { collectionSlug });
-          const collection = await api.getCollectionByContract(collectionSlug);
-          slug = collection.collection;
-          contractAddress = collectionSlug;
-          logger.info('Converted to collection slug:', { slug });
+          contractAddress = collectionSlug.toLowerCase();
         } else {
           // Get the collection to get the contract address
           logger.info('Getting collection details for slug:', { collectionSlug });
           const collection = await api.getCollection(collectionSlug);
-          contractAddress = collection.primary_contract;
-          slug = collection.collection;
-          logger.info('Got contract address:', { contractAddress });
+          
+          // Find the Ethereum contract
+          const ethereumContract = collection.contracts.find(c => c.chain === 'ethereum');
+          if (!ethereumContract) {
+            throw new Error('No Ethereum contract found for collection');
+          }
+          contractAddress = ethereumContract.address;
         }
-
-        if (!contractAddress) {
-          throw new Error('No contract address found for collection');
-        }
-
-        logger.info('Fetching collection offers:', { slug });
-
-        // First try to get offers by contract
-        const itemOffers = await api.getItemOffers({
-          chain: 'ethereum',
-          asset_contract_address: contractAddress,
-          limit: 20,
-          order_by: 'eth_price',
-          order_direction: 'desc'
+        
+        logger.info('Fetching collection offers:', { 
+          collectionSlug,
+          contractAddress 
         });
 
-        // Then get collection-wide offers
-        const collectionOffers = await api.getCollectionOffers({
-          collection_slug: slug,
+        // Get offers for the collection
+        const response = await api.getNFTEvents(contractAddress, '0', {
           limit: 20,
-          order_by: 'eth_price',
-          order_direction: 'desc'
+          event_type: 'offer_entered'
         });
 
-        // Combine and sort offers
-        const allOffers = [...itemOffers.results, ...collectionOffers.results]
-          .sort((a, b) => Number(b.current_price) - Number(a.current_price))
-          .slice(0, 20);
+        // Transform events into offers
+        const validOffers = response.data
+          .filter((event: OpenSeaEvent) => event.event_type === 'offer_entered')
+          .map((event: OpenSeaEvent): OpenSeaOffer => {
+            const now = new Date();
+            const maker: OpenSeaAccount = {
+              address: event.from_account,
+              profile_img_url: '', // Default empty as we don't have this info
+              created_date: now.toISOString()
+            };
+            
+            const taker: OpenSeaAccount | null = event.to_account ? {
+              address: event.to_account,
+              profile_img_url: '',
+              created_date: now.toISOString()
+            } : null;
+
+            return {
+              created_date: event.created_date,
+              closing_date: null,
+              listing_time: Math.floor(Date.parse(event.created_date) / 1000),
+              expiration_time: Math.floor(Date.now() / 1000) + 86400, // 24 hours from now
+              order_hash: event.transaction_hash || '',
+              protocol_data: {
+                parameters: {
+                  offerer: event.from_account,
+                  offer: [{
+                    itemType: 1, // ERC721
+                    token: contractAddress,
+                    identifierOrCriteria: '0',
+                    startAmount: '1',
+                    endAmount: '1'
+                  }],
+                  consideration: [{
+                    itemType: 0, // Native token (ETH)
+                    token: event.payment_token || '0x0000000000000000000000000000000000000000',
+                    identifierOrCriteria: '0',
+                    startAmount: event.total_price || '0',
+                    endAmount: event.total_price || '0',
+                    recipient: event.from_account
+                  }],
+                  startTime: event.created_date,
+                  endTime: new Date(Date.now() + 86400000).toISOString(), // 24 hours from now
+                  orderType: 0,
+                  zone: '0x0000000000000000000000000000000000000000',
+                  zoneHash: '0x0000000000000000000000000000000000000000000000000000000000000000',
+                  salt: '0',
+                  conduitKey: '0x0000000000000000000000000000000000000000000000000000000000000000',
+                  totalOriginalConsiderationItems: 1,
+                  counter: 0
+                },
+                signature: '0x'
+              },
+              protocol_address: '0x00000000000000ADc04C56Bf30aC9d3c0aAF14dC', // Seaport contract
+              current_price: event.total_price || '0',
+              maker,
+              taker,
+              maker_fees: [],
+              taker_fees: [],
+              side: 'bid',
+              order_type: 'basic',
+              cancelled: false,
+              finalized: false,
+              marked_invalid: false,
+              client_signature: '0x',
+              relay_id: `${event.transaction_hash || ''}-${event.created_date}`,
+              criteria_proof: null
+            };
+          });
 
         logger.info('Offers fetched:', {
-          count: allOffers.length,
-          itemOffers: itemOffers.results.length,
-          collectionOffers: collectionOffers.results.length
+          count: validOffers.length
         });
 
-        setOffers(allOffers);
+        setOffers(validOffers);
       } catch (error) {
         logger.error('Error fetching offers:', error);
         setError('Failed to load offers');

@@ -14,15 +14,6 @@ export interface NFTCardProps {
 export function NFTCard({ nft, href }: NFTCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  const formatPrice = (price?: { currentPrice?: number }) => {
-    if (!price?.currentPrice) return 'Not listed';
-    return `${price.currentPrice.toFixed(3)} ETH`;
-  };
-
-  const imageUrl = !imageError && nft.image_url 
-    ? nft.image_url 
-    : '/images/placeholder-nft.svg';
-
   const handleImageError = () => {
     logger.warn('Failed to load NFT image:', { 
       nftId: nft.identifier,
@@ -30,6 +21,10 @@ export function NFTCard({ nft, href }: NFTCardProps) {
     });
     setImageError(true);
   };
+
+  const imageUrl = !imageError && nft.image_url 
+    ? nft.image_url 
+    : '/images/placeholder-nft.svg';
 
   return (
     <Link
@@ -50,9 +45,11 @@ export function NFTCard({ nft, href }: NFTCardProps) {
         <h3 className="font-medium text-white truncate">
           {nft.name || `#${nft.identifier}`}
         </h3>
-        <p className="text-sm text-white/60 mt-1">
-          {formatPrice(nft.price)}
-        </p>
+        {nft.traits && nft.traits.length > 0 && (
+          <p className="text-sm text-white/60 mt-1">
+            {nft.traits.length} traits
+          </p>
+        )}
       </div>
     </Link>
   );

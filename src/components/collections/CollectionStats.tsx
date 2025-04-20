@@ -13,7 +13,7 @@ export function CollectionStats({ stats }: CollectionStatsProps) {
     logger.info('Collection stats received:', { stats });
   }, [stats]);
 
-  const formatNumber = (num: number | string | undefined) => {
+  const formatNumber = (num: number | string | undefined | null) => {
     if (num === undefined || num === null) return 'N/A';
     const value = typeof num === 'string' ? parseFloat(num) : num;
     if (isNaN(value)) return 'N/A';
@@ -26,7 +26,7 @@ export function CollectionStats({ stats }: CollectionStatsProps) {
     return value.toFixed(2);
   };
 
-  const formatEth = (num: number | string | undefined) => {
+  const formatEth = (num: number | string | undefined | null) => {
     if (num === undefined || num === null) return 'N/A';
     const value = typeof num === 'string' ? parseFloat(num) : num;
     if (isNaN(value)) return 'N/A';

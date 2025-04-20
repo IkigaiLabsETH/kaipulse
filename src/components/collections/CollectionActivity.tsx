@@ -1,18 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { OpenSeaAPI } from '@/services/opensea/api';
+import { OpenSeaAPI, OpenSeaEvent } from '@/services/opensea/api.new';
 import { logger } from '@/lib/logger';
-import type { OpenSeaEvent } from '@/services/opensea/types';
 
 interface CollectionActivityProps {
   collectionSlug: string;
 }
 
-const api = new OpenSeaAPI();
+const api = new OpenSeaAPI({
+  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY
+});
+
+interface EventWithPrice extends OpenSeaEvent {
+  price?: {
+    current: {
+      value: string;
+    };
+  };
+  type?: string;
+  transaction?: {
+    transaction_hash: string;
+  };
+}
 
 export function CollectionActivity({ collectionSlug }: CollectionActivityProps) {
-  const [events, setEvents] = useState<OpenSeaEvent[]>([]);
+  const [events, setEvents] = useState<EventWithPrice[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,7 +45,7 @@ export function CollectionActivity({ collectionSlug }: CollectionActivityProps) 
           // Get the collection to get the contract address
           logger.info('Getting collection details for slug:', { collectionSlug });
           const collection = await api.getCollection(collectionSlug);
-          contractAddress = collection.primary_contract;
+          contractAddress = collection.primary_asset_contracts[0];
           
           if (!contractAddress) {
             throw new Error('No contract address found for collection');
@@ -46,50 +59,32 @@ export function CollectionActivity({ collectionSlug }: CollectionActivityProps) 
           contractAddress 
         });
 
-        // First try to get events by contract
-        const response = await api.getNFTsByContract({
+        // Get events directly
+        const response = await api.getEvents({
           chain: 'ethereum',
-          address: contractAddress,
-          limit: 20,
-          order_by: 'sale_date',
-          order_direction: 'desc'
+          asset_contract_address: contractAddress,
+          event_type: 'sale',
+          limit: 20
         });
 
-        // Then get events for each NFT
-        const allEvents = await Promise.all(
-          response.results.map(async (nft) => {
-            try {
-              const events = await api.getNFTEvents(
-                contractAddress,
-                nft.identifier,
-                {
-                  limit: 1,
-                  event_type: 'sale'
-                }
-              );
-              return events.results;
-            } catch (error) {
-              logger.warn('Failed to fetch events for NFT:', {
-                contractAddress,
-                tokenId: nft.identifier,
-                error
-              });
-              return [];
+        const events = response.data.map(event => ({
+          ...event,
+          type: event.event_type,
+          price: event.total_price ? {
+            current: {
+              value: event.total_price
             }
-          })
-        );
-
-        // Flatten and sort events
-        const flatEvents = allEvents
-          .flat()
-          .sort((a, b) => new Date(b.created_date).getTime() - new Date(a.created_date).getTime())
-          .slice(0, 20);
+          } : undefined,
+          transaction: event.transaction_hash ? {
+            transaction_hash: event.transaction_hash
+          } : undefined
+        }));
 
         logger.info('Activity fetched:', {
-          count: flatEvents.length
+          count: events.length
         });
 
-        setEvents(flatEvents);
+        setEvents(events);
       } catch (error) {
         logger.error('Error fetching activity:', error);
         setError('Failed to load activity');

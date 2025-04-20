@@ -1,30 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { OpenSeaAPI } from '@/services/opensea/api';
+import { OpenSeaAPI, OpenSeaNFT } from '@/services/opensea/api.new';
 import { NFTCard } from '@/components/nft/NFTCard';
 import { logger } from '@/lib/logger';
-import type { OpenSeaNFT } from '@/services/opensea/types';
-import type { OpenSeaCollectionTraits } from '@/services/opensea/types';
 
 interface CollectionGridProps {
   collectionSlug: string;
-  traits?: OpenSeaCollectionTraits;
 }
 
-const api = new OpenSeaAPI();
+// Initialize with environment variable
+const api = new OpenSeaAPI({ 
+  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY 
+});
 
-export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) {
+export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
   const [nfts, setNfts] = useState<OpenSeaNFT[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState<string | undefined>(undefined);
-  const [actualSlug, setActualSlug] = useState<string | undefined>(undefined);
-  const [selectedTraits, setSelectedTraits] = useState<Array<{
-    trait_type: string;
-    values: string[];
-  }>>([]);
 
   useEffect(() => {
     async function fetchNFTs() {
@@ -32,55 +27,36 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
         setIsLoading(true);
         setError(null);
 
-        // Check if the slug is a contract address
+        // Check if the collectionSlug is a contract address
         const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(collectionSlug);
-        let slug = collectionSlug;
-        let contractAddress: string | undefined;
+        
+        logger.info('Fetching NFTs:', { 
+          collectionSlug,
+          isContractAddress 
+        });
 
-        if (isContractAddress) {
-          logger.info('Converting contract address to collection slug:', { collectionSlug });
-          const collection = await api.getCollectionByContract(collectionSlug);
-          slug = collection.collection;
-          contractAddress = collectionSlug;
-          setActualSlug(slug);
-          logger.info('Converted to collection slug:', { slug });
-        } else {
-          // If it's a slug, get the collection first to get the contract address
-          logger.info('Getting collection details for slug:', { collectionSlug });
-          const collection = await api.getCollection(collectionSlug);
-          contractAddress = collection.primary_contract;
-          logger.info('Got contract address:', { contractAddress });
-        }
-
-        if (!contractAddress) {
-          throw new Error('No contract address found for collection');
-        }
-
-        logger.info('Fetching NFTs by contract:', { contractAddress, selectedTraits });
-
-        // Use getNFTsByContract with trait filters if selected
-        const response = await api.getNFTsByContract({
-          chain: 'ethereum',
-          address: contractAddress,
-          limit: 20,
-          include_orders: true,
-          order_by: 'sale_price',
-          order_direction: 'desc',
-          traits: selectedTraits.length > 0 ? selectedTraits : undefined
+        // Use the new unified getNFTs method
+        const response = await api.getNFTs({
+          ...(isContractAddress 
+            ? { contract: collectionSlug, chain: 'ethereum' }
+            : { collection: collectionSlug }
+          ),
+          limit: 20
         });
 
         logger.info('NFTs fetched:', {
-          count: response.results.length,
+          count: response.data?.length || 0,
           hasMore: !!response.next,
           nextCursor: response.next
         });
 
-        setNfts(response.results);
+        setNfts(response.data || []);
         setHasMore(!!response.next);
         setNextCursor(response.next || undefined);
       } catch (error) {
-        logger.error('Error fetching NFTs:', error);
-        setError('Failed to load NFTs');
+        const errorMessage = error instanceof Error ? error.message : 'Failed to load collection data';
+        setError(errorMessage);
+        logger.error('Collection grid error:', { error: errorMessage });
       } finally {
         setIsLoading(false);
       }
@@ -89,41 +65,33 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
     if (collectionSlug) {
       fetchNFTs();
     }
-  }, [collectionSlug, selectedTraits]);
+  }, [collectionSlug]);
 
   const loadMore = async () => {
     if (!nextCursor || !hasMore) return;
 
     try {
-      const slug = actualSlug || collectionSlug;
-      logger.info('Loading more NFTs:', { slug, nextCursor });
+      logger.info('Loading more NFTs:', { collectionSlug, nextCursor });
 
-      const collection = await api.getCollection(slug);
-      const contractAddress = collection.primary_contract;
-
-      if (!contractAddress) {
-        throw new Error('No contract address found for collection');
+      const collection = await api.getCollection(collectionSlug);
+      const ethereumContract = collection.contracts.find(c => c.chain === 'ethereum');
+      if (!ethereumContract) {
+        throw new Error('No Ethereum contract found for collection');
       }
+      const contractAddress = ethereumContract.address;
 
       const response = await api.getNFTsByContract({
         chain: 'ethereum',
         address: contractAddress,
         limit: 20,
-        next: nextCursor,
-        include_orders: true,
-        order_by: 'sale_price',
-        order_direction: 'desc'
+        next: nextCursor
       });
 
-      logger.info('Additional NFTs fetched:', {
-        count: response.results.length,
-        hasMore: !!response.next,
-        nextCursor: response.next
-      });
-
-      setNfts(prev => [...prev, ...response.results]);
-      setHasMore(!!response.next);
-      setNextCursor(response.next || undefined);
+      if (response.data) {
+        setNfts(prev => [...prev, ...response.data]);
+        setHasMore(!!response.next);
+        setNextCursor(response.next || undefined);
+      }
     } catch (error) {
       logger.error('Error loading more NFTs:', error);
       // Don't set error state here to keep showing existing NFTs
@@ -158,8 +126,6 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
     );
   }
 
-  const displaySlug = actualSlug || collectionSlug;
-
   return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -167,7 +133,7 @@ export function CollectionGrid({ collectionSlug, traits }: CollectionGridProps) 
           <NFTCard
             key={`${nft.contract}-${nft.identifier}`}
             nft={nft}
-            href={`/collections/${displaySlug}/${nft.identifier}`}
+            href={`/collections/${collectionSlug}/${nft.identifier}`}
           />
         ))}
       </div>

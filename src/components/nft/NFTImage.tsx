@@ -3,34 +3,91 @@
 import Image from 'next/image';
 import { ImageIcon, Maximize2 } from 'lucide-react';
 import { useState } from 'react';
+import { logger } from '@/lib/logger';
 
 interface NFTImageProps {
   src: string | null;
   alt: string;
 }
 
-const IPFS_GATEWAY = 'https://ipfs.io/ipfs/';
+// Multiple IPFS gateways for fallback
+const IPFS_GATEWAYS = [
+  'https://ipfs.io/ipfs/',
+  'https://cloudflare-ipfs.com/ipfs/',
+  'https://gateway.pinata.cloud/ipfs/'
+];
+
 const ARWEAVE_GATEWAY = 'https://arweave.net/';
 
 function transformImageUrl(url: string | null): string {
-  if (!url) return '/images/nft-placeholder.png';
-
-  // Handle IPFS URLs
-  if (url.startsWith('ipfs://')) {
-    return IPFS_GATEWAY + url.slice(7);
+  if (!url) {
+    logger.warn('No image URL provided');
+    return '/images/nft-placeholder.png';
   }
 
-  // Handle Arweave URLs
-  if (url.startsWith('ar://')) {
-    return ARWEAVE_GATEWAY + url.slice(5);
-  }
+  try {
+    // Handle IPFS URLs
+    if (url.startsWith('ipfs://')) {
+      const ipfsHash = url.slice(7);
+      const gateway = IPFS_GATEWAYS[0];
+      const transformed = gateway + ipfsHash;
+      logger.info('Transformed IPFS URL:', { original: url, transformed });
+      return transformed;
+    }
 
-  return url;
+    // Handle Arweave URLs
+    if (url.startsWith('ar://')) {
+      const transformed = ARWEAVE_GATEWAY + url.slice(5);
+      logger.info('Transformed Arweave URL:', { original: url, transformed });
+      return transformed;
+    }
+
+    // Ensure URL is HTTPS
+    if (url.startsWith('http://')) {
+      const transformed = url.replace('http://', 'https://');
+      logger.info('Converted HTTP to HTTPS:', { original: url, transformed });
+      return transformed;
+    }
+
+    logger.info('Using original URL:', { url });
+    return url;
+  } catch (error) {
+    logger.error('Error transforming image URL:', { url, error });
+    return '/images/nft-placeholder.png';
+  }
 }
 
 export function NFTImage({ src, alt }: NFTImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [gatewayIndex, setGatewayIndex] = useState(0);
   const [imageSrc, setImageSrc] = useState(transformImageUrl(src));
+
+  const handleError = () => {
+    logger.error('Failed to load NFT image:', { src: imageSrc, gatewayIndex });
+
+    // Try next IPFS gateway if current URL is IPFS
+    if (src?.startsWith('ipfs://') && gatewayIndex < IPFS_GATEWAYS.length - 1) {
+      const nextGateway = IPFS_GATEWAYS[gatewayIndex + 1];
+      const ipfsHash = src.slice(7);
+      const newSrc = nextGateway + ipfsHash;
+      logger.info('Trying next IPFS gateway:', { gateway: nextGateway, newSrc });
+      setGatewayIndex(gatewayIndex + 1);
+      setImageSrc(newSrc);
+      return;
+    }
+
+    setHasError(true);
+    setImageSrc('/images/nft-placeholder.png');
+  };
+
+  if (hasError || !imageSrc) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
+        <ImageIcon size={48} className="text-neutral-700" />
+      </div>
+    );
+  }
 
   return (
     <div className="group relative">
@@ -42,7 +99,7 @@ export function NFTImage({ src, alt }: NFTImageProps) {
         {/* Loading state */}
         <div className={`absolute inset-0 bg-neutral-900 animate-pulse transition-opacity duration-700 ${isLoaded ? 'opacity-0' : 'opacity-100'}`} />
         
-        {imageSrc ? (
+        {imageSrc && !hasError ? (
           <>
             <Image
               src={imageSrc}
@@ -55,13 +112,12 @@ export function NFTImage({ src, alt }: NFTImageProps) {
                 ${isLoaded ? 'opacity-100' : 'opacity-0'}
               `}
               priority
-              onLoadingComplete={() => {
+              unoptimized={true}
+              onLoad={() => {
+                logger.info('Image loaded successfully:', { src: imageSrc });
                 setIsLoaded(true);
               }}
-              onError={() => {
-                setImageSrc('/images/nft-placeholder.png');
-                setIsLoaded(true);
-              }}
+              onError={handleError}
             />
 
             {/* Expand icon */}
