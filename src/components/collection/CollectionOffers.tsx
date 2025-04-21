@@ -51,7 +51,6 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
         const validOffers = response.events
           .filter((event: OpenSeaEventDetails) => event.event_type === 'offer')
           .map((event: OpenSeaEventDetails): OpenSeaOffer => {
-            const now = new Date();
             const maker: OpenSeaAccount = {
               address: event.from_account.address,
               profile_img_url: event.from_account.profile_img_url,

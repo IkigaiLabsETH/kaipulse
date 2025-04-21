@@ -6,7 +6,7 @@ import { env } from '@/env.mjs';
 const OPENSEA_API_KEY = env.OPENSEA_API_KEY;
 
 // Track collection data in memory to prevent redundant API calls during development
-const responseCache = new Map<string, { data: any, timestamp: number }>();
+const responseCache = new Map<string, { data: Record<string, unknown>, timestamp: number }>();
 const CACHE_TTL = 60 * 1000; // 1 minute cache
 
 if (!OPENSEA_API_KEY) {

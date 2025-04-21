@@ -12,7 +12,7 @@ import {
   CollectionError
 } from '@/components/collection';
 import { Layout } from '@/components/ui';
-import { ExternalLink, Grid as GridIcon, Info, Share2, Twitter, Globe, Eye } from 'lucide-react';
+import { ExternalLink, Grid as GridIcon, Twitter, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -86,19 +86,20 @@ const FloatingParticle = ({ delay = 0, scale = 1 }: { delay?: number; scale?: nu
 };
 
 // Animated Particles Container Component
-const ParticleBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 15 }).map((_, i) => (
-        <FloatingParticle 
-          key={i} 
-          delay={Math.random() * 5}
-          scale={Math.random() * 0.5 + 0.5}
-        />
-      ))}
-    </div>
-  );
-};
+// Removing unused component
+// const ParticleBackground = () => {
+//   return (
+//     <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//       {Array.from({ length: 15 }).map((_, i) => (
+//         <FloatingParticle 
+//           key={i} 
+//           delay={Math.random() * 5}
+//           scale={Math.random() * 0.5 + 0.5}
+//         />
+//       ))}
+//     </div>
+//   );
+// };
 
 export default function CollectionPage({ params }: CollectionPageProps) {
   const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
