@@ -3,29 +3,16 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { NFTActions } from '@/components/nft/NFTActions';
-import { NFTDetails } from '@/components/nft/NFTDetails';
 import { NFTImage } from '@/components/nft/NFTImage';
 import { Layout } from '@/components/ui';
 import { logger } from '@/lib/logger';
 import type { 
-  OpenSeaNFT, 
-  OpenSeaEventDetails, 
+  OpenSeaNFT,
   Listing,
-  Offer,
   Collection
 } from '@/services/opensea/types';
 import { motion } from 'framer-motion';
-import { Suspense } from 'react';
-import { notFound } from 'next/navigation';
-import { formatEther } from 'viem';
-// These imports are causing errors, commenting them out
-// import { getNFT } from '@/services/nft/fetchers';
-// import { getCollection } from '@/services/collections/fetchers';
-// import { CollectionData, NFTData } from '@/types/opensea';
-// import NFTBreadcrumbs from '@/components/nft/NFTBreadcrumbs';
 import NFTImageGallery from '@/components/nft/NFTImageGallery';
-// import NFTMintDetails from '@/components/nft/NFTMintDetails';
 
 interface NFTPageProps {
   params: {
@@ -37,17 +24,13 @@ interface NFTPageProps {
 interface NFTContentProps {
   nft: OpenSeaNFT;
   collection: Collection;
-  events: OpenSeaEventDetails[];
   listing: Listing | null;
-  offer: Offer | null;
 }
 
 function NFTContent({ 
   nft, 
   collection, 
-  events, 
-  listing, 
-  offer 
+  listing 
 }: NFTContentProps) {
   // Process image URLs
   const processImageUrl = (url: string | undefined | null): string => {
@@ -240,9 +223,7 @@ function ErrorDisplay({ error }: { error: Error }) {
 export default function NFTPage({ params }: NFTPageProps) {
   const [nft, setNFT] = useState<OpenSeaNFT | null>(null);
   const [collection, setCollection] = useState<Collection | null>(null);
-  const [events, setEvents] = useState<OpenSeaEventDetails[]>([]);
   const [listing, setListing] = useState<Listing | null>(null);
-  const [offer, setOffer] = useState<Offer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [retryCount, setRetryCount] = useState(0);
@@ -298,9 +279,8 @@ export default function NFTPage({ params }: NFTPageProps) {
           throw new Error('NFT data is missing or malformed');
         }
 
-        // Fetch listings and offers in parallel with error handling
+        // Fetch listings in parallel with error handling
         let listingsData = { orders: [] };
-        let offersData = { orders: [] };
         
         try {
           const listingsRes = await fetch(`/api/collections/${params.slug}/${params.tokenId}/listings`, {
@@ -397,9 +377,7 @@ export default function NFTPage({ params }: NFTPageProps) {
       <NFTContent 
         nft={nft}
         collection={collection}
-        events={events}
         listing={listing}
-        offer={offer}
       />
     </Layout>
   );

@@ -2,9 +2,12 @@ import { NextResponse } from 'next/server';
 import { OpenSeaAPI } from '@/services/opensea/api';
 import { logger } from '@/lib/logger';
 import { env } from '@/env.mjs';
-import { mockCollections } from '@/data/mockNFTs';
 
 const OPENSEA_API_KEY = env.OPENSEA_API_KEY;
+
+// Track collection data in memory to prevent redundant API calls during development
+const responseCache = new Map<string, { data: any, timestamp: number }>();
+const CACHE_TTL = 60 * 1000; // 1 minute cache
 
 if (!OPENSEA_API_KEY) {
   logger.error('OpenSea API key is required. Please add OPENSEA_API_KEY to your environment variables.');
@@ -15,13 +18,26 @@ export async function GET(
   { params }: { params: { address: string } }
 ) {
   try {
+    const { address } = params;
+    const cacheKey = `collection:${address.toLowerCase()}`;
+    const now = Date.now();
+    
+    // Check cache first
+    const cached = responseCache.get(cacheKey);
+    if (cached && now - cached.timestamp < CACHE_TTL) {
+      logger.info(`Using cached collection data for ${address}`);
+      const response = NextResponse.json(cached.data);
+      response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+      response.headers.set('X-Cache', 'HIT');
+      return response;
+    }
+
     if (!OPENSEA_API_KEY) {
       logger.warn('No OpenSea API key found, using mock data');
       return getMockDataForContract(params.address);
     }
 
     const openSeaAPI = new OpenSeaAPI(OPENSEA_API_KEY);
-    const { address } = params;
 
     try {
       // Use the real API
@@ -30,9 +46,13 @@ export async function GET(
         chain: 'ethereum'
       });
 
+      // Cache the response
+      responseCache.set(cacheKey, { data: collection, timestamp: now });
+
       // Add cache headers for better performance
       const response = NextResponse.json(collection);
       response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+      response.headers.set('X-Cache', 'MISS');
       
       return response;
     } catch (apiError) {
@@ -53,7 +73,7 @@ export async function GET(
     // Last resort - try to use mock data after another error
     try {
       return getMockDataForContract(params.address);
-    } catch (err) {
+    } catch {
       return NextResponse.json(
         { error: 'Failed to fetch collection' },
         { status: 500 }

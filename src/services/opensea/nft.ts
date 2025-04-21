@@ -4,6 +4,7 @@ import { nftSchema, nftResponseSchema, nftRaritySchema, collectionNFTSchema, col
 import type { NFT, NFTRarity } from '@/types/opensea';
 import { chainSchema, addressSchema, tokenIdSchema } from './schemas';
 import { logger } from '@/lib/logger';
+import { getContractToCollectionMapping, setContractToCollectionMapping } from './cache';
 
 export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
   private mapRarity(rarity: z.infer<typeof nftRaritySchema>): NFTRarity {
@@ -193,21 +194,43 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
         next: z.string().optional()
       }));
 
-      // First get the contract info to retrieve the collection slug
-      const contractData = await this.request({
-        method: 'GET',
-        url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.contractAddress}`,
-        validateResponse: (data) => {
-          const schema = z.object({
-            collection: z.string()
-          });
-          return schema.parse(data);
-        }
-      });
+      // Get collection slug from shared cache
+      const cachedSlug = getContractToCollectionMapping(
+        validatedParams.chain, 
+        validatedParams.contractAddress
+      );
+
+      let collectionSlug: string;
+      
+      if (cachedSlug) {
+        logger.info(`Using cached collection slug for contract: ${validatedParams.contractAddress}`);
+        collectionSlug = cachedSlug;
+      } else {
+        // Get contract info to retrieve the collection slug
+        const contractData = await this.request({
+          method: 'GET',
+          url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.contractAddress}`,
+          validateResponse: (data) => {
+            const schema = z.object({
+              collection: z.string()
+            });
+            return schema.parse(data);
+          }
+        });
+
+        collectionSlug = contractData.collection;
+        
+        // Save to shared cache
+        setContractToCollectionMapping(
+          validatedParams.chain,
+          validatedParams.contractAddress,
+          collectionSlug
+        );
+      }
 
       // Then use the collection slug to get the NFTs
       return this.getNFTsByCollection({
-        collection_slug: contractData.collection,
+        collection_slug: collectionSlug,
         limit: validatedParams.limit,
         next: validatedParams.next
       });

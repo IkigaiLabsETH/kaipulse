@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { logger } from '@/lib/logger';
 import { BaseOpenSeaAPI } from './base';
+import { getContractToCollectionMapping, setContractToCollectionMapping } from './cache';
 
 export const StatsSchema = z.object({
   total_supply: z.number(),
@@ -152,6 +153,17 @@ export class CollectionService extends BaseOpenSeaAPI {
     }));
 
     try {
+      // Check cache from shared module
+      const cachedSlug = getContractToCollectionMapping(
+        validatedParams.chain,
+        validatedParams.contractAddress
+      );
+      
+      if (cachedSlug) {
+        logger.info(`Using cached collection slug for contract: ${validatedParams.contractAddress}`);
+        return this.getCollection({ slug: cachedSlug });
+      }
+
       // First get the collection slug from contract address
       const contractResponse = await this.request<{ collection: string }>({
         method: 'GET',
@@ -162,6 +174,13 @@ export class CollectionService extends BaseOpenSeaAPI {
         throw new Error(`Collection not found for contract ${validatedParams.contractAddress}`);
       }
 
+      // Cache the result in shared cache
+      setContractToCollectionMapping(
+        validatedParams.chain,
+        validatedParams.contractAddress,
+        contractResponse.collection
+      );
+      
       // Then get the full collection with the slug
       return this.getCollection({ slug: contractResponse.collection });
     } catch (error) {
