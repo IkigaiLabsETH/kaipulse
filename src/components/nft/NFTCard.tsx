@@ -6,6 +6,8 @@ import type { OpenSeaNFT } from '@/services/opensea/types';
 import { useState } from 'react';
 import { logger } from '@/lib/logger';
 import { formatEthPrice } from '@/lib/format';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 export interface NFTCardProps {
   nft: OpenSeaNFT;
@@ -14,10 +16,6 @@ export interface NFTCardProps {
 
 export function NFTCard({ nft, href }: NFTCardProps) {
   const [imageError, setImageError] = useState(false);
-  const hasTraits = nft.traits && nft.traits.length > 0;
-  const rarity = nft.rarity?.rank 
-    ? `${nft.rarity.rank} of ${nft.rarity.tokens_scored}`
-    : null;
 
   const handleImageError = () => {
     logger.warn('Failed to load NFT image:', { 
@@ -32,68 +30,60 @@ export function NFTCard({ nft, href }: NFTCardProps) {
     : '/images/placeholder-nft.svg';
 
   const price = nft.listings?.[0]?.price?.current?.value;
-  const lastSalePrice = null;
 
   return (
-    <Link
-      href={href}
-      className="block bg-black group"
+    <motion.div
+      whileHover={{ y: -5 }}
+      transition={{ type: "spring", stiffness: 200, damping: 25 }}
+      className="relative group"
     >
-      <div className="relative aspect-square overflow-hidden">
-        {nft.image_url ? (
-          <Image
-            src={nft.image_url}
-            alt={nft.name || 'NFT'}
-            width={500}
-            height={500}
-            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
-            onError={handleImageError}
-          />
-        ) : (
-          <div className="w-full h-full bg-white/5 flex items-center justify-center">
-            <span className="text-white/40">No Image</span>
-          </div>
-        )}
-        
-        {/* Price Tag */}
-        {price && (
-          <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-sm px-2 py-1 rounded text-sm">
-            <span className="text-white/60">Ξ</span> {formatEthPrice(price)}
-          </div>
-        )}
-      </div>
-
-      <div className="p-3 space-y-2">
-        <div>
-          <h3 className="text-sm font-medium truncate" title={nft.name || `#${nft.identifier}`}>
-            {nft.name || `#${nft.identifier}`}
-          </h3>
-          {rarity && (
-            <p className="text-xs text-white/60">
-              Rank: {rarity}
-            </p>
-          )}
-        </div>
-
-        {hasTraits && (
-          <div className="flex flex-wrap gap-1">
-            {nft.traits.slice(0, 3).map((trait, index) => (
-              <div 
-                key={index}
-                className="px-1.5 py-0.5 bg-white/5 rounded-sm text-[10px] text-white/60"
-                title={`${trait.trait_type}: ${trait.value}`}
-              >
-                {trait.value}
-              </div>
-            ))}
-            {nft.traits.length > 3 && (
-              <div className="px-1.5 py-0.5 bg-white/5 rounded-sm text-[10px] text-white/60">
-                +{nft.traits.length - 3}
+      <Link
+        href={href}
+        className="block overflow-hidden relative"
+      >
+        {/* Art frame - artwork is the focus */}
+        <div className="relative">
+          {/* Art piece */}
+          <div className="relative aspect-square overflow-hidden bg-black">
+            {nft.image_url ? (
+              <Image
+                src={nft.image_url}
+                alt={nft.name || 'NFT'}
+                width={500}
+                height={500}
+                className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
+                onError={handleImageError}
+              />
+            ) : (
+              <div className="w-full h-full bg-black/30 flex items-center justify-center">
+                <span className="text-white/40">No Image</span>
               </div>
             )}
+
+            {/* Subtle price display */}
+            {price && (
+              <div className="absolute bottom-0 right-0 bg-black/80 px-3 py-1.5 text-sm font-light">
+                <span className="text-yellow-400">Ξ</span> {formatEthPrice(price)}
+              </div>
+            )}
+
+            {/* Elegant hover state */}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="border-b border-white/50 px-3 py-2 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
+                <span className="uppercase tracking-wider text-sm font-light text-white">View</span>
+                <ArrowUpRight size={16} className="text-white" />
+              </div>
+            </div>
           </div>
-        )}
-      </div>
-    </Link>
+
+          {/* Minimal artwork title - only shows artwork name */}
+          <div className="py-4 px-1">
+            <h3 className="text-base font-light text-white/80 group-hover:text-yellow-400 transition-colors duration-300" title={nft.name || `#${nft.identifier}`}>
+              {nft.name || `#${nft.identifier}`}
+            </h3>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
   );
 } 

@@ -1,76 +1,100 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
+import { ZoomIn, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface NFTImageGalleryProps {
-  images: { url: string; alt: string }[];
-  className?: string;
+  images: string[];
+  alt: string;
 }
 
-export function NFTImageGallery({ images, className }: NFTImageGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+export default function NFTImageGallery({ images, alt }: NFTImageGalleryProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fullscreenOpen, setFullscreenOpen] = useState(false);
+  const currentImage = images[currentIndex];
 
-  if (!images.length) {
-    return null;
-  }
+  const handleThumbnailClick = (index: number) => {
+    setCurrentIndex(index);
+  };
 
   return (
-    <div className={className}>
-      {/* Main image */}
+    <div className="flex flex-col gap-4">
+      {/* Main image with yellow border highlight */}
       <div 
-        className="relative aspect-square w-full cursor-pointer overflow-hidden rounded-xl bg-neutral-900"
-        onClick={() => setIsDialogOpen(true)}
+        className="relative aspect-square w-full overflow-hidden border-[6px] border-yellow-400 cursor-zoom-in bg-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.8)]" 
+        onClick={() => setFullscreenOpen(true)}
       >
-        <Image
-          src={images[selectedImage].url}
-          alt={images[selectedImage].alt}
-          fill
-          className="object-contain"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src={currentImage}
+            alt={alt}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={95}
+            priority
+          />
+          
+          {/* Zoom indicator */}
+          <div className="absolute bottom-4 right-4 bg-black/60 rounded-full p-2 opacity-0 group-hover:opacity-80 transition-opacity">
+            <ZoomIn size={20} className="text-yellow-400" />
+          </div>
+        </motion.div>
       </div>
 
-      {/* Thumbnail grid */}
+      {/* Thumbnail strip, if there are multiple images */}
       {images.length > 1 && (
-        <div className="mt-4 grid grid-cols-4 gap-4">
+        <div className="flex gap-2 overflow-x-auto pb-2 -mx-2 px-2">
           {images.map((image, index) => (
-            <button
-              key={image.url}
+            <div
+              key={index}
               className={cn(
-                "relative aspect-square w-full overflow-hidden rounded-lg bg-neutral-900",
-                selectedImage === index && "ring-2 ring-yellow-500"
+                "relative w-20 h-20 flex-shrink-0 cursor-pointer transition-all duration-300 transform",
+                currentIndex === index 
+                  ? "border-[3px] border-yellow-400 opacity-100 scale-105" 
+                  : "border border-white/10 opacity-70 hover:opacity-100 hover:border-yellow-400/50"
               )}
-              onClick={() => setSelectedImage(index)}
+              onClick={() => handleThumbnailClick(index)}
             >
               <Image
-                src={image.url}
-                alt={image.alt}
+                src={image}
+                alt={`${alt} thumbnail ${index + 1}`}
                 fill
-                className="object-contain"
-                sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 15vw"
+                className="object-cover"
               />
-            </button>
+            </div>
           ))}
         </div>
       )}
 
       {/* Fullscreen dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-4xl bg-neutral-900 p-0">
-          <div className="relative aspect-square w-full">
+      <Dialog open={fullscreenOpen} onOpenChange={setFullscreenOpen}>
+        <DialogContent className="max-w-5xl w-full bg-black border border-yellow-400/60 p-0 sm:p-6">
+          <div className="relative w-full h-[80vh]">
             <Image
-              src={images[selectedImage].url}
-              alt={images[selectedImage].alt}
+              src={currentImage}
+              alt={alt}
               fill
               className="object-contain"
               sizes="100vw"
-              priority
+              quality={100}
             />
+            
+            <button 
+              className="absolute top-4 right-4 p-2 bg-black/60 rounded-full hover:bg-black/80 transition-colors"
+              onClick={() => setFullscreenOpen(false)}
+            >
+              <X size={24} className="text-white" />
+            </button>
           </div>
         </DialogContent>
       </Dialog>

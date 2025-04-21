@@ -87,24 +87,24 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-[200px] flex items-center justify-center">
-        <Loader size="lg" />
+      <div className="min-h-[300px] flex items-center justify-center">
+        <Loader size="lg" className="text-yellow-400/50" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-[200px] flex flex-col items-center justify-center text-center p-4">
-        <p className="text-red-500 mb-4">{error}</p>
+      <div className="min-h-[300px] flex flex-col items-center justify-center text-center p-4">
+        <p className="text-white/60 mb-8 tracking-wide">{error}</p>
         {retryCount < MAX_RETRIES && (
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setRetryCount(prev => prev + 1)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#F7B500] text-black rounded-lg font-semibold hover:bg-[#F7B500]/90 transition-all duration-300 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
+            className="inline-flex items-center gap-2 px-5 py-2 text-sm font-light border border-yellow-400/30 text-yellow-400 uppercase tracking-wider hover:bg-yellow-400/10 transition-all duration-300"
           >
-            <RefreshCw size={16} />
+            <RefreshCw size={14} />
             Try Again
           </motion.button>
         )}
@@ -114,21 +114,46 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
 
   if (!nfts.length) {
     return (
-      <div className="min-h-[200px] flex items-center justify-center">
-        <p className="text-gray-400">No items found in this collection</p>
+      <div className="min-h-[300px] flex items-center justify-center">
+        <p className="text-white/40 uppercase tracking-wider text-sm">No artworks found in this collection</p>
       </div>
     );
   }
 
+  // Animation for each artwork as it appears
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
+    >
       {nfts.map((nft) => (
-        <NFTCard 
-          key={nft.identifier} 
-          nft={nft} 
-          href={`/collections/${collectionSlug}/${nft.identifier}`}
-        />
+        <motion.div 
+          key={nft.identifier}
+          variants={itemVariants}
+        >
+          <NFTCard 
+            nft={nft} 
+            href={`/collections/${collectionSlug}/${nft.identifier}`}
+          />
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 } 
