@@ -25,6 +25,36 @@ interface CollectionPageProps {
   };
 }
 
+// Detect if the slug is a contract address (0x...) or a collection slug
+function isContractAddress(slug: string): boolean {
+  return /^0x[a-fA-F0-9]{40}$/.test(slug);
+}
+
+// Update the fetchCollection function to handle both contract addresses and slugs
+async function fetchCollection(slug: string) {
+  try {
+    let endpoint = `/api/collections/${slug}`;
+    
+    // If it's a contract address, we need to use a different endpoint format
+    if (isContractAddress(slug)) {
+      endpoint = `/api/collections/contract/${slug}`;
+    }
+    
+    const response = await fetch(endpoint, {
+      next: { revalidate: 60 } // Revalidate every 60 seconds
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch collection data: ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    logger.error('Error fetching collection:', error);
+    throw error;
+  }
+}
+
 export default function CollectionPage({ params }: CollectionPageProps) {
   const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
   const [stats, setStats] = useState<OpenSeaCollectionStats | null>(null);
@@ -50,19 +80,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
         setError(null);
 
         // Use internal API route with timeout and abort controller
-        const response = await fetch(`/api/collections/${params.slug}`, {
-          signal: controller.signal,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || `Failed to fetch collection: ${response.statusText}`);
-        }
-
-        const data = await response.json();
+        const data = await fetchCollection(params.slug);
         
         if (!isMounted) return;
 
