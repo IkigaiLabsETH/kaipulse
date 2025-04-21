@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import { Redis } from '@upstash/redis';
+import { logger } from './logger';
 
 const redis = new Redis({
   url: process.env.REDIS_URL || '',
@@ -37,7 +38,7 @@ export async function rateLimit(
       remaining: Math.max(0, remaining)
     };
   } catch (error) {
-    console.error('Rate limit error:', error);
+    logger.error('Rate limit error:', error);
     // Fail open if Redis is down
     return {
       success: true,

@@ -9,7 +9,7 @@ import { Collection, NFT } from '@/types/opensea';
 export const contractToCollectionCache: Record<string, string> = {};
 
 // Cache for collection data (slug to collection info)
-export const collectionDataCache: Record<string, any> = {};
+export const collectionDataCache: Record<string, Collection> = {};
 
 // Cache TTL in milliseconds (5 minutes)
 const CACHE_TTL = 5 * 60 * 1000;

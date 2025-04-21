@@ -12,14 +12,20 @@ interface CacheInterface {
 // No-op cache implementation when Redis is not configured
 class NoOpCache implements CacheInterface {
   async get<T>(key: string): Promise<T | null> {
+    // Parameter 'key' is deliberately unused in this implementation
     return null;
   }
 
-  async set(key: string, value: unknown, ttl?: number): Promise<void> {}
+  async set(key: string, value: unknown, ttl?: number): Promise<void> {
+    // Parameters 'key', 'value', and 'ttl' are deliberately unused in this implementation
+  }
 
-  async delete(key: string): Promise<void> {}
+  async delete(key: string): Promise<void> {
+    // Parameter 'key' is deliberately unused in this implementation
+  }
 
   async exists(key: string): Promise<boolean> {
+    // Parameter 'key' is deliberately unused in this implementation
     return false;
   }
 

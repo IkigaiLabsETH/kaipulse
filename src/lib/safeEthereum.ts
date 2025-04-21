@@ -3,21 +3,32 @@
  * This helps prevent conflicts when multiple libraries try to define ethereum
  */
 
+import { logger } from './logger';
+
+/**
+ * Ethereum provider interface
+ */
+interface EthereumProvider {
+  request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+  isMetaMask?: boolean;
+  // Add other ethereum provider properties as needed
+}
+
 /**
  * Safely get the window.ethereum object if it exists
  * @returns The window.ethereum object or null if not available
  */
-export const getEthereum = (): any | null => {
+export const getEthereum = (): EthereumProvider | null => {
   if (typeof window === 'undefined') return null;
 
   try {
     // Check if ethereum exists on window
-    if (window.hasOwnProperty('ethereum')) {
-      return window.ethereum;
+    if (Object.prototype.hasOwnProperty.call(window, 'ethereum')) {
+      return window.ethereum as EthereumProvider;
     }
     return null;
   } catch (e) {
-    console.warn('Error accessing ethereum object:', e);
+    logger.warn('Error accessing ethereum object:', e);
     return null;
   }
 };
@@ -31,10 +42,10 @@ export const getConnectedAddress = async (): Promise<string | null> => {
   if (!ethereum) return null;
 
   try {
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const accounts = await ethereum.request({ method: 'eth_accounts' }) as string[];
     return accounts && accounts.length > 0 ? accounts[0] : null;
   } catch (e) {
-    console.warn('Error getting connected address:', e);
+    logger.warn('Error getting connected address:', e);
     return null;
   }
 };
@@ -50,6 +61,6 @@ export const hasEthereumProvider = (): boolean => {
 // Add TypeScript support for window.ethereum
 declare global {
   interface Window {
-    ethereum?: any;
+    ethereum?: EthereumProvider;
   }
 } 
