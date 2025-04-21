@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="400" height="400" version="1.1" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="#1A1A1A"/>
-  <text x="50%" y="50%" font-family="Arial" font-size="24" fill="#666" text-anchor="middle" dominant-baseline="middle">No Logo</text>
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="12" fill="#1A1A1A"/>
+  <path d="M50 35C42.268 35 36 41.268 36 49C36 56.732 42.268 63 50 63C57.732 63 64 56.732 64 49C64 41.268 57.732 35 50 35ZM50 59C44.486 59 40 54.514 40 49C40 43.486 44.486 39 50 39C55.514 39 60 43.486 60 49C60 54.514 55.514 59 50 59Z" fill="#F7B500"/>
+  <path d="M50 43C46.686 43 44 45.686 44 49C44 52.314 46.686 55 50 55C53.314 55 56 52.314 56 49C56 45.686 53.314 43 50 43Z" fill="#F7B500"/>
 </svg> 

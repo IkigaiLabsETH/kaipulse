@@ -118,7 +118,12 @@ export const metadata: Metadata = {
     google: "your-google-site-verification",
     yandex: "your-yandex-verification",
     yahoo: "your-yahoo-verification"
-  }
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export const viewport: Viewport = {

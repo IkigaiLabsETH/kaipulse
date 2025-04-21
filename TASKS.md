@@ -165,3 +165,101 @@ A comprehensive task list for implementing NFT collection browsing and individua
 - Test API Key available for development
 - Production API Key requires approval
 - Keep API keys secure and never expose in client-side code 
+
+# Component Organization Tasks
+
+## Overview
+Verify and organize components for each page to ensure they are imported from the correct folders:
+- `/curated` - Components for collections page
+- `/collection` - Components for collection detail page
+- `/nft` - Components for NFT detail page
+- `/ui` - Shared components used across all pages
+
+## Current Status Analysis
+
+### Collections Page (`/collections/page.tsx`)
+- [x] Currently using components from:
+  - `@/components/ui/Layout`
+
+### Collection Detail Page (`/collections/[slug]/page.tsx`)
+- [x] Currently using components from:
+  - `@/components/collection/CollectionStats`
+  - `@/components/collection/CollectionGrid`
+  - `@/components/collection/CollectionActivity`
+  - `@/components/ui/Card` ❌ Should be in `/collection`
+  - `@/components/ui/Layout` ✅
+  - `@/components/ui/Skeleton` ❌ Should be in `/collection`
+  - `@/components/ui/Tabs` ❌ Should be in `/collection`
+  - `@/components/ui/Badge` ❌ Should be in `/collection`
+
+### NFT Detail Page (`/collections/[slug]/[tokenId]/page.tsx`)
+- [x] Currently using components from:
+  - `@/components/nft/NFTActions` ✅
+  - `@/components/nft/NFTDetails` ✅
+  - `@/components/nft/NFTActivity` ✅
+  - `@/components/nft/NFTTraits` ✅
+  - `@/components/nft/RelatedNFTs` ✅
+  - `@/components/nft/PriceHistory` ✅
+  - `@/components/nft/NFTImageGallery` ✅
+  - `@/components/ui/Layout` ✅
+
+## Tasks
+
+### Collections Page Tasks
+- [ ] Move components from `/collection` to `/curated`:
+  - [ ] Create `CuratedCollections` component
+  - [ ] Create `CuratedCollectionCard` component
+  - [ ] Create `CuratedCollectionGrid` component
+
+### Collection Detail Page Tasks
+- [ ] Move UI components to `/collection`:
+  - [ ] Create `CollectionCard` component (from Card)
+  - [ ] Create `CollectionSkeleton` component (from Skeleton)
+  - [ ] Create `CollectionTabs` component (from Tabs)
+  - [ ] Create `CollectionBadge` component (from Badge)
+- [ ] Update imports to use new components
+- [ ] Remove unused UI components
+
+### NFT Detail Page Tasks
+- [x] Verify all components are from `/nft`:
+  - [x] Verify `NFTActions` usage
+  - [x] Verify `NFTDetails` usage
+  - [x] Verify `NFTActivity` usage
+  - [x] Verify `NFTTraits` usage
+  - [x] Verify `RelatedNFTs` usage
+  - [x] Verify `PriceHistory` usage
+  - [x] Verify `NFTImageGallery` usage
+  - [x] Verify shared UI components are necessary
+
+### Shared UI Components Verification
+- [x] Verify necessity of each shared UI component:
+  - [x] Layout - Used across all pages ✅
+  - [x] Card - Should be moved to `/collection` ❌
+  - [x] Skeleton - Should be moved to `/collection` ❌
+  - [x] Tabs - Should be moved to `/collection` ❌
+  - [x] Badge - Should be moved to `/collection` ❌
+
+## Implementation Notes
+
+1. The `/ui` folder should only contain components that are:
+   - Used across all three main pages
+   - Essential for basic layout and functionality
+   - Not specific to any particular feature
+
+2. Component organization rules:
+   - `/curated` - All components specific to the collections listing page
+   - `/collection` - All components specific to single collection view
+   - `/nft` - All components specific to single NFT view
+   - `/ui` - Only shared components used across all pages
+
+3. Migration strategy:
+   - Create new components in correct folders
+   - Update imports in page files
+   - Remove old components after migration
+   - Update tests and documentation
+
+4. UI Component Migration Guidelines:
+   - Move UI components to feature folders if they're only used in one feature
+   - Keep styling consistent with the original UI components
+   - Add feature-specific props and functionality as needed
+   - Update all references to use new component paths 

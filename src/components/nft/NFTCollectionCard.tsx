@@ -1,11 +1,14 @@
+'use client';
+
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { OpenSeaCollection, OpenSeaCollectionStats } from '@/services/opensea/types';
+import { Collection, CollectionStats } from '@/types/opensea';
 import { formatEther } from 'viem';
 
 interface NFTCollectionCardProps {
-  collection: OpenSeaCollection;
-  stats?: OpenSeaCollectionStats;
+  collection: Collection;
+  stats?: CollectionStats;
 }
 
 export function NFTCollectionCard({ collection, stats }: NFTCollectionCardProps) {
@@ -15,7 +18,7 @@ export function NFTCollectionCard({ collection, stats }: NFTCollectionCardProps)
         {/* Banner Image */}
         <div className="relative h-48 w-full overflow-hidden bg-neutral-800">
           <Image
-            src={collection.banner_image_url || collection.image_url}
+            src={collection.banner_image_url || collection.image_url || '/images/placeholder-banner.png'}
             alt={collection.name}
             fill
             className="object-cover transition-transform duration-200 group-hover:scale-105"
@@ -27,7 +30,7 @@ export function NFTCollectionCard({ collection, stats }: NFTCollectionCardProps)
           {/* Profile Image */}
           <div className="relative -mt-10 h-20 w-20 overflow-hidden rounded-full border-4 border-[#1c1f26] bg-neutral-800">
             <Image
-              src={collection.image_url}
+              src={collection.image_url || '/images/placeholder-logo.png'}
               alt={collection.name}
               fill
               className="object-cover"

@@ -1,20 +1,24 @@
-import { Suspense } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { NFTActions } from '@/components/nft/NFTActions';
 import { NFTDetails } from '@/components/nft/NFTDetails';
-import { NFTActivity, type NFTEvent } from '@/components/nft/NFTActivity';
+import { NFTActivity } from '@/components/nft/NFTActivity';
 import { NFTTraits } from '@/components/nft/NFTTraits';
-import { RelatedNFTs } from '@/components/nft/RelatedNFTs';
 import { PriceHistory } from '@/components/nft/PriceHistory';
 import { NFTImageGallery } from '@/components/nft/NFTImageGallery';
+import { NFTImage } from '@/components/nft/NFTImage';
+import { Layout } from '@/components/ui';
 import { logger } from '@/lib/logger';
-import type { OpenSeaEvent, OpenSeaNFT } from '@/services/opensea/types';
-
-// Initialize API base URL
-const API_BASE_URL = process.env.VERCEL_URL 
-  ? `https://${process.env.VERCEL_URL}/api/opensea`
-  : 'http://localhost:3000/api/opensea';
+import type { 
+  OpenSeaNFT, 
+  OpenSeaEventDetails, 
+  Listing,
+  Offer,
+  Collection
+} from '@/services/opensea/types';
 
 interface NFTPageProps {
   params: {
@@ -23,12 +27,132 @@ interface NFTPageProps {
   };
 }
 
-// Add error boundary component
+interface NFTContentProps {
+  nft: OpenSeaNFT;
+  collection: Collection;
+  events: OpenSeaEventDetails[];
+  listing: Listing | null;
+  offer: Offer | null;
+}
+
+function NFTContent({ 
+  nft, 
+  collection, 
+  events, 
+  listing, 
+  offer 
+}: NFTContentProps) {
+  // Process image URLs
+  const processImageUrl = (url: string | undefined | null): string => {
+    if (!url) return '/images/nft-placeholder.png';
+    
+    try {
+      if (url.startsWith('ipfs://')) {
+        return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
+      }
+      new URL(url);
+      return url;
+    } catch {
+      return '/images/nft-placeholder.png';
+    }
+  };
+
+  // Transform images for gallery
+  const images = [
+    {
+      url: processImageUrl(nft.image_url),
+      alt: nft.name || `${collection.slug} #${nft.identifier}`
+    }
+  ];
+
+  if (nft.animation_url) {
+    images.push({
+      url: processImageUrl(nft.animation_url),
+      alt: `${nft.name || `${collection.slug} #${nft.identifier}`} Animation`
+    });
+  }
+
+  // Transform events for activity
+  const activityEvents = events
+    .map((event) => {
+      let type: 'sale' | 'transfer' | 'mint' | 'list';
+      if (event.event_type.toLowerCase().includes('sale')) {
+        type = 'sale';
+      } else if (event.event_type.toLowerCase().includes('list')) {
+        type = 'list';
+      } else if (event.event_type.toLowerCase().includes('transfer')) {
+        type = 'transfer';
+      } else {
+        type = 'mint';
+      }
+
+      return {
+        type,
+        price: event.payment?.quantity ? (Number(event.payment.quantity) / 1e18).toFixed(4) : undefined,
+        from: event.from_account?.address || '0x0000000000000000000000000000000000000000',
+        to: event.to_account?.address || '0x0000000000000000000000000000000000000000',
+        timestamp: event.created_date
+      };
+    })
+    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+  // Transform traits
+  const transformedTraits = (nft.traits || []).map((trait) => ({
+    trait_type: trait.trait_type || 'Unknown',
+    value: trait.value !== undefined ? String(trait.value) : 'Unknown',
+    rarity: trait.trait_count ? (trait.trait_count / 10000) * 100 : 50
+  }));
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <Link
+          href={`/collections/${collection.slug}`}
+          className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors"
+        >
+          <ArrowLeft size={20} />
+          <span>Back to collection</span>
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="space-y-8">
+          <NFTImageGallery images={images} />
+          <NFTTraits traits={transformedTraits} />
+          <NFTActivity events={activityEvents} />
+        </div>
+
+        <div className="space-y-8">
+          <NFTDetails 
+            nft={nft} 
+            collection={{
+              name: collection.name,
+              slug: collection.slug
+            }}
+          />
+          <NFTActions 
+            nft={nft} 
+            listing={listing} 
+            bestOffer={offer} 
+          />
+          <PriceHistory events={events} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ErrorDisplay({ error }: { error: Error }) {
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-white flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
         <div className="text-center">
+          <div className="w-32 h-32 mx-auto mb-6 opacity-50">
+            <NFTImage
+              src="/images/error-placeholder.png"
+              alt="Error"
+            />
+          </div>
           <h1 className="text-2xl font-bold mb-4">Error Loading NFT</h1>
           <div className="bg-red-900/20 border border-red-500/20 rounded-lg p-4 mb-6">
             <p className="text-red-400 mb-2">
@@ -55,410 +179,190 @@ function ErrorDisplay({ error }: { error: Error }) {
   );
 }
 
-async function NFTContent({ slug, tokenId }: { slug: string; tokenId: string }) {
-  try {
-    // Check if the slug is a contract address
-    const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(slug);
-    let contractAddress = isContractAddress ? slug.toLowerCase() : '';
-    let collectionSlug: string = slug;
-
-    if (isContractAddress) {
-      logger.info('Fetching collection by contract:', { contractAddress });
-      
-      try {
-        const response = await fetch(`${API_BASE_URL}?path=collection&contract=${contractAddress}`);
-        if (!response.ok) throw new Error('Failed to fetch collection');
-        const data = await response.json();
-        collectionSlug = data.slug;
-      } catch (error) {
-        logger.error('Failed to fetch collection:', { 
-          contractAddress,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        });
-        throw new Error('Failed to fetch collection details');
-      }
-    }
-
-    // Log initial request parameters
-    logger.info('NFTContent: Starting request with params:', {
-      slug,
-      tokenId,
-      isContractAddress: /^0x[a-fA-F0-9]{40}$/i.test(slug)
-    });
-
-    // Fetch NFT data through our API route
-    const nftResponse = await fetch(
-      `${API_BASE_URL}?path=nft&contract=${contractAddress}&tokenId=${tokenId}`
-    );
-    if (!nftResponse.ok) throw new Error('Failed to fetch NFT');
-    const nft: OpenSeaNFT = await nftResponse.json();
-    
-    if (!nft) {
-      logger.error('NFT data is null or undefined');
-      throw new Error('NFT not found');
-    }
-
-    // Update contract address from NFT data if we didn't have it
-    contractAddress = nft.contract;
-
-    logger.info('NFT data fetched successfully:', { 
-      identifier: nft.identifier,
-      name: nft.name,
-      contract: nft.contract
-    });
-
-    // Fetch events
-    const eventsResponse = await fetch(
-      `${API_BASE_URL}?path=events&contract=${contractAddress}&tokenId=${tokenId}`
-    );
-    if (!eventsResponse.ok) throw new Error('Failed to fetch events');
-    const events = await eventsResponse.json();
-
-    // Log detailed NFT data for debugging
-    logger.info('Raw NFT data:', {
-      identifier: nft.identifier,
-      name: nft.name,
-      image_url: nft.image_url,
-      description: nft.description,
-      owners: nft.owners,
-      creator: nft.creator,
-      traits: nft.traits?.length || 0,
-      contract: nft.contract,
-      token_standard: nft.token_standard,
-      metadata_url: nft.metadata_url
-    });
-
-    // Log full NFT object for debugging
-    logger.info('Full NFT object:', { nft });
-
-    // Ensure image URL is valid and handle IPFS URLs
-    const processImageUrl = (url: string | undefined | null): string => {
-      if (!url) return '/images/nft-placeholder.png';
-      
-      // Log the original URL for debugging
-      logger.info('Processing image URL:', { originalUrl: url });
-      
-      try {
-        // Handle IPFS URLs
-        if (url.startsWith('ipfs://')) {
-          const ipfsUrl = url.replace('ipfs://', 'https://ipfs.io/ipfs/');
-          logger.info('Converted IPFS URL:', { original: url, converted: ipfsUrl });
-          return ipfsUrl;
-        }
-
-        // Validate URL format
-        new URL(url);
-        return url;
-      } catch (error) {
-        logger.error('Invalid image URL:', { url, error: error instanceof Error ? error.message : 'Unknown error' });
-        return '/images/nft-placeholder.png';
-      }
-    };
-
-    // Transform image URLs and collect all available images
-    const images = [
-      {
-        url: processImageUrl(nft.image_url),
-        alt: nft.name || `${collectionSlug} #${tokenId}`
-      }
-    ];
-
-    // Add animation URL if available
-    if (nft.animation_url) {
-      images.push({
-        url: processImageUrl(nft.animation_url),
-        alt: `${nft.name || `${collectionSlug} #${tokenId}`} Animation`
-      });
-    }
-
-    // Add any additional images from metadata
-    if (nft.additional_images?.length) {
-      images.push(
-        ...nft.additional_images.map((url: string, index: number) => ({
-          url: processImageUrl(url),
-          alt: `${nft.name || `${collectionSlug} #${tokenId}`} Image ${index + 2}`
-        }))
-      );
-    }
-
-    logger.info('Processed images:', { 
-      mainImage: images[0].url,
-      totalImages: images.length,
-      hasAnimation: !!nft.animation_url,
-      additionalImages: nft.additional_images?.length || 0
-    });
-
-    // Fetch price data with retries and backoff
-    logger.info('Fetching price data:', { contractAddress, tokenId });
-    
-    const [bestListing, bestOffer] = await Promise.allSettled([
-      fetch(`${API_BASE_URL}?path=bestListing&contract=${contractAddress}&tokenId=${tokenId}`).then(response => {
-        if (!response.ok) throw new Error('Failed to fetch best listing');
-        return response.json();
-      }).catch(error => {
-        logger.error('Failed to fetch best listing:', {
-          contractAddress,
-          tokenId,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        });
-        return { results: [] };
-      }),
-      fetch(`${API_BASE_URL}?path=bestOffer&contract=${contractAddress}&tokenId=${tokenId}`).then(response => {
-        if (!response.ok) throw new Error('Failed to fetch best offer');
-        return response.json();
-      }).catch(error => {
-        logger.error('Failed to fetch best offer:', {
-          contractAddress,
-          tokenId,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        });
-        return { results: [] };
-      })
-    ]);
-
-    // Log price information
-    const listing = bestListing.status === 'fulfilled' && bestListing.value?.results?.[0] || null;
-    const offer = bestOffer.status === 'fulfilled' && bestOffer.value?.results?.[0] || null;
-
-    logger.info('Price data fetched:', {
-      hasListing: !!listing,
-      hasOffer: !!offer,
-      listingPrice: listing?.current_price,
-      offerPrice: offer?.current_price
-    });
-
-    // Fetch events with all event types
-    const [relatedNFTs] = await Promise.allSettled([
-      fetch(`${API_BASE_URL}?path=relatedNFTs&collection=${collectionSlug}&limit=12`).then(response => {
-        if (!response.ok) throw new Error('Failed to fetch related NFTs');
-        return response.json();
-      })
-    ]);
-
-    // Log raw events for debugging
-    logger.info('Raw events from OpenSea:', {
-      success: events.status === 'fulfilled',
-      eventCount: events.status === 'fulfilled' ? events.value?.results?.length : 0,
-      firstEvent: events.status === 'fulfilled' ? events.value?.results?.[0] : null
-    });
-
-    // Sort events by date for price history
-    const sortedEvents = events.status === 'fulfilled' && events.value?.results ? 
-      events.value.results
-        .filter((event: OpenSeaEvent) => 
-          event.event_type === 'sale' && 
-          event.total_price
-        )
-        .sort((a: OpenSeaEvent, b: OpenSeaEvent) => 
-          new Date(b.created_date).getTime() - new Date(a.created_date).getTime()
-        )
-      : [];
-
-    // Convert events to the format expected by NFTActivity
-    const activityEvents: NFTEvent[] = events.value?.results
-      .filter((event: OpenSeaEvent) => {
-        const isValid = event.event_type && event.created_date;
-        logger.info('Validating event:', { event, isValid });
-        return isValid;
-      })
-      .map((event: OpenSeaEvent) => {
-        // Format price to ETH with 4 decimal places if available
-        const formattedPrice = event.total_price 
-          ? (Number(event.total_price) / 1e18).toFixed(4)
-          : undefined;
-
-        // Map event type to our supported types (case insensitive)
-        let eventType: NFTEvent['type'];
-        const eventTypeLower = event.event_type.toLowerCase();
-        
-        // Map OpenSea event types to our types
-        if (eventTypeLower.includes('sale') || eventTypeLower === 'successful') {
-          eventType = 'sale';
-        } else if (eventTypeLower.includes('list') || eventTypeLower === 'created') {
-          eventType = 'list';
-        } else if (eventTypeLower.includes('transfer')) {
-          eventType = 'transfer';
-        } else if (eventTypeLower.includes('mint') || eventTypeLower === 'approve') {
-          eventType = 'mint';
-        } else {
-          logger.info('Unknown event type:', { 
-            originalType: event.event_type,
-            defaultingTo: 'transfer'
-          });
-          eventType = 'transfer';
-        }
-
-        const transformedEvent = {
-          type: eventType,
-          price: formattedPrice,
-          from: event.from_account || '0x0000000000000000000000000000000000000000',
-          to: event.to_account || '0x0000000000000000000000000000000000000000',
-          timestamp: event.created_date
-        };
-
-        logger.info('Event transformation:', { 
-          original: {
-            type: event.event_type,
-            price: event.total_price,
-            from: event.from_account,
-            to: event.to_account,
-            timestamp: event.created_date
-          },
-          transformed: transformedEvent
-        });
-
-        return transformedEvent;
-      })
-      .sort((a: NFTEvent, b: NFTEvent) => 
-        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
-      );
-
-    // Log final events
-    logger.info('Activity events after processing:', {
-      totalEvents: activityEvents.length,
-      eventTypes: Array.from(new Set(activityEvents.map(e => e.type))),
-      events: activityEvents
-    });
-
-    // Transform OpenSea traits to our format with null checks
-    const transformedTraits = (nft.traits || []).map(trait => ({
-      trait_type: trait.trait_type || 'Unknown',
-      value: trait.value !== undefined ? String(trait.value) : 'Unknown',
-      rarity: trait.trait_count ? (trait.trait_count / 10000) * 100 : 50
-    }));
-
-    // Update NFT with transformed image URL and current price information
-    const nftWithPrice: OpenSeaNFT = {
-      ...nft,
-      image_url: processImageUrl(nft.image_url) || '/images/nft-placeholder.png',
-      price: {
-        currentPrice: listing?.current_price ? Number(listing.current_price) / 1e18 : undefined,
-        paymentToken: {
-          id: 1,
-          symbol: 'ETH',
-          address: '0x0000000000000000000000000000000000000000',
-          image_url: 'https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg',
-          name: 'Ether',
-          decimals: 18,
-          eth_price: '1',
-          usd_price: '1'
-        }
-      },
-      // Ensure owners is properly formatted as an array of strings
-      owners: Array.isArray(nft.owners) ? nft.owners.map((owner: { address: string } | string) => {
-        if (typeof owner === 'string') return owner;
-        if (owner && typeof owner === 'object' && 'address' in owner) return owner.address;
-        return '';
-      }).filter(Boolean) : [],
-    };
-
-    // Transform related NFTs
-    const formattedRelatedNFTs = relatedNFTs.status === 'fulfilled' && relatedNFTs.value?.results ? 
-      relatedNFTs.value.results
-        .filter((relatedNft: OpenSeaNFT) => relatedNft.identifier !== tokenId)
-        .slice(0, 8)
-        .map((relatedNft: OpenSeaNFT) => ({
-          id: relatedNft.identifier,
-          name: relatedNft.name || `${collectionSlug} #${relatedNft.identifier}`,
-          image_url: relatedNft.image_url,
-          price: relatedNft.price?.currentPrice 
-            ? `${relatedNft.price.currentPrice}` 
-            : ''
-        }))
-      : [];
-
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <Link
-            href={`/collections/${collectionSlug}`}
-            className="inline-flex items-center text-sm text-neutral-400 hover:text-white transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Collection
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left column - Image Gallery */}
-          <div className="space-y-8">
-            <NFTImageGallery
-              images={images}
-              className="w-full rounded-2xl overflow-hidden"
-            />
-            
-            <NFTTraits traits={transformedTraits} />
-          </div>
-
-          {/* Right column - Details */}
-          <div className="space-y-8">
-            <NFTDetails
-              nft={nftWithPrice}
-              collection={{
-                name: nft.collection_name || collectionSlug,
-                slug: collectionSlug
-              }}
-            />
-
-            <NFTActions
-              nft={nftWithPrice}
-              listing={listing}
-              bestOffer={offer}
-            />
-
-            <PriceHistory events={sortedEvents} />
-          </div>
-        </div>
-
-        {/* Full width sections */}
-        <div className="mt-16 space-y-16">
-          <NFTActivity events={activityEvents} />
-          
-          <RelatedNFTs
-            nfts={formattedRelatedNFTs}
-            collectionSlug={collectionSlug}
-          />
-        </div>
-      </div>
-    );
-  } catch (error) {
-    logger.error('Error in NFTContent:', error);
-    if (error instanceof Error) {
-      logger.error('Error details:', {
-        message: error.message,
-        stack: error.stack
-      });
-    }
-    return <ErrorDisplay error={error instanceof Error ? error : new Error('An unknown error occurred')} />;
-  }
-}
-
 export default function NFTPage({ params }: NFTPageProps) {
-  return (
-    <main className="min-h-screen bg-[#111111]">
-      <Suspense 
-        fallback={
-          <div className="container mx-auto px-4 py-12">
-            <div className="animate-pulse space-y-8">
-              <div className="h-6 w-32 bg-yellow-500/10 rounded-full" />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                  <div className="aspect-square w-full rounded-2xl bg-yellow-500/10" />
-                  <div className="h-16 mt-6 bg-yellow-500/10 rounded-xl" />
-                </div>
-                <div className="space-y-6">
-                  <div className="h-64 rounded-2xl bg-yellow-500/10" />
-                  <div className="h-48 rounded-2xl bg-yellow-500/10" />
-                  <div className="h-32 rounded-2xl bg-yellow-500/10" />
-                </div>
+  const [nft, setNFT] = useState<OpenSeaNFT | null>(null);
+  const [collection, setCollection] = useState<Collection | null>(null);
+  const [events, setEvents] = useState<OpenSeaEventDetails[]>([]);
+  const [listing, setListing] = useState<Listing | null>(null);
+  const [offer, setOffer] = useState<Offer | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    async function fetchData() {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        // Fetch collection data first
+        const collectionRes = await fetch(`/api/collections/${params.slug}`, {
+          signal: controller.signal,
+          // Add cache control headers to prevent stale data
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
+        
+        if (!collectionRes.ok) {
+          const errorData = await collectionRes.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch collection: ${collectionRes.status} ${collectionRes.statusText}`);
+        }
+        
+        const collectionData = await collectionRes.json();
+        if (!collectionData.collection) {
+          throw new Error('Collection data is missing or malformed');
+        }
+
+        // Fetch NFT data
+        const nftRes = await fetch(`/api/collections/${params.slug}/${params.tokenId}`, {
+          signal: controller.signal,
+          // Add cache control headers to prevent stale data
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
+        
+        if (!nftRes.ok) {
+          const errorData = await nftRes.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch NFT: ${nftRes.status} ${nftRes.statusText}`);
+        }
+        
+        const nftData = await nftRes.json();
+        if (!nftData.nft) {
+          throw new Error('NFT data is missing or malformed');
+        }
+
+        // Fetch events with error handling
+        let eventsData = { events: [] };
+        try {
+          const eventsRes = await fetch(`/api/collections/${params.slug}/${params.tokenId}/events`, {
+            signal: controller.signal
+          });
+          if (eventsRes.ok) {
+            eventsData = await eventsRes.json();
+          }
+        } catch (eventsError) {
+          // Non-critical error - just log it
+          logger.warn('Failed to fetch NFT events:', eventsError);
+        }
+
+        // Fetch listings and offers in parallel with error handling
+        let listingsData = { orders: [] };
+        let offersData = { orders: [] };
+        
+        try {
+          const [listingsRes, offersRes] = await Promise.all([
+            fetch(`/api/collections/${params.slug}/${params.tokenId}/listings`, {
+              signal: controller.signal
+            }),
+            fetch(`/api/collections/${params.slug}/${params.tokenId}/offers`, {
+              signal: controller.signal
+            })
+          ]);
+
+          if (listingsRes.ok) {
+            listingsData = await listingsRes.json();
+          }
+
+          if (offersRes.ok) {
+            offersData = await offersRes.json();
+          }
+        } catch (marketDataError) {
+          // Non-critical error - just log it
+          logger.warn('Failed to fetch market data:', marketDataError);
+        }
+
+        if (!isMounted) return;
+
+        // Update state with all the data
+        setCollection(collectionData.collection);
+        setNFT(nftData.nft);
+        setEvents(eventsData.events || []);
+        setListing(listingsData.orders?.[0] || null);
+        setOffer(offersData.orders?.[0] || null);
+        setRetryCount(0); // Reset retry count on success
+      } catch (err) {
+        if (!isMounted) return;
+
+        const errorMessage = err instanceof Error ? err.message : 'Failed to load NFT data';
+        logger.error('Error loading NFT:', { 
+          error: errorMessage, 
+          slug: params.slug,
+          tokenId: params.tokenId
+        });
+        
+        setError(err instanceof Error ? err : new Error(errorMessage));
+
+        // Implement retry logic
+        if (retryCount < 3) {
+          setRetryCount(prev => prev + 1);
+          const delay = Math.min(1000 * Math.pow(2, retryCount), 8000);
+          logger.info(`Retrying in ${delay}ms...`, { attempt: retryCount + 1 });
+          
+          setTimeout(() => {
+            if (isMounted) {
+              fetchData();
+            }
+          }, delay);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [params.slug, params.tokenId, retryCount]);
+
+  if (error) {
+    return <ErrorDisplay error={error} />;
+  }
+
+  if (isLoading || !nft || !collection) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="animate-pulse">
+            <div className="h-8 w-32 bg-gray-700 rounded mb-8" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-8">
+                <div className="aspect-square bg-gray-700 rounded-lg" />
+                <div className="h-48 bg-gray-700 rounded-lg" />
               </div>
-              <div className="h-64 rounded-2xl bg-yellow-500/10" />
+              <div className="space-y-8">
+                <div className="h-64 bg-gray-700 rounded-lg" />
+                <div className="h-48 bg-gray-700 rounded-lg" />
+              </div>
             </div>
           </div>
-        }
-      >
-        <NFTContent slug={params.slug} tokenId={params.tokenId} />
-      </Suspense>
-    </main>
+        </div>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <NFTContent 
+        nft={nft}
+        collection={collection}
+        events={events}
+        listing={listing}
+        offer={offer}
+      />
+    </Layout>
   );
 }

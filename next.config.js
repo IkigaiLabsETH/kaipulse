@@ -28,6 +28,16 @@ const nextConfig = {
       }
     ],
     minimumCacheTTL: 3600,
+    domains: ['localhost', '127.0.0.1'],
+    domains: [
+      'i.seadn.io',            // OpenSea CDN
+      'openseauserdata.com',   // OpenSea user content
+      'stream.mux.com',        // Mux video streaming
+      'raw.githubusercontent.com',
+      'assets.opensea.io'      // OpenSea assets
+    ],
+    dangerouslyAllowSVG: true, // Some NFT images might be SVGs
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   typescript: {
     // Only ignore build errors in production

@@ -1,19 +1,13 @@
-import { OpenSeaAPI } from './api.new';
-import { MockOpenSeaAPI } from './mock';
+import { OpenSeaAPI } from './api';
+import { OpenSeaAPIError } from './base';
+import { logger } from '@/lib/logger';
 
-// Factory function to get the appropriate API instance
-export function getOpenSeaAPI(): OpenSeaAPI | MockOpenSeaAPI {
-  const apiKey = process.env.OPENSEA_API_KEY;
-  
-  if (!apiKey || process.env.NODE_ENV === 'development') {
-    return new MockOpenSeaAPI();
-  }
-  
-  return new OpenSeaAPI({ apiKey });
+const OPENSEA_API_KEY = process.env.OPENSEA_API_KEY;
+
+if (!OPENSEA_API_KEY) {
+  logger.warn('OpenSea API key is not configured. Please set OPENSEA_API_KEY in your environment variables.');
 }
 
-// Initialize OpenSea API client
-const apiKey = process.env.OPENSEA_API_KEY;
-export const openSeaApi = new OpenSeaAPI({ apiKey });
-
-export * from './types'; 
+export const openSeaService = new OpenSeaAPI(OPENSEA_API_KEY || 'dummy-key');
+export { OpenSeaAPI, OpenSeaAPIError };
+export type { Collection, NFT } from '@/types/opensea';

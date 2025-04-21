@@ -1,157 +1,104 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { OpenSeaAPI } from '@/services/opensea/api.new';
+import { NextResponse } from 'next/server';
 import { logger } from '@/lib/logger';
 
-// Initialize API instance with API key from server environment
-const openSeaApi = new OpenSeaAPI({ 
-  apiKey: process.env.OPENSEA_API_KEY 
-});
+const OPENSEA_API_KEY = process.env.OPENSEA_API_KEY;
+const OPENSEA_API_URL = 'https://api.opensea.io/api/v2';
 
-// Log API key status
-logger.info('OpenSea API Configuration:', {
-  hasApiKey: !!process.env.OPENSEA_API_KEY,
-  keyLength: process.env.OPENSEA_API_KEY?.length
-});
+if (!OPENSEA_API_KEY) {
+  logger.error('OpenSea API key is required. Please add OPENSEA_API_KEY to your environment variables.');
+}
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
     const path = searchParams.get('path');
-    const contractAddress = searchParams.get('contract');
-    const tokenId = searchParams.get('tokenId');
-    const collection = searchParams.get('collection');
-    const chain = searchParams.get('chain') || 'ethereum';
-    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : 50;
+    const contractAddress = searchParams.get('contractAddress');
 
-    // Log request parameters
-    logger.info('OpenSea API Request:', {
-      path,
-      contractAddress,
-      tokenId,
-      collection,
-      chain,
-      limit
-    });
-
-    if (!path) {
-      return NextResponse.json({ error: 'Path parameter is required' }, { status: 400 });
+    if (!path || !contractAddress) {
+      return NextResponse.json(
+        { error: 'Missing required parameters' },
+        { status: 400 }
+      );
     }
 
-    let data;
-    switch (path) {
-      case 'nft':
-        if (!contractAddress || !tokenId) {
-          return NextResponse.json({ error: 'Contract address and token ID are required' }, { status: 400 });
-        }
-        data = await openSeaApi.getNFT({
-          chain: 'ethereum',
-          address: contractAddress,
-          identifier: tokenId,
-          include_orders: true
-        });
-        break;
-
-      case 'collection':
-        if (!collection && !contractAddress) {
-          return NextResponse.json({ error: 'Collection slug or contract address is required' }, { status: 400 });
-        }
-        data = await openSeaApi.getCollection(collection || contractAddress!);
-        // Log collection response
-        logger.info('Collection Response:', {
-          hasData: !!data,
-          imageUrl: data?.image_url,
-          bannerUrl: data?.banner_image_url,
-          description: data?.description?.slice(0, 100)
-        });
-        break;
-
-      case 'collections':
-        const response = await openSeaApi.getCollections({
-          chain,
-          limit,
-          include_hidden: false,
-          order_by: 'created_date',
-          order_direction: 'desc'
-        });
-        
-        // Log the raw response
-        logger.info('Collections API Response:', {
-          hasResults: !!response.results,
-          hasData: !!response.data,
-          resultCount: response.results?.length || 0,
-          dataCount: response.data?.length || 0,
-          sampleUrls: (response.results || response.data || []).slice(0, 2).map(col => ({
-            name: col.name,
-            imageUrl: col.image_url,
-            bannerUrl: col.banner_image_url
-          }))
-        });
-        
-        data = response.results || response.data || [];
-        
-        // Log processed data
-        logger.info('Processed Collections:', {
-          count: data.length,
-          sampleCollection: data[0] ? {
-            name: data[0].name,
-            imageUrl: data[0].image_url,
-            bannerUrl: data[0].banner_image_url,
-            description: data[0].description?.slice(0, 100)
-          } : null
-        });
-        break;
-
-      case 'events':
-        if (!contractAddress || !tokenId) {
-          return NextResponse.json({ error: 'Contract address and token ID are required' }, { status: 400 });
-        }
-        data = await openSeaApi.getNFTEvents(contractAddress, tokenId, {
-          limit: 50,
-          event_type: 'created,successful,transfer,cancelled,offer_entered,approve'
-        });
-        break;
-
-      case 'bestListing':
-        if (!contractAddress || !tokenId) {
-          return NextResponse.json({ error: 'Contract address and token ID are required' }, { status: 400 });
-        }
-        data = await openSeaApi.getBestListing(contractAddress, tokenId);
-        break;
-
-      case 'bestOffer':
-        if (!contractAddress || !tokenId) {
-          return NextResponse.json({ error: 'Contract address and token ID are required' }, { status: 400 });
-        }
-        data = await openSeaApi.getBestOffer(contractAddress, tokenId);
-        break;
-
-      case 'relatedNFTs':
-        if (!collection) {
-          return NextResponse.json({ error: 'Collection parameter is required' }, { status: 400 });
-        }
-        const nftsResponse = await openSeaApi.getNFTsByCollection({
-          collection,
-          limit: limit || 12
-        });
-        data = nftsResponse.data;
-        break;
-
-      default:
-        return NextResponse.json({ error: 'Invalid path parameter' }, { status: 400 });
+    if (path !== 'collection') {
+      return NextResponse.json(
+        { error: 'Invalid path parameter' },
+        { status: 400 }
+      );
     }
 
-    return NextResponse.json(data);
+    if (!OPENSEA_API_KEY) {
+      return NextResponse.json(
+        { error: 'OpenSea API key is not configured' },
+        { status: 503 }
+      );
+    }
+
+    const headers: HeadersInit = {
+      'Accept': 'application/json',
+      'X-API-KEY': OPENSEA_API_KEY
+    };
+
+    // First, get the collection slug using the contract address
+    const collectionResponse = await fetch(
+      `${OPENSEA_API_URL}/chain/ethereum/contract/${contractAddress}`,
+      { headers }
+    );
+
+    if (!collectionResponse.ok) {
+      logger.error('OpenSea API error fetching collection by contract:', {
+        status: collectionResponse.status,
+        statusText: collectionResponse.statusText,
+        contractAddress
+      });
+
+      return NextResponse.json(
+        { error: 'Failed to fetch collection data from OpenSea' },
+        { status: collectionResponse.status }
+      );
+    }
+
+    const contractData = await collectionResponse.json();
+    const collectionSlug = contractData.collection;
+
+    if (!collectionSlug) {
+      return NextResponse.json(
+        { error: 'Collection not found for this contract' },
+        { status: 404 }
+      );
+    }
+
+    // Then get the full collection data using the slug
+    const response = await fetch(
+      `${OPENSEA_API_URL}/collections/${collectionSlug}`,
+      { headers }
+    );
+
+    if (!response.ok) {
+      logger.error('OpenSea API error fetching collection details:', {
+        status: response.status,
+        statusText: response.statusText,
+        collectionSlug
+      });
+
+      return NextResponse.json(
+        { error: 'Failed to fetch collection details from OpenSea' },
+        { status: response.status }
+      );
+    }
+
+    const data = await response.json();
+    
+    // Add cache headers for better performance
+    const responseWithData = NextResponse.json(data);
+    responseWithData.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+    
+    return responseWithData;
   } catch (error) {
-    logger.error('OpenSea API Error:', {
-      error: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-      path: searchParams.get('path'),
-      contractAddress: searchParams.get('contract'),
-      collection: searchParams.get('collection')
-    });
+    logger.error('Error in OpenSea API route:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch data from OpenSea' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

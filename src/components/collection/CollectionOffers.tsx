@@ -1,17 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { OpenSeaAPI, OpenSeaEvent } from '@/services/opensea/api.new';
-import { OpenSeaOffer, OpenSeaAccount } from '@/services/opensea/types';
+import { OpenSeaAPI } from '@/services/opensea';
+import type { OpenSeaOffer, OpenSeaAccount, OpenSeaEventDetails } from '@/services/opensea/types';
 import { logger } from '@/lib/logger';
 
 interface CollectionOffersProps {
   collectionSlug: string;
 }
 
-const api = new OpenSeaAPI({
-  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY
-});
+const api = new OpenSeaAPI(process.env.NEXT_PUBLIC_OPENSEA_API_KEY!);
 
 export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
   const [offers, setOffers] = useState<OpenSeaOffer[]>([]);
@@ -34,13 +32,7 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
           // Get the collection to get the contract address
           logger.info('Getting collection details for slug:', { collectionSlug });
           const collection = await api.getCollection(collectionSlug);
-          
-          // Find the Ethereum contract
-          const ethereumContract = collection.contracts.find(c => c.chain === 'ethereum');
-          if (!ethereumContract) {
-            throw new Error('No Ethereum contract found for collection');
-          }
-          contractAddress = ethereumContract.address;
+          contractAddress = collection.contract_address;
         }
         
         logger.info('Fetching collection offers:', { 
@@ -49,26 +41,27 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
         });
 
         // Get offers for the collection
-        const response = await api.getNFTEvents(contractAddress, '0', {
-          limit: 20,
-          event_type: 'offer_entered'
+        const response = await api.events.getEventsByCollection({
+          collection_slug: collectionSlug,
+          event_type: 'offer',
+          limit: 20
         });
 
         // Transform events into offers
-        const validOffers = response.data
-          .filter((event: OpenSeaEvent) => event.event_type === 'offer_entered')
-          .map((event: OpenSeaEvent): OpenSeaOffer => {
+        const validOffers = response.events
+          .filter((event: OpenSeaEventDetails) => event.event_type === 'offer')
+          .map((event: OpenSeaEventDetails): OpenSeaOffer => {
             const now = new Date();
             const maker: OpenSeaAccount = {
-              address: event.from_account,
-              profile_img_url: '', // Default empty as we don't have this info
-              created_date: now.toISOString()
+              address: event.from_account.address,
+              profile_img_url: event.from_account.profile_img_url,
+              user: event.from_account.user
             };
             
             const taker: OpenSeaAccount | null = event.to_account ? {
-              address: event.to_account,
-              profile_img_url: '',
-              created_date: now.toISOString()
+              address: event.to_account.address,
+              profile_img_url: event.to_account.profile_img_url,
+              user: event.to_account.user
             } : null;
 
             return {
@@ -76,10 +69,10 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
               closing_date: null,
               listing_time: Math.floor(Date.parse(event.created_date) / 1000),
               expiration_time: Math.floor(Date.now() / 1000) + 86400, // 24 hours from now
-              order_hash: event.transaction_hash || '',
+              order_hash: event.transaction?.hash || '',
               protocol_data: {
                 parameters: {
-                  offerer: event.from_account,
+                  offerer: event.from_account.address,
                   offer: [{
                     itemType: 1, // ERC721
                     token: contractAddress,
@@ -89,11 +82,11 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
                   }],
                   consideration: [{
                     itemType: 0, // Native token (ETH)
-                    token: event.payment_token || '0x0000000000000000000000000000000000000000',
+                    token: '0x0000000000000000000000000000000000000000',
                     identifierOrCriteria: '0',
-                    startAmount: event.total_price || '0',
-                    endAmount: event.total_price || '0',
-                    recipient: event.from_account
+                    startAmount: event.payment?.quantity || '0',
+                    endAmount: event.payment?.quantity || '0',
+                    recipient: event.from_account.address
                   }],
                   startTime: event.created_date,
                   endTime: new Date(Date.now() + 86400000).toISOString(), // 24 hours from now
@@ -108,7 +101,7 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
                 signature: '0x'
               },
               protocol_address: '0x00000000000000ADc04C56Bf30aC9d3c0aAF14dC', // Seaport contract
-              current_price: event.total_price || '0',
+              current_price: event.payment?.quantity || '0',
               maker,
               taker,
               maker_fees: [],
@@ -119,7 +112,7 @@ export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
               finalized: false,
               marked_invalid: false,
               client_signature: '0x',
-              relay_id: `${event.transaction_hash || ''}-${event.created_date}`,
+              relay_id: `${event.transaction?.hash || ''}-${event.created_date}`,
               criteria_proof: null
             };
           });

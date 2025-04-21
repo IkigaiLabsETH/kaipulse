@@ -1,4 +1,15 @@
-interface CollectionCategory {
+export interface NFTCollection {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  bannerUrl: string;
+  floorPrice: number;
+  totalVolume: number;
+  owners: number;
+}
+
+export interface CollectionCategory {
   id: string;
   name: string;
   description: string;
@@ -22,7 +33,10 @@ export const FEATURED_COLLECTIONS: CollectionCategory[] = [
     description: 'Fine art photography and photographic collections from renowned artists.',
     contractAddresses: [
       '0x8a90cab2b38dba80c64b7734e58ee1db38b8992e', // Doodles
-      '0x60e4d786628fea6478f785a6d7e704777c86a7c6'  // Mutant Ape Yacht Club
+      '0x60e4d786628fea6478f785a6d7e704777c86a7c6',  // Mutant Ape Yacht Club
+      '0xb6a37b5d14d502c3ab0ae6f3a0e058bc9517786e',
+      '0x6339e5e072086621540d0362c4e3cea0d643e114',
+      '0x186e2eece5ddbac8f1dde73723586b2c86aa8b58'
     ]
   },
   {

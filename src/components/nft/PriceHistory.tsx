@@ -1,18 +1,18 @@
 'use client';
 
-import { OpenSeaEvent } from '@/services/opensea/types';
+import { OpenSeaEventDetails } from '@/services/opensea/types';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 interface PriceHistoryProps {
-  events: OpenSeaEvent[];
+  events: OpenSeaEventDetails[];
 }
 
 export function PriceHistory({ events }: PriceHistoryProps) {
   // Filter and transform events to price data points
   const priceData = events
-    .filter(event => event.type === 'sale' && event.price?.current)
+    .filter(event => event.event_type === 'sale' && event.payment?.quantity)
     .map(event => ({
-      price: event.price!.current.value,
+      price: Number(event.payment!.quantity) / 1e18,
       timestamp: new Date(event.created_date).getTime()
     }))
     .sort((a, b) => a.timestamp - b.timestamp);

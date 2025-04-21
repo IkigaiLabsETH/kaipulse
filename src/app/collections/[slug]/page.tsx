@@ -6,16 +6,18 @@ import {
   CollectionStats,
   CollectionGrid,
   CollectionActivity,
-  CollectionOffers,
-  CollectionHeader
-} from '@/components/collections';
-import { Card } from '@/components/ui';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Grid } from '@/components/ui/grid';
-import { Loader } from '@/components/ui/loader';
-import { NFTLayout } from '@/components/nft/NFTLayout';
+  CollectionTabs,
+  CollectionBadge,
+  CollectionSkeleton,
+  CollectionError
+} from '@/components/collection';
+import { Layout } from '@/components/ui';
+import { ExternalLink, Grid as GridIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { logger } from '@/lib/logger';
-import { AlertCircle } from 'lucide-react';
 
 interface CollectionPageProps {
   params: {
@@ -23,152 +25,232 @@ interface CollectionPageProps {
   };
 }
 
-// Initialize API base URL
-const API_BASE_URL = process.env.VERCEL_URL 
-  ? `https://${process.env.VERCEL_URL}/api/opensea`
-  : 'http://localhost:3000/api/opensea';
-
 export default function CollectionPage({ params }: CollectionPageProps) {
   const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
-  const [stats, setStats] = useState<Partial<OpenSeaCollectionStats> | null>(null);
+  const [stats, setStats] = useState<OpenSeaCollectionStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 3;
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
 
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     async function fetchCollectionData() {
       try {
+        if (!params.slug) return;
+        
         setIsLoading(true);
         setError(null);
 
-        const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(params.slug);
-        const normalizedAddress = isContractAddress ? params.slug.toLowerCase() : params.slug;
-        
-        logger.info('Fetching collection data:', { 
-          slug: normalizedAddress,
-          isContractAddress 
+        // Use internal API route with timeout and abort controller
+        const response = await fetch(`/api/collections/${params.slug}`, {
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json'
+          }
         });
-
-        const response = await fetch(
-          `${API_BASE_URL}?path=collection&contract=${normalizedAddress}`,
-          { headers: { 'Accept': 'application/json' } }
-        );
-
+        
         if (!response.ok) {
-          throw new Error('Failed to fetch collection data');
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch collection: ${response.statusText}`);
         }
 
-        const collectionData = await response.json();
+        const data = await response.json();
         
-        logger.info('Collection data received:', { 
-          slug: normalizedAddress,
-          name: collectionData?.name,
-          hasLogo: !!collectionData?.image_url,
-          hasBanner: !!collectionData?.banner_image_url
-        });
+        if (!isMounted) return;
 
-        const statsData: Partial<OpenSeaCollectionStats> = {
-          floor_price: collectionData.stats?.floor_price || null,
-          total_volume: collectionData.stats?.total_volume || null,
-          total_supply: collectionData.stats?.total_supply || null,
-          num_owners: collectionData.stats?.num_owners || null,
-          one_day_volume: collectionData.stats?.one_day_volume || null,
-          seven_day_volume: collectionData.stats?.seven_day_volume || null,
-          thirty_day_volume: collectionData.stats?.thirty_day_volume || null
-        };
+        if (data.error) {
+          throw new Error(data.error);
+        }
 
-        setCollection(collectionData);
-        setStats(statsData);
-      } catch (error: unknown) {
-        logger.error('Error fetching collection data:', error);
-        setError('Failed to load collection data. Please try again later.');
+        if (!data.collection) {
+          throw new Error('Collection data is missing');
+        }
+
+        setCollection(data.collection);
+        setStats(data.collection.stats);
+        setRetryCount(0); // Reset retry count on success
+      } catch (error) {
+        if (!isMounted) return;
+
+        const errorMessage = error instanceof Error ? error.message : 'Failed to load collection data';
+        logger.error('Error fetching collection data:', { error: errorMessage, slug: params.slug });
+        
+        setError(errorMessage);
+
+        // Implement retry logic for specific errors
+        if (retryCount < MAX_RETRIES && 
+            (errorMessage.includes('Internal Server Error') || 
+             errorMessage.includes('Failed to fetch'))) {
+          setRetryCount(prev => prev + 1);
+          setTimeout(() => {
+            if (isMounted) {
+              fetchCollectionData();
+            }
+          }, Math.min(1000 * Math.pow(2, retryCount), 8000)); // Exponential backoff
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
     fetchCollectionData();
-  }, [params.slug]);
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [params.slug, retryCount]);
 
   if (isLoading) {
     return (
-      <NFTLayout>
-        <div className="animate-pulse space-y-8">
-          {/* Banner and Logo Skeleton */}
-          <div className="relative bg-[#111111] overflow-hidden">
-            <div className="w-full h-[500px] bg-[#1A1A1A]" />
-            <div className="container mx-auto px-4 -mt-32">
-              <div className="flex flex-col md:flex-row gap-12 items-start">
-                <Skeleton className="w-40 h-40 md:w-56 md:h-56 rounded-2xl" />
-                <div className="flex-1 space-y-4">
-                  <Skeleton className="h-8 w-32" />
-                  <Skeleton className="h-16 w-96" />
-                  <Skeleton className="h-24 w-full max-w-3xl" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats Skeleton */}
-          <div className="container mx-auto px-4">
-            <Card className="p-6">
-              <Grid className="grid-cols-2 md:grid-cols-4 gap-4">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="space-y-2">
-                    <Skeleton className="h-6 w-24" />
-                    <Skeleton className="h-8 w-32" />
-                  </div>
-                ))}
-              </Grid>
-            </Card>
-          </div>
-        </div>
-      </NFTLayout>
+      <Layout>
+        <CollectionSkeleton />
+      </Layout>
     );
   }
 
   if (error || !collection) {
     return (
-      <NFTLayout>
-        <div className="container mx-auto px-4 py-20">
-          <Card className="max-w-md mx-auto p-6 text-center">
-            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">Error</h3>
-            <p className="text-gray-400">{error || 'Failed to load collection'}</p>
-          </Card>
-        </div>
-      </NFTLayout>
+      <Layout>
+        <CollectionError 
+          error={error} 
+          retry={retryCount < MAX_RETRIES ? () => setRetryCount(prev => prev + 1) : undefined}
+        />
+      </Layout>
     );
   }
 
   return (
-    <NFTLayout>
-      <CollectionHeader collection={collection} />
-      
-      <div className="container mx-auto px-4 py-8 space-y-8">
-        <Suspense fallback={<Loader className="w-full" />}>
-          <Card className="p-6">
-            <CollectionStats stats={stats || {}} />
-          </Card>
-        </Suspense>
+    <Layout>
+      {/* Hero Banner */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="relative h-[400px]"
+      >
+        <Image
+          src={collection.banner_image_url || collection.image_url || '/images/placeholder-banner.png'}
+          alt={collection.name}
+          fill
+          className="object-cover"
+          priority
+          quality={100}
+          onError={(e) => {
+            const img = e.target as HTMLImageElement;
+            img.src = '/images/placeholder-banner.png';
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#111111]" />
+      </motion.div>
 
-        <Suspense fallback={<Loader className="w-full" />}>
-          <CollectionGrid collectionSlug={collection.slug} />
-        </Suspense>
-
-        <Grid className="grid-cols-1 lg:grid-cols-2 gap-8">
-          <Suspense fallback={<Loader className="w-full" />}>
-            <Card className="p-6">
-              <CollectionActivity collectionSlug={collection.slug} />
-            </Card>
-          </Suspense>
-
-          <Suspense fallback={<Loader className="w-full" />}>
-            <Card className="p-6">
-              <CollectionOffers collectionSlug={collection.slug} />
-            </Card>
-          </Suspense>
-        </Grid>
+      {/* Collection Info */}
+      <div className="container mx-auto px-4 -mt-32 relative z-10">
+        <div className="flex flex-col md:flex-row gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300"
+          >
+            <Image
+              src={collection.image_url || '/images/placeholder-logo.png'}
+              alt={`${collection.name} logo`}
+              width={192}
+              height={192}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const img = e.target as HTMLImageElement;
+                img.src = '/images/placeholder-logo.png';
+              }}
+            />
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex-1 pt-4"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <h1 className="text-4xl font-bold text-white">{collection.name}</h1>
+              {collection.safelist_status === 'verified' && (
+                <CollectionBadge>Verified Collection</CollectionBadge>
+              )}
+            </div>
+            <p className="text-gray-300 max-w-2xl mb-6">{collection.description}</p>
+            <div className="flex gap-4">
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                href={`https://opensea.io/collection/${collection.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2 bg-[#F7B500] text-black rounded-lg font-semibold hover:bg-[#F7B500]/90 transition-all duration-300 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
+              >
+                <ExternalLink size={18} />
+                View on OpenSea
+              </motion.a>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link
+                  href="/collections"
+                  className="inline-flex items-center gap-2 px-6 py-2 bg-[#1A1A1A] text-white rounded-lg font-semibold hover:bg-[#252525] transition-all duration-300 border-2 border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,1)] hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+                >
+                  <GridIcon size={18} />
+                  Back to Collections
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </NFTLayout>
+
+      {/* Stats */}
+      <div className="container mx-auto px-4 py-8">
+        {stats && <CollectionStats stats={stats} />}
+      </div>
+
+      {/* Tabs Section */}
+      <motion.div 
+        ref={ref}
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto px-4 py-8"
+      >
+        <CollectionTabs
+          defaultTab="items"
+          tabs={[
+            {
+              id: 'items',
+              label: 'Items',
+              content: (
+                <Suspense fallback={<div>Loading items...</div>}>
+                  <CollectionGrid collectionSlug={collection.slug} />
+                </Suspense>
+              )
+            },
+            {
+              id: 'activity',
+              label: 'Activity',
+              content: (
+                <Suspense fallback={<div>Loading activity...</div>}>
+                  <CollectionActivity collectionSlug={collection.slug} />
+                </Suspense>
+              )
+            }
+          ]}
+        />
+      </motion.div>
+    </Layout>
   );
 } 
