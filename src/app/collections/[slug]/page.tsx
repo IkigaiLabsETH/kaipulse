@@ -168,7 +168,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
             img.src = '/images/placeholder-banner.png';
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#111111]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black pointer-events-none" />
       </motion.div>
 
       {/* Collection Info */}
@@ -177,7 +177,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="w-48 h-48 rounded-2xl overflow-hidden border-4 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300"
+            className="w-48 h-48 rounded-xl overflow-hidden border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300"
           >
             <Image
               src={collection.image_url || '/images/placeholder-logo.png'}
@@ -194,15 +194,15 @@ export default function CollectionPage({ params }: CollectionPageProps) {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex-1 pt-4"
+            className="flex-1 pt-4 font-satoshi"
           >
             <div className="flex items-center gap-3 mb-4">
-              <h1 className="text-4xl font-bold text-white">{collection.name}</h1>
+              <h1 className="text-4xl font-bold text-yellow-400 font-epilogue tracking-tight">{collection.name}</h1>
               {collection.safelist_status === 'verified' && (
                 <CollectionBadge>Verified Collection</CollectionBadge>
               )}
             </div>
-            <p className="text-gray-300 max-w-2xl mb-6">{collection.description}</p>
+            <p className="text-white/80 max-w-2xl mb-6">{collection.description}</p>
             <div className="flex gap-4">
               <motion.a
                 whileHover={{ scale: 1.02 }}
@@ -210,7 +210,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
                 href={`https://opensea.io/collection/${collection.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2 bg-[#F7B500] text-black rounded-lg font-semibold hover:bg-[#F7B500]/90 transition-all duration-300 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]"
+                className="inline-flex items-center gap-2 px-6 py-2 bg-[#F7B500] text-black rounded-lg font-semibold hover:bg-[#F7B500]/90 transition-all duration-300 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-2 border-black"
               >
                 <ExternalLink size={18} />
                 View on OpenSea
@@ -221,7 +221,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
               >
                 <Link
                   href="/collections"
-                  className="inline-flex items-center gap-2 px-6 py-2 bg-[#1A1A1A] text-white rounded-lg font-semibold hover:bg-[#252525] transition-all duration-300 border-2 border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,1)] hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+                  className="inline-flex items-center gap-2 px-6 py-2 bg-[#1c1f26] text-white rounded-lg font-semibold hover:bg-[#252525] transition-all duration-300 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)]"
                 >
                   <GridIcon size={18} />
                   Back to Collections
@@ -252,7 +252,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
               id: 'items',
               label: 'Items',
               content: (
-                <Suspense fallback={<div>Loading items...</div>}>
+                <Suspense fallback={<div className="py-12 text-center text-white/60">Loading items...</div>}>
                   <CollectionGrid collectionSlug={collection.slug} />
                 </Suspense>
               )
@@ -261,7 +261,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
               id: 'activity',
               label: 'Activity',
               content: (
-                <Suspense fallback={<div>Loading activity...</div>}>
+                <Suspense fallback={<div className="py-12 text-center text-white/60">Loading activity...</div>}>
                   <CollectionActivity collectionSlug={collection.slug} />
                 </Suspense>
               )

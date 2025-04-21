@@ -19,6 +19,7 @@ import type {
   Offer,
   Collection
 } from '@/services/opensea/types';
+import { motion } from 'framer-motion';
 
 interface NFTPageProps {
   params: {
@@ -104,18 +105,23 @@ function NFTContent({
   }));
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 font-satoshi">
       <div className="mb-8">
         <Link
           href={`/collections/${collection.slug}`}
-          className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors"
+          className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-500 transition-colors font-medium"
         >
           <ArrowLeft size={20} />
           <span>Back to collection</span>
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+      >
         <div className="space-y-8">
           <NFTImageGallery images={images} />
           <NFTTraits traits={transformedTraits} />
@@ -137,14 +143,14 @@ function NFTContent({
           />
           <PriceHistory events={events} />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 function ErrorDisplay({ error }: { error: Error }) {
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center p-4 font-satoshi">
       <div className="max-w-2xl w-full">
         <div className="text-center">
           <div className="w-32 h-32 mx-auto mb-6 opacity-50">
@@ -153,22 +159,22 @@ function ErrorDisplay({ error }: { error: Error }) {
               alt="Error"
             />
           </div>
-          <h1 className="text-2xl font-bold mb-4">Error Loading NFT</h1>
-          <div className="bg-red-900/20 border border-red-500/20 rounded-lg p-4 mb-6">
-            <p className="text-red-400 mb-2">
+          <h1 className="text-2xl font-bold mb-4 text-yellow-400 font-epilogue tracking-tight">Error Loading NFT</h1>
+          <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6 mb-6">
+            <p className="text-white/90 mb-2">
               {error.message.includes('API key') 
                 ? 'OpenSea API key is not configured. Please set up your environment variables.'
                 : error.message}
             </p>
             {error.message.includes('API key') && (
-              <p className="text-sm text-neutral-400">
+              <p className="text-sm text-white/70">
                 Add NEXT_PUBLIC_OPENSEA_API_KEY to your .env.local file and restart the server.
               </p>
             )}
           </div>
           <Link
             href="/collections"
-            className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] text-white rounded-lg font-semibold transition-all duration-300 hover:bg-[#252525]"
           >
             <ArrowLeft size={20} />
             <span>Back to collections</span>
@@ -337,15 +343,15 @@ export default function NFTPage({ params }: NFTPageProps) {
       <Layout>
         <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse">
-            <div className="h-8 w-32 bg-gray-700 rounded mb-8" />
+            <div className="h-8 w-32 bg-[#1c1f26] rounded mb-8" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="space-y-8">
-                <div className="aspect-square bg-gray-700 rounded-lg" />
-                <div className="h-48 bg-gray-700 rounded-lg" />
+                <div className="aspect-square bg-[#1c1f26] rounded-lg border border-yellow-500/10" />
+                <div className="h-48 bg-[#1c1f26] rounded-lg border border-yellow-500/10" />
               </div>
               <div className="space-y-8">
-                <div className="h-64 bg-gray-700 rounded-lg" />
-                <div className="h-48 bg-gray-700 rounded-lg" />
+                <div className="h-64 bg-[#1c1f26] rounded-lg border border-yellow-500/10" />
+                <div className="h-48 bg-[#1c1f26] rounded-lg border border-yellow-500/10" />
               </div>
             </div>
           </div>

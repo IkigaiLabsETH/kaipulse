@@ -49,12 +49,12 @@ export function NFTTraits({ traits }: NFTTraitsProps) {
   };
 
   return (
-    <div className="rounded-2xl border-[3px] border-yellow-500 bg-[#1A1A1A] shadow-[4px_4px_0px_0px_rgba(234,179,8,1)] transition-all duration-300 hover:shadow-[6px_6px_0px_0px_rgba(234,179,8,1)]">
-      <div className="px-6 py-4 border-b border-neutral-800">
+    <div className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300">
+      <div className="px-6 py-4 border-b border-yellow-500/20">
         <div className="flex items-center gap-2">
-          <Sparkles size={20} className="text-yellow-500" />
-          <h2 className="text-xl font-bold text-white">Properties</h2>
-          <span className="ml-auto text-sm text-gray-400">{traits.length} traits</span>
+          <Sparkles size={20} className="text-yellow-400" />
+          <h2 className="text-xl font-bold font-epilogue tracking-tight text-yellow-400">Properties</h2>
+          <span className="ml-auto text-sm text-white/60">{traits.length} traits</span>
         </div>
       </div>
       <div className="p-4">
@@ -66,13 +66,13 @@ export function NFTTraits({ traits }: NFTTraitsProps) {
             return (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-xl border-2 border-neutral-800 bg-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-yellow-500/50"
+                className="group relative overflow-hidden rounded-lg border border-yellow-500/20 bg-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-yellow-500/50"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${config.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
                 
-                <div className="relative p-3">
+                <div className="relative p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <dt className="text-sm text-gray-400">{trait.trait_type}</dt>
+                    <dt className="text-sm text-white/60 font-medium">{trait.trait_type}</dt>
                     <Icon size={14} className={`${config.color} opacity-50 group-hover:opacity-100 transition-opacity`} />
                   </div>
                   
@@ -85,12 +85,12 @@ export function NFTTraits({ traits }: NFTTraitsProps) {
                       <span className={`text-xs font-medium ${config.color}`}>
                         {config.label}
                       </span>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-white/60">
                         {trait.rarity}%
                       </span>
                     </div>
                     
-                    <div className="h-1.5 w-full bg-neutral-800 rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-[#252932] rounded-full overflow-hidden">
                       <div 
                         className={`h-full ${config.bgColor} opacity-50 group-hover:opacity-75 transition-opacity`}
                         style={{ 

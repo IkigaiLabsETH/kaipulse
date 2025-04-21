@@ -59,12 +59,12 @@ export function NFTActivity({ events }: NFTActivityProps) {
   );
 
   return (
-    <div className="rounded-2xl border-[3px] border-yellow-500 bg-[#1A1A1A] shadow-[4px_4px_0px_0px_rgba(234,179,8,1)]">
-      <div className="p-6 border-b border-neutral-800">
+    <div className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300">
+      <div className="p-6 border-b border-yellow-500/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Activity size={20} className="text-yellow-500" />
-            <h2 className="text-xl font-bold text-white">Activity</h2>
+            <Activity size={20} className="text-yellow-400" />
+            <h2 className="text-xl font-bold font-epilogue tracking-tight text-yellow-400">Activity</h2>
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
@@ -74,21 +74,21 @@ export function NFTActivity({ events }: NFTActivityProps) {
             <Filter
               size={20}
               className={`transition-colors ${
-                showFilters ? 'text-yellow-500' : 'text-gray-400'
+                showFilters ? 'text-yellow-400' : 'text-white/60'
               }`}
             />
           </button>
         </div>
         {showFilters && (
-          <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-neutral-800">
+          <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-yellow-500/20">
             {eventTypes.map((type) => (
               <button
                 key={type}
                 onClick={() => setSelectedType(type)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                   selectedType === type
-                    ? 'bg-yellow-500 text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.25)]'
-                    : 'text-gray-400 hover:text-white hover:bg-yellow-500/10'
+                    ? 'bg-[#F7B500] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]'
+                    : 'text-white/60 hover:text-white hover:bg-yellow-500/10'
                 }`}
               >
                 {type}
@@ -103,7 +103,7 @@ export function NFTActivity({ events }: NFTActivityProps) {
             filteredEvents.map((event, index) => (
               <div
                 key={index}
-                className="group flex items-center justify-between p-4 rounded-xl bg-black/20 hover:bg-black/30 transition-all hover:-translate-y-0.5"
+                className="group flex items-center justify-between p-4 rounded-lg bg-black/20 border border-yellow-500/10 hover:border-yellow-500/30 transition-all hover:-translate-y-0.5"
               >
                 <div className="flex items-center gap-4">
                   <div className="p-2 rounded-lg bg-yellow-500/10 group-hover:bg-yellow-500/20 transition-colors">
@@ -113,27 +113,27 @@ export function NFTActivity({ events }: NFTActivityProps) {
                     <p className="text-white font-medium capitalize flex items-center gap-2">
                       {event.type}
                       {event.price && (
-                        <span className="text-yellow-500">
+                        <span className="text-yellow-400">
                           {event.price} ETH
                         </span>
                       )}
                     </p>
                     <div className="flex items-center gap-2 text-sm">
-                      <span className="text-gray-400">From</span>
+                      <span className="text-white/60">From</span>
                       <a
                         href={`https://opensea.io/${event.from}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-yellow-500 hover:text-yellow-400 transition-colors font-medium"
+                        className="text-yellow-400 hover:text-yellow-500 transition-colors font-medium"
                       >
                         {event.from.slice(0, 6)}...{event.from.slice(-4)}
                       </a>
-                      <span className="text-gray-400">to</span>
+                      <span className="text-white/60">to</span>
                       <a
                         href={`https://opensea.io/${event.to}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-yellow-500 hover:text-yellow-400 transition-colors font-medium"
+                        className="text-yellow-400 hover:text-yellow-500 transition-colors font-medium"
                       >
                         {event.to.slice(0, 6)}...{event.to.slice(-4)}
                       </a>
@@ -141,7 +141,7 @@ export function NFTActivity({ events }: NFTActivityProps) {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-white/60">
                     {formatTimeAgo(event.timestamp)}
                   </p>
                 </div>
@@ -149,7 +149,7 @@ export function NFTActivity({ events }: NFTActivityProps) {
             ))
           ) : (
             <div className="text-center py-8">
-              <p className="text-gray-400">
+              <p className="text-white/60">
                 No {selectedType.toLowerCase()} events found
               </p>
             </div>

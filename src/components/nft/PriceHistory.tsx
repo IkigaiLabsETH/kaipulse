@@ -19,9 +19,9 @@ export function PriceHistory({ events }: PriceHistoryProps) {
 
   if (priceData.length === 0) {
     return (
-      <div className="rounded-xl border border-neutral-800 bg-[#1A1A1A] p-4">
-        <h3 className="text-lg font-semibold text-white mb-4">Price History</h3>
-        <div className="text-neutral-400 text-center py-8">
+      <div className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-6">
+        <h3 className="text-lg font-bold font-epilogue tracking-tight text-yellow-400 mb-4">Price History</h3>
+        <div className="text-white/60 text-center py-8">
           No price history available
         </div>
       </div>
@@ -29,51 +29,50 @@ export function PriceHistory({ events }: PriceHistoryProps) {
   }
 
   return (
-    <div className="rounded-xl border border-neutral-800 bg-[#1A1A1A] p-4">
-      <h3 className="text-lg font-semibold text-white mb-4">Price History</h3>
-      <div className="h-[200px]">
+    <div className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-6">
+      <h3 className="text-lg font-bold font-epilogue tracking-tight text-yellow-400 mb-4">Price History</h3>
+      <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={priceData}>
-            <XAxis
-              dataKey="timestamp"
+          <LineChart
+            width={500}
+            height={300}
+            data={priceData}
+            margin={{
+              top: 5,
+              right: 5,
+              left: 5,
+              bottom: 5,
+            }}
+          >
+            <XAxis 
+              dataKey="timestamp" 
               type="number"
               domain={['dataMin', 'dataMax']}
-              tickFormatter={(timestamp) => {
-                return new Date(timestamp).toLocaleDateString();
-              }}
-              stroke="#666"
+              tickFormatter={(timestamp) => new Date(timestamp).toLocaleDateString()}
+              stroke="#ffffff60"
+              fontSize={12}
             />
-            <YAxis
-              dataKey="price"
-              type="number"
-              domain={['dataMin', 'dataMax']}
-              tickFormatter={(value) => `${value.toFixed(2)} ETH`}
-              stroke="#666"
+            <YAxis 
+              stroke="#ffffff60" 
+              fontSize={12}
             />
-            <Tooltip
-              content={({ active, payload }) => {
-                if (active && payload && payload.length) {
-                  const data = payload[0].payload;
-                  return (
-                    <div className="bg-black/90 border border-neutral-700 p-2 rounded-lg">
-                      <p className="text-white font-medium">
-                        {data.price.toFixed(3)} ETH
-                      </p>
-                      <p className="text-neutral-400 text-sm">
-                        {new Date(data.timestamp).toLocaleDateString()}
-                      </p>
-                    </div>
-                  );
-                }
-                return null;
+            <Tooltip 
+              formatter={(value: number) => [`${value.toFixed(4)} ETH`, 'Price']}
+              labelFormatter={(timestamp) => new Date(timestamp).toLocaleString()}
+              contentStyle={{ 
+                backgroundColor: '#1c1f26', 
+                borderColor: '#F7B500', 
+                borderWidth: 1,
+                color: '#fff'
               }}
             />
-            <Line
-              type="monotone"
-              dataKey="price"
-              stroke="#F7B500"
+            <Line 
+              type="monotone" 
+              dataKey="price" 
+              stroke="#F7B500" 
               strokeWidth={2}
-              dot={false}
+              dot={{ fill: '#F7B500', r: 4 }}
+              activeDot={{ fill: '#F7B500', r: 6, stroke: '#fff', strokeWidth: 2 }}
             />
           </LineChart>
         </ResponsiveContainer>
