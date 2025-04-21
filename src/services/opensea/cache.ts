@@ -132,14 +132,14 @@ export class OpenSeaCache {
 
     // Clear expired collections
     Array.from(this.collections.entries()).forEach(([key, entry]) => {
-      if (this.isExpired(entry.timestamp)) {
+      if (now - entry.timestamp > CACHE_TTL) {
         this.collections.delete(key);
       }
     });
 
     // Clear expired NFTs
     Array.from(this.nfts.entries()).forEach(([key, entry]) => {
-      if (this.isExpired(entry.timestamp)) {
+      if (now - entry.timestamp > CACHE_TTL) {
         this.nfts.delete(key);
       }
     });

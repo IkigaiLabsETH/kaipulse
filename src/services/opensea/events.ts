@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { BaseOpenSeaAPI } from './base';
-import type { OpenSeaEvent, EventQueryParams, EventsByAccountParams, EventsByCollectionParams, EventsByNFTParams, EventsResponse } from './types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { /* OpenSeaEvent - unused but kept for reference, */ EventQueryParams, EventsByAccountParams, EventsByCollectionParams, EventsByNFTParams, EventsResponse } from './types';
 import { chainSchema, addressSchema, tokenIdSchema } from './schemas';
 
 // Event schemas

@@ -11,23 +11,23 @@ interface CacheInterface {
 
 // No-op cache implementation when Redis is not configured
 class NoOpCache implements CacheInterface {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   async get<T>(key: string): Promise<T | null> {
-    // Parameter 'key' is deliberately unused in this implementation
     return null;
   }
 
   async set(key: string, value: unknown, ttl?: number): Promise<void> {
-    // Parameters 'key', 'value', and 'ttl' are deliberately unused in this implementation
+    // Deliberately empty
   }
 
   async delete(key: string): Promise<void> {
-    // Parameter 'key' is deliberately unused in this implementation
+    // Deliberately empty
   }
 
   async exists(key: string): Promise<boolean> {
-    // Parameter 'key' is deliberately unused in this implementation
     return false;
   }
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   async clear(): Promise<void> {}
 }

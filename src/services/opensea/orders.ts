@@ -5,10 +5,11 @@ import type {
   OfferQueryParams, 
   OrdersResponse, 
   Listing, 
-  Offer,
-  OrderProtocolData,
-  OpenSeaNFT,
-  OrderSide
+  Offer
+  // The following types are unused but kept for reference
+  // OrderProtocolData, 
+  // OpenSeaNFT,
+  // OrderSide 
 } from './types';
 import { chainSchema, nftSchema } from './schemas';
 
