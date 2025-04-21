@@ -16,6 +16,7 @@ export async function GET(
 ) {
   try {
     if (!OPENSEA_API_KEY) {
+      logger.warn('No OpenSea API key found, using mock data');
       return getMockDataForContract(params.address);
     }
 
@@ -23,22 +24,17 @@ export async function GET(
     const { address } = params;
 
     try {
-      // For now, just use mock data since we don't have that API method accessible yet
-      return getMockDataForContract(address);
-      
-      /*
-      // This is the actual implementation once the API client has the method
-      const collection = await openSeaAPI.collection.getCollectionByContractAddress({
+      // Use the real API
+      const collection = await openSeaAPI.collections.getCollectionByContractAddress({
         contractAddress: address,
         chain: 'ethereum'
       });
 
       // Add cache headers for better performance
-      const response = NextResponse.json({ collection });
+      const response = NextResponse.json(collection);
       response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
       
       return response;
-      */
     } catch (apiError) {
       // If API call fails, fall back to mock data
       logger.warn('OpenSea API call failed when fetching by contract, using mock data:', {

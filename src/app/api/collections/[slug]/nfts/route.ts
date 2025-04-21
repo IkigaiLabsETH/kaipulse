@@ -16,21 +16,26 @@ export async function GET(
 ) {
   try {
     if (!OPENSEA_API_KEY) {
+      logger.warn('No OpenSea API key found, using mock data');
       return getMockData(params.slug);
     }
 
     const openSeaAPI = new OpenSeaAPI(OPENSEA_API_KEY);
     const { slug } = params;
+    const { searchParams } = new URL(request.url);
+    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!, 10) : 50;
+    const next = searchParams.get('next') || undefined;
 
     try {
       // Get NFTs by collection slug
       const nfts = await openSeaAPI.nft.getNFTsByCollection({
         collection_slug: slug,
-        limit: 50
+        limit,
+        next: next as string | undefined
       });
 
       // Add cache headers for better performance
-      const response = NextResponse.json({ nfts: nfts.nfts });
+      const response = NextResponse.json(nfts);
       response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
       
       return response;
@@ -68,7 +73,10 @@ function getMockData(slug: string) {
   const normalizedSlug = slug.toLowerCase();
   
   if (mockCollections[normalizedSlug]) {
-    const response = NextResponse.json({ nfts: mockCollections[normalizedSlug] });
+    const response = NextResponse.json({ 
+      nfts: mockCollections[normalizedSlug],
+      next: null
+    });
     response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
     return response;
   }
@@ -77,7 +85,10 @@ function getMockData(slug: string) {
   const firstMockCollection = Object.values(mockCollections)[0];
   if (firstMockCollection) {
     logger.warn(`No mock data for ${slug}, using default mock collection`);
-    const response = NextResponse.json({ nfts: firstMockCollection });
+    const response = NextResponse.json({ 
+      nfts: firstMockCollection,
+      next: null
+    });
     response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
     return response;
   }

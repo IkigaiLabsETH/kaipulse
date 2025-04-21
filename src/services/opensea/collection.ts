@@ -142,19 +142,28 @@ export class CollectionService extends BaseOpenSeaAPI {
     }
   }
 
-  async getCollectionByContractAddress(params: { contractAddress: string; chain?: string }): Promise<CollectionData> {
+  async getCollectionByContractAddress(params: { 
+    contractAddress: string; 
+    chain?: string;
+  }): Promise<CollectionData> {
     const validatedParams = this.validateParams(params, z.object({
       contractAddress: z.string(),
-      chain: z.string().optional()
+      chain: z.string().optional().default('ethereum')
     }));
 
     try {
-      const response = await this.request<CollectionResponse>({
+      // First get the collection slug from contract address
+      const contractResponse = await this.request<{ collection: string }>({
         method: 'GET',
-        url: `/api/v2/chain/${validatedParams.chain || 'ethereum'}/contract/${validatedParams.contractAddress}/collection`,
+        url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.contractAddress}`,
       });
 
-      return response;
+      if (!contractResponse.collection) {
+        throw new Error(`Collection not found for contract ${validatedParams.contractAddress}`);
+      }
+
+      // Then get the full collection with the slug
+      return this.getCollection({ slug: contractResponse.collection });
     } catch (error) {
       throw this.handleError(error);
     }

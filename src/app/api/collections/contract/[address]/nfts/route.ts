@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { logger } from '@/lib/logger';
 import { env } from '@/env.mjs';
 import { mockCollections } from '@/data/mockNFTs';
+import { OpenSeaAPI } from '@/services/opensea/api';
 
 const OPENSEA_API_KEY = env.OPENSEA_API_KEY;
 
@@ -15,31 +16,30 @@ export async function GET(
 ) {
   try {
     if (!OPENSEA_API_KEY) {
+      logger.warn('No OpenSea API key found, using mock data');
       return getMockNFTsForContract(params.address);
     }
 
     const { address } = params;
+    const { searchParams } = new URL(request.url);
+    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!, 10) : 50;
+    const next = searchParams.get('next') || undefined;
 
     try {
-      // Skip the API call for now since we don't have that method implemented
-      // and directly use mock data
-      return getMockNFTsForContract(address);
-
-      /*
-      // This is the ideal implementation once the API client supports it
+      // Use the real OpenSea API
       const openSeaAPI = new OpenSeaAPI(OPENSEA_API_KEY);
       const response = await openSeaAPI.nft.getNFTsByContract({
         contractAddress: address,
         chain: 'ethereum',
-        limit: 50
+        limit,
+        next: next as string | undefined
       });
 
       // Add cache headers for better performance
-      const apiResponse = NextResponse.json({ nfts: response.nfts });
+      const apiResponse = NextResponse.json(response);
       apiResponse.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
       
       return apiResponse;
-      */
     } catch (apiError) {
       // If API call fails, fall back to mock data
       logger.warn('OpenSea API call failed when fetching NFTs by contract, using mock data:', {
@@ -75,7 +75,10 @@ function getMockNFTsForContract(contractAddress: string) {
   
   // If the contract matches BAYC, use the BAYC mock data
   if (contractAddress.toLowerCase() === BAYC_CONTRACT) {
-    const response = NextResponse.json({ nfts: mockCollections['boredapeyachtclub'] });
+    const response = NextResponse.json({ 
+      nfts: mockCollections['boredapeyachtclub'],
+      next: null 
+    });
     response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
     return response;
   }
@@ -84,7 +87,10 @@ function getMockNFTsForContract(contractAddress: string) {
   const firstMockCollection = Object.values(mockCollections)[0];
   if (firstMockCollection) {
     logger.warn(`No specific mock data for ${contractAddress}, using default mock collection`);
-    const response = NextResponse.json({ nfts: firstMockCollection });
+    const response = NextResponse.json({ 
+      nfts: firstMockCollection,
+      next: null
+    });
     response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
     return response;
   }
