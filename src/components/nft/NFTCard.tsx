@@ -25,10 +25,6 @@ export function NFTCard({ nft, href }: NFTCardProps) {
     setImageError(true);
   };
 
-  const imageUrl = !imageError && nft.image_url 
-    ? nft.image_url 
-    : '/images/placeholder-nft.svg';
-
   const price = nft.listings?.[0]?.price?.current?.value;
 
   return (

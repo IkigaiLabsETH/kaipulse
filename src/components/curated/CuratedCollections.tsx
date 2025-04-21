@@ -24,17 +24,6 @@ interface CollectionStats {
   thirty_day_volume?: number;
 }
 
-const mockStats = {
-  total_supply: 10000,
-  total_listings: 0,
-  total_volume: 1234.56,
-  total_sales: 789,
-  floor_price: 1.23,
-  market_cap: 12300,
-  num_owners: 4567,
-  average_price: 1.56
-};
-
 // Create default values for required Collection fields
 const defaultCollectionValues: Partial<Collection> = {
   name: '',

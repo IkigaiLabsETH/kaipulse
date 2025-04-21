@@ -19,18 +19,6 @@ export function CollectionTabs({ defaultTab, tabs }: CollectionTabsProps) {
   const [activeTab, setActiveTab] = useState(defaultTab);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Map tab IDs to their appropriate icons
-  const getTabIcon = (id: string) => {
-    switch (id) {
-      case 'items':
-        return <Grid size={16} />;
-      case 'activity':
-        return <Activity size={16} />;
-      default:
-        return null;
-    }
-  };
-
   const tabVariants = {
     active: { 
       scale: 1, 

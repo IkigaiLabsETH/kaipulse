@@ -33,10 +33,14 @@ export function CollectionStats({ stats }: CollectionStatsProps) {
 
   // Safely get growth values
   const getGrowthValue = (key: string): number => {
-    const value = (stats as any)[key];
+    if (!(key in stats)) return 0;
+    const value = stats[key as keyof typeof stats];
     if (value === undefined || value === null) return 0;
     
-    const numValue = typeof value === 'string' ? parseFloat(value) : value;
+    // Handle non-numeric types
+    if (typeof value === 'object') return 0;
+    
+    const numValue = typeof value === 'string' ? parseFloat(value) : Number(value);
     return isNaN(numValue) ? 0 : numValue;
   };
 
