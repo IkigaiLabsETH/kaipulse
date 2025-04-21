@@ -31,7 +31,7 @@ export class BaseOpenSeaAPI {
   private readonly apiKey: string;
   private readonly baseUrl: string;
 
-  constructor(apiKey: string, baseUrl = 'https://api.opensea.io/api/v2') {
+  constructor(apiKey: string, baseUrl = 'https://api.opensea.io') {
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
   }
