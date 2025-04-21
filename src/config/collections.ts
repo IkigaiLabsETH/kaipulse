@@ -1,11 +1,3 @@
-interface FeaturedCollection {
-  slug: string;
-  name: string;
-  description?: string;
-  image_url?: string;
-  banner_image_url?: string;
-}
-
 interface CuratedCollection {
   address: string;
   name: string;

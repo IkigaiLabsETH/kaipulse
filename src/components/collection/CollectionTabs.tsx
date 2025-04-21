@@ -3,7 +3,7 @@
 import { ReactNode, useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Grid, Activity, Filter, Info } from 'lucide-react';
+import { Filter, Info } from 'lucide-react';
 
 interface CollectionTabsProps {
   defaultTab: string;

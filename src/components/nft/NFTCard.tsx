@@ -41,7 +41,7 @@ export function NFTCard({ nft, href }: NFTCardProps) {
         <div className="relative">
           {/* Art piece */}
           <div className="relative aspect-square overflow-hidden bg-black">
-            {nft.image_url ? (
+            {nft.image_url && !imageError ? (
               <Image
                 src={nft.image_url}
                 alt={nft.name || 'NFT'}

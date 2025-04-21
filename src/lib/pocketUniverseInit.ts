@@ -46,6 +46,9 @@ export const initPocketUniverse = (): void => {
 // Add TypeScript support
 declare global {
   interface Window {
-    pocketUniverseInit?: (options?: any) => void;
+    pocketUniverseInit?: (options?: {
+      compatMode?: boolean;
+      skipEthereumInjection?: boolean;
+    }) => void;
   }
 } 

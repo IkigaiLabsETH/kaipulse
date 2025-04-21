@@ -4,26 +4,6 @@ import { CURATED_COLLECTIONS } from '@/config/collections';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Define a minimal collection type for initial data
-interface MinimalCollection {
-  address: string;
-  name: string;
-  image_url: string;
-  description?: string;
-}
-
-interface CollectionStats {
-  total_supply: number;
-  total_listings: number;
-  total_volume: number;
-  floor_price: number;
-  market_cap: number;
-  num_owners: number;
-  one_day_volume?: number;
-  seven_day_volume?: number;
-  thirty_day_volume?: number;
-}
-
 // Create default values for required Collection fields
 const defaultCollectionValues: Partial<Collection> = {
   name: '',
