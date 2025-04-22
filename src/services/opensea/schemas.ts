@@ -72,13 +72,13 @@ export const nftTraitSchema = z.object({
 
 // NFT rarity schema
 export const nftRaritySchema = z.object({
-  rank: z.number(),
-  score: z.number(),
-  strategy_version: z.string(),
-  strategy_key: z.string(),
-  calculated_at: z.string(),
-  max_rank: z.number(),
-  total_supply: z.number()
+  rank: z.number().nullish().default(0),
+  score: z.number().nullish().default(0),
+  strategy_version: z.string().nullish().default(''),
+  strategy_key: z.string().nullish().default(''),
+  calculated_at: z.string().nullish().default(''),
+  max_rank: z.number().nullish().default(0),
+  total_supply: z.number().nullish().default(0)
 });
 
 // Collection NFT schema (simpler version returned by collection NFTs endpoint)
@@ -95,9 +95,22 @@ export const collectionNFTSchema = baseAssetSchema.extend({
 });
 
 // Full NFT schema (for individual NFT endpoint)
-export const nftSchema = collectionNFTSchema.extend({
+export const nftSchema = z.object({
+  identifier: z.string(),
+  token_id: z.string(),
+  contract: z.string(),
   contract_address: z.string(),
   chain: chainSchema,
+  collection: z.string(),
+  name: z.string().nullish().default(''),
+  description: z.string().nullish().default(''),
+  image_url: z.string().nullish().default(''),
+  external_url: z.string().nullish().default(''),
+  animation_url: z.string().nullish().default(null),
+  token_standard: z.string().nullish().default('erc721'),
+  metadata_url: z.string().nullish().default(''),
+  background_color: z.string().nullish().default(''),
+  traits: z.array(nftTraitSchema).nullish().default([]),
   rarity: nftRaritySchema.optional()
 });
 
@@ -107,7 +120,13 @@ export const collectionResponseSchema = z.object({
 });
 
 export const nftResponseSchema = z.object({
-  nft: nftSchema
+  nft: z.preprocess((data) => {
+    // If data is null or not an object, return an empty object
+    if (!data || typeof data !== 'object') {
+      return {};
+    }
+    return data;
+  }, nftSchema.partial())
 });
 
 export const collectionNFTsResponseSchema = z.object({
