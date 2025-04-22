@@ -179,6 +179,7 @@ async function fetchNFTData(slug: string, tokenId: string) {
           }
         }
       } catch (_) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         // If parsing fails, just use the error text
         logger.warn('Failed to parse error response as JSON', { errorText });
       }
