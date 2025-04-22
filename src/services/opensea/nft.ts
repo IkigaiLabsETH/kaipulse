@@ -125,12 +125,12 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
         method: 'GET',
         url: `/api/v2/collection/${validatedParams.collection_slug}/nfts`,
         params: validatedParams,
-        validateResponse: (data: any) => {
+        validateResponse: (data: unknown) => {
           // Log the raw response to help debug
           logger.info('OpenSea raw response:', { data: JSON.stringify(data).substring(0, 500) });
           
           // More lenient validation to handle unexpected response formats
-          if (!data || !data.nfts) {
+          if (!data || typeof data !== 'object' || !('nfts' in data)) {
             logger.error('Invalid response from OpenSea API - missing nfts array', { data });
             return { nfts: [], next: null };
           }
@@ -139,9 +139,10 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
             return collectionNFTsResponseSchema.parse(data);
           } catch (error) {
             logger.error('Failed to parse OpenSea response:', { error, data });
+            const typedData = data as Record<string, unknown>;
             return { 
-              nfts: Array.isArray(data.nfts) ? data.nfts : [], 
-              next: data.next || null 
+              nfts: Array.isArray(typedData.nfts) ? typedData.nfts : [], 
+              next: typedData.next as string || null 
             };
           }
         }

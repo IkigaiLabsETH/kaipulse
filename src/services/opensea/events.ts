@@ -105,7 +105,7 @@ const eventsByNFTParamsSchema = eventQueryParamsSchema.extend({
 }).strict();
 
 // Helper function to transform the API response to match our types
-const transformEventsResponse = (data: any): EventsResponse => {
+const transformEventsResponse = (data: unknown): EventsResponse => {
   const parsed = z.object({
     next: z.string().nullable(),
     previous: z.string().nullable(),
