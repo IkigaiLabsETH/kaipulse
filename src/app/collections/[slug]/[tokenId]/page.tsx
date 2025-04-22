@@ -105,7 +105,10 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
         const openSeaAPI = new OpenSeaAPI(env.OPENSEA_API_KEY);
         
         // Get collection data
-        let collectionData: { collection: any; asset_contract?: { address: string } };
+        let collectionData: { 
+          collection: Record<string, unknown>;
+          asset_contract?: { address: string } 
+        };
         let contractAddress = slug;
         
         if (isContractAddress(slug)) {
