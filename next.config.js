@@ -25,17 +25,33 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'nftstorage.link',
+      },
+      {
+        protocol: 'https',
+        hostname: 'openseauserdata.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'stream.mux.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.opensea.io',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
       }
     ],
     minimumCacheTTL: 3600,
-    domains: ['localhost', '127.0.0.1'],
-    domains: [
-      'i.seadn.io',            // OpenSea CDN
-      'openseauserdata.com',   // OpenSea user content
-      'stream.mux.com',        // Mux video streaming
-      'raw.githubusercontent.com',
-      'assets.opensea.io'      // OpenSea assets
-    ],
     dangerouslyAllowSVG: true, // Some NFT images might be SVGs
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
