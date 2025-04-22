@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { cn } from '@/lib/utils';
-import { ZoomIn, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { logger } from '@/lib/logger';
 
 interface NFTImageGalleryProps {
   images: string[];
@@ -16,125 +14,103 @@ interface NFTImageGalleryProps {
 export default function NFTImageGallery({ 
   images, 
   alt,
-  fallbackMode = false
+  fallbackMode = false 
 }: NFTImageGalleryProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [fullscreenOpen, setFullscreenOpen] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   
-  const currentImage = images[currentIndex];
-  const isPlaceholder = imageError || 
-    !currentImage || 
-    currentImage.includes('placeholder') || 
-    fallbackMode;
+  // Ensure we have at least one image, even in fallback mode
+  const displayImages = images.length > 0 
+    ? images 
+    : ['/images/placeholder-nft.svg'];
 
-  const handleThumbnailClick = (index: number) => {
-    setCurrentIndex(index);
-    setImageError(false);
+  const hasMultipleImages = displayImages.length > 1;
+  const currentImage = displayImages[activeIndex] || '/images/placeholder-nft.svg';
+  
+  const handleNext = () => {
+    if (activeIndex < displayImages.length - 1) {
+      setActiveIndex(activeIndex + 1);
+    }
   };
 
-  const handleImageError = () => {
-    setImageError(true);
+  const handlePrev = () => {
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
+    }
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Main image with yellow border highlight */}
-      <div 
-        className={cn(
-          "relative aspect-square w-full overflow-hidden border-[6px] bg-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.8)]",
-          isPlaceholder ? "border-gray-700" : "border-yellow-400 cursor-zoom-in"
-        )}
-        onClick={() => !isPlaceholder && setFullscreenOpen(true)}
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="relative w-full h-full"
-        >
-          {isPlaceholder ? (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-              <div className="text-center px-6">
-                <svg className="w-24 h-24 mx-auto mb-4 text-gray-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1" />
-                  <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
-                  <path d="M21 15L16 10L5 21" stroke="currentColor" strokeWidth="1" />
-                </svg>
-                <p className="text-gray-400 mt-2 text-sm">Image unavailable</p>
+    <div className="relative rounded-sm overflow-hidden bg-gray-900 aspect-square">
+      {/* Main image */}
+      <div className="relative h-full w-full">
+        {fallbackMode ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Image
+              src="/images/placeholder-nft.svg"
+              alt="Placeholder"
+              width={300}
+              height={300}
+              className="opacity-70"
+            />
+            <div className="absolute inset-0 flex items-center justify-center text-white/80">
+              <div className="bg-black/40 px-6 py-4 rounded-sm text-center max-w-xs">
+                <p className="text-sm">Image temporarily unavailable</p>
               </div>
             </div>
-          ) : (
-            <Image
-              src={currentImage}
-              alt={alt}
-              fill
-              className="object-contain"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              quality={95}
-              priority
-              onError={handleImageError}
-            />
-          )}
-          
-          {/* Zoom indicator */}
-          {!isPlaceholder && (
-            <div className="absolute bottom-4 right-4 bg-black/60 rounded-full p-2 opacity-0 group-hover:opacity-80 transition-opacity">
-              <ZoomIn size={20} className="text-yellow-400" />
-            </div>
-          )}
-        </motion.div>
+          </div>
+        ) : (
+          <Image
+            src={currentImage}
+            alt={alt}
+            fill
+            className="object-contain"
+            onError={() => {
+              logger.error('Failed to load NFT image:', { src: currentImage });
+            }}
+          />
+        )}
       </div>
 
-      {/* Thumbnail strip, if there are multiple images */}
-      {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2 -mx-2 px-2">
-          {images.map((image, index) => (
-            <div
+      {/* Navigation arrows for multiple images */}
+      {hasMultipleImages && !fallbackMode && (
+        <>
+          <button
+            onClick={handlePrev}
+            disabled={activeIndex === 0}
+            className={`absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors ${
+              activeIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+            }`}
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="h-6 w-6 text-white" />
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={activeIndex === displayImages.length - 1}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 p-2 rounded-full transition-colors ${
+              activeIndex === displayImages.length - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+            }`}
+            aria-label="Next image"
+          >
+            <ChevronRight className="h-6 w-6 text-white" />
+          </button>
+        </>
+      )}
+
+      {/* Thumbnail navigation for multiple images */}
+      {hasMultipleImages && !fallbackMode && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+          {displayImages.map((_, index) => (
+            <button
               key={index}
-              className={cn(
-                "relative w-20 h-20 flex-shrink-0 cursor-pointer transition-all duration-300 transform",
-                currentIndex === index 
-                  ? "border-[3px] border-yellow-400 opacity-100 scale-105" 
-                  : "border border-white/10 opacity-70 hover:opacity-100 hover:border-yellow-400/50"
-              )}
-              onClick={() => handleThumbnailClick(index)}
-            >
-              <Image
-                src={image}
-                alt={`${alt} thumbnail ${index + 1}`}
-                fill
-                className="object-cover"
-                onError={handleImageError}
-              />
-            </div>
+              onClick={() => setActiveIndex(index)}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === activeIndex ? 'bg-white' : 'bg-white/40'
+              }`}
+              aria-label={`View image ${index + 1}`}
+            />
           ))}
         </div>
       )}
-
-      {/* Fullscreen dialog */}
-      <Dialog open={fullscreenOpen} onOpenChange={setFullscreenOpen}>
-        <DialogContent className="max-w-5xl w-full bg-black border border-yellow-400/60 p-0 sm:p-6">
-          <div className="relative w-full h-[80vh]">
-            <Image
-              src={currentImage}
-              alt={alt}
-              fill
-              className="object-contain"
-              sizes="100vw"
-              quality={100}
-              onError={handleImageError}
-            />
-            
-            <button 
-              className="absolute top-4 right-4 p-2 bg-black/60 rounded-full hover:bg-black/80 transition-colors"
-              onClick={() => setFullscreenOpen(false)}
-            >
-              <X size={24} className="text-white" />
-            </button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 } 
