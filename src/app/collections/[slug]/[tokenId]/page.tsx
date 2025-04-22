@@ -112,15 +112,60 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
         let contractAddress = slug;
         
         if (isContractAddress(slug)) {
-          const result = await openSeaAPI.collections.getCollectionByContractAddress({
-            contractAddress: slug,
-            chain: 'ethereum'
-          });
-          collectionData = result;
+          try {
+            const result = await openSeaAPI.collections.getCollectionByContractAddress({
+              contractAddress: slug,
+              chain: 'ethereum'
+            });
+            collectionData = result;
+          } catch (collErr) {
+            logger.error('Failed to get collection by contract, creating fallback collection', { 
+              error: collErr instanceof Error ? collErr.message : String(collErr)
+            });
+            // Create a fallback collection with the contract address
+            collectionData = {
+              collection: {
+                slug: slug.toLowerCase(),
+                name: `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}`,
+                description: "Collection information unavailable",
+                image_url: "/images/placeholder-logo.svg",
+                banner_image_url: "/images/placeholder-banner.svg",
+                safelist_status: "not_requested",
+                is_nsfw: false
+              },
+              asset_contract: {
+                address: slug
+              }
+            };
+          }
         } else {
-          const result = await openSeaAPI.collections.getCollection({ slug });
-          collectionData = result;
-          contractAddress = result?.asset_contract?.address || slug;
+          try {
+            // Try by slug first
+            const result = await openSeaAPI.collections.getCollection({ slug });
+            collectionData = result;
+            contractAddress = result?.asset_contract?.address || slug;
+          } catch (slugErr) {
+            logger.error('Failed to get collection by slug, trying to interpret as contract', { 
+              error: slugErr instanceof Error ? slugErr.message : String(slugErr)
+            });
+            
+            // If slug lookup fails, try treating it as a contract address
+            if (slug.startsWith('0x')) {
+              try {
+                const result = await openSeaAPI.collections.getCollectionByContractAddress({
+                  contractAddress: slug,
+                  chain: 'ethereum'
+                });
+                collectionData = result;
+                contractAddress = slug;
+              } catch (contractErr) {
+                logger.error('Both slug and contract lookups failed', { error: contractErr });
+                throw contractErr;
+              }
+            } else {
+              throw slugErr;
+            }
+          }
         }
         
         if (!contractAddress) {
@@ -128,18 +173,23 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
         }
         
         // Get NFT data
-        const nft = await openSeaAPI.nft.getNFT({
-          chain: 'ethereum',
-          address: contractAddress,
-          tokenId
-        });
-        
-        return {
-          nft,
-          collection: collectionData.collection,
-          listing: null,
-          isFallbackData: false
-        };
+        try {
+          const nft = await openSeaAPI.nft.getNFT({
+            chain: 'ethereum',
+            address: contractAddress,
+            tokenId
+          });
+          
+          return {
+            nft,
+            collection: collectionData.collection,
+            listing: null,
+            isFallbackData: false
+          };
+        } catch (nftErr) {
+          logger.error('Failed to get NFT data after getting collection', { error: nftErr });
+          throw nftErr;
+        }
       } catch (error) {
         logger.error('Error calling OpenSea API directly:', error);
         return createFallbackNFTData();

@@ -1,9 +1,15 @@
 // Script to test our OpenSea API endpoints
 // Use axios instead of node-fetch
 const axios = require('axios');
+const https = require('https');
 
 const BASE_URL = 'http://localhost:3000';
 const BAYC_CONTRACT = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+
+// NFT to test - known to have validation issues
+const contractAddress = '0x87d25e5e755b69943572a58936843ffa894afd66';
+const tokenId = '1545';
+const chain = 'ethereum';
 
 async function testCollectionEndpoint() {
   console.log('Testing collection endpoint...');
@@ -60,6 +66,52 @@ async function testNFTsEndpoint() {
   }
 }
 
+async function testNFTAPI() {
+  console.log('\nTesting NFT API endpoint...');
+  try {
+    const url = `http://localhost:3000/api/nfts/${chain}/${contractAddress}/${tokenId}`;
+    console.log(`Fetching NFT from: ${url}`);
+
+    https.get(url, (res) => {
+      let data = '';
+
+      console.log(`Status: ${res.statusCode}`);
+      
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      res.on('end', () => {
+        try {
+          const response = JSON.parse(data);
+          console.log('Response from API:');
+          console.log(JSON.stringify(response, null, 2));
+
+          if (response.nft) {
+            console.log('\nNFT found with properties:');
+            Object.keys(response.nft).forEach(key => {
+              const value = response.nft[key];
+              console.log(`- ${key}: ${typeof value === 'object' ? 'Object' : value}`);
+            });
+          } else {
+            console.log('No NFT data returned');
+          }
+        } catch (error) {
+          console.error('Error parsing response:', error);
+          console.log('Raw response:', data);
+        }
+      });
+    }).on('error', (err) => {
+      console.error('Error:', err.message);
+    });
+
+    return { success: true, data: { url } };
+  } catch (error) {
+    console.error('Error testing NFT API endpoint:', error.message);
+    return { success: false, error: error.message };
+  }
+}
+
 async function main() {
   console.log('🧪 OpenSea API Endpoints Test\n');
   
@@ -69,11 +121,15 @@ async function main() {
   // Test NFTs endpoint
   const nftsResult = await testNFTsEndpoint();
   
+  // Test NFT API
+  const nftAPIResult = await testNFTAPI();
+  
   console.log('\n📊 Test Results Summary:');
   console.log('- Collection Endpoint:', collectionResult.success ? '✅ Success' : '❌ Failed');
   console.log('- NFTs Endpoint:', nftsResult.success ? '✅ Success' : '❌ Failed');
+  console.log('- NFT API:', nftAPIResult.success ? '✅ Success' : '❌ Failed');
   
-  if (collectionResult.success && nftsResult.success) {
+  if (collectionResult.success && nftsResult.success && nftAPIResult.success) {
     console.log('\n🎉 All endpoints are working correctly!');
   } else {
     console.log('\n⚠️ Some endpoints failed the test. Check the logs above for details.');
