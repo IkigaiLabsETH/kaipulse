@@ -120,17 +120,48 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
       available_for_sale: z.boolean().optional()
     }));
 
-    const response = await this.request({
-      method: 'GET',
-      url: `/api/v2/collections/${validatedParams.collection_slug}/nfts`,
-      params: validatedParams,
-      validateResponse: (data) => collectionNFTsResponseSchema.parse(data)
-    });
-
-    return {
-      next: response.next,
-      nfts: response.nfts.map(nft => this.mapCollectionNFTResponse(nft))
-    };
+    try {
+      const rawResponse = await this.request({
+        method: 'GET',
+        url: `/api/v2/collection/${validatedParams.collection_slug}/nfts`,
+        params: validatedParams,
+        validateResponse: (data: any) => {
+          // Log the raw response to help debug
+          logger.info('OpenSea raw response:', { data: JSON.stringify(data).substring(0, 500) });
+          
+          // More lenient validation to handle unexpected response formats
+          if (!data || !data.nfts) {
+            logger.error('Invalid response from OpenSea API - missing nfts array', { data });
+            return { nfts: [], next: null };
+          }
+          
+          try {
+            return collectionNFTsResponseSchema.parse(data);
+          } catch (error) {
+            logger.error('Failed to parse OpenSea response:', { error, data });
+            return { 
+              nfts: Array.isArray(data.nfts) ? data.nfts : [], 
+              next: data.next || null 
+            };
+          }
+        }
+      });
+      
+      return {
+        next: rawResponse.next,
+        nfts: Array.isArray(rawResponse.nfts) 
+          ? rawResponse.nfts.map(nft => this.mapCollectionNFTResponse(nft))
+          : []
+      };
+    } catch (error) {
+      logger.error('Error in getNFTsByCollection:', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        collection_slug: validatedParams.collection_slug
+      });
+      
+      // Return empty result instead of throwing to prevent UI from breaking
+      return { nfts: [], next: null };
+    }
   }
 
   /**

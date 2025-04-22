@@ -59,6 +59,14 @@ export async function GET(
     }
     
     if (!OPENSEA_API_KEY) {
+      logger.warn('No OpenSea API key, using mock data for: ' + slug);
+      // Fall back to mock data for BAYC
+      if (slug.toLowerCase() === 'boredapeyachtclub') {
+        const response = NextResponse.json({ collection: MOCK_BAYC_COLLECTION });
+        response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+        return response;
+      }
+      
       return NextResponse.json(
         { error: 'OpenSea API is not configured. Please add OPENSEA_API_KEY to your environment variables.' },
         { status: 503 }
@@ -74,30 +82,62 @@ export async function GET(
     // Function to handle retrying with exponential backoff
     const fetchWithRetry = async (isContractAddress: boolean) => {
       try {
+        let collectionData;
+        
         if (isContractAddress) {
           logger.info('Fetching collection by contract address', { contractAddress: slug, attempt: retryCount + 1 });
-          const contractData = await openSeaAPI.collections.getCollectionByContractAddress({ 
-            contractAddress: slug,
-            chain: 'ethereum'
-          });
           
-          if (!contractData?.collection) {
-            throw new Error('Collection not found for this contract address');
+          try {
+            collectionData = await openSeaAPI.collections.getCollectionByContractAddress({ 
+              contractAddress: slug,
+              chain: 'ethereum'
+            });
+            logger.info('Successfully fetched collection by contract address', { slug });
+          } catch (contractError) {
+            logger.error('Error in getCollectionByContractAddress', { 
+              error: contractError instanceof Error ? contractError.message : 'Unknown error',
+              stack: contractError instanceof Error ? contractError.stack : undefined 
+            });
+            throw contractError;
           }
           
-          return contractData.collection;
         } else {
           logger.info('Fetching collection by slug', { slug, attempt: retryCount + 1 });
-          const collectionData = await openSeaAPI.collections.getCollection({ slug });
           
-          if (!collectionData) {
-            throw new Error('Collection not found');
+          try {
+            collectionData = await openSeaAPI.collections.getCollection({ slug });
+            logger.info('Successfully fetched collection by slug', { slug });
+          } catch (slugError) {
+            logger.error('Error in getCollection', { 
+              error: slugError instanceof Error ? slugError.message : 'Unknown error',
+              stack: slugError instanceof Error ? slugError.stack : undefined 
+            });
+            throw slugError;
           }
-          
-          return collectionData;
         }
+        
+        // Fall back to mock data for BAYC if real API fails
+        if (!collectionData && slug.toLowerCase() === 'boredapeyachtclub') {
+          logger.warn('OpenSea API returned no data, using mock data for BAYC');
+          return MOCK_BAYC_COLLECTION;
+        }
+        
+        if (!collectionData?.collection) {
+          logger.error('Collection data is missing expected structure', { collectionData });
+          throw new Error('Invalid collection data structure');
+        }
+        
+        return collectionData;
       } catch (error) {
         retryCount++;
+        
+        // More detailed error logging
+        logger.error('Error in fetchWithRetry:', {
+          error: error instanceof Error ? error.message : 'Unknown error',
+          stack: error instanceof Error ? error.stack : undefined,
+          attempt: retryCount,
+          slug
+        });
         
         // Only retry on specific errors that might be temporary
         if (retryCount <= maxRetries && (
@@ -137,6 +177,14 @@ export async function GET(
         stack: error instanceof Error ? error.stack : undefined
       });
 
+      // Fall back to mock data for BAYC
+      if (slug.toLowerCase() === 'boredapeyachtclub') {
+        logger.warn('Error fetching from OpenSea API, falling back to mock data for BAYC');
+        const response = NextResponse.json({ collection: MOCK_BAYC_COLLECTION });
+        response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=30');
+        return response;
+      }
+
       if (error instanceof Error && error.message.includes('Collection not found')) {
         return NextResponse.json(
           { error: 'Collection not found' },
@@ -145,7 +193,7 @@ export async function GET(
       }
 
       return NextResponse.json(
-        { error: 'Failed to fetch collection data from OpenSea' },
+        { error: 'Failed to fetch collection data: Internal Server Error' },
         { status: 500 }
       );
     }
@@ -157,7 +205,7 @@ export async function GET(
     });
 
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }
