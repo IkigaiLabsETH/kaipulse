@@ -9,6 +9,7 @@ class Logger {
       const prefix = `[${timestamp}] [${level.toUpperCase()}]`;
       
       // In development, we can use console for better DevTools integration
+      /* eslint-disable no-console */
       switch (level) {
         case 'debug':
           console.debug(prefix, message, ...args);
@@ -23,6 +24,7 @@ class Logger {
           console.error(prefix, message, ...args);
           break;
       }
+      /* eslint-enable no-console */
     } else {
       // In production, we would typically send logs to a service
       // For now, we'll only log warnings and errors

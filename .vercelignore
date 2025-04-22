@@ -1,0 +1,12 @@
+# Debug and test files (development only)
+src/app/api/debug/
+src/app/api/debug-nfts/
+src/app/api/test/
+src/app/debug-collection/
+src/app/test-nfts/
+
+# Other files to ignore
+.git
+.github
+.vscode
+node_modules 
