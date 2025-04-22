@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { NFTImage } from '@/components/nft/NFTImage';
 import { Layout } from '@/components/ui';
 import { logger } from '@/lib/logger';
 import type { 
@@ -179,7 +178,7 @@ async function fetchNFTData(slug: string, tokenId: string) {
             errorMessage = errorData.error;
           }
         }
-      } catch (e) {
+      } catch (_) {
         // If parsing fails, just use the error text
         logger.warn('Failed to parse error response as JSON', { errorText });
       }
@@ -392,7 +391,6 @@ export default function NFTPage({ params }: NFTPageProps) {
   const [collection, setCollection] = useState<Collection | null>(null);
   const [listing, setListing] = useState<Listing | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -400,7 +398,6 @@ export default function NFTPage({ params }: NFTPageProps) {
     async function loadNFTData() {
       try {
         setIsLoading(true);
-        setError(null);
 
         const data = await fetchNFTData(params.slug, params.tokenId);
         
