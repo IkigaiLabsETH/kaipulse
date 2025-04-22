@@ -274,22 +274,6 @@ export default function BitcoinPage21() {
             </div>
           </motion.div>
 
-          {/* Enhanced Call to Action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="text-center pt-8"
-          >
-            <Link
-              href="/calculator"
-              className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
-            >
-              <Calculator className="w-6 h-6 group-hover:scale-110 transition-transform" />
-              Calculate Your Freedom
-            </Link>
-          </motion.div>
-          
           {/* Current CAGR Data Section */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -311,6 +295,20 @@ export default function BitcoinPage21() {
               <p className="leading-relaxed">
                 <span className="font-semibold text-white">Market Position:</span> With a $1.9 trillion market cap versus gold&apos;s $19 trillion, Bitcoin has substantial growth potential. Some analysts project Bitcoin could replace gold as a global safe-haven asset within a decade.
               </p>
+              
+              <div className="mt-4">
+                <Link 
+                  href="https://charts.bitbo.io/cagr/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-yellow-500 hover:text-yellow-400 transition-colors"
+                >
+                  <span>View live Bitcoin CAGR chart data</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </Link>
+              </div>
             </div>
             
             <div className="mt-8 bg-black/30 p-6 rounded-lg border border-yellow-500/20">
@@ -318,6 +316,22 @@ export default function BitcoinPage21() {
                 &ldquo;While our models account for both conservative (4%) and aggressive (42%) growth scenarios, Bitcoin&apos;s current 14.5% CAGR suggests a middle path may be most realistic for planning purposes. This would place the BTC requirement for financial independence between 2.1 and 21 BTC depending on your personal risk tolerance.&rdquo;
               </p>
             </div>
+          </motion.div>
+          
+          {/* Enhanced Call to Action - Moved here */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="text-center pt-12"
+          >
+            <Link
+              href="/calculator"
+              className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+            >
+              <Calculator className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              Calculate Your Freedom
+            </Link>
           </motion.div>
         </motion.div>
 
