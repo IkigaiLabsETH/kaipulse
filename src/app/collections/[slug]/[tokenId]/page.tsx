@@ -1,8 +1,5 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 import { Layout } from '@/components/ui';
 import { logger } from '@/lib/logger';
 import type { 
@@ -10,9 +7,12 @@ import type {
   Listing,
   Collection
 } from '@/services/opensea/types';
-import { motion } from 'framer-motion';
 import NFTImageGallery from '@/components/nft/NFTImageGallery';
-import { useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
+import { env } from '@/env.mjs';
+
+// Use React cache to deduplicate requests
+import { cache } from 'react';
 
 interface NFTPageProps {
   params: {
@@ -25,6 +25,7 @@ interface NFTContentProps {
   nft: OpenSeaNFT;
   collection: Collection;
   listing: Listing | null;
+  isFallbackData?: boolean;
 }
 
 // Detect if the slug is a contract address (0x...) or a collection slug
@@ -32,211 +33,249 @@ function isContractAddress(slug: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(slug);
 }
 
-// Mock data for NFT (for when API is not available)
-const MOCK_NFT_DATA = {
-  nft: {
-    identifier: "163000597",
-    collection: "art-blocks",
-    contract: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
-    contract_address: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
-    token_id: "163000597",
-    chain: "ethereum",
-    token_standard: "erc721",
-    name: "Chromie Squiggle #7583",
-    description: "Chromie Squiggle by Snowfro is the genesis Art Blocks project. The squiggle is dynamic, alive, and unique. Each output has its own personality and visual aesthetic, but all are undeniably part of the same family.",
-    image_url: "https://i.seadn.io/gae/MfTH7kjn7Z2B0-jc3NvTErkiQKm19QWJ7hE9rSIigXVEMZxHEz-vRpOZJJDCjZBVQRxDY-gF7ILQ4fT3KYuN93SWx11OhGCMxFPXRQ?auto=format&dpr=1&w=1000",
-    metadata_url: "https://api.artblocks.io/token/7583",
-    created_at: "2021-03-01T05:07:35.000Z",
-    updated_at: "2023-06-18T00:36:26.000Z",
-    is_disabled: false,
-    is_nsfw: false,
-    animation_url: null,
-    external_url: "https://artblocks.io/collections/curated/projects/0x8a90cab2b38dba80c64b7734e58ee1db38b8992e/7583",
-    background_color: null,
-    traits: [
-      { trait_type: "Spectrum", value: "Multi-Rainbow", trait_count: 578 },
-      { trait_type: "Segments", value: "17", trait_count: 1226 },
-      { trait_type: "Density", value: "Dense", trait_count: 3297 }
-    ]
-  },
-  collection: {
-    slug: "art-blocks",
-    name: "Art Blocks",
-    description: "Art Blocks is a generative art platform on the Ethereum blockchain. Each Art Blocks project is a unique algorithm created by an artist that generates outputs based on a random seed. When you mint an Art Blocks NFT, the algorithm executes and generates your unique piece of art that lives on-chain.",
-    image_url: "https://i.seadn.io/gae/lgoUf4YEzgwjAdJXe-7_IXZRfmB0watKKQhI69ifFQjBwcrR0NaQQrtEi2YFwVJ6trCUfRRLwnjW7fZaE5jjJZQYF0E_JnCofEw_?auto=format&dpr=1&w=256",
-    banner_image_url: "https://i.seadn.io/gae/pkJG9E1XkZG65MKwJuXHDofkPSwXy_IYNrV6hMTFw5B7QkkONYoBwmBCqctvLZ_OMFyky_n2ahau7GfoLdZHkhFrszTu1bKNiIVG?auto=format&dpr=1&w=2048",
-    safelist_status: "verified",
-    is_nsfw: false,
-    category: "art",
-    asset_contract: {
-      address: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
-      name: "Art Blocks",
-      schema_name: "ERC721"
-    },
-    stats: {
-      total_supply: 10000,
-      num_owners: 5623,
-      average_price: 3.5,
-      total_volume: 72450.21,
-      floor_price: 1.8,
-      market_cap: 18000.0
-    }
-  },
-  listing: null
-};
+// Server-side data fetching using React cache to deduplicate requests
+const fetchNFTData = cache(async (slug: string, tokenId: string) => {
+  // Check if OpenSea API is configured
+  if (!env.OPENSEA_API_KEY) {
+    throw new Error('OpenSea API key is not configured. Please set up your API key in the environment variables.');
+  }
+  
+  // Create mock data for fallback when OpenSea API is down
+  const createFallbackNFTData = () => {
+    logger.warn('Using fallback NFT data due to OpenSea API issues', { slug, tokenId });
+    
+    // Format token ID with proper leading zeros if numeric
+    const formattedTokenId = isNaN(Number(tokenId)) ? tokenId : `#${tokenId.padStart(4, '0')}`;
+    
+    // Generate mock NFT object
+    return {
+      nft: {
+        identifier: tokenId,
+        token_id: tokenId,
+        collection: slug,
+        contract: slug,
+        contract_address: slug,
+        chain: 'ethereum',
+        token_standard: 'erc721',
+        name: `NFT ${formattedTokenId}`,
+        description: "This is fallback NFT data shown when OpenSea API is unavailable. The actual NFT information will be displayed when the API becomes available again.",
+        image_url: "/images/placeholder-nft.svg",
+        metadata_url: "",
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        is_disabled: false,
+        is_nsfw: false,
+        traits: [
+          { trait_type: "Status", value: "OpenSea API Unavailable" }
+        ],
+        animation_url: null,
+        background_color: null
+      },
+      collection: {
+        slug: slug,
+        name: isContractAddress(slug) ? `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}` : slug,
+        description: "This is fallback collection data shown when OpenSea API is unavailable.",
+        image_url: "/images/placeholder-logo.svg",
+        banner_image_url: "/images/placeholder-banner.svg",
+        safelist_status: "not_requested",
+        is_nsfw: false,
+        category: "other",
+        asset_contract: {
+          address: isContractAddress(slug) ? slug : "0x0000000000000000000000000000000000000000",
+          name: "Unknown Contract",
+          schema_name: "ERC721"
+        }
+      },
+      listing: null,
+      isFallbackData: true
+    };
+  };
 
-// Fetch NFT data function similar to collection page
-async function fetchNFTData(slug: string, tokenId: string) {
-  try {
-    // First check if OpenSea API is configured by making a lightweight request
-    const configCheck = await fetch('/api/collections/config-check');
-    const configData = await configCheck.json();
-
-    // If API key is missing and we're looking at the specific NFT from the screenshot,
-    // return mock data to provide a better demo experience
-    const isTargetNFT = slug.toLowerCase() === '0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270' && 
-                       tokenId === '163000597';
-
-    if (!configData.apiKeyConfigured && isTargetNFT) {
-      logger.info('Using mock data for NFT due to missing API key', { slug, tokenId });
-      // Try direct request to our mock endpoint
+  // Function to implement retry logic with exponential backoff
+  const fetchWithRetry = async <T,>(
+    fetcher: () => Promise<T>,
+    options: { maxRetries?: number; initialDelay?: number; description?: string; useFallback?: boolean } = {}
+  ): Promise<T> => {
+    const { maxRetries = 3, initialDelay = 1000, description = 'API request', useFallback = false } = options;
+    let lastError: Error;
+    
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const mockResponse = await fetch(`/api/collections/${slug}/${tokenId}`, {
-          cache: 'no-cache',
+        return await fetcher();
+      } catch (error) {
+        lastError = error instanceof Error ? error : new Error(String(error));
+        
+        // Check if this is a retryable error
+        const isRetryable = 
+          lastError.message.includes('Bad Gateway') || 
+          lastError.message.includes('503') || 
+          lastError.message.includes('502') || 
+          lastError.message.includes('504') || 
+          lastError.message.includes('429') || 
+          lastError.message.includes('timeout') ||
+          lastError.message.includes('network error');
+        
+        // If we've used all retries or it's not a retryable error, rethrow
+        if (attempt >= maxRetries || !isRetryable) {
+          // If we've exhausted retries and fallback is enabled, use fallback data
+          if (attempt >= maxRetries && useFallback && isRetryable) {
+            logger.warn(`${description} failed after ${maxRetries} retries, using fallback data`);
+            return createFallbackNFTData() as unknown as T;
+          }
+          throw lastError;
+        }
+        
+        // Calculate delay with exponential backoff and jitter
+        const delay = initialDelay * Math.pow(2, attempt - 1) * (1 + 0.2 * Math.random());
+        
+        logger.warn(`${description} failed, retrying (${attempt}/${maxRetries}) after ${Math.round(delay)}ms: ${lastError.message}`);
+        
+        // Wait before the next retry
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+    
+    // This should never happen due to the throw in the loop
+    throw lastError!;
+  };
+  
+  // Fetch collection data
+  let collectionEndpoint = `/api/collections/${slug}`;
+  
+  // If it's a contract address, use the contract endpoint
+  if (isContractAddress(slug)) {
+    collectionEndpoint = `/api/collections/contract/${slug}`;
+  }
+
+  // Make collection request with absolute URL
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
+  try {
+    // Fetch collection data with retry logic
+    const collectionData = await fetchWithRetry(
+      async () => {
+        const collectionResponse = await fetch(`${baseUrl}${collectionEndpoint}`, {
+          cache: 'no-store',
           headers: {
-            'Cache-Control': 'no-cache',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache'
+          }
+        });
+
+        if (!collectionResponse.ok) {
+          logger.error(`Failed to fetch collection: ${collectionResponse.statusText}`);
+          
+          if (collectionResponse.status === 404) {
+            notFound();
+          }
+          
+          throw new Error(`Failed to fetch collection: ${collectionResponse.statusText}`);
+        }
+
+        const data = await collectionResponse.json();
+        
+        if (!data.collection) {
+          throw new Error('Collection data is missing or malformed');
+        }
+        
+        return data;
+      },
+      { description: 'Collection fetch' }
+    );
+    
+    // Fetch NFT data with retry logic
+    const nftData = await fetchWithRetry(
+      async () => {
+        const nftResponse = await fetch(`${baseUrl}/api/collections/${slug}/${tokenId}`, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
             'Pragma': 'no-cache'
           }
         });
         
-        if (mockResponse.ok) {
-          const mockData = await mockResponse.json();
-          if (mockData.nft && mockData.collection) {
-            return mockData;
-          }
+        // Handle API key missing case separately
+        if (nftResponse.status === 503) {
+          throw new Error('OpenSea API is not configured properly');
         }
-      } catch (mockError) {
-        logger.warn('Failed to fetch from mock endpoint, using hardcoded mock', mockError);
-      }
-      
-      // If the above fails, return our hardcoded mock data
-      return MOCK_NFT_DATA;
-    }
-    
-    // Fetch collection data
-    let collectionEndpoint = `/api/collections/${slug}`;
-    
-    // If it's a contract address, use the contract endpoint
-    if (isContractAddress(slug)) {
-      collectionEndpoint = `/api/collections/contract/${slug}`;
-    }
-    
-    const collectionResponse = await fetch(collectionEndpoint, {
-      cache: 'no-cache',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
-    });
-
-    if (!collectionResponse.ok) {
-      const errorData = await collectionResponse.json().catch(() => ({}));
-      throw new Error(errorData.error || `Failed to fetch collection: ${collectionResponse.statusText}`);
-    }
-
-    const collectionData = await collectionResponse.json();
-    
-    if (!collectionData.collection) {
-      throw new Error('Collection data is missing or malformed');
-    }
-
-    // Fetch NFT data
-    const nftResponse = await fetch(`/api/collections/${slug}/${tokenId}`, {
-      cache: 'no-cache',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
-    });
-    
-    // Handle API key missing case separately
-    if (nftResponse.status === 503) {
-      const errorData = await nftResponse.json().catch(() => ({}));
-      throw new Error(errorData.error || 'OpenSea API is not configured properly');
-    }
-    
-    if (!nftResponse.ok) {
-      // Don't attempt to parse JSON if we already know the response isn't OK
-      const errorText = await nftResponse.text().catch(() => '');
-      let errorMessage = `Failed to fetch NFT from OpenSea`;
-      
-      try {
-        // Only try to parse as JSON if it looks like JSON
-        if (errorText.trim().startsWith('{')) {
-          const errorData = JSON.parse(errorText);
-          if (errorData.error) {
-            errorMessage = errorData.error;
+        
+        if (!nftResponse.ok) {
+          if (nftResponse.status === 404) {
+            notFound();
           }
+          
+          // Special handling for 502 Bad Gateway errors
+          if (nftResponse.status === 502) {
+            throw new Error('Failed to fetch NFT from OpenSea: Bad Gateway');
+          }
+          
+          logger.error(`Failed to fetch NFT: ${nftResponse.statusText}`);
+          throw new Error(`Failed to fetch NFT from OpenSea: ${nftResponse.statusText}`);
         }
-      } catch {
-        // If parsing fails, just use the error text
-        logger.warn('Failed to parse error response as JSON', { errorText });
-      }
-      
-      throw new Error(errorMessage);
-    }
-    
-    // Successfully fetched NFT data
+        
+        const data = await nftResponse.json();
+          
+        if (!data.nft) {
+          throw new Error('NFT data is missing or malformed');
+        }
+        
+        return data;
+      },
+      { description: 'NFT fetch', useFallback: true }
+    );
+
+    // Fetch listings (non-critical) - don't retry as this is less important
+    let listingsData = { orders: [] };
     try {
-      const nftData = await nftResponse.json();
+      const listingsResponse = await fetch(`${baseUrl}/api/collections/${slug}/${tokenId}/listings`, {
+        cache: 'no-store'
+      });
       
-      if (!nftData.nft) {
-        throw new Error('NFT data is missing or malformed');
+      if (listingsResponse.ok) {
+        listingsData = await listingsResponse.json();
       }
-  
-      // Fetch listings (non-critical)
-      let listingsData = { orders: [] };
-      try {
-        const listingsResponse = await fetch(`/api/collections/${slug}/${tokenId}/listings`);
-        if (listingsResponse.ok) {
-          listingsData = await listingsResponse.json();
-        }
-      } catch (marketDataError) {
-        logger.warn('Failed to fetch listings data:', marketDataError);
-      }
-  
-      return {
-        nft: nftData.nft,
-        collection: collectionData.collection,
-        listing: listingsData.orders?.[0] || null
-      };
-    } catch (parseError) {
-      logger.error('Error parsing NFT data JSON:', parseError);
-      throw new Error('Failed to parse NFT data from OpenSea');
+    } catch (marketDataError) {
+      logger.warn('Failed to fetch listings data:', marketDataError);
     }
+
+    const result = {
+      nft: nftData.nft,
+      collection: collectionData.collection,
+      listing: listingsData.orders?.[0] || null,
+      isFallbackData: nftData.isFallbackData || false
+    };
+    
+    return result;
   } catch (error) {
-    logger.error('Error fetching NFT data:', error);
-    throw error;
+    // Last resort fallback if something unexpected happens
+    logger.error('Unhandled error fetching NFT data, using fallback:', error);
+    return createFallbackNFTData();
   }
-}
+});
 
 function NFTContent({ 
   nft, 
   collection, 
-  listing 
+  listing,
+  isFallbackData = false
 }: NFTContentProps) {
   // Process image URLs
   const processImageUrl = (url: string | undefined | null): string => {
-    if (!url) return '/images/nft-placeholder.png';
+    if (!url || url === '/images/nft-placeholder.png') {
+      // Use SVG placeholder for better visual appearance in fallback mode
+      return '/images/placeholder-nft.svg';
+    }
     
     try {
       if (url.startsWith('ipfs://')) {
         return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
       }
-      new URL(url);
+      new URL(url); // This will throw if the URL is invalid
       return url;
     } catch {
-      return '/images/nft-placeholder.png';
+      return '/images/placeholder-nft.svg';
     }
   };
 
@@ -256,6 +295,17 @@ function NFTContent({
 
   return (
     <div className="container mx-auto px-8 py-12">
+      {/* Fallback data notice */}
+      {isFallbackData && (
+        <div className="mb-8 bg-yellow-400/10 border-l-4 border-yellow-400 p-4 rounded-sm">
+          <h3 className="text-yellow-400 text-sm font-semibold mb-2">Temporary Display Mode</h3>
+          <p className="text-white/70 text-sm">
+            OpenSea&apos;s API is currently experiencing issues. We&apos;re showing a placeholder while waiting for their service to recover. 
+            You can try refreshing the page later to see the actual NFT data.
+          </p>
+        </div>
+      )}
+      
       {/* Elegant navigation bar */}
       <div className="flex justify-between items-center mb-16">
         <Link
@@ -280,16 +330,11 @@ function NFTContent({
       </div>
 
       {/* Artwork display section */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="pb-16 grid grid-cols-1 lg:grid-cols-12 gap-16"
-      >
+      <div className="pb-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
         {/* Large artwork display */}
         <div className="lg:col-span-7 xl:col-span-8">
           <div className="sticky top-8">
-            <NFTImageGallery images={images} alt={alt} />
+            <NFTImageGallery images={images} alt={alt} fallbackMode={isFallbackData} />
           </div>
         </div>
 
@@ -380,71 +425,52 @@ function NFTContent({
             </div>
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
 
-export default function NFTPage({ params }: NFTPageProps) {
-  const router = useRouter();
-  const [nft, setNFT] = useState<OpenSeaNFT | null>(null);
-  const [collection, setCollection] = useState<Collection | null>(null);
-  const [listing, setListing] = useState<Listing | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-    
-    async function loadNFTData() {
-      try {
-        setIsLoading(true);
-
-        const data = await fetchNFTData(params.slug, params.tokenId);
-        
-        if (!isMounted) return;
-        
-        setNFT(data.nft);
-        setCollection(data.collection);
-        setListing(data.listing);
-      } catch (err) {
-        if (!isMounted) return;
-
-        const errorMessage = err instanceof Error ? err.message : 'Failed to load NFT data';
-        logger.error('Error loading NFT:', { 
-          error: errorMessage, 
-          slug: params.slug,
-          tokenId: params.tokenId
-        });
-        
-        // Instead of setting local error state, throw an error to trigger the error boundary
-        router.refresh(); // Force a refresh which will trigger the error boundary
-        throw err; // This will be caught by the error boundary
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    loadNFTData();
-
-    return () => {
-      isMounted = false;
+export async function generateMetadata({ params }: NFTPageProps) {
+  try {
+    const data = await fetchNFTData(params.slug, params.tokenId);
+    return {
+      title: `${data.nft.name || '#' + data.nft.identifier} | ${data.collection.name}`,
+      description: data.nft.description || `View this ${data.collection.name} NFT on our platform.`,
+      openGraph: {
+        images: [data.nft.image_url],
+      },
     };
-  }, [params.slug, params.tokenId, router]);
-
-  if (isLoading || !nft || !collection) {
-    // This should never show since we have a loading.tsx file
-    return null;
+  } catch {
+    return {
+      title: 'NFT Details',
+      description: 'View NFT details and information.'
+    };
   }
+}
 
-  return (
-    <Layout>
-      <NFTContent 
-        nft={nft}
-        collection={collection}
-        listing={listing}
-      />
-    </Layout>
-  );
+export default async function NFTPage({ params }: NFTPageProps) {
+  try {
+    // Fetch NFT data on the server
+    const { nft, collection, listing, isFallbackData } = await fetchNFTData(params.slug, params.tokenId);
+    
+    return (
+      <Layout>
+        <NFTContent 
+          nft={nft}
+          collection={collection}
+          listing={listing}
+          isFallbackData={isFallbackData}
+        />
+      </Layout>
+    );
+  } catch (error) {
+    logger.error('Error loading NFT:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      slug: params.slug,
+      tokenId: params.tokenId
+    });
+    
+    // Let error be handled by the nearest error boundary
+    throw error;
+  }
 }

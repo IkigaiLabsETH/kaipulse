@@ -130,54 +130,172 @@ export async function GET(
         logger.info('Fetching collection by contract address for NFT', { contractAddress: slug, tokenId });
         
         const fetchContractCollection = async () => {
-          const contractResponse = await openSeaAPI.collections.getCollectionByContractAddress({ 
-            contractAddress: slug,
-            chain: 'ethereum'
-          });
-          
-          if (!contractResponse?.collection) {
-            throw new Error('Collection not found for this contract address');
+          try {
+            const contractResponse = await openSeaAPI.collections.getCollectionByContractAddress({ 
+              contractAddress: slug,
+              chain: 'ethereum'
+            });
+            
+            if (!contractResponse?.collection) {
+              logger.warn('Collection not found for contract, using default collection data', { contractAddress: slug });
+              // Return a minimalistic collection object using the contract address
+              return {
+                collection: {
+                  slug: slug.toLowerCase(),
+                  name: `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}`,
+                  description: "Collection information unavailable",
+                  image_url: "/images/placeholder-logo.svg",
+                  banner_image_url: "/images/placeholder-banner.svg",
+                  safelist_status: "not_requested",
+                  is_nsfw: false,
+                  stats: null
+                },
+                asset_contract: {
+                  address: slug,
+                  name: `Contract ${slug.slice(0, 6)}`,
+                  schema_name: "ERC721"
+                }
+              };
+            }
+            
+            return contractResponse;
+          } catch (error) {
+            logger.warn('Error fetching collection by contract, using contract address directly', { 
+              contractAddress: slug, 
+              error: error instanceof Error ? error.message : String(error) 
+            });
+            
+            // Return a minimalistic collection object using the contract address
+            return {
+              collection: {
+                slug: slug.toLowerCase(),
+                name: `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}`,
+                description: "Collection information unavailable",
+                image_url: "/images/placeholder-logo.svg",
+                banner_image_url: "/images/placeholder-banner.svg",
+                safelist_status: "not_requested",
+                is_nsfw: false,
+                stats: null
+              },
+              asset_contract: {
+                address: slug,
+                name: `Contract ${slug.slice(0, 6)}`,
+                schema_name: "ERC721"
+              }
+            };
           }
-          
-          return contractResponse.collection;
         };
         
-        collectionData = await fetchWithRetry(fetchContractCollection);
+        collectionData = await fetchContractCollection();
       } else {
         logger.info('Fetching collection by slug for NFT', { slug, tokenId });
         
         const fetchSlugCollection = async () => {
-          const response = await openSeaAPI.collections.getCollection({ slug });
-          
-          if (!response || !response.asset_contract?.address) {
-            throw new Error('Collection not found or missing contract address');
+          try {
+            const response = await openSeaAPI.collections.getCollection({ slug });
+            
+            if (!response || !response.asset_contract?.address) {
+              logger.warn('Collection not found by slug or missing contract address', { slug });
+              throw new Error('Collection not found or missing contract address');
+            }
+            
+            contractAddress = response.asset_contract.address;
+            return response;
+          } catch (error) {
+            logger.error('Error fetching collection by slug:', { 
+              slug, 
+              error: error instanceof Error ? error.message : String(error) 
+            });
+            throw error;
           }
-          
-          contractAddress = response.asset_contract.address;
-          return response;
         };
         
-        collectionData = await fetchWithRetry(fetchSlugCollection);
+        try {
+          collectionData = await fetchWithRetry(fetchSlugCollection);
+        } catch {
+          return NextResponse.json(
+            { error: 'Collection not found' },
+            { status: 404 }
+          );
+        }
       }
 
       // Step 2: Fetch the NFT with the contract address
       logger.info('Fetching NFT data', { contractAddress, tokenId });
       
       const fetchNFT = async () => {
-        const nft = await openSeaAPI.nft.getNFT({
-          chain: 'ethereum',
-          address: contractAddress,
-          tokenId: tokenId
-        });
-        
-        if (!nft) {
-          throw new Error('NFT not found');
+        try {
+          const nft = await openSeaAPI.nft.getNFT({
+            chain: 'ethereum',
+            address: contractAddress,
+            tokenId: tokenId
+          });
+          
+          if (!nft) {
+            logger.warn('NFT not found, using placeholder data', { contractAddress, tokenId });
+            throw new Error('NFT not found');
+          }
+          
+          return nft;
+        } catch (error) {
+          // If OpenSea API fails, use minimalistic NFT data for UI rendering
+          logger.error('Error fetching NFT, returning fallback data', { 
+            contractAddress, 
+            tokenId,
+            error: error instanceof Error ? error.message : String(error)
+          });
+          
+          // Format token ID with proper leading zeros if numeric
+          const formattedTokenId = isNaN(Number(tokenId)) ? tokenId : `#${tokenId.padStart(4, '0')}`;
+          
+          // Return a minimal NFT object for fallback
+          return {
+            identifier: tokenId,
+            collection: slug.toLowerCase(),
+            contract: contractAddress,
+            contract_address: contractAddress,
+            token_id: tokenId,
+            chain: 'ethereum',
+            token_standard: 'erc721',
+            name: `NFT ${formattedTokenId}`,
+            description: "NFT data currently unavailable from OpenSea API.",
+            image_url: "/images/placeholder-nft.svg",
+            is_disabled: false,
+            is_nsfw: false,
+            traits: [{ trait_type: "Status", value: "Data Unavailable" }]
+          };
         }
-        
-        return nft;
       };
       
-      const nft = await fetchWithRetry(fetchNFT);
+      let nft;
+      try {
+        nft = await fetchWithRetry(fetchNFT);
+      } catch (error) {
+        // If we still can't get NFT data after retries, handle gracefully
+        logger.error('Failed to fetch NFT after retries', {
+          contractAddress,
+          tokenId,
+          error: error instanceof Error ? error.message : String(error)
+        });
+        
+        // Instead of returning an error, return a minimal object for UI rendering
+        const formattedTokenId = isNaN(Number(tokenId)) ? tokenId : `#${tokenId.padStart(4, '0')}`;
+        nft = {
+          identifier: tokenId,
+          collection: slug.toLowerCase(),
+          contract: contractAddress,
+          contract_address: contractAddress,
+          token_id: tokenId,
+          chain: 'ethereum',
+          token_standard: 'erc721',
+          name: `NFT ${formattedTokenId}`,
+          description: "NFT data currently unavailable. Please try again later.",
+          image_url: "/images/placeholder-nft.svg",
+          is_disabled: false,
+          is_nsfw: false,
+          traits: [{ trait_type: "Status", value: "API Error" }]
+        };
+      }
 
       // Add cache headers for better performance
       const response = NextResponse.json({ 
@@ -212,10 +330,50 @@ export async function GET(
         }
       }
 
-      return NextResponse.json(
-        { error: 'Failed to fetch NFT from OpenSea' },
-        { status: 502 }
-      );
+      // Instead of returning a 502 error response, create a fallback response
+      // with placeholder data for graceful degradation
+      const formattedTokenId = isNaN(Number(tokenId)) ? tokenId : `#${tokenId.padStart(4, '0')}`;
+      
+      const fallbackResponse = NextResponse.json({ 
+        nft: {
+          identifier: tokenId,
+          collection: slug.toLowerCase(),
+          contract: isContractAddress ? slug : "0x0000000000000000000000000000000000000000",
+          contract_address: isContractAddress ? slug : "0x0000000000000000000000000000000000000000",
+          token_id: tokenId,
+          chain: 'ethereum',
+          token_standard: 'erc721',
+          name: `NFT ${formattedTokenId}`,
+          description: "This is fallback NFT data shown when OpenSea API is unavailable. The actual NFT information will be displayed when the API becomes available again.",
+          image_url: "/images/placeholder-nft.svg",
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+          is_disabled: false,
+          is_nsfw: false,
+          traits: [{ trait_type: "Status", value: "OpenSea API Unavailable" }],
+          animation_url: null,
+          background_color: null
+        },
+        collection: {
+          slug: slug.toLowerCase(),
+          name: isContractAddress ? `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}` : slug,
+          description: "This is fallback collection data shown when OpenSea API is unavailable.",
+          image_url: "/images/placeholder-logo.svg",
+          banner_image_url: "/images/placeholder-banner.svg",
+          safelist_status: "not_requested",
+          is_nsfw: false,
+          category: "other",
+          asset_contract: {
+            address: isContractAddress ? slug : "0x0000000000000000000000000000000000000000",
+            name: "Unknown Contract", 
+            schema_name: "ERC721"
+          }
+        },
+        isFallbackData: true
+      });
+      
+      fallbackResponse.headers.set('Cache-Control', 'no-cache, must-revalidate');
+      return fallbackResponse;
     }
   } catch (error) {
     logger.error('Error in NFT route:', {
