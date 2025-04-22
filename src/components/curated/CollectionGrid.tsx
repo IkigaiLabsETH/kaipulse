@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { OpenSeaAPI, OpenSeaNFT, OpenSeaCollection } from '@/services/opensea/api';
+import type { OpenSeaNFT, OpenSeaCollection, OpenSeaCollectionStats } from '@/services/opensea/types';
 import { NFTCard } from '@/components/nft/NFTCard';
 import { logger } from '@/lib/logger';
 import { Loader } from '@/components/ui/loader';
@@ -11,67 +11,119 @@ interface CollectionGridProps {
   collectionSlug: string;
 }
 
-// Initialize with environment variable
-const api = new OpenSeaAPI({ 
-  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY 
-});
+// Define an extended collection type that includes stats
+interface ExtendedCollection extends OpenSeaCollection {
+  stats?: OpenSeaCollectionStats;
+}
 
 export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
   const [nfts, setNfts] = useState<OpenSeaNFT[]>([]);
-  const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
+  const [collection, setCollection] = useState<ExtendedCollection | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState<string | undefined>(undefined);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 3;
 
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     async function fetchCollectionData() {
       try {
+        if (!collectionSlug) return;
+        
         setIsLoading(true);
         setError(null);
 
-        // Fetch collection data first
-        const collectionData = await api.getCollection(collectionSlug);
-        setCollection(collectionData);
+        // Fetch collection data using server API route
+        const collectionResponse = await fetch(`/api/collections/${collectionSlug}`, {
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
 
-        const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(collectionSlug);
+        if (!collectionResponse.ok) {
+          const errorData = await collectionResponse.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch collection: ${collectionResponse.statusText}`);
+        }
+
+        const collectionData = await collectionResponse.json();
         
-        logger.info('Fetching NFTs:', { 
-          collectionSlug,
-          isContractAddress 
+        if (!isMounted) return;
+
+        if (!collectionData.collection) {
+          throw new Error('Collection data is missing');
+        }
+
+        setCollection(collectionData.collection);
+
+        // Fetch NFTs using server API route
+        const nftsResponse = await fetch(`/api/collections/${collectionSlug}/nfts?limit=30`, {
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json'
+          }
         });
 
-        const response = await api.getNFTs({
-          ...(isContractAddress 
-            ? { contract: collectionSlug, chain: 'ethereum' }
-            : { collection: collectionSlug }
-          ),
-          limit: 30
-        });
+        if (!nftsResponse.ok) {
+          const errorData = await nftsResponse.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch NFTs: ${nftsResponse.statusText}`);
+        }
+
+        const nftsData = await nftsResponse.json();
+        
+        if (!isMounted) return;
+
+        if (!nftsData.nfts || !Array.isArray(nftsData.nfts)) {
+          throw new Error('Invalid NFT data received');
+        }
 
         logger.info('NFTs fetched:', {
-          count: response.data?.length || 0,
-          hasMore: !!response.next,
-          nextCursor: response.next
+          count: nftsData.nfts.length,
+          hasMore: !!nftsData.next,
+          nextCursor: nftsData.next
         });
 
-        setNfts(response.data || []);
-        setHasMore(!!response.next);
-        setNextCursor(response.next || undefined);
+        setNfts(nftsData.nfts);
+        setHasMore(!!nftsData.next);
+        setNextCursor(nftsData.next || undefined);
+        setRetryCount(0); // Reset retry count on success
       } catch (error) {
+        if (!isMounted) return;
+
         const errorMessage = error instanceof Error ? error.message : 'Failed to load collection data';
         setError(errorMessage);
         logger.error('Collection grid error:', { error: errorMessage });
+        
+        // Implement retry logic for specific errors
+        if (retryCount < MAX_RETRIES && 
+            (errorMessage.includes('Failed to fetch') || 
+             errorMessage.includes('Internal Server Error'))) {
+          setRetryCount(prev => prev + 1);
+          setTimeout(() => {
+            if (isMounted) {
+              fetchCollectionData();
+            }
+          }, Math.min(1000 * Math.pow(2, retryCount), 8000)); // Exponential backoff
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
-    if (collectionSlug) {
-      fetchCollectionData();
-    }
-  }, [collectionSlug]);
+    fetchCollectionData();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [collectionSlug, retryCount]);
 
   const loadMore = async () => {
     if (!nextCursor || !hasMore || isLoadingMore) return;
@@ -80,27 +132,30 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
       setIsLoadingMore(true);
       logger.info('Loading more NFTs:', { collectionSlug, nextCursor });
 
-      const collection = await api.getCollection(collectionSlug);
-      const ethereumContract = collection.contracts.find(c => c.chain === 'ethereum');
-      if (!ethereumContract) {
-        throw new Error('No Ethereum contract found for collection');
-      }
-      const contractAddress = ethereumContract.address;
-
-      const response = await api.getNFTsByContract({
-        chain: 'ethereum',
-        address: contractAddress,
-        limit: 30,
-        next: nextCursor
+      // Fetch more NFTs using server API route with pagination
+      const response = await fetch(`/api/collections/${collectionSlug}/nfts?limit=30&next=${nextCursor}`, {
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
-      if (response.data) {
-        setNfts(prev => [...prev, ...response.data]);
-        setHasMore(!!response.next);
-        setNextCursor(response.next || undefined);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Failed to fetch more NFTs: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      if (data.nfts && Array.isArray(data.nfts)) {
+        setNfts(prev => [...prev, ...data.nfts]);
+        setHasMore(!!data.next);
+        setNextCursor(data.next || undefined);
+      } else {
+        throw new Error('Invalid NFT data received when loading more');
       }
     } catch (error) {
-      logger.error('Error loading more NFTs:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Error loading more NFTs';
+      logger.error('Error loading more NFTs:', { error: errorMessage });
     } finally {
       setIsLoadingMore(false);
     }
@@ -141,7 +196,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
         <div className="py-12 text-center">
           <p className="text-white/60">{error}</p>
           <button 
-            onClick={() => window.location.reload()} 
+            onClick={() => setRetryCount(prev => prev + 1)} 
             className="mt-4 px-4 py-2 bg-white/5 rounded hover:bg-white/10"
           >
             Try Again
