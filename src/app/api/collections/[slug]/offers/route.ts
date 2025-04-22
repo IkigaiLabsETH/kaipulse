@@ -61,7 +61,7 @@ export async function GET(
           if (collectionData.asset_contract?.address) {
             contractAddress = collectionData.asset_contract.address;
           }
-        } catch (error) {
+        } catch (_error) {
           logger.warn(`Could not get contract address for collection ${slug}, will try without it`);
         }
       }
