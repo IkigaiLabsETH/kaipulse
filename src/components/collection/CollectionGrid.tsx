@@ -27,12 +27,6 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
     async function fetchNFTs() {
       logger.debug('------- FETCH STARTED -------');
       logger.debug(`Starting to fetch NFTs for collection: ${collectionSlug}`);
-      logger.debug('Current state before fetch:', { 
-        isLoading, 
-        hasError: !!error, 
-        nftsCount: nfts.length,
-        retryCount
-      });
       
       try {
         setIsLoading(true);
