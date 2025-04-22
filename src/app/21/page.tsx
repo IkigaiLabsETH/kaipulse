@@ -289,6 +289,36 @@ export default function BitcoinPage21() {
               Calculate Your Freedom
             </Link>
           </motion.div>
+          
+          {/* Current CAGR Data Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+            className="mt-16 bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
+          >
+            <h3 className="font-epilogue text-2xl font-semibold text-yellow-400 mb-6">Current Bitcoin CAGR Insights</h3>
+            
+            <div className="space-y-5 text-white/90">
+              <p className="leading-relaxed">
+                <span className="font-semibold text-white">Historical Context:</span> Bitcoin&apos;s four-year CAGR has declined to 14.5%, its lowest rate on record. However, this still outperforms traditional assets like gold and stocks.
+              </p>
+              
+              <p className="leading-relaxed">
+                <span className="font-semibold text-white">Performance Perspective:</span> Despite the Fed&apos;s hawkish stance, BTC has surged 88% over the past year, setting multiple all-time highs. For comparison, other assets&apos; four-year CAGRs range between 4-13%.
+              </p>
+              
+              <p className="leading-relaxed">
+                <span className="font-semibold text-white">Market Position:</span> With a $1.9 trillion market cap versus gold&apos;s $19 trillion, Bitcoin has substantial growth potential. Some analysts project Bitcoin could replace gold as a global safe-haven asset within a decade.
+              </p>
+            </div>
+            
+            <div className="mt-8 bg-black/30 p-6 rounded-lg border border-yellow-500/20">
+              <p className="text-white/70 leading-relaxed italic">
+                &ldquo;While our models account for both conservative (4%) and aggressive (42%) growth scenarios, Bitcoin&apos;s current 14.5% CAGR suggests a middle path may be most realistic for planning purposes. This would place the BTC requirement for financial independence between 2.1 and 21 BTC depending on your personal risk tolerance.&rdquo;
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Enhanced Disclaimer */}
