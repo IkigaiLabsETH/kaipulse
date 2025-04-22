@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 import { logger } from '@/lib/logger';
 
@@ -17,6 +17,7 @@ export default function NFTImageGallery({
   fallbackMode = false 
 }: NFTImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [imageExists, setImageExists] = useState(true);
   
   // Ensure we have at least one image, even in fallback mode
   const displayImages = images.length > 0 
@@ -25,6 +26,18 @@ export default function NFTImageGallery({
 
   const hasMultipleImages = displayImages.length > 1;
   const currentImage = displayImages[activeIndex] || '/images/placeholder-nft.svg';
+  
+  // Check for placeholder or fallback images
+  useEffect(() => {
+    if (fallbackMode || 
+        currentImage.includes('placeholder') || 
+        !currentImage || 
+        currentImage === '/images/placeholder-nft.svg') {
+      setImageExists(false);
+    } else {
+      setImageExists(true);
+    }
+  }, [currentImage, fallbackMode]);
   
   const handleNext = () => {
     if (activeIndex < displayImages.length - 1) {
@@ -42,31 +55,29 @@ export default function NFTImageGallery({
     <div className="relative rounded-sm overflow-hidden bg-gray-900 aspect-square">
       {/* Main image */}
       <div className="relative h-full w-full">
-        {fallbackMode ? (
+        {!imageExists || fallbackMode ? (
           <div className="absolute inset-0 flex items-center justify-center">
-            <Image
-              src="/images/placeholder-nft.svg"
-              alt="Placeholder"
-              width={300}
-              height={300}
-              className="opacity-70"
-            />
-            <div className="absolute inset-0 flex items-center justify-center text-white/80">
+            <div className="flex flex-col items-center justify-center">
+              <ImageIcon size={64} className="text-gray-700 mb-4" />
               <div className="bg-black/40 px-6 py-4 rounded-sm text-center max-w-xs">
-                <p className="text-sm">Image temporarily unavailable</p>
+                <p className="text-sm text-white/80">Image temporarily unavailable</p>
               </div>
             </div>
           </div>
         ) : (
-          <Image
-            src={currentImage}
-            alt={alt}
-            fill
-            className="object-contain"
-            onError={() => {
-              logger.error('Failed to load NFT image:', { src: currentImage });
-            }}
-          />
+          <div className="w-full h-full relative flex items-center justify-center">
+            <Image
+              src={currentImage}
+              alt={alt}
+              fill
+              className="object-contain"
+              unoptimized={true}
+              onError={() => {
+                logger.error('Failed to load NFT image:', { src: currentImage });
+                setImageExists(false);
+              }}
+            />
+          </div>
         )}
       </div>
 
