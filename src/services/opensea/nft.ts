@@ -7,6 +7,10 @@ import { logger } from '@/lib/logger';
 import { getContractToCollectionMapping, setContractToCollectionMapping } from './cache';
 
 export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
+  constructor(apiKey: string) {
+    super(apiKey);
+  }
+
   private mapRarity(rarity: z.infer<typeof nftRaritySchema>): NFTRarity {
     return {
       rank: rarity.rank,
@@ -68,37 +72,69 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
     address: string;
     tokenId: string;
   }): Promise<NFT> {
-    const validatedParams = this.validateParams(params, z.object({
-      chain: chainSchema.optional().default('ethereum'),
-      address: addressSchema,
-      tokenId: tokenIdSchema
-    }));
-
-    const data = await this.request({
-      method: 'GET',
-      url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.address}/nfts/${validatedParams.tokenId}`,
-      validateResponse: (data) => nftResponseSchema.parse(data).nft
-    });
-
-    // Fetch additional NFT data like current price, offers, etc.
-    const priceData = await this.request({
-      method: 'GET',
-      url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.address}/nfts/${validatedParams.tokenId}/listings`,
-      validateResponse: (data) => z.object({
-        listings: z.array(z.object({
-          price: z.object({
-            current: z.object({
-              value: z.number()
-            })
-          })
-        }))
-      }).parse(data)
-    });
-
-    return {
-      ...this.mapNFTResponse(data),
-      listings: priceData.listings
-    };
+    try {
+      // Validate and sanitize inputs
+      const validatedParams = this.validateParams(params, z.object({
+        chain: chainSchema.optional().default('ethereum'),
+        address: addressSchema,
+        tokenId: tokenIdSchema
+      }));
+      
+      // Ensure token ID is properly formatted (remove # prefix if present)
+      const formattedTokenId = validatedParams.tokenId.replace(/^#/, '');
+      
+      // Use the formatted token ID
+      const endpoint = `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.address}/nfts/${formattedTokenId}`;
+      
+      try {
+        const data = await this.request({
+          method: 'GET',
+          url: endpoint,
+          validateResponse: (data) => nftResponseSchema.parse(data).nft
+        });
+  
+        // Fetch additional NFT data like current price, offers, etc.
+        let listings: Array<{ price: { current: { value: number } } }> = [];
+        try {
+          const priceData = await this.request({
+            method: 'GET',
+            url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.address}/nfts/${formattedTokenId}/listings`,
+            validateResponse: (data) => z.object({
+              listings: z.array(z.object({
+                price: z.object({
+                  current: z.object({
+                    value: z.number()
+                  })
+                })
+              }))
+            }).parse(data)
+          });
+          listings = priceData.listings;
+        } catch (listingError) {
+          // Non-critical error, continue without listings
+          logger.warn('Failed to fetch NFT listings:', listingError);
+        }
+  
+        return {
+          ...this.mapNFTResponse(data),
+          listings
+        };
+      } catch (parseError) {
+        // Log the specific error that caused the validation to fail
+        logger.error('NFT data validation failed:', {
+          error: parseError instanceof Error ? parseError.message : String(parseError),
+          endpoint,
+          params: validatedParams
+        });
+        throw new Error(`NFT data validation failed: ${parseError instanceof Error ? parseError.message : String(parseError)}`);
+      }
+    } catch (error) {
+      logger.error('Failed to fetch NFT:', {
+        params,
+        error: error instanceof Error ? error.message : String(error)
+      });
+      throw error; // Rethrow to let the caller handle it
+    }
   }
 
   /**

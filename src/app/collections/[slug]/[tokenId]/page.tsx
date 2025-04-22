@@ -10,17 +10,21 @@ import type {
 import NFTImageGallery from '@/components/nft/NFTImageGallery';
 import { notFound } from 'next/navigation';
 import { env } from '@/env.mjs';
+import { Metadata } from 'next';
 
 // Use React cache to deduplicate requests
 import { cache } from 'react';
 
+// Define page props interface
 interface NFTPageProps {
   params: {
     slug: string;
     tokenId: string;
   };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
+// Component props interface
 interface NFTContentProps {
   nft: OpenSeaNFT;
   collection: Collection;
@@ -37,7 +41,7 @@ function isContractAddress(slug: string): boolean {
 const fetchNFTData = cache(async (slug: string, tokenId: string) => {
   // Check if OpenSea API is configured
   if (!env.OPENSEA_API_KEY) {
-    throw new Error('OpenSea API key is not configured. Please set up your API key in the environment variables.');
+    logger.error('OpenSea API key is not configured. This will cause fallback data to be shown in production.');
   }
   
   // Create mock data for fallback when OpenSea API is down
@@ -157,11 +161,8 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
     const collectionData = await fetchWithRetry(
       async () => {
         const collectionResponse = await fetch(`${baseUrl}${collectionEndpoint}`, {
-          cache: 'no-store',
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache'
-          }
+          // Use ISR pattern in production to improve performance
+          next: { revalidate: 3600 }, // Revalidate every hour
         });
 
         if (!collectionResponse.ok) {
@@ -189,11 +190,8 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
     const nftData = await fetchWithRetry(
       async () => {
         const nftResponse = await fetch(`${baseUrl}/api/collections/${slug}/${tokenId}`, {
-          cache: 'no-store',
-          headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache'
-          }
+          // Use ISR pattern in production to improve performance
+          next: { revalidate: 3600 }, // Revalidate every hour
         });
         
         // Handle API key missing case separately
@@ -230,7 +228,8 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
     let listingsData = { orders: [] };
     try {
       const listingsResponse = await fetch(`${baseUrl}/api/collections/${slug}/${tokenId}/listings`, {
-        cache: 'no-store'
+        // Use ISR pattern in production to improve performance
+        next: { revalidate: 900 }, // Revalidate every 15 minutes for more up-to-date pricing
       });
       
       if (listingsResponse.ok) {
@@ -430,14 +429,31 @@ function NFTContent({
   );
 }
 
-export async function generateMetadata({ params }: NFTPageProps) {
+// Dynamic metadata for SEO optimization
+export async function generateMetadata({ params }: NFTPageProps): Promise<Metadata> {
   try {
     const data = await fetchNFTData(params.slug, params.tokenId);
+    
+    const nftName = data.nft.name || `#${data.nft.identifier}`;
+    const collectionName = data.collection.name;
+    const title = `${nftName} | ${collectionName}`;
+    const description = data.nft.description || 
+      `View this ${collectionName} NFT, token #${data.nft.identifier} on our platform.`;
+    
     return {
-      title: `${data.nft.name || '#' + data.nft.identifier} | ${data.collection.name}`,
-      description: data.nft.description || `View this ${data.collection.name} NFT on our platform.`,
+      title,
+      description,
       openGraph: {
-        images: [data.nft.image_url],
+        title,
+        description,
+        images: [{ url: data.nft.image_url || '/images/placeholder-nft.svg' }],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: [data.nft.image_url || '/images/placeholder-nft.svg'],
       },
     };
   } catch {
