@@ -3,12 +3,12 @@ import { OpenSeaAPI } from '@/services/opensea/api';
 import { logger } from '@/lib/logger';
 import { env } from '@/env.mjs';
 import { mockCollections } from '@/data/mockNFTs';
-import type { OpenSeaNFT } from '@/services/opensea/types';
+import type { NFT } from '@/types/opensea';
 
 const OPENSEA_API_KEY = env.OPENSEA_API_KEY;
 
 // Simple cache to prevent redundant API calls during development
-type CacheData = any[] | Record<string, unknown>;
+type CacheData = NFT[] | { nfts?: NFT[] } | Record<string, unknown>;
 const responseCache = new Map<string, { data: CacheData, timestamp: number }>();
 const CACHE_TTL = 60 * 1000; // 1 minute cache
 
@@ -48,13 +48,13 @@ export async function GET(
     // Check cache first
     const cached = responseCache.get(cacheKey);
     if (cached && now - cached.timestamp < CACHE_TTL) {
-      let nfts: any[] = [];
+      let nfts: NFT[] = [];
       
       // Handle both array and object formats in cache
       if (Array.isArray(cached.data)) {
-        nfts = cached.data;
-      } else if (cached.data && (cached.data as any).nfts && Array.isArray((cached.data as any).nfts)) {
-        nfts = (cached.data as any).nfts;
+        nfts = cached.data as NFT[];
+      } else if (typeof cached.data === 'object' && cached.data && 'nfts' in cached.data && Array.isArray(cached.data.nfts)) {
+        nfts = cached.data.nfts as NFT[];
       }
       
       logger.info(`Using cached NFT data for ${slug}: ${nfts.length} items`);

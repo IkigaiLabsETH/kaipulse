@@ -39,7 +39,7 @@ function isContractAddress(slug: string): boolean {
 // Update the fetchCollection function to handle both contract addresses and slugs
 async function fetchCollection(slug: string) {
   try {
-    console.log(`Fetching collection data for: ${slug}, Is contract: ${isContractAddress(slug)}`);
+    logger.debug(`Fetching collection data for: ${slug}, Is contract: ${isContractAddress(slug)}`);
     let endpoint = `/api/collections/${slug}`;
     
     // If it's a contract address, we need to use a different endpoint format
@@ -47,7 +47,7 @@ async function fetchCollection(slug: string) {
       endpoint = `/api/collections/contract/${slug}`;
     }
     
-    console.log(`Using endpoint: ${endpoint}`);
+    logger.debug(`Using endpoint: ${endpoint}`);
     const response = await fetch(endpoint, {
       next: { revalidate: 60 } // Revalidate every 60 seconds
     });

@@ -6,6 +6,7 @@ import { NFTCard } from '@/components/nft/NFTCard';
 import { Loader } from '@/components/ui/loader';
 import { RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { logger } from '@/lib/logger';
 
 interface CollectionGridProps {
   collectionSlug: string;
@@ -24,9 +25,9 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
 
   useEffect(() => {
     async function fetchNFTs() {
-      console.log('------- FETCH STARTED -------');
-      console.log('1. Starting to fetch NFTs for collection:', collectionSlug);
-      console.log('Current state before fetch:', { 
+      logger.debug('------- FETCH STARTED -------');
+      logger.debug(`Starting to fetch NFTs for collection: ${collectionSlug}`);
+      logger.debug('Current state before fetch:', { 
         isLoading, 
         hasError: !!error, 
         nftsCount: nfts.length,
@@ -42,44 +43,35 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
         
         // Determine if we're dealing with a contract address or a collection slug
         const isContract = isEthereumAddress(collectionSlug);
-        console.log(`Detected ${isContract ? 'contract address' : 'collection slug'}`);
+        logger.debug(`Detected ${isContract ? 'contract address' : 'collection slug'}`);
         
         // Choose the appropriate endpoint
         const fetchUrl = isContract
           ? `/api/collections/contract/${collectionSlug}/nfts?t=${timestamp}`
           : `/api/collections/${collectionSlug}/nfts?t=${timestamp}`;
           
-        console.log('2. About to make fetch request to:', fetchUrl);
+        logger.debug(`About to make fetch request to: ${fetchUrl}`);
         
         const response = await fetch(fetchUrl);
-        console.log('3. Fetch request completed with status:', response.status);
-        
-        // Manual conversion of headers to object to avoid iteration issues
-        const responseHeaders: Record<string, string> = {};
-        response.headers.forEach((value, key) => {
-          responseHeaders[key] = value;
-        });
-        console.log('Response headers:', responseHeaders);
+        logger.debug(`Fetch request completed with status: ${response.status}`);
         
         if (!response.ok) {
-          console.error('4a. Response was not OK:', response.status, response.statusText);
+          logger.error(`Response was not OK: ${response.status} ${response.statusText}`);
           throw new Error(`API returned ${response.status} ${response.statusText}`);
         }
         
-        console.log('4b. Response was OK, about to parse JSON');
+        logger.debug('Response was OK, about to parse JSON');
         const responseText = await response.text();
-        console.log('4c. Raw response text (first 200 chars):', responseText.substring(0, 200));
         
         let data;
         try {
           data = JSON.parse(responseText);
         } catch (e) {
-          console.error('4d. JSON parse error:', e);
+          logger.error('JSON parse error:', e);
           throw new Error('Failed to parse JSON response');
         }
         
-        console.log('5. JSON parsed, result type:', Array.isArray(data) ? 'array' : typeof data);
-        console.log('6. Data preview:', Array.isArray(data) ? `Array with ${data.length} items` : JSON.stringify(data).substring(0, 100));
+        logger.debug(`JSON parsed, result type: ${Array.isArray(data) ? 'array' : typeof data}`);
         
         // Handle different response formats
         let nftArray: OpenSeaNFT[] = [];
@@ -91,40 +83,30 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
           // Object with nfts array (contract address endpoint)
           nftArray = data.nfts;
         } else {
-          console.error('7a. Data is not in expected format:', typeof data);
-          console.error('Data content:', JSON.stringify(data).substring(0, 200));
+          logger.error('Data is not in expected format:', typeof data);
           throw new Error('API did not return data in expected format');
         }
         
-        console.log('7b. Processed data is an array with', nftArray.length, 'items');
-        
-        // Deep validation of expected properties
-        if (nftArray.length > 0) {
-          const firstItem = nftArray[0];
-          console.log('Sample NFT item properties:', Object.keys(firstItem));
-          console.log('Sample NFT identifier:', firstItem.identifier);
-          console.log('Sample NFT image_url:', firstItem.image_url);
-        }
+        logger.debug(`Processed data is an array with ${nftArray.length} items`);
         
         setNfts(nftArray);
-        console.log('8. Updated nfts state with', nftArray.length, 'items');
+        logger.debug(`Updated nfts state with ${nftArray.length} items`);
       } catch (err) {
-        console.error('ERROR in fetchNFTs:', err);
+        logger.error('ERROR in fetchNFTs:', err);
         const message = err instanceof Error ? err.message : 'Failed to load NFTs';
         setError(message);
-        console.error('9a. Set error state:', message);
+        logger.error(`Set error state: ${message}`);
       } finally {
         setIsLoading(false);
-        console.log('9b. Finished loading, isLoading set to false');
-        console.log('------- FETCH COMPLETED -------');
+        logger.debug('Finished loading, isLoading set to false');
+        logger.debug('------- FETCH COMPLETED -------');
       }
     }
     
     fetchNFTs();
   }, [collectionSlug, retryCount]);
 
-  // Add detailed logging for the rendering process
-  console.log('Rendering CollectionGrid with state:', {
+  logger.debug('Rendering CollectionGrid with state:', {
     isLoading,
     hasError: !!error,
     nftsLength: nfts.length,
@@ -159,7 +141,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
   }
 
   if (!nfts.length) {
-    console.log('No NFTs found for collection:', collectionSlug);
+    logger.debug(`No NFTs found for collection: ${collectionSlug}`);
     return (
       <div className="min-h-[300px] flex flex-col items-center justify-center">
         <p className="text-white/40 uppercase tracking-wider text-sm mb-4">No artworks found in this collection</p>
@@ -175,7 +157,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
     );
   }
 
-  console.log('Rendering NFT grid with', nfts.length, 'items');
+  logger.debug(`Rendering NFT grid with ${nfts.length} items`);
 
   // Animation for each artwork as it appears
   const containerVariants = {
