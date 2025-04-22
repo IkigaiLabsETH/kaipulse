@@ -178,8 +178,7 @@ async function fetchNFTData(slug: string, tokenId: string) {
             errorMessage = errorData.error;
           }
         }
-      } catch (_) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch {
         // If parsing fails, just use the error text
         logger.warn('Failed to parse error response as JSON', { errorText });
       }
