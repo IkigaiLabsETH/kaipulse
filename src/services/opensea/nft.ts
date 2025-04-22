@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { BaseOpenSeaAPI } from './base';
 import { nftSchema, nftResponseSchema, nftRaritySchema, collectionNFTSchema, collectionNFTsResponseSchema } from './schemas';
 import type { NFT, NFTRarity } from '@/types/opensea';
+import type { Chain } from '@/types/web3';
 import { chainSchema, addressSchema, tokenIdSchema } from './schemas';
 import { logger } from '@/lib/logger';
 import { getContractToCollectionMapping, setContractToCollectionMapping } from './cache';
@@ -43,24 +44,29 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
     };
   }
 
-  private mapNFTResponse(nft: z.infer<typeof nftSchema>): NFT {
+  private mapNFTResponse(nft: unknown): NFT {
+    // Use type assertion after basic validation
+    const nftData = (typeof nft === 'object' && nft !== null) ? nft as Record<string, unknown> : {};
+    
     return {
-      identifier: nft.identifier ?? '',
-      token_id: nft.token_id ?? '',
-      contract: nft.contract ?? '',
-      contract_address: nft.contract_address ?? '',
-      chain: nft.chain ?? 'ethereum',
-      collection: nft.collection ?? '',
-      name: nft.name ?? '',
-      description: nft.description ?? '',
-      image_url: nft.image_url ?? '',
-      external_url: nft.external_url ?? '',
-      animation_url: nft.animation_url ?? null,
-      token_standard: nft.token_standard ?? 'erc721',
-      metadata_url: nft.metadata_url ?? '',
-      background_color: nft.background_color ?? '',
-      traits: nft.traits ?? [],
-      rarity: nft.rarity ? this.mapRarity(nft.rarity) : undefined
+      identifier: typeof nftData.identifier === 'string' ? nftData.identifier : '',
+      token_id: typeof nftData.token_id === 'string' ? nftData.token_id : '',
+      contract: typeof nftData.contract === 'string' ? nftData.contract : '',
+      contract_address: typeof nftData.contract_address === 'string' ? nftData.contract_address : '',
+      chain: (typeof nftData.chain === 'string' && ['ethereum', 'polygon', 'optimism', 'arbitrum', 'base'].includes(nftData.chain)) 
+        ? nftData.chain as Chain 
+        : 'ethereum',
+      collection: typeof nftData.collection === 'string' ? nftData.collection : '',
+      name: typeof nftData.name === 'string' ? nftData.name : '',
+      description: typeof nftData.description === 'string' ? nftData.description : '',
+      image_url: typeof nftData.image_url === 'string' ? nftData.image_url : '',
+      external_url: typeof nftData.external_url === 'string' ? nftData.external_url : '',
+      animation_url: typeof nftData.animation_url === 'string' ? nftData.animation_url : null,
+      token_standard: typeof nftData.token_standard === 'string' ? nftData.token_standard : 'erc721',
+      metadata_url: typeof nftData.metadata_url === 'string' ? nftData.metadata_url : '',
+      background_color: typeof nftData.background_color === 'string' ? nftData.background_color : '',
+      traits: Array.isArray(nftData.traits) ? nftData.traits : [],
+      rarity: nftData.rarity && typeof nftData.rarity === 'object' ? this.mapRarity(nftData.rarity as z.infer<typeof nftRaritySchema>) : undefined
     };
   }
 
