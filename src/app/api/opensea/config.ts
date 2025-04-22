@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Chain } from '@/types/web3';
 
 // API paths
 export const API_PATHS = {

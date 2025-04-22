@@ -64,7 +64,7 @@ export function SafeImage({ src, alt, className, fill = false, priority = false,
     }
   }, [src, onError]);
 
-  const handleImageError = (e: any) => {
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     logger.error('Image load error:', {
       originalSrc: src,
       processedSrc: imgSrc,

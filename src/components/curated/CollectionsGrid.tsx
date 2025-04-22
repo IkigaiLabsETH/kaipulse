@@ -1,8 +1,19 @@
 import Link from 'next/link';
-import type { OpenSeaCollection } from '@/services/opensea/types';
+import Image from 'next/image';
+
+interface CollectionWithStats {
+  collection: string;
+  name: string;
+  description?: string;
+  image_url?: string;
+  stats?: {
+    floor_price?: number;
+    total_volume?: number;
+  };
+}
 
 interface CollectionsGridProps {
-  collections: OpenSeaCollection[];
+  collections: CollectionWithStats[];
 }
 
 export function CollectionsGrid({ collections }: CollectionsGridProps) {
@@ -24,10 +35,11 @@ export function CollectionsGrid({ collections }: CollectionsGridProps) {
         >
           <div className="rounded-xl overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-300 group-hover:border-yellow-500/50">
             <div className="relative aspect-square">
-              <img
+              <Image
                 src={collection.image_url || '/images/placeholder.png'}
                 alt={collection.name}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
             </div>
             <div className="p-4">

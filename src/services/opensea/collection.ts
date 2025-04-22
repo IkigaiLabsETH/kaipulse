@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { logger } from '@/lib/logger';
 import { BaseOpenSeaAPI } from './base';
+import { getContractToCollectionMapping, setContractToCollectionMapping } from './cache';
 
 export const StatsSchema = z.object({
   total_supply: z.number(),
@@ -142,19 +143,46 @@ export class CollectionService extends BaseOpenSeaAPI {
     }
   }
 
-  async getCollectionByContractAddress(params: { contractAddress: string; chain?: string }): Promise<CollectionData> {
+  async getCollectionByContractAddress(params: { 
+    contractAddress: string; 
+    chain?: string;
+  }): Promise<CollectionData> {
     const validatedParams = this.validateParams(params, z.object({
       contractAddress: z.string(),
-      chain: z.string().optional()
+      chain: z.string().optional().default('ethereum')
     }));
 
     try {
-      const response = await this.request<CollectionResponse>({
+      // Check cache from shared module
+      const cachedSlug = getContractToCollectionMapping(
+        validatedParams.chain,
+        validatedParams.contractAddress
+      );
+      
+      if (cachedSlug) {
+        logger.info(`Using cached collection slug for contract: ${validatedParams.contractAddress}`);
+        return this.getCollection({ slug: cachedSlug });
+      }
+
+      // First get the collection slug from contract address
+      const contractResponse = await this.request<{ collection: string }>({
         method: 'GET',
-        url: `/api/v2/chain/${validatedParams.chain || 'ethereum'}/contract/${validatedParams.contractAddress}/collection`,
+        url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.contractAddress}`,
       });
 
-      return response;
+      if (!contractResponse.collection) {
+        throw new Error(`Collection not found for contract ${validatedParams.contractAddress}`);
+      }
+
+      // Cache the result in shared cache
+      setContractToCollectionMapping(
+        validatedParams.chain,
+        validatedParams.contractAddress,
+        contractResponse.collection
+      );
+      
+      // Then get the full collection with the slug
+      return this.getCollection({ slug: contractResponse.collection });
     } catch (error) {
       throw this.handleError(error);
     }

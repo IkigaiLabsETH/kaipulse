@@ -12,7 +12,7 @@ import {
   CollectionError
 } from '@/components/collection';
 import { Layout } from '@/components/ui';
-import { ExternalLink, Grid as GridIcon, Info, Share2, Twitter, Globe, Eye } from 'lucide-react';
+import { ExternalLink, Grid as GridIcon, Twitter, Globe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -23,6 +23,12 @@ interface CollectionPageProps {
   params: {
     slug: string;
   };
+}
+
+// Extended collection interface for social links
+interface ExtendedCollection extends Omit<OpenSeaCollection, 'twitter_username'> {
+  external_url?: string;
+  twitter_username?: string;
 }
 
 // Detect if the slug is a contract address (0x...) or a collection slug
@@ -86,22 +92,23 @@ const FloatingParticle = ({ delay = 0, scale = 1 }: { delay?: number; scale?: nu
 };
 
 // Animated Particles Container Component
-const ParticleBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 15 }).map((_, i) => (
-        <FloatingParticle 
-          key={i} 
-          delay={Math.random() * 5}
-          scale={Math.random() * 0.5 + 0.5}
-        />
-      ))}
-    </div>
-  );
-};
+// Removing unused component
+// const ParticleBackground = () => {
+//   return (
+//     <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//       {Array.from({ length: 15 }).map((_, i) => (
+//         <FloatingParticle 
+//           key={i} 
+//           delay={Math.random() * 5}
+//           scale={Math.random() * 0.5 + 0.5}
+//         />
+//       ))}
+//     </div>
+//   );
+// };
 
 export default function CollectionPage({ params }: CollectionPageProps) {
-  const [collection, setCollection] = useState<OpenSeaCollection | null>(null);
+  const [collection, setCollection] = useState<ExtendedCollection | null>(null);
   const [stats, setStats] = useState<OpenSeaCollectionStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -280,9 +287,9 @@ export default function CollectionPage({ params }: CollectionPageProps) {
           
           {/* Links and actions */}
           <div className="flex flex-wrap gap-4 justify-center mb-4">
-            {(collection as any).external_url && (
+            {collection.external_url && (
               <a 
-                href={(collection as any).external_url} 
+                href={collection.external_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-black/30 hover:bg-black/50 px-4 py-2 border border-yellow-400/30 hover:border-yellow-400/60 transition-all text-white/70 hover:text-white"
@@ -292,15 +299,15 @@ export default function CollectionPage({ params }: CollectionPageProps) {
               </a>
             )}
             
-            {(collection as any).twitter_username && (
+            {collection.twitter_username && (
               <a 
-                href={`https://twitter.com/${(collection as any).twitter_username}`} 
+                href={`https://twitter.com/${collection.twitter_username}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-black/30 hover:bg-black/50 px-4 py-2 border border-yellow-400/30 hover:border-yellow-400/60 transition-all text-white/70 hover:text-white"
               >
                 <Twitter size={16} className="text-yellow-400" />
-                <span className="text-sm">@{(collection as any).twitter_username}</span>
+                <span className="text-sm">@{collection.twitter_username}</span>
               </a>
             )}
             

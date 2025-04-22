@@ -1,6 +1,7 @@
 import type { Chain } from '../../types/web3';
 export type { Chain } from '../../types/web3';
-import { NFTMetadata } from '../../types/nft';
+// NFTMetadata is imported but unused
+// import { NFTMetadata } from '../../types/nft';
 
 export interface OpenSeaRarityInfo {
   rank: number;
@@ -700,12 +701,12 @@ export interface Offer extends BaseOrder {
 }
 
 // Response Types
-export interface PaginatedResponse<T> {
+export interface PaginatedResponse {
   next: string | null;
   previous: string | null;
 }
 
-export interface OrdersResponse<T extends BaseOrder> extends PaginatedResponse<T> {
+export interface OrdersResponse<T extends BaseOrder> extends PaginatedResponse {
   orders: T[];
 }
 

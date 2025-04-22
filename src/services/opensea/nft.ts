@@ -3,6 +3,8 @@ import { BaseOpenSeaAPI } from './base';
 import { nftSchema, nftResponseSchema, nftRaritySchema, collectionNFTSchema, collectionNFTsResponseSchema } from './schemas';
 import type { NFT, NFTRarity } from '@/types/opensea';
 import { chainSchema, addressSchema, tokenIdSchema } from './schemas';
+import { logger } from '@/lib/logger';
+import { getContractToCollectionMapping, setContractToCollectionMapping } from './cache';
 
 export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
   private mapRarity(rarity: z.infer<typeof nftRaritySchema>): NFTRarity {
@@ -170,5 +172,74 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
       next: response.next,
       nfts: response.nfts.map(nft => this.mapNFTResponse(nft))
     };
+  }
+
+  /**
+   * Gets NFTs by contract address with pagination
+   */
+  async getNFTsByContract(params: {
+    contractAddress: string;
+    chain?: string;
+    limit?: number;
+    next?: string;
+  }): Promise<{
+    nfts: NFT[];
+    next: string | null;
+  }> {
+    try {
+      const validatedParams = this.validateParams(params, z.object({
+        contractAddress: addressSchema,
+        chain: chainSchema.optional().default('ethereum'),
+        limit: z.number().optional().default(50),
+        next: z.string().optional()
+      }));
+
+      // Get collection slug from shared cache
+      const cachedSlug = getContractToCollectionMapping(
+        validatedParams.chain, 
+        validatedParams.contractAddress
+      );
+
+      let collectionSlug: string;
+      
+      if (cachedSlug) {
+        logger.info(`Using cached collection slug for contract: ${validatedParams.contractAddress}`);
+        collectionSlug = cachedSlug;
+      } else {
+        // Get contract info to retrieve the collection slug
+        const contractData = await this.request({
+          method: 'GET',
+          url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.contractAddress}`,
+          validateResponse: (data) => {
+            const schema = z.object({
+              collection: z.string()
+            });
+            return schema.parse(data);
+          }
+        });
+
+        collectionSlug = contractData.collection;
+        
+        // Save to shared cache
+        setContractToCollectionMapping(
+          validatedParams.chain,
+          validatedParams.contractAddress,
+          collectionSlug
+        );
+      }
+
+      // Then use the collection slug to get the NFTs
+      return this.getNFTsByCollection({
+        collection_slug: collectionSlug,
+        limit: validatedParams.limit,
+        next: validatedParams.next
+      });
+    } catch (error) {
+      logger.error('Failed to fetch NFTs by contract:', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        params
+      });
+      throw error;
+    }
   }
 } 

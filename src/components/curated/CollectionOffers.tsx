@@ -1,211 +1,182 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { OpenSeaAPI, OpenSeaEvent } from '@/services/opensea/api';
-import { OpenSeaOffer, OpenSeaAccount } from '@/services/opensea/types';
+import type { OpenSeaOffer, OpenSeaAccount } from '@/services/opensea/types';
 import { logger } from '@/lib/logger';
+import { Loader } from '@/components/ui/loader';
+import { formatEthPrice } from '@/lib/format';
 
 interface CollectionOffersProps {
   collectionSlug: string;
 }
 
-const api = new OpenSeaAPI({
-  apiKey: process.env.NEXT_PUBLIC_OPENSEA_API_KEY
-});
-
 export function CollectionOffers({ collectionSlug }: CollectionOffersProps) {
   const [offers, setOffers] = useState<OpenSeaOffer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 3;
 
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     async function fetchOffers() {
       try {
         setIsLoading(true);
         setError(null);
 
-        // Check if the slug is a contract address
-        const isContractAddress = /^0x[a-fA-F0-9]{40}$/i.test(collectionSlug);
-        let contractAddress: string;
-
-        if (isContractAddress) {
-          contractAddress = collectionSlug.toLowerCase();
-        } else {
-          // Get the collection to get the contract address
-          logger.info('Getting collection details for slug:', { collectionSlug });
-          const collection = await api.getCollection(collectionSlug);
-          
-          // Find the Ethereum contract
-          const ethereumContract = collection.contracts.find(c => c.chain === 'ethereum');
-          if (!ethereumContract) {
-            throw new Error('No Ethereum contract found for collection');
+        // Use server API route to fetch offers
+        const response = await fetch(`/api/collections/${collectionSlug}/offers`, {
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json'
           }
-          contractAddress = ethereumContract.address;
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Failed to fetch offers: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        
+        if (!isMounted) return;
+
+        // Check the response format
+        if (!data.offers || !Array.isArray(data.offers)) {
+          // If the response format is not what we expect, we try to adapt
+          if (data.orders && Array.isArray(data.orders)) {
+            setOffers(data.orders);
+          } else {
+            setOffers([]);
+            logger.warn('Unexpected offers data format', data);
+          }
+        } else {
+          setOffers(data.offers);
         }
         
-        logger.info('Fetching collection offers:', { 
-          collectionSlug,
-          contractAddress 
-        });
-
-        // Get offers for the collection
-        const response = await api.getNFTEvents(contractAddress, '0', {
-          limit: 20,
-          event_type: 'offer_entered'
-        });
-
-        // Transform events into offers
-        const validOffers = response.data
-          .filter((event: OpenSeaEvent) => event.event_type === 'offer_entered')
-          .map((event: OpenSeaEvent): OpenSeaOffer => {
-            const now = new Date();
-            const maker: OpenSeaAccount = {
-              address: event.from_account,
-              profile_img_url: '', // Default empty as we don't have this info
-              created_date: now.toISOString()
-            };
-            
-            const taker: OpenSeaAccount | null = event.to_account ? {
-              address: event.to_account,
-              profile_img_url: '',
-              created_date: now.toISOString()
-            } : null;
-
-            return {
-              created_date: event.created_date,
-              closing_date: null,
-              listing_time: Math.floor(Date.parse(event.created_date) / 1000),
-              expiration_time: Math.floor(Date.now() / 1000) + 86400, // 24 hours from now
-              order_hash: event.transaction_hash || '',
-              protocol_data: {
-                parameters: {
-                  offerer: event.from_account,
-                  offer: [{
-                    itemType: 1, // ERC721
-                    token: contractAddress,
-                    identifierOrCriteria: '0',
-                    startAmount: '1',
-                    endAmount: '1'
-                  }],
-                  consideration: [{
-                    itemType: 0, // Native token (ETH)
-                    token: event.payment_token || '0x0000000000000000000000000000000000000000',
-                    identifierOrCriteria: '0',
-                    startAmount: event.total_price || '0',
-                    endAmount: event.total_price || '0',
-                    recipient: event.from_account
-                  }],
-                  startTime: event.created_date,
-                  endTime: new Date(Date.now() + 86400000).toISOString(), // 24 hours from now
-                  orderType: 0,
-                  zone: '0x0000000000000000000000000000000000000000',
-                  zoneHash: '0x0000000000000000000000000000000000000000000000000000000000000000',
-                  salt: '0',
-                  conduitKey: '0x0000000000000000000000000000000000000000000000000000000000000000',
-                  totalOriginalConsiderationItems: 1,
-                  counter: 0
-                },
-                signature: '0x'
-              },
-              protocol_address: '0x00000000000000ADc04C56Bf30aC9d3c0aAF14dC', // Seaport contract
-              current_price: event.total_price || '0',
-              maker,
-              taker,
-              maker_fees: [],
-              taker_fees: [],
-              side: 'bid',
-              order_type: 'basic',
-              cancelled: false,
-              finalized: false,
-              marked_invalid: false,
-              client_signature: '0x',
-              relay_id: `${event.transaction_hash || ''}-${event.created_date}`,
-              criteria_proof: null
-            };
-          });
-
-        logger.info('Offers fetched:', {
-          count: validOffers.length
-        });
-
-        setOffers(validOffers);
+        setRetryCount(0); // Reset retry count on success
       } catch (error) {
-        logger.error('Error fetching offers:', error);
-        setError('Failed to load offers');
+        if (!isMounted) return;
+
+        const errorMessage = error instanceof Error ? error.message : 'Failed to load offers';
+        setError(errorMessage);
+        logger.error('Error fetching offers:', { error: errorMessage, collectionSlug });
+        
+        // Implement retry logic for specific errors
+        if (retryCount < MAX_RETRIES && 
+            (errorMessage.includes('Failed to fetch') || 
+             errorMessage.includes('Internal Server Error'))) {
+          setRetryCount(prev => prev + 1);
+          setTimeout(() => {
+            if (isMounted) {
+              fetchOffers();
+            }
+          }, Math.min(1000 * Math.pow(2, retryCount), 8000)); // Exponential backoff
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
     if (collectionSlug) {
       fetchOffers();
     }
-  }, [collectionSlug]);
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [collectionSlug, retryCount]);
 
   if (isLoading) {
     return (
-      <div className="rounded-lg bg-white/5 p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Collection Offers</h3>
-        <div className="space-y-4">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="animate-pulse bg-white/10 h-12 rounded-lg" />
-          ))}
-        </div>
+      <div className="flex justify-center p-8">
+        <Loader size="lg" className="text-yellow-400/50" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="rounded-lg bg-white/5 p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Collection Offers</h3>
-        <div className="text-center py-8">
-          <p className="text-red-500">{error}</p>
-        </div>
+      <div className="text-center p-8">
+        <p className="text-white/60 mb-6">{error}</p>
+        <button 
+          onClick={() => setRetryCount(prev => prev + 1)} 
+          className="px-5 py-2 text-sm border border-yellow-400/30 text-yellow-400 hover:bg-yellow-400/10 transition-all duration-300"
+        >
+          Try Again
+        </button>
       </div>
     );
   }
 
   if (!offers.length) {
     return (
-      <div className="rounded-lg bg-white/5 p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Collection Offers</h3>
-        <div className="text-center py-8">
-          <p className="text-gray-400">No active offers</p>
-        </div>
+      <div className="text-center p-8">
+        <p className="text-white/40">No offers found for this collection</p>
       </div>
     );
   }
 
+  // Sort offers by price (highest first)
+  const sortedOffers = [...offers].sort((a, b) => 
+    parseFloat(b.current_price) - parseFloat(a.current_price)
+  );
+
+  // Format account address
+  const formatAddress = (account: OpenSeaAccount): string => {
+    const address = account.address;
+    if (!address) return 'Unknown';
+    return account.user?.username || `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+  };
+
   return (
-    <div className="rounded-lg bg-white/5 p-6">
-      <h3 className="text-lg font-semibold text-white mb-4">Collection Offers</h3>
-      <div className="space-y-4">
-        {offers.map((offer) => (
-          <div
-            key={offer.order_hash}
-            className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-          >
-            <div>
-              <p className="text-white">
-                {offer.criteria?.trait ? (
-                  <>Trait Offer: {offer.criteria.trait.type}</>
-                ) : (
-                  'Collection Offer'
-                )}
-              </p>
-              <p className="text-sm text-white/60">
-                {new Date(offer.created_date).toLocaleDateString()}
-              </p>
-            </div>
-            <div className="text-right">
-              <p className="text-white font-mono">
-                {Number(offer.current_price).toFixed(3)} ETH
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="text-left border-b border-white/10">
+            <th className="px-4 py-3 font-medium text-white/60">Price</th>
+            <th className="px-4 py-3 font-medium text-white/60">Expiration</th>
+            <th className="px-4 py-3 font-medium text-white/60">From</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedOffers.slice(0, 10).map((offer, index) => {
+            const ethPrice = formatEthPrice(parseFloat(offer.current_price));
+            const expirationDate = new Date(offer.expiration_time * 1000);
+            const now = new Date();
+            const timeLeft = expirationDate.getTime() - now.getTime();
+            const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            // Determine if the offer has expired
+            const isExpired = timeLeft < 0;
+            
+            return (
+              <tr 
+                key={index} 
+                className="border-b border-white/5 hover:bg-white/5 transition-colors"
+              >
+                <td className="px-4 py-4 text-yellow-400 font-medium">Ξ {ethPrice}</td>
+                <td className="px-4 py-4 text-white">
+                  {isExpired ? (
+                    <span className="text-red-400">Expired</span>
+                  ) : (
+                    <span>{daysLeft}d {hoursLeft}h</span>
+                  )}
+                </td>
+                <td className="px-4 py-4 text-white">
+                  {formatAddress(offer.maker)}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 } 

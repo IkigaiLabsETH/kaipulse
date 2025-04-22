@@ -1,6 +1,83 @@
 import { Collection, NFT } from '@/types/opensea';
 
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+/**
+ * Shared cache implementation for OpenSea API services
+ * This helps reduce duplicate API calls and improve performance
+ */
+
+// Cache for contract address to collection slug mappings
+export const contractToCollectionCache: Record<string, string> = {};
+
+// Cache for collection data (slug to collection info)
+export const collectionDataCache: Record<string, Collection> = {};
+
+// Cache TTL in milliseconds (5 minutes)
+const CACHE_TTL = 5 * 60 * 1000;
+
+// Cache timestamps to implement expiration
+const cacheTimestamps: Record<string, number> = {};
+
+/**
+ * Get a cached value with TTL check
+ */
+export function getCachedValue<T>(cache: Record<string, T>, key: string): T | undefined {
+  // Check if cached and not expired
+  if (cache[key] && cacheTimestamps[key] && (Date.now() - cacheTimestamps[key] < CACHE_TTL)) {
+    return cache[key];
+  }
+  
+  return undefined;
+}
+
+/**
+ * Set a value in cache with timestamp
+ */
+export function setCachedValue<T>(cache: Record<string, T>, key: string, value: T): void {
+  cache[key] = value;
+  cacheTimestamps[key] = Date.now();
+}
+
+/**
+ * Get a contract to collection slug mapping
+ */
+export function getContractToCollectionMapping(chain: string | undefined, contractAddress: string | undefined): string | undefined {
+  if (!chain || !contractAddress) return undefined;
+  
+  const normalizedContract = contractAddress.toLowerCase();
+  const cacheKey = `${chain}:${normalizedContract}`;
+  return getCachedValue(contractToCollectionCache, cacheKey);
+}
+
+/**
+ * Set a contract to collection slug mapping
+ */
+export function setContractToCollectionMapping(chain: string | undefined, contractAddress: string | undefined, collectionSlug: string): void {
+  if (!chain || !contractAddress) return;
+  
+  const normalizedContract = contractAddress.toLowerCase();
+  const cacheKey = `${chain}:${normalizedContract}`;
+  setCachedValue(contractToCollectionCache, cacheKey, collectionSlug);
+}
+
+/**
+ * Clear expired cache entries
+ */
+export function clearExpiredCache(): void {
+  const now = Date.now();
+  
+  Object.keys(cacheTimestamps).forEach(key => {
+    if (now - cacheTimestamps[key] >= CACHE_TTL) {
+      delete cacheTimestamps[key];
+      
+      // Remove from all caches
+      delete contractToCollectionCache[key];
+      delete collectionDataCache[key];
+    }
+  });
+}
+
+// Run cache cleanup every 10 minutes
+setInterval(clearExpiredCache, 10 * 60 * 1000);
 
 interface CacheEntry<T> {
   data: T;
@@ -55,14 +132,14 @@ export class OpenSeaCache {
 
     // Clear expired collections
     Array.from(this.collections.entries()).forEach(([key, entry]) => {
-      if (this.isExpired(entry.timestamp)) {
+      if (now - entry.timestamp > CACHE_TTL) {
         this.collections.delete(key);
       }
     });
 
     // Clear expired NFTs
     Array.from(this.nfts.entries()).forEach(([key, entry]) => {
-      if (this.isExpired(entry.timestamp)) {
+      if (now - entry.timestamp > CACHE_TTL) {
         this.nfts.delete(key);
       }
     });

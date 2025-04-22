@@ -1,15 +1,27 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { Users } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { SafeImage } from '../ui/SafeImage';
-import type { OpenSeaCollection } from '@/types/opensea';
 import { formatNumber } from '@/lib/utils';
 
+// Define our own collection type for this component
+interface CuratedCollection {
+  collection: string;
+  name: string;
+  description?: string;
+  image_url?: string;
+  banner_image_url?: string;
+  safelist_status?: string;
+  stats?: {
+    floor_price?: number;
+    total_volume?: number;
+    num_owners?: number;
+  };
+}
+
 interface CollectionCardProps {
-  collection: OpenSeaCollection;
+  collection: CuratedCollection;
   index: number;
 }
 

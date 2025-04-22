@@ -25,10 +25,6 @@ export function NFTCard({ nft, href }: NFTCardProps) {
     setImageError(true);
   };
 
-  const imageUrl = !imageError && nft.image_url 
-    ? nft.image_url 
-    : '/images/placeholder-nft.svg';
-
   const price = nft.listings?.[0]?.price?.current?.value;
 
   return (
@@ -45,7 +41,7 @@ export function NFTCard({ nft, href }: NFTCardProps) {
         <div className="relative">
           {/* Art piece */}
           <div className="relative aspect-square overflow-hidden bg-black">
-            {nft.image_url ? (
+            {nft.image_url && !imageError ? (
               <Image
                 src={nft.image_url}
                 alt={nft.name || 'NFT'}
