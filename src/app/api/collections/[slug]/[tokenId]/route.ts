@@ -87,6 +87,7 @@ export async function GET(
 
     // Check if slug is a contract address
     const isContractAddress = isAddress(slug);
+    logger.info(`Processing NFT request: ${slug}/${tokenId}, isContractAddress: ${isContractAddress}`);
 
     // For tracking retry attempts
     let retryCount = 0;
@@ -131,8 +132,12 @@ export async function GET(
         
         const fetchContractCollection = async () => {
           try {
+            // Ensure clean contract address format (lowercase and no extra spaces)
+            const cleanContractAddress = slug.toLowerCase().trim();
+            
+            logger.info(`Fetching collection for contract: ${cleanContractAddress}`);
             const contractResponse = await openSeaAPI.collections.getCollectionByContractAddress({ 
-              contractAddress: slug,
+              contractAddress: cleanContractAddress,
               chain: 'ethereum'
             });
             
@@ -225,10 +230,16 @@ export async function GET(
       
       const fetchNFT = async () => {
         try {
+          // Ensure clean parameters
+          const cleanContractAddress = contractAddress.toLowerCase().trim();
+          const cleanTokenId = tokenId.replace(/^#/, ''); // Remove leading # if present
+          
+          logger.info(`Fetching NFT with address: ${cleanContractAddress}, tokenId: ${cleanTokenId}`);
+          
           const nft = await openSeaAPI.nft.getNFT({
             chain: 'ethereum',
-            address: contractAddress,
-            tokenId: tokenId
+            address: cleanContractAddress,
+            tokenId: cleanTokenId
           });
           
           if (!nft) {

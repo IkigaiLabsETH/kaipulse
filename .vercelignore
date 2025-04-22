@@ -9,4 +9,8 @@ src/app/test-nfts/
 .git
 .github
 .vscode
-node_modules 
+node_modules
+
+# API Response files
+response.json
+response2.json 
