@@ -52,8 +52,8 @@ export async function GET(
         // Use the contract address directly
         contractAddress = slug;
       } else {
+        // Get the collection to find the contract address
         try {
-          // Get the collection to find the contract address
           const collectionData = await openSeaAPI.collections.getCollection({ slug });
           
           // The collection API doesn't directly give us the contract address in a simple way
@@ -61,7 +61,8 @@ export async function GET(
           if (collectionData.asset_contract?.address) {
             contractAddress = collectionData.asset_contract.address;
           }
-        } catch (_error) {
+        } catch {
+          // No need to capture the error variable if we're not using it
           logger.warn(`Could not get contract address for collection ${slug}, will try without it`);
         }
       }
