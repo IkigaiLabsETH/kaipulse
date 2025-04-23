@@ -88,8 +88,9 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'BIOHACKING', href: '/biohacking' },
-        { name: 'TESLA', href: '/tesla' },
+        { name: 'PLAY', href: '/biohacking' },
+        { name: 'DRIVE', href: '/tesla' },
+        { name: 'THINK', href: '/naval' },
       ]
     },
     { 
