@@ -2,9 +2,25 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Bitcoin, Calculator } from 'lucide-react';
+import { Bitcoin, Calculator, DollarSign, TrendingUp } from 'lucide-react';
+import { useState } from 'react';
 
 export default function BitcoinPage21() {
+  const [annualSpending, setAnnualSpending] = useState(75600);
+  const [btcPrice, setBtcPrice] = useState(90000);
+  const [withdrawalRate, setWithdrawalRate] = useState(4);
+  
+  // Calculate BTC needed based on inputs
+  const btcNeeded = annualSpending / (withdrawalRate / 100 * btcPrice);
+  
+  // Format numbers for display
+  const formatNumber = (num: number) => {
+    return new Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: num < 10 ? 2 : 0
+    }).format(num);
+  };
+  
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
@@ -318,20 +334,121 @@ export default function BitcoinPage21() {
             </div>
           </motion.div>
           
-          {/* Enhanced Call to Action - Moved here */}
+          {/* Bitcoin FIRE Calculator */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="text-center pt-12"
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
           >
-            <Link
-              href="/calculator"
-              className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
-            >
-              <Calculator className="w-6 h-6 group-hover:scale-110 transition-transform" />
-              Calculate Your Freedom
-            </Link>
+            <h3 className="font-epilogue text-2xl font-semibold text-yellow-400 mb-6 flex items-center">
+              <Calculator className="w-6 h-6 mr-2" />
+              Bitcoin FIRE Calculator
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-white/70 mb-2">
+                    Annual Spending
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <DollarSign className="h-5 w-5 text-white/50" />
+                    </div>
+                    <input
+                      type="number"
+                      value={annualSpending}
+                      onChange={(e) => setAnnualSpending(parseFloat(e.target.value) || 0)}
+                      className="block w-full pl-10 pr-4 py-3 bg-black/30 border border-yellow-500/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
+                      placeholder="Enter annual spending"
+                    />
+                  </div>
+                  <p className="mt-2 text-sm text-white/60">
+                    Your yearly cost of living
+                  </p>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-white/70 mb-2">
+                    Bitcoin Price (USD)
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <DollarSign className="h-5 w-5 text-white/50" />
+                    </div>
+                    <input
+                      type="number"
+                      value={btcPrice}
+                      onChange={(e) => setBtcPrice(parseFloat(e.target.value) || 0)}
+                      className="block w-full pl-10 pr-4 py-3 bg-black/30 border border-yellow-500/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
+                      placeholder="Enter BTC price"
+                    />
+                  </div>
+                  <p className="mt-2 text-sm text-white/60">
+                    Current or expected BTC price
+                  </p>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-white/70 mb-2">
+                    Withdrawal Rate (%)
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <TrendingUp className="h-5 w-5 text-white/50" />
+                    </div>
+                    <select
+                      value={withdrawalRate}
+                      onChange={(e) => setWithdrawalRate(parseFloat(e.target.value))}
+                      className="block w-full pl-10 pr-4 py-3 bg-black/30 border border-yellow-500/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
+                    >
+                      <option value={4}>4% - Conservative (Traditional FIRE)</option>
+                      <option value={14.5}>14.5% - Current BTC CAGR</option>
+                      <option value={36}>36% - Aggressive (Historical BTC Growth)</option>
+                    </select>
+                  </div>
+                  <p className="mt-2 text-sm text-white/60">
+                    Annual withdrawal rate based on growth assumptions
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/20 flex flex-col justify-center">
+                <h4 className="text-lg font-medium text-yellow-400 mb-4">
+                  Bitcoin Needed for FIRE
+                </h4>
+                
+                <div className="text-center py-6">
+                  <div className="text-5xl font-bold text-yellow-500 font-mono">
+                    {formatNumber(btcNeeded)} BTC
+                  </div>
+                  <p className="mt-4 text-white/70">
+                    Based on ${formatNumber(annualSpending)} annual spending at {withdrawalRate}% withdrawal rate
+                  </p>
+                </div>
+                
+                <div className="mt-4 bg-yellow-500/10 rounded-md p-4">
+                  <p className="text-sm text-white/90">
+                    {withdrawalRate === 4 ? (
+                      <>This is the <span className="text-yellow-400 font-semibold">conservative approach</span>, requiring more BTC but with higher safety.</>
+                    ) : withdrawalRate === 14.5 ? (
+                      <>This is based on <span className="text-yellow-400 font-semibold">current BTC CAGR</span>, a middle path between conservative and aggressive.</>
+                    ) : (
+                      <>This is the <span className="text-yellow-400 font-semibold">aggressive approach</span>, requiring less BTC but with higher volatility risk.</>
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-yellow-500/20 pt-6 mt-6">
+              <p className="text-sm text-white/70 italic">
+                Note: This calculator provides estimates based on the withdrawal rate assumption. The 4% rule is conservative, 
+                while higher rates assume Bitcoin&apos;s growth continues at similar patterns to its historical performance. 
+                Always build in safety margins for your financial planning.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 
