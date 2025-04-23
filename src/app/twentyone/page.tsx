@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowUpRight, Bitcoin, TrendingUp, Users } from 'lucide-react'
+import { Bitcoin, TrendingUp, Users } from 'lucide-react'
 import { Card } from "@/components/ui/card"
 import { useEffect, useState } from 'react'
 
@@ -230,45 +230,6 @@ export default function TwentyOnePage() {
                 />
               </motion.span>
             </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="mt-10 flex flex-wrap gap-10 justify-center"
-            >
-              {/* Calculate Your Strategy Button - matches homepage style */}
-              <motion.div
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative"
-              >
-                <div className="absolute inset-0 bg-yellow-500 translate-x-2 translate-y-2 rounded-md z-0"></div>
-                <motion.a 
-                  href="#"
-                  className="relative flex items-center justify-center gap-3 min-w-[320px] bg-zinc-900 border-2 border-yellow-500 text-white font-medium px-6 py-4 rounded-md z-10"
-                >
-                  <TrendingUp className="h-6 w-6 text-white" />
-                  <span className="text-xl">Investor Relations</span>
-                </motion.a>
-              </motion.div>
-              
-              {/* Learn More Button - matches homepage style */}
-              <motion.div
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative"
-              >
-                <div className="absolute inset-0 bg-yellow-500 translate-x-2 translate-y-2 rounded-md z-0"></div>
-                <motion.a 
-                  href="#"
-                  className="relative flex items-center justify-between gap-3 min-w-[320px] bg-zinc-900 border-2 border-yellow-500 text-white font-medium px-6 py-4 rounded-md z-10"
-                >
-                  <span className="text-xl">Learn More</span>
-                  <ArrowUpRight className="h-6 w-6 text-white" />
-                </motion.a>
-              </motion.div>
-            </motion.div>
           </div>
           
           {/* Stats Grid */}
