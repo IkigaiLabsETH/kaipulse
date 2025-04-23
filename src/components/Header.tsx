@@ -160,7 +160,7 @@ export function Header() {
                       textShadow: "0 0 8px rgba(234, 179, 8, 0.7)"
                     }}
                   >
-                    TRIPLEMAXI
+                    LIVETHELIFETV
                   </motion.span>
                   <motion.div 
                     className="h-[2px] bg-yellow-500/60 absolute bottom-0 left-0 right-0"
@@ -311,7 +311,7 @@ export function Header() {
                       textShadow: "0 0 8px rgba(234, 179, 8, 0.7)"
                     }}
                   >
-                    TRIPLEMAXI
+                    LIVETHELIFETV
                   </motion.span>
                   <motion.div 
                     className="h-[2px] bg-yellow-500/60 absolute bottom-0 left-0 right-0"
