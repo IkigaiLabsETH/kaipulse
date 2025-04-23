@@ -213,7 +213,7 @@ export default function NavalPage() {
               </div>
               
               <p className="text-xl font-satoshi mb-10 leading-relaxed text-zinc-300">
-                Press play, internalize the philosophy, tand turn insight into on-chain freedom.
+                Press play, internalize the philosophy, and turn insight into on-chain freedom. Wealth is compounding. So is wisdom. So is trust. The thread’s not about getting rich. It’s about getting free.
               </p>
               
               <div className="border-t border-zinc-700 pt-8 mt-8">
