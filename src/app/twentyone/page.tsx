@@ -1025,6 +1025,416 @@ export default function TwentyOnePage() {
                 </div>
               </motion.div>
             </motion.div>
+            
+            {/* Executive Summary Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="mb-24"
+            >
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold mb-10 flex items-center"
+                whileInView={{ 
+                  textShadow: ['0px 0px 0px rgba(234,179,8,0)', '0px 0px 10px rgba(234,179,8,0.5)', '0px 0px 0px rgba(234,179,8,0)']
+                }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              >
+                <motion.span 
+                  className="bg-yellow-500/20 text-yellow-400 w-10 h-10 rounded-full flex items-center justify-center mr-4 text-xl"
+                  whileInView={{ 
+                    scale: [1, 1.1, 1],
+                    boxShadow: ['0px 0px 0px rgba(234,179,8,0)', '0px 0px 15px rgba(234,179,8,0.5)', '0px 0px 0px rgba(234,179,8,0)']
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                >
+                  6
+                </motion.span>
+                <span>Executive Summary</span>
+              </motion.h2>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true, margin: "-100px" }}
+                whileHover={{ y: -8 }}
+                className="relative mb-12"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <p className="text-xl text-white/90 mb-6">
+                    Twenty One is a purpose-built, Bitcoin-native operating company that intends to list on Nasdaq via the Cantor Equity Partners SPAC. It launches with ~42,000 BTC on balance sheet, majority backing from Tether/Bitfinex and a strategic minority from SoftBank, with Jack Mallers at the helm. The vehicle is designed to give investors capital-efficient, equity-style exposure to Bitcoin while retaining maximum strategic flexibility.
+                  </p>
+                  <div className="w-full h-[1px] bg-yellow-500/30 my-8" />
+                </Card>
+              </motion.div>
+              
+              {/* Strategy B Comparison */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative mb-12"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <div className="flex items-center mb-6">
+                    <motion.div 
+                      className="bg-yellow-500/20 p-3 rounded-full mr-4"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "rgba(234,179,8,0.3)"
+                      }}
+                    >
+                      <span className="text-yellow-400 font-bold">1</span>
+                    </motion.div>
+                    <h3 className="text-xl font-medium text-white">Why Twenty One v. &quot;Strategy B&quot; (MicroStrategy)</h3>
+                  </div>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                      <thead>
+                        <tr className="border-b border-yellow-500/30">
+                          <th className="py-3 pr-4 text-yellow-400">Metric</th>
+                          <th className="py-3 px-4 text-yellow-400">Strategy B (MSTR)</th>
+                          <th className="py-3 px-4 text-yellow-400">Twenty One</th>
+                          <th className="py-3 pl-4 text-yellow-400">Take-away</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-white/80">
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Pure-play BTC exposure</td>
+                          <td className="py-3 px-4">Diluted by legacy software ops</td>
+                          <td className="py-3 px-4 text-yellow-400 font-medium">100%</td>
+                          <td className="py-3 pl-4">Cleaner beta to BTC</td>
+                        </tr>
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Bitcoin-native operations</td>
+                          <td className="py-3 px-4">No</td>
+                          <td className="py-3 px-4 text-yellow-400 font-medium">Yes</td>
+                          <td className="py-3 pl-4">Lower opex, laser focus on BTC KPIs</td>
+                        </tr>
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Existing debt load</td>
+                          <td className="py-3 px-4">&gt;$4B convertibles</td>
+                          <td className="py-3 px-4 text-yellow-400 font-medium">None at launch</td>
+                          <td className="py-3 pl-4">Headroom for accretive leverage</td>
+                        </tr>
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Debt collateralization</td>
+                          <td className="py-3 px-4">Tied to BTC price covenants</td>
+                          <td className="py-3 px-4 text-yellow-400 font-medium">None yet</td>
+                          <td className="py-3 pl-4">Less risk of forced liquidation</td>
+                        </tr>
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Insider ownership</td>
+                          <td className="py-3 px-4">Meaningful but diluted</td>
+                          <td className="py-3 px-4 text-yellow-400 font-medium">High, via Tether/Bitfinex/Mallers</td>
+                          <td className="py-3 pl-4">Strong alignment</td>
+                        </tr>
+                        <tr>
+                          <td className="py-3 pr-4 font-medium">Purpose-built KPIs</td>
+                          <td className="py-3 px-4">BTC per share only recently adopted</td>
+                          <td className="py-3 px-4 text-yellow-400 font-medium">BPS and BRR from day 1</td>
+                          <td className="py-3 pl-4">Transparency in sats, not dollars</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <p className="mt-6 text-white/80">
+                    But MSTR&apos;s 500k BTC base means incremental buys barely move its BPS needle, therefore Twenty One&apos;s smaller initial stack and unencumbered balance sheet offer a steeper, more capital-efficient growth curve.
+                  </p>
+                  <div className="w-full h-[1px] bg-yellow-500/30 mt-8" />
+                </Card>
+              </motion.div>
+              
+              {/* Value Proposition */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative mb-12"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <div className="flex items-center mb-6">
+                    <motion.div 
+                      className="bg-yellow-500/20 p-3 rounded-full mr-4"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "rgba(234,179,8,0.3)"
+                      }}
+                    >
+                      <span className="text-yellow-400 font-bold">2</span>
+                    </motion.div>
+                    <h3 className="text-xl font-medium text-white">Investor Value Proposition</h3>
+                  </div>
+                  
+                  <ol className="space-y-4 mt-4 text-white/80">
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-8 h-8 rounded-full flex items-center justify-center mr-3 mt-0.5"
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >1</motion.span>
+                      <span><strong className="text-yellow-400">Bitcoin Exposure</strong> – IPO and follow-on capital earmarked primarily for additional BTC purchases.</span>
+                    </motion.li>
+                    
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-8 h-8 rounded-full flex items-center justify-center mr-3 mt-0.5"
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >2</motion.span>
+                      <span><strong className="text-yellow-400">Bitcoin-Native Operations</strong> – Lean cost structure and BTC-centric reporting lower the drag on per-share sat growth.</span>
+                    </motion.li>
+                    
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-8 h-8 rounded-full flex items-center justify-center mr-3 mt-0.5"
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >3</motion.span>
+                      <span><strong className="text-yellow-400">Attractive Entry Valuation</strong> – PIPE priced ~1.0× NAV; upside tracks BTC appreciation plus accretive buybacks/leverage.</span>
+                    </motion.li>
+                    
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-8 h-8 rounded-full flex items-center justify-center mr-3 mt-0.5"
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >4</motion.span>
+                      <span><strong className="text-yellow-400">Strategic Ownership</strong> – Majority stake held by Tether/Bitfinex, minority by SoftBank—adding deep liquidity, balance-sheet support and global brand reach.</span>
+                    </motion.li>
+                    
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-8 h-8 rounded-full flex items-center justify-center mr-3 mt-0.5"
+                        whileHover={{ scale: 1.1, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >5</motion.span>
+                      <span><strong className="text-yellow-400">Exchange-Traded Instrument</strong> – Provides spot-like Bitcoin exposure through a regulated equity that can sit inside traditional mandates.</span>
+                    </motion.li>
+                  </ol>
+                  <div className="w-full h-[1px] bg-yellow-500/30 mt-8" />
+                </Card>
+              </motion.div>
+              
+              {/* Three-Pillar Operating Plan */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative mb-12"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <div className="flex items-center mb-6">
+                    <motion.div 
+                      className="bg-yellow-500/20 p-3 rounded-full mr-4"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "rgba(234,179,8,0.3)"
+                      }}
+                    >
+                      <span className="text-yellow-400 font-bold">3</span>
+                    </motion.div>
+                    <h3 className="text-xl font-medium text-white">Three-Pillar Operating Plan</h3>
+                  </div>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                      <thead>
+                        <tr className="border-b border-yellow-500/30">
+                          <th className="py-3 pr-4 text-yellow-400">Pillar</th>
+                          <th className="py-3 px-4 text-yellow-400">Core Activities</th>
+                          <th className="py-3 pl-4 text-yellow-400">Strategic Rationale</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-white/80">
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium text-yellow-400">BTC Accumulation</td>
+                          <td className="py-3 px-4">Acquire BTC, actively manage stack, issue debt/equity for buys</td>
+                          <td className="py-3 pl-4">Maximize BTC-per-share while markets reward hard-asset treasuries</td>
+                        </tr>
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium text-yellow-400">BTC Education & Branding</td>
+                          <td className="py-3 px-4">Produce modular content, branded media; partner with conferences, Web3 & fintech firms</td>
+                          <td className="py-3 pl-4">Grow Bitcoin literacy → expand addressable investor base & brand authority</td>
+                        </tr>
+                        <tr>
+                          <td className="py-3 pr-4 font-medium text-yellow-400">BTC Financing</td>
+                          <td className="py-3 px-4">Advisory, structured products, lending</td>
+                          <td className="py-3 pl-4">Monetize expertise; generate BTC yield without diluting treasury focus</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <p className="mt-6 text-white/80">
+                    These pillars form a flywheel: content drives adoption → financing unlocks yield → yield funds more BTC → higher BPS reinforces the brand.
+                  </p>
+                  <div className="w-full h-[1px] bg-yellow-500/30 mt-8" />
+                </Card>
+              </motion.div>
+              
+              {/* Capital-Efficiency Edge */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative mb-12"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <div className="flex items-center mb-6">
+                    <motion.div 
+                      className="bg-yellow-500/20 p-3 rounded-full mr-4"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "rgba(234,179,8,0.3)"
+                      }}
+                    >
+                      <span className="text-yellow-400 font-bold">4</span>
+                    </motion.div>
+                    <h3 className="text-xl font-medium text-white">Capital-Efficiency Edge</h3>
+                  </div>
+                  
+                  <ul className="space-y-4 text-white/80">
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-4 h-4 rounded-full flex items-center justify-center mr-3 mt-1.5"
+                        whileHover={{ scale: 1.2, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >•</motion.span>
+                      <span>Zero legacy business drag and no pre-existing leverage give Twenty One room to ladder in low-cost convertibles or secured notes when market conditions are favorable.</span>
+                    </motion.li>
+                    
+                    <motion.li 
+                      className="flex items-start"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.span 
+                        className="bg-yellow-500/20 text-yellow-400 min-w-4 h-4 rounded-full flex items-center justify-center mr-3 mt-1.5"
+                        whileHover={{ scale: 1.2, backgroundColor: "rgba(234,179,8,0.3)" }}
+                      >•</motion.span>
+                      <span>Custom KPIs—Bitcoin per Share (BPS) and Bitcoin Return Rate (BRR)—let management communicate performance in sats, not fiat, aligning incentives with hodl-centric investors.</span>
+                    </motion.li>
+                  </ul>
+                  <div className="w-full h-[1px] bg-yellow-500/30 mt-8" />
+                </Card>
+              </motion.div>
+              
+              {/* Key Near-Term Catalysts */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative mb-12"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <div className="flex items-center mb-6">
+                    <motion.div 
+                      className="bg-yellow-500/20 p-3 rounded-full mr-4"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "rgba(234,179,8,0.3)"
+                      }}
+                    >
+                      <span className="text-yellow-400 font-bold">5</span>
+                    </motion.div>
+                    <h3 className="text-xl font-medium text-white">Key Near-Term Catalysts</h3>
+                  </div>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                      <thead>
+                        <tr className="border-b border-yellow-500/30">
+                          <th className="py-3 pr-4 text-yellow-400">Timeline</th>
+                          <th className="py-3 px-4 text-yellow-400">Milestone</th>
+                          <th className="py-3 pl-4 text-yellow-400">Impact</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-white/80">
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Q2 2025</td>
+                          <td className="py-3 px-4">S-4 filing & investor roadshow</td>
+                          <td className="py-3 pl-4">Valuation discovery; BPS modeling guidance</td>
+                        </tr>
+                        <tr className="border-b border-yellow-500/10">
+                          <td className="py-3 pr-4 font-medium">Q3 2025</td>
+                          <td className="py-3 px-4">SPAC shareholder vote & PIPE close</td>
+                          <td className="py-3 pl-4">Confirms cash runway for additional BTC buys</td>
+                        </tr>
+                        <tr>
+                          <td className="py-3 pr-4 font-medium">Q4 2025</td>
+                          <td className="py-3 px-4">Nasdaq listing as XXI</td>
+                          <td className="py-3 pl-4">Opens door to index inclusion & option markets</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="w-full h-[1px] bg-yellow-500/30 mt-8" />
+                </Card>
+              </motion.div>
+              
+              {/* Bottom Line */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative mb-8"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <Card className="relative bg-zinc-900 border-2 border-yellow-500 p-8 md:p-10 overflow-hidden z-10">
+                  <p className="text-white/90 text-lg">
+                    <strong className="text-yellow-400">Bottom line:</strong> Twenty One promises a cleaner, more lever-agile, and KPI-aligned path to Bitcoin upside than the incumbent corporate-treasury proxy—potentially the next logical evolution in public-market BTC vehicles.
+                  </p>
+                </Card>
+              </motion.div>
+            </motion.section>
           </div>
         </div>
       </div>
