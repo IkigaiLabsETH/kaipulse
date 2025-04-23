@@ -877,7 +877,7 @@ export default function TwentyOnePage() {
                 >
                   5
                 </motion.span>
-                <span>Summary & Outlook</span>
+                <span>Timeline & Vision</span>
               </motion.h2>
               
               <motion.div
