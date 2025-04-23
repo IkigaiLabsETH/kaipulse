@@ -20,7 +20,7 @@ const TICKERS: Price[] = [
 ];
 
 export default function PriceTicker() {
-  const [selectedSymbol, setSelectedSymbol] = useState<string>('MSTY');
+  const [selectedSymbol, setSelectedSymbol] = useState<string>('BTC');
 
   const handleSymbolClick = (symbol: string) => {
     if (symbol === selectedSymbol) {
