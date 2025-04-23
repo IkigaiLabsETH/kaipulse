@@ -182,33 +182,31 @@ export default function BiohackingPage() {
           </p>
         </motion.div>
 
-        {/* Full-width Hero Image Section - Tesla Style */}
+        {/* Feature Image Section - Tesla Style */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative w-full h-[65vh] mb-16 group"
+          className="relative mx-auto max-w-4xl mb-16 overflow-hidden"
         >
-          <div className="absolute inset-0 border-4 border-yellow-500 z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
-          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
-          <Image
-            src="/background_helo.jpeg"
-            alt="Biohacking Hero"
-            fill
-            className="object-cover z-0 transition duration-700 transform group-hover:scale-105"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-0"></div>
-          <div className="absolute bottom-8 left-8 max-w-xl z-20">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-black/60 backdrop-blur-sm p-6 rounded-lg border border-yellow-500/30"
-            >
-              <h2 className="text-3xl font-bold mb-2 text-yellow-500">Nature Immersion</h2>
-              <p className="text-white/90">Re-price Yourself in Sunlight</p>
-            </motion.div>
+          <div className="relative w-full h-[65vh] border-2 border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.3)]">
+            <Image
+              src="/background_helo.jpeg"
+              alt="Biohacking Hero"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute bottom-8 left-8">
+              <div className="bg-black/90 p-6">
+                <h2 className="text-4xl font-bold text-yellow-500">
+                  Nature Immersion
+                </h2>
+                <p className="text-white/90 text-lg">
+                  Re-price Yourself in Sunlight
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
         
