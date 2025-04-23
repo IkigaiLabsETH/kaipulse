@@ -81,6 +81,7 @@ export function Header() {
         { name: 'BITBONDS', href: '/bitbonds' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
         { name: 'DATA EXPLORER', href: '/data' },
+        { name: 'SUMMARY', href: '/about' },
       ]
     },
     { 
@@ -99,7 +100,6 @@ export function Header() {
       items: [
         { name: 'AI', href: '/ai' },
         { name: 'BIO', href: '/bio' },
-        { name: 'SUMMARY', href: '/about' },
       ]
     },
   ];
