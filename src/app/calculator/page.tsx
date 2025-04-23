@@ -1,23 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { MSTYFreedomCalculator } from '@/components/MSTYFreedomCalculator';
 
 export default function CalculatorPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Navigation */}
-        <div className="mb-8">
-          <Link 
-            href="/" 
-            className="text-yellow-500 hover:text-yellow-400 transition-colors font-bold text-lg"
-          >
-            ← Back to Home
-          </Link>
-        </div>
-
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
