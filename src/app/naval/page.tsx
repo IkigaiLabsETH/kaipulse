@@ -77,8 +77,8 @@ export default function NavalPage() {
             className="prose prose-xl prose-invert max-w-none mb-12"
             variants={sectionVariants}
           >
-            <p className="text-xl md:text-2xl font-satoshi mb-8 leading-relaxed text-zinc-300">
-              We grow up told to earn money, but money is only a receipt for value already created. We chase job titles, but status is a zero-sum sport where someone else must lose for you to &ldquo;win.&rdquo; Therefore the real game is wealth—assets that compound while you sleep and free you to think beyond the next paycheck.
+            <p className="text-xl md:text-4xl font-satoshi mb-8 leading-relaxed text-zinc-300">
+              The real game is wealth—assets that compound while you sleep and free you to think beyond the next paycheck.
             </p>
           </motion.div>
         </motion.div>
@@ -94,8 +94,8 @@ export default function NavalPage() {
           className="prose prose-lg prose-invert max-w-none mb-16"
           variants={sectionVariants}
         >
-          <p className="text-xl md:text-2xl font-satoshi mb-8 leading-relaxed">
-            That insight detonated across the internet in 2018 when entrepreneur-investor Naval Ravikant posted his legendary tweetstorm and later unpacked it in the podcast episode you&apos;re about to hear. For Bitcoiners, the thread reads like scripture:
+          <p className="text-xl md:text-3xl font-satoshi mb-8 leading-relaxed">
+            That insight detonated across the internet in 2018 when entrepreneur-investor Naval Ravikant posted his legendary tweetstorm and later unpacked it in the podcast episode.
           </p>
           
           <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8 my-12">
@@ -122,7 +122,7 @@ export default function NavalPage() {
           </div>
 
           <p className="text-xl md:text-2xl font-satoshi mb-12 leading-relaxed">
-            Bitcoin embodies every one of those lines. It&apos;s permissionless leverage: code and cryptography working for you 24/7, compounding trust block after block. You don&apos;t need a gatekeeper&apos;s blessing to stack sats; you need curiosity, conviction, and an address that can&apos;t be debased by anyone&apos;s printing press.
+           Bitcoin is the purest expression of those principles—permissionless leverage in action. Lines of code run nonstop, stacking trust with every block. No gatekeeper stamps your ticket; all you need is curiosity, conviction, and a wallet address immune to the money printer.
           </p>
         </motion.div>
 
@@ -197,7 +197,7 @@ export default function NavalPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-epilogue font-semibold text-white">Ship Permissionlessly</h3>
-                    <p className="text-lg text-zinc-300">Launch scripts, products, or memes that work while you sleep.</p>
+                    <p className="text-lg text-zinc-300">Launch code, products, or memes that work while you sleep.</p>
                   </div>
                 </div>
                 
@@ -216,11 +216,6 @@ export default function NavalPage() {
                 Press play, internalize the philosophy, and turn insight into on-chain freedom. Wealth is compounding. So is wisdom. So is trust. The thread’s not about getting rich. It’s about getting free.
               </p>
               
-              <div className="border-t border-zinc-700 pt-8 mt-8">
-                <p className="text-2xl md:text-3xl font-boska font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 text-center">
-                  Infinite game. Infinite ledger. Let&apos;s build.
-                </p>
-              </div>
             </div>
           </div>
         </motion.div>
