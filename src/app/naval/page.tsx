@@ -151,35 +151,7 @@ export default function NavalPage() {
         </motion.div>
 
         {/* Content Sections with Premium Design */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-24">
-          <motion.div variants={sectionVariants} className="space-y-6">
-            <div className="flex items-center">
-              <div className="h-px w-8 bg-yellow-400 mr-4"></div>
-              <h2 className="text-2xl md:text-3xl font-boska font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                Specific Knowledge vs. Commodity Skills
-              </h2>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
-              <p className="text-xl font-satoshi leading-relaxed text-zinc-300">
-                Schools train replaceable skills, but the market rewards what can&apos;t be scripted. Therefore, follow the rabbit holes that feel like play to you—writing Lightning apps, designing cryptographic art, analyzing mempool flows. That weird obsession is your moat; it can&apos;t be outsourced to the lowest bidder.
-              </p>
-            </div>
-          </motion.div>
 
-          <motion.div variants={sectionVariants} className="space-y-6">
-            <div className="flex items-center">
-              <div className="h-px w-8 bg-yellow-400 mr-4"></div>
-              <h2 className="text-2xl md:text-3xl font-boska font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                Accountability as an Option Call
-              </h2>
-            </div>
-            <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
-              <p className="text-xl font-satoshi leading-relaxed text-zinc-300">
-                Hide behind anonymity and you cap your upside, but stamp your name on bold bets and the network returns responsibility, equity, and optionality. Bitcoin&apos;s transparent ledger turns skin-in-the-game into public signal; good judgment compounds in public view.
-              </p>
-            </div>
-          </motion.div>
-        </div>
 
         <motion.div variants={sectionVariants} className="mb-20">
           <div className="flex items-center mb-6">
