@@ -997,9 +997,39 @@ export default function TwentyOnePage() {
                 </Card>
               </motion.div>
             </motion.section>
+            
+            {/* Bitcoin Initiatives - Ultra Condensed */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-24 px-2"
+            >
+              <motion.div
+                whileHover={{ y: -3 }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-yellow-500 translate-x-1 translate-y-1 rounded-md z-0 opacity-90"></div>
+                <div className="bg-zinc-900 border-2 border-yellow-500 p-4 rounded-md relative z-10 overflow-hidden">
+                  <div className="flex items-center">
+                    <Bitcoin className="h-5 w-5 text-yellow-400 mr-3 flex-shrink-0" />
+                    <p className="text-white/90 text-sm md:text-base">
+                      <span className="font-medium">Twenty One won&apos;t just hold Bitcoin.</span> 
+                      <span className="ml-1 text-white/80">It will build: 
+                        <span className="text-yellow-400 mx-1">→</span>Bitcoin-native financial products
+                        <span className="text-yellow-400 mx-1">→</span>Bitcoin media
+                        <span className="text-yellow-400 mx-1">→</span>BTC-first lending & tools
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
+      {/* Extra padding at bottom */}
+      <div className="h-24"></div>
     </div>
   )
 } 
