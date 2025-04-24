@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { clientLogger } from '@/utils/clientLogger'
+import { useRouter } from 'next/navigation'
 
 export default function VoiceError({
   error,
@@ -11,10 +12,21 @@ export default function VoiceError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const router = useRouter();
+
   useEffect(() => {
     // Log the error to our logging service
     clientLogger.error('Voice page error:', error)
   }, [error])
+
+  const handleGoHome = () => {
+    try {
+      router.push('/');
+    } catch (err) {
+      clientLogger.error('Navigation error:', err);
+      window.location.href = '/';
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-black/95 to-yellow-950/20">
@@ -26,7 +38,7 @@ export default function VoiceError({
         <div className="flex gap-4 justify-center">
           <Button
             variant="outline"
-            onClick={() => window.location.replace('/')}
+            onClick={handleGoHome}
             className="bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-500 border-yellow-500/20"
           >
             Go Home

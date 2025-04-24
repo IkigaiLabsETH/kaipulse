@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { clientLogger } from "@/utils/clientLogger"
 import { Chat } from "@/components/ai/Chat"
+import { useRouter } from "next/navigation"
 
 // Constants
 const RECONNECT_DELAY_MS = 3000
@@ -157,6 +158,7 @@ const useAudioQueue = () => {
 };
 
 export default function VoicePage() {
+  const router = useRouter();
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [errorDetails, setErrorDetails] = useState<string | null>(null)
@@ -239,15 +241,31 @@ export default function VoicePage() {
     }
   }, [shouldBeConnected, clearQueue, fetchToken])
 
+  // Handle cleanup and navigation
+  const handleEndCall = useCallback(() => {
+    // Cleanup
+    setShouldBeConnected(false);
+    clearReconnectTimer();
+    clearQueue();
+    
+    try {
+      // Navigate using Next.js router
+      router.push('/');
+    } catch (err) {
+      clientLogger.error('Navigation error:', err);
+      // Fallback to window.location if router fails
+      window.location.href = '/';
+    }
+  }, [clearReconnectTimer, clearQueue, router]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      clearReconnectTimer()
-      clearQueue()
-      setShouldBeConnected(false)
-      tokenRetryCount.current = 0
-    }
-  }, [clearReconnectTimer, clearQueue])
+      setShouldBeConnected(false);
+      clearReconnectTimer();
+      clearQueue();
+    };
+  }, [clearReconnectTimer, clearQueue]);
 
   // Initial token fetch
   useEffect(() => {
@@ -482,13 +500,7 @@ export default function VoicePage() {
             variant="outline"
             size="lg"
             className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-medium text-lg h-14 rounded-xl shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-300 border-0"
-            onClick={() => {
-              setShouldBeConnected(false);
-              clearReconnectTimer();
-              clearQueue();
-              // Use Next.js router for client-side navigation
-              window.location.replace('/');
-            }}
+            onClick={handleEndCall}
           >
             End Call
           </Button>
