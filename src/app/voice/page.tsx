@@ -1,13 +1,14 @@
 'use client'
 
 import { VoiceProvider } from "@humeai/voice-react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { handleToolCallMessage } from "../api/ai/cryptoPriceTool"
 import { Hume } from "hume"
 import { VoiceToggle } from "@/components/ai/VoiceToggle"
 import { Loader } from "@/components/ai/Loader"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { clientLogger } from "@/utils/clientLogger"
 
 const WaveVisualizer = ({ isRecording }: { isRecording: boolean }) => {
   const width = 200;
@@ -55,12 +56,105 @@ const WaveVisualizer = ({ isRecording }: { isRecording: boolean }) => {
   );
 };
 
+// Audio playback queue management
+const useAudioQueue = () => {
+  const [audioQueue, setAudioQueue] = useState<Blob[]>([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const addToQueue = (audioBlob: Blob) => {
+    setAudioQueue(prev => [...prev, audioBlob]);
+    playNextInQueue();
+  };
+
+  const playNextInQueue = () => {
+    if (isPlaying || audioQueue.length === 0) return;
+
+    setIsPlaying(true);
+    const audioBlob = audioQueue[0];
+    const audioUrl = URL.createObjectURL(audioBlob);
+    
+    const audio = new Audio(audioUrl);
+    currentAudioRef.current = audio;
+
+    audio.onended = () => {
+      URL.revokeObjectURL(audioUrl);
+      setAudioQueue(prev => prev.slice(1));
+      setIsPlaying(false);
+      currentAudioRef.current = null;
+      playNextInQueue();
+    };
+
+    audio.onerror = () => {
+      clientLogger.error('Error playing audio');
+      URL.revokeObjectURL(audioUrl);
+      setAudioQueue(prev => prev.slice(1));
+      setIsPlaying(false);
+      currentAudioRef.current = null;
+      playNextInQueue();
+    };
+
+    audio.play().catch(error => {
+      clientLogger.error('Failed to play audio', error);
+      setIsPlaying(false);
+      currentAudioRef.current = null;
+    });
+  };
+
+  const clearQueue = () => {
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause();
+      if (currentAudioRef.current.src) {
+        URL.revokeObjectURL(currentAudioRef.current.src);
+      }
+    }
+    setAudioQueue([]);
+    setIsPlaying(false);
+    currentAudioRef.current = null;
+  };
+
+  useEffect(() => {
+    return () => {
+      if (currentAudioRef.current) {
+        currentAudioRef.current.pause();
+        if (currentAudioRef.current.src) {
+          URL.revokeObjectURL(currentAudioRef.current.src);
+        }
+      }
+    };
+  }, []);
+
+  return { addToQueue, clearQueue };
+};
+
 export default function VoicePage() {
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [errorDetails, setErrorDetails] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isActive, setIsActive] = useState(false)
+  const { addToQueue, clearQueue } = useAudioQueue()
+
+  // Handle audio output from Hume
+  const handleHumeMessage = (message: Hume.empathicVoice.SubscribeEvent) => {
+    switch (message.type) {
+      case 'audio_output':
+        // Convert base64 audio to blob and add to queue
+        const audioData = atob(message.data)
+        const arrayBuffer = new ArrayBuffer(audioData.length)
+        const view = new Uint8Array(arrayBuffer)
+        for (let i = 0; i < audioData.length; i++) {
+          view[i] = audioData.charCodeAt(i)
+        }
+        const audioBlob = new Blob([arrayBuffer], { type: 'audio/wav' })
+        addToQueue(audioBlob)
+        break
+      case 'user_interruption':
+        // Clear audio queue on interruption
+        clearQueue()
+        break
+    }
+  }
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -123,6 +217,7 @@ export default function VoicePage() {
     <VoiceProvider
       auth={{ type: "accessToken", value: accessToken }}
       configId="ccb6fd91-52cd-4f8c-bcc5-763f647407b5"
+      onMessage={handleHumeMessage}
       onToolCall={(message: Hume.empathicVoice.ToolCallMessage) => handleToolCallMessage(message)}
       hostname="api.hume.ai"
       debug={false}
