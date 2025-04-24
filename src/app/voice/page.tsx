@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { clientLogger } from "@/utils/clientLogger"
 import { Chat } from "@/components/ai/Chat"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 // Constants
 const RECONNECT_DELAY_MS = 3000
@@ -159,6 +159,7 @@ const useAudioQueue = () => {
 
 export default function VoicePage() {
   const router = useRouter();
+  const pathname = usePathname();
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [errorDetails, setErrorDetails] = useState<string | null>(null)
@@ -171,6 +172,15 @@ export default function VoicePage() {
   const { addToQueue, clearQueue } = useAudioQueue()
   const tokenRetryCount = useRef(0)
   const MAX_TOKEN_RETRIES = 3
+
+  // Check for pipeline URLs and redirect
+  useEffect(() => {
+    if (pathname?.startsWith('/pipeline')) {
+      clientLogger.warn('Pipeline URL detected, redirecting to home');
+      router.replace('/');
+      return;
+    }
+  }, [pathname, router]);
 
   // Clear reconnection timer
   const clearReconnectTimer = useCallback(() => {
@@ -242,19 +252,18 @@ export default function VoicePage() {
   }, [shouldBeConnected, clearQueue, fetchToken])
 
   // Handle cleanup and navigation
-  const handleEndCall = useCallback(() => {
+  const handleEndCall = useCallback(async () => {
     // Cleanup
     setShouldBeConnected(false);
     clearReconnectTimer();
     clearQueue();
     
     try {
-      // Navigate using Next.js router
-      router.push('/');
+      await router.replace('/');
     } catch (err) {
       clientLogger.error('Navigation error:', err);
       // Fallback to window.location if router fails
-      window.location.href = '/';
+      window.location.replace('/');
     }
   }, [clearReconnectTimer, clearQueue, router]);
 
@@ -391,6 +400,10 @@ export default function VoicePage() {
         }
         break;
     }
+  }
+
+  if (pathname?.startsWith('/pipeline')) {
+    return null; // Prevent rendering while redirecting
   }
 
   if (isLoading) {

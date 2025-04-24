@@ -4,7 +4,13 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   // Handle pipeline URLs
   if (request.nextUrl.pathname.startsWith('/pipeline')) {
-    return NextResponse.redirect(new URL('/', request.url))
+    // Redirect to home page with a 307 temporary redirect
+    return NextResponse.redirect(new URL('/', request.url), {
+      status: 307,
+      headers: {
+        'Cache-Control': 'no-store, must-revalidate',
+      },
+    })
   }
 
   // Continue normal request handling
@@ -18,5 +24,7 @@ export const config = {
     // - static files (_next/static/*, favicon.ico, etc.)
     // - public files (public/*)
     '/((?!api|_next/static|_next/image|favicon.ico|public).*)',
+    '/pipeline/:path*',
+    '/voice/:path*',
   ],
 } 

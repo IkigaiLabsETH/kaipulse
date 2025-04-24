@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { clientLogger } from '@/utils/clientLogger'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function VoiceError({
   error,
@@ -13,20 +13,32 @@ export default function VoiceError({
   reset: () => void
 }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Log the error to our logging service
-    clientLogger.error('Voice page error:', error)
-  }, [error])
+    clientLogger.error('Voice page error:', error);
 
-  const handleGoHome = () => {
+    // Handle pipeline URLs
+    if (pathname?.startsWith('/pipeline')) {
+      clientLogger.warn('Pipeline URL detected in error page, redirecting to home');
+      router.replace('/');
+    }
+  }, [error, pathname, router]);
+
+  const handleGoHome = async () => {
     try {
-      router.push('/');
+      await router.replace('/');
     } catch (err) {
       clientLogger.error('Navigation error:', err);
-      window.location.href = '/';
+      window.location.replace('/');
     }
   };
+
+  // Don't render anything while redirecting from pipeline URLs
+  if (pathname?.startsWith('/pipeline')) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-black/95 to-yellow-950/20">
