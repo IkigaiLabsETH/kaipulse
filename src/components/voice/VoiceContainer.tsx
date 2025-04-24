@@ -13,7 +13,7 @@ import { Chat } from "@/components/ai/Chat";
 import { VoiceToggle } from "@/components/ai/VoiceToggle";
 import { Loader } from "@/components/ai/Loader";
 
-// Inline VoiceVisualizer component instead of importing
+// Update the VoiceVisualizer component styling
 const VoiceVisualizer = ({ isRecording }: { isRecording: boolean }) => {
   const width = 200;
   const height = 60;
@@ -28,7 +28,7 @@ const VoiceVisualizer = ({ isRecording }: { isRecording: boolean }) => {
         className="absolute inset-0 w-full h-full"
       >
         {Array.from({ length: bars }).map((_, index) => {
-          const initialHeight = Math.random() * 20 + 10; // Random initial height between 10 and 30
+          const initialHeight = Math.random() * 20 + 10;
           
           return (
             <motion.rect
@@ -49,12 +49,18 @@ const VoiceVisualizer = ({ isRecording }: { isRecording: boolean }) => {
               }}
               width={4}
               x={(index * width) / bars}
-              fill="rgb(234 179 8)"
-              opacity={0.6}
+              fill="url(#gradient)"
+              opacity={0.8}
               rx={2}
             />
           );
         })}
+        <defs>
+          <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#FBBF24" />
+            <stop offset="100%" stopColor="#F59E0B" />
+          </linearGradient>
+        </defs>
       </motion.svg>
     </div>
   );
@@ -472,19 +478,30 @@ export function VoiceContainer({ configId, onEndCall }: VoiceContainerProps) {
       onClose={handleWebSocketClose}
       resumedChatGroupId={chatGroupId}
     >
-      <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-black via-black/95 to-yellow-950/20 p-8 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-black to-zinc-900 p-8 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 opacity-10" 
+            style={{ 
+              backgroundImage: "url('/assets/grid-pattern.svg')",
+              backgroundSize: "cover",
+              mixBlendMode: "luminosity"
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70" />
         </div>
 
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 mt-12"
+          className="relative z-10 mt-12 w-full max-w-5xl mx-auto"
         >
-          <h1 className="font-satoshi text-yellow-500/90 text-2xl font-bold tracking-wider mb-2 text-center uppercase">MSTY Call</h1>
+          <div className="flex items-center mb-6">
+            <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+            <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Voice Call</span>
+          </div>
         </motion.div>
 
         {/* Chat Messages */}
@@ -492,7 +509,7 @@ export function VoiceContainer({ configId, onEndCall }: VoiceContainerProps) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-full flex-grow overflow-hidden relative z-10"
+          className="w-full max-w-5xl mx-auto flex-grow overflow-hidden relative z-10 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8 my-8"
         >
           <Chat messages={messages} />
         </motion.div>
@@ -502,43 +519,49 @@ export function VoiceContainer({ configId, onEndCall }: VoiceContainerProps) {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-8 relative z-10"
+          className="relative z-10 w-full max-w-5xl mx-auto"
         >
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 via-yellow-400/20 to-yellow-500/20 blur-lg rounded-full group-hover:from-yellow-500/30 group-hover:via-yellow-400/30 group-hover:to-yellow-500/30 transition-all duration-300" />
-            <VoiceToggle onActiveChange={setIsActive} />
+          <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
+            <div className="flex flex-col items-center gap-8">
+              <div className="relative group">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <VoiceToggle onActiveChange={setIsActive} />
+                </div>
+              </div>
+              <div className="h-20 flex flex-col items-center justify-center gap-4">
+                {isActive && (
+                  <>
+                    <VoiceVisualizer isRecording={isActive} />
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-3"
+                    >
+                      <span className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full animate-pulse" />
+                      <span className="text-yellow-400/80 text-sm font-light tracking-wider font-epilogue">LISTENING...</span>
+                    </motion.div>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="h-20 flex flex-col items-center justify-center gap-4">
-            {isActive && (
-              <>
-                <VoiceVisualizer isRecording={isActive} />
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-3"
-                >
-                  <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                  <span className="text-yellow-500/60 text-sm font-light tracking-wider">LISTENING...</span>
-                </motion.div>
-              </>
-            )}
-          </div>
-        </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="w-full max-w-sm relative z-10 mb-12"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-medium text-lg h-14 rounded-xl shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-300 border-0"
-            onClick={handleEndCall}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-8"
           >
-            End Call
-          </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 hover:bg-zinc-800/50 text-yellow-400 font-medium text-lg h-14 rounded-lg transition-all duration-300"
+              onClick={handleEndCall}
+            >
+              End Call
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
     </VoiceProvider>

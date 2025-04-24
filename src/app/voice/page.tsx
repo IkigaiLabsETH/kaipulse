@@ -53,16 +53,19 @@ function VoiceExperience() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black to-zinc-900">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="w-full max-w-5xl mx-auto px-6 text-center"
         >
-          <p className="text-xl text-white/70">Initializing Voice Interface</p>
+          <div className="flex items-center justify-center mb-6">
+            <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+            <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Initializing</span>
+          </div>
           <div className="relative mt-8">
-            <div className="absolute -inset-4 bg-yellow-500/10 blur-2xl rounded-full animate-pulse"></div>
+            <div className="absolute -inset-4 bg-yellow-400/10 blur-2xl rounded-full animate-pulse"></div>
             <Loader color="yellow" />
           </div>
         </motion.div>
@@ -72,15 +75,18 @@ function VoiceExperience() {
 
   if (error || !accessToken) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black to-zinc-900">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="w-full max-w-5xl mx-auto px-6"
         >
-          <div className="relative p-8 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
-            <p className="text-2xl font-bold mb-4 text-yellow-500">Connection Error</p>
-            <p className="mb-6 text-white/80">{error || 'Unable to initialize voice interface'}</p>
+          <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
+            <div className="flex items-center mb-6">
+              <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Connection Error</span>
+            </div>
+            <p className="mb-6 text-xl font-satoshi leading-relaxed text-zinc-300">{error || 'Unable to initialize voice interface'}</p>
             <StartCall />
           </div>
         </motion.div>
@@ -96,64 +102,95 @@ function VoiceExperience() {
       debug={true}
       verboseTranscription={true}
     >
-      <div className="min-h-screen bg-black text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          {/* Hero Section */}
+      <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-white">
+        <div className="relative overflow-hidden">
+          <div 
+            className="absolute inset-0 opacity-10" 
+            style={{ 
+              backgroundImage: "url('/assets/grid-pattern.svg')",
+              backgroundSize: "cover",
+              mixBlendMode: "luminosity"
+            }}
+          />
+          
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70" />
+
           <motion.div 
+            className="relative max-w-5xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-              <span className="text-yellow-500">Voice</span> Call
-            </h1>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              A Sonic Experience
-            </p>
-          </motion.div>
-
-          {/* Main Voice Interface */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative w-full mb-16 rounded-xl overflow-hidden group"
-          >
-            <div className="absolute inset-0 border-4 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
-            
-            <div className="relative z-20 p-12 flex flex-col items-center justify-center">
-              <StartCall />
-            </div>
-          </motion.div>
-
-          {/* Controls Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mb-20"
-          >
+            {/* Premium Accent Line */}
             <div className="flex items-center mb-6">
-              <h2 className="text-3xl font-bold text-yellow-500">Voice Controls</h2>
-              <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+              <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Voice Experience</span>
             </div>
-            <div className="space-y-4 text-white/80 bg-zinc-900/40 p-6 rounded-xl border border-yellow-500/10">
-              <Controls />
-            </div>
-          </motion.div>
 
-          {/* Footer */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-center"
-          >
-            <p className="text-white/40 text-sm font-light tracking-wider">
-              MSTY Voice Gallery • Powered by Hume AI
-            </p>
+            <motion.h1 
+              className="text-4xl md:text-7xl font-boska font-bold mb-8 tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
+                Voice
+              </span>
+              <span className="text-white"> Call</span>
+            </motion.h1>
+
+            <motion.div 
+              className="prose prose-xl prose-invert max-w-none mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <p className="text-xl md:text-4xl font-satoshi mb-4 leading-relaxed text-zinc-300">
+                A sonic experience that transcends traditional communication.
+              </p>
+            </motion.div>
+
+            {/* Main Voice Interface */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="relative mb-16"
+            >
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl blur-sm opacity-50"></div>
+              <div className="relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-xl p-12 overflow-hidden shadow-[0_20px_80px_-20px_rgba(234,179,8,0.3)]">
+                <div className="absolute top-0 right-0 w-80 h-80 bg-yellow-400/10 blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/3"></div>
+                <StartCall />
+              </div>
+            </motion.div>
+
+            {/* Controls Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mb-20"
+            >
+              <div className="flex items-center mb-6">
+                <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <span className="ml-4 text-2xl font-boska font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Voice Controls</span>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
+                <Controls />
+              </div>
+            </motion.div>
+
+            {/* Footer */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-center"
+            >
+              <p className="text-zinc-500 text-sm font-satoshi tracking-wider">
+                MSTY Voice Gallery • Powered by Hume AI
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </div>
