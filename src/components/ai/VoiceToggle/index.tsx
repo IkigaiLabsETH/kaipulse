@@ -128,13 +128,14 @@ export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
         className={cn(
           "inline-flex items-center justify-center rounded-full w-20 h-20",
           "transition-all duration-300 ease-in-out",
-          "border-[3px] hover:scale-105 hover:shadow-lg",
+          "border-[3px] hover:scale-105",
           "ring-offset-background focus-visible:outline-none focus-visible:ring-2",
           "focus-visible:ring-yellow-500 focus-visible:ring-offset-2",
           "disabled:pointer-events-none disabled:opacity-50",
+          "shadow-[0_0_15px_rgba(234,179,8,0.15)] hover:shadow-[0_0_20px_rgba(234,179,8,0.3)]",
           !voice.isMuted 
-            ? "border-yellow-500 text-yellow-500 bg-yellow-500/10 data-[state=on]:bg-yellow-500/10 data-[state=on]:text-yellow-500" 
-            : "border-yellow-500 text-yellow-500 hover:bg-yellow-500/10"
+            ? "border-yellow-500 text-black bg-gradient-to-br from-yellow-400 to-yellow-600 data-[state=on]:text-black" 
+            : "border-yellow-500 text-yellow-500 bg-black hover:bg-yellow-500/10"
         )}
       >
         {!voice.isMuted ? (
@@ -144,7 +145,7 @@ export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
         )}
       </Toggle>
       {error && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 p-2 bg-red-500/10 border border-red-500 rounded-md text-red-500 text-sm text-center">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 p-3 bg-black/80 backdrop-blur-sm border border-red-500/50 rounded-sm text-red-400 text-sm text-center shadow-[0_0_15px_rgba(239,68,68,0.15)]">
           {error}
         </div>
       )}
