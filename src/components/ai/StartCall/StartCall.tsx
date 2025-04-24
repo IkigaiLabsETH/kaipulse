@@ -4,7 +4,7 @@ import { useVoice } from "@humeai/voice-react";
 import { Button } from '../Button';
 
 export const StartCall:FC = () => {
-  const { status, connect } = useVoice();
+  const { connect } = useVoice();
 
   return(
     <Button
