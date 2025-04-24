@@ -78,8 +78,9 @@ export function Header() {
         { name: 'MSTR', href: '/platforms/msty/mstr' },
         { name: 'MSTY', href: '/platforms/msty' },
         { name: 'IMST', href: '/platforms/bitwise' },
-        { name: 'BITBONDS', href: '/bitbonds' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
+        { name: 'BITBONDS', href: '/bitbonds' },
+        { name: 'TWENTY ONE', href: '/twentyone' },
         { name: 'DATA EXPLORER', href: '/data' },
       ]
     },
