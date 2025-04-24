@@ -9,6 +9,52 @@ import { Loader } from "@/components/ai/Loader"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
+const WaveVisualizer = ({ isRecording }: { isRecording: boolean }) => {
+  const width = 200;
+  const height = 60;
+  const bars = 24;
+
+  return (
+    <div className="relative w-[200px] h-[60px]">
+      <motion.svg
+        viewBox={`0 0 ${width} ${height}`}
+        width={width}
+        height={height}
+        className="absolute inset-0 w-full h-full"
+      >
+        {Array.from({ length: bars }).map((_, index) => {
+          const initialHeight = Math.random() * 20 + 10; // Random initial height between 10 and 30
+          
+          return (
+            <motion.rect
+              key={`wave-bar-${index}`}
+              initial={{ height: 2 }}
+              animate={isRecording ? {
+                height: [initialHeight, initialHeight + 20, initialHeight],
+                y: [height/2 - initialHeight/2, height/2 - (initialHeight + 20)/2, height/2 - initialHeight/2]
+              } : {
+                height: 2,
+                y: height/2 - 1
+              }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                delay: index * 0.05,
+                ease: "easeInOut"
+              }}
+              width={4}
+              x={(index * width) / bars}
+              fill="rgb(234 179 8)"
+              opacity={0.6}
+              rx={2}
+            />
+          );
+        })}
+      </motion.svg>
+    </div>
+  );
+};
+
 export default function VoicePage() {
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -107,16 +153,19 @@ export default function VoicePage() {
             <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 via-yellow-400/20 to-yellow-500/20 blur-lg rounded-full group-hover:from-yellow-500/30 group-hover:via-yellow-400/30 group-hover:to-yellow-500/30 transition-all duration-300" />
             <VoiceToggle onActiveChange={setIsActive} />
           </div>
-          <div className="h-8 flex items-center">
+          <div className="h-20 flex flex-col items-center justify-center gap-4">
             {isActive && (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-3"
-              >
-                <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
-                <span className="text-yellow-500/60 text-sm font-light tracking-wider">LISTENING...</span>
-              </motion.div>
+              <>
+                <WaveVisualizer isRecording={isActive} />
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3"
+                >
+                  <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                  <span className="text-yellow-500/60 text-sm font-light tracking-wider">LISTENING...</span>
+                </motion.div>
+              </>
             )}
           </div>
         </motion.div>
