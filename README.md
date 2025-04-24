@@ -53,6 +53,7 @@ Learn about Bitcoin&apos;s properties and potential role in portfolio planning. 
 - **Bitcoin-First Portfolio**: 80% core allocation to cold storage BTC
 - **Strategic Yield**: 10% MSTY allocation for monthly income
 - **Growth Component**: 10% MSTR allocation for additional Bitcoin exposure
+- **Voice Interface**: AI-powered voice interactions using Hume AI
 - **NFT Gallery Experience**: Curated collection of digital art and collectibles
 - **OpenSea Integration**: Real-time NFT market data and trading insights
 - **Tax Planning**: Special considerations for international investors
@@ -88,6 +89,31 @@ Learn about Bitcoin&apos;s properties and potential role in portfolio planning. 
 - **Responsive Layout**: Optimal viewing across all devices
 - **Dark Theme**: Elegant, gallery-style presentation
 - **Custom Typography**: Refined typographic hierarchy
+
+## 🎙️ Voice Interface Features
+
+### Hume AI Integration
+- **Natural Conversations**: Engage with the platform using natural voice commands
+- **Real-time Processing**: Instant voice recognition and response
+- **Secure Authentication**: Token-based access control
+- **Error Handling**: Graceful error recovery and user feedback
+- **Microphone Controls**: Intuitive toggle interface with visual feedback
+- **Audio Visualization**: Real-time FFT visualization of voice input
+
+### Voice Commands
+- **Portfolio Analysis**: Query portfolio status and metrics
+- **Market Data**: Get real-time Bitcoin and MSTY price information
+- **Educational Content**: Access Bitcoin educational resources
+- **NFT Gallery**: Navigate and explore NFT collections
+- **System Control**: Navigate the interface hands-free
+
+### Technical Implementation
+- **Hume Voice SDK**: Enterprise-grade voice processing
+- **WebSocket Communication**: Real-time bidirectional data flow
+- **Responsive Design**: Adaptive voice interface across devices
+- **Visual Feedback**: Status indicators and loading states
+- **Accessibility**: Voice-first interaction patterns
+- **Error Recovery**: Graceful fallbacks and clear error messages
 
 ## 🏆 MSTY Status Levels
 
@@ -277,6 +303,7 @@ The calculator includes special features for international investors:
 - OpenAI API (Content Generation)
 - Twitter API v2 (Tweet Analysis)
 - OpenSea API (NFT Data)
+- Hume AI (Voice Interface)
 - Redis (Optional Caching)
 - TailwindCSS Typography Plugin
 - Framer Motion (Animations)
@@ -289,8 +316,13 @@ src/
 │   ├── news/          # News section pages
 │   ├── notebook/      # Content generation interface
 │   ├── collections/   # NFT collection pages
+│   ├── voice/         # Voice interface pages
 │   └── ...            # Other app routes
 ├── components/         # React components
+│   ├── ai/            # AI-related components
+│   │   ├── VoiceToggle.tsx   # Voice control interface
+│   │   ├── MicFFT.tsx        # Audio visualization
+│   │   └── ...               # Other AI components
 │   ├── nft/           # NFT-related components
 │   │   ├── NFTCard.tsx       # NFT display card
 │   │   ├── CollectionCard.tsx# Collection display
