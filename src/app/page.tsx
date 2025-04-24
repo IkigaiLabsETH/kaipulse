@@ -215,46 +215,92 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <TrendingUp className="w-8 h-8 text-yellow-500" />
-            <h2 className="text-3xl font-bold text-yellow-500">Freedom Status Levels</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-yellow-500/20">
-                  <th className="p-4 text-left text-yellow-500 font-bold">Status</th>
-                  <th className="p-4 text-left text-yellow-500 font-bold">Monthly Income</th>
-                  <th className="p-4 text-left text-yellow-500 font-bold">MSTY Shares</th>
-                  <th className="p-4 text-left text-yellow-500 font-bold">Capital @ $20/Share</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { status: "Beginner", income: "$20", shares: "20", capital: "$400" },
-                  { status: "Intermediate", income: "$500", shares: "500", capital: "$10,000" },
-                  { status: "Advanced", income: "$3,000", shares: "3,000", capital: "$60,000" },
-                  { status: "Elite", income: "$6,000", shares: "6,000", capital: "$120,000" },
-                  { status: "Supreme", income: "$10,000", shares: "10,000", capital: "$200,000" },
-                  { status: "Legend", income: "$50,000+", shares: "50,000+", capital: "$1,000,000+" }
-                ].map((level, index) => (
-                  <motion.tr
-                    key={level.status}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
-                    className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors"
-                  >
-                    <td className="p-4 font-medium text-white">{level.status}</td>
-                    <td className="p-4 text-white/90">{level.income}</td>
-                    <td className="p-4 text-white/90">{level.shares}</td>
-                    <td className="p-4 text-white/90">{level.capital}</td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <AccordionItem title="Freedom Status Levels">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-yellow-500/20">
+                    <th className="p-4 text-left text-yellow-500 font-bold">Status</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">Monthly Income</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">MSTY Shares</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">Capital @ $20/Share</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { status: "Beginner", income: "$20", shares: "20", capital: "$400" },
+                    { status: "Intermediate", income: "$500", shares: "500", capital: "$10,000" },
+                    { status: "Advanced", income: "$3,000", shares: "3,000", capital: "$60,000" },
+                    { status: "Elite", income: "$6,000", shares: "6,000", capital: "$120,000" },
+                    { status: "Supreme", income: "$10,000", shares: "10,000", capital: "$200,000" },
+                    { status: "Legend", income: "$50,000+", shares: "50,000+", capital: "$1,000,000+" }
+                  ].map((level, index) => (
+                    <motion.tr
+                      key={level.status}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors"
+                    >
+                      <td className="p-4 font-medium text-white">{level.status}</td>
+                      <td className="p-4 text-white/90">{level.income}</td>
+                      <td className="p-4 text-white/90">{level.shares}</td>
+                      <td className="p-4 text-white/90">{level.capital}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AccordionItem>
+        </motion.div>
+
+        {/* Bitcoin Freedom Goals Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
+        >
+          <AccordionItem title="Bitcoin Freedom Timeline">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-yellow-500/20">
+                    <th className="p-4 text-left text-yellow-500 font-bold">Bitcoin Holdings</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">Freedom Year</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">Target Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { holdings: "< 0.01 BTC", year: "2070", value: "$5M" },
+                    { holdings: "0.01 - 0.1 BTC", year: "2050", value: "$5M" },
+                    { holdings: "0.1 - 0.26 BTC", year: "2038", value: "$5M" },
+                    { holdings: "0.26 - 1 BTC", year: "2033", value: "$5M" },
+                    { holdings: "1 - 3.125 BTC", year: "2029", value: "$5M" },
+                    { holdings: "3.125 - 6.15 BTC", year: "2026", value: "$5M" },
+                    { holdings: "6.15 - 10 BTC", year: "2025", value: "$5M" },
+                    { holdings: "10+ BTC", year: "2025", value: "$5M" }
+                  ].map((level, index) => (
+                    <motion.tr
+                      key={level.holdings}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors"
+                    >
+                      <td className="p-4 font-medium text-white">{level.holdings}</td>
+                      <td className="p-4 text-white/90">{level.year}</td>
+                      <td className="p-4 text-white/90">{level.value}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AccordionItem>
         </motion.div>
 
         {/* Enhanced Call to Action */}
