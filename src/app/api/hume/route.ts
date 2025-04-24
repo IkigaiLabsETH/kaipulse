@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import { Redis } from "@upstash/redis";
-import { Ratelimit } from "@upstash/ratelimit";
 import { logger } from "@/lib/logger";
 import HumeService, { handleHumeError, HumeSocket } from "@/services/hume";
 
@@ -10,56 +8,11 @@ interface WebSocketMessage {
   [key: string]: unknown;
 }
 
-// Initialize Redis client for rate limiting
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
-
-// Configure rate limiter
-const rateLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(
-    Number(process.env.RATE_LIMIT_REQUESTS) || 60,
-    `${Number(process.env.RATE_LIMIT_WINDOW) || 60} s`
-  ),
-  analytics: true,
-  prefix: "@upstash/ratelimit",
-});
-
 export async function GET() {
   try {
-    // Check rate limit
-    const identifier = 'api_hume_get';
-    const { success, limit, reset, remaining } = await rateLimiter.limit(identifier);
-    
-    if (!success) {
-      return NextResponse.json(
-        { error: 'Rate limit exceeded' },
-        { 
-          status: 429,
-          headers: {
-            'X-RateLimit-Limit': limit.toString(),
-            'X-RateLimit-Remaining': remaining.toString(),
-            'X-RateLimit-Reset': reset.toString(),
-          }
-        }
-      );
-    }
-
     // Get access token using our centralized service
     const accessToken = await HumeService.getAccessToken();
-
-    return NextResponse.json(
-      { accessToken },
-      {
-        headers: {
-          'X-RateLimit-Limit': limit.toString(),
-          'X-RateLimit-Remaining': remaining.toString(),
-          'X-RateLimit-Reset': reset.toString(),
-        }
-      }
-    );
+    return NextResponse.json({ accessToken });
   } catch (error) {
     const errorResponse = handleHumeError(error);
     logger.error('Hume API error:', errorResponse);
@@ -69,24 +22,6 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    // Check rate limit
-    const identifier = 'api_hume_post';
-    const { success, limit, reset, remaining } = await rateLimiter.limit(identifier);
-    
-    if (!success) {
-      return NextResponse.json(
-        { error: 'Rate limit exceeded' },
-        { 
-          status: 429,
-          headers: {
-            'X-RateLimit-Limit': limit.toString(),
-            'X-RateLimit-Remaining': remaining.toString(),
-            'X-RateLimit-Reset': reset.toString(),
-          }
-        }
-      );
-    }
-
     const body = await request.json();
     const message = typeof body.message === 'string' ? body.message : 'Hello, how are you?';
     
@@ -113,16 +48,7 @@ export async function POST(request: Request) {
     const response = await processHumeMessage(socketResult, message);
     await socketResult.close();
 
-    return NextResponse.json(
-      { response },
-      {
-        headers: {
-          'X-RateLimit-Limit': limit.toString(),
-          'X-RateLimit-Remaining': remaining.toString(),
-          'X-RateLimit-Reset': reset.toString(),
-        }
-      }
-    );
+    return NextResponse.json({ response });
   } catch (error) {
     const errorResponse = handleHumeError(error);
     logger.error('Hume API error:', errorResponse);
