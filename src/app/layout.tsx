@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import { Header } from "@/components/Header";
 import { Analytics } from '@vercel/analytics/react';
 import { cn } from "@/lib/utils";
+import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 
 const boska = localFont({
   src: [
@@ -144,14 +145,16 @@ export default function RootLayout({
         "selection:bg-accent selection:text-accent-foreground",
         "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30"
       )}>
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">
-            <div className="parallax-wrapper">
-              {children}
-            </div>
-          </main>
-        </div>
+        <PipelineErrorHandler>
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">
+              <div className="parallax-wrapper">
+                {children}
+              </div>
+            </main>
+          </div>
+        </PipelineErrorHandler>
         <Analytics />
       </body>
     </html>
