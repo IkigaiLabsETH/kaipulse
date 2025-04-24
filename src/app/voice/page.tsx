@@ -146,20 +146,58 @@ export default function VoicePage() {
   const handleHumeMessage = (message: Hume.empathicVoice.SubscribeEvent | HumeErrorMessage) => {
     switch (message.type) {
       case 'audio_output':
-        // Convert base64 audio to blob and add to queue
-        const audioData = atob(message.data)
-        const arrayBuffer = new ArrayBuffer(audioData.length)
-        const view = new Uint8Array(arrayBuffer)
-        for (let i = 0; i < audioData.length; i++) {
-          view[i] = audioData.charCodeAt(i)
+        try {
+          // Convert base64 audio to blob and add to queue
+          const audioData = atob(message.data)
+          const arrayBuffer = new ArrayBuffer(audioData.length)
+          const view = new Uint8Array(arrayBuffer)
+          for (let i = 0; i < audioData.length; i++) {
+            view[i] = audioData.charCodeAt(i)
+          }
+          
+          // Try different audio formats in order of preference
+          const formats = [
+            { type: 'audio/webm' },
+            { type: 'audio/mp4' },
+            { type: 'audio/ogg' },
+            { type: 'audio/wav' }
+          ];
+          
+          let audioBlob = null;
+          for (const format of formats) {
+            try {
+              audioBlob = new Blob([arrayBuffer], format);
+              const audio = new Audio();
+              audio.src = URL.createObjectURL(audioBlob);
+              
+              // Test if format is supported
+              const canPlay = audio.canPlayType(format.type);
+              if (canPlay !== '') {
+                break;
+              }
+              
+              URL.revokeObjectURL(audio.src);
+              audioBlob = null;
+            } catch (e) {
+              clientLogger.warn(`Format ${format.type} not supported:`, e);
+              continue;
+            }
+          }
+          
+          if (!audioBlob) {
+            throw new Error('No supported audio format found');
+          }
+          
+          addToQueue(audioBlob)
+        } catch (err) {
+          clientLogger.error('Failed to process audio:', err);
+          setError('Audio format not supported by your browser. Please try a different browser.');
         }
-        const audioBlob = new Blob([arrayBuffer], { type: 'audio/wav' })
-        addToQueue(audioBlob)
-        break
+        break;
       case 'user_interruption':
         // Clear audio queue on interruption
         clearQueue()
-        break
+        break;
       case 'error':
         clientLogger.error('Hume voice error:', message)
         if ('error' in message) {
@@ -167,7 +205,7 @@ export default function VoicePage() {
         } else {
           setError('Voice interface error: Unknown error')
         }
-        break
+        break;
     }
   }
 
