@@ -49,18 +49,12 @@ const VoiceVisualizer = ({ isRecording }: { isRecording: boolean }) => {
               }}
               width={4}
               x={(index * width) / bars}
-              fill="url(#gradient)"
+              fill="rgb(234 179 8)"
               opacity={0.8}
               rx={2}
             />
           );
         })}
-        <defs>
-          <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#FBBF24" />
-            <stop offset="100%" stopColor="#F59E0B" />
-          </linearGradient>
-        </defs>
       </motion.svg>
     </div>
   );
@@ -478,91 +472,97 @@ export function VoiceContainer({ configId, onEndCall }: VoiceContainerProps) {
       onClose={handleWebSocketClose}
       resumedChatGroupId={chatGroupId}
     >
-      <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-black to-zinc-900 p-8 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 opacity-10" 
-            style={{ 
-              backgroundImage: "url('/assets/grid-pattern.svg')",
-              backgroundSize: "cover",
-              mixBlendMode: "luminosity"
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70" />
-        </div>
-
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 mt-12 w-full max-w-5xl mx-auto"
-        >
-          <div className="flex items-center mb-6">
-            <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
-            <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Voice Call</span>
-          </div>
-        </motion.div>
-
-        {/* Chat Messages */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-5xl mx-auto flex-grow overflow-hidden relative z-10 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8 my-8"
-        >
-          <Chat messages={messages} />
-        </motion.div>
-
-        {/* Voice Controls */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative z-10 w-full max-w-5xl mx-auto"
-        >
-          <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
-            <div className="flex flex-col items-center gap-8">
-              <div className="relative group">
-                <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <VoiceToggle onActiveChange={setIsActive} />
-                </div>
+      <div className="relative min-h-[60vh]">
+        {/* Premium Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))] opacity-30 backdrop-blur-[200px]" />
+        
+        {/* Content */}
+        <div className="relative z-10">
+          {isLoading ? (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="w-full max-w-5xl mx-auto px-6 text-center py-12"
+            >
+              <div className="flex items-center justify-center mb-6">
+                <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Initializing</span>
               </div>
-              <div className="h-20 flex flex-col items-center justify-center gap-4">
-                {isActive && (
-                  <>
-                    <VoiceVisualizer isRecording={isActive} />
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3"
-                    >
-                      <span className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full animate-pulse" />
-                      <span className="text-yellow-400/80 text-sm font-light tracking-wider font-epilogue">LISTENING...</span>
-                    </motion.div>
-                  </>
+              <div className="relative mt-8">
+                <div className="absolute -inset-4 bg-yellow-400/10 blur-2xl rounded-full animate-pulse"></div>
+                <Loader color="yellow" />
+              </div>
+            </motion.div>
+          ) : error ? (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="w-full max-w-5xl mx-auto px-6 py-12"
+            >
+              <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8">
+                <div className="flex items-center mb-6">
+                  <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                  <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Connection Error</span>
+                </div>
+                <p className="mb-6 text-xl font-satoshi leading-relaxed text-zinc-300">{error}</p>
+                {errorDetails && (
+                  <p className="text-sm text-zinc-400 mb-6">{errorDetails}</p>
                 )}
+                <Button
+                  onClick={handleEndCall}
+                  className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                >
+                  Retry Connection
+                </Button>
+              </div>
+            </motion.div>
+          ) : (
+            <div className="w-full max-w-5xl mx-auto px-6 py-12">
+              <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8">
+                <Chat messages={messages} />
+                
+                {/* Voice Controls */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="mt-8 flex flex-col items-center gap-8"
+                >
+                  <div className="relative group">
+                    <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                    <div className="relative">
+                      <VoiceToggle onActiveChange={setIsActive} />
+                    </div>
+                  </div>
+                  
+                  <div className="h-20 flex flex-col items-center justify-center gap-4">
+                    {isActive && (
+                      <>
+                        <VoiceVisualizer isRecording={isActive} />
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex items-center gap-3"
+                        >
+                          <span className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full animate-pulse" />
+                          <span className="text-yellow-400/80 text-sm font-light tracking-wider font-epilogue">LISTENING...</span>
+                        </motion.div>
+                      </>
+                    )}
+                  </div>
+                  
+                  <Button
+                    onClick={handleEndCall}
+                    className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                  >
+                    End Call
+                  </Button>
+                </motion.div>
               </div>
             </div>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mt-8"
-          >
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-full bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 hover:bg-zinc-800/50 text-yellow-400 font-medium text-lg h-14 rounded-lg transition-all duration-300"
-              onClick={handleEndCall}
-            >
-              End Call
-            </Button>
-          </motion.div>
-        </motion.div>
+          )}
+        </div>
       </div>
     </VoiceProvider>
   );

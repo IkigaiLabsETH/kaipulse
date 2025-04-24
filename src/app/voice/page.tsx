@@ -53,7 +53,7 @@ function VoiceExperience() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black to-zinc-900">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -75,13 +75,13 @@ function VoiceExperience() {
 
   if (error || !accessToken) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black to-zinc-900">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="w-full max-w-5xl mx-auto px-6"
         >
-          <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
+          <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8">
             <div className="flex items-center mb-6">
               <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
               <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Connection Error</span>
@@ -102,21 +102,16 @@ function VoiceExperience() {
       debug={true}
       verboseTranscription={true}
     >
-      <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-white">
+      <div className="min-h-screen bg-black text-white">
         <div className="relative overflow-hidden">
-          <div 
-            className="absolute inset-0 opacity-10" 
-            style={{ 
-              backgroundImage: "url('/assets/grid-pattern.svg')",
-              backgroundSize: "cover",
-              mixBlendMode: "luminosity"
-            }}
-          />
+          {/* Premium Background */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))] opacity-30 backdrop-blur-[200px]" />
+            <div className="absolute inset-0 bg-grid-pattern opacity-10 mix-blend-luminosity" />
+          </div>
           
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70" />
-
           <motion.div 
-            className="relative max-w-5xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24"
+            className="relative max-w-7xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -158,7 +153,7 @@ function VoiceExperience() {
               className="relative mb-16"
             >
               <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl blur-sm opacity-50"></div>
-              <div className="relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-xl p-12 overflow-hidden shadow-[0_20px_80px_-20px_rgba(234,179,8,0.3)]">
+              <div className="relative bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-xl p-12 overflow-hidden">
                 <div className="absolute top-0 right-0 w-80 h-80 bg-yellow-400/10 blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/3"></div>
                 <StartCall />
               </div>
@@ -175,7 +170,7 @@ function VoiceExperience() {
                 <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
                 <span className="ml-4 text-2xl font-boska font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">Voice Controls</span>
               </div>
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
+              <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8">
                 <Controls />
               </div>
             </motion.div>

@@ -6,13 +6,12 @@ import { VoiceProvider } from "@humeai/voice-react";
 import { Hume } from "hume";
 import { CloseEvent as HumeCloseEvent } from 'hume/core/websocket/events';
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { clientLogger } from "@/utils/clientLogger";
 import { handleToolCallMessage } from "@/services/voice/tools";
 import { Chat } from "@/components/ai/Chat";
 import { VoiceToggle } from "@/components/ai/VoiceToggle";
 import { Loader } from "@/components/ai/Loader";
-import { MicFFT } from "@/components/ai/MicFFT";
 
 // Refined voice visualizer with gallery aesthetics
 const GalleryVisualizer = ({ isRecording }: { isRecording: boolean }) => {
@@ -29,7 +28,7 @@ const GalleryVisualizer = ({ isRecording }: { isRecording: boolean }) => {
         className="absolute inset-0 w-full h-full"
       >
         {Array.from({ length: bars }).map((_, index) => {
-          const initialHeight = Math.random() * 25 + 15; // Random initial height
+          const initialHeight = Math.random() * 25 + 15;
           
           return (
             <motion.rect
@@ -179,7 +178,6 @@ export function VoiceGallery({ configId, onEndCall }: VoiceGalleryProps) {
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { addToQueue, clearQueue } = useAudioQueue();
   const tokenRetryCount = useRef(0);
-  const [currentView, setCurrentView] = useState<'dialogue' | 'visual'>('dialogue');
 
   // Check for pipeline URLs and redirect
   useEffect(() => {
@@ -389,6 +387,27 @@ export function VoiceGallery({ configId, onEndCall }: VoiceGalleryProps) {
     }
   }, [addToQueue, clearQueue, handleError]);
 
+  const handleRetry = useCallback(async () => {
+    setError(null);
+    setErrorDetails(null);
+    tokenRetryCount.current = 0;
+    try {
+      const response = await fetch('/api/hume');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch access token: ${response.status}`);
+      }
+      const data = await response.json();
+      if (!data.accessToken) {
+        throw new Error('Invalid access token received');
+      }
+      setAccessToken(data.accessToken);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to initialize voice';
+      clientLogger.error('Voice init error:', message);
+      setError(message);
+    }
+  }, []);
+
   // Don't render anything if we detect a pipeline URL
   if (pathname?.includes('/pipeline')) {
     return null;
@@ -448,228 +467,137 @@ export function VoiceGallery({ configId, onEndCall }: VoiceGalleryProps) {
       onClose={handleWebSocketClose}
       resumedChatGroupId={chatGroupId}
     >
-      <div className="min-h-screen flex flex-col bg-black relative overflow-hidden">
-        {/* Art Gallery Background */}
-        <div className="absolute inset-0 z-0">
-          {/* Magazine style header line */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
-          
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-yellow-950/5 to-black opacity-90"></div>
-          
-          {/* Bitcoin-inspired pattern background */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ 
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35.6c-3 0-5.6-2.6-5.6-5.6s2.6-5.6 5.6-5.6 5.6 2.6 5.6 5.6-2.5 5.6-5.6 5.6zm-.7-9.8v1.5c-1 0-1.7.3-1.9.6-.3.4-.1 1 .3 1.9l1.3-.5c-.2-.4-.2-.8-.1-.9 0 0 .2-.1.5-.1v2.1l-.4.1c-.7.2-1.3.5-1.6.9-.3.4-.4.9-.3 1.4.1.5.4.9.8 1.1.4.3.9.4 1.5.4v.9h.9v-.9c1.2-.1 2-1 2.4-1.9l-1.4-.6c-.2.5-.5.8-.9.9v-1.9c.7-.2 1.2-.4 1.6-.7.3-.2.6-.5.7-.9.1-.3.1-.7 0-1.1-.1-.4-.4-.7-.7-.9-.3-.2-.8-.3-1.3-.4v-1.5h-.9zm0 6.5c-.4 0-.6-.3-.6-.5 0-.2.1-.3.2-.4.1-.1.2-.1.5-.2v1.1h-.1zm.9-3.1v-1c.2 0 .4.1.5.2.1.1.2.2.2.4 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2-.2-.1-.3 0-.4-.1z' fill='%23F7B500' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
-            backgroundSize: "60px 60px"
-          }}></div>
-          
-          {/* Gallery frame */}
-          <div className="absolute top-0 left-0 w-full h-full flex">
-            <div className="absolute bottom-0 h-1 w-[80%] mx-auto left-[10%] bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent"></div>
-          </div>
+      <div className="relative min-h-screen bg-black">
+        {/* Premium Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))] opacity-30 backdrop-blur-[200px]" />
+          <div className="absolute inset-0 bg-grid-pattern opacity-10 mix-blend-luminosity" />
         </div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
+          {/* Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <div className="flex items-center mb-6">
+              <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+              <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Voice Gallery</span>
+            </div>
+            <h1 className="text-4xl md:text-7xl font-boska font-bold tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
+                Interactive
+              </span>
+              <span className="text-white"> Voice Experience</span>
+            </h1>
+          </motion.div>
 
-        {/* Gallery Header */}
-        <motion.header 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 py-10 px-6"
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-6">
-              <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Audio Experience • AI Curator • Voice Interaction</p>
-              <h1 className="text-center">
-                <span className="text-5xl md:text-6xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-                  Voice Gallery
-                </span>
-              </h1>
-              <div className="flex items-center justify-center mt-6">
-                <div className="h-px w-16 bg-yellow-500/30"></div>
-                <p className="mx-6 text-lg text-white/70 font-light italic">A Sonic Experience</p>
-                <div className="h-px w-16 bg-yellow-500/30"></div>
+          {/* Main Content */}
+          {isLoading ? (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="text-center py-12"
+            >
+              <div className="relative mt-8">
+                <div className="absolute -inset-4 bg-yellow-400/10 blur-2xl rounded-full animate-pulse"></div>
+                <Loader color="yellow" />
               </div>
-            </div>
-            
-            <div className="flex items-center justify-center space-x-4 mt-8">
-              <button 
-                onClick={() => setCurrentView('dialogue')}
-                className={`px-5 py-2 relative transition-all ${
-                  currentView === 'dialogue' ? 'opacity-100' : 'opacity-70 hover:opacity-90'
-                }`}
-              >
-                {currentView === 'dialogue' && (
-                  <motion.div 
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 rounded-sm z-0" 
-                  />
-                )}
-                <span className="relative z-10 text-yellow-500 font-medium tracking-wide">Dialogue</span>
-              </button>
-              <button 
-                onClick={() => setCurrentView('visual')}
-                className={`px-5 py-2 relative transition-all ${
-                  currentView === 'visual' ? 'opacity-100' : 'opacity-70 hover:opacity-90'
-                }`}
-              >
-                {currentView === 'visual' && (
-                  <motion.div 
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 rounded-sm z-0" 
-                  />
-                )}
-                <span className="relative z-10 text-yellow-500 font-medium tracking-wide">Visual</span>
-              </button>
-            </div>
-          </div>
-        </motion.header>
-
-        {/* Gallery Content */}
-        <div className="flex-1 flex flex-col relative z-10 px-6">
-          <AnimatePresence mode="wait">
-            {currentView === 'dialogue' ? (
-              <motion.div
-                key="dialogue"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex-1 flex flex-col items-center justify-center"
-              >
-                {/* Exhibition description */}
-                {messages.length === 0 && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="max-w-3xl mx-auto text-center mb-12"
-                  >
-                    <div className="relative inline-block mb-8">
-                      <div className="absolute -inset-3 bg-gradient-to-r from-yellow-500/20 via-yellow-600/10 to-yellow-500/20 blur-lg rounded-full"></div>
-                      <div className="relative py-3 px-8 bg-black/40 backdrop-blur-sm border border-yellow-500/20 rounded">
-                        <h2 className="text-yellow-500/90 text-xl font-light tracking-wide">
-                          Welcome to the <span className="font-bold">Conversational Arts Exhibition</span>
-                        </h2>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <p className="text-white/70 text-lg leading-relaxed">
-                        In this interactive installation, you&apos;ll engage in a dialogue with an AI curator that responds to your voice.
-                      </p>
-                      <p className="text-white/50 text-base">
-                        Each conversation creates a unique auditory experience, carefully analyzed for emotional resonance.
-                      </p>
-                    </div>
-                    <div className="h-px w-24 bg-yellow-500/30 mx-auto mt-8"></div>
-                  </motion.div>
-                )}
-                
-                {/* Chat Messages */}
-                <div className="w-full max-w-4xl mx-auto overflow-hidden mb-8">
-                  <Chat messages={messages} />
+            </motion.div>
+          ) : error ? (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="py-12"
+            >
+              <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8">
+                <div className="flex items-center mb-6">
+                  <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                  <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Connection Error</span>
                 </div>
-              </motion.div>
-            ) : (
+                <p className="mb-6 text-xl font-satoshi leading-relaxed text-zinc-300">{error}</p>
+                {errorDetails && (
+                  <p className="text-sm text-zinc-400 mb-6">{errorDetails}</p>
+                )}
+                <Button
+                  onClick={handleRetry}
+                  className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                >
+                  Retry Connection
+                </Button>
+              </div>
+            </motion.div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Chat Section */}
               <motion.div
-                key="visual"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex-1 flex items-center justify-center py-8"
+                className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8"
               >
-                <div className="w-full max-w-4xl mx-auto">
-                  <div className="relative">
-                    {/* Premium gold border with enhanced glow */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_20px_rgba(234,179,8,0.2)]">
-                      <div className="absolute inset-0.5 bg-black/80 backdrop-blur-sm rounded-sm"></div>
-                    </div>
-                    
-                    <div className="p-8 relative z-10 rounded-sm">
-                      <div className="mb-6">
-                        <h3 className="text-2xl font-bold text-yellow-500 tracking-tight uppercase">Voice Spectrum</h3>
-                        <p className="text-white/60 mt-2">
-                          An artistic visualization of your audio input, rendered in real-time
-                        </p>
-                      </div>
-                      <div className="aspect-[16/9] bg-black/70 rounded-sm overflow-hidden relative group">
-                        {/* Audio corner accents */}
-                        <div className="absolute top-2 left-2 w-5 h-5 border-t border-l border-yellow-500/30"></div>
-                        <div className="absolute bottom-2 right-2 w-5 h-5 border-b border-r border-yellow-500/30"></div>
-                        
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          {/* @ts-expect-error - Component props are correctly defined but TypeScript has issues with the imported component */}
-                          <MicFFT isActive={isActive} className="" />
-                        </div>
-                        <div className="absolute bottom-4 left-4 text-xs text-yellow-500/40">
-                          {isActive ? 'Visualizing live input' : 'Waiting for input...'}
-                        </div>
-                      </div>
-                    </div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                    <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Dialogue</span>
                   </div>
                 </div>
+                <Chat messages={messages} />
               </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
 
-        {/* Voice Controls */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="relative z-10 mt-auto py-10 px-6"
-        >
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Premium gold border with enhanced glow */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-                <div className="absolute inset-0.5 bg-black/80 backdrop-blur-sm rounded-sm"></div>
-              </div>
-              
-              <div className="p-6 relative z-10">
-                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                  <div className="flex-1 flex flex-col items-center md:items-start gap-4">
-                    <div className="uppercase tracking-[0.2em] text-white/60 text-sm font-satoshi">
-                      <span>{isActive ? 'LISTENING' : 'READY'}</span>
-                    </div>
-                    
-                    <div className="relative group">
-                      <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 via-yellow-400/20 to-yellow-500/20 blur-lg rounded-full group-hover:from-yellow-500/30 group-hover:via-yellow-400/30 group-hover:to-yellow-500/30 transition-all duration-300" />
+              {/* Controls Section */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-8"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center">
+                    <div className="h-[2px] w-12 bg-gradient-to-r from-yellow-400 to-amber-500"></div>
+                    <span className="ml-4 text-sm uppercase tracking-widest text-yellow-400 font-epilogue">Controls</span>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col items-center gap-8">
+                  <div className="relative group">
+                    <div className="absolute -inset-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                    <div className="relative">
                       <VoiceToggle onActiveChange={setIsActive} />
                     </div>
                   </div>
                   
-                  <div className="w-full md:w-auto flex-1 flex flex-col items-center gap-4">
-                    {isActive && <GalleryVisualizer isRecording={isActive} />}
+                  <div className="h-20 flex flex-col items-center justify-center gap-4">
+                    {isActive && (
+                      <>
+                        <GalleryVisualizer isRecording={isActive} />
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex items-center gap-3"
+                        >
+                          <span className="w-2 h-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full animate-pulse" />
+                          <span className="text-yellow-400/80 text-sm font-light tracking-wider font-epilogue">LISTENING...</span>
+                        </motion.div>
+                      </>
+                    )}
                   </div>
                   
-                  <div className="w-full md:w-auto">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="w-full md:w-auto bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 hover:from-yellow-500/20 hover:to-yellow-600/20 text-yellow-500 border border-yellow-500/30 hover:border-yellow-500/50 h-12 px-8 transition-all duration-300"
-                      onClick={handleEndCall}
-                    >
-                      Leave Exhibition
-                    </Button>
-                  </div>
+                  <Button
+                    onClick={handleEndCall}
+                    className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                  >
+                    End Call
+                  </Button>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
-        </motion.div>
-
-        {/* Gallery Nameplate */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="relative z-10 pt-4 pb-8 text-center"
-        >
-          <div className="h-px w-24 bg-yellow-500/30 mx-auto mb-4"></div>
-          <p className="text-white/40 uppercase tracking-widest text-xs font-light font-satoshi">
-            MSTY Voice Gallery • Powered by Hume AI • 2023
-          </p>
-        </motion.div>
+          )}
+        </div>
       </div>
     </VoiceProvider>
   );
