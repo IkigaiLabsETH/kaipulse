@@ -321,13 +321,13 @@ export default function DefiPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          <h2 className="font-epilogue text-4xl mb-6">Ready to Start Your DeFi Journey?</h2>
+          <h2 className="font-epilogue text-4xl mb-6">Start Your DeFi Journey</h2>
           <p className="font-satoshi text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Choose your preferred strategy to put your Bitcoin to work.
+            Strategies to put your Bitcoin to work.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 flex-wrap max-w-4xl mx-auto">
             <a 
-              href="https://app.morpho.org/ethereum/market/0x8d18658cd2688b702222c11467133c1c2237bd058ba2467e47bc360067ebe038/cbbtc-wusdl"
+              href="https://app.morpho.org/base/market/0x9103c3b4e834476c9a62ea009ba2c884ee42e94e6e314a26f04d312434191836/cbbtc-usdc"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
@@ -351,7 +351,7 @@ export default function DefiPage() {
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>Lend on Berachain</span>
+                  <span>Borrow on Berachain</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
@@ -374,10 +374,10 @@ export default function DefiPage() {
           </div>
           <div className="mt-8 space-y-2">
             <p className="text-sm text-white/60 font-satoshi">
-              Current APR on Infrared WBTC vaults: up to 90.72%
+              Current APR on Infrared WBTC vaults: up to 90%
             </p>
             <p className="text-sm text-white/40 font-satoshi">
-              Always do your own research and understand the risks before using any DeFi protocol
+              Always do your own research and understand the risks before using any DeFi protocol. NFA.
             </p>
           </div>
         </motion.div>
