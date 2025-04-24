@@ -10,6 +10,13 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { clientLogger } from "@/utils/clientLogger"
 
+// Define Hume error message type
+interface HumeErrorMessage {
+  type: 'error';
+  error: string;
+  details?: string;
+}
+
 const WaveVisualizer = ({ isRecording }: { isRecording: boolean }) => {
   const width = 200;
   const height = 60;
@@ -136,7 +143,7 @@ export default function VoicePage() {
   const { addToQueue, clearQueue } = useAudioQueue()
 
   // Handle audio output from Hume
-  const handleHumeMessage = (message: Hume.empathicVoice.SubscribeEvent) => {
+  const handleHumeMessage = (message: Hume.empathicVoice.SubscribeEvent | HumeErrorMessage) => {
     switch (message.type) {
       case 'audio_output':
         // Convert base64 audio to blob and add to queue
@@ -153,6 +160,14 @@ export default function VoicePage() {
         // Clear audio queue on interruption
         clearQueue()
         break
+      case 'error':
+        clientLogger.error('Hume voice error:', message)
+        if ('error' in message) {
+          setError('Voice interface error: ' + message.error)
+        } else {
+          setError('Voice interface error: Unknown error')
+        }
+        break
     }
   }
 
@@ -160,6 +175,9 @@ export default function VoicePage() {
     const fetchToken = async () => {
       try {
         setIsLoading(true)
+        setError(null)
+        setErrorDetails(null)
+        
         const response = await fetch('/api/hume')
         const data = await response.json()
         
@@ -167,8 +185,14 @@ export default function VoicePage() {
           throw new Error(data.error || 'Failed to fetch access token')
         }
         
+        if (!data.accessToken) {
+          throw new Error('No access token received from server')
+        }
+
+        clientLogger.info('Successfully initialized voice interface')
         setAccessToken(data.accessToken)
       } catch (err) {
+        clientLogger.error('Voice interface initialization failed:', err)
         const error = err instanceof Error ? err.message : 'Failed to initialize voice interface'
         setError(error)
         if (err instanceof Error && err.stack) {

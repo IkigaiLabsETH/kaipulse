@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
 import { logger } from "@/lib/logger";
+import { fetchAccessToken } from "@humeai/voice";
 
 // Define message types based on Hume documentation
 type HumeMessage = {
@@ -120,19 +121,18 @@ export async function GET() {
       );
     }
 
-    // Initialize the Hume client
-    const client = new HumeClient({
+    // Generate access token
+    const accessToken = await fetchAccessToken({
       apiKey: String(apiKey),
-      secretKey: String(secretKey)
+      secretKey: String(secretKey),
     });
 
-    // Connect to EVI to test the connection
-    const socket = await client.empathicVoice.chat.connect();
-    await socket.tillSocketOpen();
-    socket.close();
+    if (!accessToken || accessToken === 'undefined') {
+      throw new Error('Invalid access token received from Hume AI');
+    }
 
     return NextResponse.json(
-      { success: true },
+      { accessToken },
       {
         headers: {
           'X-RateLimit-Limit': limit.toString(),
