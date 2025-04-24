@@ -269,22 +269,22 @@ export default function DefiPage() {
               {
                 icon: Shield,
                 title: "Market Volatility",
-                description: "Bitcoin price fluctuations can affect collateral ratios and trigger liquidations"
+                description: "Can affect collateral ratios and trigger liquidations"
               },
               {
                 icon: Lock,
                 title: "Lock-up Periods",
-                description: "Some protocols require minimum commitment periods that may affect liquidity"
+                description: "Minimum commitment periods may affect liquidity"
               },
               {
                 icon: TrendingUp,
                 title: "Protocol Maturity",
-                description: "Newer platforms may carry additional risks compared to established ones"
+                description: "Additional risks compared to established ones"
               },
               {
                 icon: ChartBar,
                 title: "Smart Contract Risk",
-                description: "All DeFi protocols carry inherent smart contract risks"
+                description: "DeFi protocols carry inherent smart contract risks"
               }
             ].map((risk, index) => (
               <motion.div
