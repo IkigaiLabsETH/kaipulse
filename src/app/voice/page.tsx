@@ -94,7 +94,7 @@ export default function VoicePage() {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 mt-12"
         >
-          <h1 className="text-yellow-500/80 text-xl font-light tracking-wider mb-2 text-center">MSTY VOICE</h1>
+          <h1 className="font-satoshi text-yellow-500/90 text-2xl font-bold tracking-wider mb-2 text-center uppercase">MSTY Call</h1>
         </motion.div>
 
         <motion.div 
