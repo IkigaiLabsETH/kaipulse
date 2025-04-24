@@ -136,7 +136,7 @@ function VoiceExperience() {
               </div>
             </div>
             
-            <div className="flex justify-center py-8">
+            <div className="flex justify-center py-16">
               <motion.div 
                 className="relative"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
