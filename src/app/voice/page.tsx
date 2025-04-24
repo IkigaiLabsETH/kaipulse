@@ -57,6 +57,9 @@ export default function VoicePage() {
       auth={{ type: "accessToken", value: accessToken }}
       configId="ccb6fd91-52cd-4f8c-bcc5-763f647407b5"
       onToolCall={(message: Hume.empathicVoice.ToolCallMessage) => handleToolCallMessage(message)}
+      hostname="api.hume.ai"
+      debug={false}
+      verboseTranscription={true}
     >
       <div className="min-h-screen flex flex-col items-center justify-center bg-black p-4">
         <div className="text-center space-y-8">
