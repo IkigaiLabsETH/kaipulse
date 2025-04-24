@@ -1,21 +1,43 @@
 'use client'
 
 import { VoiceProvider } from "@humeai/voice-react"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import { handleToolCallMessage } from "../api/ai/cryptoPriceTool"
 import { Hume } from "hume"
+import { CloseEvent as HumeCloseEvent } from 'hume/core/websocket/events'
 import { VoiceToggle } from "@/components/ai/VoiceToggle"
 import { Loader } from "@/components/ai/Loader"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { clientLogger } from "@/utils/clientLogger"
+import { Chat } from "@/components/ai/Chat"
 
-// Define Hume error message type
-interface HumeErrorMessage {
-  type: 'error';
-  error: string;
-  details?: string;
+// Constants
+const RECONNECT_DELAY_MS = 3000
+const ABNORMAL_CLOSE_CODES = new Set([1006, 1011, 1012, 1013, 1014])
+
+interface ChatMessage {
+  role: Hume.empathicVoice.Role;
+  timestamp: string;
+  content: string;
+  scores: { emotion: string; score: string }[];
 }
+
+type HumeMessage = Hume.empathicVoice.SubscribeEvent & {
+  models?: {
+    prosody?: {
+      scores: Record<string, number>;
+    };
+  };
+  message?: {
+    role: Hume.empathicVoice.Role;
+    content: string;
+  };
+  type: string;
+  data?: string;
+  error?: string;
+  chatGroupId?: string;
+};
 
 const WaveVisualizer = ({ isRecording }: { isRecording: boolean }) => {
   const width = 200;
@@ -140,19 +162,150 @@ export default function VoicePage() {
   const [errorDetails, setErrorDetails] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isActive, setIsActive] = useState(false)
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [shouldBeConnected, setShouldBeConnected] = useState(false)
+  const [chatGroupId, setChatGroupId] = useState<string | undefined>()
+  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const { addToQueue, clearQueue } = useAudioQueue()
+  const tokenRetryCount = useRef(0)
+  const MAX_TOKEN_RETRIES = 3
 
-  // Handle audio output from Hume
-  const handleHumeMessage = async (message: Hume.empathicVoice.SubscribeEvent | HumeErrorMessage) => {
-    switch (message.type) {
+  // Clear reconnection timer
+  const clearReconnectTimer = useCallback(() => {
+    if (reconnectTimeoutRef.current) {
+      clearTimeout(reconnectTimeoutRef.current)
+      reconnectTimeoutRef.current = null
+    }
+  }, [])
+
+  // Fetch access token with validation
+  const fetchToken = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      setErrorDetails(null);
+      
+      const response = await fetch('/api/hume');
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch access token');
+      }
+      
+      if (!data.accessToken || typeof data.accessToken !== 'string' || data.accessToken === 'undefined') {
+        throw new Error('Invalid access token received from server');
+      }
+
+      // Reset retry count on successful token fetch
+      tokenRetryCount.current = 0;
+      clientLogger.info('Successfully initialized voice interface');
+      setAccessToken(data.accessToken);
+      setShouldBeConnected(true);
+    } catch (err) {
+      clientLogger.error('Voice interface initialization failed:', err);
+      const error = err instanceof Error ? err.message : 'Failed to initialize voice interface';
+      setError(error);
+      if (err instanceof Error && err.stack) {
+        setErrorDetails(err.stack);
+      }
+      setShouldBeConnected(false);
+      
+      // Schedule reconnect with exponential backoff
+      clearReconnectTimer();
+      const backoffTime = Math.min(RECONNECT_DELAY_MS * Math.pow(2, tokenRetryCount.current), 30000); // Max 30s
+      
+      if (tokenRetryCount.current < MAX_TOKEN_RETRIES) {
+        reconnectTimeoutRef.current = setTimeout(() => {
+          clientLogger.info(`Attempting to reconnect... (Attempt ${tokenRetryCount.current + 1}/${MAX_TOKEN_RETRIES})`);
+          tokenRetryCount.current += 1;
+          fetchToken();
+        }, backoffTime);
+      } else {
+        setError('Maximum reconnection attempts reached. Please refresh the page.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [clearReconnectTimer]);
+
+  // Handle WebSocket close with improved error handling
+  const handleWebSocketClose = useCallback((event: HumeCloseEvent) => {
+    clientLogger.info(`WebSocket closed with code: ${event.code}`)
+    clearQueue()
+    
+    if (shouldBeConnected && ABNORMAL_CLOSE_CODES.has(event.code)) {
+      clientLogger.warn(`Unexpected closure (${event.code}). Attempting to reconnect...`)
+      fetchToken()
+    }
+  }, [shouldBeConnected, clearQueue, fetchToken])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      clearReconnectTimer()
+      clearQueue()
+      setShouldBeConnected(false)
+      tokenRetryCount.current = 0
+    }
+  }, [clearReconnectTimer, clearQueue])
+
+  // Initial token fetch
+  useEffect(() => {
+    fetchToken()
+  }, [fetchToken])
+
+  // Handle active state changes
+  useEffect(() => {
+    if (!isActive) {
+      clearQueue()
+    }
+  }, [isActive, clearQueue])
+
+  // Extract top three emotions from message
+  const extractTopThreeEmotions = (message: HumeMessage): { emotion: string; score: string }[] => {
+    const scores = message.models?.prosody?.scores || {}
+    return Object.entries(scores)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3)
+      .map(([emotion, score]) => ({
+        emotion,
+        score: Number(score).toFixed(2)
+      }))
+  }
+
+  // Handle Hume messages
+  const handleHumeMessage = async (message: Hume.empathicVoice.SubscribeEvent) => {
+    const humeMessage = message as HumeMessage;
+    switch (humeMessage.type) {
+      case 'chat_metadata':
+        if (humeMessage.chatGroupId) {
+          setChatGroupId(humeMessage.chatGroupId);
+        }
+        break;
+        
+      case 'user_message':
+      case 'assistant_message':
+        if (humeMessage.message) {
+          const { role, content } = humeMessage.message;
+          const topEmotions = extractTopThreeEmotions(humeMessage);
+          const newMessage: ChatMessage = {
+            role,
+            content: content || '',
+            timestamp: new Date().toLocaleTimeString(),
+            scores: topEmotions
+          };
+          setMessages(prev => [...prev, newMessage]);
+        }
+        break;
+
       case 'audio_output':
         try {
           // Convert base64 audio to blob and add to queue
-          const audioData = atob(message.data)
-          const arrayBuffer = new ArrayBuffer(audioData.length)
-          const view = new Uint8Array(arrayBuffer)
+          const audioData = atob(humeMessage.data || '');
+          const arrayBuffer = new ArrayBuffer(audioData.length);
+          const view = new Uint8Array(arrayBuffer);
           for (let i = 0; i < audioData.length; i++) {
-            view[i] = audioData.charCodeAt(i)
+            view[i] = audioData.charCodeAt(i);
           }
           
           // Try different audio formats in order of preference
@@ -222,40 +375,6 @@ export default function VoicePage() {
     }
   }
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        setIsLoading(true)
-        setError(null)
-        setErrorDetails(null)
-        
-        const response = await fetch('/api/hume')
-        const data = await response.json()
-        
-        if (!response.ok) {
-          throw new Error(data.error || 'Failed to fetch access token')
-        }
-        
-        if (!data.accessToken) {
-          throw new Error('No access token received from server')
-        }
-
-        clientLogger.info('Successfully initialized voice interface')
-        setAccessToken(data.accessToken)
-      } catch (err) {
-        clientLogger.error('Voice interface initialization failed:', err)
-        const error = err instanceof Error ? err.message : 'Failed to initialize voice interface'
-        setError(error)
-        if (err instanceof Error && err.stack) {
-          setErrorDetails(err.stack)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchToken()
-  }, [])
-
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-black/95 to-yellow-950/20">
@@ -297,6 +416,8 @@ export default function VoicePage() {
       hostname="api.hume.ai"
       debug={false}
       verboseTranscription={true}
+      onClose={handleWebSocketClose}
+      resumedChatGroupId={chatGroupId}
     >
       <div className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-black via-black/95 to-yellow-950/20 p-8 relative overflow-hidden">
         {/* Decorative elements */}
@@ -313,6 +434,17 @@ export default function VoicePage() {
           <h1 className="font-satoshi text-yellow-500/90 text-2xl font-bold tracking-wider mb-2 text-center uppercase">MSTY Call</h1>
         </motion.div>
 
+        {/* Chat Messages */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="w-full flex-grow overflow-hidden relative z-10"
+        >
+          <Chat messages={messages} />
+        </motion.div>
+
+        {/* Voice Controls */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -350,7 +482,12 @@ export default function VoicePage() {
             variant="outline"
             size="lg"
             className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-medium text-lg h-14 rounded-xl shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-300 border-0"
-            onClick={() => window.location.href = '/'}
+            onClick={() => {
+              setShouldBeConnected(false)
+              clearReconnectTimer()
+              clearQueue()
+              window.location.href = '/'
+            }}
           >
             End Call
           </Button>

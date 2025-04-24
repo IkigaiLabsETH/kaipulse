@@ -12,79 +12,62 @@ type HumeMessage = {
   [key: string]: unknown;
 };
 
-// Simple in-memory rate limiter as fallback
-class InMemoryRateLimiter {
-  private requests: { [key: string]: number[] } = {};
-  private readonly windowMs: number = 60 * 1000; // 1 minute
-  private readonly maxRequests: number = 50;
-
-  async limit(identifier: string) {
-    const now = Date.now();
-    const windowStart = now - this.windowMs;
-
-    // Initialize or clean old requests
-    if (!this.requests[identifier]) {
-      this.requests[identifier] = [];
-    }
-    this.requests[identifier] = this.requests[identifier].filter(time => time > windowStart);
-
-    // Check if limit is exceeded
-    if (this.requests[identifier].length >= this.maxRequests) {
-      const oldestRequest = Math.min(...this.requests[identifier]);
-      const resetTime = oldestRequest + this.windowMs;
-      return {
-        success: false,
-        limit: this.maxRequests,
-        remaining: 0,
-        reset: resetTime,
-      };
-    }
-
-    // Add new request
-    this.requests[identifier].push(now);
-    return {
-      success: true,
-      limit: this.maxRequests,
-      remaining: this.maxRequests - this.requests[identifier].length,
-      reset: now + this.windowMs,
-    };
-  }
-}
-
-// Initialize rate limiter based on Redis availability
-let rateLimiter: Ratelimit | InMemoryRateLimiter;
-
-if (process.env.REDIS_URL && process.env.REDIS_TOKEN) {
-  const redis = new Redis({
-    url: process.env.REDIS_URL,
-    token: process.env.REDIS_TOKEN,
-  });
-
-  rateLimiter = new Ratelimit({
-    redis,
-    limiter: Ratelimit.slidingWindow(50, '1 m'), // 50 requests per minute
-    analytics: true,
-    prefix: '@upstash/ratelimit',
-  });
-} else {
-  logger.warn('Redis credentials not found, using in-memory rate limiter');
-  rateLimiter = new InMemoryRateLimiter();
-}
-
 // Error handling utility
 const handleError = (error: unknown) => {
-  if (error instanceof Error) {
-    return {
-      error: error.message,
-      details: error.stack,
-      errorType: error.constructor.name,
-    };
-  }
+  const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+  const errorStack = error instanceof Error ? error.stack : undefined;
+  
+  logger.error('Hume API error:', {
+    message: errorMessage,
+    stack: errorStack,
+    timestamp: new Date().toISOString()
+  });
+
   return {
-    error: 'An unknown error occurred',
-    details: String(error),
-    errorType: typeof error,
+    error: errorMessage,
+    details: process.env.NODE_ENV === 'development' ? errorStack : undefined
   };
+};
+
+// Initialize Redis client for rate limiting
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+// Configure rate limiter
+const rateLimiter = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(
+    Number(process.env.RATE_LIMIT_REQUESTS) || 60,
+    `${Number(process.env.RATE_LIMIT_WINDOW) || 60} s`
+  ),
+  analytics: true,
+  prefix: "@upstash/ratelimit",
+});
+
+// Validate Hume credentials
+const validateHumeCredentials = () => {
+  const apiKey = process.env.HUME_API_KEY;
+  const secretKey = process.env.HUME_CLIENT_SECRET;
+  const missingVars = [];
+
+  if (!apiKey) missingVars.push('HUME_API_KEY');
+  if (!secretKey) missingVars.push('HUME_CLIENT_SECRET');
+
+  if (missingVars.length > 0) {
+    throw new Error(`Missing Hume AI credentials: ${missingVars.join(', ')}`);
+  }
+
+  return { apiKey, secretKey };
+};
+
+// Validate access token
+const validateAccessToken = (token: string) => {
+  if (!token || token === 'undefined' || typeof token !== 'string') {
+    throw new Error('Invalid access token received from Hume AI');
+  }
+  return token;
 };
 
 export async function GET() {
@@ -107,19 +90,8 @@ export async function GET() {
       );
     }
 
-    const apiKey = process.env.HUME_API_KEY;
-    const secretKey = process.env.HUME_CLIENT_SECRET;
-
-    if (!apiKey || !secretKey) {
-      const missingVars = [];
-      if (!apiKey) missingVars.push('HUME_API_KEY');
-      if (!secretKey) missingVars.push('HUME_CLIENT_SECRET');
-      
-      return NextResponse.json(
-        { error: `Missing Hume AI credentials: ${missingVars.join(', ')}` },
-        { status: 500 }
-      );
-    }
+    // Validate credentials
+    const { apiKey, secretKey } = validateHumeCredentials();
 
     // Generate access token
     const accessToken = await fetchAccessToken({
@@ -127,12 +99,11 @@ export async function GET() {
       secretKey: String(secretKey),
     });
 
-    if (!accessToken || accessToken === 'undefined') {
-      throw new Error('Invalid access token received from Hume AI');
-    }
+    // Validate token
+    const validatedToken = validateAccessToken(accessToken);
 
     return NextResponse.json(
-      { accessToken },
+      { accessToken: validatedToken },
       {
         headers: {
           'X-RateLimit-Limit': limit.toString(),
@@ -167,15 +138,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.HUME_API_KEY;
-    const secretKey = process.env.HUME_CLIENT_SECRET;
-
-    if (!apiKey || !secretKey) {
-      return NextResponse.json(
-        { error: "Missing Hume AI credentials" },
-        { status: 500 }
-      );
-    }
+    // Validate credentials
+    const { apiKey, secretKey } = validateHumeCredentials();
 
     const { message } = await request.json();
 
@@ -185,37 +149,58 @@ export async function POST(request: Request) {
       secretKey: String(secretKey)
     });
 
-    // Connect to EVI
-    const socket = await client.empathicVoice.chat.connect();
+    // Connect to EVI with timeout
+    const socketResult = await Promise.race([
+      client.empathicVoice.chat.connect(),
+      new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Connection timeout')), 10000)
+      )
+    ]);
+
+    // Type assertion after validation
+    const socket = socketResult as unknown as {
+      tillSocketOpen: () => Promise<unknown>;
+      close: () => Promise<void>;
+      on: {
+        (event: 'message', callback: (data: unknown) => void): void;
+        (event: 'error', callback: (error: Error) => void): void;
+        (event: string, callback: (data: unknown) => void): void;
+      };
+      sendUserInput: (message: string) => void;
+    };
+
+    if (!socket || typeof socket.tillSocketOpen !== 'function') {
+      throw new Error('Invalid socket connection');
+    }
+
     await socket.tillSocketOpen();
 
-    // Send the user input and wait for response
+    // Send the user input and wait for response with timeout
     const response = await new Promise<HumeMessage>((resolve, reject) => {
       const timeout = setTimeout(() => {
         socket.close();
-        reject(new Error("Timeout waiting for voice response"));
-      }, 10000); // 10 second timeout
+        reject(new Error('Response timeout'));
+      }, 10000);
 
-      socket.on("message", (wsMessage: unknown) => {
+      socket.on('message', (wsMessage: unknown) => {
         clearTimeout(timeout);
-        // Type guard to ensure message matches our expected format
         if (typeof wsMessage === 'object' && wsMessage !== null && 'type' in wsMessage) {
           resolve(wsMessage as HumeMessage);
         } else {
-          reject(new Error("Received invalid message format from Hume"));
+          reject(new Error('Invalid message format from Hume'));
         }
       });
 
-      socket.on("error", (error: Error) => {
+      socket.on('error', (error: Error) => {
         clearTimeout(timeout);
         reject(error);
       });
 
-      // Send the message
-      socket.sendUserInput(message || "Hello, how are you?");
+      socket.sendUserInput(message || 'Hello, how are you?');
     });
 
-    socket.close();
+    await socket.close();
+
     return NextResponse.json(
       { response },
       {
