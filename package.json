@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn add @radix-ui/react-toggle && next build",
+    "build": "yarn add tailwindcss postcss autoprefixer @radix-ui/react-toggle && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -70,7 +70,14 @@
     "tailwind-merge": "^3.2.0",
     "twitter-api-v2": "^1.22.0",
     "viem": "^2.27.2",
-    "zod": "^3.24.3"
+    "zod": "^3.24.3",
+    "tailwindcss": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "postcss": "^8.5.3",
+    "autoprefixer": "^10.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^16.1.0",
+    "postcss-preset-env": "^10.1.5"
   },
   "devDependencies": {
     "@types/connect": "^3.4.38",
@@ -82,7 +89,6 @@
     "@types/ws": "^8.18.1",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
-    "autoprefixer": "^10.4.21",
     "axios": "^1.8.4",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
@@ -93,8 +99,6 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^16.1.0",
     "postcss-preset-env": "^10.1.5",
-    "tailwindcss": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
