@@ -483,10 +483,11 @@ export default function VoicePage() {
             size="lg"
             className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-medium text-lg h-14 rounded-xl shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-300 border-0"
             onClick={() => {
-              setShouldBeConnected(false)
-              clearReconnectTimer()
-              clearQueue()
-              window.location.href = '/'
+              setShouldBeConnected(false);
+              clearReconnectTimer();
+              clearQueue();
+              // Use Next.js router for client-side navigation
+              window.location.replace('/');
             }}
           >
             End Call
