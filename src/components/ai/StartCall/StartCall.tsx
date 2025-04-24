@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
 import { useVoice } from "@humeai/voice-react";
-
 import { Button } from '../Button';
+import { motion } from 'framer-motion';
 
-export const StartCall:FC = () => {
-  const { connect } = useVoice();
+export const StartCall: FC = () => {
+  const { connect, status } = useVoice();
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,24 +22,30 @@ export const StartCall:FC = () => {
     }
   };
 
-  return(
+  // Don't show the button if already connected
+  if (status?.value === 'connected') {
+    return null;
+  }
+
+  return (
     <div className="relative">
-      <Button
-        className={"z-50 flex items-center gap-1.5"}
-        onClick={handleConnect}
-        disabled={isConnecting}
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
       >
-        {/* <span>
-          <Phone
-            className={"size-4 opacity-50"}
-            strokeWidth={2}
-            stroke={"currentColor"}
-          />
-        </span> */}
-        <span>{isConnecting ? 'Connecting...' : 'Call Satoshi'}</span>
-      </Button>
+        <Button
+          variant="solid"
+          color="yellow"
+          className="px-6 py-3 text-lg bg-yellow-500 text-black hover:bg-yellow-400 transition-colors shadow-lg"
+          onClick={handleConnect}
+          disabled={isConnecting}
+          loading={isConnecting}
+        >
+          {isConnecting ? 'Connecting...' : 'Enter the Exhibition'}
+        </Button>
+      </motion.div>
       {error && (
-        <div className="absolute top-full left-0 right-0 mt-2 text-red-500 text-sm">
+        <div className="absolute top-full left-0 right-0 mt-3 px-4 py-2 bg-black/70 backdrop-blur-sm border border-red-500/30 rounded-sm text-red-400 text-sm text-center">
           {error}
         </div>
       )}
