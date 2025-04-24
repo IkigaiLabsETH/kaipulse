@@ -31,23 +31,25 @@ export const StartCall: FC = () => {
   return (
     <div className="relative">
       <motion.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.97 }}
+        whileHover={{ scale: 1.05, y: -2 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative"
       >
+        <div className="absolute -inset-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-xl blur-sm opacity-75"></div>
         <Button
           variant="solid"
           color="yellow"
-          className="px-8 py-4 text-lg bg-gradient-to-br from-yellow-500/80 to-yellow-600/80 hover:from-yellow-500/90 hover:to-yellow-600/90 text-black font-medium shadow-[0_0_15px_rgba(234,179,8,0.15)] hover:shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all duration-300 rounded-sm flex items-center gap-3"
+          className="relative px-10 py-6 text-xl bg-black text-yellow-500 border-2 border-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300 rounded-xl flex items-center gap-3 font-medium shadow-[0_0_30px_rgba(234,179,8,0.2)] hover:shadow-[0_0_40px_rgba(234,179,8,0.4)]"
           onClick={handleConnect}
           disabled={isConnecting}
           loading={isConnecting}
         >
-          <Mic className="w-5 h-5" />
+          <Mic className="w-6 h-6" />
           {isConnecting ? 'Connecting...' : 'Start Voice Call'}
         </Button>
       </motion.div>
       {error && (
-        <div className="absolute top-full left-0 right-0 mt-3 px-4 py-2 bg-black/70 backdrop-blur-sm border border-red-500/30 rounded-sm text-red-400 text-sm text-center">
+        <div className="absolute top-full left-0 right-0 mt-4 px-4 py-3 bg-zinc-900/80 backdrop-blur-sm border border-red-500/30 rounded-xl text-red-400 text-sm text-center">
           {error}
         </div>
       )}

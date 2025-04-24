@@ -53,24 +53,19 @@ function VoiceExperience() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
-        
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="w-full max-w-6xl mx-auto px-5 text-center"
+          className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         >
-          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Voice Experience</p>
+          <p className="text-xl text-white/70">Initializing Voice Interface</p>
           <div className="relative mt-8">
             <div className="absolute -inset-4 bg-yellow-500/10 blur-2xl rounded-full animate-pulse"></div>
             <Loader color="yellow" />
           </div>
-          <p className="text-white/60 mt-8 text-sm tracking-wider font-satoshi">Loading audio experience...</p>
         </motion.div>
-        
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent"></div>
       </div>
     );
   }
@@ -78,25 +73,15 @@ function VoiceExperience() {
   if (error || !accessToken) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative"
+          className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
         >
-          <div className="absolute -inset-3 z-0">
-            <div className="absolute inset-0 rotate-[2deg] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"></div>
-          </div>
-          <div className="relative z-10 text-yellow-500 text-center max-w-md px-8 py-12 bg-[#1c1f26] rounded-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300">
-            <p className="text-2xl font-medium mb-4 font-epilogue">Connection Error</p>
-            <p className="mb-4 text-white/70 font-satoshi">{error || 'Unable to initialize voice interface'}</p>
-            <motion.div 
-              className="mt-6"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <StartCall />
-            </motion.div>
+          <div className="relative p-8 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+            <p className="text-2xl font-bold mb-4 text-yellow-500">Connection Error</p>
+            <p className="mb-6 text-white/80">{error || 'Unable to initialize voice interface'}</p>
+            <StartCall />
           </div>
         </motion.div>
       </div>
@@ -111,79 +96,66 @@ function VoiceExperience() {
       debug={true}
       verboseTranscription={true}
     >
-      <div className="min-h-screen flex flex-col bg-black relative overflow-hidden">
-        {/* Top Border */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      <div className="min-h-screen bg-black text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          {/* Hero Section */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+              <span className="text-yellow-500">Voice</span> Call
+            </h1>
+            <p className="text-xl text-white/70 max-w-3xl mx-auto">
+              A Sonic Experience
+            </p>
+          </motion.div>
 
-        {/* Header */}
-        <motion.header 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 py-10 px-6"
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Audio Experience</p>
-              <h1 className="text-center">
-                <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-                  Voice Call
-                </span>
-              </h1>
-              <div className="flex items-center justify-center mt-6">
-                <div className="h-px w-24 bg-yellow-500/30"></div>
-                <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">A Sonic Experience</p>
-                <div className="h-px w-24 bg-yellow-500/30"></div>
-              </div>
-            </div>
+          {/* Main Voice Interface */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative w-full mb-16 rounded-xl overflow-hidden group"
+          >
+            <div className="absolute inset-0 border-4 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
             
-            <div className="flex justify-center py-16">
-              <motion.div 
-                className="relative"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                {/* Premium gold frame with subtle glow */}
-                <div className="absolute -inset-3 z-0">
-                  <div className="absolute inset-0 rotate-[2deg] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"></div>
-                </div>
-                
-                {/* Inner frame with glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-sm z-10 shadow-[0_0_30px_rgba(234,179,8,0.3)]">
-                  <div className="absolute inset-0.5 bg-black rounded-sm"></div>
-                </div>
-
-                {/* Bitcoin corner accents */}
-                <div className="absolute -top-2 -left-2 w-8 h-8 z-20 flex items-center justify-center">
-                  <div className="text-yellow-500 text-xl font-bold">₿</div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 z-20 flex items-center justify-center">
-                  <div className="text-yellow-500 text-xl font-bold">₿</div>
-                </div>
-
-                <div className="relative z-10">
-                  <StartCall />
-                </div>
-              </motion.div>
+            <div className="relative z-20 p-12 flex flex-col items-center justify-center">
+              <StartCall />
             </div>
-          </div>
-        </motion.header>
+          </motion.div>
 
-        {/* Controls */}
-        <Controls />
+          {/* Controls Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-20"
+          >
+            <div className="flex items-center mb-6">
+              <h2 className="text-3xl font-bold text-yellow-500">Voice Controls</h2>
+              <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+            </div>
+            <div className="space-y-4 text-white/80 bg-zinc-900/40 p-6 rounded-xl border border-yellow-500/10">
+              <Controls />
+            </div>
+          </motion.div>
 
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="relative z-10 pb-4 text-center mt-auto"
-        >
-          <p className="text-white/40 text-xs font-light font-satoshi tracking-wider">
-            MSTY Voice Gallery • Powered by Hume AI
-          </p>
-        </motion.div>
-
-        {/* Bottom Border */}
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent"></div>
+          {/* Footer */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="text-center"
+          >
+            <p className="text-white/40 text-sm font-light tracking-wider">
+              MSTY Voice Gallery • Powered by Hume AI
+            </p>
+          </motion.div>
+        </div>
       </div>
     </VoiceProvider>
   );
