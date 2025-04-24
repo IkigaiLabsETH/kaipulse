@@ -5,6 +5,7 @@ import { useVoice } from "@humeai/voice-react"
 import { Mic, MicOff } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
 import { cn } from "@/lib/utils"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface HumeVoiceContext {
   isMuted: boolean;
@@ -134,29 +135,43 @@ export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
         onPressedChange={toggleRecording}
         variant="outline"
         className={cn(
-          "inline-flex items-center justify-center rounded-full w-20 h-20",
+          "inline-flex items-center justify-center rounded-lg w-20 h-20",
           "transition-all duration-300 ease-in-out",
-          "border-[3px] hover:scale-105",
+          "border-2",
           "ring-offset-background focus-visible:outline-none focus-visible:ring-2",
-          "focus-visible:ring-yellow-500 focus-visible:ring-offset-2",
+          "focus-visible:ring-[--ring] focus-visible:ring-offset-2",
           "disabled:pointer-events-none disabled:opacity-50",
-          "shadow-[0_0_15px_rgba(234,179,8,0.15)] hover:shadow-[0_0_20px_rgba(234,179,8,0.3)]",
           !voice.isMuted 
-            ? "border-yellow-500 text-black bg-gradient-to-br from-yellow-400 to-yellow-600 data-[state=on]:text-black" 
-            : "border-yellow-500 text-yellow-500 bg-black hover:bg-yellow-500/10"
+            ? "border-[--primary] text-[--primary-foreground] bg-[--primary] shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-1px] hover:translate-y-[-1px]" 
+            : "border-[--primary] text-[--primary] bg-[--background] shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[6px_6px_0px_0px_rgba(234,179,8,1)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:bg-[--primary]/10"
         )}
       >
-        {!voice.isMuted ? (
-          <MicOff className="h-10 w-10" />
-        ) : (
-          <Mic className="h-10 w-10" />
-        )}
+        <motion.div
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0.8 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+        >
+          {!voice.isMuted ? (
+            <MicOff className="h-10 w-10" />
+          ) : (
+            <Mic className="h-10 w-10" />
+          )}
+        </motion.div>
       </Toggle>
-      {error && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 p-3 bg-black/80 backdrop-blur-sm border border-red-500/50 rounded-sm text-red-400 text-sm text-center shadow-[0_0_15px_rgba(239,68,68,0.15)]">
-          {error}
-        </div>
-      )}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 p-3 bg-[--destructive]/10 backdrop-blur-sm border border-[--destructive] rounded-lg text-[--destructive] text-sm text-center shadow-[0_4px_12px_rgba(239,68,68,0.25)]"
+          >
+            {error}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 } 
