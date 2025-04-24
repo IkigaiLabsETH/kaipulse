@@ -77,7 +77,7 @@ export default function NavalPage() {
             className="prose prose-xl prose-invert max-w-none mb-12"
             variants={sectionVariants}
           >
-            <p className="text-xl md:text-4xl font-satoshi mb-8 leading-relaxed text-zinc-300">
+            <p className="text-xl md:text-4xl font-satoshi mb-4 leading-relaxed text-zinc-300">
               The real game is wealth—assets that compound while you sleep and free you to think beyond the next paycheck.
             </p>
           </motion.div>
@@ -91,10 +91,10 @@ export default function NavalPage() {
         animate="visible"
       >
         <motion.div 
-          className="prose prose-lg prose-invert max-w-none mb-16"
+          className="prose prose-lg prose-invert max-w-none mb-8"
           variants={sectionVariants}
         >
-          <p className="text-xl md:text-3xl font-satoshi mb-8 leading-relaxed">
+          <p className="text-xl md:text-3xl font-satoshi mb-6 leading-relaxed">
             That insight detonated across the internet in 2018 when entrepreneur-investor Naval Ravikant posted his legendary tweetstorm and later unpacked it in the podcast episode.
           </p>
           
@@ -120,10 +120,6 @@ export default function NavalPage() {
               </li>
             </ul>
           </div>
-
-          <p className="text-xl md:text-2xl font-satoshi mb-12 leading-relaxed">
-           You’re not going to get rich renting out your time. You must own equity - a piece of a business - to gain your financial freedom. You will get rich by giving society what it wants but does not yet know how to get. At scale. Pick an industry where you can play long term games with long term people. All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest. Building specific knowledge will feel like play to you but will look like work to others. Code and media are permissionless leverage. They are the leverage behind the newly rich. You can create software and media that works for you while you sleep. An army of robots is freely available - it is just packed in data centers for heat and space efficiency. Use it. - NAVAL
-          </p>
         </motion.div>
 
         {/* Video Card with Premium Shadow */}
@@ -139,12 +135,6 @@ export default function NavalPage() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen 
                 />
-              </div>
-              <div className="p-6 md:p-8 bg-gradient-to-b from-transparent to-zinc-900">
-                <p className="text-center font-epilogue text-lg md:text-xl">
-                  <span className="text-yellow-400">🎧</span> Naval Ravikant — &ldquo;How to Get Rich 
-                  <span className="text-yellow-400">(Without Getting Lucky)</span>&rdquo;
-                </p>
               </div>
             </CardContent>
           </Card>
@@ -162,7 +152,19 @@ export default function NavalPage() {
           </div>
           <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg p-8">
             <p className="text-xl font-satoshi leading-relaxed text-zinc-300">
-              Capital and labor demand permission, but software and media scale at zero marginal cost. Bitcoin miners, nodes, and smart contracts are armies of silicon that never sleep, never unionize, never ask for Fridays off. If you can code, write code; if you can&apos;t, craft threads, videos, and podcasts—each a worker you release onto the network.
+             You won&apos;t find freedom trading hours for dollars. To get truly wealthy, you need equity—own a piece of something that scales.
+
+              Wealth is created by solving problems people don&apos;t yet know they have—at scale.
+
+              So choose a game worth playing for decades. Surround yourself with allies who compound value, not extract it.
+
+              The greatest returns—wealth, wisdom, love—compound over time.
+
+              Build rare, specific knowledge. It will feel like play to you, but look like work to everyone else.
+
+              Code and media are leverage without permission. You can deploy both while you sleep.
+
+              An army of invisible robots is at your disposal—coded, stored, and humming in data centers. Use them.
             </p>
           </div>
         </motion.div>
@@ -177,43 +179,18 @@ export default function NavalPage() {
             
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-xl font-satoshi mb-8 leading-relaxed text-zinc-300">
-                The podcast dives deeper into Naval&apos;s mental models—compounding, iterated games, decentralizing luck. Treat it as a compass, not a map. Absorb the principles, but draft your own playbook in code, sats, and sweat. Therefore:
-              </p>
-              
-              <div className="space-y-6 mb-10">
-                <div className="flex items-start">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 mr-4 mt-1 flex-shrink-0">
-                    <span className="text-black font-bold">1</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-epilogue font-semibold text-white">Stack Sats Automatically</h3>
-                    <p className="text-lg text-zinc-300">Turn spare change—or excess conviction—into hard money.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 mr-4 mt-1 flex-shrink-0">
-                    <span className="text-black font-bold">2</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-epilogue font-semibold text-white">Ship Permissionlessly</h3>
-                    <p className="text-lg text-zinc-300">Launch code, products, or memes that work while you sleep.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 mr-4 mt-1 flex-shrink-0">
-                    <span className="text-black font-bold">3</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-epilogue font-semibold text-white">Compound Trust</h3>
-                    <p className="text-lg text-zinc-300">Collaborate with high-integrity allies; reputation is your strongest collateral.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <p className="text-xl font-satoshi mb-10 leading-relaxed text-zinc-300">
-                Press play, internalize the philosophy, and turn insight into on-chain freedom. Wealth is compounding. So is wisdom. So is trust. The thread’s not about getting rich. It’s about getting free.
+                This isn&apos;t a blueprint. It&apos;s a compass.
+
+                It explores Naval&apos;s mental models—compounding, infinite games, engineering your own luck.
+
+                Don&apos;t just listen. Absorb the signal. Then write your own script—in code, in sats, in skin.
+
+                Press play. Download the philosophy. Deploy it on-chain.
+
+                Wealth compounds. So does wisdom. So does trust.
+
+                This thread isn&apos;t about getting rich.
+                It&apos;s about getting free.
               </p>
               
             </div>
