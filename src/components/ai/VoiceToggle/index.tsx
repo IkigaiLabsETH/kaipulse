@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useVoice } from "@humeai/voice-react"
 import { Mic, MicOff } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
@@ -16,9 +16,36 @@ interface VoiceToggleProps {
   onActiveChange?: (isActive: boolean) => void;
 }
 
+// Audio format validation
+const SUPPORTED_MIME_TYPES = [
+  'audio/webm',
+  'audio/mp4',
+  'audio/ogg',
+  'audio/wav'
+];
+
+const validateAudioFormat = async (stream: MediaStream): Promise<boolean> => {
+  const audioTracks = stream.getAudioTracks();
+  if (audioTracks.length === 0) return false;
+  
+  // Check if any supported format is available
+  const recorder = new MediaRecorder(stream);
+  return SUPPORTED_MIME_TYPES.includes(recorder.mimeType);
+};
+
 export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
   const voice = useVoice() as unknown as HumeVoiceContext
   const [error, setError] = useState<string | null>(null)
+  const streamRef = useRef<MediaStream | null>(null)
+
+  // Cleanup function
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop())
+      }
+    }
+  }, [])
 
   useEffect(() => {
     onActiveChange?.(!voice.isMuted)
@@ -30,13 +57,22 @@ export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
       
       if (!voice.isMuted) {
         await voice.mute()
+        if (streamRef.current) {
+          streamRef.current.getTracks().forEach(track => track.stop())
+          streamRef.current = null
+        }
       } else {
         try {
-          // First check if we have permission
+          // First check if we have permission and validate format
           const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-          // Stop the test stream immediately
-          stream.getTracks().forEach(track => track.stop())
-          // Now try to unmute
+          const isFormatValid = await validateAudioFormat(stream)
+          
+          if (!isFormatValid) {
+            stream.getTracks().forEach(track => track.stop())
+            throw new Error('Your browser does not support any of the required audio formats.')
+          }
+          
+          streamRef.current = stream
           await voice.unmute()
         } catch (err) {
           if (err instanceof Error) {
