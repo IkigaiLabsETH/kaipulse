@@ -2,89 +2,52 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { Loader } from "./loader"
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center p-4 overflow-hidden font-semibold transition-all duration-150 ease-in-out border-2 group",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
-        outline: "group inline-flex items-center justify-center py-2 px-4 text-sm ring-1",
-      },
-      buttonColor: {
-        yellow: "text-yellow-400 border-yellow-400 active:text-yellow-400 focus-visible:outline-yellow-400",
-        white: "text-black border-black active:text-yellow-400 bg-yellow-400",
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "",
-        sm: "h-9 px-4 py-2",
-        lg: "h-12 px-8 py-4",
-        icon: "h-11 w-11",
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
       },
     },
     defaultVariants: {
       variant: "default",
-      buttonColor: "white",
       size: "default",
     },
   }
 )
 
 export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
-  href?: string
-  loading?: boolean
-  target?: '_blank' | '_self'
 }
 
-const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
-  ({ className, variant, size, buttonColor, asChild = false, href, children, loading = false, target = '_self', ...props }, ref) => {
-    const content = (
-      <>
-        <span className={cn(
-          'absolute bottom-0 left-0 w-full h-0 transition-all duration-150 ease-in-out group-hover:h-full opacity-90',
-          variant === 'default' ? 'bg-black' : 'bg-yellow-400'
-        )} />
-        <span className={cn(
-          'relative w-full text-center transition-colors duration-200 ease-in-out leading-none pb-1',
-          variant === 'default' ? 'group-hover:text-yellow-400' : 'group-hover:text-black'
-        )}>
-          {loading && (
-            <span className="overflow-hidden inline-block translate-y-1 -translate-x-0.5 w-5">
-              <Loader size="sm" />
-            </span>
-          )}{' '}
-          {children}
-        </span>
-      </>
-    )
-
-    if (href) {
-      return (
-        <a 
-          href={href} 
-          className={cn(buttonVariants({ variant, size, buttonColor, className }))} 
-          target={target} 
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          {content}
-        </a>
-      )
-    }
-
-    const Component = asChild ? Slot : 'button'
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
     return (
-      <Component 
-        className={cn(buttonVariants({ variant, size, buttonColor, className }), "disabled:cursor-not-allowed")} 
-        ref={ref as React.Ref<HTMLButtonElement>}
-        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
-      >
-        {content}
-      </Component>
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
     )
   }
 )
