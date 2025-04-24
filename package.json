@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn add tailwindcss postcss autoprefixer @tailwindcss/postcss7-compat && next build",
+    "build": "yarn add tailwindcss postcss autoprefixer postcss-nesting && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -78,7 +78,8 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^16.1.0",
     "postcss-preset-env": "^10.1.5",
-    "@tailwindcss/postcss7-compat": "^2.2.17"
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "postcss-nesting": "^12.0.2"
   },
   "devDependencies": {
     "@types/connect": "^3.4.38",
