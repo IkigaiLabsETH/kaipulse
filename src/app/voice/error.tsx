@@ -19,24 +19,36 @@ export default function VoiceError({
     // Log the error to our logging service
     clientLogger.error('Voice page error:', error);
 
-    // Handle pipeline URLs
-    if (pathname?.startsWith('/pipeline')) {
-      clientLogger.warn('Pipeline URL detected in error page, redirecting to home');
-      router.replace('/');
+    // Handle pipeline URLs or URL parsing errors
+    if (
+      pathname?.startsWith('/pipeline') || 
+      error.message?.includes('Failed to parse URL') || 
+      error.message?.includes('parse URL from /pipeline')
+    ) {
+      clientLogger.warn('Pipeline URL or parsing error detected, redirecting to home');
+      try {
+        router.replace('/');
+      } catch {
+        window.location.href = '/';
+      }
     }
   }, [error, pathname, router]);
 
   const handleGoHome = async () => {
     try {
       await router.replace('/');
-    } catch (err) {
-      clientLogger.error('Navigation error:', err);
-      window.location.replace('/');
+    } catch {
+      clientLogger.error('Navigation error in error page');
+      window.location.href = '/';
     }
   };
 
   // Don't render anything while redirecting from pipeline URLs
-  if (pathname?.startsWith('/pipeline')) {
+  if (
+    pathname?.startsWith('/pipeline') || 
+    error.message?.includes('Failed to parse URL') || 
+    error.message?.includes('parse URL from /pipeline')
+  ) {
     return null;
   }
 

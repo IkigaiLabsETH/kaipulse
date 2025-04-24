@@ -4,9 +4,11 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   // Handle pipeline URLs
   if (request.nextUrl.pathname.startsWith('/pipeline')) {
-    // Redirect to home page with a 307 temporary redirect
-    return NextResponse.redirect(new URL('/', request.url), {
-      status: 307,
+    // Redirect to home page with a 302 found redirect (less aggressive than 307)
+    // Use absolute URL format to avoid any parsing issues
+    const homeUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}/`
+    return NextResponse.redirect(homeUrl, {
+      status: 302,
       headers: {
         'Cache-Control': 'no-store, must-revalidate',
       },
