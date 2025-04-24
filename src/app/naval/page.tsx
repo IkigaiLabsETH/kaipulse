@@ -110,19 +110,19 @@ export default function NavalPage() {
                 <div className="h-8 w-8 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 mr-4 mt-1 flex-shrink-0">
                   <span className="text-black font-bold">2</span>
                 </div>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 font-semibold">Own equity, not hours.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 font-semibold">Money is how we transfer time and wealth.</span>
               </li>
               <li className="flex items-start">
                 <div className="h-8 w-8 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 mr-4 mt-1 flex-shrink-0">
                   <span className="text-black font-bold">3</span>
                 </div>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 font-semibold">Play long-term games with long-term people.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 font-semibold">Ignore people playing status games.</span>
               </li>
             </ul>
           </div>
 
           <p className="text-xl md:text-2xl font-satoshi mb-12 leading-relaxed">
-           Bitcoin is the purest expression of those principles—permissionless leverage in action. Lines of code run nonstop, stacking trust with every block. No gatekeeper stamps your ticket; all you need is curiosity, conviction, and a wallet address immune to the money printer.
+           You’re not going to get rich renting out your time. You must own equity - a piece of a business - to gain your financial freedom. You will get rich by giving society what it wants but does not yet know how to get. At scale. Pick an industry where you can play long term games with long term people. All the returns in life, whether in wealth, relationships, or knowledge, come from compound interest. Building specific knowledge will feel like play to you but will look like work to others. Code and media are permissionless leverage. They are the leverage behind the newly rich. You can create software and media that works for you while you sleep. An army of robots is freely available - it is just packed in data centers for heat and space efficiency. Use it. - NAVAL
           </p>
         </motion.div>
 
