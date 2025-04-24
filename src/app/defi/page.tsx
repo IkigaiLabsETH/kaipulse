@@ -333,41 +333,41 @@ export default function DefiPage() {
               className="w-full sm:w-auto"
             >
               <Button
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
                   <span>Borrow on Morpho</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
             </a>
             <a 
-              href="https://app.euler.finance/borrow?liquidity=%3E1000000&collateralAsset=LBTC%2CWBTC&sorting=liquidity-desc&network=berachain"
+              href="https://app.berachain.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
               <Button
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>Borrow on Berachain</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span>Lend on Berachain</span>
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
             </a>
             <a 
-              href="https://infrared.finance/vaults?search=WBTC"
+              href="https://app.infrared.io/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
               <Button
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
                   <span>Farm on Infrared</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
             </a>
