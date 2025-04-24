@@ -37,7 +37,7 @@ export const StartCall: FC = () => {
         <Button
           variant="solid"
           color="yellow"
-          className="px-8 py-4 text-lg bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-500 text-black font-medium shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-300 rounded-sm flex items-center gap-3"
+          className="px-8 py-4 text-lg bg-gradient-to-br from-yellow-500/80 to-yellow-600/80 hover:from-yellow-500/90 hover:to-yellow-600/90 text-black font-medium shadow-[0_0_15px_rgba(234,179,8,0.15)] hover:shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all duration-300 rounded-sm flex items-center gap-3"
           onClick={handleConnect}
           disabled={isConnecting}
           loading={isConnecting}

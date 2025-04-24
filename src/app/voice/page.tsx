@@ -141,9 +141,24 @@ function VoiceExperience() {
                 className="relative"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
+                {/* Premium gold frame with subtle glow */}
                 <div className="absolute -inset-3 z-0">
                   <div className="absolute inset-0 rotate-[2deg] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"></div>
                 </div>
+                
+                {/* Inner frame with glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-sm z-10 shadow-[0_0_30px_rgba(234,179,8,0.3)]">
+                  <div className="absolute inset-0.5 bg-black rounded-sm"></div>
+                </div>
+
+                {/* Bitcoin corner accents */}
+                <div className="absolute -top-2 -left-2 w-8 h-8 z-20 flex items-center justify-center">
+                  <div className="text-yellow-500 text-xl font-bold">₿</div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 z-20 flex items-center justify-center">
+                  <div className="text-yellow-500 text-xl font-bold">₿</div>
+                </div>
+
                 <div className="relative z-10">
                   <StartCall />
                 </div>
