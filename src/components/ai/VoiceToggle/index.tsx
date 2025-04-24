@@ -19,18 +19,39 @@ interface VoiceToggleProps {
 // Audio format validation
 const SUPPORTED_MIME_TYPES = [
   'audio/webm',
+  'audio/webm;codecs=opus',
   'audio/mp4',
+  'audio/mpeg',
   'audio/ogg',
-  'audio/wav'
+  'audio/ogg;codecs=opus',
+  'audio/wav',
+  'audio/wave'
 ];
 
 const validateAudioFormat = async (stream: MediaStream): Promise<boolean> => {
   const audioTracks = stream.getAudioTracks();
   if (audioTracks.length === 0) return false;
   
-  // Check if any supported format is available
-  const recorder = new MediaRecorder(stream);
-  return SUPPORTED_MIME_TYPES.includes(recorder.mimeType);
+  try {
+    // Try to create a MediaRecorder with the stream
+    const recorder = new MediaRecorder(stream);
+    
+    // Check if the browser supports any of our formats
+    const mimeType = recorder.mimeType.toLowerCase();
+    const isSupported = SUPPORTED_MIME_TYPES.some(type => {
+      const format = type.split(';')[0];
+      return mimeType.includes(format);
+    });
+    
+    return isSupported;
+  } catch {
+    // If MediaRecorder fails, fallback to checking audio element support
+    const audio = new Audio();
+    return SUPPORTED_MIME_TYPES.some(type => {
+      const canPlay = audio.canPlayType(type);
+      return canPlay === 'probably' || canPlay === 'maybe';
+    });
+  }
 };
 
 export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {

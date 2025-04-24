@@ -143,7 +143,7 @@ export default function VoicePage() {
   const { addToQueue, clearQueue } = useAudioQueue()
 
   // Handle audio output from Hume
-  const handleHumeMessage = (message: Hume.empathicVoice.SubscribeEvent | HumeErrorMessage) => {
+  const handleHumeMessage = async (message: Hume.empathicVoice.SubscribeEvent | HumeErrorMessage) => {
     switch (message.type) {
       case 'audio_output':
         try {
@@ -157,41 +157,54 @@ export default function VoicePage() {
           
           // Try different audio formats in order of preference
           const formats = [
+            { type: 'audio/webm;codecs=opus' },
             { type: 'audio/webm' },
             { type: 'audio/mp4' },
+            { type: 'audio/mpeg' },
+            { type: 'audio/ogg;codecs=opus' },
             { type: 'audio/ogg' },
-            { type: 'audio/wav' }
+            { type: 'audio/wav' },
+            { type: 'audio/wave' }
           ];
           
           let audioBlob = null;
+          let supportedFormat = null;
+          
+          // First, check which format is supported
+          const audio = new Audio();
           for (const format of formats) {
-            try {
-              audioBlob = new Blob([arrayBuffer], format);
-              const audio = new Audio();
-              audio.src = URL.createObjectURL(audioBlob);
-              
-              // Test if format is supported
-              const canPlay = audio.canPlayType(format.type);
-              if (canPlay !== '') {
-                break;
-              }
-              
-              URL.revokeObjectURL(audio.src);
-              audioBlob = null;
-            } catch (e) {
-              clientLogger.warn(`Format ${format.type} not supported:`, e);
-              continue;
+            const canPlay = audio.canPlayType(format.type);
+            if (canPlay === 'probably' || canPlay === 'maybe') {
+              supportedFormat = format;
+              break;
             }
           }
           
-          if (!audioBlob) {
+          if (!supportedFormat) {
             throw new Error('No supported audio format found');
           }
           
-          addToQueue(audioBlob)
+          // Create blob with supported format
+          audioBlob = new Blob([arrayBuffer], supportedFormat);
+          
+          // Verify the blob can be played
+          const testAudio = new Audio();
+          testAudio.src = URL.createObjectURL(audioBlob);
+          
+          // Wait for metadata to load to confirm format is valid
+          await new Promise((resolve, reject) => {
+            testAudio.onloadedmetadata = resolve;
+            testAudio.onerror = () => reject(new Error('Failed to load audio format'));
+            // Set timeout in case the metadata load hangs
+            setTimeout(() => reject(new Error('Timeout loading audio format')), 2000);
+          });
+          
+          URL.revokeObjectURL(testAudio.src);
+          addToQueue(audioBlob);
+          
         } catch (err) {
           clientLogger.error('Failed to process audio:', err);
-          setError('Audio format not supported by your browser. Please try a different browser.');
+          setError('Audio format not supported by your browser. Please try using Chrome, Firefox, or Safari.');
         }
         break;
       case 'user_interruption':
