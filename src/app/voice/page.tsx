@@ -6,22 +6,47 @@ import { getHumeAccessToken } from "../api/ai/ai"
 import { handleToolCallMessage } from "../api/ai/cryptoPriceTool"
 import { Hume } from "hume"
 import { VoiceToggle } from "@/components/ai/VoiceToggle"
+import { Loader } from "@/components/ai/Loader"
 
 export default function VoicePage() {
   const [accessToken, setAccessToken] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchToken = async () => {
-      const token = await getHumeAccessToken()
-      setAccessToken(token)
+      try {
+        setIsLoading(true)
+        const token = await getHumeAccessToken()
+        if (!token) {
+          throw new Error('Failed to get access token')
+        }
+        setAccessToken(token)
+      } catch (err) {
+        console.error('Error fetching Hume token:', err)
+        setError('Failed to initialize voice interface. Please try again later.')
+      } finally {
+        setIsLoading(false)
+      }
     }
     fetchToken()
   }, [])
 
-  if (!accessToken) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
-        <div className="animate-pulse text-yellow-500">Loading...</div>
+        <Loader color="yellow" />
+      </div>
+    )
+  }
+
+  if (error || !accessToken) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="text-yellow-500 text-center max-w-md px-4">
+          <p className="text-xl font-medium mb-4">😕 Oops!</p>
+          <p>{error || 'Unable to initialize voice interface. Please check your connection and try again.'}</p>
+        </div>
       </div>
     )
   }
