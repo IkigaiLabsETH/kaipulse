@@ -2,7 +2,7 @@
 
 import { VoiceProvider } from "@humeai/voice-react"
 import { useEffect, useState } from "react"
-import { getHumeAccessToken } from "../api/ai/ai"
+import { getHumeAccessToken, HumeError } from "../api/ai/ai"
 import { handleToolCallMessage } from "../api/ai/cryptoPriceTool"
 import { Hume } from "hume"
 import { VoiceToggle } from "@/components/ai/VoiceToggle"
@@ -18,13 +18,9 @@ export default function VoicePage() {
       try {
         setIsLoading(true)
         const token = await getHumeAccessToken()
-        if (!token) {
-          throw new Error('Failed to get access token')
-        }
         setAccessToken(token)
       } catch (err) {
-        console.error('Error fetching Hume token:', err)
-        setError('Failed to initialize voice interface. Please try again later.')
+        setError(err instanceof HumeError ? err.message : 'Failed to initialize voice interface. Please try again later.')
       } finally {
         setIsLoading(false)
       }
