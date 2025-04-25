@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { MicFFT } from '../MicFFT';
 import { VoiceToggle } from '../VoiceToggle';
-import { cn } from '@/lib/utils';
 
 export const Controls: FC = () => {
   const { disconnect, status, micFft } = useVoice();
@@ -42,18 +41,22 @@ export const Controls: FC = () => {
                 <MicFFT fft={micFft} className="fill-accent" />
               </div>
 
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => disconnect()}
-                className={cn(
-                  "text-accent hover:text-accent-foreground",
-                  "border-2 border-accent/40 hover:border-accent",
-                  "bg-card hover:bg-accent/10"
-                )}
-              >
-                Leave Exhibition
-              </Button>
+              <div className="relative">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative"
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-xl blur-sm opacity-75"></div>
+                  <Button
+                    variant="default"
+                    onClick={() => disconnect()}
+                    className="relative px-10 py-6 text-xl bg-black text-yellow-500 border-2 border-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300 rounded-xl flex items-center gap-3 font-medium shadow-[0_0_30px_rgba(234,179,8,0.2)] hover:shadow-[0_0_40px_rgba(234,179,8,0.4)]"
+                  >
+                    End Call
+                  </Button>
+                </motion.div>
+              </div>
             </div>
           </Card>
         </motion.div>
