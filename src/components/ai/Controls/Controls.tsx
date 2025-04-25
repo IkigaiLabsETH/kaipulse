@@ -35,15 +35,12 @@ export const Controls: FC = () => {
           <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 border-0 sm:border border-[#F7B500]/20 shadow-sm bg-black/80 backdrop-blur-sm">
             <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-6">
               {/* Left Section */}
-              <div className="flex items-center gap-4 w-full sm:w-auto">
-                <div className="relative">
-                  <div className="absolute -inset-0.5 bg-[#F7B500] rounded-sm opacity-20"></div>
-                  <div className="relative bg-black px-4 py-3 rounded-sm border border-[#F7B500] flex items-center gap-3">
-                    <VoiceToggle />
-                    <span className="uppercase tracking-[0.2em] text-[#F7B500] font-satoshi font-semibold text-lg">
-                      LISTENING
-                    </span>
-                  </div>
+              <div className="flex items-center justify-center w-full sm:w-auto">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 border border-[#F7B500]/30">
+                  <VoiceToggle />
+                  <span className="uppercase tracking-[0.15em] text-[#F7B500]/70 font-satoshi font-medium text-sm">
+                    Listening
+                  </span>
                 </div>
               </div>
 
