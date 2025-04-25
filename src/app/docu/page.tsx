@@ -48,13 +48,13 @@ export default function DocuPage() {
           </p>
           <h1 className="text-center">
             <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-              The Bitcoin Story
+              God Bless Bitcoin
             </span>
           </h1>
           <div className="flex items-center justify-center mt-6">
             <div className="h-px w-24 bg-yellow-500/30"></div>
             <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
-              A Journey Through Digital Freedom
+              How do we fix our broken money?
             </p>
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
@@ -73,85 +73,43 @@ export default function DocuPage() {
           className="relative mb-16"
           variants={cardVariants}
         >
-          <div className="absolute -inset-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.15)]">
-            <div className="absolute inset-0.5 bg-black/90 rounded-sm"></div>
+          <div className="absolute -inset-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-lg shadow-[0_0_30px_rgba(234,179,8,0.15)]">
+            <div className="absolute inset-0.5 bg-black/90 rounded-lg"></div>
           </div>
           <div className="relative aspect-video w-full">
             <iframe
-              className="w-full h-full rounded-sm"
+              className="w-full h-full rounded-lg"
               src="https://www.youtube.com/embed/oksraL7wN6Q"
-              title="Bitcoin Documentary"
+              title="God Bless Bitcoin Documentary"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
         </motion.div>
 
-        {/* Video Description */}
+        {/* Documentary Description */}
         <motion.div 
-          className="relative mb-16"
+          className="relative"
           variants={cardVariants}
         >
-          <Card className="p-8 bg-black relative overflow-hidden border-none rounded-sm">
-            <div className="absolute -inset-0.5 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-              <div className="absolute inset-0.5 bg-black/90 backdrop-blur-sm rounded-sm"></div>
-            </div>
+          <div className="absolute -inset-0.5 bg-yellow-500 rounded-lg opacity-75 blur-sm"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-lg p-0.5">
+            <div className="absolute inset-0 bg-black rounded-lg"></div>
+          </div>
+          <Card className="relative bg-black/90 backdrop-blur-sm p-8 rounded-lg border-2 border-yellow-500/50 shadow-[0_0_25px_rgba(234,179,8,0.3)]">
+            {/* Corner accents */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-yellow-500 rounded-tl-lg"></div>
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-yellow-500 rounded-tr-lg"></div>
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-yellow-500 rounded-bl-lg"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-yellow-500 rounded-br-lg"></div>
+            
             <div className="relative z-10">
-              <h2 className="text-2xl font-bold text-yellow-500 tracking-tight uppercase font-satoshi mb-4">
-                About This Documentary
-              </h2>
               <p className="text-lg text-white/90 leading-relaxed font-satoshi">
-                Explore the revolutionary journey of Bitcoin, from its mysterious origins to its current status as a global financial phenomenon. This documentary delves deep into the technology, philosophy, and community that have shaped the world&apos;s first and most influential cryptocurrency.
+                God Bless Bitcoin asks the timely question: How do we fix our broken money? Through in-depth conversations with bitcoin and interfaith religious leaders, the film exposes the broken, unjust, and immoral nature of our current fiat-based monetary system, one that is intimately connected to the military industrial complex and the propagation of war. The film also shows how and why members of the poor and middle class feel a financial squeeze even when they work hard and lead fiscally responsible lives. God Bless Bitcoin ultimately suggests the ways in which Bitcoin can present alternatives to our current system that are more just, equitable, and peaceful.
               </p>
             </div>
           </Card>
         </motion.div>
-
-        {/* Key Points Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            {
-              title: "Origins & Innovation",
-              content: "Discover the groundbreaking origins of Bitcoin and how it has revolutionized the concept of money in the digital age."
-            },
-            {
-              title: "Technology Deep Dive",
-              content: "Understand the revolutionary blockchain technology that powers Bitcoin and ensures its security and decentralization."
-            },
-            {
-              title: "Global Impact",
-              content: "Explore how Bitcoin has influenced economies, challenged traditional financial systems, and created new opportunities worldwide."
-            },
-            {
-              title: "Future Perspectives",
-              content: "Gain insights into the potential future of Bitcoin and its role in shaping the next generation of financial technology."
-            }
-          ].map((point, index) => (
-            <motion.div
-              key={point.title}
-              variants={cardVariants}
-              className="relative"
-            >
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_20px_rgba(234,179,8,0.15)]">
-                <div className="absolute inset-0.5 bg-black/90 backdrop-blur-sm rounded-sm"></div>
-              </div>
-              <Card className="p-8 bg-black relative group overflow-hidden border-none z-10 rounded-sm">
-                <h3 className="text-xl font-bold mb-4 text-yellow-500 tracking-tight uppercase font-satoshi">
-                  {point.title}
-                </h3>
-                <p className="text-white/90 leading-relaxed font-satoshi">
-                  {point.content}
-                </p>
-                <motion.div 
-                  className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600"
-                  initial={{ width: "0%" }}
-                  whileInView={{ width: "100%" }}
-                  transition={{ duration: 0.8, delay: 0.2 + (index * 0.2) }}
-                />
-              </Card>
-            </motion.div>
-          ))}
-        </div>
       </motion.div>
 
       {/* Footer Section */}
@@ -161,7 +119,7 @@ export default function DocuPage() {
           <div className="text-center">
             <div className="h-px w-full max-w-xs mx-auto bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent mb-6"></div>
             <p className="text-white/40 uppercase tracking-widest text-xs font-light font-satoshi">
-              BITCOIN DOCUMENTARY • DIGITAL FREEDOM • FINANCIAL REVOLUTION
+              GOD BLESS BITCOIN • A JOURNEY TO MONETARY FREEDOM
             </p>
           </div>
         </div>
