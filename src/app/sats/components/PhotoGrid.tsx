@@ -9,20 +9,13 @@ import { LightningService } from "@/services/lightning";
 import { toast } from "sonner";
 import dynamic from 'next/dynamic';
 import PhotoGridSkeleton from "./PhotoGridSkeleton";
+import { photos } from "../data/photos";
 
 // Dynamically import Framer Motion components
 const MotionDiv = dynamic(
   () => import('framer-motion').then((mod) => mod.motion.div),
   { ssr: false }
 );
-
-interface Photo {
-  id: string;
-  url: string;
-  title: string;
-  photographer: string;
-  likes: number;
-}
 
 interface LightningPaymentError extends Error {
   code?: string;
@@ -57,31 +50,6 @@ const cardVariants = {
     }
   }
 };
-
-// Production-ready photo data with optimized images
-const photos: Photo[] = [
-  {
-    id: "1",
-    url: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d",
-    title: "Bitcoin Mining Facility",
-    photographer: "Satoshi N.",
-    likes: 21,
-  },
-  {
-    id: "2",
-    url: "https://images.unsplash.com/photo-1516245834210-c4c142787335",
-    title: "Lightning Strike",
-    photographer: "Andreas A.",
-    likes: 42,
-  },
-  {
-    id: "3",
-    url: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0",
-    title: "Future of Money",
-    photographer: "Hal F.",
-    likes: 84,
-  },
-];
 
 export default function PhotoGrid() {
   const [isLightningReady, setIsLightningReady] = useState(false);
@@ -146,22 +114,22 @@ export default function PhotoGrid() {
     >
       {photos.map((photo) => (
         <MotionDiv key={photo.id} variants={cardVariants}>
-          <Card className="group overflow-hidden bg-card border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] transition-all duration-300">
+          <Card className="group overflow-hidden bg-black/40 backdrop-blur-sm border-2 border-yellow-500/20 shadow-[5px_5px_0px_0px_rgba(234,179,8,0.2)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,0.3)] transition-all duration-300">
             <div className="relative aspect-[4/3]">
               <Image
                 src={photo.url}
                 alt={photo.title}
                 fill
-                className="object-cover"
+                className="object-cover brightness-90 group-hover:brightness-100 transition-all duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority={photo.id === "1"}
                 quality={85}
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
                 <Button
                   onClick={() => handleLike(photo.id)}
                   disabled={isLoading === photo.id || !isLightningReady}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2"
+                  className="bg-yellow-500 text-black hover:bg-yellow-400 flex items-center gap-2 font-medium"
                 >
                   <Heart className={`w-4 h-4 ${isLoading === photo.id ? 'animate-ping' : ''}`} />
                   {isLoading === photo.id ? 'Sending...' : 'Send 21 sats'}
@@ -169,11 +137,11 @@ export default function PhotoGrid() {
               </div>
             </div>
             <div className="p-4">
-              <h3 className="font-epilogue text-lg font-semibold mb-1">{photo.title}</h3>
-              <p className="font-satoshi text-sm text-muted-foreground">
+              <h3 className="font-epilogue text-lg font-semibold mb-1 text-yellow-500">{photo.title}</h3>
+              <p className="font-satoshi text-sm text-zinc-300">
                 by {photo.photographer}
               </p>
-              <div className="mt-2 flex items-center gap-1 text-primary">
+              <div className="mt-2 flex items-center gap-1 text-yellow-500">
                 <Heart className="w-4 h-4 fill-current" />
                 <span className="text-sm">{photo.likes}</span>
               </div>

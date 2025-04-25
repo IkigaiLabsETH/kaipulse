@@ -15,15 +15,15 @@ export default function HeroSection() {
         >
           <h1 className="font-boska text-6xl md:text-8xl mb-6">
             A like that actually{" "}
-            <span className="text-primary">means something</span>
+            <span className="text-yellow-500">means something</span>
           </h1>
-          <p className="font-satoshi text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="font-satoshi text-xl md:text-2xl text-zinc-300 max-w-2xl mx-auto mb-8">
             Support photographers with Bitcoin Lightning micropayments. 
             Every like sends sats directly to creators.
           </p>
           <Button 
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 font-epilogue text-lg"
+            className="bg-yellow-500 text-black hover:bg-yellow-400 font-epilogue text-lg"
           >
             Start Supporting Creators
           </Button>
