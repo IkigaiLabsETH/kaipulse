@@ -21,19 +21,19 @@ export default function SatsPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
-              title="Instant Rewards"
-              description="Every like sends 21 sats directly to creators via Lightning Network"
+              title="Instant Value"
+              description="Every like sends 21 sats instantly. Your appreciation becomes real value for creators."
               icon="⚡"
             />
             <FeatureCard
-              title="Curated Content"
-              description="High-quality photography only. No infinite scroll chaos."
+              title="Pure Photography"
+              description="A curated space for exceptional images. No algorithms, no distractions."
               icon="📸"
             />
             <FeatureCard
-              title="Unlock Perks"
-              description="Support creators to unlock limited edition prints and special rewards"
-              icon="🎁"
+              title="Exclusive Access"
+              description="Support creators to unlock limited edition prints and behind-the-scenes content."
+              icon="🎬"
             />
           </div>
         </div>
@@ -53,10 +53,10 @@ export default function SatsPage() {
       <section className="relative py-24 bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-boska text-4xl md:text-5xl mb-6">
-            Ready to Support <span className="text-yellow-500">Creators?</span>
+            Support <span className="text-yellow-500">Creators</span>
           </h2>
           <p className="font-satoshi text-xl text-zinc-300 max-w-2xl mx-auto mb-8">
-            Join our community of photographers and supporters. Every like makes a difference.
+            Every like makes a difference.
           </p>
           <div className="flex gap-4 justify-center">
             <Button 

@@ -13,13 +13,13 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <h1 className="font-boska text-6xl md:text-8xl mb-6">
+          <h1 className="font-boska text-8xl md:text-8xl mb-6">
             A like that actually{" "}
             <span className="text-yellow-500">means something</span>
           </h1>
           <p className="font-satoshi text-xl md:text-2xl text-zinc-300 max-w-2xl mx-auto mb-8">
-            Support photographers with Bitcoin Lightning micropayments. 
-            Every like sends sats directly to creators.
+            Imagine supporting photographers with Bitcoin Lightning micropayments? 
+            What if every like sends sats directly to creators.
           </p>
           <Button 
             size="lg"
