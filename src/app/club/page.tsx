@@ -30,15 +30,15 @@ export default function ClubPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p className="text-yellow-500/90 font-medium">
-                Your entry point into a sovereign future—powered by Bitcoin, on-chain and off-grid.
+                Your entry point into a sovereign future, on-chain and off-grid.
               </p>
 
               <p className="text-white/90">
-                We don&apos;t trade hours for dollars. We build Bitcoin stacks that work while we sleep. Our portfolios are designed for resilience through the Bitcoin standard, our lives optimized for optionality. We&apos;re early to the hardest money ever created. We use proof-of-work, not promises.
+                We don&apos;t trade hours for dollars. We ship code that works while we sleep. Our portfolios are designed for resilience through the Bitcoin standard, our lives optimized for optionality. We&apos;re early to the hardest money ever created. We use proof-of-work, not promises.
               </p>
 
               <p className="text-white/90">
-                But sovereignty isn&apos;t just financial. It&apos;s health. It&apos;s taste. It&apos;s surf at sunrise and deep-work at golden hour. It&apos;s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Teslas powered by solar. We live like our mitochondria compound ROI.
+                But sovereignty isn&apos;t just financial. It&apos;s health. It&apos;s taste. It&apos;s surf at sunrise and deep-work at golden hour. It&apos;s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Tesla. We live like our mitochondria compound ROI.
               </p>
 
               <p className="text-white/90">
