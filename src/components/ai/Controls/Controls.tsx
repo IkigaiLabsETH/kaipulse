@@ -28,22 +28,22 @@ export const Controls: FC = () => {
           }}
           className="fixed bottom-0 left-0 w-full p-6 flex items-center justify-center z-50 bg-gradient-to-t from-background via-background/50 to-transparent"
         >
-          <Card className="relative max-w-3xl w-full mx-auto p-4 border border-border shadow-sm bg-white/95 backdrop-blur-sm flex items-center gap-6 justify-between">
+          <Card className="relative max-w-3xl w-full mx-auto p-4 border border-border/40 shadow-sm bg-background/95 backdrop-blur-sm flex items-center gap-6 justify-between">
             <div className="flex items-center gap-4">
               <VoiceToggle />
-              <div className="uppercase tracking-[0.2em] text-accent font-satoshi">
+              <div className="uppercase tracking-[0.2em] text-yellow-500 font-satoshi">
                 <span className="font-semibold">LISTENING</span>
               </div>
             </div>
 
             <div className="w-full md:w-48 h-16 relative">
-              <MicFFT fft={micFft} className="fill-accent" />
+              <MicFFT fft={micFft} className="fill-yellow-500" />
             </div>
 
             <Button
               variant="default"
               onClick={() => disconnect()}
-              className="relative px-6 py-2 text-base bg-black text-yellow-500 border border-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300 rounded-lg flex items-center gap-2 font-medium"
+              className="relative px-6 py-2 text-base bg-background text-yellow-500 border border-yellow-500 hover:bg-yellow-500 hover:text-background transition-all duration-300 rounded-lg flex items-center gap-2 font-medium"
             >
               <Phone className="w-4 h-4" />
               End Call
