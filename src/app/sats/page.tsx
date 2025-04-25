@@ -1,6 +1,7 @@
 import PhotoGrid from "./components/PhotoGrid";
 import HeroSection from "./components/HeroSection";
 import FeatureCard from "./components/FeatureCard";
+import Footer from "./components/Footer";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
@@ -74,6 +75,8 @@ export default function SatsPage() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 } 
