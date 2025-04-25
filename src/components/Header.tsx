@@ -60,6 +60,7 @@ export function Header() {
 
   const navigation: NavigationItem[] = [
     { name: 'HOME', href: '/', dropdown: false },
+    { name: 'DOCU', href: '/docu', dropdown: false },
     { 
       name: 'FREEDOM TOOLS', 
       href: '#', 
