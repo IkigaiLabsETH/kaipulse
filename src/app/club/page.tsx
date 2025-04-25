@@ -38,11 +38,11 @@ export default function ClubPage() {
               </p>
 
               <p className="text-white/90">
-                But sovereignty isn&apos;t just financial. It&apos;s health. It&apos;s taste. It&apos;s surf at sunrise and deep-work at golden hour. It&apos;s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Teslas powered by memes and moonshots. We live like our mitochondria compound ROI.
+                But sovereignty isn&apos;t just financial. It&apos;s health. It&apos;s taste. It&apos;s surf at sunrise and deep-work at golden hour. It&apos;s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Teslas powered by solar. We live like our mitochondria compound ROI.
               </p>
 
               <p className="text-white/90">
-                If you&apos;re building in public, stacking in silence, and designing a life worth defending—this is your tribe.
+                If you&apos;re building in public, stacking in silence, and designing a life worth defending—this is your tribe. Stack sats - stay humble.
               </p>
 
               <p className="text-yellow-500 font-medium text-2xl">
