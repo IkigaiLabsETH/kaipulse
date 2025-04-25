@@ -32,28 +32,33 @@ export const StartCall: FC = () => {
   return (
     <div className="relative">
       <motion.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
         className="relative"
       >
         <Button
           size="lg"
           className={cn(
-            "relative w-full gap-2 font-medium",
-            "bg-primary/10 hover:bg-primary/20",
-            "border border-primary/20 hover:border-primary/30",
-            "text-primary shadow-[0_0_15px_rgba(0,0,0,0.1)]",
-            "disabled:opacity-50 disabled:cursor-not-allowed"
+            "relative w-full gap-3 font-semibold text-base py-6",
+            "bg-gradient-to-r from-black via-zinc-900 to-black",
+            "hover:from-zinc-900 hover:via-black hover:to-zinc-900",
+            "text-[#F7B500]",
+            "transition-all duration-300 ease-out",
+            "border-2 border-[#F7B500]",
+            "shadow-[0_0_20px_rgba(247,181,0,0.15)]",
+            "hover:shadow-[0_0_30px_rgba(247,181,0,0.25)]",
+            "disabled:opacity-70 disabled:cursor-not-allowed",
+            "rounded-xl"
           )}
           onClick={handleConnect}
           disabled={isConnecting}
         >
-          <Mic className="w-5 h-5" />
+          <Mic className="w-5 h-5 animate-pulse" />
           {isConnecting ? 'Connecting...' : 'Start Voice Call'}
         </Button>
       </motion.div>
       {error && (
-        <div className="absolute top-full left-0 right-0 mt-4 px-4 py-3 bg-destructive/10 border border-destructive/30 rounded-md text-destructive text-sm text-center">
+        <div className="absolute top-full left-0 right-0 mt-4 px-4 py-3 bg-black/80 border border-[#F7B500]/30 rounded-xl text-[#F7B500] text-sm text-center font-medium backdrop-blur-sm">
           {error}
         </div>
       )}
