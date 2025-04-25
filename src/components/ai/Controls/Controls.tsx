@@ -32,7 +32,7 @@ export const Controls: FC = () => {
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-transparent" />
 
-          <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 border-0 bg-black/80 backdrop-blur-sm">
+          <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 bg-transparent">
             <div className="flex flex-col items-center gap-12">
               {/* Middle Section - Visualization */}
               <div className="w-full sm:w-48 h-12 sm:h-16 relative">

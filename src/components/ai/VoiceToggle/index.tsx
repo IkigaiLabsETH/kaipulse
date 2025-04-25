@@ -135,12 +135,12 @@ export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
         variant="outline"
         className={cn(
           "inline-flex items-center justify-center rounded-full p-4",
-          "bg-black/50 backdrop-blur-sm",
-          "hover:bg-[#F7B500]/10",
+          "bg-transparent",
+          "hover:bg-[#F7B500]/5",
           "text-[#F7B500]",
           "transition-all duration-300 ease-out",
           !voice.isMuted 
-            ? "bg-[#F7B500]/10 text-[#F7B500]" 
+            ? "bg-[#F7B500]/5 text-[#F7B500]" 
             : "text-[#F7B500]/70"
         )}
       >
