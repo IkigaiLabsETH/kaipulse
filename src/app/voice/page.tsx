@@ -7,6 +7,7 @@ import { StartCall } from '@/components/ai/StartCall';
 import { VoiceProvider } from "@humeai/voice-react";
 import { clientLogger } from '@/utils/clientLogger';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 // Dynamic import for Controls component to avoid SSR issues
 const Controls = dynamic(
@@ -50,17 +51,21 @@ function VoiceExperience() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
-        <Loader color="yellow" />
+      <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black" />
+        <div className="relative z-10">
+          <Loader color="yellow" />
+        </div>
       </div>
     );
   }
 
   if (error || !accessToken) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
-        <div className="max-w-md p-6 rounded-lg bg-zinc-900">
-          <p className="text-red-500 mb-4">{error || 'Unable to initialize voice interface'}</p>
+      <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black" />
+        <div className="relative z-10 max-w-md p-8 rounded-lg bg-black/50 backdrop-blur-xl border border-[#F7B500]/10">
+          <p className="text-red-500 mb-6 text-center">{error || 'Unable to initialize voice interface'}</p>
           <StartCall />
         </div>
       </div>
@@ -75,13 +80,49 @@ function VoiceExperience() {
       debug={true}
       verboseTranscription={true}
     >
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-        <div className="w-full max-w-md p-6">
-          <StartCall />
+      <div className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black" />
+        
+        {/* Animated Circles */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1 }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#F7B500]/10"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.15 }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#F7B500]/10"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.2 }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", delay: 1 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-[#F7B500]/10"
+        />
+
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-md p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-center mb-8 text-2xl font-semibold tracking-tight text-[#F7B500]">
+              Voice Interface
+            </h1>
+            <StartCall />
+          </motion.div>
           <div className="mt-8">
             <Controls />
           </div>
         </div>
+
+        {/* Bottom Gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
       </div>
     </VoiceProvider>
   );
