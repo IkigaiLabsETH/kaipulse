@@ -5,58 +5,41 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'i.seadn.io',
+        hostname: '**.seadn.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.openseauserdata.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.opensea.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.mux.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.arweave.net',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'ipfs.io',
-      },
-      {
-        protocol: 'https',
-        hostname: '**.ipfs.io', // Allow all subdomains
-      },
-      {
-        protocol: 'https',
-        hostname: '**.ipfs.cf-ipfs.com', // Cloudflare IPFS gateway
-      },
-      {
-        protocol: 'https',
-        hostname: 'ipfs.cf-ipfs.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'nftstorage.link',
-      },
-      {
-        protocol: 'https',
-        hostname: 'openseauserdata.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'stream.mux.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'raw.githubusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'assets.opensea.io',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
+        pathname: '/**',
       }
     ],
     minimumCacheTTL: 3600,
-    dangerouslyAllowSVG: true, // Some NFT images might be SVGs
+    dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   typescript: {
@@ -78,9 +61,12 @@ const nextConfig = {
     };
     return config;
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  // Production optimizations
+  optimizeFonts: true,
+  compress: true,
+  productionBrowserSourceMaps: false,
+  // CSS optimization with critters
+  optimizeCss: true,
 }
 
 module.exports = nextConfig 
