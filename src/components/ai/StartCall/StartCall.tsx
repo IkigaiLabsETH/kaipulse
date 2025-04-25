@@ -41,14 +41,14 @@ export const StartCall: FC = () => {
           className={cn(
             "relative w-full gap-3 font-semibold text-base py-6",
             "bg-gradient-to-r from-black via-zinc-900 to-black",
-            "hover:from-zinc-900 hover:via-black hover:to-zinc-900",
-            "text-[#F7B500]",
+            "hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500]",
+            "text-[#F7B500] hover:text-black",
             "transition-all duration-300 ease-out",
-            "border-2 border-[#F7B500]",
-            "shadow-[0_0_20px_rgba(247,181,0,0.15)]",
-            "hover:shadow-[0_0_30px_rgba(247,181,0,0.25)]",
+            "border border-[#F7B500]",
+            "shadow-[5px_5px_0px_0px_#F7B500]",
+            "hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]",
             "disabled:opacity-70 disabled:cursor-not-allowed",
-            "rounded-xl"
+            "rounded-md"
           )}
           onClick={handleConnect}
           disabled={isConnecting}
@@ -58,7 +58,7 @@ export const StartCall: FC = () => {
         </Button>
       </motion.div>
       {error && (
-        <div className="absolute top-full left-0 right-0 mt-4 px-4 py-3 bg-black/80 border border-[#F7B500]/30 rounded-xl text-[#F7B500] text-sm text-center font-medium backdrop-blur-sm">
+        <div className="absolute top-full left-0 right-0 mt-4 px-4 py-3 bg-black/80 border border-[#F7B500]/30 rounded-md text-[#F7B500] text-sm text-center font-medium backdrop-blur-sm">
           {error}
         </div>
       )}
