@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -11,16 +13,15 @@ export default function ClubPage() {
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <div className="space-y-2">
-              <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h6 className="text-sm uppercase tracking-wider text-yellow-500">EXCLUSIVE ACCESS</h6>
-                <h1 className="font-epilogue text-6xl md:text-7xl lg:text-8xl text-yellow-500 font-bold">The Club</h1>
-              </motion.div>
-            </div>
+            <motion.div 
+              className="space-y-2"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h6 className="text-sm uppercase tracking-wider text-yellow-500">EXCLUSIVE ACCESS</h6>
+              <h1 className="font-epilogue text-6xl md:text-7xl lg:text-8xl text-yellow-500 font-bold">The Club</h1>
+            </motion.div>
             
             <motion.div 
               className="prose prose-lg max-w-none text-white/80"
