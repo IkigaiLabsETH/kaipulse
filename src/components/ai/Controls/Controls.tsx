@@ -27,10 +27,13 @@ export const Controls: FC = () => {
             y: "100%",
             opacity: 0,
           }}
-          className="fixed bottom-0 left-0 w-full p-4 sm:p-6 flex items-center justify-center z-50 bg-gradient-to-t from-background via-background/50 to-transparent"
+          className="fixed bottom-0 left-0 w-full pb-6 sm:pb-8 px-4 sm:px-6 flex items-end justify-center z-50"
         >
-          <Card className="relative max-w-3xl w-full mx-auto p-3 sm:p-4 border border-border/40 shadow-sm bg-background/95 backdrop-blur-sm">
-            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          {/* Background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-transparent" />
+
+          <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 border-0 sm:border border-[#F7B500]/20 shadow-sm bg-[#000913]/80 backdrop-blur-sm">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-6">
               {/* Left Section */}
               <div className="flex items-center gap-4 w-full sm:w-auto">
                 <VoiceToggle />
@@ -45,17 +48,18 @@ export const Controls: FC = () => {
               </div>
 
               {/* Right Section - Button */}
-              <div className="w-full sm:w-auto flex justify-center sm:justify-end">
+              <div className="w-full sm:w-auto flex justify-center sm:justify-end mt-2 sm:mt-0">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
+                  className="w-full sm:w-auto"
                 >
                   <Button
                     onClick={() => disconnect()}
                     className={cn(
                       "relative gap-3 font-semibold text-base py-4 sm:py-6 px-6",
-                      "bg-gradient-to-r from-black via-zinc-900 to-black",
-                      "hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500]",
+                      "bg-[#000913]",
+                      "hover:bg-[#F7B500]",
                       "text-[#F7B500] hover:text-black",
                       "transition-all duration-300 ease-out",
                       "border border-[#F7B500]",
