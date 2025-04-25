@@ -30,7 +30,7 @@ export const StartCall: FC = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <motion.div
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
@@ -39,7 +39,7 @@ export const StartCall: FC = () => {
         <Button
           size="lg"
           className={cn(
-            "relative w-full gap-3 font-semibold text-base py-6",
+            "relative w-full gap-3 font-semibold text-base py-4 sm:py-6",
             "bg-gradient-to-r from-black via-zinc-900 to-black",
             "hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500]",
             "text-[#F7B500] hover:text-black",
@@ -53,8 +53,8 @@ export const StartCall: FC = () => {
           onClick={handleConnect}
           disabled={isConnecting}
         >
-          <Mic className="w-5 h-5 animate-pulse" />
-          {isConnecting ? 'Connecting...' : 'Start Voice Call'}
+          <Mic className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
+          {isConnecting ? 'Connecting...' : 'Start Call'}
         </Button>
       </motion.div>
       {error && (
