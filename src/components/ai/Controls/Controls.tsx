@@ -32,13 +32,18 @@ export const Controls: FC = () => {
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-transparent" />
 
-          <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 border-0 sm:border border-[#F7B500]/20 shadow-sm bg-[#000913]/80 backdrop-blur-sm">
+          <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 border-0 sm:border border-[#F7B500]/20 shadow-sm bg-black/80 backdrop-blur-sm">
             <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-6">
               {/* Left Section */}
               <div className="flex items-center gap-4 w-full sm:w-auto">
-                <VoiceToggle />
-                <div className="uppercase tracking-[0.2em] text-[#F7B500] font-satoshi">
-                  <span className="font-semibold">LISTENING</span>
+                <div className="relative">
+                  <div className="absolute -inset-0.5 bg-[#F7B500] rounded-sm opacity-20"></div>
+                  <div className="relative bg-black px-4 py-3 rounded-sm border border-[#F7B500] flex items-center gap-3">
+                    <VoiceToggle />
+                    <span className="uppercase tracking-[0.2em] text-[#F7B500] font-satoshi font-semibold text-lg">
+                      LISTENING
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -58,7 +63,7 @@ export const Controls: FC = () => {
                     onClick={() => disconnect()}
                     className={cn(
                       "relative gap-3 font-semibold text-base py-4 sm:py-6 px-6",
-                      "bg-[#000913]",
+                      "bg-black",
                       "hover:bg-[#F7B500]",
                       "text-[#F7B500] hover:text-black",
                       "transition-all duration-300 ease-out",
