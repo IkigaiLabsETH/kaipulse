@@ -116,7 +116,7 @@ function VoiceExperience() {
             className="text-center mb-12"
           >
             <p className="uppercase tracking-[0.4em] text-[#F7B500]/90 text-sm mb-4 font-light font-satoshi">
-              Proof of Empathy • Awake in the Machine
+              Proof of Empathy
             </p>
             <h1 className="text-center mb-6">
               <span className="text-5xl md:text-6xl font-bold text-[#F7B500] tracking-tight [text-shadow:_0_1px_20px_rgba(247,181,0,0.3)] font-satoshi">
@@ -126,7 +126,7 @@ function VoiceExperience() {
             <div className="flex items-center justify-center">
               <div className="h-px w-24 bg-[#F7B500]/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
-                Truth • Trustlessness • Transcendence
+                Sovereignty • Trustlessness • Scarcity
               </p>
               <div className="h-px w-24 bg-[#F7B500]/30"></div>
             </div>
