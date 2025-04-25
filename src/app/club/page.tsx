@@ -30,11 +30,11 @@ export default function ClubPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p className="text-yellow-500/90 font-medium">
-                The Club is your entry point into a sovereign future—on-chain, off-grid, and ahead of the curve.
+                Your entry point into a sovereign future—powered by Bitcoin, on-chain and off-grid.
               </p>
 
               <p className="text-white/90">
-                We don&apos;t trade hours for dollars. We build stacks that work while we sleep. Our portfolios are designed for resilience, our lives optimized for optionality. We&apos;re early to the protocols rewriting the rules: Olympus, Berachain, AI agents, tokenized yield. We use frameworks, not feelings.
+                We don&apos;t trade hours for dollars. We build Bitcoin stacks that work while we sleep. Our portfolios are designed for resilience through the Bitcoin standard, our lives optimized for optionality. We&apos;re early to the hardest money ever created. We use proof-of-work, not promises.
               </p>
 
               <p className="text-white/90">
