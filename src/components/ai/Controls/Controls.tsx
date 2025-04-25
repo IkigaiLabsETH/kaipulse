@@ -36,7 +36,7 @@ export const Controls: FC = () => {
             <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-6">
               {/* Left Section */}
               <div className="flex items-center justify-center w-full sm:w-auto">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 border border-[#F7B500]/30">
+                <div className="flex items-center gap-4">
                   <VoiceToggle />
                   <span className="uppercase tracking-[0.15em] text-[#F7B500]/70 font-satoshi font-medium text-sm">
                     Listening
@@ -59,13 +59,13 @@ export const Controls: FC = () => {
                   <Button
                     onClick={() => disconnect()}
                     className={cn(
-                      "relative gap-3 font-semibold text-base py-4 sm:py-6 px-6",
+                      "relative gap-3 font-semibold text-base py-4 px-6",
                       "bg-black",
                       "hover:bg-[#F7B500]",
                       "text-[#F7B500] hover:text-black",
                       "transition-all duration-300 ease-out",
-                      "border border-[#F7B500]",
-                      "shadow-[5px_5px_0px_0px_#F7B500]",
+                      "border-2 border-[#F7B500]",
+                      "shadow-[5px_5px_0px_0px_rgba(247,181,0,1)]",
                       "hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]",
                       "disabled:opacity-70 disabled:cursor-not-allowed",
                       "rounded-md",

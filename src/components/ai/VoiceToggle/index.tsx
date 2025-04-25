@@ -134,11 +134,14 @@ export const VoiceToggle: React.FC<VoiceToggleProps> = ({ onActiveChange }) => {
         onPressedChange={toggleRecording}
         variant="outline"
         className={cn(
-          "inline-flex items-center justify-center rounded-lg p-4",
-          "border border-yellow-500",
+          "inline-flex items-center justify-center rounded-md p-4",
+          "bg-black border-2 border-[#F7B500]",
+          "shadow-[5px_5px_0px_0px_rgba(247,181,0,1)]",
+          "hover:bg-[#F7B500] hover:text-black hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]",
+          "transition-all duration-300 ease-out",
           !voice.isMuted 
-            ? "bg-yellow-500 text-black" 
-            : "bg-transparent text-yellow-500"
+            ? "bg-[#F7B500] text-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]" 
+            : "text-[#F7B500]"
         )}
       >
         {!voice.isMuted ? (
