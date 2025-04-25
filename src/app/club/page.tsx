@@ -38,7 +38,7 @@ export default function ClubPage() {
               </p>
 
               <p className="text-white/90">
-                But sovereignty isn&apos;t just financial. It&apos;s health. It&apos;s taste. It&apos;s surf at sunrise and deep-work at golden hour. It&apos;s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Tesla. We live like our mitochondria compound ROI.
+                But sovereignty isn&apos;t just financial. It&apos;s health. It&apos;s taste. It&apos;s surf at sunrise and deep-work at golden hour. It&apos;s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Tesla. The good life.
               </p>
 
               <p className="text-white/90">
