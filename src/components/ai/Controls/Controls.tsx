@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { MicFFT } from '../MicFFT';
 import { VoiceToggle } from '../VoiceToggle';
 import { Phone } from "lucide-react";
+import { cn } from '@/lib/utils';
 
 export const Controls: FC = () => {
   const { disconnect, status, micFft } = useVoice();
@@ -31,23 +32,38 @@ export const Controls: FC = () => {
           <Card className="relative max-w-3xl w-full mx-auto p-4 border border-border/40 shadow-sm bg-background/95 backdrop-blur-sm flex items-center gap-6 justify-between">
             <div className="flex items-center gap-4">
               <VoiceToggle />
-              <div className="uppercase tracking-[0.2em] text-yellow-500 font-satoshi">
+              <div className="uppercase tracking-[0.2em] text-[#F7B500] font-satoshi">
                 <span className="font-semibold">LISTENING</span>
               </div>
             </div>
 
             <div className="w-full md:w-48 h-16 relative">
-              <MicFFT fft={micFft} className="fill-yellow-500" />
+              <MicFFT fft={micFft} className="fill-[#F7B500]" />
             </div>
 
-            <Button
-              variant="default"
-              onClick={() => disconnect()}
-              className="relative px-6 py-2 text-base bg-background text-yellow-500 border border-yellow-500 hover:bg-yellow-500 hover:text-background transition-all duration-300 rounded-lg flex items-center gap-2 font-medium"
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <Phone className="w-4 h-4" />
-              End Call
-            </Button>
+              <Button
+                onClick={() => disconnect()}
+                className={cn(
+                  "relative gap-3 font-semibold text-base py-6 px-6",
+                  "bg-gradient-to-r from-black via-zinc-900 to-black",
+                  "hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500]",
+                  "text-[#F7B500] hover:text-black",
+                  "transition-all duration-300 ease-out",
+                  "border border-[#F7B500]",
+                  "shadow-[5px_5px_0px_0px_#F7B500]",
+                  "hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]",
+                  "disabled:opacity-70 disabled:cursor-not-allowed",
+                  "rounded-md"
+                )}
+              >
+                <Phone className="w-4 h-4" />
+                End Call
+              </Button>
+            </motion.div>
           </Card>
         </motion.div>
       ) : null}
