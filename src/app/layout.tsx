@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Analytics } from '@vercel/analytics/react';
 import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
+import { Toaster } from "sonner";
 
 const boska = localFont({
   src: [
@@ -156,6 +157,7 @@ export default function RootLayout({
           </div>
         </PipelineErrorHandler>
         <Analytics />
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   )

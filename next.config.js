@@ -4,6 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'i.seadn.io',
       },
       {
@@ -63,8 +67,19 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: ['lucide-react', 'framer-motion'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+    };
+    return config;
+  },
+  experimental: {
+    optimizeCss: true,
   },
 }
 

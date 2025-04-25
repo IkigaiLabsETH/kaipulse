@@ -1,0 +1,144 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Sats Page Implementation
+
+A Bitcoin Lightning-powered photography platform where users can support creators with micropayments. Every like sends sats directly to photographers.
+
+## Completed Tasks
+
+- [x] Set up basic page structure with Next.js 14
+- [x] Create responsive hero section with Framer Motion animations
+- [x] Implement features grid with card components
+- [x] Build photo grid component with hover effects
+- [x] Add Lightning Network integration service
+- [x] Configure image optimization for Unsplash photos
+- [x] Set up proper client/server component boundaries
+- [x] Add loading states and skeleton UI
+- [x] Implement error handling for Lightning payments
+- [x] Configure proper Next.js image domains and patterns
+- [x] Fix server component serialization issues
+- [x] Optimize Framer Motion imports for better performance
+
+## In Progress Tasks
+
+- [ ] Add proper error tracking service integration (e.g., Sentry)
+- [ ] Implement analytics to track user interactions and payments
+- [ ] Add rate limiting for Lightning payment attempts
+
+## Future Tasks
+
+- [ ] Add user authentication system
+- [ ] Implement photographer profiles and portfolios
+- [ ] Create dashboard for photographers to track earnings
+- [ ] Add image upload functionality for photographers
+- [ ] Implement webhook handling for Lightning payment confirmations
+- [ ] Add automated testing suite
+- [ ] Set up CI/CD pipeline
+- [ ] Implement proper SEO optimization
+- [ ] Add proper logging system
+- [ ] Create backup and recovery procedures
+- [ ] Implement content moderation system
+- [ ] Add proper security headers
+- [ ] Set up monitoring and alerting
+- [ ] Create documentation for photographers and users
+
+## Implementation Plan
+
+### Architecture
+
+- Next.js 14 with App Router for the frontend
+- Lightning Network for payments
+- Framer Motion for animations
+- Shadcn UI + Tailwind for styling
+- SWR for data fetching (to be implemented)
+- Redis for rate limiting (to be implemented)
+
+### Data Flow
+
+1. User views photo grid
+2. On like/support:
+   - Check Lightning wallet connection
+   - Initiate payment
+   - Show loading state
+   - Handle success/failure
+   - Update UI accordingly
+
+### Technical Requirements for Production
+
+1. Error Handling:
+   - Implement proper error boundaries
+   - Add error tracking service
+   - Create user-friendly error messages
+
+2. Performance:
+   - Optimize image loading
+   - Implement proper caching
+   - Add performance monitoring
+
+3. Security:
+   - Add rate limiting
+   - Implement proper CORS policies
+   - Set up security headers
+   - Add input validation
+
+4. Monitoring:
+   - Set up logging
+   - Add performance metrics
+   - Create alerting system
+
+### Relevant Files
+
+- `src/app/sats/page.tsx` - Main page component ✅
+- `src/app/sats/components/PhotoGrid.tsx` - Photo grid with Lightning integration ✅
+- `src/app/sats/components/HeroSection.tsx` - Animated hero section ✅
+- `src/app/sats/components/FeatureCard.tsx` - Feature card component ✅
+- `src/app/sats/components/PhotoGridSkeleton.tsx` - Loading skeleton component ✅
+- `src/services/lightning/index.ts` - Lightning Network service ✅
+- `next.config.js` - Next.js configuration ✅
+
+### Environment Variables Needed
+
+```env
+NEXT_PUBLIC_LIGHTNING_NETWORK_URL=
+NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
+SENTRY_DSN=
+REDIS_URL=
+```
+
+### Production Checklist
+
+Before deploying to production:
+
+1. Security:
+   - [ ] Implement rate limiting
+   - [ ] Add security headers
+   - [ ] Set up CORS policies
+   - [ ] Add input validation
+   - [ ] Configure proper CSP
+
+2. Performance:
+   - [ ] Run Lighthouse audits
+   - [ ] Optimize bundle size
+   - [ ] Configure caching
+   - [ ] Set up CDN
+
+3. Monitoring:
+   - [ ] Set up error tracking
+   - [ ] Configure logging
+   - [ ] Add performance monitoring
+   - [ ] Set up alerts
+
+4. Testing:
+   - [ ] Add unit tests
+   - [ ] Add integration tests
+   - [ ] Add E2E tests
+   - [ ] Test error scenarios
+
+5. Documentation:
+   - [ ] Add API documentation
+   - [ ] Create user guide
+   - [ ] Write deployment guide
+   - [ ] Document error codes
