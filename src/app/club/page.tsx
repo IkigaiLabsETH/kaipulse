@@ -30,13 +30,15 @@ export default function ClubPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p>
-                Welcome to the Club, where financial sovereignty meets exclusive opportunity. 
-                Our members gain privileged access to market insights, 
-                and a community of visionary investors reshaping the future of wealth.
-              </p>
-              <p>
-                Join an elite circle of forward-thinking individuals who understand that true financial freedom 
-                comes from being early to the greatest monetary revolution in history.
+              The Club is your entry point into a sovereign future—on-chain, off-grid, and ahead of the curve.
+
+              We don’t trade hours for dollars. We build stacks that work while we sleep. Our portfolios are designed for resilience, our lives optimized for optionality. We’re early to the protocols rewriting the rules: Olympus, Berachain, AI agents, tokenized yield. We use frameworks, not feelings.
+
+              But sovereignty isn’t just financial. It’s health. It’s taste. It’s surf at sunrise and deep-work at golden hour. It’s fasting like a monk and sprinting like a wolf. We sip Bordeaux and drive Teslas powered by memes and moonshots. We live like our mitochondria compound ROI.
+
+              If you’re building in public, stacking in silence, and designing a life worth defending—this is your tribe.
+
+              Join the Club. Opt out loud.
               </p>
             </motion.div>
 
