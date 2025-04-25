@@ -33,19 +33,21 @@ export const Controls: FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-transparent" />
 
           <Card className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4 border-0 sm:border border-[#F7B500]/20 shadow-sm bg-black/80 backdrop-blur-sm">
-            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-6">
-              {/* Left Section - Voice Toggle */}
-              <div className="flex items-center justify-center w-full sm:w-auto">
-                <VoiceToggle />
-              </div>
-
+            <div className="flex flex-col items-center gap-12">
               {/* Middle Section - Visualization */}
-              <div className="w-full sm:w-48 h-12 sm:h-16 relative order-first sm:order-none">
+              <div className="w-full sm:w-48 h-12 sm:h-16 relative">
                 <MicFFT fft={micFft} className="fill-[#F7B500]" />
               </div>
 
-              {/* Right Section - Button */}
-              <div className="w-full sm:w-auto flex justify-center sm:justify-end mt-2 sm:mt-0">
+              {/* Controls Section */}
+              <div className="flex flex-col items-center gap-8">
+                {/* Mute Button */}
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-[#F7B500]/10 rounded-full blur-lg group-hover:bg-[#F7B500]/20 animate-pulse"></div>
+                  <VoiceToggle />
+                </div>
+
+                {/* End Call Button */}
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
