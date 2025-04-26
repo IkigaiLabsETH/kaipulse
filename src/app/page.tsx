@@ -13,7 +13,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="relative min-h-[80vh] flex flex-col items-center justify-center pt-24"
+        className="relative min-h-[80vh] flex flex-col items-center justify-center pt-10"
       >
         <div className="w-full max-w-4xl mx-auto px-4 pt-12 pb-8">
           <motion.div
@@ -22,8 +22,18 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="relative z-10 flex flex-col items-center space-y-6 text-center"
           >
-            <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 border border-yellow-500/30 rounded-full bg-yellow-500/10 backdrop-blur-sm">
-              <span className="text-sm text-yellow-400 font-medium">Bitcoin-First Strategy</span>
+            <div className="flex items-center justify-center mt-0 mb-8">
+              <span className="inline-flex items-center gap-2 px-6 py-2 border-2 border-yellow-500 bg-black/60 shadow-[0_2px_16px_0_rgba(247,181,0,0.10)] backdrop-blur font-satoshi font-semibold text-yellow-400 text-lg tracking-wide">
+                <Image
+                  src="/bitcoin/coin-bitcoin.svg"
+                  alt="Bitcoin"
+                  width={22}
+                  height={22}
+                  className="w-5 h-5"
+                  priority
+                />
+                Bitcoin-First Strategy
+              </span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-400 tracking-tight">
@@ -35,7 +45,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="relative z-10 mt-12 hidden sm:block">
+          <div className="relative z-10 mt-12">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
