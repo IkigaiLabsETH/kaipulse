@@ -54,11 +54,104 @@ This document outlines the requirements and steps for deploying the Lightning Ne
 ## Architecture
 
 ### Lightning Network Integration
-- **Provider**: River Lightning Services
-- **Implementation**: REST API integration
-- **Payment Flow**: WebLN for client-side, River API for server-side
+- **Provider**: Voltage Cloud
+- **Implementation**: lnd gRPC/REST API integration
+- **Payment Flow**: WebLN for client-side, Voltage node API for server-side
 - **Settlement**: Instant Lightning Network payments
 - **Hot Wallet**: Minimal balance strategy with automated top-ups
+
+## Backend Implementation
+
+### Managed Lightning Network with Voltage
+
+Satsnap leverages [Voltage Cloud](https://www.voltage.cloud/) to provide a secure, scalable, and production-ready Lightning Network backend. Voltage manages our Lightning node infrastructure, allowing us to focus on product development while maintaining full control over our node and keys.
+
+#### Key Components
+- **Voltage Lightning Node**: Our node is hosted and managed by Voltage, providing high uptime, automatic backups, and enterprise-grade security (SOC 2 compliant).
+- **API Integration**: The backend communicates with the Voltage node using the standard lnd gRPC/REST API. We use the [ln-service](https://github.com/alexbosworth/ln-service) Node.js library for robust Lightning operations.
+- **Backend Stack**: Next.js API routes (or Express), PostgreSQL for persistent data, Redis for rate limiting and caching, and Sentry/Winston for monitoring and logging.
+- **Security**: Node credentials (TLS cert, admin macaroon, connection string) are securely managed via environment variables. Only backend services have access to these secrets.
+- **Monitoring**: We use Sentry for error tracking, Winston for structured logging, and Voltage's dashboard for node health and payment monitoring.
+
+#### Workflow Overview
+1. **Invoice Creation**: When a user likes a photo, the backend creates a Lightning invoice via the Voltage node API. The invoice is returned to the client for payment.
+2. **Payment Settlement**: The backend subscribes to invoice updates using ln-service, updating the database and triggering reward logic when payments are received.
+3. **Rate Limiting & Validation**: Redis is used to enforce per-IP rate limits. All inputs are validated using Zod schemas.
+4. **Security & Compliance**: All API endpoints are protected with CORS, security headers, and origin checks. Node credentials are never exposed to the client.
+5. **Monitoring & Logging**: All requests, errors, and payment events are logged and monitored for reliability and security.
+
+#### Why Voltage?
+- **No node maintenance**: Voltage handles uptime, upgrades, and backups.
+- **Scalability**: Easily scale as user demand grows.
+- **Security**: Enterprise-grade, with our own keys and access controls.
+- **Developer Experience**: Standard lnd API, excellent documentation, and support.
+
+For more details, see [Voltage Infrastructure Docs](https://docs.voltage.cloud/) and [ln-service](https://github.com/alexbosworth/ln-service).
+
+## Alternative Backend Solutions: BTCPay & Strike
+
+### BTCPay Server
+[BTCPay Server](https://btcpayserver.org/) is an open-source, self-hosted Bitcoin and Lightning payment processor. It allows you to run your own Lightning node and provides a robust API for invoice creation, payment notifications, and wallet management.
+
+**Key Features:**
+- Fully self-hosted and open-source
+- Supports both on-chain and Lightning payments
+- Advanced invoice and payment API
+- Integrates with lnd, c-lightning, and Eclair
+- Built-in store and user management
+- No third-party custody or fees
+
+**Integration Model:**
+- Deploy BTCPay Server (Docker, cloud, or VPS)
+- Connect your backend to BTCPay's API for invoice creation and payment status
+- Use webhooks or polling for payment settlement
+- Full control over node, channels, and funds
+
+**Best For:**
+- Teams wanting maximum sovereignty and open-source ethos
+- Projects with DevOps resources for node and server management
+
+### Strike
+[Strike](https://strike.me/) is a custodial Lightning payment platform focused on seamless fiat-to-Bitcoin payments and global remittances. Strike offers a simple API for sending and receiving Lightning payments, with automatic fiat conversion and compliance.
+
+**Key Features:**
+- Custodial wallet and Lightning node
+- Instant fiat-to-Bitcoin conversion
+- Simple REST API for payments and invoices
+- No need to manage liquidity or channels
+- KYC/compliance handled by Strike
+
+**Integration Model:**
+- Register for Strike API access
+- Use Strike's REST API to create invoices and send payments
+- Funds can be settled in BTC or fiat
+- Minimal infrastructure required
+
+**Best For:**
+- Apps prioritizing fiat on/off-ramps and compliance
+- Teams wanting to avoid node management entirely
+
+### Comparison: Voltage Cloud vs. BTCPay vs. Strike
+
+| Feature/Criteria         | Voltage Cloud                | BTCPay Server                | Strike                      |
+|-------------------------|------------------------------|------------------------------|-----------------------------|
+| Node Management         | Managed (non-custodial)      | Self-hosted (non-custodial)  | Custodial                   |
+| API Type                | lnd gRPC/REST                | REST/WebSocket               | REST                        |
+| Open Source             | No                           | Yes                          | No                          |
+| Channel/Liquidity Mgmt  | Managed or manual            | Manual                       | N/A                         |
+| Fiat Integration        | No                           | No                           | Yes                         |
+| Compliance/KYC          | No                           | No                           | Yes                         |
+| Uptime/SLA              | High (SLA)                   | Your responsibility          | High (SLA)                  |
+| Customization           | High                         | Very High                    | Low                         |
+| Best For                | Scaling, reliability         | Sovereignty, open-source     | Fiat flows, simplicity      |
+| Fees                    | Subscription + routing fees  | Hosting + routing fees       | Platform fees                |
+
+### Summary
+- **Voltage Cloud**: Best for teams wanting a production-grade, non-custodial Lightning node with minimal maintenance and high reliability.
+- **BTCPay Server**: Ideal for projects prioritizing sovereignty, open-source, and full control, with the tradeoff of more operational overhead.
+- **Strike**: Perfect for apps needing fiat integration, compliance, and the simplest possible Lightning API, at the cost of custody and flexibility.
+
+For most Bitcoin-native, creator-focused apps, Voltage or BTCPay are recommended. Strike is a strong option for global payments and fiat-centric use cases.
 
 ## Technical Requirements
 
@@ -85,9 +178,9 @@ Response:
 
 #### Required Environment Variables
 ```env
-RIVER_API_KEY=your_api_key
-RIVER_API_SECRET=your_api_secret
-RIVER_WEBHOOK_SECRET=your_webhook_secret
+VOLTAGE_LND_CERT=your_voltage_cert
+VOLTAGE_LND_MACAROON=your_voltage_macaroon
+VOLTAGE_LND_SOCKET=your_voltage_node_socket
 REDIS_URL=your_redis_url
 SENTRY_DSN=your_sentry_dsn
 ```
@@ -177,7 +270,7 @@ CREATE TABLE invoices (
 
 #### Integration Tests
 - API endpoint functionality
-- River API integration
+- Voltage node integration
 - WebLN compatibility
 - Payment flow
 
@@ -232,7 +325,7 @@ CREATE TABLE invoices (
 ```json
 {
   "dependencies": {
-    "@river-lightning/node": "^1.0.0",
+    "ln-service": "^7.0.0",
     "ioredis": "^5.0.0",
     "zod": "^3.0.0",
     "@sentry/nextjs": "^7.0.0",
@@ -244,12 +337,12 @@ CREATE TABLE invoices (
 ## Additional Resources
 
 ### Documentation
-- [River Lightning API Documentation](https://river.com/api)
+- [Voltage Infrastructure Docs](https://docs.voltage.cloud/)
 - [WebLN Specification](https://webln.dev)
 - [Lightning Network Best Practices](https://lightning.network)
 
 ### Support Channels
-- River Lightning Support
+- Voltage Cloud Support
 - Lightning Network Community
 - MSTY Technical Support
 
