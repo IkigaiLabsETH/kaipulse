@@ -1,4 +1,8 @@
-# MSTY Freedom Calculator - Lightning Network Production Guide
+
+
+      ⚡️   ⚡️   ⚡️   BITCOIN LIGHTNING NETWORK   ₿   ⚡️   ⚡️   ⚡️
+
+# Lightning Network Production Guide
 
 # Satsnap
 
