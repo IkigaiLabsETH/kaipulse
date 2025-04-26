@@ -214,6 +214,143 @@ export default function MSTYPlatformsPage() {
             </div>
           </Card>
         </motion.div>
+
+                {/* Enhanced Status Levels Table */}
+                <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
+        >
+          <AccordionItem title="Freedom Status Levels">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-yellow-500/20">
+                    <th className="p-4 text-left text-yellow-500 font-bold">Status</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">Monthly Income</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">MSTY Shares</th>
+                    <th className="p-4 text-left text-yellow-500 font-bold">Capital @ $20/Share</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { status: "Beginner", income: "$20", shares: "20", capital: "$400" },
+                    { status: "Intermediate", income: "$500", shares: "500", capital: "$10,000" },
+                    { status: "Advanced", income: "$3,000", shares: "3,000", capital: "$60,000" },
+                    { status: "Elite", income: "$6,000", shares: "6,000", capital: "$120,000" },
+                    { status: "Supreme", income: "$10,000", shares: "10,000", capital: "$200,000" },
+                    { status: "Legend", income: "$50,000+", shares: "50,000+", capital: "$1,000,000+" }
+                  ].map((level, index) => (
+                    <motion.tr
+                      key={level.status}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors"
+                    >
+                      <td className="p-4 font-medium text-white">{level.status}</td>
+                      <td className="p-4 text-white/90">{level.income}</td>
+                      <td className="p-4 text-white/90">{level.shares}</td>
+                      <td className="p-4 text-white/90">{level.capital}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AccordionItem>
+        </motion.div>
+
+                {/* Enhanced FAQ Section */}
+                <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <ChevronDown className="w-8 h-8 text-yellow-500" />
+            <h2 className="text-3xl font-bold text-yellow-500">Frequently Asked Questions</h2>
+          </div>
+          <AccordionItem title="How does the strategy work?" defaultOpen>
+            <p className="text-white/90">
+              Our strategy combines Bitcoin self-custody (80%) with strategic positions in MSTY (10%) 
+              for monthly income and MSTR (10%) for additional Bitcoin exposure. MSTY generates income through 
+              an options-based strategy on MSTR stock, utilizing covered call writing and put option selling, 
+              while also holding short-term U.S. Treasuries as collateral. This approach provides both wealth 
+              preservation and regular income without compromising your core Bitcoin position.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="What are MSTY&apos;s dividend yields and sustainability?">
+            <p className="text-white/90">
+              MSTY currently offers a distribution rate of approximately 101.29% annually. However, these yields 
+              can fluctuate based on several factors:
+              <br/><br/>
+              • MSTR&apos;s stock price volatility and Bitcoin&apos;s value movements<br/>
+              • Market conditions and options market dynamics<br/>
+              • Changes in implied volatility affecting option premiums<br/>
+              <br/>
+              While the yield is attractive, it&apos;s important to understand that distributions aren&apos;t guaranteed 
+              and can vary monthly based on market conditions.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="What are the tax implications for MSTY distributions?">
+            <p className="text-white/90">
+              For French residents, MSTY distributions are subject to a 15% U.S. withholding tax. It&apos;s important 
+              to understand that:
+              <br/><br/>
+              • The 15% tax is automatically withheld at source<br/>
+              • You&apos;ll need to declare these distributions on your French tax return<br/>
+              • The withheld tax can often be credited against your French tax liability<br/>
+              <br/>
+              We recommend consulting with a tax professional for personalized advice on your situation.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="What are the risks involved?">
+            <p className="text-white/90">
+              Key risks to consider include:
+              <br/><br/>
+              • Dividend Variability: Monthly income can fluctuate based on market conditions<br/>
+              • Capital Risk: MSTR stock price and Bitcoin value declines can lead to losses<br/>
+              • Market Liquidity: Performance is tied to MSTR and Bitcoin volatility<br/>
+              • Tax Implications: Converting Bitcoin to MSTY may trigger taxable events<br/>
+              <br/>
+              It&apos;s recommended to consult with a financial advisor before making substantial investments.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="How do I get started?">
+            <p className="text-white/90">
+              Start by using our calculator to determine your target monthly income and required MSTY 
+              shares. Follow these steps:
+              <br/><br/>
+              1. Determine your desired monthly income<br/>
+              2. Calculate required shares (approximately $1 monthly distribution per share)<br/>
+              3. Ensure you maintain 80% in Bitcoin cold storage<br/>
+              4. Consider tax implications and documentation requirements<br/>
+              5. Set up proper tracking for distributions and tax reporting<br/>
+              <br/>
+              Remember to maintain your Bitcoin-first approach while using MSTY for income generation.
+            </p>
+          </AccordionItem>
+          <AccordionItem title="How do I track my investments and taxes?">
+            <p className="text-white/90">
+              We recommend maintaining detailed records:
+              <br/><br/>
+              • Number of MSTY shares and monthly distributions<br/>
+              • U.S. withholding tax amounts (15%)<br/>
+              • EUR/USD exchange rates for tax reporting<br/>
+              • Form W-8BEN filing with your broker<br/>
+              • Monthly income tracking for tax purposes<br/>
+              <br/>
+              Consider using a spreadsheet to track gross dividends, taxes withheld, and net income in both 
+              USD and EUR.
+            </p>
+          </AccordionItem>
+        </motion.div>
+        
       </div>
     </div>
   )

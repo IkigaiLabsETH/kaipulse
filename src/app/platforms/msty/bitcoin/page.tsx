@@ -715,6 +715,8 @@ export default function BitcoinPage() {
             </div>
           </Card>
         </motion.div>
+
+        
       </div>
     </div>
   )
