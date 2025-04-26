@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import * as Sentry from '@sentry/nextjs';
 import winston from 'winston';
 
 const logger = winston.createLogger({
@@ -30,7 +29,6 @@ export async function GET(
       requestId,
     });
   } catch (err: unknown) {
-    Sentry.captureException(err);
     let message = 'Unknown error';
     if (err instanceof Error) message = err.message;
     logger.error(`[${requestId}] Status endpoint error: ${message}`);

@@ -4,7 +4,6 @@ import Redis from 'ioredis';
 // @ts-expect-error: ln-service has no types
 import { createInvoice } from 'ln-service';
 import { prisma } from '@/lib/prisma';
-import * as Sentry from '@sentry/nextjs';
 import winston from 'winston';
 import { randomUUID } from 'crypto';
 
@@ -101,7 +100,6 @@ export async function POST(request: Request) {
       requestId,
     });
   } catch (err: unknown) {
-    Sentry.captureException(err);
     let message = 'Unknown error';
     if (err instanceof Error) message = err.message;
     logger.error(`[${requestId}] Internal error: ${message}`);
