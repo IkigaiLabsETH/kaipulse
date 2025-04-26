@@ -59,6 +59,11 @@ const nextConfig = {
       ...config.resolve.fallback,
       fs: false,
     };
+    config.ignoreWarnings = [
+      (warning) =>
+        typeof warning.message === 'string' &&
+        warning.message.includes('require function is used in a way in which dependencies cannot be statically extracted'),
+    ];
     return config;
   },
   // Production optimizations
