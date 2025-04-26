@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Bitcoin, Calculator } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import PriceTicker from '@/components/PriceTicker';
 
@@ -53,7 +53,13 @@ export default function Home() {
             </div>
             <div className="relative flex justify-center">
               <div className="bg-black px-4">
-                <Bitcoin className="w-8 h-8 text-yellow-500" />
+                <Image
+                  src="/bitcoin/coin-bitcoin.svg"
+                  alt="Bitcoin Icon"
+                  width={28}
+                  height={28}
+                  className="w-7 h-7 text-yellow-500"
+                />
               </div>
             </div>
           </div>
@@ -74,16 +80,41 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center py-24"
+          className="relative flex flex-col items-center justify-center py-32"
         >
-
-          <Link
-            href="/voice"
-            className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
-          >
-            <Calculator className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            Call Satoshi
-          </Link>
+          {/* Radial background inspired by voice page */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle_at_center,_rgba(247,181,0,0.10)_0%,_rgba(0,0,0,0)_80%)] blur-2xl" />
+          </div>
+          <div className="relative z-10 text-center">
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">
+              Ask Him Anything • Experience your AHA Moment
+            </p>
+            <h2 className="text-5xl sm:text-6xl font-bold text-yellow-400 mb-6 font-satoshi drop-shadow-lg">
+              Talk to Satoshi
+            </h2>
+            <div className="flex items-center justify-center mb-8">
+              <div className="h-px w-16 bg-yellow-500/30"></div>
+              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
+                &ldquo;Your Bitcoin journey, one question at a time.&rdquo;
+              </p>
+              <div className="h-px w-16 bg-yellow-500/30"></div>
+            </div>
+            <Link
+              href="/voice"
+              className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
+            >
+              <Image
+                src="/bitcoin/bitcoin-plus.svg"
+                alt="Bitcoin Icon"
+                width={28}
+                height={28}
+                className="w-7 h-7 group-hover:scale-110 transition-transform"
+                priority
+              />
+              Unlock Insights
+            </Link>
+          </div>
         </motion.div>
 
         {/* Enhanced Disclaimer */}
