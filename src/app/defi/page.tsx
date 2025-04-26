@@ -383,6 +383,192 @@ export default function DefiPage() {
         </motion.div>
       </div>
 
+      {/* Berachain Deep Dive */}
+      <div className="max-w-6xl mx-auto mt-20 mb-10">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🐻</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Berachain: Proof of Liquidity & Tri-Token Innovation</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                <b className="text-yellow-500">What Sets Berachain Apart?</b> Berachain isn&apos;t just another PoS chain—it&apos;s a DeFi-first ecosystem built to solve capital inefficiency. Its tri-token model and Proof of Liquidity (PoL) mechanism realign incentives between validators, users, and dApps.
+              </div>
+              <ul className="list-disc ml-6 space-y-2">
+                <li><b>Tri-Token System:</b> <b>BERA</b> (gas), <b>BGT</b> (governance, earned via liquidity), <b>HONEY</b> (stablecoin).</li>
+                <li><b>POL:</b> Validators direct rewards to dApps and liquidity pools, not just stakers—aligning security with ecosystem growth.</li>
+                <li><b>Unified DeFi Hub:</b> AMMs, perps, lending, NFTs, and SocialFi all live on one chain, with EVM compatibility for easy migration.</li>
+                <li><b>Dynamic Community:</b> Rapid dApp launches, NFT culture, and a builder-first ethos drive innovation and engagement.</li>
+              </ul>
+              <div>
+                <b className="text-yellow-500">Challenges & Opportunities</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li><b>Tokenomics:</b> High BERA inflation and VC allocations, but PoL and BGT mechanics aim to balance growth and rewards.</li>
+                  <li><b>Exchange Dynamics:</b> Success depends on building credibility and liquidity, not just hype—exchanges and market trust are key.</li>
+                  <li><b>TVL & Ecosystem Growth:</b> Early TVL is strong, but more dApps and sticky incentives are needed to attract and retain users.</li>
+                  <li><b>Builder Culture:</b> The chain attracts unconventional, creative devs—turning challenges into opportunities for new DeFi primitives.</li>
+                </ul>
+              </div>
+              <div>
+                <b className="text-yellow-500">The Road Ahead</b> Berachain is betting on PoL, unified liquidity, and a vibrant community to become DeFi&apos;s next powerhouse. The journey is just beginning—will its bold model set a new standard, or will market headwinds prove too strong?
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* OlympusDAO Deep Dive */}
+      <div className="max-w-6xl mx-auto mt-20 mb-10">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🐻</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">OlympusDAO: Money as Software</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                <b className="text-yellow-500">Core Idea:</b> Olympus is an on-chain monetary computer: it programs supply, stability, credit, and liquidity. Unlike Bitcoin&apos;s fixed-supply gold, OHM aims for a crypto-native unit of account with full-stack monetary policy.
+              </div>
+              <ul className="list-disc ml-6 space-y-2">
+                <li><b>Treasury-Backed:</b> Every OHM is backed by liquid assets (DAI), giving it a real floor value and yield.</li>
+                <li><b>Protocol-Owned Liquidity:</b> Olympus owns its own LPs, ensuring deep, stable markets and fee income.</li>
+                <li><b>Range-Bound Stability:</b> Automated market ops keep OHM price within a band, smoothing volatility.</li>
+                <li><b>Cooler Loans:</b> Borrow DAI against gOHM at low fixed rates—native credit, no selling required.</li>
+              </ul>
+              <div className="flex gap-8 mt-4">
+                <div>
+                  <span className="text-yellow-500 font-semibold">+ Pros:</span>
+                  <ul className="list-disc ml-5">
+                    <li>Intrinsic yield, credible policy, native credit</li>
+                  </ul>
+                </div>
+                <div>
+                  <span className="text-yellow-500 font-semibold">- Cons:</span>
+                  <ul className="list-disc ml-5">
+                    <li>Complex, regulatory risk, relies on DeFi liquidity</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* The Provocation: Zeus's Critique */}
+      <div className="max-w-6xl mx-auto mt-16 mb-10">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-2">
+              <span className="font-bold text-yellow-500 text-xl md:text-2xl">The Provocation: Zeus&apos;s Critique</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-3 font-satoshi">
+              <p>
+                <b>Zeus (@ohmzeus)</b> argues crypto lost its way: instead of building true financial freedom, most projects just made Wall Street more efficient. He says tokens lack real monetary design, and DeFi is at risk of becoming just better rails for the same old system.
+              </p>
+              <a
+                href="https://x.com/ohmzeus/status/1916190873425219735"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-yellow-500 underline text-base"
+              >
+                Read the full thread by Zeus
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bitcoin Counter-argument */}
+      <div className="max-w-6xl mx-auto mt-16 mb-10">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🐻</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Bitcoin Didn&apos;t Fail—It&apos;s Winning on Its Own Terms</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <p>
+                ZEUS isn&apos;t wrong about crypto&apos;s lost plot, but Bitcoin&apos;s design is a feature, not a flaw. Here&apos;s how it answers the core critique:
+              </p>
+              <ul className="list-disc ml-6 space-y-3">
+                <li>
+                  <b>Hard-Money Bedrock, Then Layers:</b> Bitcoin deliberately separates base-layer monetary policy (21M cap, no discretion) so higher-layer software can add credit, yield, and stability—without compromising sovereignty. Minimalism is defense-in-depth.
+                </li>
+                <li>
+                  <b>Integration ≠ Capitulation:</b> ETFs now warehouse 1.14M BTC (~5.5% of supply, $108B) in cold custody—not IOUs—under Bitcoin&apos;s rules. TradFi bends; the protocol doesn&apos;t. Every ETF coin removed from float tightens supply.
+                </li>
+                <li>
+                  <b>Censorship Resistance in the Wild:</b> Bitcoin rails moved value out of Argentina, Nigeria, and Russia when banks froze wires. Tether blacklisted 1,299 addresses in 2024 alone. Freedom tech is measured by what you can&apos;t stop.
+                </li>
+                <li>
+                  <b>Path to Unit-of-Account Still Open:</b> El Salvador&apos;s Lightning usage is early but real; merchant acceptance &gt;30% of population. Dollar dominance is temporary—circular Bitcoin economies already show price discovery in sats.
+                </li>
+              </ul>
+              <div className="overflow-x-auto mt-6">
+                <table className="w-full text-base text-left border-separate border-spacing-y-2">
+                  <thead>
+                    <tr className="text-yellow-500">
+                      <th className="pr-4">Metric</th>
+                      <th className="pr-4">2020</th>
+                      <th className="pr-4">Today</th>
+                      <th className="pr-4">Δ</th>
+                      <th>Why it matters</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-white/80">
+                    <tr>
+                      <td>Lightning capacity</td>
+                      <td>~1,100 BTC</td>
+                      <td>5,300 BTC</td>
+                      <td>+384%</td>
+                      <td>Spendability</td>
+                    </tr>
+                    <tr>
+                      <td>ETF AUM</td>
+                      <td>$0</td>
+                      <td>$108B</td>
+                      <td>massive</td>
+                      <td>Deep liquidity</td>
+                    </tr>
+                    <tr>
+                      <td>Nodes (LN)</td>
+                      <td>≈8,000</td>
+                      <td>11,500</td>
+                      <td>+44%</td>
+                      <td>Network health</td>
+                    </tr>
+                    <tr>
+                      <td>Frozen BTC txs</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>unchanged</td>
+                      <td>Censorship-proof</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-6">
+                <b className="text-yellow-500">Why This Answers ZEUS:</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li><b>&quot;BTC surrendered; ETFs = absorption.&quot;</b> ETFs can&apos;t print coins; they shrink float and cement the 21M rule.</li>
+                  <li><b>&quot;Primitive monetary design.&quot;</b> Monetary functions migrate to permissionless layers where competition is free-market, not protocol politics.</li>
+                  <li><b>&quot;Stablecoins prove dollar hegemony.&quot;</b> They&apos;re bridge tech. As Lightning matures, BTC-denominated credit undercuts USD reliance.</li>
+                  <li><b>&quot;Utility pricing doom loop.&quot;</b> Bitcoin captures value via monetary premium, not fee rent. Gold never needed TPS to outlast fiat.</li>
+                </ul>
+              </div>
+              <p className="mt-6 text-yellow-200 font-semibold">
+                The cypher-punk fire that lit Bitcoin still burns: we joined this movement not to trim a few basis points from wire fees but to tear down the gates entirely, handing the keys back to ordinary people. Money was meant to answer to math, not ministries, and that mission loses its edge every time we celebrate dollar-pegged rails or regulatory hugs. Faster blocks and cheaper gas are hollow trophies if the token underneath can&apos;t stand alone as censorship-resistant cash. ETFs and bank-issued stablecoins may prove Bitcoin&apos;s allure, but they also show how easily a revolution can be absorbed if we confuse institutional applause with victory. Tokens priced purely as &quot;utility&quot; will bleed value until someone remembers to design actual sovereign money. The window to finish that job is still open—and the next chapter belongs to builders who refuse to trade freedom for comfort.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bitcoin Magazine Footer */}
       <div className="relative py-24 mt-20 overflow-hidden">
         {/* Bitcoin pattern background */}
@@ -398,7 +584,7 @@ export default function DefiPage() {
           <div className="text-center">
             <div className="h-px w-full max-w-xs mx-auto bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent mb-6"></div>
             <p className="text-white/40 uppercase tracking-widest text-xs font-light font-satoshi">
-              BITCOIN DEFI • FINANCIAL FREEDOM • SINCE 2024
+              BITCOIN MAXI SINCE 2013 • DEFI LOVER SINCE 2017
             </p>
           </div>
         </div>
