@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Bitcoin, TrendingUp, DollarSign, Calculator } from 'lucide-react';
+import { Bitcoin, Calculator } from 'lucide-react';
 import Link from 'next/link';
 import PriceTicker from '@/components/PriceTicker';
 
@@ -76,27 +76,13 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center py-24"
         >
-          <h2 className="text-4xl font-bold text-yellow-400 mb-8">Bitcoin-First Strategy</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mb-12">
-            <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-[#1c1f26]/50 border border-yellow-500/30">
-              <Bitcoin className="w-8 h-8 text-yellow-400" />
-              <span className="text-lg">BTC = Saving</span>
-            </div>
-            <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-[#1c1f26]/50 border border-yellow-500/30">
-              <TrendingUp className="w-8 h-8 text-yellow-400" />
-              <span className="text-lg">MSTR = Investment</span>
-            </div>
-            <div className="flex flex-col items-center gap-3 p-6 rounded-lg bg-[#1c1f26]/50 border border-yellow-500/30">
-              <DollarSign className="w-8 h-8 text-yellow-400" />
-              <span className="text-lg">MSTY = Income</span>
-            </div>
-          </div>
+
           <Link
-            href="/calculator"
+            href="/voice"
             className="group inline-flex items-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-8 py-4 text-xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
           >
             <Calculator className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            Calculate Your Freedom
+            Call Satoshi
           </Link>
         </motion.div>
 
@@ -110,7 +96,7 @@ export default function Home() {
         >
           <div className="bg-transparent p-4">
             <h3 className="text-yellow-400 font-semibold mb-2 text-base">Important Disclaimer</h3>
-            <p className="text-white/70 leading-relaxed text-xs">
+            <p className="text-white/70 leading-relaxed text-[10px]">
               This website and its tools are for educational purposes only. Not financial advice. 
               Always do your own research and consult with qualified professionals before making investment decisions. 
               Past performance is not indicative of future results. Investing involves risk of loss.
