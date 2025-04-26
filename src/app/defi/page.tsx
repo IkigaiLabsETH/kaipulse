@@ -342,7 +342,7 @@ export default function DefiPage() {
               </Button>
             </a>
             <a 
-              href="https://app.euler.finance/vault/0x16C7169421CfB2C78b2D447b9274c61B8b2E846a?network=berachain"
+              href="https://app.euler.finance/borrow?collateralAsset=WBTC&sorting=liquidity-desc&network=berachain"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
@@ -351,7 +351,7 @@ export default function DefiPage() {
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>Lend on Berachain</span>
+                  <span>Borrow on Berachain</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
@@ -366,7 +366,7 @@ export default function DefiPage() {
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>Farm on Origami</span>
+                  <span>oriBGT on Origami</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
