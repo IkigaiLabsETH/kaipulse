@@ -1,46 +1,9 @@
 "use client";
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Bitcoin, TrendingUp, DollarSign, ChevronDown, Calculator } from 'lucide-react';
+import { Bitcoin, TrendingUp, DollarSign, Calculator } from 'lucide-react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import PriceTicker from '@/components/PriceTicker';
-
-interface AccordionItemProps {
-  title: string;
-  children: React.ReactNode;
-  defaultOpen?: boolean;
-}
-
-function AccordionItem({ title, children, defaultOpen = false }: AccordionItemProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
-  return (
-    <div className="border-b border-yellow-500/20 last:border-0">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full py-4 text-left"
-      >
-        <span className="text-xl font-semibold text-yellow-400">{title}</span>
-        <ChevronDown
-          className={cn(
-            "w-5 h-5 text-yellow-400 transition-transform",
-            isOpen && "transform rotate-180"
-          )}
-        />
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="overflow-hidden"
-      >
-        <div className="pb-4">{children}</div>
-      </motion.div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
@@ -145,9 +108,9 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto"
         >
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-6">
-            <h3 className="text-yellow-400 font-semibold mb-3">Important Disclaimer</h3>
-            <p className="text-white/70 leading-relaxed">
+          <div className="bg-transparent p-4">
+            <h3 className="text-yellow-400 font-semibold mb-2 text-base">Important Disclaimer</h3>
+            <p className="text-white/70 leading-relaxed text-xs">
               This website and its tools are for educational purposes only. Not financial advice. 
               Always do your own research and consult with qualified professionals before making investment decisions. 
               Past performance is not indicative of future results. Investing involves risk of loss.
