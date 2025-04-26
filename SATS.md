@@ -1,6 +1,85 @@
+# Satsnap Lightning Like System — Implementation Progress (2024-04-26)
 
+## ✅ Production-Ready Lightning Like System (MVP)
 
-      ⚡️   ⚡️   ⚡️   BITCOIN LIGHTNING NETWORK   ₿   ⚡️   ⚡️   ⚡️
+### Backend
+- **Prisma schema**: Added `Invoice` model for Lightning payments (with status, expiry, settlement, etc.)
+- **API endpoints**:
+  - `/api/lightning/create-invoice`: Creates a real Lightning invoice (Voltage, ln-service, Prisma persistence, Zod validation, Redis rate limiting, Sentry/Winston logging)
+  - `/api/lightning/webhook`: Handles settlement webhooks from Voltage, updates invoice status, triggers reward logic
+  - `/api/lightning/invoice-status/[paymentHash]`: Returns invoice status for polling/payment confirmation
+- **Reward logic**: Webhook triggers reward logic (stubbed, ready for user/creator integration)
+
+### Frontend
+- **LightningPaymentWidget**: Modular, dark-themed React component for invoice creation, QR code, and payment status polling (SWR)
+- **Per-photo Lightning likes**: Each photo in the grid has a like button that opens the widget, sends 21 sats, and shows a reward animation on payment
+- **PhotoCard**: Modular component for each photo, handles its own Lightning like/payment state
+- **PhotoGrid**: Renders a grid of PhotoCards, tracks which photos have been rewarded
+
+### Integration & UX
+- **True per-photo Lightning like system**: 21 sats sent for every like, with real-time feedback and reward animation
+- **Reward animation**: "Payment received! Reward unlocked!" on successful payment
+- **All code modular and production-ready** (Next.js 14+, App Router, TypeScript, Tailwind, Framer Motion)
+
+---
+
+## ⚡️ System Architecture Diagram
+
+```mermaid
+flowchart TD
+  User[User clicks Like on PhotoCard] --> Widget[LightningPaymentWidget opens]
+  Widget --> API1[POST /api/lightning/create-invoice]
+  API1 -->|Creates Invoice| PrismaDB[(Prisma DB)]
+  API1 -->|Returns Invoice| Widget
+  Widget -->|Shows QR| User
+  User -->|Pays Invoice| Voltage[Voltage Node]
+  Voltage -->|Webhook| API2[POST /api/lightning/webhook]
+  API2 -->|Update Invoice| PrismaDB
+  API2 -->|Trigger Reward| Widget
+  Widget -->|Polls| API3[GET /api/lightning/invoice-status/:hash]
+  API3 --> PrismaDB
+  API3 --> Widget
+  Widget -->|Show Reward Animation| User
+```
+
+---
+
+## ⚡️ Payment Flow Sequence
+
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant F as Frontend (Widget)
+  participant B as Backend (API)
+  participant V as Voltage Node
+  participant D as Database
+
+  U->>F: Clicks Like
+  F->>B: Create Invoice (amount=21, memo)
+  B->>D: Store Invoice (pending)
+  B-->>F: Return paymentRequest, paymentHash
+  F->>U: Show QR code
+  U->>V: Pays Invoice
+  V->>B: Webhook (invoice settled)
+  B->>D: Update Invoice (settled)
+  B->>F: (optional) Notify via polling
+  F->>U: Show Reward Animation
+```
+
+## ⚡️ Reward Logic Flow
+
+```mermaid
+flowchart TD
+  Webhook[Webhook: Invoice Settled] --> RewardLogic[Trigger Reward Logic]
+  RewardLogic --> DB[Update User/Creator Stats]
+  RewardLogic --> Unlock[Unlock Digital/Physical Reward]
+  RewardLogic --> Notify[Notify Frontend/UI]
+  Notify --> Widget[LightningPaymentWidget]
+  Unlock --> User[User Sees Reward Modal/Animation]
+  DB --> Analytics[Update Analytics/Leaderboard]
+```
+
+---
 
 # Lightning Network Production Guide
 
@@ -830,3 +909,15 @@ App Root
    - Offline queue support
    - Retry mechanism
    - Error recovery 
+
+## 🚧 Still To Do
+
+### Physical Reward Fulfillment
+- **Milestone-based unlocks:** When a user reaches a sats or like milestone, trigger eligibility for a physical reward (e.g., print, merch).
+- **Address collection:** Securely collect and store shipping info from the user (with privacy and GDPR compliance).
+- **Fulfillment pipeline:** Integrate with print-on-demand or shipping provider APIs, or build an admin dashboard for manual fulfillment.
+- **Status tracking:** Track reward claim, shipping, and delivery status in the database.
+- **User notifications:** Notify users of reward unlock, claim steps, and shipping updates (email, in-app, etc.).
+- **Admin tools:** Dashboard for managing claims, fulfillment, and support.
+
+--- 
