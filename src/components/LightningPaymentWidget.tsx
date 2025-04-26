@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import QRCode from 'qrcode.react';
+import { QRCode } from 'qrcode.react';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
