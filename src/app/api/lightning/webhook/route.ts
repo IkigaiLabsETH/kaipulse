@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import * as Sentry from '@sentry/nextjs';
 import winston from 'winston';
 
-const prisma = new PrismaClient();
 const logger = winston.createLogger({
   level: 'info',
   transports: [new winston.transports.Console()],
