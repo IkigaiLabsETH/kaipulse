@@ -374,10 +374,10 @@ export default function DefiPage() {
           </div>
           <div className="mt-8 space-y-2">
             <p className="text-sm text-white/60 font-satoshi">
-              Current APR on Infrared WBTC vaults: up to 90%
+              Not Financial Advice. NFA. DYOR.
             </p>
             <p className="text-sm text-white/40 font-satoshi">
-              Always do your own research and understand the risks before using any DeFi protocol. NFA.
+              Always do your own research and understand the risks before using any DeFi protocol.
             </p>
           </div>
         </motion.div>
