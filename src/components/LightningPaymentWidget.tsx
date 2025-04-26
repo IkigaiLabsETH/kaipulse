@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import { QRCode } from 'qrcode.react';
+import QRCode from 'react-qr-code';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -90,7 +90,7 @@ export default function LightningPaymentWidget({
               <div className="break-all text-xs bg-gray-100 p-2 rounded border border-[#F7B500] mt-1">{invoice.paymentRequest}</div>
             </div>
             <div className="flex justify-center my-4">
-              <QRCode value={invoice.paymentRequest} size={180} bgColor="#fff" fgColor="#111" level="H" includeMargin={true} />
+              <QRCode value={invoice.paymentRequest} bgColor="#fff" fgColor="#111" size={180} />
             </div>
             <div className="text-sm text-gray-500">
               Expires at: {new Date(invoice.expiresAt).toLocaleString()}
