@@ -21,12 +21,14 @@ A Bitcoin Lightning-powered photography platform where users can support creator
 - [x] Configure proper Next.js image domains and patterns
 - [x] Fix server component serialization issues
 - [x] Optimize Framer Motion imports for better performance
+- [x] Add rate limiting for Lightning payment attempts
+- [x] Implement webhook handling for Lightning payment confirmations
+- [x] Add proper error tracking service integration (e.g., Sentry)
+- [x] Fix Prisma/Vercel deployment issues (singleton pattern, env setup)
 
 ## In Progress Tasks
 
-- [ ] Add proper error tracking service integration (e.g., Sentry)
 - [ ] Implement analytics to track user interactions and payments
-- [ ] Add rate limiting for Lightning payment attempts
 
 ## Future Tasks
 
@@ -34,7 +36,6 @@ A Bitcoin Lightning-powered photography platform where users can support creator
 - [ ] Implement photographer profiles and portfolios
 - [ ] Create dashboard for photographers to track earnings
 - [ ] Add image upload functionality for photographers
-- [ ] Implement webhook handling for Lightning payment confirmations
 - [ ] Add automated testing suite
 - [ ] Set up CI/CD pipeline
 - [ ] Implement proper SEO optimization
@@ -54,7 +55,9 @@ A Bitcoin Lightning-powered photography platform where users can support creator
 - Framer Motion for animations
 - Shadcn UI + Tailwind for styling
 - SWR for data fetching (to be implemented)
-- Redis for rate limiting (to be implemented)
+- Redis for rate limiting (implemented)
+- Sentry for error tracking (implemented)
+- Prisma singleton pattern for Vercel/Next.js compatibility (implemented)
 
 ### Data Flow
 
@@ -98,6 +101,7 @@ A Bitcoin Lightning-powered photography platform where users can support creator
 - `src/app/sats/components/PhotoGridSkeleton.tsx` - Loading skeleton component ✅
 - `src/services/lightning/index.ts` - Lightning Network service ✅
 - `next.config.js` - Next.js configuration ✅
+- `src/lib/prisma.ts` - Prisma singleton utility ✅
 
 ### Environment Variables Needed
 
@@ -106,6 +110,7 @@ NEXT_PUBLIC_LIGHTNING_NETWORK_URL=
 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
 SENTRY_DSN=
 REDIS_URL=
+DATABASE_URL=
 ```
 
 ### Production Checklist
