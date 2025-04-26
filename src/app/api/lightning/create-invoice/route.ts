@@ -9,7 +9,7 @@ import winston from 'winston';
 import { randomUUID } from 'crypto';
 
 // --- Setup ---
-const redis = new Redis(process.env.REDIS_URL!);
+const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null;
 
 const logger = winston.createLogger({
   level: 'info',
@@ -37,6 +37,7 @@ function getLnd() {
 
 // --- Rate limiting ---
 async function checkRateLimit(ip: string) {
+  if (!redis) return false; // If Redis is not available, skip rate limiting
   const key = `invoice:rate:${ip}`;
   const count = await redis.incr(key);
   if (count === 1) await redis.expire(key, 60); // 1 minute window

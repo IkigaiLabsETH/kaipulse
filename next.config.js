@@ -66,7 +66,7 @@ const nextConfig = {
   compress: true,
   productionBrowserSourceMaps: false,
   // CSS optimization with critters
-  optimizeCss: true,
+  // optimizeCss: true,
 }
 
 module.exports = nextConfig 
