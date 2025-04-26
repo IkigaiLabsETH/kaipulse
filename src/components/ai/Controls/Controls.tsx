@@ -29,7 +29,7 @@ export const Controls: FC = () => {
           className="fixed bottom-0 left-0 w-full pb-6 sm:pb-8 px-4 sm:px-6 flex items-end justify-center z-50"
         >
           {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0" />
 
           <div className="relative z-10 max-w-3xl w-full mx-auto p-4 sm:p-4">
             <div className="flex flex-col items-center gap-12">
