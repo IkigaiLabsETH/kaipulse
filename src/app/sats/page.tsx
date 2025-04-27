@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "Satsnap | A like that actually means something",
+  title: "KaiPulse | A like that actually means something",
   description: "Support photographers with Bitcoin Lightning micropayments. Every like sends sats directly to creators.",
 };
 

@@ -1,4 +1,4 @@
-# Satsnap Lightning Like System — Implementation Progress (2024-04-26)
+# KaiPulse Lightning Like System — Implementation Progress (2024-04-26)
 
 ## ✅ Production-Ready Lightning Like System (MVP)
 
@@ -83,10 +83,10 @@ flowchart TD
 
 # Lightning Network Production Guide
 
-# Satsnap
+# KaiPulse
 
 ## Vision
-**Satsnap is a photo-first, curated social app where every like instantly sends Bitcoin to creators over the Lightning Network.**
+**KaiPulse is a photo-first, curated social app where every like instantly sends Bitcoin to creators over the Lightning Network.**
 
 **No ads, no algorithms — just real support for real artists.**
 
@@ -94,8 +94,8 @@ flowchart TD
 
 **It's the magic of early Instagram, rebuilt for the Bitcoin era.**
 
-### Why Satsnap?
-Satsnap reimagines social media engagement through the lens of Bitcoin's Lightning Network, creating meaningful connections between photographers and their audience. In a world where "likes" have become meaningless metrics, Satsnap transforms each interaction into tangible value.
+### Why KaiPulse?
+KaiPulse reimagines social media engagement through the lens of Bitcoin's Lightning Network, creating meaningful connections between photographers and their audience. In a world where "likes" have become meaningless metrics, KaiPulse transforms each interaction into tangible value.
 
 ### Core Philosophy
 - **Real Value Exchange**: Every like sends 21 sats directly to creators
@@ -147,7 +147,7 @@ This document outlines the requirements and steps for deploying the Lightning Ne
 
 ### Managed Lightning Network with Voltage
 
-Satsnap leverages [Voltage Cloud](https://www.voltage.cloud/) to provide a secure, scalable, and production-ready Lightning Network backend. Voltage manages our Lightning node infrastructure, allowing us to focus on product development while maintaining full control over our node and keys.
+KaiPulse leverages [Voltage Cloud](https://www.voltage.cloud/) to provide a secure, scalable, and production-ready Lightning Network backend. Voltage manages our Lightning node infrastructure, allowing us to focus on product development while maintaining full control over our node and keys.
 
 #### Key Components
 - **Voltage Lightning Node**: Our node is hosted and managed by Voltage, providing high uptime, automatic backups, and enterprise-grade security (SOC 2 compliant).
@@ -238,7 +238,7 @@ For most Bitcoin-native, creator-focused apps, Voltage or BTCPay are recommended
 
 ## Backend Research: Voltage, BTCPay Server, and Strike
 
-### Voltage as a Hosted Lightning Node for Satsnap
+### Voltage as a Hosted Lightning Node for KaiPulse
 
 **Voltage Overview:** Voltage Cloud is a Lightning-as-a-Service provider (launched 2020) that offers turnkey Bitcoin/Lightning infrastructure. In addition to Lightning nodes, it provides a Payments API for Bitcoin and stablecoins with instant settlement and extremely low fees. Voltage is SOC 2 Type II–compliant, emphasizing enterprise-grade security, and its open-source dashboard and encrypted backups ensure transparency. Developers can spin up Lightning nodes in minutes via the dashboard or REST API, avoiding the typical complexity of running a node from scratch.
 
@@ -246,7 +246,7 @@ For most Bitcoin-native, creator-focused apps, Voltage or BTCPay are recommended
 
 **Key Features for Micropayments:** Voltage nodes are designed for always-on, high-throughput use. They boast "99.9% uptime" reliability, meaning your node is almost always reachable. You can back up your node's seed and macaroons (credentials) to Voltage's encrypted storage (AES-256), so keys are protected but recoverable if needed. Voltage supports Tor, allowing a node's API to be reachable via Tor for privacy. Crucially, it offers webhook notifications on Lightning events (e.g. invoice settled) so your app never misses a payment. (Alternatively, you can poll the LND API or use its streaming RPCs, but webhooks simplify real-time updates.) The system is "no vendor lock-in": you can always export your seed and switch providers, since the node runs standard LND.
 
-**Security & Custody:** Voltage's model is non-custodial. When you create a node you set the seed and wallet password; Voltage never has access to your seed phrase or private keys. All sensitive files are encrypted client-side, and frequent backups are available for download. In short, users retain full control of funds ("Not your keys, not your coins"), unlike custodial wallets. This aligns well with Satsnap's "real Bitcoin payments" goal. The platform itself is audited (SOC 2) and uses best practices for data protection.
+**Security & Custody:** Voltage's model is non-custodial. When you create a node you set the seed and wallet password; Voltage never has access to your seed phrase or private keys. All sensitive files are encrypted client-side, and frequent backups are available for download. In short, users retain full control of funds ("Not your keys, not your coins"), unlike custodial wallets. This aligns well with KaiPulse's "real Bitcoin payments" goal. The platform itself is audited (SOC 2) and uses best practices for data protection.
 
 **Scalability:** Voltage runs on major cloud infrastructure (including Google Cloud) to enable global scale. Through partnerships with Google Cloud, Voltage can deploy nodes in multiple regions (e.g. Iowa, Netherlands, Singapore), reducing latency for a worldwide user base. Its architecture is containerized (Kubernetes) for elastic scaling, so it can handle spikes of micropayment traffic. Voltage is explicitly pitched for micropayments and high-volume use cases. In fact, Voltage itself touts Lightning's "near-zero fees" and ability to enable "micropayment experiences" that were impractical before.
 
@@ -263,30 +263,30 @@ For most Bitcoin-native, creator-focused apps, Voltage or BTCPay are recommended
 | Fiat Settlement | Supports USD on‑ramp/off‑ramp via Payments platform. (Stablecoins also supported.) | None built-in: only crypto. Must use third-party exchanges or plugins for fiat. | First-class USD support: link bank for ACH/wires (fiat wallet plus Lightning). |
 | Dev UX        | REST/gRPC APIs + extensive docs. Open-source dashboard. Webhooks for events. | Rich API (BitPay-compatible) for invoices/stores, plus Lightning UI (RTL) and webhooks. Self-hosted complexity. | Primarily app/Web UI. Limited public APIs. Supports Lightning Addresses and webhooks for payments, but less dev documentation. |
 
-**Pros & Cons for Satsnap's MVP:**
+**Pros & Cons for KaiPulse's MVP:**
 - **Voltage (Hosted LND node):**
   - **Pros:** Non‑custodial (fits "real Bitcoin" and creator control), fully featured LND access (gRPC/REST/webhooks), enterprise reliability and global scale. Quick to start and scalable for micropayment volumes. Supports USD/stablecoin rails if needed.
-  - **Cons:** It is a centralized service (though keys remain yours), so not 100% "decentralized" ethos. There is a cost (node uptime billing). Creators would not personally run their own node unless Satsnap builds that feature; typically Satsnap would manage one or several nodes. However, Voltage's "no lock-in" and exported seed capability mean it is more open than purely custodial services.
+  - **Cons:** It is a centralized service (though keys remain yours), so not 100% "decentralized" ethos. There is a cost (node uptime billing). Creators would not personally run their own node unless KaiPulse builds that feature; typically KaiPulse would manage one or several nodes. However, Voltage's "no lock-in" and exported seed capability mean it is more open than purely custodial services.
 - **BTCPay Server (Self-hosted):**
   - **Pros:** Fully open-source and censorship-resistant, with 0% fees and full control. Aligns with anti‑Web2 ideals. Creators could technically run their own instance or use decentralized hosting. Lightning is natively supported, so 21-sat payments are technically possible (as long as channel capacity exists). Strong flexibility for custom UI/integration and fiat can be added via plugins.
   - **Cons:** Higher setup and maintenance burden (need to host a server and manage liquidity). Out of the box there is no fiat on/off (would need external integrations). Developer UX is good but more manual (you'd talk to your own LND or BTCPay's API). For an MVP, this adds complexity: handling channels, liquidity, backups, and scaling is all on your team.
 - **Strike (Custodial Lightning Wallet):**
   - **Pros:** Extremely easy to integrate (users need only a Strike account) and supports USD natively. Payments are simple Lightning transfers within Strike's network. Good user-friendly experience for non-technical users.
-  - **Cons:** Not aligned with "real Bitcoin" or "creator control" – Strike is custodial (a third party holds keys) and could freeze funds. It also violates Satsnap's anti-Web2 ethos. Developers have limited APIs (Lightning Address and webhooks, but not a full-fledged node API). Strike's payment volume and liquidity for many micropayments is unclear. Overall, Strike is the least decentralized and therefore least aligned with Satsnap's goals, though it is very convenient.
+  - **Cons:** Not aligned with "real Bitcoin" or "creator control" – Strike is custodial (a third party holds keys) and could freeze funds. It also violates KaiPulse's anti-Web2 ethos. Developers have limited APIs (Lightning Address and webhooks, but not a full-fledged node API). Strike's payment volume and liquidity for many micropayments is unclear. Overall, Strike is the least decentralized and therefore least aligned with KaiPulse's goals, though it is very convenient.
 
-In summary, Voltage and BTCPay both support true Bitcoin Lightning payments with user-controlled custody, while Strike trades decentralization for ease of use and built-in fiat. For Satsnap's 21-sat-per-like model (many tiny, on-chain-avoiding payments with creator-owned funds), a Lightning solution like Voltage or BTCPay is preferable. Voltage offers a managed path to scale quickly, whereas BTCPay offers ultimate openness at the cost of more engineering effort.
+In summary, Voltage and BTCPay both support true Bitcoin Lightning payments with user-controlled custody, while Strike trades decentralization for ease of use and built-in fiat. For KaiPulse's 21-sat-per-like model (many tiny, on-chain-avoiding payments with creator-owned funds), a Lightning solution like Voltage or BTCPay is preferable. Voltage offers a managed path to scale quickly, whereas BTCPay offers ultimate openness at the cost of more engineering effort.
 
-## Integrating Voltage into Satsnap (21-sat Micropayments)
+## Integrating Voltage into KaiPulse (21-sat Micropayments)
 
-To implement "21 sats per like" with Voltage, Satsnap would effectively use a Voltage Lightning node to issue and settle invoices for each like. Here is a high-level integration approach:
+To implement "21 sats per like" with Voltage, KaiPulse would effectively use a Voltage Lightning node to issue and settle invoices for each like. Here is a high-level integration approach:
 
 1. **Set Up a Voltage Node:** First, create a Lightning node in your Voltage dashboard or via their Node API. Choose mainnet, enable LND, and configure settings (e.g. RPC endpoints, whitelist). Once created, download the node's TLS certificate and admin macaroon from the Voltage UI. The node's unique base URL (e.g. your-node-name.m.voltageapp.io:8080) and macaroon serve as your RPC endpoint and credentials.
-2. **Create Lightning Invoices:** When a user likes a post, Satsnap should generate a Lightning invoice for 21 sat. Using the LND REST API on your Voltage node, make a POST https://{REST_HOST}/v1/invoices call with JSON `{ "value": 21, "memo": "Like payment" }`. The response will include a payment_request (a BOLT11 invoice string). Alternatively, Voltage's Payments API can create the same invoice via POST /organizations/{org_id}/payments (type=receive, amount=21) in one step.
-3. **Present Invoice to Payer:** Send the invoice string (or its QR code/LNURL) to the paying user's Lightning wallet. The user (or your app on their behalf) pays it. Satsnap might keep a session or reference so it knows which invoice corresponds to which like event.
+2. **Create Lightning Invoices:** When a user likes a post, KaiPulse should generate a Lightning invoice for 21 sat. Using the LND REST API on your Voltage node, make a POST https://{REST_HOST}/v1/invoices call with JSON `{ "value": 21, "memo": "Like payment" }`. The response will include a payment_request (a BOLT11 invoice string). Alternatively, Voltage's Payments API can create the same invoice via POST /organizations/{org_id}/payments (type=receive, amount=21) in one step.
+3. **Present Invoice to Payer:** Send the invoice string (or its QR code/LNURL) to the paying user's Lightning wallet. The user (or your app on their behalf) pays it. KaiPulse might keep a session or reference so it knows which invoice corresponds to which like event.
 4. **Detect Payment:** Once the invoice is paid, the Lightning node will mark it settled. You have two options to detect this in real time:
    - **Webhooks:** Voltage supports webhook callbacks for invoice events. Configure a webhook URL in the dashboard that points to your backend; Voltage will POST to it when the invoice is paid.
    - **Polling/Streaming RPC:** Alternatively, your backend can poll GET /v1/invoices/{r_hash} or use gRPC's subscribeInvoices on the node to watch for settlement. Using webhooks is simpler for an MVP.
-5. **Complete the Like:** When you receive confirmation (via webhook or poll) that the invoice is paid, credit the creator with 21 sats in your app's database and mark the post as liked. Optionally, you can immediately forward the funds out of the Satsnap node to the creator's own Lightning node or wallet. To pay out, use LND's POST /v1/channels/transactions (or the Payments API send endpoint). For example, a JavaScript snippet to pay an invoice is:
+5. **Complete the Like:** When you receive confirmation (via webhook or poll) that the invoice is paid, credit the creator with 21 sats in your app's database and mark the post as liked. Optionally, you can immediately forward the funds out of the KaiPulse node to the creator's own Lightning node or wallet. To pay out, use LND's POST /v1/channels/transactions (or the Payments API send endpoint). For example, a JavaScript snippet to pay an invoice is:
 
 ```js
 // Pay an invoice on the Voltage node
@@ -308,7 +308,7 @@ If you simply want to credit creators off-chain, you can skip this step and let 
    - **Error Handling:** Handle failures gracefully (network glitches, unpaid invoices). You might retry invoice creation or allow a short time for payment.
    - **Monitoring:** Use Voltage's dashboard or Prometheus endpoints to monitor node health, channel balances, and invoice success rate.
 
-By following the above flow with Voltage's APIs, Satsnap can implement sub-second 21-sat Lightning payments. The Voltage developer docs and code examples will guide the exact API calls. In summary: create an invoice via LND/Voltage API, await payment via webhook, then confirm the like in your app. This yields instant, real Bitcoin micropayments under creator control, in line with Satsnap's goals.
+By following the above flow with Voltage's APIs, KaiPulse can implement sub-second 21-sat Lightning payments. The Voltage developer docs and code examples will guide the exact API calls. In summary: create an invoice via LND/Voltage API, await payment via webhook, then confirm the like in your app. This yields instant, real Bitcoin micropayments under creator control, in line with KaiPulse's goals.
 
 **Sources:** Voltage documentation and blog; Google Cloud case study; BTCPay Server site; Strike FAQ. These cover node features, APIs, and the relevant comparisons above.
 

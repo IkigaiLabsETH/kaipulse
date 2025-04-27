@@ -200,7 +200,7 @@ export default function LightningNetworkPage() {
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
                 <span className="font-bold text-yellow-300">Every Like is Real Value.</span><br/>
-                Satsnap is built on a radical idea: every interaction should matter. With the Lightning Network, every like is a real Bitcoin payment—21 sats, instantly, directly to the creator. This isn&apos;t just digital cash; it&apos;s a revolution in how we support artists, foster genuine connection, and build communities where engagement is meaningful. Lightning&apos;s global, permissionless payments mean anyone, anywhere, can participate and be rewarded.
+                KaiPulse is built on a radical idea: every interaction should matter. With the Lightning Network, every like is a real Bitcoin payment—21 sats, instantly, directly to the creator. This isn&apos;t just digital cash; it&apos;s a revolution in how we support artists, foster genuine connection, and build communities where engagement is meaningful. Lightning&apos;s global, permissionless payments mean anyone, anywhere, can participate and be rewarded.
               </p>
               <p className="font-satoshi text-lg text-yellow-400 font-semibold mt-4">
                 No middlemen. No empty metrics. Just pure, programmable value—at the speed of the internet.
@@ -249,7 +249,7 @@ export default function LightningNetworkPage() {
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
                 <span className="font-bold text-yellow-300">Your Blueprint for Lightning-Powered Apps.</span><br/>
-                Our comprehensive guide is your roadmap to launching apps like Satsnap, where every microtransaction is seamless and secure. Inside, you&apos;ll learn how to:
+                Our comprehensive guide is your roadmap to launching apps like KaiPulse, where every microtransaction is seamless and secure. Inside, you&apos;ll learn how to:
               </p>
               <ul className="list-disc pl-6 text-gray-200 space-y-1 font-satoshi text-lg">
                 <li>Deploy production-grade Lightning nodes with Voltage Cloud.</li>
@@ -280,7 +280,7 @@ export default function LightningNetworkPage() {
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
                 <span className="font-bold text-yellow-300">This is More Than Technology—It&apos;s a Movement.</span><br/>
-                With Satsnap, we&apos;re proving that social platforms can be rebuilt on real value. Every like, every reward, every connection—powered by Bitcoin, not speculation. No tokens, no empty promises. Just pure, unstoppable value exchange.
+                With KaiPulse, we&apos;re proving that social platforms can be rebuilt on real value. Every like, every reward, every connection—powered by Bitcoin, not speculation. No tokens, no empty promises. Just pure, unstoppable value exchange.
               </p>
               <p className="font-satoshi text-lg text-yellow-400 font-semibold mt-4">
                 Join us. Build the future of social engagement—one sats at a time.
@@ -298,11 +298,11 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Case Study: Satsnap &amp; Lightning Network</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Case Study: KaiPulse &amp; Lightning Network</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="text-white/90 mb-2 font-satoshi text-lg">
-                <strong>Satsnap</strong> is a photo-first, curated social app where every like instantly sends Bitcoin to creators over the Lightning Network. It demonstrates how Lightning enables real, programmable value transfer at internet speed.
+                <strong>KaiPulse</strong> is a photo-first, curated social app where every like instantly sends Bitcoin to creators over the Lightning Network. It demonstrates how Lightning enables real, programmable value transfer at internet speed.
               </p>
               <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-1 font-satoshi text-lg">
                 <li><strong>Why Lightning?</strong> Instant, borderless micropayments (21 sats per like) with no middlemen, enabling new business models for creators and fans.</li>
