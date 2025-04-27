@@ -95,6 +95,7 @@ export function Header() {
         { name: 'PLAY', href: '/biohacking' },
         { name: 'DRIVE', href: '/tesla' },
         { name: 'THINK', href: '/naval' },
+        { name: 'BUILD', href: '/ln' },
       ]
     },
     { 
