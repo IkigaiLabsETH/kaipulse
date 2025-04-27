@@ -437,6 +437,7 @@ export default function DefiPage() {
                 <li><b>Protocol-Owned Liquidity:</b> Olympus owns its own LPs, ensuring deep, stable markets and fee income.</li>
                 <li><b>Range-Bound Stability:</b> Automated market ops keep OHM price within a band, smoothing volatility.</li>
                 <li><b>Cooler Loans:</b> Borrow DAI against gOHM at low fixed rates—native credit, no selling required.</li>
+                <li><b>Convertible Deposits:</b> Soon to be launched, these function like low-risk call options.</li>
               </ul>
               <div className="flex gap-8 mt-4">
                 <div>
