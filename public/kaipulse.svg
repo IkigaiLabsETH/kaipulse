@@ -1,32 +1,19 @@
-<!-- KaiPulse SVG Logo v11 – Clean Bolt (slash removed) -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
-  <!--  Gradient + theme-adaptive stroke + subtle shadow  -->
-  <defs>
-    <!-- Tarantino yellow gradient -->
-    <linearGradient id="boltFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"  stop-color="#FFE55A" />
-      <stop offset="100%" stop-color="#FFB600" />
-    </linearGradient>
+<!-- KaiPulse SVG Logo v15 – Clean Iconic Bolt-Swoosh -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Flat Tarantino yellow bolt; optional adaptive stroke for contrast -->
+  <style>
+    :root { --kp-stroke-light:#000; --kp-stroke-dark:#fff; }
+  </style>
 
-    <!-- Drop shadow -->
-    <filter id="boltShadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.35)"/>
-    </filter>
-
-    <!-- Theme stroke variables -->
-    <style>
-      :root {
-        --kp-stroke-light:#000;    /* light theme stroke */
-        --kp-stroke-dark:#FFF;     /* dark theme stroke */
-      }
-    </style>
-  </defs>
-
-  <!-- White buffer stroke for universal contrast -->
-  <path d="M90 10 L40 85 L70 85 L45 150 L120 60 L90 60 Z"
-        fill="none" stroke="#FFF" stroke-width="12" stroke-linejoin="round" filter="url(#boltShadow)"/>
-
-  <!-- Main bolt -->
-  <path d="M90 10 L40 85 L70 85 L45 150 L120 60 L90 60 Z"
-        fill="url(#boltFill)" stroke="var(--kp-stroke, #000)" stroke-width="6" stroke-linejoin="round" filter="url(#boltShadow)"/>
+  <!-- Iconic one‑piece shape: a flowing bolt that forms a subtle "K" and pulse kink -->
+  <path d="M135 20
+           L60 100
+           Q55 105 70 108
+           L100 112
+           L65 180
+           L150 90
+           Q155 85 140 82
+           L110 78
+           Z"
+        fill="#FFD000" stroke="var(--kp-stroke, transparent)" stroke-width="4" stroke-linejoin="round" />
 </svg>
