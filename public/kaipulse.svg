@@ -1,6 +1,6 @@
-<!-- KaiPulse SVG Logo v9 – Polished Tarantino Bolt with Gradient & Shadow -->
+<!-- KaiPulse SVG Logo v11 – Clean Bolt (slash removed) -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
-  <!--  Gradient + theme‑adaptive stroke + subtle shadow  -->
+  <!--  Gradient + theme-adaptive stroke + subtle shadow  -->
   <defs>
     <!-- Tarantino yellow gradient -->
     <linearGradient id="boltFill" x1="0" y1="0" x2="0" y2="1">
@@ -22,14 +22,11 @@
     </style>
   </defs>
 
-  <!-- White buffer stroke (ensures contrast on any bg) -->
+  <!-- White buffer stroke for universal contrast -->
   <path d="M90 10 L40 85 L70 85 L45 150 L120 60 L90 60 Z"
         fill="none" stroke="#FFF" stroke-width="12" stroke-linejoin="round" filter="url(#boltShadow)"/>
 
-  <!-- Main bolt with gradient fill and adaptive stroke -->
+  <!-- Main bolt -->
   <path d="M90 10 L40 85 L70 85 L45 150 L120 60 L90 60 Z"
         fill="url(#boltFill)" stroke="var(--kp-stroke, #000)" stroke-width="6" stroke-linejoin="round" filter="url(#boltShadow)"/>
-
-  <!-- Katana slash accent -->
-  <path d="M60 55 L105 55" stroke="var(--kp-stroke, #000)" stroke-width="6" stroke-linecap="round"/>
 </svg>
