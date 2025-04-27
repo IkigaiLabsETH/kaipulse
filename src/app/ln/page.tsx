@@ -365,6 +365,73 @@ export default function LightningNetworkPage() {
             </CardContent>
           </Card>
         </motion.section>
+        {/* Section: Bitcoin Payments - The Quiet Revolution */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.9 } } }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="mt-20 mb-24"
+        >
+          <Card className="bg-[#181a20] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg max-w-4xl mx-auto">
+            <CardHeader>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
+                Bitcoin Payments: The Quiet Revolution
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6 space-y-6">
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">The narrative that &quot;Bitcoin payments are dead, long live Bitcoin-as-savings&quot; misreads both the data and the arc of monetary history.</span>
+              </p>
+              <ol className="list-decimal pl-6 text-gray-200 space-y-4 font-satoshi text-lg">
+                <li>
+                  <span className="font-bold text-yellow-300">Lightning&apos;s growth is silent, not stagnant</span><br/>
+                  Public capacity passed 6,000 BTC this cycle, but public nodes show only what&apos;s opted-in for telemetry. Private and TOR channels—used by Cash App, River, Binance, Strike, Bitfinex, Kraken, Lightspark, Breez, Phoenix, Muun and Voltage-backed enterprises—are multiples larger.<br/>
+                  Cash App alone routs hundreds of thousands of LN payouts daily (Block Q1-25 report).<br/>
+                  Nostr &quot;zaps&quot; move millions of micro-payments per month with no marketing budget.<br/>
+                  Podcasting 2.0, Wolt/Bitfinex remittances, Blink in El Salvador, MicroStrategy&apos;s internal payroll pilot—all real, all Lightning.<br/>
+                  <span className="text-yellow-400">Adoption isn&apos;t broken; it&apos;s just not measured by web-2 vanity dashboards.</span>
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">Strike ≠ Lightning</span><br/>
+                  If Strike throttles down, dozens of well-capitalised players fill the gap: Cash App, Lightspark (ex-Meta Novi team), Synota (energy settlements), Fuse (gaming), Kollider (FX rails) and the Voltage / Blockstream infrastructure layer. Lightning&apos;s moat is that anyone can spin a node; losing a single front-end does not kill the protocol.
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">Store-of-value first? Correct—and already achieved</span><br/>
+                  BTC&apos;s SoV function is what enables a credibly scarce medium of exchange. Satoshi&apos;s design never required either–or. Gold served as SoV for millennia while also clearing small payments (e.g., gold certificates). Lightning is the certificate layer—except settlement finality remains on-chain.
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">&quot;People don&apos;t want to spend sats because of taxes&quot;</span><br/>
+                  Tax friction is jurisdiction-specific and will atrophy as more countries adopt inflation-indexed or de-minimis VAT thresholds (see Germany&apos;s &lt;600€ rule, Portugal&apos;s capital-gains exemption after one year, El Salvador&apos;s zero-CGT). Meanwhile Lightning&apos;s ideal use case is sub-dollar micro-payments—below the threshold where tax reporting is even triggered.
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">&quot;Digital USD for commerce, Bitcoin for savings&quot; ignores permission risk</span><br/>
+                  Stablecoins and CBDCs are IOUs—seizable, censorable, inflated by policy. Bitcoin rails let you denominate in dollars inside a BTC channel (e.g., FTX&apos;s Stablesats model, Synonym Slashtags, Ark proposals). Commerce wants price stability, not custodial risk.
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">Institutional rails will not rebuild Lightning &quot;in-house&quot;</span><br/>
+                  Why reinvent audited, battle-tested, open-source payment infrastructure when you can integrate LND or Core-Lightning under commercial SLAs? Visa&apos;s B2B Connect, PayPal&apos;s BTC/LN send-receive, and Bitfinex&apos;s internal LN treasury prove the cost curve favours plugging into the public network.
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">The optionality argument</span><br/>
+                  Lightning lets you spend when you choose and never forces you to sell. You can loop BTC collateral into synthetic dollars (e.g., Bitfinex&apos;s USDt-LN, Revolt Runes), close the loop instantly, and stay net-long. Removing the payment rail removes this optionality; Lightning re-injects it—tax compliant or not.
+                </li>
+                <li>
+                  <span className="font-bold text-yellow-300">Macro reality</span><br/>
+                  A money that can only be hoarded eventually invites layers that unlock its velocity. That layer is here, live, open-source, and growing. Payments aren&apos;t antithetical to SoV; they&apos;re the monetisation phase that completes it.
+                </li>
+              </ol>
+              <div className="border-l-4 border-yellow-400 bg-yellow-900/30 p-4 rounded mt-6">
+                <p className="font-boska text-xl text-yellow-400 font-bold mb-2">Bottom line</p>
+                <p className="font-satoshi text-lg text-white">
+                  Bitcoin the asset already won.<br/>
+                  Bitcoin the network is now scaling via Lightning—quietly, pragmatically, permissionlessly.<br/>
+                  The future is not &quot;BTC or USD.&quot; It&apos;s BTC as reserve, Lightning for flow, and fiat bridges that users can exit at will. That is sovereignty in practice—not a concession to legacy rails.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.section>
         <footer className="mt-12 text-center text-gray-500 text-xs font-satoshi">
           Inspired by <a href="https://www.youtube.com/watch?v=AYAreuNzx58" target="_blank" rel="noopener noreferrer" className="underline">this Lightning Network deep dive</a> and the open-source Bitcoin movement.
         </footer>
