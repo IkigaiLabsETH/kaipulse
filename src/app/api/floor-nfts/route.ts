@@ -40,17 +40,17 @@ function hasResponseBody(error: unknown): error is ErrorWithResponseBody {
   return typeof error === 'object' && error !== null && 'responseBody' in error;
 }
 
-// Utility to normalize a floor listing for frontend consumption
-function normalizeFloorListing(params: {
+// Utility to normalize a floor listing for frontend consumption (v2)
+function normalizeFloorListingV2(params: {
   collection: typeof CURATED_COLLECTIONS[number];
-  floorListing: Listing | null;
+  floorListing: unknown | null;
   fromCache: boolean;
   error?: string;
   errorStack?: string;
   errorResponse?: unknown;
 }) {
   const { collection, floorListing, fromCache, error, errorStack, errorResponse } = params;
-  if (!floorListing) {
+  if (!floorListing || typeof floorListing !== 'object' || floorListing === null) {
     return {
       collectionName: collection.name,
       collectionAddress: collection.address,
@@ -66,23 +66,31 @@ function normalizeFloorListing(params: {
       errorResponse,
     };
   }
-  // Extract price in ETH (current_price is a string in wei)
-  const priceEth = floorListing.current_price
-    ? Number(floorListing.current_price) / 1e18
-    : null;
-  // Try to get USD price if available (from payment token or other fields)
-  // This is a placeholder; you may want to enhance this with real token info
+  // Type guard for v2 listing
+  const hasPrice = (obj: unknown): obj is { price: { current: { value: string } } } =>
+    typeof obj === 'object' && obj !== null &&
+    'price' in obj &&
+    typeof (obj as { price?: unknown }).price === 'object' &&
+    (obj as { price: { current?: unknown } }).price.current !== undefined &&
+    (obj as { price: { current?: unknown } }).price.current !== null &&
+    typeof (obj as { price: { current: { value?: unknown } } }).price.current.value === 'string';
+
+  const hasNFT = (obj: unknown): obj is { nft: { name?: string; image_url?: string; contract?: string; identifier?: string } } =>
+    typeof obj === 'object' && obj !== null &&
+    'nft' in obj && typeof (obj as { nft?: unknown }).nft === 'object';
+
+  const priceEth = hasPrice(floorListing) ? Number(floorListing.price.current.value) : null;
   const priceUsd = null;
-  // OpenSea listing URL (if available)
-  const listingUrl = floorListing.nft && floorListing.nft.contract && floorListing.nft.identifier
-    ? `https://opensea.io/assets/ethereum/${floorListing.nft.contract}/${floorListing.nft.identifier}`
+  const nft = hasNFT(floorListing) ? floorListing.nft : {};
+  const listingUrl = nft.contract && nft.identifier
+    ? `https://opensea.io/assets/ethereum/${nft.contract}/${nft.identifier}`
     : null;
   return {
     collectionName: collection.name,
     collectionAddress: collection.address,
     collectionImage: collection.image_url,
-    nftName: floorListing.nft?.name || null,
-    nftImage: floorListing.nft?.image_url || null,
+    nftName: nft.name || null,
+    nftImage: nft.image_url || null,
     priceEth,
     priceUsd,
     listingUrl,
@@ -101,14 +109,14 @@ export async function GET(request: NextRequest) {
   }
 
   const collections = CURATED_COLLECTIONS;
-  const results: Array<ReturnType<typeof normalizeFloorListing>> = [];
+  const results: Array<ReturnType<typeof normalizeFloorListingV2>> = [];
   const toFetch: typeof CURATED_COLLECTIONS = [];
 
   // Check cache first
   for (const collection of collections) {
     const cached = getCachedFloorListing(collection.address);
     if (cached) {
-      results.push(normalizeFloorListing({ collection, floorListing: cached, fromCache: true }));
+      results.push(normalizeFloorListingV2({ collection, floorListing: cached, fromCache: true }));
     } else {
       toFetch.push(collection);
     }
@@ -122,20 +130,19 @@ export async function GET(request: NextRequest) {
         try {
           const response = await openSeaService.orders.getListings({
             asset_contract_address: collection.address,
-            order_by: 'eth_price',
-            order_direction: 'asc',
             limit: 1,
           });
-          const floorListing = response.orders[0] || null;
+          // v2: response.listings is the array
+          const floorListing = response.listings?.[0] || null;
           if (floorListing) {
             setCachedFloorListing(collection.address, floorListing);
           }
-          return normalizeFloorListing({ collection, floorListing, fromCache: false });
+          return normalizeFloorListingV2({ collection, floorListing, fromCache: false });
         } catch (error) {
           // Detailed error logging
           // eslint-disable-next-line no-console
           console.error('OpenSea API error for collection', collection.address, error);
-          return normalizeFloorListing({
+          return normalizeFloorListingV2({
             collection,
             floorListing: null,
             fromCache: false,
