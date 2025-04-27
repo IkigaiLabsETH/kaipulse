@@ -215,6 +215,36 @@ export default function LightningNetworkPage() {
             </CardContent>
           </Card>
         </motion.section>
+        {/* Section: Voltage - Our Lightning Infrastructure Partner */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.35 } } }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="mb-12"
+        >
+          <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
+            <CardHeader>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">What is Voltage? (Our Lightning Infrastructure Partner)</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Voltage</span> is a leading platform for integrating the Bitcoin Lightning Network into modern applications. It empowers developers and enterprises to send and receive instant Bitcoin payments, manage Lightning wallets, and handle team-based permissions—all with enterprise-grade security and reliability.
+              </p>
+              <ul className="list-disc pl-6 text-gray-200 space-y-1 font-satoshi text-lg mb-4">
+                <li>Spin up and manage Lightning wallets for users or teams</li>
+                <li>Send and receive instant, global Bitcoin payments</li>
+                <li>Manage team access and permissions with ease</li>
+                <li>Test integrations safely in a staging environment</li>
+                <li>Access instant credit and settle invoices quickly</li>
+              </ul>
+              <p className="font-satoshi text-lg text-yellow-400 font-semibold mt-4">
+                Voltage handles the heavy lifting of Lightning node management, so you can focus on building great products.
+              </p>
+              <a href="https://docs.voltageapi.com/" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 px-4 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition font-satoshi">Read the Voltage API Docs</a>
+            </CardContent>
+          </Card>
+        </motion.section>
         {/* Section: Featured Guide */}
         <motion.section
           initial="hidden"
