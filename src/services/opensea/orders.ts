@@ -4,7 +4,6 @@ import type {
   ListingQueryParams, 
   OfferQueryParams, 
   OrdersResponse, 
-  Listing, 
   Offer
   // The following types are unused but kept for reference
   // OrderProtocolData, 
@@ -83,10 +82,6 @@ const baseOrderSchema = z.object({
   criteria_proof: z.string().nullable()
 });
 
-const listingSchema = baseOrderSchema.extend({
-  nft: nftSchema
-});
-
 const offerSchema = baseOrderSchema.extend({
   nft: nftSchema.optional(),
   criteria: z.object({
@@ -115,24 +110,28 @@ const offerQueryParamsSchema = listingQueryParamsSchema.extend({
   trait_value: z.string().optional()
 }).strict();
 
+// Add this type above the class
+interface OpenSeaV2ListingsResponse {
+  listings: unknown[];
+  next: string | null;
+}
+
 export class OpenSeaOrdersAPI extends BaseOpenSeaAPI {
   /**
-   * Gets a list of listings based on query parameters
+   * Gets a list of listings based on query parameters (OpenSea v2)
    */
-  async getListings(params?: ListingQueryParams): Promise<OrdersResponse<Listing>> {
-    const validatedParams = params ? this.validateParams(params, listingQueryParamsSchema) : undefined;
-    return this.request({
+  async getListings(params?: ListingQueryParams): Promise<OpenSeaV2ListingsResponse> {
+    if (!params?.asset_contract_address) {
+      throw new Error('asset_contract_address is required for v2 listings endpoint');
+    }
+    const { asset_contract_address, limit = 1, next } = params;
+    const url = `/api/v2/listings/ethereum/${asset_contract_address}`;
+    const query: Record<string, string | number> = { limit };
+    if (next) query.next = next;
+    return this.request<OpenSeaV2ListingsResponse>({
       method: 'GET',
-      url: '/orders/ethereum/seaport/listings',
-      params: validatedParams,
-      validateResponse: (data) => {
-        const schema = z.object({
-          next: z.string().nullable(),
-          previous: z.string().nullable(),
-          orders: z.array(listingSchema)
-        });
-        return schema.parse(data) as OrdersResponse<Listing>;
-      }
+      url,
+      params: query,
     });
   }
 
