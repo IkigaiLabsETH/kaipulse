@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from "@/components/ui/card";
-import { ChevronDown, Sun, Droplet, Utensils, Flame, Pill, Brain, Zap } from 'lucide-react';
+import { ChevronDown, Sun, Droplet, Utensils, Flame, Pill, Brain, Zap, Bed } from 'lucide-react';
 import Image from 'next/image';
 
 const AccordionItem = ({
@@ -376,6 +376,36 @@ export default function BiohackingPage() {
                         <ChecklistItem text="Keep promises to self first, then others" />
                         <ChecklistItem text="Stay cheerful & constructive—energy ≈ currency" />
                         <ChecklistItem text="Upgrade the world—every rep, line of code, and sat spent should compound freedom" />
+                      </div>
+                    </PillarCard>
+                  </AccordionItem>
+                  <AccordionItem
+                    title="Sleep Optimization—The Ultimate Biohack"
+                    icon={<Bed className="h-6 w-6" />}
+                    index={6}
+                  >
+                    <PillarCard>
+                      <div className="mb-4">
+                        <p className="text-white/90 mb-2">
+                          Sleep is the most powerful lever for health, recovery, and performance. Here&apos;s a proven protocol for 100% perfect sleep:
+                        </p>
+                        <div className="space-y-1">
+                          <ChecklistItem text="Very cold bedroom: 18–20°C (64–68°F), colder is better" />
+                          <ChecklistItem text="9kg weighted blanket (adjust to your bodyweight)" />
+                          <ChecklistItem text="Separate duvet from your partner" />
+                          <ChecklistItem text="3M ear plugs and eye mask for sensory blackout" />
+                          <ChecklistItem text="Red LED lights before sleep" />
+                          <ChecklistItem text="0.2mg melatonin 45 min before bed (avoid high doses)" />
+                          <ChecklistItem text="4x/week cardio + strength training; low resting heart rate" />
+                          <ChecklistItem text="Clean diet: meat, veggies, fruit, black coffee, sparkling water with lemon; minimal carbs and sweets late" />
+                          <ChecklistItem text="Maintain healthy weight and biomarkers" />
+                          <ChecklistItem text="Screen hacks: Smart Invert + extra dim on phone, then Kindle to wind down" />
+                          <ChecklistItem text="Avoid eating after 10pm; sleep around midnight–1am" />
+                          <ChecklistItem text="No fluids 2–3 hours before bed to avoid waking up" />
+                        </div>
+                        <p className="text-white/70 mt-4">
+                          <span className="text-yellow-500 font-medium">Key Insight:</span> Temperature is the biggest factor—too hot and you&apos;ll wake up. A cold room and proper bedding (thicker for women) can help anyone sleep better, regardless of what you&apos;re used to. Prioritizing sleep improves all health markers, boosts immunity, and even helps your brain clear plaque to prevent dementia. As Bryan Johnson says: sleep is the #1 health hack.
+                        </p>
                       </div>
                     </PillarCard>
                   </AccordionItem>
