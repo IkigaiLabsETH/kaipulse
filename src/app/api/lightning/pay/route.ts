@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import Redis from 'ioredis';
 // @ts-expect-error: ln-service has no types
-import { createInvoice } from 'ln-service';
-import { prisma } from '@/lib/prisma';
+import { pay } from 'ln-service';
+// import { prisma } from '@/lib/prisma'; // Commented out because not used
 import winston from 'winston';
 import { randomUUID } from 'crypto';
 
@@ -12,19 +12,16 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-// --- Setup ---
 const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null;
 if (!redis) {
   logger.warn('Redis is not configured. Rate limiting is disabled.');
 }
 
-// --- Zod schema ---
-const InvoiceSchema = z.object({
-  amount: z.number().int().min(21).max(1_000_000),
-  memo: z.string().max(140).optional(),
+const PaySchema = z.object({
+  paymentRequest: z.string().min(10),
+  amount: z.number().int().min(1).optional(), // Optional for zero-amount invoices
 });
 
-// --- Lightning credentials ---
 const lndCert = process.env.VOLTAGE_LND_CERT;
 const lndMacaroon = process.env.VOLTAGE_LND_MACAROON;
 const lndSocket = process.env.VOLTAGE_LND_SOCKET;
@@ -37,23 +34,20 @@ function getLnd() {
   };
 }
 
-// --- Rate limiting ---
 async function checkRateLimit(ip: string) {
-  if (!redis) return false; // If Redis is not available, skip rate limiting
-  const key = `invoice:rate:${ip}`;
+  if (!redis) return false;
+  const key = `pay:rate:${ip}`;
   const count = await redis.incr(key);
-  if (count === 1) await redis.expire(key, 60); // 1 minute window
-  return count > 50;
+  if (count === 1) await redis.expire(key, 60);
+  return count > 20; // Lower limit for outgoing payments
 }
 
-// --- API Route ---
 export async function POST(request: Request) {
   const requestId = randomUUID();
   let ip = request.headers.get('x-forwarded-for') || 'unknown';
   if (ip.includes(',')) ip = ip.split(',')[0];
 
   try {
-    // Rate limiting
     if (await checkRateLimit(ip)) {
       logger.warn(`[${requestId}] Rate limit exceeded for IP ${ip}`);
       return NextResponse.json(
@@ -62,9 +56,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Input validation
     const body = await request.json();
-    const parsed = InvoiceSchema.safeParse(body);
+    const parsed = PaySchema.safeParse(body);
     if (!parsed.success) {
       logger.warn(`[${requestId}] Invalid input: ${JSON.stringify(parsed.error.issues)}`);
       return NextResponse.json(
@@ -72,40 +65,33 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    const { amount, memo } = parsed.data;
+    const { paymentRequest, amount } = parsed.data;
 
-    // Create Lightning invoice
     const lnd = getLnd();
-    const invoice = await createInvoice({
-      lnd,
-      tokens: amount,
-      description: memo || undefined,
-    });
+    const paymentResult = await pay({ lnd, request: paymentRequest, tokens: amount });
 
-    // Persist invoice in DB
-    await prisma.invoice.create({
-      data: {
-        paymentHash: invoice.id,
-        amountSats: BigInt(amount),
-        memo: memo || null,
-        status: 'pending',
-        expiresAt: new Date(invoice.expires_at),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-    });
+    // Persist payment attempt
+    // await prisma.paymentAttempt.create({
+    //   data: {
+    //     paymentRequest,
+    //     amountSats: amount ? BigInt(amount) : null,
+    //     status: 'sent',
+    //     preimage: paymentResult.secret,
+    //     createdAt: new Date(),
+    //     updatedAt: new Date(),
+    //   },
+    // });
 
-    // Respond
     return NextResponse.json({
-      paymentRequest: invoice.request,
-      paymentHash: invoice.id,
-      expiresAt: invoice.expires_at,
+      paymentHash: paymentResult.id,
+      preimage: paymentResult.secret,
+      fee: paymentResult.fee,
       requestId,
     });
   } catch (err: unknown) {
     let message = 'Unknown error';
     if (err instanceof Error) message = err.message;
-    logger.error(`[${requestId}] Internal error: ${message}`);
+    logger.error(`[${requestId}] Payment error: ${message}`);
     return NextResponse.json(
       { error: 'Internal server error', code: 'SERVER_ERROR', requestId },
       { status: 500 }

@@ -1,13 +1,10 @@
+'use client';
 import PhotoGrid from "./components/PhotoGrid";
 import HeroSection from "./components/HeroSection";
 import FeatureCard from "./components/FeatureCard";
 import Footer from "./components/Footer";
 import { Button } from "@/components/ui/button";
-
-export const metadata = {
-  title: "KaiPulse | A like that actually means something",
-  description: "Support photographers with Bitcoin Lightning micropayments. Every like sends sats directly to creators.",
-};
+import React from 'react';
 
 export default function SatsPage() {
   return (

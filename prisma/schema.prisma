@@ -27,3 +27,15 @@ model Invoice {
   @@index([status, createdAt])
   @@index([expiresAt])
 }
+
+model PaymentAttempt {
+  id             String   @id @default(uuid())
+  paymentRequest String   @map("payment_request")
+  amountSats     BigInt?  @map("amount_sats")
+  status         String
+  preimage       String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([status, createdAt])
+}
