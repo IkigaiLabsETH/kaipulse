@@ -337,19 +337,14 @@ export default function LightningNetworkPage() {
                 <span className="font-bold text-yellow-300">Pay to Play, Earn to Serve.</span><br/>
                 Instead of giving away intelligence for free, ElizaOS asks for a tiny Lightning payment before responding. If you pay, you get your answer—immediately. If not, you receive a Lightning invoice you can settle at your pace. This model unlocks:
               </p>
-              <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-2 font-satoshi text-lg">
-                <li><span className="font-bold">Micropayments for Microservices:</span> Every AI answer costs just a few sats—less than a cent, but with real value.</li>
-                <li><span className="font-bold">Agent-to-Agent Commerce:</span> AI agents can pay each other for data, services, or expertise, creating a true digital economy.</li>
-                <li><span className="font-bold">Frictionless Authentication:</span> Payments double as proof of access—no passwords, no accounts, just sats.</li>
-              </ul>
-              <p className="font-satoshi text-lg text-gray-200 mb-4">
+              <div className="font-satoshi text-lg text-gray-200 mb-2">
                 <span className="font-bold text-yellow-300">Why it Matters:</span><br/>
-                <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-1 font-satoshi text-lg">
-                  <li>No Friction: Anyone, anywhere, can access intelligence—no signups, no credit cards, just Lightning.</li>
-                  <li>Global, Open, and Permissionless: The world&apos;s knowledge, unlocked for all.</li>
-                  <li>Full Ownership: No middlemen, no gatekeepers—just pure, unstoppable value exchange between humans and machines.</li>
-                </ul>
-              </p>
+              </div>
+              <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-1 font-satoshi text-lg">
+                <li>No Friction: Anyone, anywhere, can access intelligence—no signups, no credit cards, just Lightning.</li>
+                <li>Global, Open, and Permissionless: The world&apos;s knowledge, unlocked for all.</li>
+                <li>Full Ownership: No middlemen, no gatekeepers—just pure, unstoppable value exchange between humans and machines.</li>
+              </ul>
               <div className="bg-black/80 border-l-4 border-yellow-400 p-4 rounded mb-2">
                 <p className="text-yellow-200 font-semibold mb-1 font-epilogue">The Big Picture:</p>
                 <p className="text-yellow-100 font-satoshi">
