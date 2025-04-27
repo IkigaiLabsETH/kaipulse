@@ -87,7 +87,7 @@ export default function LightningNetworkPage() {
           </p>
           <p className="font-boska text-2xl md:text-3xl font-extrabold text-yellow-400 mt-6 drop-shadow">
             There is no second best.<br />
-            <span className="text-white font-bold">If you want to build for the future, you build on Lightning.</span>
+            <span className="text-white font-bold">If you want to build for the future, you build on LN.</span>
           </p>
         </div>
       </motion.section>
