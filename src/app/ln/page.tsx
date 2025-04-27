@@ -357,6 +357,57 @@ export default function LightningNetworkPage() {
         <footer className="mt-12 text-center text-gray-500 text-xs font-satoshi">
           Inspired by <a href="https://www.youtube.com/watch?v=AYAreuNzx58" target="_blank" rel="noopener noreferrer" className="underline">this Lightning Network deep dive</a> and the open-source Bitcoin movement.
         </footer>
+        {/* Section: Flashback & Reinvention: LTL MAPS, Then and Now */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.8 } } }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="mt-20 mb-20"
+        >
+          <Card className="bg-[#181a20] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg max-w-4xl mx-auto">
+            <CardHeader>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Flashback & Reinvention: LTL MAPS, Then and Now</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6 space-y-6">
+              <div>
+                <h3 className="font-epilogue text-xl font-semibold text-yellow-300 mb-2">A Pioneer&apos;s Journey</h3>
+                <p className="font-satoshi text-gray-200 text-lg mb-2">
+                  In 2016, we set out to change the way people explored the world. Our first web3 app was a trailblazer: the first to let users buy digital art and experiences with Apple Pay, the first with a FINRA license in the App Store, and the first to use sidechain technology for fast, cheap microtransactions. We believed travel should be personal, private, and rewarding—long before &quot;web3&quot; was a buzzword.
+                </p>
+                <p className="font-satoshi text-gray-200 text-lg mb-2">
+                  <span className="font-bold text-yellow-300">The Problem We Saw</span><br/>
+                  Travel discovery was broken. Endless lists, fake reviews, and algorithmic feeds left explorers adrift. LTL MAPS was our answer: a privacy-first, community-owned app where every recommendation came from real friends and trusted travelers, not faceless platforms.
+                </p>
+                <p className="font-satoshi text-gray-200 text-lg mb-2">
+                  <span className="font-bold text-yellow-300">Our Vision</span><br/>
+                  LTL MAPS wasn&apos;t just a map—it was a movement. We minted digital art as proof of location, partnered with local artists, and rewarded users for authentic exploration. Geo-mining, NFTs, and a decentralized ethos made every journey a tapestry of discovery, ownership, and connection.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-epilogue text-xl font-semibold text-yellow-300 mb-2">Rethinking LTL MAPS with Lightning Network</h3>
+                <p className="font-satoshi text-gray-200 text-lg mb-2">
+                  <span className="font-bold text-yellow-300">A New Era: Instant, Global, Bitcoin-Native</span><br/>
+                  Today, the Lightning Network lets us take this vision further than ever before:
+                </p>
+                <ul className="list-disc pl-6 text-gray-200 space-y-2 font-satoshi text-lg mb-4">
+                  <li><span className="font-bold">Real Bitcoin, Real Rewards:</span> Every check-in, every proof-of-location, every digital collectible is powered by instant, borderless Bitcoin microtransactions. No sidechains, no tokens, no friction—just sats, sent and received at the speed of experience.</li>
+                  <li><span className="font-bold">Proof of Location, Proof of Value:</span> Travelers unlock geolocation-based digital art (NFTs) by physically visiting curated spots. Each unlock is a Lightning payment—verifiable, permissionless, and globally accessible. Your travel history becomes a living, Bitcoin-backed passport.</li>
+                  <li><span className="font-bold">Empowering Local Artists & Businesses:</span> Artists and venues receive direct Lightning payments when their locations are visited and their art is collected. No middlemen, no platform fees—just pure value exchange between explorers and creators.</li>
+                  <li><span className="font-bold">Gamified Exploration, Real-World Impact:</span> Every adventure is a treasure hunt. Lightning-powered rewards incentivize off-the-beaten-path journeys, while local businesses can offer instant, programmable discounts or perks—paid and settled in real time.</li>
+                  <li><span className="font-bold">Privacy by Design, Community at Heart:</span> With Lightning, users retain full control of their data and funds. The app remains community-governed, but now every interaction is secured and settled on the world&apos;s most open monetary network.</li>
+                </ul>
+                <p className="font-satoshi text-yellow-400 text-lg font-semibold mb-2">The Future: Lightning-Powered Travel</p>
+                <p className="font-satoshi text-gray-200 text-lg mb-2">
+                  LTL MAPS, reborn on Lightning, is more than a travel app—it&apos;s a global, living network of explorers, artists, and businesses, all connected by the flow of sats.<br/>
+                  <span className="block mt-2">No more walled gardens.<br/>No more fake reviews.<br/>No more friction.</span>
+                  Just authentic discovery, real rewards, and a digital identity as rich as your adventures.
+                </p>
+                <p className="font-boska text-2xl text-yellow-400 mt-4">The journey continues. The world awaits. And now, every step is powered by Bitcoin.</p>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.section>
       </main>
     </div>
   );
