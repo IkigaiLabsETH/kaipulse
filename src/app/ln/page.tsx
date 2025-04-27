@@ -198,13 +198,13 @@ export default function LightningNetworkPage() {
               <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Why Build on Bitcoin + Lightning?</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="list-disc pl-6 text-gray-200 space-y-1 font-satoshi text-lg">
-                <li>True digital cash: instant, borderless, and permissionless payments</li>
-                <li>Micropayments: enable new business models (pay-per-like, streaming money, micro-tipping)</li>
-                <li>Non-custodial: users control their funds, not platforms</li>
-                <li>Open APIs: integrate with any app, service, or device</li>
-                <li>Global reach: anyone with a phone can participate</li>
-              </ul>
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Every Like is Real Value.</span><br/>
+                Satsnap is built on a radical idea: every interaction should matter. With the Lightning Network, every like is a real Bitcoin payment—21 sats, instantly, directly to the creator. This isn&apos;t just digital cash; it&apos;s a revolution in how we support artists, foster genuine connection, and build communities where engagement is meaningful. Lightning&apos;s global, permissionless payments mean anyone, anywhere, can participate and be rewarded.
+              </p>
+              <p className="font-satoshi text-lg text-yellow-400 font-semibold mt-4">
+                No middlemen. No empty metrics. Just pure, programmable value—at the speed of the internet.
+              </p>
             </CardContent>
           </Card>
         </motion.section>
@@ -221,11 +221,15 @@ export default function LightningNetworkPage() {
               <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">How to Get Started</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ol className="list-decimal pl-6 text-gray-200 space-y-1 font-satoshi text-lg">
-                <li>Read the <Link href="https://docs.lightning.engineering/" className="underline text-yellow-400">Lightning Network Production Guide</Link> for a deep technical dive.</li>
-                <li>Spin up a Lightning node (try <a href="https://voltage.cloud/" target="_blank" rel="noopener noreferrer" className="underline text-yellow-400">Voltage</a> for managed nodes).</li>
-                <li>Experiment with <a href="https://github.com/alexbosworth/ln-service" target="_blank" rel="noopener noreferrer" className="underline text-yellow-400">ln-service</a> or <a href="https://webln.dev/" target="_blank" rel="noopener noreferrer" className="underline text-yellow-400">WebLN</a> for app integration.</li>
-                <li>Build something that couldn&apos;t exist before: pay-per-action, real-time rewards, global micro-economies.</li>
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Building with Lightning is Frictionless.</span><br/>
+                Our MVP leverages Voltage Cloud to handle the heavy lifting of node management, so you can focus on what matters: creating and building. Whether you&apos;re a developer, a creator, or a curious explorer, you can:
+              </p>
+              <ol className="list-decimal pl-6 text-gray-200 space-y-2 font-satoshi text-lg">
+                <li><span className="font-bold">Dive deep:</span> Explore our <a href="https://docs.lightning.engineering/" className="underline text-yellow-400">Lightning Network Production Guide</a> for everything from node setup to best practices.</li>
+                <li><span className="font-bold">Plug and play:</span> Use our modular LightningPaymentWidget to add real Bitcoin payments to your app or content—no complexity required.</li>
+                <li><span className="font-bold">Experiment boldly:</span> Try per-action payments—like our signature 21-sat likes—and discover how instant, programmable money unlocks new business models.</li>
+                <li><span className="font-bold">Create meaning:</span> Build experiences where every interaction is valuable, every user is empowered, and every sats counts.</li>
               </ol>
             </CardContent>
           </Card>
@@ -243,16 +247,20 @@ export default function LightningNetworkPage() {
               <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Featured Guide: Lightning Network Production Guide</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="mb-2 text-gray-200 font-satoshi text-lg">
-                Our in-depth guide covers everything you need to launch Lightning-powered apps:
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Your Blueprint for Lightning-Powered Apps.</span><br/>
+                Our comprehensive guide is your roadmap to launching apps like Satsnap, where every microtransaction is seamless and secure. Inside, you&apos;ll learn how to:
               </p>
               <ul className="list-disc pl-6 text-gray-200 space-y-1 font-satoshi text-lg">
-                <li>Node setup and security (Voltage, BTCPay, Strike)</li>
-                <li>API integration and invoice flows</li>
-                <li>Rate limiting, error handling, and monitoring</li>
-                <li>Production checklists and best practices</li>
-                <li>Sample code and database schemas</li>
+                <li>Deploy production-grade Lightning nodes with Voltage Cloud.</li>
+                <li>Integrate real-time payments and reward logic into your product.</li>
+                <li>Master rate limiting, error monitoring, and robust security.</li>
+                <li>Use our open-source LightningPaymentWidget for a frictionless user experience.</li>
+                <li>Scale to thousands of microtransactions—while keeping users in full control of their funds.</li>
               </ul>
+              <p className="font-satoshi text-lg text-yellow-400 font-semibold mt-4">
+                Build with confidence. Build for the future.
+              </p>
               <Link href="https://docs.lightning.engineering/" className="inline-block mt-4 px-4 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300 transition font-satoshi">Read the Full Guide</Link>
             </CardContent>
           </Card>
@@ -270,11 +278,12 @@ export default function LightningNetworkPage() {
               <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Red Pill: Why Lightning, Why Now?</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-gray-200 mb-2 font-satoshi text-lg">
-                The world is waking up to programmable, unstoppable money. Lightning lets you build apps that empower users, reward creators, and bypass legacy rails. Don&apos;t just watch the revolution—be part of it. The tools are open, the code is public, and the opportunity is global.
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">This is More Than Technology—It&apos;s a Movement.</span><br/>
+                With Satsnap, we&apos;re proving that social platforms can be rebuilt on real value. Every like, every reward, every connection—powered by Bitcoin, not speculation. No tokens, no empty promises. Just pure, unstoppable value exchange.
               </p>
-              <p className="text-gray-400 text-sm font-satoshi">
-                Want to go deeper? Join the community, read the docs, and start building. The next great Bitcoin app could be yours.
+              <p className="font-satoshi text-lg text-yellow-400 font-semibold mt-4">
+                Join us. Build the future of social engagement—one sats at a time.
               </p>
             </CardContent>
           </Card>
@@ -320,35 +329,32 @@ export default function LightningNetworkPage() {
               <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">AI Agents &amp; Lightning: Powering ElizaOS</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-white/90 mb-4 font-satoshi text-lg">
-                To power <strong>ElizaOS</strong> (and similar AI agents) with Bitcoin&apos;s Lightning Network (LND), we can make every interaction — like asking a question or getting an answer — require a tiny payment.
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Where Intelligence Meets Instant Value.</span><br/>
+                Imagine a world where every question, every answer, every digital interaction is powered by real Bitcoin—instantly, permissionlessly, and at internet scale. With Lightning, ElizaOS and the next generation of AI agents become truly autonomous: every request is a microtransaction, every response is earned, and every agent can transact with any other—no banks, no borders, no friction.
               </p>
-              <p className="text-gray-200 mb-2 font-satoshi text-lg">
-                Instead of giving away free access, Eliza would ask for a Lightning payment before responding. If you pay, you get your answer. If you don&apos;t, you get an invoice you can pay to continue.
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Pay to Play, Earn to Serve.</span><br/>
+                Instead of giving away intelligence for free, ElizaOS asks for a tiny Lightning payment before responding. If you pay, you get your answer—immediately. If not, you receive a Lightning invoice you can settle at your pace. This model unlocks:
               </p>
-              <p className="text-gray-200 mb-4 font-satoshi text-lg">
-                Lightning payments are instant, tiny (even less than a cent), and global, meaning we don&apos;t need credit cards, banks, or user accounts. It&apos;s Bitcoin-native and works anywhere.
-              </p>
-              <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-1 font-satoshi text-lg">
-                <li>Payment gating: You must pay before the agent processes your request.</li>
-                <li>Pay-per-query: Each AI answer costs a few sats (small fractions of Bitcoin).</li>
-                <li>Agent-to-agent payments: AI agents can pay each other automatically when they need help or services.</li>
-                <li>Authentication: Payments double as logins — if you paid, you&apos;re verified. No need for usernames/passwords.</li>
+              <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-2 font-satoshi text-lg">
+                <li><span className="font-bold">Micropayments for Microservices:</span> Every AI answer costs just a few sats—less than a cent, but with real value.</li>
+                <li><span className="font-bold">Agent-to-Agent Commerce:</span> AI agents can pay each other for data, services, or expertise, creating a true digital economy.</li>
+                <li><span className="font-bold">Frictionless Authentication:</span> Payments double as proof of access—no passwords, no accounts, just sats.</li>
               </ul>
-
-              <h3 className="font-epilogue text-xl font-semibold text-yellow-300 mt-6 mb-2">Why this matters:</h3>
-              <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-1 font-satoshi text-lg">
-                <li>No friction: People pay instantly without signing up.</li>
-                <li>Micropayments: Make money even on very small transactions (think: 1¢ queries).</li>
-                <li>Global and open: Anyone with a Lightning wallet can interact.</li>
-                <li>Full ownership: No middlemen taking fees.</li>
-              </ul>
+              <p className="font-satoshi text-lg text-gray-200 mb-4">
+                <span className="font-bold text-yellow-300">Why it Matters:</span><br/>
+                <ul className="list-disc pl-6 text-gray-200 mb-4 space-y-1 font-satoshi text-lg">
+                  <li>No Friction: Anyone, anywhere, can access intelligence—no signups, no credit cards, just Lightning.</li>
+                  <li>Global, Open, and Permissionless: The world&apos;s knowledge, unlocked for all.</li>
+                  <li>Full Ownership: No middlemen, no gatekeepers—just pure, unstoppable value exchange between humans and machines.</li>
+                </ul>
+              </p>
               <div className="bg-black/80 border-l-4 border-yellow-400 p-4 rounded mb-2">
                 <p className="text-yellow-200 font-semibold mb-1 font-epilogue">The Big Picture:</p>
-                <ul className="list-disc pl-6 text-yellow-100 space-y-1 font-satoshi">
-                  <li><span className="font-bold">Lightning turns Eliza into a Bitcoin-native AI agent</span> — instantly paid, globally accessible, permissionless.</li>
-                  <li><span className="font-bold">It also sets the foundation for a market of AI agents</span> paying and working with each other, without needing banks or centralized platforms.</li>
-                </ul>
+                <p className="text-yellow-100 font-satoshi">
+                  Lightning transforms ElizaOS into a Bitcoin-native AI—instantly paid, globally accessible, and truly sovereign. It&apos;s the foundation for a new market of AI agents, each empowered to earn, spend, and collaborate—without ever touching a bank.
+                </p>
               </div>
             </CardContent>
           </Card>
