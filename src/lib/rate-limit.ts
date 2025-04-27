@@ -2,10 +2,15 @@ import { NextRequest } from 'next/server';
 import { Redis } from '@upstash/redis';
 import { logger } from './logger';
 
-const redis = new Redis({
-  url: process.env.REDIS_URL || '',
-  token: process.env.REDIS_TOKEN || ''
-});
+const redisUrl = process.env.REDIS_URL || '';
+const redisToken = process.env.REDIS_TOKEN || '';
+
+let redis: Redis | null = null;
+if (redisUrl.startsWith('https://') && redisToken) {
+  redis = new Redis({ url: redisUrl, token: redisToken });
+} else {
+  logger.warn('Redis is not configured or URL is invalid. Rate limiting is disabled.');
+}
 
 interface RateLimitConfig {
   maxRequests: number;
@@ -21,6 +26,13 @@ export async function rateLimit(
   request: NextRequest,
   config: RateLimitConfig = DEFAULT_CONFIG
 ): Promise<{ success: boolean; remaining: number }> {
+  if (!redis) {
+    // Redis not configured, always allow
+    return {
+      success: true,
+      remaining: config.maxRequests
+    };
+  }
   const ip = request.ip || 'anonymous';
   const key = `rate-limit:${ip}`;
   

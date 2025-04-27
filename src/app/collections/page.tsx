@@ -1,13 +1,48 @@
 'use client';
 
 import { Layout } from '@/components/ui';
-import { CURATED_COLLECTIONS } from '@/config/collections';
 import { Web3ErrorBoundary } from '@/components/web3/Web3ErrorBoundary';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+// Normalized NFT type from /api/floor-nfts
+interface FloorNFT {
+  collectionName: string;
+  collectionAddress: string;
+  collectionImage: string;
+  nftName: string | null;
+  nftImage: string | null;
+  priceEth: number | null;
+  priceUsd: number | null;
+  listingUrl: string | null;
+  fromCache: boolean;
+  error?: string | null;
+}
 
 export default function CollectionsPage() {
+  const [nfts, setNfts] = useState<FloorNFT[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchNFTs() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch('/api/floor-nfts');
+        const data = await res.json();
+        setNfts(data.floorNFTs || []);
+      } catch {
+        setError('Failed to load NFTs.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchNFTs();
+  }, []);
+
   return (
     <Layout>
       <Web3ErrorBoundary>
@@ -33,72 +68,87 @@ export default function CollectionsPage() {
                   transition={{ delay: 0.5, duration: 0.8 }}
                 >
                   <h1 className="relative text-7xl sm:text-8xl md:text-9xl font-bold text-yellow-400 mb-8 tracking-tight font-epilogue">
-                    Curated<br />Collections
+                    Featured
                   </h1>
                   <p className="text-white/80 text-xl sm:text-2xl max-w-2xl font-satoshi pl-2">
-                    Explore our handpicked selection of the most iconic NFT collections on Ethereum.
+                    The best deals on the floor from our handpicked NFT collections.
                   </p>
                 </motion.div>
               </div>
             </motion.div>
           </div>
 
-          {/* Collections Grid */}
+          {/* NFT Grid */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
             className="max-w-[2000px] mx-auto px-6 pb-32"
           >
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8">
-              {CURATED_COLLECTIONS.map((collection, index) => (
-                <motion.div
-                  key={collection.address}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  className="group relative aspect-square cursor-pointer"
-                >
-                  <Link href={`/collections/${collection.address}`}>
-                    {/* Card Container with Hover Effects */}
-                    <div className="absolute inset-0 rounded-lg bg-[#1c1f26] overflow-hidden transform transition-all duration-500 ease-out hover:scale-[1.02] border-2 border-yellow-500/30 hover:border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,0.3)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)]">
-                      {/* Glowing Border Effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-transparent" />
-                      </div>
-
-                      {/* Image Container */}
-                      <div className="absolute inset-0 transform transition-transform duration-500">
+            {loading ? (
+              <div className="text-white text-xl py-20 text-center">Loading floor NFTs...</div>
+            ) : error ? (
+              <div className="text-red-500 text-xl py-20 text-center">{error}</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+                {nfts.map((nft, i) => (
+                  <div
+                    key={nft.listingUrl || nft.nftName || i}
+                    className="bg-white border border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,0.8)] rounded-lg flex flex-col overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(247,181,0,0.7)]"
+                  >
+                    <div className="relative aspect-square w-full bg-gray-100">
+                      {nft.nftImage ? (
                         <Image
-                          src={collection.image_url || '/images/placeholder-logo.png'}
-                          alt={collection.name}
+                          src={nft.nftImage}
+                          alt={nft.nftName || nft.collectionName}
                           fill
-                          className="object-cover transform transition-all duration-500 ease-out group-hover:scale-[1.15]"
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, 33vw"
                         />
-                      </div>
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="absolute inset-x-0 bottom-0 p-6">
-                          <div className="transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                            <h3 className="text-xl font-bold text-yellow-400 font-epilogue tracking-tight mb-2">
-                              {collection.name}
-                            </h3>
-                            {collection.description && (
-                              <p className="text-sm text-white/60 line-clamp-2 mb-3 font-satoshi">
-                                {collection.description}
-                              </p>
-                            )}
-                            <div className="h-[2px] w-12 bg-yellow-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200 origin-left" />
-                          </div>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+                      )}
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="font-bold text-lg mb-1 font-epilogue">
+                          {nft.nftName || <span className="italic text-gray-400">No Name</span>}
                         </div>
+                        <div className="text-xs text-gray-500 mb-2">{nft.collectionName}</div>
+                        {nft.priceEth && (
+                          <div className="flex items-baseline gap-2 mb-1">
+                            <span className="font-bold text-2xl">Ξ {nft.priceEth}</span>
+                            {nft.priceUsd && (
+                              <span className="text-xs text-gray-500">${nft.priceUsd}</span>
+                            )}
+                          </div>
+                        )}
+                        {nft.error && (
+                          <div className="text-xs text-red-500 mt-2">{nft.error}</div>
+                        )}
+                      </div>
+                      <div className="mt-4 flex items-center justify-between">
+                        {nft.listingUrl ? (
+                          <Link
+                            href={nft.listingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block px-3 py-1 bg-yellow-400 text-black font-bold rounded shadow hover:bg-yellow-500 transition"
+                          >
+                            View on OpenSea →
+                          </Link>
+                        ) : (
+                          <span className="text-xs text-gray-400">Not for sale</span>
+                        )}
+                        <span className="ml-2 text-xs bg-black text-white px-2 py-1 rounded font-mono">
+                          {nft.nftName?.split('#')[0] || nft.collectionName}
+                        </span>
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </Web3ErrorBoundary>
