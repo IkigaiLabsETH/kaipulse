@@ -1,0 +1,35 @@
+<!-- KaiPulse SVG Logo v9 – Polished Tarantino Bolt with Gradient & Shadow -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+  <!--  Gradient + theme‑adaptive stroke + subtle shadow  -->
+  <defs>
+    <!-- Tarantino yellow gradient -->
+    <linearGradient id="boltFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#FFE55A" />
+      <stop offset="100%" stop-color="#FFB600" />
+    </linearGradient>
+
+    <!-- Drop shadow -->
+    <filter id="boltShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(0,0,0,0.35)"/>
+    </filter>
+
+    <!-- Theme stroke variables -->
+    <style>
+      :root {
+        --kp-stroke-light:#000;    /* light theme stroke */
+        --kp-stroke-dark:#FFF;     /* dark theme stroke */
+      }
+    </style>
+  </defs>
+
+  <!-- White buffer stroke (ensures contrast on any bg) -->
+  <path d="M90 10 L40 85 L70 85 L45 150 L120 60 L90 60 Z"
+        fill="none" stroke="#FFF" stroke-width="12" stroke-linejoin="round" filter="url(#boltShadow)"/>
+
+  <!-- Main bolt with gradient fill and adaptive stroke -->
+  <path d="M90 10 L40 85 L70 85 L45 150 L120 60 L90 60 Z"
+        fill="url(#boltFill)" stroke="var(--kp-stroke, #000)" stroke-width="6" stroke-linejoin="round" filter="url(#boltShadow)"/>
+
+  <!-- Katana slash accent -->
+  <path d="M60 55 L105 55" stroke="var(--kp-stroke, #000)" stroke-width="6" stroke-linecap="round"/>
+</svg>

@@ -3,35 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Zap } from 'lucide-react';
-
-// Animated Lightning Icon
-const AnimatedLightning = () => (
-  <motion.div
-    className="relative w-12 h-12 md:w-20 md:h-20"
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.2 }}
-  >
-    <motion.div
-      className="absolute inset-0 bg-yellow-500/20 rounded-full"
-      animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-      transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-    />
-    <motion.div
-      className="absolute inset-0 bg-yellow-500/10 rounded-full"
-      animate={{ scale: [1.1, 1.3, 1.1], opacity: [0.3, 0.6, 0.3] }}
-      transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
-    />
-    <motion.div
-      className="flex items-center justify-center h-full w-full"
-      animate={{ rotate: [0, 10, 0, -10, 0] }}
-      transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-    >
-      <Zap className="h-12 w-12 md:h-16 md:w-16 text-yellow-400 drop-shadow-[0_0_20px_rgba(234,179,8,0.7)]" />
-    </motion.div>
-  </motion.div>
-);
+import Image from 'next/image';
 
 // Shimmer effect for text
 const shimmer = {
@@ -52,6 +24,16 @@ export default function LightningNetworkPage() {
       {/* Premium header accent */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-30"></div>
       {/* NEW: Lightning Manifesto Section */}
+      <div className="flex justify-center pt-20">
+        <Image
+          src="/kaipulse.svg"
+          alt="KaiPulse logo"
+          width={128}
+          height={128}
+          className="w-24 md:w-32 h-auto mb-6 drop-shadow-lg"
+          priority
+        />
+      </div>
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -143,7 +125,6 @@ export default function LightningNetworkPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col items-center text-center space-y-6"
           >
-            <AnimatedLightning />
             <motion.h1
               initial="hidden"
               animate="visible"
