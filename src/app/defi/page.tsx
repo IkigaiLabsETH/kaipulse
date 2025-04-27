@@ -336,7 +336,7 @@ export default function DefiPage() {
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>Borrow on Morpho</span>
+                  <span>Morpho</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
@@ -351,7 +351,7 @@ export default function DefiPage() {
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>Borrow on Berachain</span>
+                  <span>Berachain</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
@@ -366,11 +366,29 @@ export default function DefiPage() {
                 className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 rounded-lg bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] px-12 py-6 text-2xl font-semibold text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <div className="flex items-center gap-2">
-                  <span>oriBGT on Origami</span>
+                  <span>Origami</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Button>
             </a>
+          </div>
+          {/* Burve Teaser */}
+          <div className="max-w-6xl mx-auto mt-20 mb-10">
+            <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+              <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+              <div className="p-8 md:p-10">
+                <h3 className="text-yellow-500 font-bold text-2xl md:text-3xl mb-4 font-epilogue">Burve: Unified BTC Liquidity, Giga Yield</h3>
+                <div className="text-white/90 text-lg space-y-4 font-satoshi">
+                  <p>
+                    Imagine being able to provide liquidity for all of these BTC pairs with only one deposit. That would already be great, right? Burve goes one step further and deposits your idle liquidity into money markets like <span className="text-yellow-400">Dolomite</span>, <span className="text-yellow-400">Euler</span>, and <span className="text-yellow-400">Morpho</span>, giving you extra yield on top of the swap fees. Alright, that sounds amazing, right? It gets crazier though, because since we&apos;re on <span className="text-yellow-400">Berachain</span>, both the Burve LP and those deposits on money markets can generate <span className="text-yellow-400">BGT</span>. So you are getting <span className="font-semibold text-yellow-400">giga boosted yield</span> from LPing multiple pairs at once + lending yield + BGT from both of these things.
+                  </p>
+                  <p className="text-white/70">
+                    Please check out the docs and see it for yourself, there&apos;s a bunch of things I didn&apos;t even mention —{' '}
+                    <a href="https://docs.burve.fi" target="_blank" rel="noopener noreferrer" className="text-yellow-400 underline hover:text-yellow-300">https://docs.burve.fi</a>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="mt-8 space-y-2">
             <p className="text-sm text-white/60 font-satoshi">
