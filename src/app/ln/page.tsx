@@ -79,7 +79,7 @@ export default function LightningNetworkPage() {
           <div className="bg-yellow-900/40 border-l-4 border-yellow-400 p-5 rounded mb-6">
             <p className="text-yellow-200 font-semibold mb-2 text-lg font-epilogue">Our AHA Moment:</p>
             <p className="text-yellow-100 text-base md:text-lg font-satoshi">
-              We brainstormed with Satoshi (and every Bitcoin builder we know). We explored Runes, Ordinals, Stacks, and every new way to build on Bitcoin. The revelation? <span className="font-bold">They all inherit the same flaws as EVMs and alt-L1s.</span> The risk, the drama, the distractions—they never go away.
+              We brainstormed with Satoshi. We explored Runes, Ordinals, Stacks, and every new way to build on Bitcoin. The revelation? <span className="font-bold">They all inherit the same flaws as EVMs and alt-L1s.</span> The risk, the drama, the distractions—they never go away.
             </p>
           </div>
           <p className="font-satoshi text-xl md:text-2xl text-white/90 mb-4 font-semibold">
