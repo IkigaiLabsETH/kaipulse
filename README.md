@@ -1,3 +1,66 @@
+# Why "Satsnap" Became KaiPulse
+
+We built Satsnap to prove every "like" could move real Bitcoin, but the name never captured the deeper reason we show up each day. Therefore we're re-branding to **KaiPulse**—a single word that fuses purpose (kai) with motion (pulse).
+
+---
+
+## What kai means
+
+In Japanese, kai (改 / 甲斐) speaks to change, worth, and the "why" that gets you out of bed.
+Creators don't post for empty hearts; they post to make an impact. Kai puts that intention front-and-center.
+
+## What pulse adds
+
+A pulse is a heartbeat and an electric spike. It's the Lightning invoice firing 21 sats in 200 milliseconds.
+Attention finally travels at the speed of life.
+
+---
+
+## The story in one line
+
+You share something real but it only matters when value moves; therefore every tap now sends a KaiPulse.
+
+---
+
+## What's changing
+
+| Old         | New                                              |
+|-------------|--------------------------------------------------|
+| Name: Satsnap | Name: KaiPulse                                 |
+| Photo-first vibe | Purpose-first, any medium                  |
+| Yellow flash logo | Iconic bolt-swoosh in cinematic Tarantino yellow |
+| "Like → 21 sats" | Pulse any action—likes, follows, AI prompts |
+
+## What stays the same
+- Bitcoin Lightning rails — instant, borderless, final.
+- 21-sat default micro-reward — tweakable, still magic.
+- No tokens, no ads, no middlemen — ever.
+
+---
+
+## How this benefits you
+- Creators earn faster and can price every micro-moment.
+- Fans feel the why behind each pulse—gratitude they can measure.
+- Builders plug a single API and ride the same heartbeat.
+
+---
+
+## Rollout timeline
+- **Today** – New logo and brand live on web, TestFlight, and GitHub.
+- **Next Week** – Mobile apps auto-update; your sats and logins remain.
+- **Q3** – Pulse-based AI prompts and LTL Maps quests ship under one wallet.
+
+---
+
+## A final note
+
+We loved the scrappy energy of Satsnap, but the future deserves a name that carries weight long after the first novelty fades. Therefore welcome to KaiPulse—purpose in a heartbeat.
+
+See you on the feed. Charge every moment,
+– The KaiPulse (formerly Satsnap) team 🐻
+
+---
+
 # MSTY Freedom Calculator
 
 ![MSTY Banner](https://github.com/thirdweb-example/next-starter/assets/57885104/20c8ce3b-4e55-4f10-ae03-2fe4743a5ee8)
