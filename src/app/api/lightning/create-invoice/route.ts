@@ -74,13 +74,55 @@ export async function POST(request: Request) {
     }
     const { amount, memo } = parsed.data;
 
-    // Create Lightning invoice
-    const lnd = getLnd();
-    const invoice = await createInvoice({
-      lnd,
-      tokens: amount,
-      description: memo || undefined,
-    });
+    // Create Lightning invoice (try ln-service first)
+    let invoice;
+    let usedFallback = false;
+    try {
+      const lnd = getLnd();
+      invoice = await createInvoice({
+        lnd,
+        tokens: amount,
+        description: memo || undefined,
+      });
+      logger.info(`[${requestId}] Invoice created using ln-service`);
+    } catch (lnServiceError) {
+      logger.warn(`[${requestId}] ln-service createInvoice failed: ${lnServiceError instanceof Error ? lnServiceError.message : lnServiceError}`);
+      // Fallback: direct REST call
+      try {
+        const restHost = process.env.VOLTAGE_LND_SOCKET; // e.g. 'node-name.m.voltageapp.io:8080'
+        const macaroon = process.env.VOLTAGE_LND_MACAROON; // hex-encoded
+        if (!restHost || !macaroon) throw new Error('Missing REST host or macaroon for fallback');
+        const response = await fetch(`https://${restHost}/v1/invoices`, {
+          method: 'POST',
+          headers: {
+            'Grpc-Metadata-macaroon': macaroon,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            value: amount, // in satoshis
+            memo: memo || '',
+          }),
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`REST fallback failed: ${response.status} ${response.statusText} - ${errorText}`);
+        }
+        const data = await response.json();
+        invoice = {
+          request: data.payment_request,
+          id: data.r_hash || data.id || data.payment_hash,
+          expires_at: data.expiry || data.expires_at || new Date(Date.now() + 3600 * 1000).toISOString(),
+        };
+        usedFallback = true;
+        logger.info(`[${requestId}] Invoice created using REST fallback`);
+      } catch (restError) {
+        logger.error(`[${requestId}] Both ln-service and REST fallback failed: ${restError instanceof Error ? restError.message : restError}`);
+        return NextResponse.json(
+          { error: 'Internal server error', code: 'SERVER_ERROR', requestId, details: restError instanceof Error ? restError.message : restError },
+          { status: 500 }
+        );
+      }
+    }
 
     // Persist invoice in DB
     await prisma.invoice.create({
@@ -101,6 +143,7 @@ export async function POST(request: Request) {
       paymentHash: invoice.id,
       expiresAt: invoice.expires_at,
       requestId,
+      usedFallback,
     });
   } catch (err: unknown) {
     let message = 'Unknown error';

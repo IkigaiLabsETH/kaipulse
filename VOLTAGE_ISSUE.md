@@ -29,6 +29,21 @@ The Voltage Lightning node is unable to connect to the Lightning Network due to 
 
 ---
 
+## Remediation: Fallback Logic Added
+To improve reliability and aid debugging, we updated the `/api/lightning/create-invoice` endpoint with a fallback mechanism:
+
+- The API first attempts to create an invoice using the `ln-service` library (gRPC/REST abstraction).
+- If this fails (e.g., due to library or connection issues), it automatically attempts a direct REST call to the Voltage LND node using the documented API (`/v1/invoices`), passing the macaroon in the header.
+- The response now includes a `usedFallback` field to indicate which method succeeded.
+- If both methods fail, a 500 error is returned and the error is logged for further investigation.
+
+**Benefits:**
+- Helps isolate whether issues are with the node, credentials, or the `ln-service` library.
+- Provides a backup path for invoice creation, improving reliability during node or library issues.
+- Improves error logging and observability for future troubleshooting.
+
+---
+
 ## Next Actions
 - [ ] Restart the node from the Voltage dashboard and monitor for successful peer connections.
 - [ ] Verify network/firewall settings to ensure the node can reach DNS seeds and peers.
@@ -40,6 +55,7 @@ The Voltage Lightning node is unable to connect to the Lightning Network due to 
 ## References
 - [Voltage Documentation](https://docs.voltageapi.com/)
 - [Voltage Cloud Support](https://app.voltage.cloud/)
+- [Voltage REST API Examples](https://docs.voltage.cloud/rest-api-examples)
 
 ---
 
