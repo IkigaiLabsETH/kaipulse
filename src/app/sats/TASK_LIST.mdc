@@ -30,6 +30,69 @@ A Bitcoin Lightning-powered photography platform where users can support creator
 
 - [ ] Implement analytics to track user interactions and payments
 
+## ⚡️ Lightning Node Integration (Voltage/LND)
+
+**Step-by-step instructions for integrating and testing with your running Voltage LND node:**
+
+1. **Obtain Connection Details from Voltage Dashboard**
+   - Go to your Voltage dashboard, select your running node, and click "Connect".
+   - Download your admin macaroon and (if needed) TLS certificate.
+   - Note your node's REST/gRPC endpoint (host, port). Voltage often uses browser-trusted TLS, so the cert may not be needed for REST.
+   - Reference: [Voltage Connect to Your Node](mdc:https:/docs.voltage.cloud/connect-to-your-node)
+
+2. **Set Up Environment Variables**
+   - Add the following to your `.env.local` (values to be filled in):
+     ```env
+     LND_REST_ENDPOINT=https://<your-node-endpoint>:8080
+     LND_MACAROON_HEX=<hex-encoded-admin-macaroon>
+     LND_TLS_CERT_PATH=<path-to-tls.cert-if-needed>
+     ```
+   - You can convert the macaroon file to hex with:
+     ```sh
+     xxd -ps -u -c 1000 admin.macaroon
+     ```
+   - For local dev, you may want to add a script to load the macaroon from file and convert to hex.
+
+3. **Implement Backend Utility for LND REST/gRPC Calls**
+   - Use a library like `axios` for REST or `grpc` for gRPC.
+   - For REST, include the macaroon in the `Grpc-Metadata-macaroon` header.
+   - Example (Node.js, REST):
+     ```js
+     const axios = require('axios');
+     const macaroon = process.env.LND_MACAROON_HEX;
+     const url = process.env.LND_REST_ENDPOINT + '/v1/getinfo';
+     axios.get(url, { headers: { 'Grpc-Metadata-macaroon': macaroon } })
+       .then(res => console.log(res.data));
+     ```
+   - Reference: [LND API Reference](mdc:https:/lightning.engineering/api-docs/api/lnd/index.html)
+
+4. **Create API Endpoints for Lightning Actions**
+   - [ ] `/api/lightning/invoice` (POST): Create invoice
+   - [ ] `/api/lightning/pay` (POST): Pay invoice
+   - [ ] `/api/lightning/balance` (GET): Get wallet/node balance
+   - Each endpoint should call the backend utility and handle errors gracefully.
+
+5. **Integrate Lightning Actions into `/src/app/sats` UI**
+   - Add UI for creating and paying invoices, and displaying balances.
+   - Show loading and error states for all Lightning actions.
+
+6. **Test with Real Voltage Node**
+   - Use your running Voltage node to:
+     - Create a test invoice and pay it (can use testnet if desired)
+     - Check node and wallet balances
+     - Confirm all API endpoints and UI flows work as expected
+   - Troubleshoot any connection/authentication issues (check macaroon, endpoint, and TLS settings)
+
+7. **Document Setup and Usage**
+   - Add a section to your project README with setup steps for Voltage integration.
+   - Include how to obtain credentials, set environment variables, and run tests.
+
+**Practical Notes:**
+- Macaroon authentication is required for all LND API calls.
+- For REST, Voltage nodes often do not require a custom TLS cert (browser-trusted), but gRPC may need it.
+- Always keep your admin macaroon secure—never commit it to version control.
+- For more, see [Voltage Docs](mdc:https:/docs.voltage.cloud/connect-to-your-node) and [LND API Reference](mdc:https:/lightning.engineering/api-docs/api/lnd/index.html).
+
 ## Future Tasks
 
 - [ ] Add user authentication system
@@ -107,6 +170,9 @@ A Bitcoin Lightning-powered photography platform where users can support creator
 
 ```env
 NEXT_PUBLIC_LIGHTNING_NETWORK_URL=
+LND_REST_ENDPOINT=
+LND_MACAROON_HEX=
+LND_TLS_CERT_PATH=
 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=
 SENTRY_DSN=
 REDIS_URL=
