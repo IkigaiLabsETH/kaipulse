@@ -97,22 +97,55 @@ export const collectionNFTSchema = baseAssetSchema.extend({
 // Full NFT schema (for individual NFT endpoint)
 export const nftSchema = z.object({
   identifier: z.string(),
-  token_id: z.string(),
-  contract: z.string(),
-  contract_address: z.string(),
-  chain: chainSchema,
   collection: z.string(),
-  name: z.string().nullish().default(''),
-  description: z.string().nullish().default(''),
-  image_url: z.string().nullish().default(''),
-  external_url: z.string().nullish().default(''),
-  animation_url: z.string().nullish().default(null),
-  token_standard: z.string().nullish().default('erc721'),
-  metadata_url: z.string().nullish().default(''),
-  background_color: z.string().nullish().default(''),
-  traits: z.array(nftTraitSchema).nullish().default([]),
-  rarity: nftRaritySchema.optional()
-});
+  contract: z.string(),
+  token_standard: z.string(),
+  name: z.string(),
+  description: z.string(),
+  image_url: z.string(),
+  metadata_url: z.string(),
+  animation_url: z.string().nullable(),
+  background_color: z.string().nullable(),
+  external_url: z.string().nullable(),
+  created_at: z.string(),
+  updated_at: z.string(),
+  is_disabled: z.boolean(),
+  is_nsfw: z.boolean(),
+  is_suspicious: z.boolean(),
+  creator: z.object({
+    username: z.string(),
+    profile_url: z.string(),
+    address: z.string(),
+  }),
+  owners: z.array(z.object({
+    address: z.string(),
+    quantity: z.number(),
+  })),
+  traits: z.array(z.object({
+    trait_type: z.string(),
+    value: z.string(),
+    display_type: z.string().nullable(),
+    max_value: z.number().nullable(),
+    trait_count: z.number(),
+    order: z.number().nullable(),
+  })),
+  rarity: z.object({
+    strategy_id: z.string().nullable(),
+    strategy_version: z.string().nullable(),
+    rank: z.number().nullable(),
+    score: z.number().nullable(),
+    calculated_at: z.string().nullable(),
+    max_rank: z.number().nullable(),
+    tokens_scored: z.number().nullable(),
+  }),
+  listings: z.array(z.object({
+    price: z.object({
+      current: z.object({
+        value: z.number(),
+      })
+    })
+  })).optional(),
+}).passthrough();
 
 // Response schemas
 export const collectionResponseSchema = z.object({
