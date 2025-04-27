@@ -60,7 +60,7 @@ export default function LightningNetworkPage() {
       >
         <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg mb-10 p-8 md:p-12">
           <h2 className="font-boska text-4xl md:text-5xl font-extrabold text-yellow-400 mb-6 tracking-tight drop-shadow-lg">
-            Why We Build on Lightning — and Nowhere Else
+           ⚡️ Why We Build on Lightning ⚡️
           </h2>
           <p className="font-satoshi text-xl md:text-2xl text-white/90 mb-6 font-medium">
             We are builders. But after years in DeFi, we learned a hard truth: <span className="font-bold text-yellow-300">Smart contracts are brittle, tokens are a casino, and your product&apos;s destiny is hijacked by whales, hype, and market chaos.</span>
