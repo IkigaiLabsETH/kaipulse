@@ -110,11 +110,17 @@ const offerQueryParamsSchema = listingQueryParamsSchema.extend({
   trait_value: z.string().optional()
 }).strict();
 
+// Add this type above the class
+interface OpenSeaV2ListingsResponse {
+  listings: unknown[];
+  next: string | null;
+}
+
 export class OpenSeaOrdersAPI extends BaseOpenSeaAPI {
   /**
    * Gets a list of listings based on query parameters (OpenSea v2)
    */
-  async getListings(params?: ListingQueryParams): Promise<any> {
+  async getListings(params?: ListingQueryParams): Promise<OpenSeaV2ListingsResponse> {
     if (!params?.asset_contract_address) {
       throw new Error('asset_contract_address is required for v2 listings endpoint');
     }
@@ -122,7 +128,7 @@ export class OpenSeaOrdersAPI extends BaseOpenSeaAPI {
     const url = `/api/v2/listings/ethereum/${asset_contract_address}`;
     const query: Record<string, string | number> = { limit };
     if (next) query.next = next;
-    return this.request({
+    return this.request<OpenSeaV2ListingsResponse>({
       method: 'GET',
       url,
       params: query,

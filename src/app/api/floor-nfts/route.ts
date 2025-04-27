@@ -2,7 +2,6 @@ import { NextResponse, NextRequest } from 'next/server';
 import { CURATED_COLLECTIONS } from '@/config/collections';
 import { openSeaService } from '@/services/opensea';
 import { rateLimit } from '@/lib/rate-limit';
-import type { Listing } from '@/services/opensea/types';
 
 // TODO: Import curated collections config
 // TODO: Import OpenSea service utilities for fetching floor NFTs
@@ -14,13 +13,13 @@ const RATE_LIMIT_CONFIG = { maxRequests: 10, windowMs: 60 * 1000 };
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 // Dedicated in-memory cache for floor listings
-const floorListingCache: Record<string, { listing: Listing; timestamp: number }> = {};
+const floorListingCache: Record<string, { listing: unknown; timestamp: number }> = {};
 
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function getCachedFloorListing(contractAddress: string): Listing | null {
+function getCachedFloorListing(contractAddress: string): unknown | null {
   const entry = floorListingCache[contractAddress];
   if (entry && Date.now() - entry.timestamp < CACHE_TTL) {
     return entry.listing;
@@ -28,7 +27,7 @@ function getCachedFloorListing(contractAddress: string): Listing | null {
   return null;
 }
 
-function setCachedFloorListing(contractAddress: string, listing: Listing) {
+function setCachedFloorListing(contractAddress: string, listing: unknown) {
   floorListingCache[contractAddress] = {
     listing,
     timestamp: Date.now(),
