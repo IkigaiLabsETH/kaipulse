@@ -39,7 +39,7 @@ const brokers: Broker[] = [
     },
     minDeposit: "$0",
     rating: 4.8,
-    website: "https://www.tastytrade.com",
+    website: "https://open.tastytrade.com/signup?referralCode=EVDX34J82A",
     regulators: ["SEC", "FINRA"]
   },
   {
