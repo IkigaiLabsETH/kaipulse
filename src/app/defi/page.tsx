@@ -667,6 +667,78 @@ export default function DefiPage() {
         </div>
       </motion.div>
 
+      {/* Solv Finance Section */}
+      <motion.div 
+        className="max-w-6xl mx-auto mt-20 mb-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1 }}
+      >
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🎯</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Solv Finance: Fixed-Yield NFTs Meet DeFi</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                Solv Finance bridges the gap between traditional fixed-income products and DeFi by transforming crypto deposits into NFTs with guaranteed yields. This innovative approach brings the predictability of term deposits to the blockchain while maintaining the liquidity advantages of tokenized assets.
+              </div>
+              <div>
+                <b className="text-yellow-500">Core Mechanics</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li>Lock USDC or wBTC to mint SolvUSDC or SolvBTC NFTs</li>
+                  <li>Fixed maturity date with predetermined yield</li>
+                  <li>NFTs are freely tradable on secondary markets</li>
+                  <li>Yield sourced from established lending protocols</li>
+                  <li>Non-custodial design with direct protocol integration</li>
+                </ul>
+              </div>
+              <div>
+                <b className="text-yellow-500">Token Economics</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li><b>SOLV Token:</b> Governance rights over fees, vault parameters, and protocol direction</li>
+                  <li><b>Solv Points:</b> Loyalty system rewarding long-term stakers with SOLV tokens or fee reductions</li>
+                </ul>
+              </div>
+              <div>
+                <b className="text-yellow-500">Strategic Partnerships</b><br/>
+                Integration with DeFi blue chips like Aave and Compound, plus emerging platforms in the Berachain ecosystem, creates a robust yield foundation and ensures deep secondary market liquidity for Solv NFTs.
+              </div>
+              <div>
+                <b className="text-yellow-500">Risk Considerations</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li>Smart contract vulnerabilities in vault mechanics</li>
+                  <li>NFT market liquidity constraints</li>
+                  <li>Underlying protocol dependencies</li>
+                  <li>Yield source diversification needs</li>
+                </ul>
+              </div>
+              <div>
+                <b className="text-yellow-500">Why It Matters</b><br/>
+                Solv Finance represents a crucial evolution in DeFi by merging fixed-income principles with NFT technology. This innovation serves multiple stakeholders:
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li>Investors seeking predictable yields without leaving Web3</li>
+                  <li>Builders looking for novel collateral types</li>
+                  <li>Traders wanting bond-like instruments with NFT liquidity</li>
+                </ul>
+              </div>
+              <div className="mt-6">
+                <a
+                  href="https://solv.finance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3 rounded-lg bg-yellow-500 text-black font-bold text-lg shadow-md hover:bg-yellow-400 transition-colors border-2 border-yellow-500"
+                >
+                  Start Minting
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Bitcoin Magazine Footer */}
       <div className="relative py-24 mt-20 overflow-hidden">
         {/* Bitcoin pattern background */}
