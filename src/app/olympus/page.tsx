@@ -217,7 +217,7 @@ export default function OlympusPage() {
                        left: i % 2 === 0 ? '-8px' : 'auto',
                        right: i % 2 === 0 ? 'auto' : '-8px'
                      }} />
-                <Card className="bg-[#111111] border-2 border-yellow-500/30 overflow-hidden">
+                <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                   <div className="p-6">
                     <p className="text-yellow-500 text-sm font-medium mb-2">{event.date}</p>
                     <h3 className="text-xl font-bold mb-2">{event.title}</h3>
@@ -244,7 +244,7 @@ export default function OlympusPage() {
                   custom={i}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="bg-[#111111] border-2 border-yellow-500/30 h-full">
+                  <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                     <div className="p-6">
                       <h3 className="text-lg font-medium mb-2">{param.name}</h3>
                       <p className="text-2xl font-bold text-yellow-500 mb-2">{param.value}</p>
@@ -260,7 +260,7 @@ export default function OlympusPage() {
           <div className="space-y-8">
             <h2 className="text-3xl font-bold font-epilogue">Technical Architecture</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-[#111111] border-2 border-yellow-500/30">
+              <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-3">
                     <GitBranch className="w-6 h-6 text-yellow-500" />
@@ -275,7 +275,7 @@ export default function OlympusPage() {
                 </div>
               </Card>
 
-              <Card className="bg-[#111111] border-2 border-yellow-500/30">
+              <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                 <div className="p-6 space-y-4">
                   <div className="flex items-center gap-3">
                     <Scale className="w-6 h-6 text-yellow-500" />
@@ -384,7 +384,7 @@ export default function OlympusPage() {
             </Card>
 
             {/* Verdict Section */}
-            <Card className="p-8 bg-[#111111] border-2 border-yellow-500/50 shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)]">
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6 text-yellow-400">
                 Verdict
               </h2>
