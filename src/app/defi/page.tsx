@@ -401,6 +401,34 @@ export default function DefiPage() {
         </motion.div>
       </div>
 
+      {/* Lombard Finance Section */}
+      <div className="max-w-6xl mx-auto mt-20 mb-10">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <h3 className="text-yellow-500 font-bold text-2xl md:text-3xl mb-4 font-epilogue">Lombard: Liquid Staking for Bitcoin, Unlocked</h3>
+            <div className="text-white/90 text-lg space-y-4 font-satoshi">
+              <p>
+                Lombard Finance is redefining Bitcoin&apos;s role in decentralized finance. By launching <span className="text-yellow-400 font-semibold">LBTC</span>, the first yield-bearing, liquid Bitcoin staking token, Lombard allows Bitcoin holders to earn rewards while keeping their BTC liquid and DeFi-ready. Built on Babylon&apos;s Bitcoin restaking layer and secured by a decentralized consortium, LBTC transforms idle BTC into productive capital across multiple chains like Ethereum, Base, and Sui.
+              </p>
+              <p>
+                Unlike traditional wrapped BTC products, LBTC is 1:1 backed and actively generates yield from Bitcoin-secured networks, creating new opportunities for DeFi integration without compromising Bitcoin&apos;s security ethos. Lombard already leads the Bitcoin liquid staking market, with over $2 billion in LBTC supply and integrations across top DeFi protocols. As Bitcoin liquidity increasingly flows into DeFi, Lombard stands at the forefront, bridging the world&apos;s hardest asset into the onchain economy.
+              </p>
+              <div className="mt-6">
+                <a
+                  href="https://lombard.finance/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-3 rounded-lg bg-yellow-500 text-black font-bold text-lg shadow-md hover:bg-yellow-400 transition-colors border-2 border-yellow-500"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Berachain Deep Dive */}
       <div className="max-w-6xl mx-auto mt-20 mb-10">
         <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
