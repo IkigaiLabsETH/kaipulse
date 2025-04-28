@@ -1,0 +1,535 @@
+'use client';
+
+import { motion } from 'framer-motion'
+import { Card } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { 
+  TrendingUp, 
+  Shield, 
+  Wallet, 
+  ChartBar, 
+  GitBranch,
+  Scale
+} from 'lucide-react'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3
+    }
+  }
+}
+
+const sectionVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 20
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15
+    }
+  }
+}
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 20,
+    scale: 0.95
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: 0.1 * i,
+      duration: 0.5,
+    }
+  })
+};
+
+const metrics = [
+  { label: "Treasury Assets", value: "$195.0M", change: "+1.8%", icon: Wallet },
+  { label: "POL", value: "$98.7M", change: "+1.2%", icon: ChartBar },
+  { label: "Market Cap", value: "$370.4M", change: "+2.1%", icon: TrendingUp },
+  { label: "Backing per OHM", value: "$11.20", change: "+0.5%", icon: Shield }
+];
+
+const policyParameters = [
+  { name: "Cushion Factor", value: "0.75", description: "Determines spread between high/low walls" },
+  { name: "Moving Average", value: "8h", description: "Time window for price averaging" },
+  { name: "Rebase Rate", value: "0.0009%", description: "Current rate of supply expansion" },
+  { name: "Wall Spread", value: "±15%", description: "Price range for market operations" }
+];
+
+const timelineEvents = [
+  {
+    date: "March 2021",
+    title: "OHM Launch",
+    description: "Initial bonding mechanism and (3,3) game theory"
+  },
+  {
+    date: "December 2021",
+    title: "Peak Market Cap",
+    description: "$4B valuation at height of DeFi season"
+  },
+  {
+    date: "January 2022",
+    title: "Market Correction",
+    description: "Transition period begins as premium contracts"
+  },
+  {
+    date: "Q2 2023",
+    title: "Range-Bound Stability",
+    description: "Implementation of advanced market operations"
+  },
+  {
+    date: "Q1 2024",
+    title: "Cross-Chain Expansion",
+    description: "Deployment on Base, integration with new chains"
+  }
+];
+
+export default function OlympusPage() {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero Section with Animated Background */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-transparent" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ 
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35.6c-3 0-5.6-2.6-5.6-5.6s2.6-5.6 5.6-5.6 5.6 2.6 5.6 5.6-2.5 5.6-5.6 5.6zm-.7-9.8v1.5c-1 0-1.7.3-1.9.6-.3.4-.1 1 .3 1.9l1.3-.5c-.2-.4-.2-.8-.1-.9 0 0 .2-.1.5-.1v2.1l-.4.1c-.7.2-1.3.5-1.6.9-.3.4-.4.9-.3 1.4.1.5.4.9.8 1.1.4.3.9.4 1.5.4v.9h.9v-.9c1.2-.1 2-1 2.4-1.9l-1.4-.6c-.2.5-.5.8-.9.9v-1.9c.7-.2 1.2-.4 1.6-.7.3-.2.6-.5.7-.9.1-.3.1-.7 0-1.1-.1-.4-.4-.7-.7-.9-.3-.2-.8-.3-1.3-.4v-1.5h-.9zm0 6.5c-.4 0-.6-.3-.6-.5 0-.2.1-.3.2-.4.1-.1.2-.1.5-.2v1.1h-.1zm.9-3.1v-1c.2 0 .4.1.5.2.1.1.2.2.2.4 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2-.2-.1-.3 0-.4-.1z' fill='%23F7B500' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+            backgroundSize: "60px 60px"
+          }} />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 relative z-10">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center space-y-6"
+          >
+            <div className="space-y-4">
+              <motion.div variants={sectionVariants} className="flex justify-center gap-3">
+                <Badge variant="outline" className="text-yellow-400 border-yellow-400">DeFi</Badge>
+                <Badge variant="outline" className="text-yellow-400 border-yellow-400">Monetary Policy</Badge>
+                <Badge variant="outline" className="text-yellow-400 border-yellow-400">Protocol Analysis</Badge>
+              </motion.div>
+              <motion.h1 
+                variants={sectionVariants}
+                className="text-4xl md:text-7xl font-bold font-boska tracking-tight"
+              >
+                <span className="text-yellow-500">Olympus</span>DAO
+              </motion.h1>
+              <motion.p 
+                variants={sectionVariants}
+                className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-epilogue"
+              >
+                From Reflexive Bootstrapping to Elastic Hardness
+              </motion.p>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent" />
+      </div>
+
+      {/* Live Metrics Dashboard */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {metrics.map((metric, i) => (
+            <motion.div
+              key={metric.label}
+              variants={cardVariants}
+              custom={i}
+              className="relative"
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <div className="p-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                      <metric.icon className="w-6 h-6 text-yellow-500" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-400">{metric.label}</p>
+                      <p className="text-2xl font-bold text-white">{metric.value}</p>
+                      <p className={`text-sm ${metric.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                        {metric.change} (24h)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="space-y-16">
+          {/* Introduction */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="prose prose-invert max-w-none"
+          >
+            <motion.div variants={sectionVariants}>
+              <p className="text-xl font-epilogue leading-relaxed text-gray-300">
+                In 2021 Olympus roared onto the DeFi stage with a $1 B treasury and four-figure APYs, but the very reflexivity that built that war-chest also vaporized a 10 000 % market premium in less than a year—therefore skeptics wrote the protocol off as a baroque Ponzi. Three years on, the same experiment is still standing, now trading at &ldquo;only&rdquo; a 110 % premium to liquid backing and governed by a far stricter monetary rule-set. Understanding why that premium persists—and why it once soared so high—is a window into how crypto can bootstrap new forms of money without collapsing into old mistakes.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Timeline Section */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="relative"
+          >
+            <div className="absolute left-1/2 h-full w-px bg-yellow-500/20 -translate-x-1/2" />
+            {timelineEvents.map((event, i) => (
+              <motion.div
+                key={event.date}
+                variants={cardVariants}
+                custom={i}
+                className={`relative ${i % 2 === 0 ? 'ml-auto pl-8 pr-4' : 'mr-auto pr-8 pl-4'} w-1/2 mb-8`}
+              >
+                <div className="absolute top-0 w-4 h-4 rounded-full bg-yellow-500 shadow-lg shadow-yellow-500/50"
+                     style={{ 
+                       left: i % 2 === 0 ? '-8px' : 'auto',
+                       right: i % 2 === 0 ? 'auto' : '-8px'
+                     }} />
+                <Card className="bg-[#111111] border-2 border-yellow-500/30 overflow-hidden">
+                  <div className="p-6">
+                    <p className="text-yellow-500 text-sm font-medium mb-2">{event.date}</p>
+                    <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+                    <p className="text-gray-400">{event.description}</p>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Policy Parameters */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-8"
+          >
+            <h2 className="text-3xl font-bold font-epilogue">Current Policy Parameters</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {policyParameters.map((param, i) => (
+                <motion.div
+                  key={param.name}
+                  variants={cardVariants}
+                  custom={i}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Card className="bg-[#111111] border-2 border-yellow-500/30 h-full">
+                    <div className="p-6">
+                      <h3 className="text-lg font-medium mb-2">{param.name}</h3>
+                      <p className="text-2xl font-bold text-yellow-500 mb-2">{param.value}</p>
+                      <p className="text-sm text-gray-400">{param.description}</p>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Technical Deep Dive */}
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold font-epilogue">Technical Architecture</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="bg-[#111111] border-2 border-yellow-500/30">
+                <div className="p-6 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <GitBranch className="w-6 h-6 text-yellow-500" />
+                    <h3 className="text-xl font-bold">Smart Contract Stack</h3>
+                  </div>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• OlympusERC20 - Core token implementation</li>
+                    <li>• Treasury - Asset management & policy execution</li>
+                    <li>• Staking - gOHM wrapper & rewards distribution</li>
+                    <li>• BondDepository - Fixed-term debt issuance</li>
+                  </ul>
+                </div>
+              </Card>
+
+              <Card className="bg-[#111111] border-2 border-yellow-500/30">
+                <div className="p-6 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Scale className="w-6 h-6 text-yellow-500" />
+                    <h3 className="text-xl font-bold">Range-Bound Stability</h3>
+                  </div>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• Moving Average Price Feeds</li>
+                    <li>• Cushioned Price Bounds</li>
+                    <li>• Dynamic Supply Adjustments</li>
+                    <li>• Cross-chain Liquidity Management</li>
+                  </ul>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* Main Content Sections */}
+          <motion.div className="space-y-16" variants={sectionVariants}>
+            {/* Section 1 */}
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                1. The 10 000 % Seed Round No VC Could Match
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                Early OHM had a tiny float and headline staking yields above 1 000 %. Each new &ldquo;bond&rdquo; let users swap $1 000 of stable-coins for $950 in OHM, even as the market paid $2 000 for the same tokens. The $1 050 spread flowed into protocol-owned liquidity (POL), rocketing the treasury to {'>'}$3 B by December 2021.
+              </p>
+            </Card>
+
+            {/* Section 2 */}
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                2. Crash Course in Reflexivity
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                When the macro tide turned in 2022, OHM&apos;s price fell {'>'}90 %, shrinking the treasury to roughly $200 M today. Premium evaporated because dilution suddenly outran new bonding inflows. The lesson was brutal: floors built on hype alone are floors of sand.
+              </p>
+            </Card>
+
+            {/* Section 3 */}
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                3. Range-Bound Stability: From Wildcat Bank to Central Bank Lite
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                Governance responded with Range-Bound Stability (RBS)—OIP-123&apos;s rule that the protocol buys OHM below liquid backing and sells above a target band.
+              </p>
+              <ul className="list-disc list-inside mt-4 space-y-2 text-gray-300">
+                <li>Support cushions recycle treasury assets to absorb fear.</li>
+                <li>Inverse bonds siphon froth when euphoria returns.</li>
+              </ul>
+              <p className="mt-4 text-gray-300">
+                Rebases are now emission-capped and explicitly funded by fee revenue, not the printing press. Olympus also spun out its Bond Protocol business, ending the distraction of subsidized APY theaters.
+              </p>
+            </Card>
+
+            {/* Section 4 */}
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                4. What the 110 % Premium Actually Prices In
+              </h2>
+              <ul className="list-decimal list-inside space-y-3 text-gray-300">
+                <li>Floor value – ~$11.6 of stable-coins and yield-bearing assets per OHM.</li>
+                <li>Cash flows – POL trading fees, DSR yield, and buy-back profit.</li>
+                <li>Moneyness – instant, deep liquidity in AMMs that raw sDAI cannot match.</li>
+                <li>Optionality – governance is migrating reserves from sDAI to Maker&apos;s new USDS and eyeing BTC hash-revenue proposals, giving holders upside to a harder collateral mix.</li>
+              </ul>
+            </Card>
+
+            {/* Sections 5-7 continue with the same pattern... */}
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                5. Why Gold Certificates Never Carried Such a Premium
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                Under the classical gold standard a U.S. note was instantly redeemable for $20.67 per ounce, keeping any premium within the cost of shipping bars—≈1 %. OHM has no redemption gate; you can&apos;t walk up to the treasury contract and claim its slice of DAI. Arbitrage can&apos;t flatten the spread, so price reflects expectation, not guarantee.
+              </p>
+            </Card>
+
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                6. Risks on the Road to Elastic Hardness
+              </h2>
+              <ul className="list-disc list-inside space-y-3 text-gray-300">
+                <li>Policy execution – RBS depends on prompt, data-driven parameter tweaks; governance apathy could blunt its edge.</li>
+                <li>Reserve composition – 50 %+ USD exposure still imports inflation and censorship risk.</li>
+                <li>Smart-contract risk – a hack could sink backing faster than any bear market.</li>
+              </ul>
+              <p className="mt-4 text-gray-300">
+                Yet each risk is explicit, on-chain, and parameterizable—therefore addressable without a central bank&apos;s closed-door discretion.
+              </p>
+            </Card>
+
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6">
+                7. The Bigger Picture
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                Olympus 2021 was a carnival mirror of speculation; Olympus 2025 looks more like a fledgling central bank with open-source balance sheets. Its journey maps a blueprint: use reflexive premiums to crowd-fund reserves, then transition to rule-based elasticity before the mania kills you. That blueprint won&apos;t guarantee success, but it expands the design space between brittle hard caps (BTC) and uncapped fiat (USD).
+              </p>
+              <p className="mt-4 text-gray-300">
+                If Olympus scales fee income and hardens its treasury—say 30 % BTC, 30 % LSTs, 40 % yield-bearing stables—the premium could evolve from speculative froth to dividend-discounted cash flow. Fail to execute, and OHM sinks toward backing while serving as a cautionary tale for the next generation of monetary tinkerers.
+              </p>
+              <p className="mt-4 text-gray-300">
+                Either outcome teaches us something priceless about building money in public.
+              </p>
+            </Card>
+
+            {/* Verdict Section */}
+            <Card className="p-8 bg-[#111111] border-2 border-yellow-500/50 shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)]">
+              <h2 className="font-epilogue text-2xl md:text-3xl font-bold mb-6 text-yellow-400">
+                Verdict
+              </h2>
+              <p className="text-gray-300 leading-relaxed">
+                OHM is no longer the 10 000 % lunacy that filled its vault, but the 110 % premium still embodies a bet—that transparent policy and self-funded liquidity can mint an elastic, partially hard-backed reserve asset. Whether that bet pays off will define whether Olympus ultimately joins the ranks of monetary footnotes or becomes the template for crypto&apos;s elastic-hard future.
+              </p>
+            </Card>
+          </motion.div>
+
+          {/* Deep Dive Section */}
+          <motion.div 
+            className="mt-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+              <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+              <div className="p-8 md:p-10">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">🏛️</span>
+                  <span className="font-bold text-yellow-500 text-2xl md:text-3xl">OlympusDAO: Money as Software</span>
+                </div>
+                <div className="text-white/90 text-lg space-y-6 font-satoshi">
+                  <div>
+                    <b className="text-yellow-500">Core Idea:</b> Olympus is an on-chain monetary computer: it programs supply, stability, credit, and liquidity. Unlike Bitcoin&apos;s fixed-supply gold, OHM aims for a crypto-native unit of account with full-stack monetary policy.
+                  </div>
+                  <ul className="list-disc ml-6 space-y-2">
+                    <li><b>Treasury-Backed:</b> Every OHM is backed by liquid assets (DAI), giving it a real floor value and yield.</li>
+                    <li><b>Protocol-Owned Liquidity:</b> Olympus owns its own LPs, ensuring deep, stable markets and fee income.</li>
+                    <li><b>Range-Bound Stability:</b> Automated market ops keep OHM price within a band, smoothing volatility.</li>
+                    <li><b>Cooler Loans:</b> Borrow DAI against gOHM at low fixed rates—native credit, no selling required.</li>
+                    <li><b>Convertible Deposits:</b> Soon to be launched, these function like low-risk call options.</li>
+                  </ul>
+                  <div className="flex gap-8 mt-4">
+                    <div>
+                      <span className="text-yellow-500 font-semibold">+ Pros:</span>
+                      <ul className="list-disc ml-5">
+                        <li>Intrinsic yield, credible policy, native credit</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <span className="text-yellow-500 font-semibold">- Cons:</span>
+                      <ul className="list-disc ml-5">
+                        <li>Complex, regulatory risk, relies on DeFi liquidity</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Zeus's Critique */}
+            <div className="mt-16">
+              <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+                <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+                <div className="p-8 md:p-10">
+                  <div className="flex items-center mb-2">
+                    <span className="font-bold text-yellow-500 text-xl md:text-2xl">The Provocation: Zeus&apos;s Critique</span>
+                  </div>
+                  <div className="text-white/90 text-lg space-y-3 font-satoshi">
+                    <p>
+                      <b>Zeus (@ohmzeus)</b> argues crypto lost its way: instead of building true financial freedom, most projects just made Wall Street more efficient. He says tokens lack real monetary design, and DeFi is at risk of becoming just better rails for the same old system.
+                    </p>
+                    <a
+                      href="https://x.com/ohmzeus/status/1916190873425219735"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-yellow-500 underline text-base"
+                    >
+                      Read the full thread by Zeus
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* The Comeback */}
+            <div className="mt-16">
+              <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+                <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+                <div className="p-8 md:p-10">
+                  <div className="flex items-center mb-4">
+                    <span className="text-3xl mr-3">🦉</span>
+                    <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Olympus: The Comeback Currency DeFi Didn&apos;t Know It Needed</span>
+                  </div>
+                  <div className="text-white/90 text-lg space-y-6 font-satoshi">
+                    <div>
+                      Olympus began as crypto&apos;s enfant terrible—printing four-figure APYs and then watching its market cap implode—but the protocol has quietly spent the last two years refactoring itself into something rarer: a self-funding monetary experiment that just might outrun its own origin story.
+                    </div>
+                    <div>
+                      <b className="text-yellow-500">The Treasury Is Now a Moat, Not a Mirage</b><br/>
+                      Yes, the war chest once ballooned on speculative premiums, but today 100% of that liquidity is protocol-owned, meaning Olympus earns every swap fee its markets create. That revenue now outweighs new token emissions, so backing per OHM rises a little every week instead of bleeding out.
+                    </div>
+                    <div>
+                      <b className="text-yellow-500">Range-Bound Stability Turns Volatility into Buybacks</b><br/>
+                      Instead of promising the moon, Olympus codified a floor-and-ceiling policy. When OHM dips below liquid backing, the DAO buys; when it spikes beyond a preset band, it sells and banks the profit. That feedback loop converts speculative heat into balance-sheet muscle, therefore holders get upside without reliving the 2022 death-spiral.
+                    </div>
+                    <div>
+                      <b className="text-yellow-500">Cross-Chain Liquidity Is a Feature, Not a Detour</b><br/>
+                      January&apos;s OIP-173 pushed OHM liquidity onto Base and Solana and redirected reserves from sDAI to Maker&apos;s new USDS, diversifying yield streams while slashing dependency on any single custodian. Cross-chain POL isn&apos;t headline candy; it&apos;s antifragility in production.
+                    </div>
+                    <div>
+                      <b className="text-yellow-500">Governance That Grows Up</b><br/>
+                      Olympus still votes on policy, but emissions, buybacks, and risk limits are now parameter-bounded; tweaking them feels more like setting a thermostat than rewriting a constitution. In practice, that means fewer governance wars and more ship-it velocity.
+                    </div>
+                    <div>
+                      <b className="text-yellow-500">Why the Outlook Is Bright</b>
+                      <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                        <li>Dollar yield pays the bills while crypto markets are choppy.</li>
+                        <li>Algorithmic throttle dampens drawdowns without neutering upside.</li>
+                        <li>Protocol-owned liquidity anchors OHM everywhere it trades.</li>
+                        <li>A diversified reserve mix—fiat stables today, BTC and LSTs tomorrow—shrinks single-point failure risk.</li>
+                      </ul>
+                    </div>
+                    <div>
+                      Olympus will never be the shiny Ponzi some early boosters imagined, but that&apos;s exactly why it&apos;s starting to look like money that could stick the landing. The experiment isn&apos;t over; it&apos;s finally properly funded, road-tested, and aligned with reality.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ 
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35.6c-3 0-5.6-2.6-5.6-5.6s2.6-5.6 5.6-5.6 5.6 2.6 5.6 5.6-2.5 5.6-5.6 5.6zm-.7-9.8v1.5c-1 0-1.7.3-1.9.6-.3.4-.1 1 .3 1.9l1.3-.5c-.2-.4-.2-.8-.1-.9 0 0 .2-.1.5-.1v2.1l-.4.1c-.7.2-1.3.5-1.6.9-.3.4-.4.9-.3 1.4.1.5.4.9.8 1.1.4.3.9.4 1.5.4v.9h.9v-.9c1.2-.1 2-1 2.4-1.9l-1.4-.6c-.2.5-.5.8-.9.9v-1.9c.7-.2 1.2-.4 1.6-.7.3-.2.6-.5.7-.9.1-.3.1-.7 0-1.1-.1-.4-.4-.7-.7-.9-.3-.2-.8-.3-1.3-.4v-1.5h-.9zm0 6.5c-.4 0-.6-.3-.6-.5 0-.2.1-.3.2-.4.1-.1.2-.1.5-.2v1.1h-.1zm.9-3.1v-1c.2 0 .4.1.5.2.1.1.2.2.2.4 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2-.2-.1-.3 0-.4-.1z' fill='%23F7B500' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: "60px 60px"
+        }} />
+        
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center">
+            <div className="h-px w-full max-w-xs mx-auto bg-gradient-to-r from-transparent via-yellow-500/30 to-transparent mb-6" />
+            <p className="text-white/40 uppercase tracking-widest text-xs font-light font-satoshi">
+              Built with 💛 by the Olympus Community
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
