@@ -553,7 +553,7 @@ export default function DefiPage() {
                   <b>Censorship Resistance in the Wild:</b> Bitcoin rails moved value out of Argentina, Nigeria, and Russia when banks froze wires. Tether blacklisted 1,299 addresses in 2024 alone. Freedom tech is measured by what you can&apos;t stop.
                 </li>
                 <li>
-                  <b>Path to Unit-of-Account Still Open:</b> El Salvador&apos;s Lightning usage is early but real; merchant acceptance &gt;30% of population. Dollar dominance is temporary—circular Bitcoin economies already show price discovery in sats.
+                  <b>Path to Unit-of-Account Still Open:</b> El Salvador&apos;s Lightning usage is early but real; merchant acceptance {'>'}30% of population. Dollar dominance is temporary—circular Bitcoin economies already show price discovery in sats.
                 </li>
               </ul>
               <div className="overflow-x-auto mt-6">
@@ -615,6 +615,57 @@ export default function DefiPage() {
           </div>
         </div>
       </div>
+
+      {/* OHM Comeback Section */}
+      <motion.div 
+        className="max-w-6xl mx-auto mt-20 mb-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1 }}
+      >
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🦉</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Olympus: The Comeback Currency DeFi Didn&apos;t Know It Needed</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                Olympus began as crypto&apos;s enfant terrible—printing four-figure APYs and then watching its market cap implode—but the protocol has quietly spent the last two years refactoring itself into something rarer: a self-funding monetary experiment that just might outrun its own origin story.
+              </div>
+              <div>
+                <b className="text-yellow-500">The Treasury Is Now a Moat, Not a Mirage</b><br/>
+                Yes, the war chest once ballooned on speculative premiums, but today 100% of that liquidity is protocol-owned, meaning Olympus earns every swap fee its markets create. That revenue now outweighs new token emissions, so backing per OHM rises a little every week instead of bleeding out.
+              </div>
+              <div>
+                <b className="text-yellow-500">Range-Bound Stability Turns Volatility into Buybacks</b><br/>
+                Instead of promising the moon, Olympus codified a floor-and-ceiling policy. When OHM dips below liquid backing, the DAO buys; when it spikes beyond a preset band, it sells and banks the profit. That feedback loop converts speculative heat into balance-sheet muscle, therefore holders get upside without reliving the 2022 death-spiral.
+              </div>
+              <div>
+                <b className="text-yellow-500">Cross-Chain Liquidity Is a Feature, Not a Detour</b><br/>
+                January&apos;s OIP-173 pushed OHM liquidity onto Base and Solana and redirected reserves from sDAI to Maker&apos;s new USDS, diversifying yield streams while slashing dependency on any single custodian. Cross-chain POL isn&apos;t headline candy; it&apos;s antifragility in production.
+              </div>
+              <div>
+                <b className="text-yellow-500">Governance That Grows Up</b><br/>
+                Olympus still votes on policy, but emissions, buybacks, and risk limits are now parameter-bounded; tweaking them feels more like setting a thermostat than rewriting a constitution. In practice, that means fewer governance wars and more ship-it velocity.
+              </div>
+              <div>
+                <b className="text-yellow-500">Why the Outlook Is Bright</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li>Dollar yield pays the bills while crypto markets are choppy.</li>
+                  <li>Algorithmic throttle dampens drawdowns without neutering upside.</li>
+                  <li>Protocol-owned liquidity anchors OHM everywhere it trades.</li>
+                  <li>A diversified reserve mix—fiat stables today, BTC and LSTs tomorrow—shrinks single-point failure risk.</li>
+                </ul>
+              </div>
+              <div>
+                Olympus will never be the shiny Ponzi some early boosters imagined, but that&apos;s exactly why it&apos;s starting to look like money that could stick the landing. The experiment isn&apos;t over; it&apos;s finally properly funded, road-tested, and aligned with reality.
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Bitcoin Magazine Footer */}
       <div className="relative py-24 mt-20 overflow-hidden">
