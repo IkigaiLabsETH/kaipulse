@@ -20,15 +20,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Invalid input' });
   }
   try {
-    const estimation = await offRampSDK.offRamp.estimateTopUp(
-      publicClient,
+    const estimation = await offRampSDK.offRamp.getTopUpEstimation(
+      publicClient as any,
       Network.ethereum,
       tokenAmount,
       walletAddress
     );
     const result = await offRampSDK.offRamp.topup(
-      publicClient,
-      walletClient,
+      publicClient as any,
+      walletClient as any,
       walletAddress,
       tokenAddress,
       Network.ethereum,
@@ -41,7 +41,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({ estimation, result });
   } catch (error) {
     // Log error server-side, but never leak details to client
-    console.error('Offramp error:', error);
     return res.status(500).json({ error: 'Offramp operation failed' });
   }
 } 
