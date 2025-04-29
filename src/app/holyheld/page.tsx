@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { ConnectButton, useActiveAccount, useDisconnect, useActiveWallet } from "thirdweb/react";
 import { client } from "@/lib/thirdwebClient";
+import { Toggle } from '@/components/ui/toggle';
 
 export default function HolyheldPage() {
   const [amount, setAmount] = useState('');
@@ -22,6 +23,7 @@ export default function HolyheldPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isOnramp, setIsOnramp] = useState(true);
 
   const disconnect = useDisconnect();
   const account = useActiveAccount();
@@ -39,6 +41,12 @@ export default function HolyheldPage() {
     return /^\d+(\.\d+)?$/.test(value) && parseFloat(value) > 0;
   }
   const isFormValid = isValidEthAddress(walletAddress) && isValidEthAddress(tokenAddress) && isValidAmount(amount);
+
+  // Fee logic for Onramp
+  const feeRate = 0.015;
+  const parsedAmount = parseFloat(amount) || 0;
+  const fee = parsedAmount * feeRate;
+  const totalWithFee = parsedAmount + fee;
 
   const handleOnRamp = async () => {
     setLoading(true);
@@ -92,6 +100,7 @@ export default function HolyheldPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Header />
+      {/* On/Off Ramp Section with Toggle */}
       <section className="flex flex-col items-center justify-center min-h-[70vh] pt-24 pb-8 px-4">
         <div className="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto w-full">
           <div className="flex-1 flex flex-col items-start gap-6">
@@ -109,7 +118,23 @@ export default function HolyheldPage() {
           <div className="flex-1 flex justify-center items-center">
             <Card className="bg-black border-yellow-500 w-full max-w-lg min-w-[90vw] sm:min-w-0 sm:max-w-lg">
               <CardHeader>
-                <CardTitle className="font-epilogue text-2xl sm:text-3xl text-yellow-400 text-center mb-4">On/Off Ramp</CardTitle>
+                <CardTitle className="font-epilogue text-2xl sm:text-3xl text-yellow-400 text-center mb-4">{isOnramp ? 'Top Up (Onramp)' : 'Cash Out (Offramp)'}</CardTitle>
+                <div className="flex justify-center gap-4 mt-2">
+                  <Toggle
+                    pressed={isOnramp}
+                    onPressedChange={() => setIsOnramp(true)}
+                    className={`px-6 py-2 font-bold text-lg rounded-l-lg ${isOnramp ? 'bg-yellow-500 text-black' : 'bg-black text-yellow-400 border border-yellow-500'}`}
+                  >
+                    Top Up
+                  </Toggle>
+                  <Toggle
+                    pressed={!isOnramp}
+                    onPressedChange={() => setIsOnramp(false)}
+                    className={`px-6 py-2 font-bold text-lg rounded-r-lg ${!isOnramp ? 'bg-yellow-500 text-black' : 'bg-black text-yellow-400 border border-yellow-500'}`}
+                  >
+                    Cash Out
+                  </Toggle>
+                </div>
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <div className="mb-4 flex justify-center">
@@ -156,31 +181,47 @@ export default function HolyheldPage() {
                     type="text"
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
-                    placeholder="Amount (EUR for onramp, token for offramp)"
+                    placeholder={isOnramp ? 'Amount to Top Up (EUR)' : 'Amount to Cash Out (Token)'}
                     className="w-full bg-black/60 border-yellow-500 focus:ring-yellow-400"
                     aria-label="Amount"
                   />
                   {!isValidAmount(amount) && amount && (
                     <div className="text-red-400 text-xs">Enter a valid amount</div>
                   )}
-                  <Input
-                    type="text"
-                    value={tag}
-                    onChange={e => setTag(e.target.value)}
-                    placeholder="Tag (for offramp)"
-                    className="w-full bg-black/60 border-yellow-500 focus:ring-yellow-400"
-                    aria-label="Tag"
-                  />
+                  {/* Show fee and total only for Onramp (when amount is entered and valid) */}
+                  {isOnramp && isValidAmount(amount) && (
+                    <>
+                      <div className="text-gray-400 text-lg mb-1">Fee: 1.5%</div>
+                      <div className="text-gray-400 text-xl mb-2">Total with fee: €{totalWithFee.toFixed(2)}</div>
+                    </>
+                  )}
+                  {/* Show tag only for Offramp */}
+                  {!isOnramp && (
+                    <Input
+                      type="text"
+                      value={tag}
+                      onChange={e => setTag(e.target.value)}
+                      placeholder="Tag (for offramp)"
+                      className="w-full bg-black/60 border-yellow-500 focus:ring-yellow-400"
+                      aria-label="Tag"
+                    />
+                  )}
                   <div className="flex gap-4 mt-2">
-                    <Button type="button" onClick={handleOnRamp} disabled={loading || !isFormValid} className="w-1/2 bg-yellow-500 text-black font-bold rounded-lg shadow-md hover:bg-yellow-400 transition-all">
-                      {loading ? 'Processing...' : 'Onramp'}
-                    </Button>
-                    <Button type="button" onClick={handleOffRamp} disabled={loading || !isFormValid} className="w-1/2 bg-yellow-500 text-black font-bold rounded-lg shadow-md hover:bg-yellow-400 transition-all">
-                      {loading ? 'Processing...' : 'Offramp'}
+                    <Button
+                      type="button"
+                      onClick={isOnramp ? handleOnRamp : handleOffRamp}
+                      disabled={loading || !isFormValid}
+                      className="w-full bg-yellow-500 text-black font-bold rounded-lg shadow-md hover:bg-yellow-400 transition-all text-xl py-3"
+                    >
+                      {loading
+                        ? 'Processing...'
+                        : isOnramp
+                        ? 'Top Up Card'
+                        : 'Cash Out'}
                     </Button>
                   </div>
-                  {result && <div className="text-green-400 text-sm mt-2 text-center">{result}</div>}
-                  {error && <div className="text-red-400 text-sm mt-2 text-center">{error}</div>}
+                  {result && <div className="text-green-400 text-lg mt-4 text-center">{result}</div>}
+                  {error && <div className="text-red-400 text-lg mt-4 text-center">{error}</div>}
                 </form>
               </CardContent>
             </Card>
