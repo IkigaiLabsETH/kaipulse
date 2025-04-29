@@ -355,6 +355,105 @@ export default function TeslaPage() {
           </motion.div>
         </motion.section>
 
+        {/* Starlink: Internet for Adventurers Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mb-20"
+        >
+          <div className="flex items-center mb-8">
+            <h2 className="text-3xl font-bold text-yellow-500">Starlink: Internet for Adventurers</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              <div className="relative w-full h-[400px] rounded-xl overflow-hidden group">
+                <div className="absolute inset-0 border-4 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
+                <Image
+                  src="/starlink.jpg"
+                  alt="Starlink Satellite Internet"
+                  fill
+                  className="object-cover rounded-lg z-0 transition duration-700 transform group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-0"></div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="relative h-full">
+                <div className="absolute -inset-0.5 bg-yellow-500 rounded-lg z-0">
+                  <div className="absolute inset-0.5 bg-black rounded-md"></div>
+                </div>
+                
+                <div className="p-8 bg-black border-none relative z-10 h-full">
+                  <div className="space-y-6">
+                    <p className="text-white/90 text-lg">
+                      Bringing high-speed internet to remote locations and adventurous spirits, Starlink now serves over 2.3 million users across 100+ countries with:
+                    </p>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4, duration: 0.4 }}
+                        className="bg-zinc-900/50 p-4 rounded-lg border border-yellow-500/20"
+                      >
+                        <h3 className="text-yellow-500 font-medium mb-2">Performance</h3>
+                        <ul className="text-white/80 space-y-1">
+                          <li>• 50-150+ Mbps</li>
+                          <li>• 20-60ms latency</li>
+                          <li>• Global coverage</li>
+                        </ul>
+                      </motion.div>
+
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5, duration: 0.4 }}
+                        className="bg-zinc-900/50 p-4 rounded-lg border border-yellow-500/20"
+                      >
+                        <h3 className="text-yellow-500 font-medium mb-2">Coverage</h3>
+                        <ul className="text-white/80 space-y-1">
+                          <li>• 100+ countries</li>
+                          <li>• All continents</li>
+                          <li>• Maritime support</li>
+                        </ul>
+                      </motion.div>
+                    </div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      className="bg-zinc-900/50 p-4 rounded-lg border border-yellow-500/20"
+                    >
+                      <h3 className="text-yellow-500 font-medium mb-2">Cutting-Edge Technology</h3>
+                      <ul className="text-white/80 space-y-1">
+                        <li>• Laser-linked mesh network</li>
+                        <li>• Advanced tracking antennas</li>
+                        <li>• Continuous constellation expansion</li>
+                      </ul>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
         {/* Why This Matters to a Bitcoin Lifestyle Section */}
         <motion.section
           initial={{ opacity: 0, y: 30 }}
