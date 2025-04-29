@@ -139,11 +139,6 @@ export default function WinePage() {
             <div>
               <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Bordeaux Estates</h3>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href="https://guide.michelin.com/en/hotels-stays/saint-estephe/la-maison-destournel-9330" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    La Maison d&apos;Estournel
-                  </Button>
-                </Link>
                 <Link href="https://guide.michelin.com/en/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006" target="_blank">
                   <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
                     Château Lafaurie-Peyraguey
