@@ -574,6 +574,72 @@ export default function OlympusPage() {
         </div>
       </div>
 
+      {/* BTC vs OHM Analysis Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">⚡</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">BTC vs OHM: Beyond Simple Analogies</span>
+            </div>
+            
+            {/* Quote Card */}
+            <div className="bg-black/30 border-l-4 border-yellow-500 p-6 my-6">
+              <p className="italic text-lg text-gray-300">
+                &ldquo;New systems must demonstrate their advantages through practical utility rather than ideology...&rdquo;
+              </p>
+              <div className="mt-2 text-yellow-500">
+                <a href="https://x.com/Mark11ETH/status/1917350654445773089" target="_blank" rel="noopener noreferrer" className="text-sm">
+                  @Mark11ETH
+                </a>
+              </div>
+            </div>
+
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                <b className="text-yellow-500">The Common Narrative</b><br/>
+                A popular framing in crypto circles suggests: &ldquo;BTC will replace GLD. OHM will replace USD.&rdquo; While bold visions drive innovation, this analogy deserves deeper examination to avoid oversimplifying complex monetary dynamics.
+              </div>
+
+              <div>
+                <b className="text-yellow-500">Where the Analogy Holds</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li><b>BTC ↔ Gold:</b> Both serve as scarce, bearer-style assets focused on store of value. Their credibility matters more than volatility. After 15 years, Bitcoin has earned its &ldquo;digital gold&rdquo; reputation.</li>
+                  <li><b>OHM ↔ Dollar:</b> Reserve currencies need payment clearing, credit scaling, and elastic supply. Olympus tests these features in DeFi, where its range-bound stability already behaves more like a stable unit than BTC.</li>
+                </ul>
+              </div>
+
+              <div>
+                <b className="text-yellow-500">Reality Check: Key Challenges</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li><b>Network Effects:</b> The dollar&apos;s dominance comes from universal adoption. While BTC has global Lindy effect, OHM&apos;s daily volume is ~0.01% of USDC&apos;s—utility must outpace this liquidity gap.</li>
+                  <li><b>Liquidity Scale:</b> The Fed can deploy $500B instantly. Olympus&apos;s $200M treasury, while growing, can&apos;t yet provide true lender-of-last-resort capacity.</li>
+                  <li><b>Regulatory Landscape:</b> BTC&apos;s unchangeable monetary policy paradoxically comforts regulators. OHM&apos;s governance flexibility, while user-friendly, raises policy-risk flags.</li>
+                  <li><b>Premium Psychology:</b> OHM&apos;s 110% premium above book reflects expected future value—appropriate for equity but problematic for a stable unit of account.</li>
+                </ul>
+              </div>
+
+              <div>
+                <b className="text-yellow-500">A More Productive Framework</b><br/>
+                Rather than viewing BTC and OHM as competitors, consider them complementary innovations:
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li>BTC hardens balance sheets as digital gold</li>
+                  <li>OHM experiments with an on-chain Fed for DeFi</li>
+                  <li>Success means 10× usage while maintaining stability</li>
+                  <li>Gradual transition from stables to harder collateral</li>
+                </ul>
+              </div>
+
+              <div>
+                <b className="text-yellow-500">The Path Forward</b><br/>
+                Olympus represents an aspirational experiment wrapped in genuinely innovative monetary mechanics. By acknowledging it as a moonshot in phase-one rather than a fait accompli, we keep the conversation grounded while appreciating its potential to reshape DeFi&apos;s monetary landscape.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* TLDR / ELI5 Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
