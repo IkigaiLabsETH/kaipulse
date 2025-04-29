@@ -94,6 +94,7 @@ export function Header() {
       dropdown: true,
       items: [
         { name: 'TALK', href: '/voice' },
+        { name: 'WINE', href: '/wine' },
         { name: 'PLAY', href: '/biohacking' },
         { name: 'DRIVE', href: '/tesla' },
         { name: 'SOLAR', href: '/ecoflow' },
