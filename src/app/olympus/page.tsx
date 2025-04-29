@@ -523,7 +523,7 @@ export default function OlympusPage() {
             <div className="text-white/90 text-lg space-y-6 font-satoshi">
               <div>
                 <b className="text-yellow-500">The Dollar&apos;s Gilded Cage</b><br/>
-                What economists call the dollar&apos;s "exorbitant privilege" as global reserve currency has become a gilded cage: while Wall Street profits from dollar dominance, Main Street pays the price through hollowed-out industry and persistent trade deficits—a phenomenon known as the Triffin dilemma.
+                What economists call the dollar&apos;s &ldquo;exorbitant privilege&rdquo; as global reserve currency has become a gilded cage: while Wall Street profits from dollar dominance, Main Street pays the price through hollowed-out industry and persistent trade deficits—a phenomenon known as the Triffin dilemma.
               </div>
               <div>
                 <b className="text-yellow-500">The Cost of Hegemony</b>
