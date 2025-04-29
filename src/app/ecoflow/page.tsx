@@ -190,6 +190,102 @@ export default function EcoFlowPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
+      {/* Case Study Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase">Case Study: Off-Grid Home in South-West France</h2>
+          
+          <div className="space-y-8">
+            {/* Overview Card */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-xl text-yellow-400">Project Overview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/80 font-satoshi mb-4">
+                  Complete off-grid solution for a home consuming 18,000 kWh annually (≈1,500 kWh monthly) in Morcenx, France.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div>
+                    <h4 className="text-yellow-400 font-epilogue mb-2">Solar Conditions</h4>
+                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                      <li>3-5 peak-sun-hours daily</li>
+                      <li>1,300 kWh/kWp annual yield</li>
+                      <li>Optimal for solar generation</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-yellow-400 font-epilogue mb-2">System Requirements</h4>
+                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                      <li>15-16 kWp solar array</li>
+                      <li>Multi-day battery backup</li>
+                      <li>Winter backup solution</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Solar Configuration Card */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-xl text-yellow-400">Solar Array Configuration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-white/80 font-satoshi">
+                    <thead>
+                      <tr className="border-b border-yellow-500/20">
+                        <th className="text-left py-2 px-4">Setup</th>
+                        <th className="text-left py-2 px-4">Power</th>
+                        <th className="text-left py-2 px-4">Panels</th>
+                        <th className="text-left py-2 px-4">Area</th>
+                        <th className="text-left py-2 px-4">Summer Output</th>
+                        <th className="text-left py-2 px-4">Winter Output</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="py-2 px-4">Recommended</td>
+                        <td className="py-2 px-4">16 kWp</td>
+                        <td className="py-2 px-4">38 × 420W</td>
+                        <td className="py-2 px-4">76 m²</td>
+                        <td className="py-2 px-4">70-75 kWh/day</td>
+                        <td className="py-2 px-4">30-35 kWh/day</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* EcoFlow Solution Card */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-xl text-yellow-400">EcoFlow Hardware Solution</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li>3× DELTA Pro Ultra inverters (handling 5.6 kW PV input each)</li>
+                  <li>9× 6.1 kWh battery packs (≈54.9 kWh total capacity)</li>
+                  <li>Smart Home Panel 2 for seamless integration</li>
+                  <li>EcoFlow Smart Generator 4000 for winter backup</li>
+                </ul>
+                <div className="mt-6">
+                  <h4 className="text-yellow-400 font-epilogue mb-2">Investment Overview</h4>
+                  <p className="text-white/80 font-satoshi">
+                    Total system cost: ≈48,000€ (before incentives)<br />
+                    Net cost after 30% MaPrimeRenov' + VAT relief: ≈34,000€
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
       {/* Final CTA */}
       <section className="flex flex-col items-center justify-center py-20 px-4">
         <Link href="https://www.ecoflow.com/us/delta-pro-ultra" target="_blank">
