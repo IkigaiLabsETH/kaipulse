@@ -86,7 +86,7 @@ export default function LedgerPage() {
                 <CardTitle className="font-epilogue text-xl text-yellow-400">3. Transact</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-white/80 font-satoshi">Buy, send, receive, swap, and stake 5,500+ assets using the Ledger Live app. Every transaction is verified on your device's screen.</p>
+                <p className="text-white/80 font-satoshi">Buy, send, receive, swap, and stake 5,500+ assets using the Ledger Live app. Every transaction is verified on your device&apos;s screen.</p>
               </CardContent>
             </Card>
             <Card className="bg-black border-yellow-500">
