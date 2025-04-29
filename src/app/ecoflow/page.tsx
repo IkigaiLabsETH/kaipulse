@@ -18,7 +18,7 @@ export default function EcoFlowPage() {
         <div className="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto w-full">
           <div className="flex-1 flex flex-col items-start gap-6">
             <Badge className="bg-yellow-500 text-black text-sm mb-2 font-satoshi tracking-wide">Off-Grid & Whole-Home Power</Badge>
-            <h1 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-2 tracking-tight">EcoFlow DELTA Pro Ultra</h1>
+            <h1 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-2 tracking-tight">DELTA Pro Ultra</h1>
             <p className="text-lg md:text-2xl text-white/90 font-satoshi max-w-xl leading-snug">
               The most advanced, scalable home backup and off-grid power solution. 6,144 Wh LiFePO₄ battery, 7,200 W inverter, stackable to 90 kWh. Solar, grid, and generator charging. Run your entire home for days.
             </p>
@@ -121,8 +121,8 @@ export default function EcoFlowPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
-                  <li>6,144 Wh LiFePO₄ battery, 7,200 W AC inverter</li>
-                  <li>Stackable to 90 kWh (15 units), 21.6 kW output (3 inverters)</li>
+                  <li>6,144 Wh battery, 7,200 W AC inverter</li>
+                  <li>Stackable to 90 kWh (15 units), 21.6 kW output</li>
                   <li>Solar input: up to 5,600 W</li>
                   <li>Smart Home Panel 2: 20 ms transfer, 12 circuits, app control</li>
                   <li>5-year warranty, CES 2024 Innovation Award</li>
@@ -135,7 +135,7 @@ export default function EcoFlowPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
-                  <li>4,096 Wh LiFePO₄ battery, 4,000 W inverter (6,000 W X-Boost)</li>
+                  <li>4,096 Wh battery, 4,000 W inverter (6,000 W X-Boost)</li>
                   <li>Expandable to 12 kWh (per unit), up to 48 kWh system</li>
                   <li>Solar input: up to 2,600 W</li>
                   <li>IP65 battery, wheels for mobility, app monitoring</li>
@@ -149,8 +149,8 @@ export default function EcoFlowPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
-                  <li>3,600 Wh LFP battery, 3,600 W inverter (4,500 W X-Boost)</li>
-                  <li>Expandable to 10.8 kWh (2 extra batteries), 25 kWh system</li>
+                  <li>3,600 Wh LFP battery, 4,500 W X-Boost</li>
+                  <li>Expandable to 10.8 kWh, 25 kWh system</li>
                   <li>Solar input: up to 1,600 W</li>
                   <li>Plug-and-play home backup, 5-year warranty</li>
                 </ul>
