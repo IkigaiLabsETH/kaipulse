@@ -101,7 +101,7 @@ export const metadata: Metadata = {
     siteName: "LiveTheLifeTV",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/background_helo.jpeg",
         width: 1200,
         height: 630,
         alt: "LiveTheLifeTV Bitcoin Education Tools - For Educational Purposes Only"
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LiveTheLifeTV - Bitcoin Investment Education & Life Balance Tools",
     description: "Fix Money, Fix The World. Life isn't about the biggest stack - it's about living your best life with BTC. Explore Bitcoin investment strategies and portfolio planning tools that help you achieve financial freedom while embracing life's true value. For educational purposes only - not financial advice.",
-    images: ["/twitter-image.jpg"],
+    images: ["/background_helo.jpeg"],
     creator: "@LiveTheLifeTV"
   },
   alternates: {
