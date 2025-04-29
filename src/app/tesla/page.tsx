@@ -42,7 +42,7 @@ export default function TeslaPage() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative w-full h-[65vh] mb-16 rounded-xl overflow-hidden group"
         >
-          <div className="absolute inset-0 border-4 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+          <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
           <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
           <Image
             src="/tesla_3P.jpeg"
@@ -125,11 +125,10 @@ export default function TeslaPage() {
               className="h-full"
             >
               <div className="relative h-full">
-                {/* Golden border overlay */}
-                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl pointer-events-none"></div>
+                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
                 
-                <Card className="p-6 bg-black h-full relative group overflow-hidden">
-                  {/* Card glow effect */}
+                <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   <h3 className="text-2xl font-bold mb-4 text-yellow-500">Model 3 Performance (2024 refresh)</h3>
@@ -172,11 +171,10 @@ export default function TeslaPage() {
               className="h-full"
             >
               <div className="relative h-full">
-                {/* Golden border overlay */}
-                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl pointer-events-none"></div>
+                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
                 
-                <Card className="p-6 bg-black h-full relative group overflow-hidden">
-                  {/* Card glow effect */}
+                <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
                   <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   <h3 className="text-2xl font-bold mb-4 text-yellow-500">Model S Plaid (2025)</h3>
@@ -372,10 +370,10 @@ export default function TeslaPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative"
+              className="relative h-full"
             >
               <div className="relative w-full h-[400px] rounded-xl overflow-hidden group">
-                <div className="absolute inset-0 border-4 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
                 <Image
                   src="/starlink.jpg"
@@ -391,14 +389,13 @@ export default function TeslaPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative"
+              className="relative h-full"
             >
-              <div className="relative h-full">
-                <div className="absolute -inset-0.5 bg-yellow-500 rounded-lg z-0">
-                  <div className="absolute inset-0.5 bg-black rounded-md"></div>
-                </div>
+              <div className="relative h-full rounded-xl overflow-hidden group">
+                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
                 
-                <div className="p-8 bg-black border-none relative z-10 h-full">
+                <div className="p-8 bg-black relative z-10 h-full">
                   <div className="space-y-6">
                     <p className="text-white/90 text-lg">
                       Bringing high-speed internet to remote locations and adventurous spirits, Starlink now serves over 2.3 million users across 100+ countries with:
