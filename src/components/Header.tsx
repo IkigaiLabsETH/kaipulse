@@ -80,6 +80,7 @@ export function Header() {
         { name: 'MSTY', href: '/platforms/msty' },
         { name: 'IMST', href: '/platforms/bitwise' },
         { name: 'DEFI', href: '/defi' },
+        { name: 'LEDGER', href: '/ledger' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
         { name: 'BITBONDS', href: '/bitbonds' },
         { name: 'COINBASE', href: '/platforms/coinbase' },
