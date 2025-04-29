@@ -36,7 +36,7 @@ export default function Home() {
               </span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-400 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-400 tracking-tight font-boska uppercase">
               Level Up Your Bitcoin
             </h1>
             
@@ -100,7 +100,7 @@ export default function Home() {
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">
               Ask Him Anything • Experience your AHA Moment
             </p>
-            <h2 className="text-5xl sm:text-6xl font-bold text-yellow-400 mb-6 font-satoshi drop-shadow-lg">
+            <h2 className="text-5xl sm:text-6xl font-bold text-yellow-400 mb-6 font-boska uppercase tracking-tight">
               Talk to Satoshi
             </h2>
             <div className="flex items-center justify-center mb-8">
