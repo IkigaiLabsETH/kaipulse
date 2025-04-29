@@ -41,8 +41,8 @@ export default function LightningNetworkPage() {
         className="max-w-4xl mx-auto px-4 pt-20 pb-10 text-center z-30"
       >
         <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg mb-10 p-8 md:p-12">
-          <h2 className="font-boska text-4xl md:text-5xl font-extrabold text-yellow-400 mb-6 tracking-tight drop-shadow-lg">
-           ⚡️ Why We Build on Lightning ⚡️
+          <h2 className="font-boska text-4xl md:text-5xl font-extrabold text-yellow-400 mb-6 tracking-tight drop-shadow-lg uppercase">
+           Why We Build on Lightning
           </h2>
           <p className="font-satoshi text-xl md:text-2xl text-white/90 mb-6 font-medium">
             We are builders. But after years in DeFi, we learned a hard truth: <span className="font-bold text-yellow-300">Smart contracts are brittle, tokens are a casino, and your product&apos;s destiny is hijacked by whales, hype, and market chaos.</span>
@@ -137,27 +137,16 @@ export default function LightningNetworkPage() {
             <p className="font-satoshi text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
               The Lightning Network is Bitcoin&apos;s answer to instant, global, censorship-resistant payments—enabling new business models. If you&apos;re a developer, this is your invitation to build on the most secure, open monetary network.
             </p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="w-full flex justify-center mt-8"
-            >
-              <div className="relative max-w-4xl w-full">
-                <div className="absolute -inset-1 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-lg shadow-[0_0_30px_rgba(234,179,8,0.15)] z-0" />
-                <div className="absolute inset-0.5 bg-black/90 rounded-lg z-0" />
-                <div className="relative aspect-video w-full z-10">
-                  <iframe
-                    className="w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/AYAreuNzx58"
-                    title="Lightning Network Deep Dive"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
-            </motion.div>
+            <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-lg shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-4xl w-full mx-auto mt-8 overflow-hidden">
+              <iframe
+                className="w-full aspect-video"
+                src="https://www.youtube.com/embed/AYAreuNzx58"
+                title="Lightning Network Deep Dive"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
             <p className="mt-2 text-sm text-gray-400 text-center font-satoshi">
               Watch: <a href="https://www.youtube.com/watch?v=AYAreuNzx58" target="_blank" rel="noopener noreferrer" className="underline text-yellow-400">Lightning Network: what is it? why should I care? what can I do with it? Enjoy bitcoin like its 2013</a>
             </p>
@@ -176,7 +165,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Why Build on Bitcoin + Lightning?</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">Why Build on Bitcoin + Lightning?</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
@@ -199,7 +188,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">How to Get Started</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">How to Get Started</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
@@ -225,7 +214,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">What is Voltage? (Our Lightning Infrastructure Partner)</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">What is Voltage?</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
@@ -255,7 +244,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Featured Guide: Lightning Network Production Guide</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">Lightning Network Production Guide</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
@@ -286,7 +275,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Red Pill: Why Lightning, Why Now?</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">Red Pill: Why Lightning, Why Now?</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
@@ -309,7 +298,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Case Study: KaiPulse &amp; Lightning Network</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">Case Study: KaiPulse &amp; Lightning Network</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="text-white/90 mb-2 font-satoshi text-lg">
@@ -337,7 +326,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">AI Agents &amp; Lightning: Powering ElizaOS</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">AI Agents &amp; Lightning: Powering ElizaOS</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="font-satoshi text-lg text-gray-200 mb-4">
@@ -375,7 +364,7 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#181a20] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg max-w-4xl mx-auto">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">
                 Bitcoin Payments: The Quiet Revolution
               </CardTitle>
             </CardHeader>
@@ -445,11 +434,11 @@ export default function LightningNetworkPage() {
         >
           <Card className="bg-[#181a20] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg max-w-4xl mx-auto">
             <CardHeader>
-              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2">Flashback & Reinvention: LTL MAPS, Then and Now</CardTitle>
+              <CardTitle className="font-boska text-2xl md:text-3xl font-bold text-yellow-400 mb-2 uppercase tracking-tight">Flashback & Reinvention: LTL MAPS, Then and Now</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-6">
               <div>
-                <h3 className="font-epilogue text-xl font-semibold text-yellow-300 mb-2">A Pioneer&apos;s Journey</h3>
+                <h3 className="font-epilogue text-xl font-bold text-yellow-300 mb-2 uppercase tracking-tight">A Pioneer&apos;s Journey</h3>
                 <p className="font-satoshi text-gray-200 text-lg mb-2">
                   In 2016, we set out to change the way people explored the world. Our first web3 app was a trailblazer: the first to let users buy digital art and experiences with Apple Pay, the first with a FINRA license in the App Store, and the first to use sidechain technology for fast, cheap microtransactions. We believed travel should be personal, private, and rewarding—long before &quot;web3&quot; was a buzzword.
                 </p>
@@ -463,7 +452,7 @@ export default function LightningNetworkPage() {
                 </p>
               </div>
               <div>
-                <h3 className="font-epilogue text-xl font-semibold text-yellow-300 mb-2">Rethinking LTL MAPS with Lightning Network</h3>
+                <h3 className="font-epilogue text-xl font-bold text-yellow-300 mb-2 uppercase tracking-tight">Rethinking LTL MAPS with Lightning Network</h3>
                 <p className="font-satoshi text-gray-200 text-lg mb-2">
                   <span className="font-bold text-yellow-300">A New Era: Instant, Global, Bitcoin-Native</span><br/>
                   Today, the Lightning Network lets us take this vision further than ever before:
