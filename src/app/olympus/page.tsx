@@ -511,6 +511,43 @@ export default function OlympusPage() {
         </div>
       </div>
 
+      {/* TLDR / ELI5 Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+          <div className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-yellow-500" />
+              </div>
+              <h2 className="text-xl font-bold">TLDR / ELI5</h2>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-yellow-500 mb-2">What is Olympus DAO? 🏛️</h3>
+                <p className="text-gray-300">
+                  Think of Olympus as a decentralized central bank for crypto. Instead of being tied to $1 like stablecoins, OHM is backed by a growing treasury of assets (currently ~$195M) and can float in price. It&apos;s like Bitcoin, but with actual assets backing each token and smart rules to manage its supply.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-yellow-500 mb-2">Key Points 🔑</h3>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                  <li>Every OHM token is backed by at least $11.20 in real assets</li>
+                  <li>The protocol owns its liquidity (no relying on external providers)</li>
+                  <li>Smart contracts automatically manage the supply to maintain stability</li>
+                  <li>You can borrow against your OHM at very low rates</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-yellow-500 mb-2">Why It Matters 💡</h3>
+                <p className="text-gray-300">
+                  Olympus is trying to create a new type of money that isn&apos;t tied to the US dollar but still has stability and real backing. It&apos;s an experiment in creating a self-sustaining, decentralized currency that could potentially become a standard in the crypto economy.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+
       {/* Footer */}
       <div className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ 
