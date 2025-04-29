@@ -32,6 +32,30 @@ export default function LightningNetworkPage() {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="max-w-4xl mx-auto px-4 pt-16 md:pt-20 relative z-20"
       >
+        {/* First Breaking News */}
+        <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6 mb-6">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold text-sm font-satoshi">BREAKING NEWS</div>
+            <div className="h-1 w-1 bg-yellow-500 rounded-full"></div>
+            <div className="text-yellow-500 text-sm font-medium font-satoshi">Just In</div>
+          </div>
+          <h2 className="font-boska text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+            Former PayPal President Launches New Lightning-Compatible L2 on Bitcoin ⚡️
+          </h2>
+          <p className="font-satoshi text-lg text-gray-200 mb-4">
+            A groundbreaking development for Bitcoin scalability: The TCP/IP of Money promises to enhance Bitcoin's Layer 2 ecosystem with seamless Lightning Network compatibility.
+          </p>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-green-400 font-medium font-satoshi">Bitcoin Innovation</span>
+            </div>
+            <div className="text-gray-400">•</div>
+            <div className="text-gray-300 font-satoshi">Layer 2 Scaling</div>
+          </div>
+        </div>
+
+        {/* Second Breaking News */}
         <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6">
           <div className="flex items-center space-x-3 mb-4">
             <div className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold text-sm font-satoshi">BREAKING NEWS</div>
