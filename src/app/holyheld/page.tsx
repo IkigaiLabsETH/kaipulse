@@ -13,7 +13,6 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { ConnectButton, useActiveAccount, useDisconnect, useActiveWallet } from "thirdweb/react";
 import { client } from "@/lib/thirdwebClient";
-import { createWallet } from "thirdweb/wallets";
 
 export default function HolyheldPage() {
   const [amount, setAmount] = useState('');
@@ -24,7 +23,10 @@ export default function HolyheldPage() {
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const disconnect = useDisconnect();
   const account = useActiveAccount();
+  const wallet = useActiveWallet();
+
   useEffect(() => {
     if (account?.address) setWalletAddress(account.address);
   }, [account]);
@@ -111,30 +113,21 @@ export default function HolyheldPage() {
               </CardHeader>
               <CardContent className="p-6 sm:p-8">
                 <div className="mb-4 flex justify-center">
-                  {(() => {
-                    const disconnect = useDisconnect();
-                    const account = useActiveAccount();
-                    const wallet = useActiveWallet();
-                    if (!account) {
-                      return (
-                        <ConnectButton client={client} />
-                      );
-                    } else {
-                      return (
-                        <div className="flex flex-col items-center gap-2 w-full">
-                          <div className="text-yellow-400 font-mono text-sm break-all">
-                            {account.address.slice(0, 6)}...{account.address.slice(-4)}
-                          </div>
-                          <Button
-                            onClick={() => wallet && disconnect.disconnect(wallet)}
-                            className="bg-black border border-yellow-500 text-yellow-400 font-bold text-sm px-6 py-2 rounded-lg hover:bg-yellow-500 hover:text-black transition-all duration-300 font-epilogue tracking-tight"
-                          >
-                            Disconnect
-                          </Button>
-                        </div>
-                      );
-                    }
-                  })()}
+                  {!account ? (
+                    <ConnectButton client={client} />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 w-full">
+                      <div className="text-yellow-400 font-mono text-sm break-all">
+                        {account.address.slice(0, 6)}...{account.address.slice(-4)}
+                      </div>
+                      <Button
+                        onClick={() => wallet && disconnect.disconnect(wallet)}
+                        className="bg-black border border-yellow-500 text-yellow-400 font-bold text-sm px-6 py-2 rounded-lg hover:bg-yellow-500 hover:text-black transition-all duration-300 font-epilogue tracking-tight"
+                      >
+                        Disconnect
+                      </Button>
+                    </div>
+                  )}
                 </div>
                 <form className="space-y-4" onSubmit={e => e.preventDefault()}>
                   <Input
