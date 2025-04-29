@@ -275,7 +275,7 @@ export default function EcoFlowPage() {
                   <h4 className="text-yellow-400 font-epilogue mb-2">Investment Overview</h4>
                   <p className="text-white/80 font-satoshi">
                     Total system cost: ≈48,000€ (before incentives)<br />
-                    Net cost after 30% MaPrimeRenov' + VAT relief: ≈34,000€
+                    Net cost after 30% MaPrimeRenov&apos; + VAT relief: ≈34,000€
                   </p>
                 </div>
               </CardContent>
