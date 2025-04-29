@@ -258,9 +258,22 @@ export default function LedgerPage() {
         </div>
       </section>
 
+      {/* Stablecoin Yields Note (Recap Style) */}
+      <section className="py-10 md:py-12 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h3 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Introducing Stablecoin Yields in Ledger Live</h3>
+          <p className="mx-auto max-w-xl text-lg md:text-xl font-satoshi text-white/90 leading-relaxed mb-2">
+            Your stablecoins, your yield — no compromises.
+          </p>
+          <p className="mx-auto max-w-xl text-base md:text-lg font-satoshi text-white/80 leading-relaxed mb-4">
+            Now earn up to <span className="text-yellow-400 font-bold">9.9% APY</span> on <span className="text-yellow-400">$USDT, $USDC, $USDS &amp; $DAI</span> through Ledger Live with full self-custody. Powered by <span className="text-yellow-400">@Kiln_finance</span>, integrated with top protocols like <span className="text-yellow-400">@aave</span>, <span className="text-yellow-400">@compoundfinance</span>, <span className="text-yellow-400">@MorphoLabs</span>, <span className="text-yellow-400">@sparkdotfi</span>, and <span className="text-yellow-400">@SkyEcosystem</span>.
+          </p>
+          <p className="mx-auto max-w-xl text-lg md:text-xl font-epilogue text-yellow-400 leading-relaxed mt-2">This is passive income, redefined — the Ledger way.</p>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="flex flex-col items-center justify-center py-20 px-4">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-6 tracking-tight text-center">Ready to unlock your financial freedom?</h2>
         <Link href="https://shop.ledger.com/" target="_blank">
           <Button className="bg-yellow-500 text-black font-bold text-xl px-10 py-5 rounded-xl mt-2 hover:bg-yellow-400 transition-all duration-300 font-epilogue tracking-tight">
             Get Ledger Now
