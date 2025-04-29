@@ -23,7 +23,38 @@ export default function LightningNetworkPage() {
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Premium header accent */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-30"></div>
-      {/* NEW: Lightning Manifesto Section */}
+      
+      {/* Breaking News Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="max-w-4xl mx-auto px-4 pt-16 md:pt-20 relative z-20"
+      >
+        <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold text-sm font-satoshi">BREAKING NEWS</div>
+            <div className="h-1 w-1 bg-yellow-500 rounded-full"></div>
+            <div className="text-yellow-500 text-sm font-medium font-satoshi">Just In</div>
+          </div>
+          <h2 className="font-boska text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+            Coinbase Report: 15% of All Bitcoin Transactions Now Use Lightning Network ⚡️
+          </h2>
+          <p className="font-satoshi text-lg text-gray-200 mb-4">
+            Major milestone: One of the world's largest crypto exchanges confirms significant Lightning Network adoption, proving that Bitcoin is successfully scaling for global payments.
+          </p>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-green-400 font-medium font-satoshi">Bitcoin is Scaling</span>
+            </div>
+            <div className="text-gray-400">•</div>
+            <div className="text-gray-300 font-satoshi">Lightning Network Adoption</div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Logo section */}
       <div className="flex justify-center pt-20">
         <Image
           src="/kaipulse.svg"
