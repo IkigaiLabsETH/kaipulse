@@ -96,6 +96,7 @@ export function Header() {
         { name: 'TALK', href: '/voice' },
         { name: 'PLAY', href: '/biohacking' },
         { name: 'DRIVE', href: '/tesla' },
+        { name: 'SOLAR', href: '/ecoflow' },
         { name: 'THINK', href: '/naval' },
         { name: 'BUILD', href: '/ln' },
       ]
