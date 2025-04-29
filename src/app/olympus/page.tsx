@@ -511,6 +511,69 @@ export default function OlympusPage() {
         </div>
       </div>
 
+      {/* The Reserve Currency Dilemma Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🌍</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">The Reserve Currency Dilemma: Why DeFi Needs a New Model</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                <b className="text-yellow-500">The Dollar&apos;s Gilded Cage</b><br/>
+                What economists call the dollar&apos;s "exorbitant privilege" as global reserve currency has become a gilded cage: while Wall Street profits from dollar dominance, Main Street pays the price through hollowed-out industry and persistent trade deficits—a phenomenon known as the Triffin dilemma.
+              </div>
+              <div>
+                <b className="text-yellow-500">The Cost of Hegemony</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li>U.S. manufacturing declined from 25% of GDP in the 1960s to under 12% today</li>
+                  <li>Export giants like Germany and China actively avoid reserve status to protect their economies</li>
+                  <li>Rising bipartisan skepticism of the current system signals growing instability</li>
+                  <li>No major currency wants to inherit the dollar&apos;s burden</li>
+                </ul>
+              </div>
+              <div>
+                <b className="text-yellow-500">The Olympus Alternative</b><br/>
+                This is where Olympus&apos;s model becomes relevant. By creating a reserve asset that is:
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li>Collectively governed through transparent smart contracts</li>
+                  <li>Backed by a diversified treasury of assets</li>
+                  <li>Capable of elastic supply management</li>
+                  <li>Rule-based rather than discretionary</li>
+                </ul>
+                OHM offers a blueprint for what a next-generation reserve asset could look like.
+              </div>
+              <div>
+                <b className="text-yellow-500">From Theory to Practice</b><br/>
+                While OHM may not replace the dollar, its mechanisms demonstrate how we might build a neutral reserve layer that:
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li>Distributes benefits more evenly than the current system</li>
+                  <li>Responds to market conditions through code rather than committees</li>
+                  <li>Scales across borders without burdening any single nation</li>
+                  <li>Provides predictable rules for expansion and contraction</li>
+                </ul>
+              </div>
+              <div>
+                <b className="text-yellow-500">The Path Forward</b><br/>
+                As the world searches for alternatives to dollar hegemony, Olympus shows how DeFi&apos;s innovations could help build a more sustainable and equitable reserve system. The transition won&apos;t happen overnight, but the blueprint exists: transparent rules, collective governance, and balanced incentives pointing toward a more stable global financial architecture.
+              </div>
+              <div className="mt-4">
+                <a
+                  href="https://x.com/ohmzeus/status/1917315170864620005"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-yellow-500 underline text-base"
+                >
+                  Read Zeus&apos;s full thread on the reserve currency dilemma
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* TLDR / ELI5 Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Card className="bg-[#111111] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
