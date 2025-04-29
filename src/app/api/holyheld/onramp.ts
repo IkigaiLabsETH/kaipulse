@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       fiatAmount
     );
     return res.status(200).json({ estimation, request });
-  } catch (_error) {
+  } catch {
     // Log error server-side, but never leak details to client
     return res.status(500).json({ error: 'Onramp operation failed' });
   }
