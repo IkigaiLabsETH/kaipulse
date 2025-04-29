@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// This file uses 'as any' for SDK compatibility due to type mismatches between Holyheld SDK and viem versions.
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { offRampSDK, Network, publicClient } from '@/lib/holyheld';
 
@@ -36,10 +38,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       undefined, // transferData
       tag,
       true // supportsSignTypedDataV4
-      // callbacks (optional)
     );
     return res.status(200).json({ estimation, result });
-  } catch (error) {
+  } catch {
     // Log error server-side, but never leak details to client
     return res.status(500).json({ error: 'Offramp operation failed' });
   }
