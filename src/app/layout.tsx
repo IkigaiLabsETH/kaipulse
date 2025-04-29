@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 import { Toaster } from "@/components/ui/toaster";
 import { ThirdwebProvider } from "thirdweb/react";
-import { client } from "@/lib/thirdwebClient";
 
 const boska = localFont({
   src: [
@@ -124,10 +123,22 @@ export const metadata: Metadata = {
     yahoo: "your-yahoo-verification"
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/favicon.ico',
+      }
+    ]
   },
+  manifest: '/site.webmanifest'
 };
 
 export const viewport: Viewport = {
@@ -148,7 +159,7 @@ export default function RootLayout({
         "selection:bg-accent selection:text-accent-foreground",
         "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30"
       )}>
-        <ThirdwebProvider client={client}>
+        <ThirdwebProvider>
           <PipelineErrorHandler>
             <div className="relative flex min-h-screen flex-col">
               <Header />
