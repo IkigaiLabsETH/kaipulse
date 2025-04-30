@@ -73,7 +73,7 @@ export default function BioPage() {
               <div className="absolute inset-1.5 z-10 rounded-sm overflow-hidden">
                 <div className="w-full h-full relative bg-zinc-900">
                   <Image
-                    src="/cryptopunk.jpeg"
+                    src="/nft/cryptopunk.jpeg"
                     alt="LiveTheLifeTV"
                     fill
                     className="object-cover" 
