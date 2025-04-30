@@ -286,6 +286,152 @@ export default function EcoFlowPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
+      {/* Tesla Charging Use Case Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase">Charging a Tesla Model 3 Performance at Night</h2>
+          <Card className="bg-black border-yellow-500">
+            <CardHeader>
+              <CardTitle className="font-epilogue text-xl text-yellow-400">How many solar panels to add 20% charge (60 → 80%) each night?</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1 mb-4">
+                <li>Usable battery pack: <span className="text-yellow-400">75 kWh</span></li>
+                <li>20% refill: <span className="text-yellow-400">15 kWh</span></li>
+                <li>+ ≈10% AC-charging losses → <span className="text-yellow-400">16.5 kWh</span> needed from battery/PV</li>
+                <li>Average PV yield near Bordeaux: <span className="text-yellow-400">3.5 kWh kWp⁻¹ day⁻¹</span></li>
+                <li>400 W panel = 0.4 kWp → <span className="text-yellow-400">1.4 kWh/panel/day</span> (avg), <span className="text-yellow-400">0.56 kWh/panel/day</span> (mid-winter)</li>
+              </ul>
+              <div className="overflow-x-auto mb-4">
+                <table className="w-full text-white/80 font-satoshi">
+                  <thead>
+                    <tr className="border-b border-yellow-500/20">
+                      <th className="text-left py-2 px-4">Scenario</th>
+                      <th className="text-left py-2 px-4">Energy Target</th>
+                      <th className="text-left py-2 px-4">Panels (400 W)</th>
+                      <th className="text-left py-2 px-4">Array Size (kWp)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="py-2 px-4">Fair-weather (spring-autumn)</td>
+                      <td className="py-2 px-4">16.5 kWh</td>
+                      <td className="py-2 px-4">12</td>
+                      <td className="py-2 px-4">4.8</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4">Year-round (incl. December)</td>
+                      <td className="py-2 px-4">16.5 kWh</td>
+                      <td className="py-2 px-4">30</td>
+                      <td className="py-2 px-4">12</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4">Practical compromise (≈90% nights)</td>
+                      <td className="py-2 px-4">16.5 kWh</td>
+                      <td className="py-2 px-4">20</td>
+                      <td className="py-2 px-4">8</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mb-4">
+                <h4 className="text-yellow-400 font-epilogue mb-2">What this means in practice</h4>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                  <li><span className="text-yellow-400">Battery buffer is mandatory:</span> Your car charges after sunset, so the day&apos;s solar harvest must be stored first. One DELTA Pro Ultra inverter + three 6.1 kWh packs (18 kWh) matches the nightly need with headroom for cloudy days.</li>
+                  <li><span className="text-yellow-400">Grid or generator as safety net:</span> Even a 12 kWp array will have a few dark winter days; an EcoFlow Smart Generator or grid connection removes range anxiety.</li>
+                  <li><span className="text-yellow-400">Roof area check:</span> 400 W all-black modules are ~1.8 m² each:
+                    <ul className="ml-6 list-disc">
+                      <li>12 panels → 22 m²</li>
+                      <li>20 panels → 36 m²</li>
+                      <li>30 panels → 54 m²</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Pool Heating Use Case Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase">Heating Your Pool Year-Round with EcoFlow Solar</h2>
+          <Card className="bg-black border-yellow-500">
+            <CardHeader>
+              <CardTitle className="font-epilogue text-xl text-yellow-400">Sizing PV for the Pool-Heat-Pump Load</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1 mb-4">
+                <li>Pool size: <span className="text-yellow-400">12 m × 6 m</span></li>
+                <li>Heat pump daily consumption: <span className="text-yellow-400">25 kWh</span></li>
+                <li>+ ≈10% round-trip losses → <span className="text-yellow-400">27.5 kWh</span> required from PV</li>
+                <li>Annual specific yield (Morcenx, SW-France): <span className="text-yellow-400">1,200 kWh kWp⁻¹ yr⁻¹</span></li>
+                <li>400 W panel = 0.4 kWp → <span className="text-yellow-400">1.3 kWh/panel/day</span> (avg), <span className="text-yellow-400">0.5 kWh/panel/day</span> (mid-winter)</li>
+              </ul>
+              <div className="overflow-x-auto mb-4">
+                <table className="w-full text-white/80 font-satoshi">
+                  <thead>
+                    <tr className="border-b border-yellow-500/20">
+                      <th className="text-left py-2 px-4">Scenario</th>
+                      <th className="text-left py-2 px-4">Energy Target</th>
+                      <th className="text-left py-2 px-4">Panels (400 W)</th>
+                      <th className="text-left py-2 px-4">PV Capacity (kWp)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="py-2 px-4">Fair-weather (April–Oct)</td>
+                      <td className="py-2 px-4">27.5 kWh</td>
+                      <td className="py-2 px-4">22</td>
+                      <td className="py-2 px-4">8.8</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4">All-season (incl. December)</td>
+                      <td className="py-2 px-4">27.5 kWh</td>
+                      <td className="py-2 px-4">55</td>
+                      <td className="py-2 px-4">22</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 px-4">Practical compromise (≈90% of pool-heating days)</td>
+                      <td className="py-2 px-4">27.5 kWh</td>
+                      <td className="py-2 px-4">35</td>
+                      <td className="py-2 px-4">14</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mb-4">
+                <h4 className="text-yellow-400 font-epilogue mb-2">What this means in practice</h4>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                  <li><span className="text-yellow-400">Roof/ground area:</span> 400 W all-black modules are ~1.8 m² each:
+                    <ul className="ml-6 list-disc">
+                      <li>22 panels → 40 m²</li>
+                      <li>35 panels → 63 m²</li>
+                      <li>55 panels → 99 m²</li>
+                    </ul>
+                  </li>
+                  <li><span className="text-yellow-400">Battery buffer:</span> The pool heater runs mostly when the sun is down, so store the harvest first. One DELTA Pro Ultra inverter + three 6.1 kWh packs (18 kWh) handles the nightly draw; add a fourth pack (24 kWh) for cloudy spells.</li>
+                  <li><span className="text-yellow-400">Seasonality tip:</span> If you shut the heater off November–February (common in SW France), the 22-panel array is plenty; any surplus sun then goes to household loads or into the Tesla.</li>
+                </ul>
+              </div>
+              <div className="mb-4">
+                <h4 className="text-yellow-400 font-epilogue mb-2">Putting it all together</h4>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                  <li>If the pool is heated only in the swim season, an ~9 kWp (22-panel) array plus your existing battery stack will keep the water warm with near-zero grid input.</li>
+                  <li>If you insist on year-round 28 °C water, size up to 14–22 kWp (35–55 panels) or lean on the grid/generator during the darkest weeks.</li>
+                  <li>The array doubles as extra daytime cover for your household load and the Tesla—therefore the incremental panels tend to shorten overall payback rather than lengthen it.</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
       {/* Final CTA */}
       <section className="flex flex-col items-center justify-center py-20 px-4">
         <Link href="https://www.ecoflow.com/us/delta-pro-ultra" target="_blank">
