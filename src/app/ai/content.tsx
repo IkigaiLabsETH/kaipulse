@@ -142,7 +142,7 @@ export default function AIContent() {
 
         <motion.div variants={sectionVariants} className="space-y-14 text-left">
           <motion.h2
-            className="text-4xl md:text-5xl font-extrabold font-boska text-yellow-400 leading-tight mb-12 animate-fade-in transition-all duration-300 hover:drop-shadow-[0_4px_32px_rgba(247,181,0,0.25)] hover:scale-[1.025] text-left"
+            className="text-4xl md:text-5xl font-extrabold font-boska text-yellow-400 leading-tight mb-12 animate-fade-in transition-all duration-300 hover:drop-shadow-[0_4px_32px_rgba(247,181,0,0.25)] hover:scale-[1.025] text-left uppercase tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -162,7 +162,7 @@ export default function AIContent() {
         <motion.div variants={sectionVariants} className="space-y-24 mt-24 text-left">
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-8 animate-fade-in transition-all duration-300 hover:text-yellow-300 hover:drop-shadow-[0_2px_12px_rgba(247,181,0,0.18)] hover:scale-[1.02] text-left relative group"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in transition-all duration-300 hover:text-yellow-300 hover:drop-shadow-[0_2px_12px_rgba(247,181,0,0.18)] hover:scale-[1.02] text-left relative group uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -196,7 +196,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -220,7 +220,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -242,7 +242,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -275,7 +275,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -294,7 +294,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -316,7 +316,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -349,12 +349,12 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-              👟 Your Product Isn&apos;t Finished Until They Wear the Hoodie
+              👟 Not Finished Until They Wear the Hoodie
             </motion.h3>
             <p className="text-lg text-white/80 font-satoshi">
               The new pricing model: $0 to play, $X to unlock identity.
@@ -371,7 +371,7 @@ export default function AIContent() {
 
           <section>
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -390,7 +390,7 @@ export default function AIContent() {
 
           <section className="space-y-4">
             <motion.h3
-              className="text-2xl md:text-3xl font-bold font-epilogue text-yellow-400 mb-6 animate-fade-in"
+              className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
