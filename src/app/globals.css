@@ -62,6 +62,22 @@
 		 font-style: italic;
 }
 
+@font-face {
+	font-family: 'Pixeled';
+	src: url('/fonts/Pixeled.ttf') format('truetype');
+	font-weight: 400;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'VCR';
+	src: url('/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+	font-weight: 400;
+	font-display: swap;
+	font-style: normal;
+}
+
 :root {
 	--background: 0 0% 0%;
 	--foreground: 60 100% 98%;
@@ -266,4 +282,12 @@ body {
 .parallax-wrapper {
 	position: relative;
 	overflow: hidden;
+}
+
+.font-pixeled {
+	font-family: 'Pixeled', monospace;
+}
+
+.font-vcr {
+	font-family: 'VCR', monospace;
 }
