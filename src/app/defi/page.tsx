@@ -77,7 +77,7 @@ export default function DefiPage() {
                     </div>
                     <div className="p-4 relative z-10">
                       <p className="font-satoshi text-lg text-white/90">
-                        Borrow up to $100,000 in USDC
+                        Borrow up to $1000,000 in USDC
                       </p>
                     </div>
                   </div>
