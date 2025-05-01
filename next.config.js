@@ -36,6 +36,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ipfs.io',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media-proxy.artblocks.io',
+        pathname: '/**',
       }
     ],
     minimumCacheTTL: 3600,
