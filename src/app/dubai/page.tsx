@@ -168,6 +168,50 @@ export default function DubaiPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
+      {/* Luxury Lifestyle Links */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Dubai Luxury Living</h2>
+          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-8">
+            Explore Dubai&apos;s finest real estate, dining experiences, and luxury accommodations through our curated partners.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="https://www.sothebysrealty.com/eng/sales/du-uae/price-low-sort" target="_blank">
+              <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
+                <CardHeader>
+                  <CardTitle className="font-epilogue text-xl text-yellow-400">Sotheby&apos;s</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-white/80 font-satoshi">Discover exclusive Dubai properties through Sotheby&apos;s Realty</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/dubai" target="_blank">
+              <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
+                <CardHeader>
+                  <CardTitle className="font-epilogue text-xl text-yellow-400">Luxury Hotels</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-white/80 font-satoshi">Browse Dubai&apos;s finest hotels selected by the MICHELIN Guide</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="https://guide.michelin.com/fr/fr/dubai-emirate/restaurants" target="_blank">
+              <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
+                <CardHeader>
+                  <CardTitle className="font-epilogue text-xl text-yellow-400">Fine Dining</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-white/80 font-satoshi">Explore MICHELIN-starred restaurants and culinary excellence</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
       {/* Community Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
