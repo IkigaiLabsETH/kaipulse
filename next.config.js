@@ -34,6 +34,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: '**.arweave.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ipfs.io',
         pathname: '/**',
       },
@@ -45,6 +50,26 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'img.qql.art',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.kaizen.finance',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.niftygateway.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ipfs.pixura.io',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.larvalabs.com',
         pathname: '/**',
       }
     ],

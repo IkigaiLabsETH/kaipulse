@@ -42,6 +42,54 @@ export const featuredNFTs: FeaturedNFT[] = [
     contract: "0xd90829c6c6012e4dde506bd95d7499a04b9a56de",
     tokenId: "48"
   },
+  {
+    contract: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
+    tokenId: "78000029"
+  },
+  {
+    contract: "0x7a63d17f5a59bca04b6702f461b1f1a1c59b100b",
+    tokenId: "718"
+  },
+  {
+    contract: "0xe034bb2b1b9471e11cf1a0a9199a156fb227aa5d",
+    tokenId: "318"
+  },
+  {
+    contract: "0x495f947276749ce646f68ac8c248420045cb7b5e",
+    tokenId: "3385251931645379735483189246080152619861567145433800384203060887640575311873"
+  },
+  {
+    contract: "0xd0b67acc0e5918192b158c1647dad5782e6f4fb5",
+    tokenId: "13"
+  },
+  {
+    contract: "0x495f947276749ce646f68ac8c248420045cb7b5e",
+    tokenId: "90759427057310509927547570395708714779512351118091613108582219533160401600513"
+  },
+  {
+    contract: "0x8a939fd297fab7388d6e6c634eee3c863626be57",
+    tokenId: "17600020228"
+  },
+  {
+    contract: "0x2e55fb6e20e29344adb531200811007092051443",
+    tokenId: "10"
+  },
+  {
+    contract: "0x16edf9d65a54e1617921a8125d77ef48c4e8c449",
+    tokenId: "65"
+  },
+  {
+    contract: "0x9d6c8e4b348999a69ee24285cd81226f4628e8f8",
+    tokenId: "72683907607289245948376378937398657013536021870223758380494556672121413187180"
+  },
+  {
+    contract: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+    tokenId: "2924"
+  },
+  {
+    contract: "0x4e1f41613c9084fdb9e34e11fae9412427480e56",
+    tokenId: "8246"
+  },
 ];
 
 // Helper function to convert OpenSea URL to contract/tokenId
