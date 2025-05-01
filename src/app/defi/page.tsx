@@ -537,6 +537,77 @@ export default function DefiPage() {
         </div>
       </motion.div>
 
+      {/* SSR Analysis Section */}
+      <motion.div 
+        className="max-w-6xl mx-auto mt-20 mb-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1 }}
+      >
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">📊</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Market Intelligence: Stablecoin Supply Ratio (SSR)</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                <b className="text-yellow-500">Current SSR Alert: 0.94 and Rising</b>
+                <p className="mt-2">
+                  While markets are green and meme coins are pumping, smart money is watching a critical metric: the Stablecoin Supply Ratio (SSR). This key indicator currently sits at 0.94 and is showing early signs of an upward trend—a potential warning signal for market participants.
+                </p>
+              </div>
+              
+              <div>
+                <b className="text-yellow-500">What is SSR?</b>
+                <p className="mt-2">
+                  SSR measures the ratio between Bitcoins market cap and the total supply of stablecoins. Think of stablecoins as dry powder—capital waiting to be deployed into the market.
+                </p>
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li><b>Low SSR:</b> Indicates abundant buying power (lots of stablecoins relative to BTC)</li>
+                  <li><b>High SSR:</b> Suggests depleted reserves and limited upside fuel</li>
+                  <li><b>Trend Changes:</b> Direction shifts often precede major market moves</li>
+                </ul>
+              </div>
+
+              <div>
+                <b className="text-yellow-500">Current Market Context</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2">
+                  <li>Markets showing strong green trends</li>
+                  <li>Meme coin season in full swing</li>
+                  <li>General market euphoria</li>
+                  <li>SSR beginning to trend upward</li>
+                </ul>
+              </div>
+
+              <div>
+                <b className="text-yellow-500">Smart Money Strategy</b>
+                <p className="mt-2">
+                  While retail celebrates &quot;Alt Season,&quot; institutional players watch SSR trends for exit signals. A rapid SSR increase from current levels could indicate smart money quietly scaling out of positions.
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <a
+                  href="https://www.tradingview.com/script/Rfm4XHib-Stablecoin-Supply-Ratio-Alpha-Extract/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-8 py-3 rounded-lg bg-yellow-500 text-black font-bold text-lg shadow-md hover:bg-yellow-400 transition-colors border-2 border-yellow-500 group"
+                >
+                  <span>Track SSR on TradingView</span>
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              <div className="mt-4 text-sm text-white/60">
+                <p>Remember: Smart traders listen to data, not noise. Always conduct your own research and risk assessment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Bitcoin Magazine Footer */}
       <div className="relative py-24 mt-20 overflow-hidden">
         {/* Bitcoin pattern background */}
