@@ -25,22 +25,24 @@ const cardVariants = {
 export default function DefiPage() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Art Magazine Header Element */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
-      
-      {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pt-24 pb-4 relative">
-        <div className="mb-16 relative z-10 text-center">
-          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Bitcoin • DeFi • Financial Freedom</p>
-          <h1 className="text-center">
-            <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-              Bitcoin DeFi
-            </span>
-          </h1>
-          <div className="flex items-center justify-center mt-6">
-            <div className="h-px w-24 bg-yellow-500/30"></div>
-            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Future of Decentralized Finance</p>
-            <div className="h-px w-24 bg-yellow-500/30"></div>
+      <div className="relative">
+        {/* Art Magazine Header Element */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+        
+        {/* Hero Section */}
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pt-24 pb-4 relative">
+          <div className="mb-16 relative z-10 text-center">
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Bitcoin • DeFi • Financial Freedom</p>
+            <h1 className="text-center">
+              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+                Bitcoin DeFi
+              </span>
+            </h1>
+            <div className="flex items-center justify-center mt-6">
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Future of Decentralized Finance</p>
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -173,10 +175,10 @@ export default function DefiPage() {
           transition={{ duration: 0.6, delay: 0.7 }}
         >
           {[
-            { label: "Loan Capacity", value: "$100K", icon: Wallet },
-            { label: "Min Collateral", value: "133%", icon: Shield },
-            { label: "Protocols", value: "3+", icon: ChartBar },
-            { label: "Lock Period", value: "90d", icon: Lock }
+            { label: "Loan Capacity", value: "$1M", icon: Wallet },
+            { label: "Interest Rate", value: "5%", icon: ChartBar },
+            { label: "Total Borrowed", value: "$100M", icon: TrendingUp },
+            { label: "Time Frame", value: "100d", icon: Lock }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
