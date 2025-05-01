@@ -41,7 +41,7 @@ export default function Home() {
             </h1>
             
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Preserve your Bitcoin wealth while earning monthly income through the MSTR options strategy. Keep 80% in cold storage, let 20% work for you.
+             Preserve your Bitcoin wealth and earn steady monthly income with the MSTR options strategy. Cold store 80%, let 20% work smarter. Your biggest risk isn’t market volatility — it’s your own behavior. MSTY = disciplined cash flow.
             </p>
           </motion.div>
 
