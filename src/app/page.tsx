@@ -98,7 +98,7 @@ export default function Home() {
           </div>
           <div className="relative z-10 text-center">
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">
-              Ask Him Anything • Experience your AHA Moment
+              Ask Him Anything • Your AHA Moment
             </p>
             <h2 className="text-5xl sm:text-6xl font-bold text-yellow-400 mb-6 font-boska uppercase tracking-tight">
               Talk to Satoshi
@@ -106,7 +106,7 @@ export default function Home() {
             <div className="flex items-center justify-center mb-8">
               <div className="h-px w-16 bg-yellow-500/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
-                &ldquo;Your Bitcoin journey, one question at a time.&rdquo;
+                &ldquo;If you don’t believe it or don’t get it, I don’t have the time to try to convince you, sorry.&rdquo;
               </p>
               <div className="h-px w-16 bg-yellow-500/30"></div>
             </div>
