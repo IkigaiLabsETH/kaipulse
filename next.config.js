@@ -41,6 +41,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'media-proxy.artblocks.io',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.qql.art',
+        pathname: '/**',
       }
     ],
     minimumCacheTTL: 3600,
