@@ -48,40 +48,28 @@ export default function DubaiPage() {
 
       {/* Living Costs Section */}
       <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Living Costs & Lifestyle</h2>
-          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Dubai offers a premium lifestyle with corresponding costs. From luxury apartments to world-class amenities, understand what it takes to live comfortably in this global crypto hub.
-          </p>
+        <div className="mx-auto max-w-4xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-center">Premium Living Costs</h2>
+          <Card className="bg-black border-yellow-500">
+            <CardContent className="pt-6">
+              <div className="space-y-6 text-white/80 font-satoshi">
+                <p className="text-lg leading-relaxed">
+                  Dubai&apos;s ultra-luxury real estate commands premium prices, with Downtown penthouses and Palm Jumeirah villas ranging from AED 15-50M ($4-14M). Premium apartment rentals in iconic locations like Burj Khalifa or Palm start from AED 450,000/year ($123,000) for a 3BR, while luxury villa rentals in Emirates Hills or Palm Jumeirah can exceed AED 1.5M/year ($410,000).
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Monthly expenses reflect the high-end lifestyle. Expect AED 2,500-4,000 ($680-1,100) for utilities in a large residence, AED 3,000-5,000 ($820-1,360) for premium gym memberships, and AED 15,000-25,000 ($4,100-6,800) for a full-time driver. International school fees at top institutions range from AED 70,000-120,000 ($19,000-33,000) per child annually.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Fine dining and entertainment costs are substantial. A meal at a MICHELIN-starred restaurant averages AED 800-1,500 ($220-410) per person, while VIP table service at premium venues starts from AED 25,000 ($6,800). Private beach club memberships run AED 50,000-100,000 ($13,600-27,000) annually. Luxury car leases (Range Rover, G-Wagon) start from AED 15,000 ($4,100) monthly.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  For a family of four maintaining a luxury lifestyle in Dubai, including premium housing, schooling, staff, and high-end amenities, the annual budget typically ranges from AED 2.5-5M ($680,000-1.36M), varying based on housing choices and lifestyle preferences.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
-
-      <Grid columns={3} className="justify-center">
-        <Card className="bg-black border-yellow-500">
-          <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Housing</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-white/80 font-satoshi">Prime area studios and 1BR flats: AED 80-100k/year. Urban outskirts: AED 50-60k/year. Utilities add AED 500-800/month in summer.</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-black border-yellow-500">
-          <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Transportation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-white/80 font-satoshi">Efficient metro system, but car-centric lifestyle. Ride-hailing trips cost AED 15-30. Fuel is affordable at AED 1.50-2.00/liter.</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-black border-yellow-500">
-          <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Daily Expenses</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-white/80 font-satoshi">Basic meal: AED 20-30. Mid-range dinner: AED 80-120/person. Gym membership: AED 200-350/month. Premium venues cost significantly more.</p>
-          </CardContent>
-        </Card>
-      </Grid>
 
       <Separator className="my-8 bg-yellow-500/20" />
 
