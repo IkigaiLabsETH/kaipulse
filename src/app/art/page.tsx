@@ -77,7 +77,7 @@ async function NFTGallery() {
         
         <div className="max-w-[1920px] mx-auto">
           <div className="mb-16 relative z-10 text-center">
-            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Art • NFT Collection • Generative Art</p>
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Art • Gen Art</p>
             <h1 className="text-center">
               <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
                 Featured Collection
