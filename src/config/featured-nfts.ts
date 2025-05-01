@@ -10,8 +10,7 @@ export interface FeaturedNFT {
 export const featuredNFTs: FeaturedNFT[] = [
   {
     contract: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
-    tokenId: "163000312",
-    title: "Meridian #312", // Optional override
+    tokenId: "163000540",
     priority: 1
   },
   {
@@ -97,6 +96,22 @@ export const featuredNFTs: FeaturedNFT[] = [
   {
     contract: "0x4e1f41613c9084fdb9e34e11fae9412427480e56",
     tokenId: "8246"
+  },
+  {
+    contract: "0xd33bc0af2dc4e39cbaef4beff8d1fb3c00c2e7a3",
+    tokenId: "58"
+  },
+  {
+    contract: "0x99a9b7c1116f9ceeb1652de04d5969cce509b069",
+    tokenId: "407000228"
+  },
+  {
+    contract: "0xc04e0000726ed7c5b9f0045bc0c4806321bc6c65",
+    tokenId: "169"
+  },
+  {
+    contract: "0x55fda4cf1e821c6f13372d6337303a97eea829c1",
+    tokenId: "1"
   },
   {
     contract: "0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0",
