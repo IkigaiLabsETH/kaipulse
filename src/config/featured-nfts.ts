@@ -90,8 +90,8 @@ export const featuredNFTs: FeaturedNFT[] = [
     tokenId: "72683907607289245948376378937398657013536021870223758380494556672121413187180"
   },
   {
-    contract: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
-    tokenId: "2924"
+    contract: "0x282bdd42f4eb70e7a9d9f40c8fea0825b7f68c5d",
+    tokenId: "5876"
   },
   {
     contract: "0x4e1f41613c9084fdb9e34e11fae9412427480e56",
@@ -108,6 +108,10 @@ export const featuredNFTs: FeaturedNFT[] = [
   {
     contract: "0xc04e0000726ed7c5b9f0045bc0c4806321bc6c65",
     tokenId: "169"
+  },
+  {
+    contract: "0x45aa3f3a6cf6e28fb4b762ce7cf5a62419b778c4",
+    tokenId: "19"
   },
   {
     contract: "0x55fda4cf1e821c6f13372d6337303a97eea829c1",

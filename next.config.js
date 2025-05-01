@@ -4,6 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'hashmasksstore.blob.core.windows.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
