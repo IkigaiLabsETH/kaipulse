@@ -29,7 +29,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '**.arweave.net',
+        hostname: 'arweave.net',
         pathname: '/**',
       },
       {

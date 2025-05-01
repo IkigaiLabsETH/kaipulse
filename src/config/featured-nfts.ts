@@ -18,6 +18,10 @@ export const featuredNFTs: FeaturedNFT[] = [
     contract: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
     tokenId: "13000628"
   },
+  {
+    contract: "0xc14a73fcc775a861e597f1df2e6b86d1c982e2cf",
+    tokenId: "2"
+  },
 ];
 
 // Helper function to convert OpenSea URL to contract/tokenId
