@@ -165,25 +165,38 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
   
         // Fetch additional NFT data like current price, offers, etc.
         // This is non-critical, so don't fail if it doesn't work
-        let listings: Array<{ price: { current: { value: number } } }> = [];
+        const listings: Array<{ price: { current: { value: number } } }> = [];
         try {
           const priceData = await this.request({
             method: 'GET',
             url: `/api/v2/chain/${validatedParams.chain}/contract/${validatedParams.address}/nfts/${formattedTokenId}/listings`,
-            validateResponse: (data) => z.object({
-              listings: z.array(z.object({
-                price: z.object({
-                  current: z.object({
-                    value: z.number()
-                  })
-                })
-              }))
-            }).parse(data)
+            validateResponse: (data) => {
+              // If data is undefined or null, return empty listings
+              if (!data) return { listings: [] };
+              
+              // Try to parse the response, but return empty listings if invalid
+              try {
+                return z.object({
+                  listings: z.array(z.object({
+                    price: z.object({
+                      current: z.object({
+                        value: z.number()
+                      })
+                    })
+                  }))
+                }).parse(data);
+              } catch {
+                logger.warn('Invalid listings data format, using empty listings', { data });
+                return { listings: [] };
+              }
+            }
           });
-          listings = priceData.listings;
-        } catch (listingError) {
+          if (priceData?.listings?.length) {
+            listings.push(...priceData.listings);
+          }
+        } catch {
           // Non-critical error, continue without listings
-          logger.warn('Failed to fetch NFT listings:', listingError);
+          logger.warn('Failed to fetch NFT listings, continuing without listings data');
         }
   
         return {

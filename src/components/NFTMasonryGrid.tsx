@@ -21,16 +21,16 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
       
       <Masonry
         breakpointCols={{
-          default: 2,
-          1920: 2,
-          1536: 2,
-          1280: 1,
-          1024: 1,
-          768: 1,
-          640: 1,
+          default: 4,
+          1920: 4,
+          1536: 3,
+          1280: 2,
+          1024: 2,
+          768: 2,
+          640: 1
         }}
         className="flex w-auto"
-        columnClassName="pl-24 first:pl-0 bg-clip-padding space-y-32"
+        columnClassName="pl-8 first:pl-0 bg-clip-padding space-y-12 md:space-y-16"
       >
         {nfts.map((nft) => (
           <div 

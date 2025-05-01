@@ -15,10 +15,11 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
 
   // Handler to get natural image dimensions
-  const handleImageLoad = (img: HTMLImageElement) => {
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     setIsLoading(false);
-    if (img.naturalWidth && img.naturalHeight) {
-      setAspectRatio(img.naturalWidth / img.naturalHeight);
+    const img = e.target as HTMLImageElement;
+    if (img?.naturalWidth && img?.naturalHeight) {
+      setAspectRatio(img?.naturalWidth / img?.naturalHeight);
     }
   };
 
@@ -36,7 +37,7 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
           alt={name}
           fill
           className={`object-contain transition-all duration-700 ${isLoading ? 'scale-110 blur-2xl' : 'scale-100 blur-0'}`}
-          onLoadingComplete={handleImageLoad}
+          onLoad={handleImageLoad}
           priority
         />
         {/* Hover Overlay */}
