@@ -101,6 +101,19 @@ const timelineEvents = [
 export default function OlympusPage() {
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Olympus Explainer Video */}
+      <div className="w-full flex justify-center bg-black pt-24">
+        <div className="w-full max-w-3xl aspect-video rounded-lg overflow-hidden border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mb-8">
+          <iframe
+            src="https://www.youtube.com/embed/Bp_qJWXjvJQ"
+            title="Olympus DAO Explainer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full h-full"
+          />
+        </div>
+      </div>
       {/* Hero Section with Animated Background */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
