@@ -709,7 +709,7 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Montus</span>: "The Petrus of the Southwest"; powerful, elegant, deeply concentrated.</li>
+                  <li><span className="font-bold text-yellow-400">Château Montus</span>: &quot;The Petrus of the Southwest&quot;; powerful, elegant, deeply concentrated.</li>
                   <li><span className="font-bold text-yellow-400">Château d&apos;Aydie</span>: Complex and powerful, superb aging potential.</li>
                 </ul>
               </CardContent>
