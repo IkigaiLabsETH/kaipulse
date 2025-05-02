@@ -510,6 +510,60 @@ export default function WinePage() {
           </div>
         </div>
       </section>
+
+      {/* Final Section: From Bordeaux to South Africa */}
+      <section className="py-20 px-4 bg-[#181818]">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase">From Bordeaux to South Africa: A Tale of Terroir &amp; Taste</h2>
+          <p className="text-lg md:text-xl text-white/90 font-satoshi mb-8 text-center max-w-3xl mx-auto">
+            When people imagine visiting Bordeaux, they think vineyards—and rightly so. With roughly 9,000 vineyards, Bordeaux is more than a wine region; it&apos;s a way of life. Yet, this famed terroir holds secrets beyond its legendary Châteaux. Just two hours from Bordeaux lies Biarritz, the surfing capital of Europe, seamlessly blending vineyard vacation with coastal charm.
+          </p>
+          <p className="text-md md:text-lg text-white/80 font-satoshi mb-12 text-center max-w-2xl mx-auto">
+            Our wine journey, inspired by over a decade of world travel and significant years spent immersed in the captivating landscapes of South Africa, aims to redefine wine tourism. South Africa, our home away from home, taught us that wine experiences should be personal, vibrant, and unforgettable. Now based in Rion-des-Landes, perfectly situated between Bordeaux's rolling vineyards and Biarritz's sandy shores, we offer intimate, bespoke wine tours.
+          </p>
+
+          <Grid columns={2} className="justify-center">
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-xl text-yellow-400">Bordeaux Highlights</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Marjosse</span>: The domain of Pierre Lurton, famed director of Château Cheval Blanc and Château d&apos;Yquem.</li>
+                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, silky wines expressing deep aromatic complexity and finesse.</li>
+                  <li><span className="font-bold text-yellow-400">Château Chasse Spleen</span>: Known for its velvety, rounded tannins and aromatic allure.</li>
+                  <li><span className="font-bold text-yellow-400">Château Carbonnieux</span>: Exquisite reds and whites that rival their renowned neighbors Smith-Haut-Lafitte and Haut-Bailly.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-xl text-yellow-400">South African Icons</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Saronsberg</span> (Tulbagh): Bold wines rich in flavor and color, meticulously vinified.</li>
+                  <li><span className="font-bold text-yellow-400">Groote Post</span> (Darling): Sauvignon Blanc with unmatched freshness from the cool coastal hills.</li>
+                  <li><span className="font-bold text-yellow-400">Diemersfontein</span> (Wellington): Creator of the iconic coffee-chocolate Pinotage.</li>
+                  <li><span className="font-bold text-yellow-400">Veenwouden</span> (Paarl): Exceptional Merlot and Cabernet Franc from cool clay subsoils.</li>
+                  <li><span className="font-bold text-yellow-400">Marianne Wines</span> (Klapmuts): Bordeaux-style blends crafted for immediate enjoyment and long-term aging.</li>
+                  <li><span className="font-bold text-yellow-400">Delaire Graff Estate</span> (Stellenbosch): High-altitude elegance, crafting powerful reds and crisp whites praised globally.</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <div className="mt-12">
+            <p className="text-lg md:text-xl text-white/90 font-satoshi text-center max-w-3xl mx-auto mb-4">
+              At <span className="text-yellow-400 font-bold">LiveTheLifeTV</span>, it&apos;s not simply about tasting wine—it&apos;s about immersing yourself fully in the essence of each region, experiencing the vibrant interplay of soil, climate, and passionate winemaking.
+            </p>
+            <p className="text-md md:text-lg text-white/80 font-satoshi text-center max-w-2xl mx-auto">
+              From Bordeaux&apos;s historic elegance to South Africa&apos;s pioneering spirit, let us guide you on a personalized journey where exceptional wine, coastal relaxation, and the joy of discovery await.<br/><br/>
+              <span className="font-bold text-yellow-400">From the vineyards to the sea—Vive La Vie.</span>
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
