@@ -519,7 +519,7 @@ export default function WinePage() {
             When people imagine visiting Bordeaux, they think vineyards—and rightly so. With roughly 9,000 vineyards, Bordeaux is more than a wine region; it&apos;s a way of life. Yet, this famed terroir holds secrets beyond its legendary Châteaux. Just two hours from Bordeaux lies Biarritz, the surfing capital of Europe, seamlessly blending vineyard vacation with coastal charm.
           </p>
           <p className="text-md md:text-lg text-white/80 font-satoshi mb-12 text-center max-w-2xl mx-auto">
-            Our wine journey, inspired by over a decade of world travel and significant years spent immersed in the captivating landscapes of South Africa, aims to redefine wine tourism. South Africa, our home away from home, taught us that wine experiences should be personal, vibrant, and unforgettable. Now based in Rion-des-Landes, perfectly situated between Bordeaux's rolling vineyards and Biarritz's sandy shores, we offer intimate, bespoke wine tours.
+            Our wine journey, inspired by over a decade of world travel and significant years spent immersed in the captivating landscapes of South Africa, aims to redefine wine tourism. South Africa, our home away from home, taught us that wine experiences should be personal, vibrant, and unforgettable. Now based in Rion-des-Landes, perfectly situated between Bordeaux&apos;s rolling vineyards and Biarritz&apos;s sandy shores, we offer intimate, bespoke wine tours.
           </p>
 
           <Grid columns={2} className="justify-center">
