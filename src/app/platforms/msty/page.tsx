@@ -91,7 +91,7 @@ export default function MSTYPlatformsPage() {
         {/* Big Bold Quote Section */}
         <div className="mt-12 flex justify-center">
           <blockquote className="max-w-3xl mx-auto text-center text-2xl sm:text-3xl font-bold text-yellow-500 font-boska">
-            "HODLing solves the future — $MSTY solves today. It gives us time, freedom, and monthly income to live now, not just later. Allocate accordingly."
+            &quot;HODLing solves the future — $MSTY solves today. It gives us time, freedom, and monthly income to live now, not just later. Allocate accordingly.&quot;
           </blockquote>
         </div>
 
