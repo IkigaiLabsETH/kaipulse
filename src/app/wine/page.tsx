@@ -714,6 +714,46 @@ export default function WinePage() {
                 </ul>
               </CardContent>
             </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">South Africa Selection</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Cederberg</span> (Wilderness): Highest altitude vineyards within pristine wilderness, producing wines of remarkable clarity and purity.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Saronsberg</span> (Tulbagh): Bold, structured wines with intense fruit flavors, gentle tannins, and vibrant color.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Allesverloren</span> (Swartland): Oldest estate in Swartland, renowned for deep history and expertly crafted wines by the Malan family.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Groote Post</span> (Darling): Cool-climate wines, notable for their exceptional Sauvignon Blanc from coastal Kapokberg vineyards.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Vondeling</span> (Paardeberg): Panoramic views and carefully crafted wines that express the unique biodiversity and terroir.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Diemersfontein</span> (Wellington): Pioneers of the iconic coffee-chocolate Pinotage; diverse offerings from Shiraz to Chenin Blanc.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Veenwouden</span> (Paarl): Merlot and Cabernet Franc thrive in cool clay subsoils, resulting in Mediterranean-styled wines.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Landskroon</span> (Paarl): Family-run, historic estate producing elegant wines with a heritage dating to the 17th century.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Glen Carlou</span> (Paarl): Distinctive wine ranges influenced by meticulous vineyard selection and Hess Family&apos;s global expertise.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Backsberg Family Reserve</span> (Paarl): Exclusive vintages, meticulously selected for their exceptional character and quality.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Marianne Wines</span> (Klapmuts): Boutique winery creating Bordeaux-style blends; expressive, fruit-forward wines with nuanced elegance.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Babylonstoren</span> (Klapmuts): Natural simplicity defines their wines, reflecting the pristine terroir of Simonsberg Mountain.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Mont Destin</span> (Klapmuts): Family-run estate specializing in Shiraz and Rhône-inspired blends; elegant, small-batch production.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Rupert &amp; Rothschild</span> (Franschhoek): Prestigious collaboration between iconic South African and French winemaking families.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Plaisir de Merle</span> (Franschhoek): Historic estate emphasizing terroir-driven wines, cultivated from carefully selected vineyards.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Anthonij Rupert</span> (Franschhoek): Innovative terroir-specific wines crafted across diverse vineyards, from Franschhoek to Swartland.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Graham Beck</span> (Franschhoek): Renowned for vibrant, expressive wines produced with minimal intervention and maximum care.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">La Motte</span> (Franschhoek): Prestigious estate known for excellence in winemaking, culture, and artistic heritage.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Grande Provence</span> (Franschhoek): Historic elegance meets contemporary winemaking, producing distinctive and refined wines.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Boschendal</span> (Franschhoek): Carefully cultivated grapes, yielding diverse wines celebrated for their consistent high quality.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Tokara</span> (Stellenbosch): Wines acclaimed for their balanced structure, texture, elegance, and superb aging potential.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Delaire Graff Estate</span> (Stellenbosch): Exceptional, award-winning wines from high-altitude vineyards, capturing elegance and freshness.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Neil Ellis</span> (Stellenbosch): Terroir-driven wines, meticulously crafted to highlight the strengths of diverse vineyard sites.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Le Riche</span> (Stellenbosch): Premium Cabernet Sauvignon specialists; expressive blends celebrating the best Stellenbosch terroir.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Warwick</span> (Stellenbosch): Famed for Bordeaux-style blends; renowned flagship wine "Warwick Trilogy".</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Kanonkop</span> (Stellenbosch): Premier Cru-quality estate producing world-class wines with impeccable pedigree.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Vilafonté</span> (Stellenbosch): Premium South Africa-Californian collaboration, renowned for wines of profound structure and finesse.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Ken Forrester</span> (Stellenbosch): Home of South African Chenin Blanc; handcrafted wines praised internationally.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Kleine Zalze Family Reserve</span> (Stellenbosch): Top-tier, single-vineyard selections, matured meticulously in oak.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Dornier</span> (Stellenbosch): Tradition meets innovation, crafting wines of distinguished character and elegance.</li>
+                  <li className="mt-2"><span className="font-bold text-yellow-400">Rust &amp; Vrede, Vergelegen, Morgenster, Waterkloof, Paul Cluver, Meerlust, De Toren, Amani, Jordan, Saxenburg, Ataraxia, Bouchard Finlayson, Hamilton Russell, Hemel &amp; Aarde, Raka Wine, Aaldering, Clos Malverne, Hartenberg, Beyerskloof, Simonsig, Villiera, Diemersdal, Nitida, Mulderbosch, De Grendel, Eagles Nest, Groot Constantia, Klein Constantia, Buitenverwachting, Steenberg, Cape Point</span>: Celebrated estates representing the pinnacle of South African winemaking, each with distinct signature styles and meticulous attention to quality and terroir.</li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
           <div className="mt-10 text-center">
             <p className="text-lg text-yellow-400 font-bold font-epilogue mb-2">La Cave Du Bon Vivant invites you on a journey through terroir, taste, and tradition.</p>
