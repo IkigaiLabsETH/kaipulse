@@ -108,7 +108,7 @@ export class CollectionService extends BaseOpenSeaAPI {
     try {
       const response = await this.request<CollectionResponse>({
         method: 'GET',
-        url: `/api/v2/collection/${validatedParams.slug}`,
+        url: `/api/v2/collections/${validatedParams.slug}`,
       });
 
       const collectionData = response;
@@ -117,7 +117,7 @@ export class CollectionService extends BaseOpenSeaAPI {
       try {
         const statsResponse = await this.request<{ stats: CollectionStats }>({
           method: 'GET',
-          url: `/api/v2/collection/${validatedParams.slug}/stats`,
+          url: `/api/v2/collections/${validatedParams.slug}/stats`,
         });
 
         return {

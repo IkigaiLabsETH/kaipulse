@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { ImageIcon } from 'lucide-react';
 
 interface NFTCardProps {
   name: string;
@@ -13,6 +14,7 @@ interface NFTCardProps {
 export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   // Handler to get natural image dimensions
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -23,8 +25,13 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
     }
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   // Compute aspect ratio style
   const aspectStyle: React.CSSProperties = { aspectRatio: aspectRatio ? `${aspectRatio}` : '0.75' };
+  const displayImageUrl = !imageError && imageUrl ? imageUrl : '/images/nft-placeholder.png';
 
   return (
     <div className="group relative w-full bg-black border-4 border-yellow-400 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)] transition-all duration-500 hover:shadow-[0_12px_40px_0_rgba(247,181,0,0.35),0_4px_16px_0_rgba(0,0,0,0.55)] hover:border-yellow-300">
@@ -32,14 +39,21 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none z-10" />
       {/* Image Container with dynamic aspect ratio */}
       <div className="relative w-full bg-[#181818] rounded-xl overflow-hidden" style={aspectStyle}>
-        <Image
-          src={imageUrl}
-          alt={name}
-          fill
-          className={`object-contain transition-all duration-700 ${isLoading ? 'scale-110 blur-2xl' : 'scale-100 blur-0'}`}
-          onLoad={handleImageLoad}
-          priority
-        />
+        {displayImageUrl ? (
+          <Image
+            src={displayImageUrl}
+            alt={name}
+            fill
+            className={`object-contain transition-all duration-700 ${isLoading ? 'scale-110 blur-2xl' : 'scale-100 blur-0'}`}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            priority
+          />
+        ) : (
+          <div className="w-full h-full bg-black/30 flex items-center justify-center">
+            <ImageIcon size={48} className="text-white/40" />
+          </div>
+        )}
         {/* Hover Overlay */}
         <div className="absolute inset-0 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
           {/* Gradient Background */}

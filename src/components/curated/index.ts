@@ -1,10 +1,2 @@
-export { CollectionHeader } from './CollectionHeader';
-export { CollectionStats } from './CollectionStats';
-export { CollectionGrid } from './CollectionGrid';
-export { CollectionActivity } from './CollectionActivity';
-export { CollectionOffers } from './CollectionOffers';
-export { CollectionCard } from './CollectionCard';
-export { CuratedCollections } from './CuratedCollections';
-export { CategorySection } from './CategorySection';
-export { CollectionsGrid } from './CollectionsGrid';
-export { LoadingSkeleton } from './LoadingSkeleton'; 
+export { CollectionsHeroAndGrid } from './CollectionsHeroAndGrid';
+export { CollectionsGridClient } from './CollectionsGridClient'; 

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { logger } from '@/lib/logger';
 import { formatEthPrice } from '@/lib/format';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ImageIcon } from 'lucide-react';
 
 export interface NFTCardProps {
   nft: OpenSeaNFT;
@@ -25,6 +25,7 @@ export function NFTCard({ nft, href }: NFTCardProps) {
     setImageError(true);
   };
 
+  const imageUrl = !imageError && nft.image_url ? nft.image_url : '/images/nft-placeholder.png';
   const price = nft.listings?.[0]?.price?.current?.value;
 
   return (
@@ -41,18 +42,19 @@ export function NFTCard({ nft, href }: NFTCardProps) {
         <div className="relative">
           {/* Art piece */}
           <div className="relative aspect-square overflow-hidden bg-black">
-            {nft.image_url && !imageError ? (
+            {imageUrl ? (
               <Image
-                src={nft.image_url}
+                src={imageUrl}
                 alt={nft.name || 'NFT'}
                 width={500}
                 height={500}
                 className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
                 onError={handleImageError}
+                priority
               />
             ) : (
               <div className="w-full h-full bg-black/30 flex items-center justify-center">
-                <span className="text-white/40">No Image</span>
+                <ImageIcon size={48} className="text-white/40" />
               </div>
             )}
 
