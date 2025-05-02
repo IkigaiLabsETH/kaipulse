@@ -338,7 +338,7 @@ function NFTContent({
       {/* Elegant navigation bar */}
       <div className="flex justify-between items-center mb-16">
         <Link
-          href={`/collections/${collection.slug}`}
+          href={`/collections/${nft.contract}`}
           className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors tracking-wider text-sm uppercase"
         >
           <ArrowLeft size={16} className="text-yellow-400" />
