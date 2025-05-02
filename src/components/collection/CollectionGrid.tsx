@@ -183,7 +183,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
         >
           <NFTCard 
             nft={nft} 
-            href={`/collections/${collectionSlug}/${nft.identifier}`}
+            href={`/collections/${nft.contract}/${nft.identifier}`}
           />
         </motion.div>
       ))}
