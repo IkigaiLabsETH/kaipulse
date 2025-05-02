@@ -568,7 +568,7 @@ export default function WinePage() {
       {/* Wine Menu Section */}
       <section className="py-20 px-4 bg-[#111111]">
         <div className="mx-auto max-w-3xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase">La Cave Du Bon Vivant – Wine Menu</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase">La Cave Du Bon Vivant</h2>
           <div className="space-y-8">
             <Card className="bg-black border-yellow-500">
               <CardHeader>
@@ -757,7 +757,6 @@ export default function WinePage() {
           </div>
           <div className="mt-10 text-center">
             <p className="text-lg text-yellow-400 font-bold font-epilogue mb-2">La Cave Du Bon Vivant invites you on a journey through terroir, taste, and tradition.</p>
-            <p className="text-white/80 font-satoshi">Cork Fee: 10€</p>
           </div>
         </div>
       </section>
