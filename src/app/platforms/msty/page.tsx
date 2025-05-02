@@ -84,7 +84,7 @@ export default function MSTYPlatformsPage() {
             MSTY Trading in Europe
           </h1>
           <p className="mt-6 text-lg leading-8 text-white/90">
-            Access the Yieldmax MSTR Option Income Strategy ETF (MSTY).
+            Yieldmax MSTR Option Income Strategy ETF (MSTY).
           </p>
         </motion.div>
 
