@@ -11,11 +11,13 @@ import { Card } from "@/components/ui/card";
 const AccordionItem = ({
   title,
   children,
+  defaultOpen = false
 }: {
   title: string
   children: React.ReactNode
+  defaultOpen?: boolean
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(defaultOpen)
 
   return (
     <div className="border-b border-yellow-500/20">
@@ -82,9 +84,16 @@ export default function MSTYPlatformsPage() {
             MSTY Trading in Europe
           </h1>
           <p className="mt-6 text-lg leading-8 text-white/90">
-            Access the Yieldmax MSTR Option Income Strategy ETF (MSTY) through YieldMax&apos;s official European UCITS fund structure.
+            Access the Yieldmax MSTR Option Income Strategy ETF (MSTY).
           </p>
         </motion.div>
+
+        {/* Big Bold Quote Section */}
+        <div className="mt-12 flex justify-center">
+          <blockquote className="max-w-3xl mx-auto text-center text-2xl sm:text-3xl font-bold text-yellow-500 font-boska">
+            "HODLing solves the future — $MSTY solves today. It gives us time, freedom, and monthly income to live now, not just later. Allocate accordingly."
+          </blockquote>
+        </div>
 
         {/* YouTube Video Section */}
         <motion.div
