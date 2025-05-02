@@ -564,6 +564,163 @@ export default function WinePage() {
           </div>
         </div>
       </section>
+
+      {/* Wine Menu Section */}
+      <section className="py-20 px-4 bg-[#111111]">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase">La Cave Du Bon Vivant – Wine Menu</h2>
+          <div className="space-y-8">
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Bordeaux</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">L&apos;Esprit de Pavie</span>: Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months.</li>
+                  <li><span className="font-bold text-yellow-400">Chapelle d&apos;Aliénor</span>: Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse.</li>
+                  <li><span className="font-bold text-yellow-400">Château Marjosse</span>: Prestigious estate managed by Pierre Lurton; Merlot, Cabernet Sauvignon, Cabernet Franc, Malbec, Sauvignon, and Sémillon.</li>
+                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol&apos;s Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Bordeaux Supérieur</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château de Reignac</span>: Lauded by Robert Parker; sophisticated Bordeaux Supérieur, rivaling classified growths.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Haut-Médoc</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Cambon La Pelouse</span>: Situated between Giscours and Cantemerle; structured wines from gravelly terroir.</li>
+                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, tender tannins with aromatic complexity, typical of Médoc&apos;s sandy soils.</li>
+                  <li><span className="font-bold text-yellow-400">Château Chasse Spleen</span>: Deep garnet wines with wild berries, blueberries, rounded and silky tannins.</li>
+                  <li><span className="font-bold text-yellow-400">Château Sociando Mallet</span>: Complex red fruit, subtle oak; known for impressive aging potential.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Margaux</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Ferrière</span>: Small, prestigious estate; blends Cabernet Sauvignon, Merlot, and Cabernet Franc.</li>
+                  <li><span className="font-bold text-yellow-400">Château Dufort-Vivens</span>: Second Cru Classé; violets, black cherry, truffle.</li>
+                  <li><span className="font-bold text-yellow-400">Château Brane-Cantenac</span>: Classic Margaux complexity; aromatic finesse, sustainable viticulture.</li>
+                  <li><span className="font-bold text-yellow-400">Les Hauts du Tertre</span>: Second wine blending power and finesse, cherry and plum notes.</li>
+                  <li><span className="font-bold text-yellow-400">Chevalier de Lascombes</span>: Elegant, smoother sibling of Château Lascombes, charming and approachable.</li>
+                  <li><span className="font-bold text-yellow-400">Confidence de Prieuré-Lichine</span>: Expertly crafted wines guided by Stéphane Derenoncourt and Michel Rolland.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Saint Julien</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Talbot</span>: Harmonious bridge between Margaux finesse and Pauillac power.</li>
+                  <li><span className="font-bold text-yellow-400">Château Gloria</span>: Exceptional quality-value, rivaling classified growths.</li>
+                  <li><span className="font-bold text-yellow-400">Château du Glana</span>: Deeply structured wines from the esteemed Saint-Pierre and Lagrange vineyards.</li>
+                  <li><span className="font-bold text-yellow-400">Les Fiefs de Lagrange</span>: Rich fruit, spice complexity; robust with exceptional aging capacity.</li>
+                  <li><span className="font-bold text-yellow-400">Les Pélerins Lafon Rochet</span>: Diverse soils, precise winemaking, and environmentally conscious viticulture.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Pauillac</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Réserve de la Comtesse</span>: Richly textured second wine; spice-enhanced elegance.</li>
+                  <li><span className="font-bold text-yellow-400">Château Lynch Moussas</span>: Meticulously managed vineyards; deep, matured tannins.</li>
+                  <li><span className="font-bold text-yellow-400">Château Lacoste Borie</span>: Fruity elegance, approachable style from younger vines.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Saint Estèphe</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Cos Labory</span>: Robust wines, oak-aged complexity.</li>
+                  <li><span className="font-bold text-yellow-400">Goulée by Cos d&apos;Estournel</span>: Rich Médoc terroir, vinified by Cos d&apos;Estournel team.</li>
+                  <li><span className="font-bold text-yellow-400">La Dame de Montrose</span>: Luxurious second wine; velvety Merlot presence.</li>
+                  <li><span className="font-bold text-yellow-400">Château Sérilhan</span>: Award-winning craftsmanship; structured and richly textured.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Saint-Émilion</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Valandraud</span>: Celebrated domaine with highly-rated wines, including kosher and exclusive white cuvées.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Graves &amp; Pessac-Léognan</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Clos Floridène</span>: Aromatic, fruit-driven wines reflecting Denis Dubourdieu&apos;s expertise.</li>
+                  <li><span className="font-bold text-yellow-400">Château Haura</span>: Classic blend with elegant tannins and fruity freshness.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Louvière</span>: Varied terroir, producing both complex reds and vibrant whites.</li>
+                  <li><span className="font-bold text-yellow-400">Château Gazin Rocquencourt</span>: Innovative viticulture, elegant blends by Michel Rolland.</li>
+                  <li><span className="font-bold text-yellow-400">Château Latour Martillac</span>: Grand Cru Classé; exceptional balance, white and red wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Fieuzal</span>: Powerful, concentrated wines, excellent reputation.</li>
+                  <li><span className="font-bold text-yellow-400">Domaine de Merlet</span>: Unique, family-driven vinification; powerful aging potential.</li>
+                  <li><span className="font-bold text-yellow-400">Château Carbonnieux</span>: Distinguished whites and reds, hallmark Graves character.</li>
+                  <li><span className="font-bold text-yellow-400">La Réserve de Malartic</span>: Second wine with refined fruit, smoky notes, and complexity.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pape Clément</span>: Bernard Magrez&apos;s prestigious estate; exemplary second and third wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Olivier</span>: Historic site producing elegant, classified wines.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Sauternes &amp; Barsac</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Coutet</span>: Fresh, vibrant Barsac wines; notes of citrus, honey, and vanilla.</li>
+                  <li><span className="font-bold text-yellow-400">Château Rabaud Promis</span>: Premier Cru Classé, complex terroir, deep honeyed concentration.</li>
+                  <li><span className="font-bold text-yellow-400">Château Rayne Vigneau</span>: Magnificent terroir, Premier Grand Cru Classé.</li>
+                  <li><span className="font-bold text-yellow-400">Clos Haut Peyraguey</span>: Small, refined estate; expressive Sémillon dominance.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Madiran</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Montus</span>: "The Petrus of the Southwest"; powerful, elegant, deeply concentrated.</li>
+                  <li><span className="font-bold text-yellow-400">Château d&apos;Aydie</span>: Complex and powerful, superb aging potential.</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="mt-10 text-center">
+            <p className="text-lg text-yellow-400 font-bold font-epilogue mb-2">La Cave Du Bon Vivant invites you on a journey through terroir, taste, and tradition.</p>
+            <p className="text-white/80 font-satoshi">Cork Fee: 10€</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
