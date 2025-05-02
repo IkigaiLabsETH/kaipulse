@@ -335,7 +335,7 @@ export default function WinePage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase">The Circle of Wine: A 7-Day Parker-Rated Luxury Road Trip</h2>
           <p className="text-lg md:text-xl text-white/90 font-satoshi mb-8 text-center max-w-3xl mx-auto">
-            Here's your refined, richly detailed long-form editorial itinerary, structured day-by-day, showcasing an immersive Bordeaux experience tailored for luxury travelers who cherish precision, Parker points, and Michelin-starred mastery.<br/><br/>
+            Here&apos;s your refined, richly detailed long-form editorial itinerary, structured day-by-day, showcasing an immersive Bordeaux experience tailored for luxury travelers who cherish precision, Parker points, and Michelin-starred mastery.<br/><br/>
             <span className="italic text-yellow-400">There are journeys, and then there are pilgrimages.</span><br/><br/>
             Bordeaux, that hallowed cradle of Cabernet and Merlot, isn't just a wine region—it's a living museum of flavor, tradition, and architectural beauty. But for the discerning traveler, the mission is clear: go beyond the cellar doors and into the sanctuaries of the world's most revered wines—those blessed with 95 points and above by none other than Robert Parker himself.
           </p>
