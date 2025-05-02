@@ -2,9 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { Layout } from '@/components/ui';
+import Image from 'next/image';
+
+type NFT = {
+  identifier: string;
+  name: string;
+  image_url?: string;
+  description?: string;
+};
 
 export default function TestNFTsPage() {
-  const [nfts, setNfts] = useState<any[]>([]);
+  const [nfts, setNfts] = useState<NFT[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,11 +27,11 @@ export default function TestNFTsPage() {
         }
         
         const data = await response.json();
-        console.log('TEST NFT DATA:', {
-          isArray: Array.isArray(data),
-          length: Array.isArray(data) ? data.length : 'not an array',
-          sample: Array.isArray(data) && data.length > 0 ? data[0].name : 'no items'
-        });
+        //         console.log('TEST NFT DATA:', {
+        //           isArray: Array.isArray(data),
+        //           length: Array.isArray(data) ? data.length : 'not an array',
+        //           sample: Array.isArray(data) && data.length > 0 ? data[0].name : 'no items'
+        //         });
         
         if (!Array.isArray(data)) {
           throw new Error('API did not return an array');
@@ -31,7 +39,7 @@ export default function TestNFTsPage() {
         
         setNfts(data);
       } catch (err) {
-        console.error('Error fetching test NFTs:', err);
+        //         console.error('Error fetching test NFTs:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
@@ -75,13 +83,12 @@ export default function TestNFTsPage() {
             <div key={nft.identifier} className="border border-gray-300 p-4 rounded">
               <h2 className="text-xl font-bold mb-2">{nft.name}</h2>
               {nft.image_url && (
-                <img 
-                  src={nft.image_url} 
-                  alt={nft.name} 
+                <Image
+                  src={nft.image_url}
+                  alt={nft.name}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover mb-2"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/placeholder.png';
-                  }}
                 />
               )}
               <p className="text-sm">{nft.description?.substring(0, 100)}...</p>
