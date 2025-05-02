@@ -327,6 +327,189 @@ export default function WinePage() {
           </Grid>
         </div>
       </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Bordeaux Luxury Roadtrip Section */}
+      <section className="py-20 px-4 bg-[#111111]">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase">The Circle of Wine: A 7-Day Parker-Rated Luxury Road Trip</h2>
+          <p className="text-lg md:text-xl text-white/90 font-satoshi mb-8 text-center max-w-3xl mx-auto">
+            Here's your refined, richly detailed long-form editorial itinerary, structured day-by-day, showcasing an immersive Bordeaux experience tailored for luxury travelers who cherish precision, Parker points, and Michelin-starred mastery.<br/><br/>
+            <span className="italic text-yellow-400">There are journeys, and then there are pilgrimages.</span><br/><br/>
+            Bordeaux, that hallowed cradle of Cabernet and Merlot, isn't just a wine region—it's a living museum of flavor, tradition, and architectural beauty. But for the discerning traveler, the mission is clear: go beyond the cellar doors and into the sanctuaries of the world's most revered wines—those blessed with 95 points and above by none other than Robert Parker himself.
+          </p>
+          <p className="text-md md:text-lg text-white/80 font-satoshi mb-12 text-center max-w-2xl mx-auto">
+            This is not a casual tasting tour. This is a weeklong odyssey, self-driven and precision-crafted for those who sip slowly, travel boldly, and believe that the only worthy route through Bordeaux is one lined with first-growth vineyards, 5-star château suites, and Michelin stars on every plate.
+          </p>
+
+          <Separator className="my-8 bg-yellow-500/40" />
+
+          {/* Day-by-day cards */}
+          <div className="space-y-10">
+            {/* Day 1 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 1: Golden Beginnings in Sauternes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> Château Lafaurie-Peyraguey<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> Lalique, 1 Michelin star
+                </p>
+                <div className="mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">View on Michelin Guide</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">You land gently in the amber-hued heart of Sauternes. Begin your journey at the iconic Château d'Yquem. Each tasting here feels ceremonial; bottles spanning multiple decades reveal why Parker repeatedly awarded this estate the rare perfect score. Move onward to Château Climens and Château Suduiraut, sampling complex, honeyed elixirs balanced by stunning freshness.</p>
+                <p className="text-white/80 font-satoshi">Your first night is indulgently spent at Château Lafaurie-Peyraguey, a Lalique-designed 5-star gem whose glass walls shimmer like Sauternes itself. Dinner at the Michelin-starred Lalique restaurant is refined yet rich, mirroring the wines you've encountered today: foie gras with apricot confit, scallops glazed in saffron butter, and finishes with Yquem-infused crème brûlée.</p>
+              </CardContent>
+            </Card>
+            <Separator className="my-4 bg-yellow-500/20" />
+            {/* Day 2 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 2: Bordeaux City — Elegance & Epicureanism</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> InterContinental Bordeaux – Le Grand Hôtel<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> Le Pressoir d'Argent, 2 Michelin stars
+                </p>
+                <div className="mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bordeaux/intercontinental-bordeaux-le-grand-hotel-6030" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">View on Michelin Guide</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">Morning sunlight accompanies your leisurely drive north to Bordeaux's vibrant cityscape. Check in at the palatial InterContinental Bordeaux – Le Grand Hôtel, an 18th-century landmark facing the grand opera. Spend the afternoon exploring Bordeaux's UNESCO-listed boulevards and boutiques, stopping into the famed L'Intendant wine boutique or the state-of-the-art La Cité du Vin museum.</p>
+                <p className="text-white/80 font-satoshi">Evening transforms into culinary theatre at Gordon Ramsay's Le Pressoir d'Argent. Order the pressed Brittany lobster, impeccably paired with vintage Graves or Médoc. Sip slowly, as each mouthful is both storytelling and sensory poetry.</p>
+              </CardContent>
+            </Card>
+            <Separator className="my-4 bg-yellow-500/20" />
+            {/* Day 3 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 3: Saint-Émilion's Limestone Symphony</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> Château Troplong Mondot<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> Les Belles Perdrix, 1 Michelin star
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/saint-emilion/chateau-du-palanquey-spa-9121" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">Chateau du Palanquey & SPA</Button>
+                  </Link>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/saint-emilion/hostellerie-de-plaisance-11431" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">Hostellerie de Plaisance</Button>
+                  </Link>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/saint-emilion/les-clefs-de-troplong-mondot-14019" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">Les Clefs de Troplong Mondot</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">Eastward now, into Saint-Émilion's dreamy medieval streets. Your visits today are legendary: Château Pavie, famous for Parker's repeated perfect 100s, offers a tasting hall overlooking undulating vineyards. At Château Angélus, the bells ring and the wines pour silkily, luxurious yet structured. Château Canon offers restrained elegance and chalky finesse—a thoughtful counterpart to Pavie's muscular style.</p>
+                <p className="text-white/80 font-satoshi">Sleep atop the Saint-Émilion plateau at the stunningly renovated Château Troplong Mondot, where each suite is tastefully furnished and vineyard views stretch infinitely. Michelin-starred Les Belles Perdrix brings seasonal produce to poetic perfection—think delicate pigeon breast, truffle risotto, and blackberry sorbet.</p>
+              </CardContent>
+            </Card>
+            <Separator className="my-4 bg-yellow-500/20" />
+            {/* Day 4 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 4: Intimate Seduction in Pomerol</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> Château Troplong Mondot (2nd night)<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> Private dining or L'Atelier de Candale
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/saint-emilion/chateau-hotel-grand-barrail-9626" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">Château Hôtel Grand Barrail</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">A short drive leads to Pomerol's legendary gravel and clay soils. Start at Château La Conseillante, renowned for its aromatic elegance. Continue to L'Église Clinet, home to some of Pomerol's most collectible wines—tiny production, monumental taste. Vieux Château Certan completes the day with its haunting balance of power and subtlety.</p>
+                <p className="text-white/80 font-satoshi">Relaxed and inspired, return to Troplong Mondot. Tonight, opt for private dining or explore the charming L'Atelier de Candale, savoring local delicacies with views of vines under a slowly darkening sky.</p>
+              </CardContent>
+            </Card>
+            <Separator className="my-4 bg-yellow-500/20" />
+            {/* Day 5 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 5: Left Bank Majesty — Margaux, Pauillac & Saint-Julien</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> Château Cordeillan-Bages<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> Restaurant Cordeillan-Bages, 1 Michelin star
+                </p>
+                <div className="mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/pauillac/chateau-cordeillan-bages-11835" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">Château Cordeillan-Bages</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">Crossing the Gironde estuary westward, your journey reaches iconic Médoc. Begin at the classical perfection of Château Margaux, tasting wines that embody grace itself. Next, step into artful opulence at Mouton Rothschild, where wine and art intersect memorably—tastings here include vintages famously adorned by Picasso and Warhol labels. Finish the afternoon at the impressive Château Léoville Las Cases, known for deep complexity and consistent Parker accolades.</p>
+                <p className="text-white/80 font-satoshi">Your stay tonight is Château Cordeillan-Bages, a boutique Relais & Châteaux treasure. Dinner at its Michelin-starred restaurant echoes Médoc's terroir: roasted duck, truffle potato purée, and delicate sauces crafted to perfection.</p>
+              </CardContent>
+            </Card>
+            <Separator className="my-4 bg-yellow-500/20" />
+            {/* Day 6 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 6: Saint-Estèphe & Graves — Depth and Refinement</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> Les Sources de Caudalie<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> La Grand'Vigne, 2 Michelin stars
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/saint-estephe/la-maison-destournel-9330" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">La Maison d'Estournel</Button>
+                  </Link>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bordeaux/les-sources-de-caudalie-6023" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">Les Sources de Caudalie</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">Continuing south, explore Saint-Estèphe's powerful style at Château Montrose, famed for structured, long-lived wines. Then to Cos d'Estournel, exotic and lavish, where every sip feels richly spiced. Pichon Baron adds aristocratic elegance, completing your Médoc pilgrimage.</p>
+                <p className="text-white/80 font-satoshi">Your afternoon leads to Graves and Pessac-Léognan. Check into the exquisite Les Sources de Caudalie, where vinotherapy spa treatments relax mind and body. Dinner at the two-starred La Grand'Vigne pairs elevated local ingredients—blue lobster, tender lamb—with vintages from adjacent Château Smith Haut Lafitte, a Parker-favorite.</p>
+              </CardContent>
+            </Card>
+            <Separator className="my-4 bg-yellow-500/20" />
+            {/* Day 7 */}
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 7: Sauternes — A Golden Return</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/90 font-satoshi mb-2">
+                  <span className="font-bold text-yellow-400">Stay:</span> Château Lafaurie-Peyraguey (final night)<br/>
+                  <span className="font-bold text-yellow-400">Dining:</span> Restaurant Lalique, 1 Michelin star
+                </p>
+                <div className="mb-2">
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">View on Michelin Guide</Button>
+                  </Link>
+                </div>
+                <p className="text-white/80 font-satoshi mb-2">Your final day circles back gracefully to Sauternes' glowing vineyards. Revisit Château d'Yquem, exploring deeper into its legendary vintages, or savor the lively brightness of Château Climens and the sensual depth of Suduiraut. A vertical tasting perhaps, to truly grasp the essence of time and terroir in liquid gold.</p>
+                <p className="text-white/80 font-satoshi">As evening settles, return once more to the Lalique-designed embrace of Lafaurie-Peyraguey. Dinner, under Michelin's attentive eye, celebrates this golden terroir one last time—seared foie gras, delicate lobster bisque, and perfect wine pairings.</p>
+                <p className="text-white/80 font-satoshi italic mt-4">Sip and reflect. The circle has closed, yet Bordeaux's spell remains: lasting, profound, irresistible.</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Separator className="my-8 bg-yellow-500/40" />
+
+          {/* Epilogue */}
+          <div className="mt-12">
+            <h3 className="text-yellow-400 font-epilogue text-xl mb-4 text-center uppercase tracking-widest">Epilogue: Bordeaux Beyond Points</h3>
+            <p className="text-white/80 font-satoshi text-center max-w-2xl mx-auto">
+              This curated route was never merely about Parker points. It was about tasting terroir, living history, and discovering Bordeaux's quiet moments of breathtaking luxury. In these seven days, you've become part of its eternal story—each sip remembered, every sunset savored.<br/><br/>
+              <span className="text-yellow-400">This is Bordeaux: timeless, transcendent, and waiting always for your return.</span>
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
