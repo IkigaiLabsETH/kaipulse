@@ -595,7 +595,7 @@ export default function OlympusPage() {
             <div className="text-white/90 text-lg space-y-6 font-satoshi">
               <div>
                 <b className="text-yellow-500">Context:</b> <br />
-                Zeus (<a href="https://x.com/ohmzeus" target="_blank" rel="noopener noreferrer" className="text-yellow-500 underline">@ohmzeus</a>) recently outlined a critical moment for the global monetary system&mdash;a &quot;prisoner&apos;s dilemma&quot; where nations, banks, and institutions must choose between costly cooperation or risky defection from the dollar system. The stakes: decades of accumulated global wealth and stability.
+                Zeus (<a href="https://x.com/ohmzeus" target="_blank" rel="noopener noreferrer" className="text-yellow-500 underline">@ohmzeus</a>) recently outlined a critical moment for the global monetary system—a &quot;prisoner&apos;s dilemma&quot; where nations, banks, and institutions must choose between costly cooperation or risky defection from the dollar system. The stakes: decades of accumulated global wealth and stability.
               </div>
               <div>
                 <b className="text-yellow-500">Key Insights from Zeus:</b>
@@ -610,15 +610,15 @@ export default function OlympusPage() {
                     <b>Accelerating Trends:</b> China, BRICS, and Saudi Arabia are diversifying away from the dollar. Central banks are buying gold at record rates. US policy is shifting, making reserve status less attractive.
                   </li>
                   <li>
-                    <b>Olympus&apos;s Unique Role:</b> Olympus is designed as a &quot;neutral, non-sovereign&quot; system that can absorb and hold reserve assets, providing a pathway for orderly transition. Its adaptive policy, stakeholder governance, and expansion mechanism create natural demand for Treasuries&mdash;helping avoid disorderly liquidation. Olympus could become a &quot;permanent repository,&quot; facilitating transition rather than collapse.
+                    <b>Olympus&apos;s Unique Role:</b> Olympus is designed as a &quot;neutral, non-sovereign&quot; system that can absorb and hold reserve assets, providing a pathway for orderly transition. Its adaptive policy, stakeholder governance, and expansion mechanism create natural demand for Treasuries—helping avoid disorderly liquidation. Olympus could become a &quot;permanent repository,&quot; facilitating transition rather than collapse.
                   </li>
                   <li>
-                    <b>A Call to Action:</b> The scale of the challenge is immense, but so is the opportunity. Olympus&apos;s architecture is built to scale with adoption, just as Bitcoin did. The time to build alternatives and coordinate is now&mdash;before crisis narrows our options.
+                    <b>A Call to Action:</b> The scale of the challenge is immense, but so is the opportunity. Olympus&apos;s architecture is built to scale with adoption, just as Bitcoin did. The time to build alternatives and coordinate is now—before crisis narrows our options.
                   </li>
                 </ul>
               </div>
               <div className="bg-black/30 border-l-4 border-yellow-500 p-6 my-6">
-                <span className="italic text-yellow-500">&quot;The prisoner&apos;s dilemma we face isn&apos;t just an academic exercise &ndash; it&apos;s a consequential coordination game involving people making complex decisions with generational implications. Finding a path to the cooperative outcome isn&apos;t merely desirable; it&apos;s imperative for preserving decades of accumulated prosperity.&quot;</span>
+                <span className="italic text-yellow-500">&quot;The prisoner&apos;s dilemma we face isn&apos;t just an academic exercise — it&apos;s a consequential coordination game involving people making complex decisions with generational implications. Finding a path to the cooperative outcome isn&apos;t merely desirable; it&apos;s imperative for preserving decades of accumulated prosperity.&quot;</span>
               </div>
               <div>
                 <a
@@ -674,10 +674,10 @@ export default function OlympusPage() {
               <div>
                 <b className="text-yellow-500">Reality Check: Key Challenges</b>
                 <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
-                  <li><b>Network Effects:</b> The dollar's dominance comes from universal adoption. While BTC has global Lindy effect, OHM's daily volume is ~0.01% of USDC's—utility must outpace this liquidity gap.</li>
-                  <li><b>Liquidity Scale:</b> The Fed can deploy $500B instantly. Olympus's $200M treasury, while growing, can't yet provide true lender-of-last-resort capacity.</li>
-                  <li><b>Regulatory Landscape:</b> BTC's unchangeable monetary policy paradoxically comforts regulators. OHM's governance flexibility, while user-friendly, raises policy-risk flags.</li>
-                  <li><b>Premium Psychology:</b> OHM's 110% premium above book reflects expected future value—appropriate for equity but problematic for a stable unit of account.</li>
+                  <li><b>Network Effects:</b> The dollar&apos;s dominance comes from universal adoption. While BTC has global Lindy effect, OHM&apos;s daily volume is ~0.01% of USDC&apos;s—utility must outpace this liquidity gap.</li>
+                  <li><b>Liquidity Scale:</b> The Fed can deploy $500B instantly. Olympus&apos;s $200M treasury, while growing, can&apos;t yet provide true lender-of-last-resort capacity.</li>
+                  <li><b>Regulatory Landscape:</b> BTC&apos;s unchangeable monetary policy paradoxically comforts regulators. OHM&apos;s governance flexibility, while user-friendly, raises policy-risk flags.</li>
+                  <li><b>Premium Psychology:</b> OHM&apos;s 110% premium above book reflects expected future value—appropriate for equity but problematic for a stable unit of account.</li>
                 </ul>
               </div>
 
