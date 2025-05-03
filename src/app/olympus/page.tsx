@@ -103,15 +103,17 @@ export default function OlympusPage() {
     <div className="min-h-screen bg-black text-white">
       {/* Personal Olympus Journey Intro */}
       <div className="max-w-3xl mx-auto px-4 pt-16 pb-8">
-        <div className="bg-[#18191c] border-2 border-yellow-500 rounded-xl shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8 md:p-10 mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold font-epilogue text-yellow-400 mb-4">Why I Devoted 3.3 Years to Olympus</h1>
-          <p className="text-lg md:text-xl text-white/90 font-satoshi mb-4">
+        <div className="relative bg-zinc-900/90 rounded-3xl shadow-xl p-10 md:p-14 mb-10 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/10 via-transparent to-black opacity-60 pointer-events-none rounded-3xl" />
+          <h1 className="relative z-10 text-4xl md:text-5xl font-bold font-boska text-yellow-400 mb-2 drop-shadow-lg">Why I Devoted 3.3 Years to Olympus</h1>
+          <div className="relative z-10 h-1 w-24 bg-yellow-500 rounded-full mb-8" />
+          <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue mb-6">
             In 2021, OlympusDAO emerged with a groundbreaking approach to decentralized finance (DeFi). It introduced a protocol-owned liquidity model and the (3,3) game theory, aiming to create a stable, decentralized reserve currency. The initial phase saw explosive growth, with the treasury amassing over $1 billion and market capitalization peaking at $4 billion by December 2021.
           </p>
-          <p className="text-lg md:text-xl text-white/90 font-satoshi mb-4">
+          <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue mb-6">
             However, the rapid ascent was followed by a significant correction. The protocol&apos;s reflexive mechanics, which had fueled its rise, also contributed to a sharp decline in OHM&apos;s price. Recognizing the need for stability, OlympusDAO implemented the Range-Bound Stability (RBS) framework. This introduced mechanisms like dynamic supply adjustments and price bands to maintain equilibrium.
           </p>
-          <p className="text-lg md:text-xl text-white/90 font-satoshi">
+          <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue">
             My commitment to Olympus wasn&apos;t just about financial returns. It was about being part of an innovative experiment in monetary policy, governance, and community-driven development. The journey offered invaluable insights into the challenges and potentials of decentralized economic systems.
           </p>
         </div>
