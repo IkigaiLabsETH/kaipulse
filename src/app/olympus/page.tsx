@@ -102,24 +102,26 @@ export default function OlympusPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Personal Olympus Journey Intro */}
-      <div className="max-w-3xl mx-auto px-4 pt-16 pb-8">
-        <div className="relative bg-zinc-900/90 rounded-3xl shadow-xl p-10 md:p-14 mb-10 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/10 via-transparent to-black opacity-60 pointer-events-none rounded-3xl" />
-          <h1 className="relative z-10 text-4xl md:text-5xl font-bold font-boska text-yellow-400 mb-2 drop-shadow-lg">Why I Devoted 3.3 Years to Olympus</h1>
-          <div className="relative z-10 h-1 w-24 bg-yellow-500 rounded-full mb-8" />
-          <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue mb-6">
-            In 2021, OlympusDAO emerged with a groundbreaking approach to decentralized finance (DeFi). It introduced a protocol-owned liquidity model and the (3,3) game theory, aiming to create a stable, decentralized reserve currency. The initial phase saw explosive growth, with the treasury amassing over $1 billion and market capitalization peaking at $4 billion by December 2021.
-          </p>
-          <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue mb-6">
-            However, the rapid ascent was followed by a significant correction. The protocol&apos;s reflexive mechanics, which had fueled its rise, also contributed to a sharp decline in OHM&apos;s price. Recognizing the need for stability, OlympusDAO implemented the Range-Bound Stability (RBS) framework. This introduced mechanisms like dynamic supply adjustments and price bands to maintain equilibrium.
-          </p>
-          <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue">
-            My commitment to Olympus wasn&apos;t just about financial returns. It was about being part of an innovative experiment in monetary policy, governance, and community-driven development. The journey offered invaluable insights into the challenges and potentials of decentralized economic systems.
-          </p>
+      <div className="w-full flex justify-center pt-16 pb-8">
+        <div className="w-full max-w-3xl">
+          <div className="relative bg-zinc-900/90 rounded-3xl shadow-xl p-10 md:p-14 mb-10 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/10 via-transparent to-black opacity-60 pointer-events-none rounded-3xl" />
+            <h1 className="relative z-10 text-4xl md:text-5xl font-bold font-boska text-yellow-400 mb-2 drop-shadow-lg">Why I Devoted 3.3 Years to Olympus</h1>
+            <div className="relative z-10 h-1 w-24 bg-yellow-500 rounded-full mb-8" />
+            <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue mb-6">
+              In 2021, OlympusDAO emerged with a groundbreaking approach to decentralized finance (DeFi). It introduced a protocol-owned liquidity model and the (3,3) game theory, aiming to create a stable, decentralized reserve currency. The initial phase saw explosive growth, with the treasury amassing over $1 billion and market capitalization peaking at $4 billion by December 2021.
+            </p>
+            <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue mb-6">
+              However, the rapid ascent was followed by a significant correction. The protocol&apos;s reflexive mechanics, which had fueled its rise, also contributed to a sharp decline in OHM&apos;s price. Recognizing the need for stability, OlympusDAO implemented the Range-Bound Stability (RBS) framework. This introduced mechanisms like dynamic supply adjustments and price bands to maintain equilibrium.
+            </p>
+            <p className="relative z-10 text-xl md:text-2xl text-white/90 font-epilogue">
+              My commitment to Olympus wasn&apos;t just about financial returns. It was about being part of an innovative experiment in monetary policy, governance, and community-driven development. The journey offered invaluable insights into the challenges and potentials of decentralized economic systems.
+            </p>
+          </div>
         </div>
       </div>
       {/* Olympus Explainer Video */}
-      <div className="w-full flex justify-center bg-black pt-24">
+      <div className="w-full flex justify-center bg-black pt-8">
         <div className="w-full max-w-3xl aspect-video rounded-lg overflow-hidden border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mb-8">
           <iframe
             src="https://www.youtube.com/embed/Bp_qJWXjvJQ"
@@ -137,33 +139,35 @@ export default function OlympusPage() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 relative z-10">
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center space-y-6"
-          >
-            <div className="space-y-4">
-              <motion.div variants={sectionVariants} className="flex justify-center gap-3">
-                <Badge variant="outline" className="text-yellow-400 border-yellow-400">DeFi</Badge>
-                <Badge variant="outline" className="text-yellow-400 border-yellow-400">Monetary Policy</Badge>
-                <Badge variant="outline" className="text-yellow-400 border-yellow-400">Protocol Analysis</Badge>
-              </motion.div>
-              <motion.h1 
-                variants={sectionVariants}
-                className="text-4xl md:text-7xl font-bold font-boska tracking-tight"
-              >
-                <span className="text-yellow-500">Olympus</span>DAO
-              </motion.h1>
-              <motion.p 
-                variants={sectionVariants}
-                className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-epilogue"
-              >
-                From Reflexive Bootstrapping to Elastic Hardness
-              </motion.p>
-            </div>
-          </motion.div>
+        <div className="w-full flex justify-center pt-24 pb-16 relative z-10">
+          <div className="w-full max-w-3xl px-4">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-center space-y-6"
+            >
+              <div className="space-y-4">
+                <motion.div variants={sectionVariants} className="flex justify-center gap-3">
+                  <Badge variant="outline" className="text-yellow-400 border-yellow-400">DeFi</Badge>
+                  <Badge variant="outline" className="text-yellow-400 border-yellow-400">Monetary Policy</Badge>
+                  <Badge variant="outline" className="text-yellow-400 border-yellow-400">Protocol Analysis</Badge>
+                </motion.div>
+                <motion.h1 
+                  variants={sectionVariants}
+                  className="text-4xl md:text-7xl font-bold font-boska tracking-tight"
+                >
+                  <span className="text-yellow-500">Olympus</span>DAO
+                </motion.h1>
+                <motion.p 
+                  variants={sectionVariants}
+                  className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-epilogue"
+                >
+                  From Reflexive Bootstrapping to Elastic Hardness
+                </motion.p>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent" />
