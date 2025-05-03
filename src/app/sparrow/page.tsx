@@ -100,7 +100,7 @@ export default function SparrowHonestTake() {
             priority
           />
           <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-            Sparrow Wallet: For Bitcoin Sovereigns
+            For Bitcoin Sovereigns
           </h1>
         </div>
         <div className="max-w-2xl mx-auto">
