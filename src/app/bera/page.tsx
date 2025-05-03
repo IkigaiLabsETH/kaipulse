@@ -93,22 +93,22 @@ export default function BerachainHonestTake() {
         <div className="bg-[#18191c]/90 rounded-2xl p-8 shadow-xl border border-yellow-500/40 text-center flex flex-col gap-4">
           <div className="font-epilogue text-2xl text-yellow-400 font-bold mb-2">Community Reflections</div>
           <div className="font-satoshi text-white/90 text-lg mb-2">
-            <span className="italic">&quot;Think there's some very good points in here Ozzy - the majority of which are definitely well acknowledged by the core team. Hindsight is def 20/20 and there's stuff that I'd do differently... for Boyco, it would have likely been a lot more related to the selection of assets, a deeper focus on majors + much greater selectivity (if anything) re: LSTs etc. That can also incur even more political problems, as apps might feel snubbed around inclusion etc, but ultimately we made opinionated choices, and some were def incorrect.&quot;</span>
+            <span className="italic">&quot;Think there&apos;s some very good points in here Ozzy - the majority of which are definitely well acknowledged by the core team. Hindsight is def 20/20 and there&apos;s stuff that I&apos;d do differently... for Boyco, it would have likely been a lot more related to the selection of assets, a deeper focus on majors + much greater selectivity (if anything) re: LSTs etc. That can also incur even more political problems, as apps might feel snubbed around inclusion etc, but ultimately we made opinionated choices, and some were def incorrect.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey, <a href={SMOKEY_X_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">@SmokeyTheBera</a></span>
           </div>
           <div className="font-satoshi text-white/80 text-base mb-2">
-            <span className="italic">&quot;The part of this which I agree with MASSIVELY is the need to operate outside of an insular echo chamber. Berachain has real builders, and strong ones at that. From many convos this week, I can see that other ecos, funds, and founders are pretty aware of that. But in many cases, we've played or PVP'd in our own sandbox as opposed to building effective onboarding funnels, and kind of hoped that launching a token would cause people to want a product.&quot;</span>
+            <span className="italic">&quot;The part of this which I agree with MASSIVELY is the need to operate outside of an insular echo chamber. Berachain has real builders, and strong ones at that. From many convos this week, I can see that other ecos, funds, and founders are pretty aware of that. But in many cases, we&apos;ve played or PVP&apos;d in our own sandbox as opposed to building effective onboarding funnels, and kind of hoped that launching a token would cause people to want a product.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey</span>
           </div>
           <div className="font-satoshi text-white/80 text-base mb-2">
-            <span className="italic">&quot;There's a ton of teams (new and old) building things with demand, products that can ultimately generate revenue, onboard massive usergroups, and actually drive value to the whole Bera ecosystem. That's unironically why I'm excited about stuff like Wai Protocol, Credito, Strato, Kettle, USDai, Daylight and others which can drive net new use cases (including institutional), and de-correlated userbases which aren't primarily reliant on the ~10k people who actually do stuff on-chain.&quot;</span>
+            <span className="italic">&quot;There&apos;s a ton of teams (new and old) building things with demand, products that can ultimately generate revenue, onboard massive usergroups, and actually drive value to the whole Bera ecosystem. That&apos;s unironically why I&apos;m excited about stuff like Wai Protocol, Credito, Strato, Kettle, USDai, Daylight and others which can drive net new use cases (including institutional), and de-correlated userbases which aren&apos;t primarily reliant on the ~10k people who actually do stuff on-chain.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey</span>
           </div>
           <div className="font-satoshi text-white/70 text-base">
-            <span className="italic">&quot;Sometimes things look dark and scary and sometimes they are dark and scary. But other times it's a matter of perspective and zooming out with a little cope sprinkled on top. The only way out is through and that's exactly where we're gonna go. Appreciate the insights and words, both kind and unkind, from you and the community as a whole. They make us better in the long run.&quot;</span>
+            <span className="italic">&quot;Sometimes things look dark and scary and sometimes they are dark and scary. But other times it&apos;s a matter of perspective and zooming out with a little cope sprinkled on top. The only way out is through and that&apos;s exactly where we&apos;re gonna go. Appreciate the insights and words, both kind and unkind, from you and the community as a whole. They make us better in the long run.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey</span>
           </div>
