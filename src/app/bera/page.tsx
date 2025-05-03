@@ -199,7 +199,7 @@ export default function BerachainHonestTake() {
       {/* Honest Flaws & Solutions */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          What's Broken & How We Fix It
+          What is Broken & How We Fix It
         </h2>
         <div className="space-y-20">
           {flaws.map((item) => (
