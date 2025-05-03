@@ -19,6 +19,7 @@ const TICKERS: Price[] = [
   { symbol: 'STRK', tradingViewSymbol: 'NASDAQ:STRK', exchange: 'NASDAQ', color: 'text-white' },
   { symbol: 'CEP', tradingViewSymbol: 'NASDAQ:CEP', exchange: 'NASDAQ', color: 'text-white' },
   { symbol: 'TSLA', tradingViewSymbol: 'NASDAQ:TSLA', exchange: 'NASDAQ', color: 'text-white' },
+  { symbol: 'NVDA', tradingViewSymbol: 'NASDAQ:NVDA', exchange: 'NASDAQ', color: 'text-white' },
 ];
 
 export default function PriceTicker() {
