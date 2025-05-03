@@ -37,7 +37,7 @@ const strengths = [
   {
     title: 'Proof-of-Liquidity (PoL)',
     highlight: 'A new consensus for a new era.',
-    description: 'Berachain&apos;s PoL is more than a technical tweak—it&apos;s a philosophical bet. Instead of rewarding only stakers, PoL asks: what if the chain&apos;s security and its economic engine were one and the same? Validators are forced to care about real liquidity, not just their own bags. It&apos;s a bold experiment, and it&apos;s already changing the incentives for everyone who builds here.'
+    description: 'Berachains PoL is more than a technical tweak—it is a philosophical bet. Instead of rewarding only stakers, PoL asks: what if the chains security and its economic engine were one and the same? Validators are forced to care about real liquidity, not just their own bags. It is a bold experiment, and it is already changing the incentives for everyone who builds here.'
   },
   {
     title: 'Tri-Token System',
@@ -47,12 +47,12 @@ const strengths = [
   {
     title: 'Builder Culture & Community',
     highlight: 'Resilience is the real alpha.',
-    description: 'Berachain&apos;s community is small, but it&apos;s the kind that sticks around. The people who survived the bear are here to build, not just speculate. There&apos;s a willingness to experiment, to launch new dApps, to create culture—not just chase the latest meta. That&apos;s rare, and it&apos;s why we&apos;re still here.'
+    description: 'Berachains community is small, but it is the kind that sticks around. The people who survived the bear are here to build, not just speculate. There is a willingness to experiment, to launch new dApps, to create culture—not just chase the latest meta. That is rare, and it is why we are still here.'
   },
   {
     title: 'EVM Compatibility',
     highlight: 'No walls, just bridges.',
-    description: 'Berachain is EVM-native, so the best ideas from across the ecosystem can migrate here. It&apos;s not about maximalism—it&apos;s about making it easy for new projects and users to plug in, remix, and push the space forward.'
+    description: 'Berachain is EVM-native, so the best ideas from across the ecosystem can migrate here. It is not about maximalism—it is about making it easy for new projects and users to plug in, remix, and push the space forward.'
   }
 ];
 
@@ -64,17 +64,17 @@ const flaws = [
   },
   {
     title: 'Launch Timing & Liquidity Bootstrapping',
-    pain: 'Mainnet launch felt rushed, likely due to outside pressure. This led to a flood of "dead" liquidity and a lack of organic, grassroots momentum.',
+    pain: 'Mainnet launch felt rushed, likely due to outside pressure. This led to a flood of dead liquidity and a lack of organic, grassroots momentum.',
     solution: 'Future upgrades and launches should prioritize community input and gradual, organic growth. Let builders and users lead the narrative, not just investors or hype cycles.'
   },
   {
     title: 'Governance & Decentralization',
-    pain: 'Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community&apos;s voice is often drowned out.',
+    pain: 'Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the communitys voice is often drowned out.',
     solution: 'Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.'
   },
   {
     title: 'Favoritism & Builder Frustration',
-    pain: 'There&apos;s a sense that newcomers and "Build-a-Bera" projects get more attention than those who built through the bear. Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated.',
+    pain: 'There is a sense that newcomers and Build-a-Bera projects get more attention than those who built through the bear. Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated.',
     solution: 'Recognize and reward those who stuck around and shipped through the hard times. Build a culture that values consistency, not just the latest shiny thing.'
   },
   {
@@ -109,7 +109,7 @@ export default function BerachainHonestTake() {
             &quot;If you want to build something that lasts, you have to be willing to call out the cracks in the foundation.&quot;
           </p>
           <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-            After 3+ years building and investing in Berachain, we&apos;re still here—bullish, but not blind. This isn&apos;t a victory lap or a pitch. It&apos;s a builder&apos;s take on what&apos;s working, what&apos;s not, and what needs to change if Berachain is going to matter in the next cycle.
+            After 3+ years building and investing in Berachain, we're still here—bullish, but not blind. This isn't a victory lap or a pitch. It's a builder's take on what's working, what's not, and what needs to change if Berachain is going to matter in the next cycle.
           </p>
         </div>
       </section>
@@ -227,7 +227,7 @@ export default function BerachainHonestTake() {
           &quot;The best chains are built by those who care enough to call bullshit—and then do the work.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          Berachain&apos;s future isn&apos;t guaranteed. But the raw ingredients—tech, talent, and a core of true believers—are here. If we want to write a different story, it&apos;s on us to build, critique, and collaborate with open eyes and open minds.
+          Berachain's future isn't guaranteed. But the raw ingredients—tech, talent, and a core of true believers—are here. If we want to write a different story, it's on us to build, critique, and collaborate with open eyes and open minds.
         </p>
         <Link href="https://docs.berachain.com/" target="_blank">
           <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
