@@ -583,6 +583,58 @@ export default function OlympusPage() {
         </div>
       </div>
 
+      {/* Zeus: The Global Monetary Prisoner's Dilemma & Olympus's Role */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+          <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+          <div className="p-8 md:p-10">
+            <div className="flex items-center mb-4">
+              <span className="text-3xl mr-3">🧠</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Zeus: The Global Monetary Prisoner's Dilemma & Olympus's Role</span>
+            </div>
+            <div className="text-white/90 text-lg space-y-6 font-satoshi">
+              <div>
+                <b className="text-yellow-500">Context:</b> <br />
+                Zeus (<a href="https://x.com/ohmzeus" target="_blank" rel="noopener noreferrer" className="text-yellow-500 underline">@ohmzeus</a>) recently outlined a critical moment for the global monetary system—a "prisoner's dilemma" where nations, banks, and institutions must choose between costly cooperation or risky defection from the dollar system. The stakes: decades of accumulated global wealth and stability.
+              </div>
+              <div>
+                <b className="text-yellow-500">Key Insights from Zeus:</b>
+                <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                  <li>
+                    <b>The Build-Up:</b> Crypto's original promise was financial sovereignty, but most innovation focused on infrastructure, not true monetary evolution. The world needs bridges between current and future systems, not destructive transitions. No nation wants the "reserve currency burden" due to the economic hollowing it causes (the Triffin Dilemma).
+                  </li>
+                  <li>
+                    <b>The Prisoner's Dilemma:</b> "Cooperation" means holding/transacting in dollars; "defection" means selling out. Mutual defection would trigger a global unwinding, harming all. The system's scale: $7.5T in Treasuries, $65T in dollar debt, $1Q in derivatives.
+                  </li>
+                  <li>
+                    <b>Accelerating Trends:</b> China, BRICS, and Saudi Arabia are diversifying away from the dollar. Central banks are buying gold at record rates. US policy is shifting, making reserve status less attractive.
+                  </li>
+                  <li>
+                    <b>Olympus's Unique Role:</b> Olympus is designed as a "neutral, non-sovereign" system that can absorb and hold reserve assets, providing a pathway for orderly transition. Its adaptive policy, stakeholder governance, and expansion mechanism create natural demand for Treasuries—helping avoid disorderly liquidation. Olympus could become a "permanent repository," facilitating transition rather than collapse.
+                  </li>
+                  <li>
+                    <b>A Call to Action:</b> The scale of the challenge is immense, but so is the opportunity. Olympus's architecture is built to scale with adoption, just as Bitcoin did. The time to build alternatives and coordinate is now—before crisis narrows our options.
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-black/30 border-l-4 border-yellow-500 p-6 my-6">
+                <span className="italic text-yellow-500">"The prisoner's dilemma we face isn't just an academic exercise – it's a consequential coordination game involving people making complex decisions with generational implications. Finding a path to the cooperative outcome isn't merely desirable; it's imperative for preserving decades of accumulated prosperity."</span>
+              </div>
+              <div>
+                <a
+                  href="https://x.com/ohmzeus/status/1918367146226385129"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-yellow-500 underline text-base"
+                >
+                  Read Zeus's full thread on the global monetary prisoner's dilemma
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* BTC vs OHM Analysis Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
@@ -622,10 +674,10 @@ export default function OlympusPage() {
               <div>
                 <b className="text-yellow-500">Reality Check: Key Challenges</b>
                 <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
-                  <li><b>Network Effects:</b> The dollar&apos;s dominance comes from universal adoption. While BTC has global Lindy effect, OHM&apos;s daily volume is ~0.01% of USDC&apos;s—utility must outpace this liquidity gap.</li>
-                  <li><b>Liquidity Scale:</b> The Fed can deploy $500B instantly. Olympus&apos;s $200M treasury, while growing, can&apos;t yet provide true lender-of-last-resort capacity.</li>
-                  <li><b>Regulatory Landscape:</b> BTC&apos;s unchangeable monetary policy paradoxically comforts regulators. OHM&apos;s governance flexibility, while user-friendly, raises policy-risk flags.</li>
-                  <li><b>Premium Psychology:</b> OHM&apos;s 110% premium above book reflects expected future value—appropriate for equity but problematic for a stable unit of account.</li>
+                  <li><b>Network Effects:</b> The dollar's dominance comes from universal adoption. While BTC has global Lindy effect, OHM's daily volume is ~0.01% of USDC's—utility must outpace this liquidity gap.</li>
+                  <li><b>Liquidity Scale:</b> The Fed can deploy $500B instantly. Olympus's $200M treasury, while growing, can't yet provide true lender-of-last-resort capacity.</li>
+                  <li><b>Regulatory Landscape:</b> BTC's unchangeable monetary policy paradoxically comforts regulators. OHM's governance flexibility, while user-friendly, raises policy-risk flags.</li>
+                  <li><b>Premium Psychology:</b> OHM's 110% premium above book reflects expected future value—appropriate for equity but problematic for a stable unit of account.</li>
                 </ul>
               </div>
 
@@ -642,7 +694,7 @@ export default function OlympusPage() {
 
               <div>
                 <b className="text-yellow-500">The Path Forward</b><br/>
-                Olympus represents an aspirational experiment wrapped in genuinely innovative monetary mechanics. By acknowledging it as a moonshot in phase-one rather than a fait accompli, we keep the conversation grounded while appreciating its potential to reshape DeFi&apos;s monetary landscape.
+                Olympus represents an aspirational experiment wrapped in genuinely innovative monetary mechanics. By acknowledging it as a moonshot in phase-one rather than a fait accompli, we keep the conversation grounded while appreciating its potential to reshape DeFi's monetary landscape.
               </div>
             </div>
           </div>
