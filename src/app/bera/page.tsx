@@ -85,7 +85,7 @@ const pillars = [
   },
   {
     title: "Apps & Abstractions",
-    description: "Products like Moonshot, Slingshot, and new PoL abstractions that make Berachain accessible to outsiders. If it&apos;s too complex, nobody will come. If it&apos;s too insular, nobody will care."
+    description: "Products like Moonshot, Slingshot, and new PoL abstractions that make Berachain accessible to outsiders. If it is too complex, nobody will come. If it is too insular, nobody will care."
   }
 ];
 
