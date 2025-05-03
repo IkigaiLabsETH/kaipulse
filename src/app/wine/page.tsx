@@ -522,36 +522,7 @@ export default function WinePage() {
             Our wine journey, inspired by over a decade of world travel and significant years spent immersed in the captivating landscapes of South Africa, aims to redefine wine tourism. South Africa, our home away from home, taught us that wine experiences should be personal, vibrant, and unforgettable. Perfectly situated between Bordeaux&apos;s rolling vineyards and Biarritz&apos;s sandy shores, we offer intimate, bespoke wine tours.
           </p>
 
-          <Grid columns={2} className="justify-center">
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-xl text-yellow-400">Bordeaux Highlights</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Marjosse</span>: The domain of Pierre Lurton, famed director of Château Cheval Blanc and Château d&apos;Yquem.</li>
-                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, silky wines expressing deep aromatic complexity and finesse.</li>
-                  <li><span className="font-bold text-yellow-400">Château Chasse Spleen</span>: Known for its velvety, rounded tannins and aromatic allure.</li>
-                  <li><span className="font-bold text-yellow-400">Château Carbonnieux</span>: Exquisite reds and whites that rival their renowned neighbors Smith-Haut-Lafitte and Haut-Bailly.</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-xl text-yellow-400">South African Icons</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Saronsberg</span> (Tulbagh): Bold wines rich in flavor and color, meticulously vinified.</li>
-                  <li><span className="font-bold text-yellow-400">Groote Post</span> (Darling): Sauvignon Blanc with unmatched freshness from the cool coastal hills.</li>
-                  <li><span className="font-bold text-yellow-400">Diemersfontein</span> (Wellington): Creator of the iconic coffee-chocolate Pinotage.</li>
-                  <li><span className="font-bold text-yellow-400">Veenwouden</span> (Paarl): Exceptional Merlot and Cabernet Franc from cool clay subsoils.</li>
-                  <li><span className="font-bold text-yellow-400">Marianne Wines</span> (Klapmuts): Bordeaux-style blends crafted for immediate enjoyment and long-term aging.</li>
-                  <li><span className="font-bold text-yellow-400">Delaire Graff Estate</span> (Stellenbosch): High-altitude elegance, crafting powerful reds and crisp whites praised globally.</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </Grid>
+
 
           <div className="mt-12">
             <p className="text-lg md:text-xl text-white/90 font-satoshi text-center max-w-3xl mx-auto mb-4">
@@ -567,7 +538,7 @@ export default function WinePage() {
 
       {/* Wine Menu Section */}
       <section className="py-20 px-4 bg-[#111111]">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
           <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase">La Cave Du Bon Vivant</h2>
           <div className="space-y-8">
             <Card className="bg-black border-yellow-500">
@@ -576,10 +547,10 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">L&apos;Esprit de Pavie</span>: Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months.</li>
-                  <li><span className="font-bold text-yellow-400">Chapelle d&apos;Aliénor</span>: Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse.</li>
+                  <li><span className="font-bold text-yellow-400">L'Esprit de Pavie</span>: Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months.</li>
+                  <li><span className="font-bold text-yellow-400">Chapelle d'Aliénor</span>: Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse.</li>
                   <li><span className="font-bold text-yellow-400">Château Marjosse</span>: Prestigious estate managed by Pierre Lurton; Merlot, Cabernet Sauvignon, Cabernet Franc, Malbec, Sauvignon, and Sémillon.</li>
-                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol&apos;s Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
+                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol's Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -595,14 +566,42 @@ export default function WinePage() {
             </Card>
             <Card className="bg-black border-yellow-500">
               <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Graves & Pessac-Léognan</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Clos Floridène</span>: Aromatic, fruit-driven wines reflecting Denis Dubourdieu's expertise.</li>
+                  <li><span className="font-bold text-yellow-400">Château Haura</span>: Classic blend with elegant tannins and fruity freshness.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Louvière</span>: Varied terroir, producing both complex reds and vibrant whites.</li>
+                  <li><span className="font-bold text-yellow-400">Château Gazin Rocquencourt</span>: Innovative viticulture, elegant blends by Michel Rolland.</li>
+                  <li><span className="font-bold text-yellow-400">Château Latour Martillac</span>: Grand Cru Classé; exceptional balance, white and red wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Fieuzal</span>: Powerful, concentrated wines, excellent reputation.</li>
+                  <li><span className="font-bold text-yellow-400">Domaine de Merlet</span>: Unique, family-driven vinification; powerful aging potential.</li>
+                  <li><span className="font-bold text-yellow-400">Château Carbonnieux</span>: Distinguished whites and reds, hallmark Graves character.</li>
+                  <li><span className="font-bold text-yellow-400">La Réserve de Malartic</span>: Second wine with refined fruit, smoky notes, and complexity.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pape Clément</span>: Bernard Magrez's prestigious estate; exemplary second and third wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Olivier</span>: Historic site producing elegant, classified wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Haut-Brion</span>: First Growth, legendary for both red and white wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Mission Haut-Brion</span>: Top estate, powerful and complex.</li>
+                  <li><span className="font-bold text-yellow-400">Domaine de Chevalier</span>: Benchmark for both red and white.</li>
+                  <li><span className="font-bold text-yellow-400">Château Smith Haut Lafitte</span>: Iconic, especially for whites.</li>
+                  <li><span className="font-bold text-yellow-400">Château Haut-Bailly</span>: Elegant, age-worthy.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
                 <CardTitle className="font-epilogue text-lg text-yellow-400">Haut-Médoc</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
                   <li><span className="font-bold text-yellow-400">Château Cambon La Pelouse</span>: Situated between Giscours and Cantemerle; structured wines from gravelly terroir.</li>
-                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, tender tannins with aromatic complexity, typical of Médoc&apos;s sandy soils.</li>
+                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, tender tannins with aromatic complexity, typical of Médoc's sandy soils.</li>
                   <li><span className="font-bold text-yellow-400">Château Chasse Spleen</span>: Deep garnet wines with wild berries, blueberries, rounded and silky tannins.</li>
                   <li><span className="font-bold text-yellow-400">Château Sociando Mallet</span>: Complex red fruit, subtle oak; known for impressive aging potential.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Lagune</span>: 3rd Growth, refined and floral.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Tour Carnet</span>: 4th Growth, historic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Belgrave</span>: 5th Growth, value.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -612,12 +611,18 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Margaux</span>: Legendary First Growth, benchmark for elegance and finesse.</li>
                   <li><span className="font-bold text-yellow-400">Château Ferrière</span>: Small, prestigious estate; blends Cabernet Sauvignon, Merlot, and Cabernet Franc.</li>
                   <li><span className="font-bold text-yellow-400">Château Dufort-Vivens</span>: Second Cru Classé; violets, black cherry, truffle.</li>
                   <li><span className="font-bold text-yellow-400">Château Brane-Cantenac</span>: Classic Margaux complexity; aromatic finesse, sustainable viticulture.</li>
                   <li><span className="font-bold text-yellow-400">Les Hauts du Tertre</span>: Second wine blending power and finesse, cherry and plum notes.</li>
                   <li><span className="font-bold text-yellow-400">Chevalier de Lascombes</span>: Elegant, smoother sibling of Château Lascombes, charming and approachable.</li>
                   <li><span className="font-bold text-yellow-400">Confidence de Prieuré-Lichine</span>: Expertly crafted wines guided by Stéphane Derenoncourt and Michel Rolland.</li>
+                  <li><span className="font-bold text-yellow-400">Château Palmer</span>: 3rd Growth, world-class.</li>
+                  <li><span className="font-bold text-yellow-400">Château Giscours</span>: 3rd Growth, elegant and structured.</li>
+                  <li><span className="font-bold text-yellow-400">Château Rauzan-Ségla</span>: 2nd Growth, classic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Lascombes</span>: 2nd Growth, modern style.</li>
+                  <li><span className="font-bold text-yellow-400">Château Malescot St. Exupéry</span>: 3rd Growth, rising star.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -627,11 +632,17 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Léoville Las Cases</span>: Top "Super Second" growth, powerful and structured.</li>
                   <li><span className="font-bold text-yellow-400">Château Talbot</span>: Harmonious bridge between Margaux finesse and Pauillac power.</li>
                   <li><span className="font-bold text-yellow-400">Château Gloria</span>: Exceptional quality-value, rivaling classified growths.</li>
                   <li><span className="font-bold text-yellow-400">Château du Glana</span>: Deeply structured wines from the esteemed Saint-Pierre and Lagrange vineyards.</li>
                   <li><span className="font-bold text-yellow-400">Les Fiefs de Lagrange</span>: Rich fruit, spice complexity; robust with exceptional aging capacity.</li>
                   <li><span className="font-bold text-yellow-400">Les Pélerins Lafon Rochet</span>: Diverse soils, precise winemaking, and environmentally conscious viticulture.</li>
+                  <li><span className="font-bold text-yellow-400">Château Ducru-Beaucaillou</span>: 2nd Growth, iconic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Gruaud-Larose</span>: 2nd Growth, classic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Branaire-Ducru</span>: 4th Growth, refined.</li>
+                  <li><span className="font-bold text-yellow-400">Château Beychevelle</span>: 4th Growth, popular.</li>
+                  <li><span className="font-bold text-yellow-400">Château Léoville Barton</span>: 2nd Growth, traditional.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -641,9 +652,18 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Lafite Rothschild</span>: Iconic First Growth, renowned for longevity and complexity.</li>
+                  <li><span className="font-bold text-yellow-400">Château Mouton Rothschild</span>: First Growth, famous for its art labels and opulent style.</li>
+                  <li><span className="font-bold text-yellow-400">Château Latour</span>: First Growth, known for power and age-worthiness.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pichon Longueville Comtesse de Lalande</span>: "Super Second," elegant and complex Pauillac.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pontet-Canet</span>: Biodynamic, highly rated, expressive Pauillac.</li>
                   <li><span className="font-bold text-yellow-400">Réserve de la Comtesse</span>: Richly textured second wine; spice-enhanced elegance.</li>
                   <li><span className="font-bold text-yellow-400">Château Lynch Moussas</span>: Meticulously managed vineyards; deep, matured tannins.</li>
                   <li><span className="font-bold text-yellow-400">Château Lacoste Borie</span>: Fruity elegance, approachable style from younger vines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pichon Longueville Baron</span>: 2nd Growth, opulent.</li>
+                  <li><span className="font-bold text-yellow-400">Château d'Armailhac</span>: 5th Growth, elegant.</li>
+                  <li><span className="font-bold text-yellow-400">Château Clerc Milon</span>: 5th Growth, vibrant.</li>
+                  <li><span className="font-bold text-yellow-400">Château Duhart-Milon</span>: 4th Growth, Rothschild stable.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -653,40 +673,14 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Cos Labory</span>: Robust wines, oak-aged complexity.</li>
-                  <li><span className="font-bold text-yellow-400">Goulée by Cos d&apos;Estournel</span>: Rich Médoc terroir, vinified by Cos d&apos;Estournel team.</li>
+                  <li><span className="font-bold text-yellow-400">Château Montrose</span>: Powerful, long-lived, classic Saint Estèphe.</li>
+                  <li><span className="font-bold text-yellow-400">Goulée by Cos d'Estournel</span>: Rich Médoc terroir, vinified by Cos d'Estournel team.</li>
                   <li><span className="font-bold text-yellow-400">La Dame de Montrose</span>: Luxurious second wine; velvety Merlot presence.</li>
                   <li><span className="font-bold text-yellow-400">Château Sérilhan</span>: Award-winning craftsmanship; structured and richly textured.</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-lg text-yellow-400">Saint-Émilion</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Valandraud</span>: Celebrated domaine with highly-rated wines, including kosher and exclusive white cuvées.</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-lg text-yellow-400">Graves &amp; Pessac-Léognan</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Clos Floridène</span>: Aromatic, fruit-driven wines reflecting Denis Dubourdieu&apos;s expertise.</li>
-                  <li><span className="font-bold text-yellow-400">Château Haura</span>: Classic blend with elegant tannins and fruity freshness.</li>
-                  <li><span className="font-bold text-yellow-400">Château La Louvière</span>: Varied terroir, producing both complex reds and vibrant whites.</li>
-                  <li><span className="font-bold text-yellow-400">Château Gazin Rocquencourt</span>: Innovative viticulture, elegant blends by Michel Rolland.</li>
-                  <li><span className="font-bold text-yellow-400">Château Latour Martillac</span>: Grand Cru Classé; exceptional balance, white and red wines.</li>
-                  <li><span className="font-bold text-yellow-400">Château Fieuzal</span>: Powerful, concentrated wines, excellent reputation.</li>
-                  <li><span className="font-bold text-yellow-400">Domaine de Merlet</span>: Unique, family-driven vinification; powerful aging potential.</li>
-                  <li><span className="font-bold text-yellow-400">Château Carbonnieux</span>: Distinguished whites and reds, hallmark Graves character.</li>
-                  <li><span className="font-bold text-yellow-400">La Réserve de Malartic</span>: Second wine with refined fruit, smoky notes, and complexity.</li>
-                  <li><span className="font-bold text-yellow-400">Château Pape Clément</span>: Bernard Magrez&apos;s prestigious estate; exemplary second and third wines.</li>
-                  <li><span className="font-bold text-yellow-400">Château Olivier</span>: Historic site producing elegant, classified wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Cos d'Estournel</span>: 2nd Growth, exotic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Calon-Ségur</span>: 3rd Growth, heart label.</li>
+                  <li><span className="font-bold text-yellow-400">Château Lafon-Rochet</span>: 4th Growth, value.</li>
+                  <li><span className="font-bold text-yellow-400">Château Phélan Ségur</span>: Well regarded.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -696,10 +690,15 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château d'Yquem</span>: The world's greatest sweet wine, Premier Cru Supérieur, legendary for its complexity and longevity.</li>
                   <li><span className="font-bold text-yellow-400">Château Coutet</span>: Fresh, vibrant Barsac wines; notes of citrus, honey, and vanilla.</li>
                   <li><span className="font-bold text-yellow-400">Château Rabaud Promis</span>: Premier Cru Classé, complex terroir, deep honeyed concentration.</li>
                   <li><span className="font-bold text-yellow-400">Château Rayne Vigneau</span>: Magnificent terroir, Premier Grand Cru Classé.</li>
                   <li><span className="font-bold text-yellow-400">Clos Haut Peyraguey</span>: Small, refined estate; expressive Sémillon dominance.</li>
+                  <li><span className="font-bold text-yellow-400">Château Suduiraut</span>: Premier Cru, rich and honeyed.</li>
+                  <li><span className="font-bold text-yellow-400">Château Climens</span>: Barsac, Sémillon specialist.</li>
+                  <li><span className="font-bold text-yellow-400">Château Guiraud</span>: Premier Cru, organic pioneer.</li>
+                  <li><span className="font-bold text-yellow-400">Château Doisy-Daëne</span>: Barsac, classic.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -709,8 +708,41 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Montus</span>: &quot;The Petrus of the Southwest&quot;; powerful, elegant, deeply concentrated.</li>
-                  <li><span className="font-bold text-yellow-400">Château d&apos;Aydie</span>: Complex and powerful, superb aging potential.</li>
+                  <li><span className="font-bold text-yellow-400">Château Montus</span>: "The Petrus of the Southwest"; powerful, elegant, deeply concentrated.</li>
+                  <li><span className="font-bold text-yellow-400">Château d'Aydie</span>: Complex and powerful, superb aging potential.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Saint-Émilion</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Cheval Blanc</span>: Legendary Premier Grand Cru Classé A; Merlot and Cabernet Franc blend, renowned for elegance and longevity.</li>
+                  <li><span className="font-bold text-yellow-400">Château Ausone</span>: Rare Premier Grand Cru Classé A; powerful, age-worthy, and highly sought after.</li>
+                  <li><span className="font-bold text-yellow-400">Château Figeac</span>: Premier Grand Cru Classé; Cabernet-driven, elegant and complex.</li>
+                  <li><span className="font-bold text-yellow-400">Château Angélus</span>: Premier Grand Cru Classé A, iconic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pavie</span>: Premier Grand Cru Classé A, powerful.</li>
+                  <li><span className="font-bold text-yellow-400">Château Canon</span>: Premier Grand Cru Classé B, elegant.</li>
+                  <li><span className="font-bold text-yellow-400">Château Troplong Mondot</span>: Premier Grand Cru Classé B, robust.</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-black border-yellow-500">
+              <CardHeader>
+                <CardTitle className="font-epilogue text-lg text-yellow-400">Pomerol</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol's Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Conseillante</span>: Iconic estate; silky, perfumed, Merlot-dominant wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Clinet</span>: Plush, modern, highly rated for its depth and richness.</li>
+                  <li><span className="font-bold text-yellow-400">Château Trotanoy</span>: Deep, complex, age-worthy, a true connoisseur's choice.</li>
+                  <li><span className="font-bold text-yellow-400">Château La Fleur-Pétrus</span>: Elegant, highly sought after.</li>
+                  <li><span className="font-bold text-yellow-400">Château L'Evangile</span>: Rothschild-owned, plush.</li>
+                  <li><span className="font-bold text-yellow-400">Château Le Pin</span>: Cult wine, rare.</li>
+                  <li><span className="font-bold text-yellow-400">Vieux Château Certan</span>: Classic, highly rated.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -720,37 +752,99 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Cederberg</span> (Wilderness): Highest altitude vineyards within pristine wilderness, producing wines of remarkable clarity and purity.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Saronsberg</span> (Tulbagh): Bold, structured wines with intense fruit flavors, gentle tannins, and vibrant color.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Allesverloren</span> (Swartland): Oldest estate in Swartland, renowned for deep history and expertly crafted wines by the Malan family.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Groote Post</span> (Darling): Cool-climate wines, notable for their exceptional Sauvignon Blanc from coastal Kapokberg vineyards.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Vondeling</span> (Paardeberg): Panoramic views and carefully crafted wines that express the unique biodiversity and terroir.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Diemersfontein</span> (Wellington): Pioneers of the iconic coffee-chocolate Pinotage; diverse offerings from Shiraz to Chenin Blanc.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Veenwouden</span> (Paarl): Merlot and Cabernet Franc thrive in cool clay subsoils, resulting in Mediterranean-styled wines.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Landskroon</span> (Paarl): Family-run, historic estate producing elegant wines with a heritage dating to the 17th century.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Glen Carlou</span> (Paarl): Distinctive wine ranges influenced by meticulous vineyard selection and Hess Family&apos;s global expertise.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Backsberg Family Reserve</span> (Paarl): Exclusive vintages, meticulously selected for their exceptional character and quality.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Marianne Wines</span> (Klapmuts): Boutique winery creating Bordeaux-style blends; expressive, fruit-forward wines with nuanced elegance.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Babylonstoren</span> (Klapmuts): Natural simplicity defines their wines, reflecting the pristine terroir of Simonsberg Mountain.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Mont Destin</span> (Klapmuts): Family-run estate specializing in Shiraz and Rh&ocirc;ne-inspired blends; elegant, small-batch production.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Rupert &amp; Rothschild</span> (Franschhoek): Prestigious collaboration between iconic South African and French winemaking families.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Plaisir de Merle</span> (Franschhoek): Historic estate emphasizing terroir-driven wines, cultivated from carefully selected vineyards.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Anthonij Rupert</span> (Franschhoek): Innovative terroir-specific wines crafted across diverse vineyards, from Franschhoek to Swartland.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Graham Beck</span> (Franschhoek): Renowned for vibrant, expressive wines produced with minimal intervention and maximum care.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">La Motte</span> (Franschhoek): Prestigious estate known for excellence in winemaking, culture, and artistic heritage.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Grande Provence</span> (Franschhoek): Historic elegance meets contemporary winemaking, producing distinctive and refined wines.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Boschendal</span> (Franschhoek): Carefully cultivated grapes, yielding diverse wines celebrated for their consistent high quality.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Tokara</span> (Stellenbosch): Wines acclaimed for their balanced structure, texture, elegance, and superb aging potential.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Delaire Graff Estate</span> (Stellenbosch): Exceptional, award-winning wines from high-altitude vineyards, capturing elegance and freshness.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Neil Ellis</span> (Stellenbosch): Terroir-driven wines, meticulously crafted to highlight the strengths of diverse vineyard sites.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Le Riche</span> (Stellenbosch): Premium Cabernet Sauvignon specialists; expressive blends celebrating the best Stellenbosch terroir.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Warwick</span> (Stellenbosch): Famed for Bordeaux-style blends; renowned flagship wine &quot;Warwick Trilogy&quot;.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Kanonkop</span> (Stellenbosch): Premier Cru-quality estate producing world-class wines with impeccable pedigree.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Vilafont&eacute;</span> (Stellenbosch): Premium South Africa-Californian collaboration, renowned for wines of profound structure and finesse.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Ken Forrester</span> (Stellenbosch): Home of South African Chenin Blanc; handcrafted wines praised internationally.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Kleine Zalze Family Reserve</span> (Stellenbosch): Top-tier, single-vineyard selections, matured meticulously in oak.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Dornier</span> (Stellenbosch): Tradition meets innovation, crafting wines of distinguished character and elegance.</li>
-                  <li className="mt-2"><span className="font-bold text-yellow-400">Rust &amp; Vrede, Vergelegen, Morgenster, Waterkloof, Paul Cluver, Meerlust, De Toren, Amani, Jordan, Saxenburg, Ataraxia, Bouchard Finlayson, Hamilton Russell, Hemel &amp; Aarde, Raka Wine, Aaldering, Clos Malverne, Hartenberg, Beyerskloof, Simonsig, Villiera, Diemersdal, Nitida, Mulderbosch, De Grendel, Eagles Nest, Groot Constantia, Klein Constantia, Buitenverwachting, Steenberg, Cape Point</span>: Celebrated estates representing the pinnacle of South African winemaking, each with distinct signature styles and meticulous attention to quality and terroir.</li>
+                  <li><span className="font-bold text-yellow-400">Cederberg</span> (Wilderness): High-altitude, cool-climate estate; Sauvignon Blanc, Shiraz.</li>
+                  <li><span className="font-bold text-yellow-400">Saronsberg</span> (Tulbagh): Award-winning, bold reds; Shiraz, Rhône blends.</li>
+                  <li><span className="font-bold text-yellow-400">Allesverloren</span> (Swartland): Swartland's oldest; robust Shiraz, Tinta Barocca, fortifieds.</li>
+                  <li><span className="font-bold text-yellow-400">Groote Post</span> (Darling): Coastal, cool-climate; Sauvignon Blanc, Merlot.</li>
+                  <li><span className="font-bold text-yellow-400">Vondeling</span> (Paardeberg): Biodiverse, panoramic; Chenin Blanc, Rhône-style blends.</li>
+                  <li><span className="font-bold text-yellow-400">Diemersfontein</span> (Wellington): Famous for coffee-chocolate Pinotage; Shiraz, Chenin Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Veenwouden</span> (Paarl): Mediterranean style; Merlot, Cabernet Franc.</li>
+                  <li><span className="font-bold text-yellow-400">Landskroon</span> (Paarl): Family-run, historic; elegant reds, port-style wines.</li>
+                  <li><span className="font-bold text-yellow-400">Glen Carlou</span> (Paarl): Meticulous selection; Chardonnay, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Backsberg Family Reserve</span> (Paarl): Exclusive, characterful vintages; Bordeaux blends.</li>
+                  <li><span className="font-bold text-yellow-400">Marianne Wines</span> (Klapmuts): Bordeaux-style blends; fruit-forward, nuanced.</li>
+                  <li><span className="font-bold text-yellow-400">Babylonstoren</span> (Klapmuts): Pristine terroir; Chenin Blanc, Shiraz.</li>
+                  <li><span className="font-bold text-yellow-400">Mont Destin</span> (Klapmuts): Small-batch, Rhône-inspired; Shiraz.</li>
+                  <li><span className="font-bold text-yellow-400">Rupert & Rothschild</span> (Franschhoek): Prestigious collaboration; Bordeaux blends.</li>
+                  <li><span className="font-bold text-yellow-400">Plaisir de Merle</span> (Franschhoek): Terroir-driven; Cabernet Sauvignon, Merlot.</li>
+                  <li><span className="font-bold text-yellow-400">Anthonij Rupert</span> (Franschhoek): Innovative, terroir-specific; Syrah, Cabernet Franc.</li>
+                  <li><span className="font-bold text-yellow-400">Graham Beck</span> (Franschhoek): Renowned for Cap Classique sparkling wines.</li>
+                  <li><span className="font-bold text-yellow-400">La Motte</span> (Franschhoek): Excellence in winemaking; Shiraz, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Grande Provence</span> (Franschhoek): Historic, refined; Chenin Blanc, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Boschendal</span> (Franschhoek): Diverse, consistent; Chardonnay, Shiraz.</li>
+                  <li><span className="font-bold text-yellow-400">Tokara</span> (Stellenbosch): Balanced, elegant; Cabernet Sauvignon, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Sadie Family Wines</span> (Swartland): Acclaimed fine wines; Columella, Palladius.</li>
+                  <li><span className="font-bold text-yellow-400">Mullineux</span> (Swartland): Award-winning; Syrah, Chenin Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Klein Constantia Vin de Constance</span> (Constantia): Iconic sweet wine.</li>
+                  <li><span className="font-bold text-yellow-400">Boekenhoutskloof</span> (Franschhoek): Modern classics; The Chocolate Block, Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">Kanonkop</span> (Stellenbosch): Premier Cru-quality; Pinotage, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Delaire Graff Estate</span> (Stellenbosch): High-altitude, elegant; Chardonnay, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Neil Ellis</span> (Stellenbosch): Terroir-driven; Cabernet Sauvignon, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Le Riche</span> (Stellenbosch): Cabernet Sauvignon specialists.</li>
+                  <li><span className="font-bold text-yellow-400">Warwick</span> (Stellenbosch): Bordeaux-style blends; Warwick Trilogy.</li>
+                  <li><span className="font-bold text-yellow-400">Vilafonté</span> (Stellenbosch): SA-Californian collaboration; structured blends.</li>
+                  <li><span className="font-bold text-yellow-400">Ken Forrester</span> (Stellenbosch): Chenin Blanc specialists.</li>
+                  <li><span className="font-bold text-yellow-400">Kleine Zalze Family Reserve</span> (Stellenbosch): Single-vineyard, top-tier; Chenin Blanc, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Dornier</span> (Stellenbosch): Tradition meets innovation; Merlot, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Rust & Vrede</span> (Stellenbosch): Renowned for Cabernet Sauvignon and Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">Vergelegen</span> (Somerset West): Historic estate, Bordeaux blends, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Morgenster</span> (Somerset West): Italian varietals, Bordeaux blends, olive oil.</li>
+                  <li><span className="font-bold text-yellow-400">Waterkloof</span> (Somerset West): Biodynamic, elegant Syrah, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Paul Cluver</span> (Elgin): Chardonnay, Pinot Noir, Riesling specialist.</li>
+                  <li><span className="font-bold text-yellow-400">Meerlust</span> (Stellenbosch): Iconic Rubicon Bordeaux blend, Pinot Noir.</li>
+                  <li><span className="font-bold text-yellow-400">De Toren</span> (Stellenbosch): Modern Bordeaux-style blends, Fusion V.</li>
+                  <li><span className="font-bold text-yellow-400">Amani</span> (Stellenbosch): Boutique, Merlot, Cabernet Franc.</li>
+                  <li><span className="font-bold text-yellow-400">Jordan</span> (Stellenbosch): Chardonnay, Cabernet Sauvignon, Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">Saxenburg</span> (Stellenbosch): Shiraz, Cabernet Sauvignon, Pinotage.</li>
+                  <li><span className="font-bold text-yellow-400">Ataraxia</span> (Hemel-en-Aarde): Chardonnay, Pinot Noir, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Bouchard Finlayson</span> (Hemel-en-Aarde): Pinot Noir, Chardonnay, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Hamilton Russell</span> (Hemel-en-Aarde): Benchmark Pinot Noir, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Hemel & Aarde</span> (Walker Bay): Cool-climate Pinot Noir, Chardonnay region.</li>
+                  <li><span className="font-bold text-yellow-400">Raka Wine</span> (Walker Bay): Bordeaux blends, Syrah, value reds.</li>
+                  <li><span className="font-bold text-yellow-400">Aaldering</span> (Stellenbosch): Pinotage, Sauvignon Blanc, luxury focus.</li>
+                  <li><span className="font-bold text-yellow-400">Clos Malverne</span> (Stellenbosch): Pinotage, Merlot, Cape blends.</li>
+                  <li><span className="font-bold text-yellow-400">Hartenberg</span> (Stellenbosch): Shiraz, Merlot, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Beyerskloof</span> (Stellenbosch): Pinotage specialist, Cape blends.</li>
+                  <li><span className="font-bold text-yellow-400">Simonsig</span> (Stellenbosch): Cap Classique, Chenin Blanc, Pinotage.</li>
+                  <li><span className="font-bold text-yellow-400">Villiera</span> (Stellenbosch): Cap Classique, Sauvignon Blanc, Chenin Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Diemersdal</span> (Durbanville): Sauvignon Blanc, Pinotage, value reds.</li>
+                  <li><span className="font-bold text-yellow-400">Nitida</span> (Durbanville): Sauvignon Blanc, Merlot, boutique wines.</li>
+                  <li><span className="font-bold text-yellow-400">Mulderbosch</span> (Stellenbosch): Sauvignon Blanc, Chenin Blanc, Rosé.</li>
+                  <li><span className="font-bold text-yellow-400">De Grendel</span> (Durbanville): Sauvignon Blanc, Shiraz, Bordeaux blends.</li>
+                  <li><span className="font-bold text-yellow-400">Eagles Nest</span> (Constantia): Shiraz, Merlot, Viognier.</li>
+                  <li><span className="font-bold text-yellow-400">Groot Constantia</span> (Constantia): Historic, wide range, sweet wines.</li>
+                  <li><span className="font-bold text-yellow-400">Klein Constantia</span> (Constantia): Vin de Constance, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Buitenverwachting</span> (Constantia): Sauvignon Blanc, blends.</li>
+                  <li><span className="font-bold text-yellow-400">Steenberg</span> (Constantia): Sauvignon Blanc, Cap Classique, Merlot.</li>
+                  <li><span className="font-bold text-yellow-400">Cape Point</span> (Noordhoek): Sauvignon Blanc, Semillon, coastal freshness.</li>
+                  <li><span className="font-bold text-yellow-400">Reyneke</span> (Stellenbosch): Biodynamic, Syrah, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Rustenberg</span> (Stellenbosch): Historic, Cabernet Sauvignon, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Thelema Mountain Vineyards</span> (Stellenbosch): Cabernet Sauvignon, Shiraz.</li>
+                  <li><span className="font-bold text-yellow-400">Spier</span> (Stellenbosch): Large, historic, wide range.</li>
+                  <li><span className="font-bold text-yellow-400">Oldenburg Vineyards</span> (Stellenbosch): Premium, Syrah, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Uva Mira</span> (Stellenbosch): High-altitude, Chardonnay, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">Glenelly Estate</span> (Stellenbosch): Bordeaux blends, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Raats Family Wines</span> (Stellenbosch): Chenin Blanc, Cabernet Franc.</li>
+                  <li><span className="font-bold text-yellow-400">Kleine Zalze</span> (Stellenbosch): Chenin Blanc, Cabernet Sauvignon.</li>
+                  <li><span className="font-bold text-yellow-400">AA Badenhorst Family Wines</span> (Swartland): Iconic blends.</li>
+                  <li><span className="font-bold text-yellow-400">Porseleinberg</span> (Swartland): Cult Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">David & Nadia</span> (Swartland): Chenin Blanc, Grenache.</li>
+                  <li><span className="font-bold text-yellow-400">Leeuwenkuil</span> (Swartland): Value, Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">Constantia Glen</span> (Constantia): Bordeaux blends, Sauvignon Blanc.</li>
+                  <li><span className="font-bold text-yellow-400">Buitenverwachting</span> (Constantia): Sauvignon Blanc, blends.</li>
+                  <li><span className="font-bold text-yellow-400">Steenberg</span> (Constantia): Sauvignon Blanc, Cap Classique.</li>
+                  <li><span className="font-bold text-yellow-400">Groot Constantia</span> (Constantia): Historic, wide range.</li>
+                  <li><span className="font-bold text-yellow-400">Creation Wines</span> (Hemel-en-Aarde): Pinot Noir, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Newton Johnson</span> (Hemel-en-Aarde): Pinot Noir, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Storm Wines</span> (Hemel-en-Aarde): Pinot Noir specialist.</li>
+                  <li><span className="font-bold text-yellow-400">Hamilton Russell</span> (Hemel-en-Aarde): Pinot Noir, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Bouchard Finlayson</span> (Hemel-en-Aarde): Pinot Noir, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">Iona</span> (Elgin): Sauvignon Blanc, Chardonnay, Pinot Noir.</li>
+                  <li><span className="font-bold text-yellow-400">Paul Cluver</span> (Elgin): Chardonnay, Pinot Noir, Riesling.</li>
+                  <li><span className="font-bold text-yellow-400">Springfield Estate</span> (Robertson): Sauvignon Blanc, Chardonnay.</li>
+                  <li><span className="font-bold text-yellow-400">De Wetshof</span> (Robertson): Chardonnay specialist.</li>
+                  <li><span className="font-bold text-yellow-400">Lismore Estate</span> (Overberg): Chardonnay, Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">Raka</span> (Walker Bay): Bordeaux blends, Syrah.</li>
                 </ul>
               </CardContent>
             </Card>
