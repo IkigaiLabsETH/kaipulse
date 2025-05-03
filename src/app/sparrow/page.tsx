@@ -108,7 +108,7 @@ export default function SparrowHonestTake() {
             &quot;Sparrow is the wallet I recommend to anyone who wants to truly own their Bitcoin. No easy UX, but very empowering.&quot;
           </p>
           <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-            Sparrow Wallet is a desktop Bitcoin wallet for those who want maximum control, privacy, and security. It's not for everyone—but if you want to learn how Bitcoin really works, Sparrow is the best tool in the box. <a href="https://sparrowwallet.com/features/" target="_blank" className="underline text-yellow-400">Learn more</a>.
+            Sparrow Wallet is a desktop Bitcoin wallet for those who want maximum control, privacy, and security. It&apos;s not for everyone—but if you want to learn how Bitcoin really works, Sparrow is the best tool in the box. <a href="https://sparrowwallet.com/features/" target="_blank" className="underline text-yellow-400">Learn more</a>.
           </p>
         </div>
       </section>
@@ -151,7 +151,7 @@ export default function SparrowHonestTake() {
           Sparrow vs. Coinbase vs. Ledger
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-8 text-center">
-          How does Sparrow compare to the most popular alternatives? Here's a quick look at what you get (and what you don't).
+          How does Sparrow compare to the most popular alternatives? Here&apos;s a quick look at what you get (and what you don&apos;t).
         </p>
         <div className="overflow-x-auto rounded-2xl bg-[#18191c]/80 p-10 mb-4 shadow-xl border border-yellow-500/20">
           <Table>
@@ -231,7 +231,7 @@ export default function SparrowHonestTake() {
           Ready to Take Control?
         </h2>
         <p className="font-epilogue text-2xl text-yellow-400 italic mb-8 max-w-2xl mx-auto drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-          &quot;Sovereignty isn't easy, but it's worth it. Sparrow is for those who want to own their Bitcoin journey." 
+          &quot;Sovereignty isn&apos;t easy, but it&apos;s worth it. Sparrow is for those who want to own their Bitcoin journey.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
           Download Sparrow Wallet, read the docs, and start learning. If you want easy, use Coinbase. If you want control, use Sparrow. If you want both, use Ledger as your hardware vault and Sparrow as your command center.
