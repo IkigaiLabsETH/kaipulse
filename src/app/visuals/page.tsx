@@ -135,7 +135,7 @@ export default function VisualsPage() {
     <div className="min-h-screen bg-black px-8 pt-24 pb-8 md:px-12 md:pt-32 md:pb-12">
       <div className="max-w-[1920px] mx-auto">
         <div className="mb-16 relative z-10 text-center">
-          <h1 className="heading-xl text-yellow-400 font-vcr mb-4 drop-shadow-lg tracking-widest uppercase">Memes & Dreams</h1>
+          <h1 className="heading-xl text-yellow-400 font-boska font-extrabold mb-4 drop-shadow-lg tracking-widest uppercase">Memes & Dreams</h1>
           <p className="text-lg md:text-2xl text-muted-foreground font-epilogue max-w-2xl mx-auto tracking-wider">
             Dive into a curated collection of Bitcoin-inspired art, data, and memes. Click any image to view it full screen. Use your keyboard arrows to navigate!
           </p>
