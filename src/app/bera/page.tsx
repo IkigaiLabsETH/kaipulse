@@ -37,22 +37,22 @@ const strengths = [
   {
     title: 'Proof-of-Liquidity (PoL)',
     highlight: 'A new consensus for a new era.',
-    description: `Berachain's PoL is more than a technical tweak—it's a philosophical bet. Instead of rewarding only stakers, PoL asks: what if the chain's security and its economic engine were one and the same? Validators are forced to care about real liquidity, not just their own bags. It's a bold experiment, and it's already changing the incentives for everyone who builds here.`
+    description: 'Berachain&apos;s PoL is more than a technical tweak—it&apos;s a philosophical bet. Instead of rewarding only stakers, PoL asks: what if the chain&apos;s security and its economic engine were one and the same? Validators are forced to care about real liquidity, not just their own bags. It&apos;s a bold experiment, and it&apos;s already changing the incentives for everyone who builds here.'
   },
   {
     title: 'Tri-Token System',
     highlight: 'Separation of powers, on-chain.',
-    description: `BERA (gas), BGT (governance, earned via liquidity), and HONEY (stablecoin) are designed to keep the system honest. No more governance capture by whales, no more stablecoins as an afterthought. If it works, it could set a new standard for EVM chains.`
+    description: 'BERA (gas), BGT (governance, earned via liquidity), and HONEY (stablecoin) are designed to keep the system honest. No more governance capture by whales, no more stablecoins as an afterthought. If it works, it could set a new standard for EVM chains.'
   },
   {
     title: 'Builder Culture & Community',
     highlight: 'Resilience is the real alpha.',
-    description: `Berachain's community is small, but it's the kind that sticks around. The people who survived the bear are here to build, not just speculate. There's a willingness to experiment, to launch new dApps, to create culture—not just chase the latest meta. That's rare, and it's why we're still here.`
+    description: 'Berachain&apos;s community is small, but it&apos;s the kind that sticks around. The people who survived the bear are here to build, not just speculate. There&apos;s a willingness to experiment, to launch new dApps, to create culture—not just chase the latest meta. That&apos;s rare, and it&apos;s why we&apos;re still here.'
   },
   {
     title: 'EVM Compatibility',
     highlight: 'No walls, just bridges.',
-    description: `Berachain is EVM-native, so the best ideas from across the ecosystem can migrate here. It's not about maximalism—it's about making it easy for new projects and users to plug in, remix, and push the space forward.`
+    description: 'Berachain is EVM-native, so the best ideas from across the ecosystem can migrate here. It&apos;s not about maximalism—it&apos;s about making it easy for new projects and users to plug in, remix, and push the space forward.'
   }
 ];
 
