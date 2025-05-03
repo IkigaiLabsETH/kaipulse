@@ -80,7 +80,7 @@ const pillars = [
     description: "For real, sticky TVL and long-term adoption. Berachain needs to be a place where institutions can trust the protocols, the incentives, and the governance."
   },
   {
-    title: "Generation Moonshot",
+    title: "Gen Moonshot",
     description: "The next wave of risk-takers—builders and users who want to try new things, not just recycle the same old playbook. They need tools, support, and a reason to stay."
   },
   {
