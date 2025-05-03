@@ -202,13 +202,13 @@ export default function BerachainHonestTake() {
           What's Broken & How We Fix It
         </h2>
         <div className="space-y-20">
-          {flaws.map((item, i) => (
+          {flaws.map((item) => (
             <div key={item.title} className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
               <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{item.title}</div>
               <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain}</div>
+              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain.replace(/'/g, "&apos;")}</div>
               <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-              <div className="font-satoshi text-white/90 text-lg">{item.solution}</div>
+              <div className="font-satoshi text-white/90 text-lg">{item.solution.replace(/'/g, "&apos;")}</div>
             </div>
           ))}
         </div>
