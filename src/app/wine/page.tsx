@@ -632,7 +632,7 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Léoville Las Cases</span>: Top "Super Second" growth, powerful and structured.</li>
+                  <li><span className="font-bold text-yellow-400">Château Léoville Las Cases</span>: Top &quot;Super Second&quot; growth, powerful and structured.</li>
                   <li><span className="font-bold text-yellow-400">Château Talbot</span>: Harmonious bridge between Margaux finesse and Pauillac power.</li>
                   <li><span className="font-bold text-yellow-400">Château Gloria</span>: Exceptional quality-value, rivaling classified growths.</li>
                   <li><span className="font-bold text-yellow-400">Château du Glana</span>: Deeply structured wines from the esteemed Saint-Pierre and Lagrange vineyards.</li>
@@ -655,13 +655,13 @@ export default function WinePage() {
                   <li><span className="font-bold text-yellow-400">Château Lafite Rothschild</span>: Iconic First Growth, renowned for longevity and complexity.</li>
                   <li><span className="font-bold text-yellow-400">Château Mouton Rothschild</span>: First Growth, famous for its art labels and opulent style.</li>
                   <li><span className="font-bold text-yellow-400">Château Latour</span>: First Growth, known for power and age-worthiness.</li>
-                  <li><span className="font-bold text-yellow-400">Château Pichon Longueville Comtesse de Lalande</span>: "Super Second," elegant and complex Pauillac.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pichon Longueville Comtesse de Lalande</span>: &quot;Super Second,&quot; elegant and complex Pauillac.</li>
                   <li><span className="font-bold text-yellow-400">Château Pontet-Canet</span>: Biodynamic, highly rated, expressive Pauillac.</li>
                   <li><span className="font-bold text-yellow-400">Réserve de la Comtesse</span>: Richly textured second wine; spice-enhanced elegance.</li>
                   <li><span className="font-bold text-yellow-400">Château Lynch Moussas</span>: Meticulously managed vineyards; deep, matured tannins.</li>
                   <li><span className="font-bold text-yellow-400">Château Lacoste Borie</span>: Fruity elegance, approachable style from younger vines.</li>
                   <li><span className="font-bold text-yellow-400">Château Pichon Longueville Baron</span>: 2nd Growth, opulent.</li>
-                  <li><span className="font-bold text-yellow-400">Château d'Armailhac</span>: 5th Growth, elegant.</li>
+                  <li><span className="font-bold text-yellow-400">Château d&apos;Armailhac</span>: 5th Growth, elegant.</li>
                   <li><span className="font-bold text-yellow-400">Château Clerc Milon</span>: 5th Growth, vibrant.</li>
                   <li><span className="font-bold text-yellow-400">Château Duhart-Milon</span>: 4th Growth, Rothschild stable.</li>
                 </ul>
@@ -674,10 +674,10 @@ export default function WinePage() {
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
                   <li><span className="font-bold text-yellow-400">Château Montrose</span>: Powerful, long-lived, classic Saint Estèphe.</li>
-                  <li><span className="font-bold text-yellow-400">Goulée by Cos d'Estournel</span>: Rich Médoc terroir, vinified by Cos d'Estournel team.</li>
+                  <li><span className="font-bold text-yellow-400">Goulée by Cos d&apos;Estournel</span>: Rich Médoc terroir, vinified by Cos d&apos;Estournel team.</li>
                   <li><span className="font-bold text-yellow-400">La Dame de Montrose</span>: Luxurious second wine; velvety Merlot presence.</li>
                   <li><span className="font-bold text-yellow-400">Château Sérilhan</span>: Award-winning craftsmanship; structured and richly textured.</li>
-                  <li><span className="font-bold text-yellow-400">Château Cos d'Estournel</span>: 2nd Growth, exotic.</li>
+                  <li><span className="font-bold text-yellow-400">Château Cos d&apos;Estournel</span>: 2nd Growth, exotic.</li>
                   <li><span className="font-bold text-yellow-400">Château Calon-Ségur</span>: 3rd Growth, heart label.</li>
                   <li><span className="font-bold text-yellow-400">Château Lafon-Rochet</span>: 4th Growth, value.</li>
                   <li><span className="font-bold text-yellow-400">Château Phélan Ségur</span>: Well regarded.</li>
@@ -690,7 +690,7 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château d'Yquem</span>: The world's greatest sweet wine, Premier Cru Supérieur, legendary for its complexity and longevity.</li>
+                  <li><span className="font-bold text-yellow-400">Château d&apos;Yquem</span>: The world&apos;s greatest sweet wine, Premier Cru Supérieur, legendary for its complexity and longevity.</li>
                   <li><span className="font-bold text-yellow-400">Château Coutet</span>: Fresh, vibrant Barsac wines; notes of citrus, honey, and vanilla.</li>
                   <li><span className="font-bold text-yellow-400">Château Rabaud Promis</span>: Premier Cru Classé, complex terroir, deep honeyed concentration.</li>
                   <li><span className="font-bold text-yellow-400">Château Rayne Vigneau</span>: Magnificent terroir, Premier Grand Cru Classé.</li>
@@ -708,8 +708,8 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Montus</span>: "The Petrus of the Southwest"; powerful, elegant, deeply concentrated.</li>
-                  <li><span className="font-bold text-yellow-400">Château d'Aydie</span>: Complex and powerful, superb aging potential.</li>
+                  <li><span className="font-bold text-yellow-400">Château Montus</span>: &quot;The Petrus of the Southwest&quot;; powerful, elegant, deeply concentrated.</li>
+                  <li><span className="font-bold text-yellow-400">Château d&apos;Aydie</span>: Complex and powerful, superb aging potential.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -740,7 +740,7 @@ export default function WinePage() {
                   <li><span className="font-bold text-yellow-400">Château Clinet</span>: Plush, modern, highly rated for its depth and richness.</li>
                   <li><span className="font-bold text-yellow-400">Château Trotanoy</span>: Deep, complex, age-worthy, a true connoisseur&apos;s choice.</li>
                   <li><span className="font-bold text-yellow-400">Château La Fleur-Pétrus</span>: Elegant, highly sought after.</li>
-                  <li><span className="font-bold text-yellow-400">Château L'Evangile</span>: Rothschild-owned, plush.</li>
+                  <li><span className="font-bold text-yellow-400">Château L&apos;Evangile</span>: Rothschild-owned, plush.</li>
                   <li><span className="font-bold text-yellow-400">Château Le Pin</span>: Cult wine, rare.</li>
                   <li><span className="font-bold text-yellow-400">Vieux Château Certan</span>: Classic, highly rated.</li>
                 </ul>
@@ -765,7 +765,7 @@ export default function WinePage() {
                   <li><span className="font-bold text-yellow-400">Marianne Wines</span> (Klapmuts): Bordeaux-style blends; fruit-forward, nuanced.</li>
                   <li><span className="font-bold text-yellow-400">Babylonstoren</span> (Klapmuts): Pristine terroir; Chenin Blanc, Shiraz.</li>
                   <li><span className="font-bold text-yellow-400">Mont Destin</span> (Klapmuts): Small-batch, Rhône-inspired; Shiraz.</li>
-                  <li><span className="font-bold text-yellow-400">Rupert & Rothschild</span> (Franschhoek): Prestigious collaboration; Bordeaux blends.</li>
+                  <li><span className="font-bold text-yellow-400">Rupert &amp; Rothschild</span> (Franschhoek): Prestigious collaboration; Bordeaux blends.</li>
                   <li><span className="font-bold text-yellow-400">Plaisir de Merle</span> (Franschhoek): Terroir-driven; Cabernet Sauvignon, Merlot.</li>
                   <li><span className="font-bold text-yellow-400">Anthonij Rupert</span> (Franschhoek): Innovative, terroir-specific; Syrah, Cabernet Franc.</li>
                   <li><span className="font-bold text-yellow-400">Graham Beck</span> (Franschhoek): Renowned for Cap Classique sparkling wines.</li>
@@ -786,7 +786,7 @@ export default function WinePage() {
                   <li><span className="font-bold text-yellow-400">Ken Forrester</span> (Stellenbosch): Chenin Blanc specialists.</li>
                   <li><span className="font-bold text-yellow-400">Kleine Zalze Family Reserve</span> (Stellenbosch): Single-vineyard, top-tier; Chenin Blanc, Cabernet Sauvignon.</li>
                   <li><span className="font-bold text-yellow-400">Dornier</span> (Stellenbosch): Tradition meets innovation; Merlot, Cabernet Sauvignon.</li>
-                  <li><span className="font-bold text-yellow-400">Rust & Vrede</span> (Stellenbosch): Renowned for Cabernet Sauvignon and Syrah.</li>
+                  <li><span className="font-bold text-yellow-400">Rust &amp; Vrede</span> (Stellenbosch): Renowned for Cabernet Sauvignon and Syrah.</li>
                   <li><span className="font-bold text-yellow-400">Vergelegen</span> (Somerset West): Historic estate, Bordeaux blends, Sauvignon Blanc.</li>
                   <li><span className="font-bold text-yellow-400">Morgenster</span> (Somerset West): Italian varietals, Bordeaux blends, olive oil.</li>
                   <li><span className="font-bold text-yellow-400">Waterkloof</span> (Somerset West): Biodynamic, elegant Syrah, Sauvignon Blanc.</li>
