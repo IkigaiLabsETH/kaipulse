@@ -111,13 +111,13 @@ export default function OlympusPage() {
           <div className="h-1 w-24 bg-yellow-500 rounded-full mb-8 mx-auto" />
           <div>
             <p className="text-xl md:text-2xl font-epilogue text-yellow-400 italic mb-6 drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-              "In 2021, OlympusDAO emerged with a groundbreaking approach to decentralized finance (DeFi). It introduced a protocol-owned liquidity model and the (3,3) game theory, aiming to create a stable, decentralized reserve currency. The initial phase saw explosive growth, with the treasury amassing over $1 billion and market capitalization peaking at $4 billion by December 2021."
+              &ldquo;In 2021, OlympusDAO emerged with a groundbreaking approach to decentralized finance (DeFi). It introduced a protocol-owned liquidity model and the (3,3) game theory, aiming to create a stable, decentralized reserve currency. The initial phase saw explosive growth, with the treasury amassing over $1 billion and market capitalization peaking at $4 billion by December 2021.&rdquo;
             </p>
             <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-              However, the rapid ascent was followed by a significant correction. The protocol's reflexive mechanics, which had fueled its rise, also contributed to a sharp decline in OHM's price. Recognizing the need for stability, OlympusDAO implemented the Range-Bound Stability (RBS) framework. This introduced mechanisms like dynamic supply adjustments and price bands to maintain equilibrium.
+              However, the rapid ascent was followed by a significant correction. The protocol&rsquo;s reflexive mechanics, which had fueled its rise, also contributed to a sharp decline in OHM&rsquo;s price. Recognizing the need for stability, OlympusDAO implemented the Range-Bound Stability (RBS) framework. This introduced mechanisms like dynamic supply adjustments and price bands to maintain equilibrium.
             </p>
             <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug">
-              My commitment to Olympus wasn't just about financial returns. It was about being part of an innovative experiment in monetary policy, governance, and community-driven development. The journey offered invaluable insights into complex economic systems.
+              My commitment to Olympus wasn&rsquo;t just about financial returns. It was about being part of an innovative experiment in monetary policy, governance, and community-driven development. The journey offered invaluable insights into complex economic systems.
             </p>
           </div>
         </Card>

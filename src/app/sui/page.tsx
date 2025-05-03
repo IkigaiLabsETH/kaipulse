@@ -144,7 +144,7 @@ export default function SuiHonestTake() {
           SUI at a Glance
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-8 text-center">
-          SUI's features are starting to stand out. But traction comes from real usage, not just tech. The challenge is to turn potential into practice.
+          SUI&apos;s features are starting to stand out. But traction comes from real usage, not just tech. The challenge is to turn potential into practice.
         </p>
         <div className="overflow-x-auto rounded-2xl bg-[#18191c]/80 p-10 mb-4 shadow-xl border border-yellow-500/20">
           <table className="w-full font-epilogue text-white/90 text-lg">
@@ -176,7 +176,7 @@ export default function SuiHonestTake() {
           Who Is SUI For Now?
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
-          SUI's next chapter is about:
+          SUI&apos;s next chapter is about:
         </p>
         <div className="grid md:grid-cols-3 gap-10">
           {pillars.map((pillar) => (
@@ -223,7 +223,7 @@ export default function SuiHonestTake() {
           &quot;The best chains are built by those who care enough to call out the flaws—and then do the work.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          SUI's story is just getting started. If you're building, you're early. Let's keep the momentum going, support each other, and make SUI a chain worth building on. If you're here, you matter. Let's write the next chapter together.
+          SUI&apos;s story is just getting started. If you&apos;re building, you&apos;re early. Let&apos;s keep the momentum going, support each other, and make SUI a chain worth building on. If you&apos;re here, you matter. Let&apos;s write the next chapter together.
         </p>
         <Link href="https://docs.sui.io/" target="_blank">
           <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
