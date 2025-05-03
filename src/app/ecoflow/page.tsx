@@ -275,7 +275,7 @@ export default function EcoFlowPage() {
                   <h4 className="text-yellow-400 font-epilogue mb-2">Investment Overview</h4>
                   <p className="text-white/80 font-satoshi">
                     Total system cost: ≈48,000€ (before incentives)<br />
-                    Net cost after 30% MaPrimeRenov&apos; + VAT relief: ≈34,000€
+                    Net cost after 30% MaPrimeRenov&#39; + VAT relief: ≈34,000€
                   </p>
                 </div>
               </CardContent>
@@ -337,7 +337,7 @@ export default function EcoFlowPage() {
               <div className="mb-4">
                 <h4 className="text-yellow-400 font-epilogue mb-2">What this means in practice</h4>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
-                  <li><span className="text-yellow-400">Battery buffer is mandatory:</span> Your car charges after sunset, so the day&apos;s solar harvest must be stored first. One DELTA Pro Ultra inverter + three 6.1 kWh packs (18 kWh) matches the nightly need with headroom for cloudy days.</li>
+                  <li><span className="text-yellow-400">Battery buffer is mandatory:</span> Your car charges after sunset, so the day&#39;s solar harvest must be stored first. One DELTA Pro Ultra inverter + three 6.1 kWh packs (18 kWh) matches the nightly need with headroom for cloudy days.</li>
                   <li><span className="text-yellow-400">Grid or generator as safety net:</span> Even a 12 kWp array will have a few dark winter days; an EcoFlow Smart Generator or grid connection removes range anxiety.</li>
                   <li><span className="text-yellow-400">Roof area check:</span> 400 W all-black modules are ~1.8 m² each:
                     <ul className="ml-6 list-disc">
@@ -436,7 +436,7 @@ export default function EcoFlowPage() {
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl">
           <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase flex items-center justify-center gap-2">
-            <span role="img" aria-label="lightning">⚡️</span> Surviving the Next Power Outage
+            <span role="img" aria-label="lightning">⚡️</span> The Next Power Outage
           </h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-8 text-center">
             Power outages are becoming more common—recently in Spain, Portugal, France, and even Bali. Here are some practical tips from our own experience living through a multi-day outage in Portugal. You never know when it might hit, so a little preparation goes a long way!
