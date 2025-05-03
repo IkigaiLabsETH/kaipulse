@@ -69,12 +69,12 @@ const flaws = [
   },
   {
     title: 'Governance & Decentralization',
-    pain: `Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community's voice is often drowned out.`,
+    pain: `Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community&apos;s voice is often drowned out.`,
     solution: `Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.`
   },
   {
     title: 'Favoritism & Builder Frustration',
-    pain: `There's a sense that newcomers and "Build-a-Bera" projects get more attention than those who built through the bear. Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated.`,
+    pain: `There&apos;s a sense that newcomers and "Build-a-Bera" projects get more attention than those who built through the bear. Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated.`,
     solution: `Recognize and reward those who stuck around and shipped through the hard times. Build a culture that values consistency, not just the latest shiny thing.`
   },
   {
@@ -206,9 +206,9 @@ export default function BerachainHonestTake() {
             <div key={item.title} className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
               <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{item.title}</div>
               <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain.replace(/'/g, "&apos;")}</div>
+              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain}</div>
               <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-              <div className="font-satoshi text-white/90 text-lg">{item.solution.replace(/'/g, "&apos;")}</div>
+              <div className="font-satoshi text-white/90 text-lg">{item.solution}</div>
             </div>
           ))}
         </div>
