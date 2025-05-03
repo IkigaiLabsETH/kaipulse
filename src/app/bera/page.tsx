@@ -14,25 +14,6 @@ const platformComparison = [
   { feature: 'Platform Maturity', bera: 'Emerging' },
 ];
 
-const risks = [
-  {
-    title: 'Market Volatility',
-    description: 'Can affect collateral ratios and trigger liquidations.'
-  },
-  {
-    title: 'Protocol Maturity',
-    description: 'Additional risks compared to established chains.'
-  },
-  {
-    title: 'Smart Contract Risk',
-    description: 'DeFi protocols carry inherent smart contract risks.'
-  },
-  {
-    title: 'Governance Centralization',
-    description: 'Still too much power in too few hands.'
-  }
-];
-
 const strengths = [
   {
     title: 'Proof-of-Liquidity (PoL)',
