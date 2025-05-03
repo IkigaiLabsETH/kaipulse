@@ -41,39 +41,6 @@ const strengths = [
   }
 ];
 
-const flaws = [
-  {
-    title: 'Liquidity Incentives Are Broken',
-    pain: `I've watched liquidity dry up as soon as incentives faded. The native DEX and pools are underutilized, and yield is scattered across too many pairs nobody cares about.`,
-    solution: `Focus emissions and incentives on a handful of major pools. Make the native DEX the heart of the ecosystem, not just another option. Reward sticky, productive liquidity—not just TVL for the sake of TVL.`
-  },
-  {
-    title: 'Launch Timing & Liquidity Bootstrapping',
-    pain: `Mainnet launch felt rushed, likely due to outside pressure. This led to a flood of dead liquidity and a lack of organic, grassroots momentum.`,
-    solution: `Future upgrades and launches should prioritize community input and gradual, organic growth. Let builders and users lead the narrative, not just investors or hype cycles.`
-  },
-  {
-    title: 'Governance & Decentralization',
-    pain: `Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community's voice is often drowned out.`,
-    solution: `Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.`
-  },
-  {
-    title: 'Favoritism & Builder Frustration',
-    pain: `Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated. The sense of fairness is fragile.`,
-    solution: `Recognize and reward those who stuck around and shipped through the hard times. Build a culture that values consistency, not just the latest shiny thing.`
-  },
-  {
-    title: 'Ecosystem Insularity',
-    pain: `Berachain sometimes feels like an echo chamber. Too much energy is spent on internal drama and not enough on building bridges to other chains, communities, and capital.`,
-    solution: `Actively seek out cross-chain partnerships, integrations, and new audiences. The next wave of growth will come from outside the current circle.`
-  },
-  {
-    title: 'Fragmented Yield & User Experience',
-    pain: `Yield is fragmented, bribes are confusing, and the average user has no idea where to start. The ecosystem is complex for the sake of complexity.`,
-    solution: `Simplify the user journey. Build clear, composable products that make it easy for anyone to participate and earn.`
-  },
-];
-
 const pillars = [
   {
     title: "Institutions",
@@ -126,22 +93,22 @@ export default function BerachainHonestTake() {
         <div className="bg-[#18191c]/90 rounded-2xl p-8 shadow-xl border border-yellow-500/40 text-center flex flex-col gap-4">
           <div className="font-epilogue text-2xl text-yellow-400 font-bold mb-2">Community Reflections</div>
           <div className="font-satoshi text-white/90 text-lg mb-2">
-            <span className="italic">“Think there's some very good points in here Ozzy - the majority of which are definitely well acknowledged by the core team. Hindsight is def 20/20 and there's stuff that I'd do differently... for Boyco, it would have likely been a lot more related to the selection of assets, a deeper focus on majors + much greater selectivity (if anything) re: LSTs etc. That can also incur even more political problems, as apps might feel snubbed around inclusion etc, but ultimately we made opinionated choices, and some were def incorrect.”</span>
+            <span className="italic">&quot;Think there's some very good points in here Ozzy - the majority of which are definitely well acknowledged by the core team. Hindsight is def 20/20 and there's stuff that I'd do differently... for Boyco, it would have likely been a lot more related to the selection of assets, a deeper focus on majors + much greater selectivity (if anything) re: LSTs etc. That can also incur even more political problems, as apps might feel snubbed around inclusion etc, but ultimately we made opinionated choices, and some were def incorrect.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey, <a href={SMOKEY_X_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">@SmokeyTheBera</a></span>
           </div>
           <div className="font-satoshi text-white/80 text-base mb-2">
-            <span className="italic">“The part of this which I agree with MASSIVELY is the need to operate outside of an insular echo chamber. Berachain has real builders, and strong ones at that. From many convos this week, I can see that other ecos, funds, and founders are pretty aware of that. But in many cases, we've played or PVP'd in our own sandbox as opposed to building effective onboarding funnels, and kind of hoped that launching a token would cause people to want a product.”</span>
+            <span className="italic">&quot;The part of this which I agree with MASSIVELY is the need to operate outside of an insular echo chamber. Berachain has real builders, and strong ones at that. From many convos this week, I can see that other ecos, funds, and founders are pretty aware of that. But in many cases, we've played or PVP'd in our own sandbox as opposed to building effective onboarding funnels, and kind of hoped that launching a token would cause people to want a product.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey</span>
           </div>
           <div className="font-satoshi text-white/80 text-base mb-2">
-            <span className="italic">“There's a ton of teams (new and old) building things with demand, products that can ultimately generate revenue, onboard massive usergroups, and actually drive value to the whole Bera ecosystem. That's unironically why I'm excited about stuff like Wai Protocol, Credito, Strato, Kettle, USDai, Daylight and others which can drive net new use cases (including institutional), and de-correlated userbases which aren't primarily reliant on the ~10k people who actually do stuff on-chain.”</span>
+            <span className="italic">&quot;There's a ton of teams (new and old) building things with demand, products that can ultimately generate revenue, onboard massive usergroups, and actually drive value to the whole Bera ecosystem. That's unironically why I'm excited about stuff like Wai Protocol, Credito, Strato, Kettle, USDai, Daylight and others which can drive net new use cases (including institutional), and de-correlated userbases which aren't primarily reliant on the ~10k people who actually do stuff on-chain.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey</span>
           </div>
           <div className="font-satoshi text-white/70 text-base">
-            <span className="italic">“Sometimes things look dark and scary and sometimes they are dark and scary. But other times it's a matter of perspective and zooming out with a little cope sprinkled on top. The only way out is through and that's exactly where we're gonna go. Appreciate the insights and words, both kind and unkind, from you and the community as a whole. They make us better in the long run.”</span>
+            <span className="italic">&quot;Sometimes things look dark and scary and sometimes they are dark and scary. But other times it's a matter of perspective and zooming out with a little cope sprinkled on top. The only way out is through and that's exactly where we're gonna go. Appreciate the insights and words, both kind and unkind, from you and the community as a whole. They make us better in the long run.&quot;</span>
             <br /><br />
             <span className="text-yellow-400">— Smokey</span>
           </div>
@@ -256,7 +223,7 @@ export default function BerachainHonestTake() {
           <li><span className="text-yellow-400 font-bold">Berakin</span> (@Berakin_io)</li>
         </ul>
         <p className="text-base font-satoshi text-white/70 text-center max-w-2xl mx-auto">
-          These and other teams are building products with real demand, onboarding new users, and helping Berachain break out of its echo chamber. If you're building, you're part of the story.
+          These and other teams are building products with real demand, onboarding new users, and helping Berachain break out of its echo chamber. If you&apos;re building, you&apos;re part of the story.
         </p>
       </section>
 
@@ -295,7 +262,7 @@ export default function BerachainHonestTake() {
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
             <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Governance & Decentralization</div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community's voice is often drowned out.</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community&apos;s voice is often drowned out.</div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
             <div className="font-satoshi text-white/90 text-lg">Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.</div>
           </div>
@@ -315,7 +282,7 @@ export default function BerachainHonestTake() {
           &quot;The best chains are built by those who care enough to call bullshit—and then do the work.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          The Bera ecosystem is unique for its density of talent and the camaraderie among builders. Even when things look dark, the community keeps showing up and shipping. That's our edge. If you're here, you matter. Let's lock in, support each other, and write history together.
+          The Bera ecosystem is unique for its density of talent and the camaraderie among builders. Even when things look dark, the community keeps showing up and shipping. That&apos;s our edge. If you&apos;re here, you matter. Let&apos;s lock in, support each other, and write history together.
         </p>
         <Link href="https://docs.berachain.com/" target="_blank">
           <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
