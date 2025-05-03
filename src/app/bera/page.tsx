@@ -25,10 +25,10 @@ const strengths = [
     title: 'Tri-Token System',
     highlight: 'Separation of powers, on-chain.',
     description: `BERA (gas), BGT (governance, earned via liquidity), and HONEY (stablecoin) are designed to keep the system honest. The architecture gives us a shot at real decentralization—if we have the guts to follow through.`,
-    note: `Builder's Note: Separation of powers is great, but only if governance is truly decentralized. We're not there yet, but the foundation is solid.`
+    note: `Builder's Note: Separation of powers is great, but only if governance is truly decentralized. We're not there yet, but the Berachain foundation is working on it.`
   },
   {
-    title: 'Builder Culture & Community',
+    title: 'Builder Culture',
     highlight: 'Resilience is the real alpha.',
     description: `The ones who stuck around are here for the right reasons. The bear market exposed who's really in it for the long haul. But we need to make sure new builders feel welcome, not just the old guard. This is a family now—time to act like it.`,
     note: `Builder's Note: The core is strong, but we need to open the doors wider.`
