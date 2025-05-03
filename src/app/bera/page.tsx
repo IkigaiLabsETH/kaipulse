@@ -59,33 +59,33 @@ const strengths = [
 const flaws = [
   {
     title: 'Liquidity Incentives Are Broken',
-    pain: `Early TVL was impressive, but much of it was mercenary. When incentives dried up, so did the liquidity. The native DEX and pools are underutilized, and yield is scattered across too many pairs nobody cares about.`,
-    solution: `Focus emissions and incentives on a handful of major pools. Make the native DEX the heart of the ecosystem, not just another option. Reward sticky, productive liquidity—not just TVL for the sake of TVL.`
+    pain: 'Early TVL was impressive, but much of it was mercenary. When incentives dried up, so did the liquidity. The native DEX and pools are underutilized, and yield is scattered across too many pairs nobody cares about.',
+    solution: 'Focus emissions and incentives on a handful of major pools. Make the native DEX the heart of the ecosystem, not just another option. Reward sticky, productive liquidity—not just TVL for the sake of TVL.'
   },
   {
     title: 'Launch Timing & Liquidity Bootstrapping',
-    pain: `Mainnet launch felt rushed, likely due to outside pressure. This led to a flood of "dead" liquidity and a lack of organic, grassroots momentum.`,
-    solution: `Future upgrades and launches should prioritize community input and gradual, organic growth. Let builders and users lead the narrative, not just investors or hype cycles.`
+    pain: 'Mainnet launch felt rushed, likely due to outside pressure. This led to a flood of "dead" liquidity and a lack of organic, grassroots momentum.',
+    solution: 'Future upgrades and launches should prioritize community input and gradual, organic growth. Let builders and users lead the narrative, not just investors or hype cycles.'
   },
   {
     title: 'Governance & Decentralization',
-    pain: `Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community&apos;s voice is often drowned out.`,
-    solution: `Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.`
+    pain: 'Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community&apos;s voice is often drowned out.',
+    solution: 'Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.'
   },
   {
     title: 'Favoritism & Builder Frustration',
-    pain: `There&apos;s a sense that newcomers and "Build-a-Bera" projects get more attention than those who built through the bear. Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated.`,
-    solution: `Recognize and reward those who stuck around and shipped through the hard times. Build a culture that values consistency, not just the latest shiny thing.`
+    pain: 'There&apos;s a sense that newcomers and "Build-a-Bera" projects get more attention than those who built through the bear. Pre-mainnet builders feel overlooked, while extractive projects are sometimes celebrated.',
+    solution: 'Recognize and reward those who stuck around and shipped through the hard times. Build a culture that values consistency, not just the latest shiny thing.'
   },
   {
     title: 'Ecosystem Insularity',
-    pain: `Berachain sometimes feels like an echo chamber. Too much energy is spent on internal drama and not enough on building bridges to other chains, communities, and capital.`,
-    solution: `Actively seek out cross-chain partnerships, integrations, and new audiences. The next wave of growth will come from outside the current circle.`
+    pain: 'Berachain sometimes feels like an echo chamber. Too much energy is spent on internal drama and not enough on building bridges to other chains, communities, and capital.',
+    solution: 'Actively seek out cross-chain partnerships, integrations, and new audiences. The next wave of growth will come from outside the current circle.'
   },
   {
     title: 'Fragmented Yield & User Experience',
-    pain: `Yield is fragmented, bribes are confusing, and the average user has no idea where to start. The ecosystem is complex for the sake of complexity.`,
-    solution: `Simplify the user journey. Build clear, composable products that make it easy for anyone to participate and earn.`
+    pain: 'Yield is fragmented, bribes are confusing, and the average user has no idea where to start. The ecosystem is complex for the sake of complexity.',
+    solution: 'Simplify the user journey. Build clear, composable products that make it easy for anyone to participate and earn.'
   },
 ];
 
