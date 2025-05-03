@@ -5,7 +5,37 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SafeImage } from "@/components/ui/SafeImage";
 
 const visuals = [
-  "69420.png", "21Y.jpeg", "175.jpeg", "FIRE.jpeg", "projections.jpeg", "100Msats.jpeg", "inflation.jpg", "houseprice.jpg", "assets.jpg", "sats.png", "zero.jpeg", "halvings.jpeg", "realestate_.jpeg", "10.jpeg", "5.jpeg", "21.jpeg", "inflation.jpeg", "transactions.jpeg", "distribution.jpeg", "realestate.jpeg", "SBR.jpeg", "quantile_model.jpeg", "bitcoin_frame_.jpg", "bitcoin_frame_2.jpg"
+  "FIRE.jpeg",
+  "5.jpeg",
+  "10.jpeg",
+  "21.jpeg",
+  "69420.png",
+  "21Y.jpeg",
+  "175.jpeg",
+  "projections.jpeg",
+  "100Msats.jpeg",
+  "inflation.jpg",
+  "houseprice.jpg",
+  "assets.jpg",
+  "sats.png",
+  "zero.jpeg",
+  "halvings.jpeg",
+  "realestate_.jpeg",
+  "inflation.jpeg",
+  "transactions.jpeg",
+  "distribution.jpeg",
+  "realestate.jpeg",
+  "SBR.jpeg",
+  "quantile_model.jpeg",
+  "bitcoin_frame_.jpg",
+  "bitcoin_frame_2.jpg",
+  "BTC_CHART.jpeg",
+  "BTC_ARR.jpeg",
+  "BSE.jpeg",
+  "HAL.jpeg",
+  "HASHRATE.jpeg",
+  "SAYLOR.jpeg",
+  "STRATEGY.jpeg"
 ];
 
 const breakpointColumnsObj = {
