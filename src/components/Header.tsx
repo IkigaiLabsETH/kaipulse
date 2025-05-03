@@ -86,6 +86,7 @@ export function Header() {
         { name: 'COINBASE', href: '/platforms/coinbase' },
         { name: 'TWENTY ONE', href: '/twentyone' },
         { name: 'DATA EXPLORER', href: '/data' },
+        { name: 'MEMES & DREAMS', href: '/visuals' },
         { name: 'ART COLLECTION', href: '/art' },
       ]
     },
