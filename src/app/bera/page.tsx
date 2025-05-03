@@ -89,6 +89,10 @@ const pillars = [
   }
 ];
 
+// Add X profile links for Ozzy and Smokey
+const OZZY_X_URL = 'https://x.com/MEADGod';
+const SMOKEY_X_URL = 'https://x.com/SmokeyTheBera';
+
 export default function BerachainHonestTake() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
@@ -111,9 +115,38 @@ export default function BerachainHonestTake() {
           <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
             After 3.3+ years investing in Berachain, I&apos;m still here—bullish, but not blind. This isn&apos;t a pitch or a victory lap. It&apos;s a builder&apos;s take: what&apos;s working, what&apos;s broken, and what needs to change if Berachain is going to matter in the next cycle. The hype has faded, the tourists are leaving, and what&apos;s left is the core—those who care enough to call out the cracks and still show up to build.
           </p>
+          <div className="flex flex-col items-center gap-2 mt-6">
+            <span className="text-yellow-400 font-satoshi text-base">Inspired by <a href={OZZY_X_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">Ozzy (@MEADGod)</a> and the honest feedback of <a href={SMOKEY_X_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">Smokey (@SmokeyTheBera)</a></span>
+          </div>
         </div>
       </section>
 
+      {/* Community Reflections */}
+      <section className="max-w-screen-md mx-auto px-4 mb-20 relative z-10">
+        <div className="bg-[#18191c]/90 rounded-2xl p-8 shadow-xl border border-yellow-500/40 text-center flex flex-col gap-4">
+          <div className="font-epilogue text-2xl text-yellow-400 font-bold mb-2">Community Reflections</div>
+          <div className="font-satoshi text-white/90 text-lg mb-2">
+            <span className="italic">“Think there's some very good points in here Ozzy - the majority of which are definitely well acknowledged by the core team. Hindsight is def 20/20 and there's stuff that I'd do differently... for Boyco, it would have likely been a lot more related to the selection of assets, a deeper focus on majors + much greater selectivity (if anything) re: LSTs etc. That can also incur even more political problems, as apps might feel snubbed around inclusion etc, but ultimately we made opinionated choices, and some were def incorrect.”</span>
+            <br /><br />
+            <span className="text-yellow-400">— Smokey, <a href={SMOKEY_X_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">@SmokeyTheBera</a></span>
+          </div>
+          <div className="font-satoshi text-white/80 text-base mb-2">
+            <span className="italic">“The part of this which I agree with MASSIVELY is the need to operate outside of an insular echo chamber. Berachain has real builders, and strong ones at that. From many convos this week, I can see that other ecos, funds, and founders are pretty aware of that. But in many cases, we've played or PVP'd in our own sandbox as opposed to building effective onboarding funnels, and kind of hoped that launching a token would cause people to want a product.”</span>
+            <br /><br />
+            <span className="text-yellow-400">— Smokey</span>
+          </div>
+          <div className="font-satoshi text-white/80 text-base mb-2">
+            <span className="italic">“There's a ton of teams (new and old) building things with demand, products that can ultimately generate revenue, onboard massive usergroups, and actually drive value to the whole Bera ecosystem. That's unironically why I'm excited about stuff like Wai Protocol, Credito, Strato, Kettle, USDai, Daylight and others which can drive net new use cases (including institutional), and de-correlated userbases which aren't primarily reliant on the ~10k people who actually do stuff on-chain.”</span>
+            <br /><br />
+            <span className="text-yellow-400">— Smokey</span>
+          </div>
+          <div className="font-satoshi text-white/70 text-base">
+            <span className="italic">“Sometimes things look dark and scary and sometimes they are dark and scary. But other times it's a matter of perspective and zooming out with a little cope sprinkled on top. The only way out is through and that's exactly where we're gonna go. Appreciate the insights and words, both kind and unkind, from you and the community as a whole. They make us better in the long run.”</span>
+            <br /><br />
+            <span className="text-yellow-400">— Smokey</span>
+          </div>
+        </div>
+      </section>
 
       {/* Custom section divider */}
       <div className="w-full flex justify-center mb-20">
@@ -201,21 +234,71 @@ export default function BerachainHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
+      {/* Ecosystem Standouts */}
+      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
+        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-10 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+          Ecosystem Standouts
+        </h2>
+        <p className="text-lg font-satoshi text-white/80 mb-8 text-center max-w-3xl mx-auto">
+          The Bera ecosystem is powered by a new generation of teams and products, both established and emerging. These builders are driving real demand, onboarding new user groups, and creating value beyond the core. Notable teams include:
+        </p>
+        <ul className="grid md:grid-cols-2 gap-6 text-white/90 font-satoshi text-lg mb-8 max-w-2xl mx-auto">
+          <li><span className="text-yellow-400 font-bold">Wai Protocol</span> (@wai_protocol)</li>
+          <li><span className="text-yellow-400 font-bold">Credito</span> (@credidotfi)</li>
+          <li><span className="text-yellow-400 font-bold">Strato</span> (@strato_hk)</li>
+          <li><span className="text-yellow-400 font-bold">Kettle</span> (@kettle_shop)</li>
+          <li><span className="text-yellow-400 font-bold">USDai</span> (@USDai_Official)</li>
+          <li><span className="text-yellow-400 font-bold">Daylight</span> (@daylightenergy_)</li>
+          <li><span className="text-yellow-400 font-bold">PuffPaw</span> (@puffpaw_xyz)</li>
+          <li><span className="text-yellow-400 font-bold">PlayWithOU</span> (@playwithOU)</li>
+          <li><span className="text-yellow-400 font-bold">Eden</span> (@EdenWeb3_Global)</li>
+          <li><span className="text-yellow-400 font-bold">PawPass</span> (@usepawpass)</li>
+          <li><span className="text-yellow-400 font-bold">Berakin</span> (@Berakin_io)</li>
+        </ul>
+        <p className="text-base font-satoshi text-white/70 text-center max-w-2xl mx-auto">
+          These and other teams are building products with real demand, onboarding new users, and helping Berachain break out of its echo chamber. If you're building, you're part of the story.
+        </p>
+      </section>
+
+      <div className="w-full flex justify-center mb-24">
+        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+      </div>
+
       {/* Honest Flaws & Solutions */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
           What&apos;s Broken &amp; How We Fix It
         </h2>
         <div className="space-y-20">
-          {flaws.map((item) => (
-            <div key={item.title} className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-              <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{item.title}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-              <div className="font-satoshi text-white/90 text-lg">{item.solution}</div>
-            </div>
-          ))}
+          {/* Updated flaws with more direct language and lessons learned */}
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Asset Selection & Incentives</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">Hindsight is 20/20. The selection of assets and LSTs was too broad, diluting incentives and making it harder to build sticky liquidity. Being more selective is politically tough, but necessary for long-term health.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
+            <div className="font-satoshi text-white/90 text-lg">Focus on major assets and a smaller set of pools. Make hard, opinionated choices—even if it means some apps feel snubbed. Reward productive, sticky liquidity and let the DEX be the heart of the ecosystem.</div>
+          </div>
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Onboarding & Echo Chamber</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">Berachain has played in its own sandbox, hoping token launches would bring users. This insularity has limited growth and left onboarding funnels underdeveloped.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
+            <div className="font-satoshi text-white/90 text-lg">Build real onboarding funnels, amplify new teams, and actively seek cross-ecosystem partnerships. The next wave of growth will come from outside the current circle.</div>
+          </div>
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Builder Support & Recognition</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">Not all teams have felt equally supported, and some pre-mainnet builders feel overlooked. The sense of fairness is fragile, and recognition is often lacking.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
+            <div className="font-satoshi text-white/90 text-lg">Actively recognize and reward teams that have shipped through tough times. Build a culture that values consistency, not just hype or newness.</div>
+          </div>
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Governance & Decentralization</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community's voice is often drowned out.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
+            <div className="font-satoshi text-white/90 text-lg">Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.</div>
+          </div>
         </div>
       </section>
 
@@ -232,7 +315,7 @@ export default function BerachainHonestTake() {
           &quot;The best chains are built by those who care enough to call bullshit—and then do the work.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          I&apos;m grateful to be here, despite all the chaos. The bear market exposes who&apos;s really in it for the long haul. If you&apos;re still building, you&apos;re the reason this chain has a shot. Let&apos;s protect what we have, push each other to do better, and make Berachain a place worth fighting for. This is wartime mode. If you&apos;re here, you matter. Let&apos;s lock in, support each other, and write history together.
+          The Bera ecosystem is unique for its density of talent and the camaraderie among builders. Even when things look dark, the community keeps showing up and shipping. That's our edge. If you're here, you matter. Let's lock in, support each other, and write history together.
         </p>
         <Link href="https://docs.berachain.com/" target="_blank">
           <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
