@@ -547,10 +547,10 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">L'Esprit de Pavie</span>: Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months.</li>
-                  <li><span className="font-bold text-yellow-400">Chapelle d'Aliénor</span>: Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse.</li>
+                  <li><span className="font-bold text-yellow-400">L&apos;Esprit de Pavie</span>: Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months.</li>
+                  <li><span className="font-bold text-yellow-400">Chapelle d&apos;Aliénor</span>: Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse.</li>
                   <li><span className="font-bold text-yellow-400">Château Marjosse</span>: Prestigious estate managed by Pierre Lurton; Merlot, Cabernet Sauvignon, Cabernet Franc, Malbec, Sauvignon, and Sémillon.</li>
-                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol's Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
+                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol&apos;s Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -570,7 +570,7 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Clos Floridène</span>: Aromatic, fruit-driven wines reflecting Denis Dubourdieu's expertise.</li>
+                  <li><span className="font-bold text-yellow-400">Clos Floridène</span>: Aromatic, fruit-driven wines reflecting Denis Dubourdieu&apos;s expertise.</li>
                   <li><span className="font-bold text-yellow-400">Château Haura</span>: Classic blend with elegant tannins and fruity freshness.</li>
                   <li><span className="font-bold text-yellow-400">Château La Louvière</span>: Varied terroir, producing both complex reds and vibrant whites.</li>
                   <li><span className="font-bold text-yellow-400">Château Gazin Rocquencourt</span>: Innovative viticulture, elegant blends by Michel Rolland.</li>
@@ -579,7 +579,7 @@ export default function WinePage() {
                   <li><span className="font-bold text-yellow-400">Domaine de Merlet</span>: Unique, family-driven vinification; powerful aging potential.</li>
                   <li><span className="font-bold text-yellow-400">Château Carbonnieux</span>: Distinguished whites and reds, hallmark Graves character.</li>
                   <li><span className="font-bold text-yellow-400">La Réserve de Malartic</span>: Second wine with refined fruit, smoky notes, and complexity.</li>
-                  <li><span className="font-bold text-yellow-400">Château Pape Clément</span>: Bernard Magrez's prestigious estate; exemplary second and third wines.</li>
+                  <li><span className="font-bold text-yellow-400">Château Pape Clément</span>: Bernard Magrez&apos;s prestigious estate; exemplary second and third wines.</li>
                   <li><span className="font-bold text-yellow-400">Château Olivier</span>: Historic site producing elegant, classified wines.</li>
                   <li><span className="font-bold text-yellow-400">Château Haut-Brion</span>: First Growth, legendary for both red and white wines.</li>
                   <li><span className="font-bold text-yellow-400">Château La Mission Haut-Brion</span>: Top estate, powerful and complex.</li>
@@ -596,7 +596,7 @@ export default function WinePage() {
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
                   <li><span className="font-bold text-yellow-400">Château Cambon La Pelouse</span>: Situated between Giscours and Cantemerle; structured wines from gravelly terroir.</li>
-                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, tender tannins with aromatic complexity, typical of Médoc's sandy soils.</li>
+                  <li><span className="font-bold text-yellow-400">Château Cantemerle</span>: Elegant, tender tannins with aromatic complexity, typical of Médoc&apos;s sandy soils.</li>
                   <li><span className="font-bold text-yellow-400">Château Chasse Spleen</span>: Deep garnet wines with wild berries, blueberries, rounded and silky tannins.</li>
                   <li><span className="font-bold text-yellow-400">Château Sociando Mallet</span>: Complex red fruit, subtle oak; known for impressive aging potential.</li>
                   <li><span className="font-bold text-yellow-400">Château La Lagune</span>: 3rd Growth, refined and floral.</li>
@@ -735,10 +735,10 @@ export default function WinePage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol's Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
+                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol&apos;s Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
                   <li><span className="font-bold text-yellow-400">Château La Conseillante</span>: Iconic estate; silky, perfumed, Merlot-dominant wines.</li>
                   <li><span className="font-bold text-yellow-400">Château Clinet</span>: Plush, modern, highly rated for its depth and richness.</li>
-                  <li><span className="font-bold text-yellow-400">Château Trotanoy</span>: Deep, complex, age-worthy, a true connoisseur's choice.</li>
+                  <li><span className="font-bold text-yellow-400">Château Trotanoy</span>: Deep, complex, age-worthy, a true connoisseur&apos;s choice.</li>
                   <li><span className="font-bold text-yellow-400">Château La Fleur-Pétrus</span>: Elegant, highly sought after.</li>
                   <li><span className="font-bold text-yellow-400">Château L'Evangile</span>: Rothschild-owned, plush.</li>
                   <li><span className="font-bold text-yellow-400">Château Le Pin</span>: Cult wine, rare.</li>
@@ -754,7 +754,7 @@ export default function WinePage() {
                 <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
                   <li><span className="font-bold text-yellow-400">Cederberg</span> (Wilderness): High-altitude, cool-climate estate; Sauvignon Blanc, Shiraz.</li>
                   <li><span className="font-bold text-yellow-400">Saronsberg</span> (Tulbagh): Award-winning, bold reds; Shiraz, Rhône blends.</li>
-                  <li><span className="font-bold text-yellow-400">Allesverloren</span> (Swartland): Swartland's oldest; robust Shiraz, Tinta Barocca, fortifieds.</li>
+                  <li><span className="font-bold text-yellow-400">Allesverloren</span> (Swartland): Swartland&apos;s oldest; robust Shiraz, Tinta Barocca, fortifieds.</li>
                   <li><span className="font-bold text-yellow-400">Groote Post</span> (Darling): Coastal, cool-climate; Sauvignon Blanc, Merlot.</li>
                   <li><span className="font-bold text-yellow-400">Vondeling</span> (Paardeberg): Biodiverse, panoramic; Chenin Blanc, Rhône-style blends.</li>
                   <li><span className="font-bold text-yellow-400">Diemersfontein</span> (Wellington): Famous for coffee-chocolate Pinotage; Shiraz, Chenin Blanc.</li>

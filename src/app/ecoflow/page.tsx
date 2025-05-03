@@ -432,6 +432,86 @@ export default function EcoFlowPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
+      {/* Power Outage Prep Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase flex items-center justify-center gap-2">
+            <span role="img" aria-label="lightning">⚡️</span> Surviving the Next Power Outage
+          </h2>
+          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-8 text-center">
+            Power outages are becoming more common—recently in Spain, Portugal, France, and even Bali. Here are some practical tips from our own experience living through a multi-day outage in Portugal. You never know when it might hit, so a little preparation goes a long way!
+          </p>
+          <div className="space-y-6">
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">📡</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Starlink</h4>
+                <p className="text-white/80 font-satoshi">The biggest issue during the outage wasn't missing power (phones and laptops have batteries), but losing internet. 4G towers run out of backup power fast. We had Starlink, but nothing to power it—so make sure you have a way to keep your satellite internet running!</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">🔋</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">EcoFlow 1kWh Battery + 400W Solar Panel</h4>
+                <p className="text-white/80 font-satoshi">Charge it when you have grid power, then use it to run essentials (phones, laptops, Starlink) during an outage. With a 400W solar panel, you can recharge even if the grid stays down. <span className="text-yellow-400">Tip by @NorbertDragan</span></p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">📻</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Battery-Powered Radio (with USB-C)</h4>
+                <p className="text-white/80 font-satoshi">Without internet, radio is your lifeline for news and emergency info. During the outage, local stations switched to emergency broadcasts. Keep a radio handy—ideally one you can charge with USB-C.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">⛽️</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Gasoline-Powered Generator</h4>
+                <p className="text-white/80 font-satoshi">Optional if you already have an EcoFlow, but for longer outages, a small generator (like the Denqbar DQ-2100) plus a 20L jerrycan of fuel can keep you going for days. Look for quiet models (55dB or less).</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">🍖</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Gas Barbecue with Big Gas Tank</h4>
+                <p className="text-white/80 font-satoshi">Most modern homes have electric stoves, so cooking is tough without power. A gas barbecue (with a side burner) lets you keep cooking. <span className="text-yellow-400">Tip by @dwjorgeb</span></p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">💦</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">20–40L of Drinkable Water</h4>
+                <p className="text-white/80 font-satoshi">If the outage lasts, water pressure may drop. Have 20–40L of bottled water on hand. It's the first thing we bought when the power went out—you can last without food, but not without water!</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">💵</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Get Lots of Cash Out</h4>
+                <p className="text-white/80 font-satoshi">Card payments work for a while, but eventually only cash is accepted. ATMs run out fast, so keep a stash at home. Withdraw in advance—when the grid is down, cash is king.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">🔫</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Home Defense</h4>
+                <p className="text-white/80 font-satoshi">This depends on your country's laws, but after 48 hours of no power, things can get tense. Consider what's legal and safe for you to protect your home and family.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start">
+              <span className="text-2xl">⏰</span>
+              <div>
+                <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Long-Term: Solar & Home Batteries</h4>
+                <p className="text-white/80 font-satoshi">If you own your home, invest in solar and big batteries (like Tesla Powerwall or multiple EcoFlows). Two Powerwalls (27kWh) can keep you going for a week, especially if you have sun.</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-white/70 font-satoshi mt-10 text-center italic">Anyway, hope this helps! I'm not a prepper, but I want to be ready for the next one 😊</p>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
       {/* Final CTA */}
       <section className="flex flex-col items-center justify-center py-20 px-4">
         <Link href="https://www.ecoflow.com/us/delta-pro-ultra" target="_blank">
