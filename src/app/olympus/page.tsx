@@ -694,7 +694,7 @@ export default function OlympusPage() {
 
               <div>
                 <b className="text-yellow-500">The Path Forward</b><br/>
-                Olympus represents an aspirational experiment wrapped in genuinely innovative monetary mechanics. By acknowledging it as a moonshot in phase-one rather than a fait accompli, we keep the conversation grounded while appreciating its potential to reshape DeFi's monetary landscape.
+                Olympus represents an aspirational experiment wrapped in genuinely innovative monetary mechanics. By acknowledging it as a moonshot in phase-one rather than a fait accompli, we keep the conversation grounded while appreciating its potential to reshape DeFi&apos;s monetary landscape.
               </div>
             </div>
           </div>
