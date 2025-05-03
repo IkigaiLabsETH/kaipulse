@@ -446,7 +446,7 @@ export default function EcoFlowPage() {
               <span className="text-2xl">📡</span>
               <div>
                 <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Starlink</h4>
-                <p className="text-white/80 font-satoshi">The biggest issue during the outage wasn't missing power (phones and laptops have batteries), but losing internet. 4G towers run out of backup power fast. We had Starlink, but nothing to power it—so make sure you have a way to keep your satellite internet running!</p>
+                <p className="text-white/80 font-satoshi">The biggest issue during the outage wasn&apos;t missing power (phones and laptops have batteries), but losing internet. 4G towers run out of backup power fast. We had Starlink, but nothing to power it—so make sure you have a way to keep your satellite internet running!</p>
               </div>
             </div>
             <div className="flex gap-4 items-start">
@@ -481,7 +481,7 @@ export default function EcoFlowPage() {
               <span className="text-2xl">💦</span>
               <div>
                 <h4 className="text-yellow-400 font-epilogue font-bold mb-1">20–40L of Drinkable Water</h4>
-                <p className="text-white/80 font-satoshi">If the outage lasts, water pressure may drop. Have 20–40L of bottled water on hand. It's the first thing we bought when the power went out—you can last without food, but not without water!</p>
+                <p className="text-white/80 font-satoshi">If the outage lasts, water pressure may drop. Have 20–40L of bottled water on hand. It&apos;s the first thing we bought when the power went out—you can last without food, but not without water!</p>
               </div>
             </div>
             <div className="flex gap-4 items-start">
@@ -495,7 +495,7 @@ export default function EcoFlowPage() {
               <span className="text-2xl">🔫</span>
               <div>
                 <h4 className="text-yellow-400 font-epilogue font-bold mb-1">Home Defense</h4>
-                <p className="text-white/80 font-satoshi">This depends on your country's laws, but after 48 hours of no power, things can get tense. Consider what's legal and safe for you to protect your home and family.</p>
+                <p className="text-white/80 font-satoshi">This depends on your country&apos;s laws, but after 48 hours of no power, things can get tense. Consider what&apos;s legal and safe for you to protect your home and family.</p>
               </div>
             </div>
             <div className="flex gap-4 items-start">
@@ -506,7 +506,7 @@ export default function EcoFlowPage() {
               </div>
             </div>
           </div>
-          <p className="text-white/70 font-satoshi mt-10 text-center italic">Anyway, hope this helps! I'm not a prepper, but I want to be ready for the next one 😊</p>
+          <p className="text-white/70 font-satoshi mt-10 text-center italic">Anyway, hope this helps! I&apos;m not a prepper, but I want to be ready for the next one 😊</p>
         </div>
       </section>
 
