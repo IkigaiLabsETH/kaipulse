@@ -85,14 +85,8 @@ const pillars = [
   },
   {
     title: "Apps & Abstractions",
-    description: "Products like Moonshot, Slingshot, and new PoL abstractions that make Berachain accessible to outsiders. If it's too complex, nobody will come. If it's too insular, nobody will care."
+    description: "Products like Moonshot, Slingshot, and new PoL abstractions that make Berachain accessible to outsiders. If it&apos;s too complex, nobody will come. If it&apos;s too insular, nobody will care."
   }
-];
-
-const buildersManifesto = [
-  "Call out the cracks, then build the bridge.",
-  "No more recycled playbooks. No more empty hype.",
-  "If you're here, you matter. Let's write history."
 ];
 
 export default function BerachainHonestTake() {
@@ -115,7 +109,7 @@ export default function BerachainHonestTake() {
             &quot;If you want to build something that lasts, you have to be willing to call out the cracks in the foundation.&quot;
           </p>
           <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-            After 3.3+ years investing in Berachain, I'm still here—bullish, but not blind. This isn't a pitch or a victory lap. It's a builder's take: what's working, what's broken, and what needs to change if Berachain is going to matter in the next cycle. The hype has faded, the tourists are leaving, and what's left is the core—those who care enough to call out the cracks and still show up to build.
+            After 3.3+ years investing in Berachain, I&apos;m still here—bullish, but not blind. This isn&apos;t a pitch or a victory lap. It&apos;s a builder&apos;s take: what&apos;s working, what&apos;s broken, and what needs to change if Berachain is going to matter in the next cycle. The hype has faded, the tourists are leaving, and what&apos;s left is the core—those who care enough to call out the cracks and still show up to build.
           </p>
         </div>
       </section>
@@ -159,7 +153,7 @@ export default function BerachainHonestTake() {
           Berachain at a Glance
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-8 text-center">
-          On paper, Berachain's features are competitive. But features alone don't drive adoption—real traction comes from solving for the right users, at the right time. The challenge now is to move from potential to practice.
+          On paper, Berachain&apos;s features are competitive. But features alone don&apos;t drive adoption—real traction comes from solving for the right users, at the right time. The challenge now is to move from potential to practice.
         </p>
         <div className="overflow-x-auto rounded-2xl bg-[#18191c]/80 p-10 mb-4 shadow-xl border border-yellow-500/20">
           <table className="w-full font-epilogue text-white/90 text-lg">
@@ -191,7 +185,7 @@ export default function BerachainHonestTake() {
           Who Is Berachain For Now?
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
-          The next chapter isn't about chasing retail or appeasing degens. It's about building for:
+          The next chapter isn&apos;t about chasing retail or appeasing degens. It&apos;s about building for:
         </p>
         <div className="grid md:grid-cols-3 gap-10">
           {pillars.map((pillar) => (
@@ -238,7 +232,7 @@ export default function BerachainHonestTake() {
           &quot;The best chains are built by those who care enough to call bullshit—and then do the work.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          I'm grateful to be here, despite all the chaos. The bear market exposes who's really in it for the long haul. If you're still building, you're the reason this chain has a shot. Let's protect what we have, push each other to do better, and make Berachain a place worth fighting for. This is wartime mode. If you're here, you matter. Let's lock in, support each other, and write history together.
+          I&apos;m grateful to be here, despite all the chaos. The bear market exposes who&apos;s really in it for the long haul. If you&apos;re still building, you&apos;re the reason this chain has a shot. Let&apos;s protect what we have, push each other to do better, and make Berachain a place worth fighting for. This is wartime mode. If you&apos;re here, you matter. Let&apos;s lock in, support each other, and write history together.
         </p>
         <Link href="https://docs.berachain.com/" target="_blank">
           <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
