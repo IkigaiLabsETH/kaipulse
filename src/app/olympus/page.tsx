@@ -590,35 +590,35 @@ export default function OlympusPage() {
           <div className="p-8 md:p-10">
             <div className="flex items-center mb-4">
               <span className="text-3xl mr-3">🧠</span>
-              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Zeus: The Global Monetary Prisoner's Dilemma & Olympus's Role</span>
+              <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Zeus: The Global Monetary Prisoner&apos;s Dilemma &amp; Olympus&apos;s Role</span>
             </div>
             <div className="text-white/90 text-lg space-y-6 font-satoshi">
               <div>
                 <b className="text-yellow-500">Context:</b> <br />
-                Zeus (<a href="https://x.com/ohmzeus" target="_blank" rel="noopener noreferrer" className="text-yellow-500 underline">@ohmzeus</a>) recently outlined a critical moment for the global monetary system—a "prisoner's dilemma" where nations, banks, and institutions must choose between costly cooperation or risky defection from the dollar system. The stakes: decades of accumulated global wealth and stability.
+                Zeus (<a href="https://x.com/ohmzeus" target="_blank" rel="noopener noreferrer" className="text-yellow-500 underline">@ohmzeus</a>) recently outlined a critical moment for the global monetary system&mdash;a &quot;prisoner&apos;s dilemma&quot; where nations, banks, and institutions must choose between costly cooperation or risky defection from the dollar system. The stakes: decades of accumulated global wealth and stability.
               </div>
               <div>
                 <b className="text-yellow-500">Key Insights from Zeus:</b>
                 <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
                   <li>
-                    <b>The Build-Up:</b> Crypto's original promise was financial sovereignty, but most innovation focused on infrastructure, not true monetary evolution. The world needs bridges between current and future systems, not destructive transitions. No nation wants the "reserve currency burden" due to the economic hollowing it causes (the Triffin Dilemma).
+                    <b>The Build-Up:</b> Crypto&apos;s original promise was financial sovereignty, but most innovation focused on infrastructure, not true monetary evolution. The world needs bridges between current and future systems, not destructive transitions. No nation wants the &quot;reserve currency burden&quot; due to the economic hollowing it causes (the Triffin Dilemma).
                   </li>
                   <li>
-                    <b>The Prisoner's Dilemma:</b> "Cooperation" means holding/transacting in dollars; "defection" means selling out. Mutual defection would trigger a global unwinding, harming all. The system's scale: $7.5T in Treasuries, $65T in dollar debt, $1Q in derivatives.
+                    <b>The Prisoner&apos;s Dilemma:</b> &quot;Cooperation&quot; means holding/transacting in dollars; &quot;defection&quot; means selling out. Mutual defection would trigger a global unwinding, harming all. The system&apos;s scale: $7.5T in Treasuries, $65T in dollar debt, $1Q in derivatives.
                   </li>
                   <li>
                     <b>Accelerating Trends:</b> China, BRICS, and Saudi Arabia are diversifying away from the dollar. Central banks are buying gold at record rates. US policy is shifting, making reserve status less attractive.
                   </li>
                   <li>
-                    <b>Olympus's Unique Role:</b> Olympus is designed as a "neutral, non-sovereign" system that can absorb and hold reserve assets, providing a pathway for orderly transition. Its adaptive policy, stakeholder governance, and expansion mechanism create natural demand for Treasuries—helping avoid disorderly liquidation. Olympus could become a "permanent repository," facilitating transition rather than collapse.
+                    <b>Olympus&apos;s Unique Role:</b> Olympus is designed as a &quot;neutral, non-sovereign&quot; system that can absorb and hold reserve assets, providing a pathway for orderly transition. Its adaptive policy, stakeholder governance, and expansion mechanism create natural demand for Treasuries&mdash;helping avoid disorderly liquidation. Olympus could become a &quot;permanent repository,&quot; facilitating transition rather than collapse.
                   </li>
                   <li>
-                    <b>A Call to Action:</b> The scale of the challenge is immense, but so is the opportunity. Olympus's architecture is built to scale with adoption, just as Bitcoin did. The time to build alternatives and coordinate is now—before crisis narrows our options.
+                    <b>A Call to Action:</b> The scale of the challenge is immense, but so is the opportunity. Olympus&apos;s architecture is built to scale with adoption, just as Bitcoin did. The time to build alternatives and coordinate is now&mdash;before crisis narrows our options.
                   </li>
                 </ul>
               </div>
               <div className="bg-black/30 border-l-4 border-yellow-500 p-6 my-6">
-                <span className="italic text-yellow-500">"The prisoner's dilemma we face isn't just an academic exercise – it's a consequential coordination game involving people making complex decisions with generational implications. Finding a path to the cooperative outcome isn't merely desirable; it's imperative for preserving decades of accumulated prosperity."</span>
+                <span className="italic text-yellow-500">&quot;The prisoner&apos;s dilemma we face isn&apos;t just an academic exercise &ndash; it&apos;s a consequential coordination game involving people making complex decisions with generational implications. Finding a path to the cooperative outcome isn&apos;t merely desirable; it&apos;s imperative for preserving decades of accumulated prosperity.&quot;</span>
               </div>
               <div>
                 <a
@@ -627,7 +627,7 @@ export default function OlympusPage() {
                   rel="noopener noreferrer"
                   className="text-yellow-500 underline text-base"
                 >
-                  Read Zeus's full thread on the global monetary prisoner's dilemma
+                  Read Zeus&apos;s full thread on the global monetary prisoner&apos;s dilemma
                 </a>
               </div>
             </div>
