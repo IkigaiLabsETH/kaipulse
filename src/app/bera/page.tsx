@@ -109,7 +109,7 @@ export default function BerachainHonestTake() {
             &quot;If you want to build something that lasts, you have to be willing to call out the cracks in the foundation.&quot;
           </p>
           <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-            After 3+ years building and investing in Berachain, we're still here—bullish, but not blind. This isn't a victory lap or a pitch. It's a builder's take on what's working, what's not, and what needs to change if Berachain is going to matter in the next cycle.
+            After 3+ years building and investing in Berachain, we&apos;re still here—bullish, but not blind. This isn&apos;t a victory lap or a pitch. It&apos;s a builder&apos;s take on what&apos;s working, what&apos;s not, and what needs to change if Berachain is going to matter in the next cycle.
           </p>
         </div>
       </section>
@@ -227,7 +227,7 @@ export default function BerachainHonestTake() {
           &quot;The best chains are built by those who care enough to call bullshit—and then do the work.&quot;
         </p>
         <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          Berachain's future isn't guaranteed. But the raw ingredients—tech, talent, and a core of true believers—are here. If we want to write a different story, it's on us to build, critique, and collaborate with open eyes and open minds.
+          Berachain&apos;s future isn&apos;t guaranteed. But the raw ingredients—tech, talent, and a core of true believers—are here. If we want to write a different story, it&apos;s on us to build, critique, and collaborate with open eyes and open minds.
         </p>
         <Link href="https://docs.berachain.com/" target="_blank">
           <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
