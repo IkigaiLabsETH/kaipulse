@@ -102,7 +102,7 @@ export default function BerachainHonestTake() {
       <section className="max-w-screen-lg mx-auto pt-32 pb-14 px-4 text-center relative z-10">
         <Badge className="bg-yellow-500 text-black text-sm mb-6 font-satoshi tracking-wide shadow-md">Builder & Backer Perspective</Badge>
         <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 mb-8 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Berachain: Honest Reflections
+          Honest Reflections
         </h1>
         <div className="max-w-2xl mx-auto">
           <p className="text-xl md:text-2xl font-epilogue text-yellow-400 italic mb-6 drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
@@ -174,28 +174,6 @@ export default function BerachainHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
-      {/* Risks & Challenges */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Risks & Challenges
-        </h2>
-        <div className="grid md:grid-cols-2 gap-14">
-          {risks.map((risk) => (
-            <div key={risk.title} className="bg-[#18191c]/80 rounded-2xl p-8 mb-2 border-l-4 border-yellow-500/60 shadow-xl">
-              <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{risk.title}</div>
-              <div className="font-satoshi text-white/80 text-lg md:text-xl">{risk.description}</div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-16 text-center">
-          <span className="font-epilogue text-2xl text-yellow-400 italic drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-2">&quot;No chain is perfect. The ones that last are the ones that learn.&quot;</span>
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
       {/* Honest Flaws & Solutions */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
@@ -220,7 +198,7 @@ export default function BerachainHonestTake() {
 
       {/* CTA */}
       <section className="max-w-screen-md mx-auto px-4 mb-40 text-center relative z-10">
-        <h2 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-10 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+        <h2 className="font-epilogue text-5xl md:text-8xl font-bold text-yellow-400 mb-10 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
           Where Do We Go From Here?
         </h2>
         <p className="font-epilogue text-2xl text-yellow-400 italic mb-8 max-w-2xl mx-auto drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
