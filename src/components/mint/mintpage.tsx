@@ -13,6 +13,8 @@ import {
   NFTProvider,
   NFTMedia,
   useActiveAccount,
+  NFTName,
+  NFTDescription,
 } from "thirdweb/react";
 import { client } from "@/lib/thirdwebClient";
 import React from "react";
@@ -77,6 +79,10 @@ export function MintPage(props: Props) {
                       loadingComponent={<Skeleton className="w-full h-full object-cover" />}
                       className="w-full h-full object-cover"
                     />
+                    <div className="mt-2">
+                      <NFTName className="text-lg font-semibold dark:text-white" />
+                      <NFTDescription className="text-gray-600 dark:text-gray-300 text-sm mt-1" />
+                    </div>
                   </NFTProvider>
                 ) : (
                   <MediaRenderer
