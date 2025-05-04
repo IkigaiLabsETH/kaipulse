@@ -159,8 +159,8 @@ export function MintPage(props: Props) {
   }
 
   return (
-    <div className={`flex flex-col-reverse md:flex-row min-h-screen bg-white dark:bg-[#111] transition-colors duration-200`}> {/* Responsive: stack on mobile */}
-      {/* Left column */}
+    <div className={`flex flex-col-reverse md:flex-row min-h-screen bg-white dark:bg-[#111] transition-colors duration-200`}>
+      {/* Left column: Mint UI only, no image/media */}
       <motion.div
         className="flex-1 flex flex-col justify-center px-4 md:px-8 py-8 md:py-12 max-w-xl mx-auto"
         initial={{ x: -60, opacity: 0 }}
@@ -358,7 +358,7 @@ export function MintPage(props: Props) {
           </>
         )}
       </motion.div>
-      {/* Right column: Art */}
+      {/* Right column: Art and cinematic effects */}
       <motion.div
         className="flex-1 flex items-center justify-center bg-transparent p-4 md:p-8"
         initial={{ x: 60, opacity: 0 }}

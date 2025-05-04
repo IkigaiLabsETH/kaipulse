@@ -1,28 +1,16 @@
 'use client'
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Header } from '@/components/Header'
 import { MintPage } from "@/components/mint/mintpage";
 import { getERC721Info } from "@/lib/erc721";
 import { contract } from "@/lib/constants";
 import Head from "next/head";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { MediaRenderer } from "thirdweb/react";
-import { client } from '@/lib/thirdwebClient';
 
 export default function Mint() {
   const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC721Info>> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [mintedTokenId, setMintedTokenId] = useState<string | null>(null);
-  const [mintedImageUrl, setMintedImageUrl] = useState<string | null>(null);
-  const [mintedImageLoading, setMintedImageLoading] = useState(false);
-  const [mintedImageError, setMintedImageError] = useState(false);
-  const [showCelebration, setShowCelebration] = useState(false);
-  const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [userInteracted, setUserInteracted] = useState(false);
 
   useEffect(() => {
     async function fetchInfo() {
@@ -39,48 +27,6 @@ export default function Mint() {
     }
     fetchInfo();
   }, []);
-
-  // Track user interaction for autoplay policy
-  useEffect(() => {
-    const handler = () => setUserInteracted(true);
-    window.addEventListener('pointerdown', handler, { once: true });
-    return () => window.removeEventListener('pointerdown', handler);
-  }, []);
-
-  // Helper to fetch NFT metadata from OpenSea
-  async function fetchMintedImage(tokenId: string) {
-    setMintedImageLoading(true);
-    setMintedImageError(false);
-    try {
-      const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${contract.address}/nfts/${tokenId}`);
-      const data = await res.json();
-      // OpenSea v2 returns metadata.image_url or metadata.image
-      const imageUrl = data.nft?.metadata?.image_url || data.nft?.metadata?.image || null;
-      if (imageUrl) setMintedImageUrl(imageUrl);
-      else setMintedImageError(true);
-    } catch {
-      setMintedImageUrl(null);
-      setMintedImageError(true);
-    }
-    setMintedImageLoading(false);
-  }
-
-  // Update onMinted callback to fetch image
-  const handleMinted = (tokenId: string) => {
-    setMintedTokenId(tokenId);
-    fetchMintedImage(tokenId);
-  };
-
-  // Celebration handler
-  const handleCelebration = () => {
-    setShowCelebration(true);
-    if (userInteracted && audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
-    if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
-    celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
-  };
 
   return (
     <>
@@ -101,124 +47,16 @@ export default function Mint() {
           <div className="flex items-center justify-center min-h-[40vh] text-yellow-500 text-lg">Loading...</div>
         )}
         {!loading && !error && nftInfo && (
-          <div className="flex flex-col-reverse md:flex-row min-h-screen bg-white dark:bg-[#111] transition-colors duration-200">
-            {/* Left column: Mint UI */}
-            <div className="flex-1 flex flex-col justify-center px-4 md:px-8 py-8 md:py-12 max-w-xl mx-auto">
-              <MintPage
-                contract={contract}
-                displayName={nftInfo.displayName}
-                description={nftInfo.description}
-                contractImage={nftInfo.contractImage}
-                pricePerToken={nftInfo.pricePerToken}
-                currencySymbol={nftInfo.currencySymbol}
-                isERC1155={false}
-                isERC721={true}
-                onMinted={handleMinted}
-                onCelebration={handleCelebration}
-              />
-            </div>
-            {/* Right column: Art and View NFT link */}
-            <div className="flex-1 flex flex-col items-center justify-center bg-transparent p-4 md:p-8">
-              <div className="relative max-w-2xl w-full h-[50vh] md:h-[70vh] flex items-center justify-center group pt-24 md:pt-0">
-                {/* Audio for cinematic effect */}
-                <audio ref={audioRef} src="/sounds/camera-shutter-mint.mp3" preload="auto" tabIndex={-1} aria-hidden="true" />
-                {/* Cinematic celebration animation */}
-                {showCelebration && (
-                  <>
-                    {/* Spotlight Sweep */}
-                    <motion.div
-                      className="absolute inset-0 z-20 pointer-events-none rounded-2xl"
-                      initial={{ x: '-100%' }}
-                      animate={{ x: '100%' }}
-                      transition={{ duration: 1.6, ease: 'easeInOut' }}
-                      style={{
-                        background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 40%, rgba(255,255,200,0.32) 50%, rgba(255,255,255,0.18) 60%, transparent 100%)',
-                        filter: 'blur(12px)',
-                      }}
-                    />
-                    {/* Minted! Text Overlay */}
-                    <motion.div
-                      className="absolute inset-0 z-30 flex items-center justify-center"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.5, ease: 'easeOut' }}
-                      style={{ pointerEvents: 'none' }}
-                    >
-                      <span className="text-5xl md:text-7xl font-epilogue font-extrabold text-yellow-400 drop-shadow-lg tracking-wide animate-pulse">
-                        Minted!
-                      </span>
-                    </motion.div>
-                  </>
-                )}
-                {/* Cinematic shimmer/pulse while loading minted image */}
-                {mintedImageLoading && (
-                  <motion.div
-                    className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl"
-                    initial={{ opacity: 0.7, scale: 1 }}
-                    animate={{ opacity: [0.7, 0.4, 0.7], scale: [1, 1.08, 1.15] }}
-                    transition={{ duration: 1.2, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
-                    style={{
-                      background: 'radial-gradient(circle, rgba(247,181,0,0.25) 0%, rgba(247,181,0,0.12) 60%, transparent 100%)',
-                      filter: 'blur(18px)',
-                      borderRadius: 16,
-                    }}
-                  />
-                )}
-                {/* Fallback: blurred contract image if error */}
-                {mintedImageError && (
-                  <Image
-                    src={nftInfo.contractImage || "/arty.png"}
-                    alt={nftInfo.displayName}
-                    width={800}
-                    height={1000}
-                    className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain blur-sm opacity-70"
-                    style={{ maxHeight: '100%', maxWidth: '100%' }}
-                  />
-                )}
-                {/* Fade in the minted image if available and not loading/error */}
-                {!mintedImageLoading && !mintedImageError && mintedImageUrl && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className="w-full h-full"
-                    style={{ position: 'absolute', inset: 0 }}
-                  >
-                    <MediaRenderer
-                      client={client}
-                      src={mintedImageUrl}
-                      alt={nftInfo.displayName}
-                      className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
-                      style={{ maxHeight: '100%', maxWidth: '100%' }}
-                    />
-                  </motion.div>
-                )}
-                {/* Default: contract image if nothing else */}
-                {!mintedImageLoading && !mintedImageError && !mintedImageUrl && (
-                  <Image
-                    src={nftInfo.contractImage || "/arty.png"}
-                    alt={nftInfo.displayName}
-                    width={800}
-                    height={1000}
-                    className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
-                    style={{ maxHeight: '100%', maxWidth: '100%' }}
-                  />
-                )}
-              </div>
-              {/* View your NFT link under the image */}
-              {mintedTokenId && (
-                <a
-                  href={`https://opensea.io/assets/${contract.address}/${mintedTokenId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-block text-yellow-400 font-bold underline text-2xl font-epilogue hover:text-yellow-300 transition-colors"
-                >
-                  View your NFT
-                </a>
-              )}
-            </div>
-          </div>
+          <MintPage
+            contract={contract}
+            displayName={nftInfo.displayName}
+            description={nftInfo.description}
+            contractImage={nftInfo.contractImage}
+            pricePerToken={nftInfo.pricePerToken}
+            currencySymbol={nftInfo.currencySymbol}
+            isERC1155={false}
+            isERC721={true}
+          />
         )}
       </div>
     </>
