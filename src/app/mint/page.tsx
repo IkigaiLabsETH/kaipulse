@@ -27,13 +27,13 @@ export default function Mint() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left Side: Title, Description, Connect Button, Price, Mint Phases */}
           <motion.div
-            className="space-y-8 pr-4 md:pr-8 lg:pr-12"
+            className="space-y-8 pr-4 md:pr-8 lg:pr-12 flex flex-col justify-center h-full"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="uppercase tracking-widest text-gray-400 text-xs mb-2">AI ART by LTL</div>
-            <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-white mb-4">{nftInfo?.displayName || "..."}</h1>
+            {/* Only show the description here */}
             <p className="text-lg text-gray-200 whitespace-pre-line mb-8">{nftInfo?.description || "..."}</p>
             <div className="space-y-4">
               <ConnectButton
@@ -58,7 +58,6 @@ export default function Mint() {
                   <div className="text-xl font-bold text-yellow-500">
                     {nftInfo.pricePerToken} {nftInfo.currencySymbol}
                   </div>
-                  {/* You can expand this to show more phases if your contract supports it */}
                   <div className="space-y-2 mt-4">
                     <div className="flex items-center gap-4">
                       <span className="text-base font-semibold text-white/80 w-28">Public Mint</span>
@@ -74,24 +73,21 @@ export default function Mint() {
           </motion.div>
           {/* Right Side: NFT Image */}
           <motion.div
-            className="relative h-[400px] md:h-[600px] flex flex-col items-center justify-center"
+            className="relative h-[400px] md:h-[600px] flex flex-col items-center justify-center md:h-full md:min-h-[600px]"
+            style={{ height: '100%', width: '100%' }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             {nftInfo ? (
-              <>
-                <Image
-                  src={nftInfo.contractImage || "/arty.png"}
-                  alt={nftInfo.displayName || "NFT"}
-                  className="object-cover rounded-xl w-full h-[300px] md:h-[500px] mb-4"
-                  width={800}
-                  height={800}
-                  priority
-                />
-                <div className="text-3xl font-bold text-white mt-2">{nftInfo.displayName}</div>
-                <div className="text-lg text-gray-200 mt-2">{nftInfo.description}</div>
-              </>
+              <Image
+                src={nftInfo.contractImage || "/arty.png"}
+                alt={nftInfo.displayName || "NFT"}
+                className="object-cover rounded-xl w-full h-full"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             ) : (
               <div className="bg-gray-800 w-full h-full rounded-xl animate-pulse" />
             )}
