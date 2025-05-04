@@ -97,6 +97,7 @@ export function Header() {
       items: [
         { name: 'TALK', href: '/voice' },
         { name: 'WINE', href: '/wine' },
+        { name: 'MINT', href: '/mint' },
         { name: 'PLAY', href: '/biohacking' },
         { name: 'CLUB', href: '/club' },
         { name: 'DRIVE', href: '/tesla' },
