@@ -15,6 +15,7 @@ import React from "react";
 import { toast } from "sonner";
 import { getActiveClaimCondition } from "thirdweb/extensions/erc721";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Props = {
   contract: ThirdwebContract;
@@ -45,6 +46,9 @@ export function MintPage(props: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [userInteracted, setUserInteracted] = useState(false);
   const [showGlowPulse, setShowGlowPulse] = useState(false);
+  const [mintedImageUrl, setMintedImageUrl] = useState<string | null>(null);
+  const [mintedImageLoading, setMintedImageLoading] = useState(false);
+  const [mintedImageError, setMintedImageError] = useState(false);
 
   // Countdown logic for claim phase
   const [now, setNow] = useState(Date.now());
@@ -131,6 +135,23 @@ export function MintPage(props: Props) {
     }
     // Add more checks as needed (e.g., sold out, phase ended, etc.)
     return true;
+  }
+
+  // Fetch NFT metadata from OpenSea after mint
+  async function fetchMintedImage(tokenId: string) {
+    setMintedImageLoading(true);
+    setMintedImageError(false);
+    try {
+      const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${props.contract.address}/nfts/${tokenId}`);
+      const data = await res.json();
+      const imageUrl = data.nft?.metadata?.image_url || data.nft?.metadata?.image || null;
+      if (imageUrl) setMintedImageUrl(imageUrl);
+      else setMintedImageError(true);
+    } catch {
+      setMintedImageUrl(null);
+      setMintedImageError(true);
+    }
+    setMintedImageLoading(false);
   }
 
   if (props.pricePerToken === null || props.pricePerToken === undefined) {
@@ -275,6 +296,8 @@ export function MintPage(props: Props) {
                   toast.success("Minted successfully");
                   setShowGlowPulse(false);
                   setShowCelebration(true);
+                  if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
+                  celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
                   // Fetch latest NFT for user (ERC721 only)
                   if (props.isERC721 && account?.address) {
                     try {
@@ -283,13 +306,12 @@ export function MintPage(props: Props) {
                       const data = await res.json();
                       const latest = data.nfts?.[0];
                       if (latest && latest.token_id) {
+                        fetchMintedImage(latest.token_id);
                         if (props.onMinted) props.onMinted(latest.token_id);
                         if (props.onCelebration) props.onCelebration();
                       }
                     } catch {}
                   }
-                  if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
-                  celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
                 }}
                 onError={(err) => {
                   setShowGlowPulse(false);
@@ -337,6 +359,102 @@ export function MintPage(props: Props) {
         )}
       </motion.div>
       {/* Right column: Art */}
+      <motion.div
+        className="flex-1 flex items-center justify-center bg-transparent p-4 md:p-8"
+        initial={{ x: 60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+      >
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="relative max-w-2xl w-full h-[50vh] md:h-[70vh] flex items-center justify-center group pt-24 md:pt-0">
+            {/* Audio for cinematic effect */}
+            <audio ref={audioRef} src="/sounds/camera-shutter-mint.mp3" preload="auto" tabIndex={-1} aria-hidden="true" />
+            {/* Soft yellow glow/gradient behind art */}
+            <div className="absolute inset-0 z-0 pointer-events-none rounded-2xl bg-gradient-to-br from-yellow-500/10 via-transparent to-yellow-500/10 blur-2xl" />
+            {/* Cinematic celebration animation */}
+            {showCelebration && (
+              <>
+                {/* Spotlight Sweep */}
+                <motion.div
+                  className="absolute inset-0 z-20 pointer-events-none rounded-2xl"
+                  initial={{ x: '-100%' }}
+                  animate={{ x: '100%' }}
+                  transition={{ duration: 1.6, ease: 'easeInOut' }}
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 40%, rgba(255,255,200,0.32) 50%, rgba(255,255,255,0.18) 60%, transparent 100%)',
+                    filter: 'blur(12px)',
+                  }}
+                />
+                {/* Minted! Text Overlay */}
+                <motion.div
+                  className="absolute inset-0 z-30 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  style={{ pointerEvents: 'none' }}
+                >
+                  <span className="text-5xl md:text-7xl font-epilogue font-extrabold text-yellow-400 drop-shadow-lg tracking-wide animate-pulse">
+                    Minted!
+                  </span>
+                </motion.div>
+              </>
+            )}
+            {/* Cinematic shimmer/pulse while loading minted image */}
+            {mintedImageLoading && (
+              <motion.div
+                className="absolute inset-0 z-10 flex items-center justify-center rounded-2xl"
+                initial={{ opacity: 0.7, scale: 1 }}
+                animate={{ opacity: [0.7, 0.4, 0.7], scale: [1, 1.08, 1.15] }}
+                transition={{ duration: 1.2, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+                style={{
+                  background: 'radial-gradient(circle, rgba(247,181,0,0.25) 0%, rgba(247,181,0,0.12) 60%, transparent 100%)',
+                  filter: 'blur(18px)',
+                  borderRadius: 16,
+                }}
+              />
+            )}
+            {/* Fallback: blurred contract image if error */}
+            {mintedImageError && (
+              <Image
+                src={props.contractImage || "/arty.png"}
+                alt={props.displayName}
+                width={800}
+                height={1000}
+                className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain blur-sm opacity-70"
+              />
+            )}
+            {/* Fade in the minted image if available and not loading/error */}
+            {!mintedImageLoading && !mintedImageError && mintedImageUrl && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="w-full h-full"
+                style={{ position: 'absolute', inset: 0 }}
+              >
+                <Image
+                  src={mintedImageUrl}
+                  alt={props.displayName}
+                  width={800}
+                  height={1000}
+                  className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
+                />
+              </motion.div>
+            )}
+            {/* Default: contract image if nothing else */}
+            {!mintedImageLoading && !mintedImageError && !mintedImageUrl && (
+              <Image
+                src={props.contractImage || "/arty.png"}
+                alt={props.displayName}
+                width={800}
+                height={1000}
+                className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
+              />
+            )}
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
