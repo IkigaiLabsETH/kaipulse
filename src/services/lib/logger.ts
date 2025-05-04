@@ -1,3 +1,5 @@
+import { safeStringify } from "@/utils/safeStringify";
+
 type LogArg = string | number | boolean | object | null | undefined;
 type LogArgs = LogArg[];
 type LogLevel = 'info' | 'error' | 'warn' | 'debug';
@@ -16,7 +18,7 @@ const formatError = (error: unknown): LogArg => {
 const formatOutput = (level: LogLevel, message: string, args: LogArgs): string => {
   const timestamp = new Date().toISOString();
   const formattedArgs = args.map(arg => 
-    typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+    typeof arg === 'object' ? safeStringify(arg) : String(arg)
   ).join(' ');
   
   return `[${timestamp}] ${level.toUpperCase()}: ${message} ${formattedArgs}`;

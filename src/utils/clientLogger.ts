@@ -1,3 +1,5 @@
+import { safeStringify } from "@/utils/safeStringify";
+
 type LogLevel = 'error' | 'info' | 'warn';
 type LogData = string | number | boolean | null | undefined | Record<string, unknown> | Error | unknown[] | unknown;
 
@@ -20,7 +22,7 @@ function formatError(error: unknown): FormattedError {
 
   return {
     name: 'UnknownError',
-    message: typeof error === 'string' ? error : JSON.stringify(error),
+    message: typeof error === 'string' ? error : safeStringify(error),
   };
 }
 
@@ -34,18 +36,18 @@ function formatData(data: LogData): string {
   if (!data) return '';
   
   if (data instanceof Error) {
-    return '\n' + JSON.stringify(formatError(data), null, 2);
+    return '\n' + safeStringify(formatError(data));
   }
 
   if (Array.isArray(data)) {
     const formattedArray = data.map(item => 
       item instanceof Error ? formatError(item) : item
     );
-    return '\n' + JSON.stringify(formattedArray, null, 2);
+    return '\n' + safeStringify(formattedArray);
   }
   
   try {
-    return '\n' + JSON.stringify(data, null, 2);
+    return '\n' + safeStringify(data);
   } catch {
     return '\n' + String(data);
   }
