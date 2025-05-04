@@ -43,6 +43,7 @@ export function MintPage(props: Props) {
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [showGlowPulse, setShowGlowPulse] = useState(false);
 
   // Countdown logic for claim phase
   const [now, setNow] = useState(Date.now());
@@ -192,8 +193,23 @@ export function MintPage(props: Props) {
             <motion.div
               whileHover={{ scale: 1.02, boxShadow: '0 6px 0 #000' }}
               whileTap={{ scale: 0.98 }}
-              className="w-full"
+              className="w-full relative"
             >
+              {/* Golden Glow Pulse */}
+              {showGlowPulse && (
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
+                  initial={{ opacity: 0.7, scale: 1 }}
+                  animate={{ opacity: [0.7, 0.4, 0.7], scale: [1, 1.15, 1.25] }}
+                  exit={{ opacity: 0, scale: 1.4 }}
+                  transition={{ duration: 1.2, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+                  style={{
+                    background: 'radial-gradient(circle, rgba(247,181,0,0.35) 0%, rgba(247,181,0,0.18) 60%, transparent 100%)',
+                    filter: 'blur(16px)',
+                    borderRadius: 16,
+                  }}
+                />
+              )}
               <ClaimButton
                 theme={"light"}
                 contractAddress={props.contract.address}
@@ -236,14 +252,21 @@ export function MintPage(props: Props) {
                   transition: 'box-shadow 0.2s, transform 0.2s',
                 }}
                 disabled={false}
-                onTransactionSent={() => toast.info("Minting NFT")}
+                onTransactionSent={() => {
+                  setShowGlowPulse(true);
+                  toast.info("Minting NFT");
+                }}
                 onTransactionConfirmed={() => {
                   toast.success("Minted successfully");
+                  setShowGlowPulse(false);
                   setShowCelebration(true);
                   if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
                   celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
                 }}
-                onError={(err) => toast.error(err.message)}
+                onError={(err) => {
+                  setShowGlowPulse(false);
+                  toast.error(err.message);
+                }}
               >
                 Mint{quantity > 1 ? ` (${quantity})` : ""}
               </ClaimButton>
