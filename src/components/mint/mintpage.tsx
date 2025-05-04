@@ -26,7 +26,7 @@ type Props = {
   currencySymbol: string | null;
   isERC1155: boolean;
   isERC721: boolean;
-  tokenId: string;
+  tokenId?: string;
 };
 
 type MinimalClaimCondition = {
@@ -38,7 +38,7 @@ export function MintPage(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
   const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null>(null);
-  const tokenIdBigInt = BigInt(props.tokenId);
+  const tokenIdBigInt = props.isERC1155 && props.tokenId ? BigInt(props.tokenId) : undefined;
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -117,6 +117,23 @@ export function MintPage(props: Props) {
     const now = Date.now() / 1000;
     return !!condition.startTimestamp && now < Number(condition.startTimestamp);
   }
+
+  // Helper: is claimable
+  function isClaimable() {
+    if (!claimCondition) return false;
+    // If maxClaimablePerWallet is 0, or claimCondition is null, or other logic
+    if (
+      ('maxClaimablePerWallet' in claimCondition) &&
+      ((claimCondition as MinimalClaimCondition).maxClaimablePerWallet === 0)
+    ) {
+      return false;
+    }
+    // Add more checks as needed (e.g., sold out, phase ended, etc.)
+    return true;
+  }
+
+  // Track if mint was successful for "View your NFT" link
+  const [mintedTokenId, setMintedTokenId] = useState<string | null>(null);
 
   if (props.pricePerToken === null || props.pricePerToken === undefined) {
     return null;
@@ -216,7 +233,7 @@ export function MintPage(props: Props) {
                 chain={props.contract.chain}
                 client={props.contract.client}
                 claimParams={
-                  props.isERC1155
+                  props.isERC1155 && tokenIdBigInt !== undefined
                     ? {
                         type: "ERC1155",
                         tokenId: tokenIdBigInt,
@@ -251,15 +268,27 @@ export function MintPage(props: Props) {
                   outline: 'none',
                   transition: 'box-shadow 0.2s, transform 0.2s',
                 }}
-                disabled={false}
+                disabled={!isClaimable()}
                 onTransactionSent={() => {
                   setShowGlowPulse(true);
                   toast.info("Minting NFT");
                 }}
-                onTransactionConfirmed={() => {
+                onTransactionConfirmed={async () => {
                   toast.success("Minted successfully");
                   setShowGlowPulse(false);
                   setShowCelebration(true);
+                  // Fetch latest NFT for user (ERC721 only)
+                  if (props.isERC721 && account?.address) {
+                    try {
+                      // Use OpenSea API to get latest owned NFT for this contract
+                      const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/account/${account.address}/nfts?contractAddress=${props.contract.address}&limit=1&orderBy=acquired_at&orderDirection=desc`);
+                      const data = await res.json();
+                      const latest = data.nfts?.[0];
+                      if (latest && latest.token_id) {
+                        setMintedTokenId(latest.token_id);
+                      }
+                    } catch {}
+                  }
                   if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
                   celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
                 }}
@@ -268,8 +297,23 @@ export function MintPage(props: Props) {
                   toast.error(err.message);
                 }}
               >
-                Mint{quantity > 1 ? ` (${quantity})` : ""}
+                {!isClaimable() ? "Sold out" : `Mint${quantity > 1 ? ` (${quantity})` : ""}`}
               </ClaimButton>
+              {/* User feedback if not claimable */}
+              {!isClaimable() && (
+                <div className="mt-2 text-yellow-400 text-sm font-satoshi">Sold out or you have already minted this NFT.</div>
+              )}
+              {/* View your NFT link after minting */}
+              {mintedTokenId && (
+                <a
+                  href={`https://opensea.io/assets/${props.contract.address}/${mintedTokenId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-yellow-400 font-bold underline text-lg font-epilogue hover:text-yellow-300 transition-colors"
+                >
+                  View your NFT
+                </a>
+              )}
             </motion.div>
             {claimCondition && (
               <div className="mt-12 max-w-md">
