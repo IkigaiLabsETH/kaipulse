@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Header } from '@/components/Header'
 import { MintPage } from "@/components/mint/mintpage";
 import { getERC721Info } from "@/lib/erc721";
@@ -8,6 +8,8 @@ import { contract } from "@/lib/constants";
 import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MediaRenderer } from "thirdweb/react";
+import { client } from '@/lib/thirdwebClient';
 
 export default function Mint() {
   const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC721Info>> | null>(null);
@@ -17,6 +19,9 @@ export default function Mint() {
   const [mintedImageUrl, setMintedImageUrl] = useState<string | null>(null);
   const [mintedImageLoading, setMintedImageLoading] = useState(false);
   const [mintedImageError, setMintedImageError] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     async function fetchInfo() {
@@ -58,6 +63,17 @@ export default function Mint() {
     fetchMintedImage(tokenId);
   };
 
+  // Celebration handler
+  const handleCelebration = () => {
+    setShowCelebration(true);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+    if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
+    celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
+  };
+
   return (
     <>
       <Head>
@@ -90,11 +106,43 @@ export default function Mint() {
                 isERC1155={false}
                 isERC721={true}
                 onMinted={handleMinted}
+                onCelebration={handleCelebration}
               />
             </div>
             {/* Right column: Art and View NFT link */}
             <div className="flex-1 flex flex-col items-center justify-center bg-transparent p-4 md:p-8">
               <div className="relative max-w-2xl w-full h-[50vh] md:h-[70vh] flex items-center justify-center group pt-24 md:pt-0">
+                {/* Audio for cinematic effect */}
+                <audio ref={audioRef} src="/sounds/camera-shutter-mint.mp3" preload="auto" tabIndex={-1} aria-hidden="true" />
+                {/* Cinematic celebration animation */}
+                {showCelebration && (
+                  <>
+                    {/* Spotlight Sweep */}
+                    <motion.div
+                      className="absolute inset-0 z-20 pointer-events-none rounded-2xl"
+                      initial={{ x: '-100%' }}
+                      animate={{ x: '100%' }}
+                      transition={{ duration: 1.6, ease: 'easeInOut' }}
+                      style={{
+                        background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 40%, rgba(255,255,200,0.32) 50%, rgba(255,255,255,0.18) 60%, transparent 100%)',
+                        filter: 'blur(12px)',
+                      }}
+                    />
+                    {/* Minted! Text Overlay */}
+                    <motion.div
+                      className="absolute inset-0 z-30 flex items-center justify-center"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.5, ease: 'easeOut' }}
+                      style={{ pointerEvents: 'none' }}
+                    >
+                      <span className="text-5xl md:text-7xl font-epilogue font-extrabold text-yellow-400 drop-shadow-lg tracking-wide animate-pulse">
+                        Minted!
+                      </span>
+                    </motion.div>
+                  </>
+                )}
                 {/* Cinematic shimmer/pulse while loading minted image */}
                 {mintedImageLoading && (
                   <motion.div
@@ -129,15 +177,12 @@ export default function Mint() {
                     className="w-full h-full"
                     style={{ position: 'absolute', inset: 0 }}
                   >
-                    <Image
+                    <MediaRenderer
+                      client={client}
                       src={mintedImageUrl}
                       alt={nftInfo.displayName}
-                      width={800}
-                      height={1000}
                       className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
                       style={{ maxHeight: '100%', maxWidth: '100%' }}
-                      onLoadingComplete={() => setMintedImageLoading(false)}
-                      onError={() => setMintedImageError(true)}
                     />
                   </motion.div>
                 )}
