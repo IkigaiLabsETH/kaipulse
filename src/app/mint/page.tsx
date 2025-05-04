@@ -33,7 +33,8 @@ export default function Mint() {
             transition={{ duration: 0.5 }}
           >
             <div className="uppercase tracking-widest text-gray-400 text-xs mb-2">AI ART by LTL</div>
-            {/* Only show the description here */}
+            {/* Show contract name and description here */}
+            <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-white mb-4">{nftInfo?.displayName || "..."}</h1>
             <p className="text-lg text-gray-200 whitespace-pre-line mb-8">{nftInfo?.description || "..."}</p>
             <div className="space-y-4">
               <ConnectButton
@@ -73,8 +74,8 @@ export default function Mint() {
           </motion.div>
           {/* Right Side: NFT Image */}
           <motion.div
-            className="relative h-[400px] md:h-[600px] flex flex-col items-center justify-center md:h-full md:min-h-[600px]"
-            style={{ height: '100%', width: '100%' }}
+            className="relative flex flex-col items-center justify-center h-[50vh] md:h-[80vh] w-full md:w-[50vw]"
+            style={{ minHeight: '400px', height: '100%', width: '100%' }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
