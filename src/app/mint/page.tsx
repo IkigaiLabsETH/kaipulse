@@ -22,6 +22,7 @@ export default function Mint() {
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   useEffect(() => {
     async function fetchInfo() {
@@ -37,6 +38,13 @@ export default function Mint() {
       }
     }
     fetchInfo();
+  }, []);
+
+  // Track user interaction for autoplay policy
+  useEffect(() => {
+    const handler = () => setUserInteracted(true);
+    window.addEventListener('pointerdown', handler, { once: true });
+    return () => window.removeEventListener('pointerdown', handler);
   }, []);
 
   // Helper to fetch NFT metadata from OpenSea
@@ -66,7 +74,7 @@ export default function Mint() {
   // Celebration handler
   const handleCelebration = () => {
     setShowCelebration(true);
-    if (audioRef.current) {
+    if (userInteracted && audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     }
