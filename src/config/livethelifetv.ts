@@ -15,6 +15,11 @@ export const livethelifetvNFTs: LivethelifeTVNFT[] = [
   },
   {
     contract: "0x1dd24550890cEd98f4166968FCA1d5E7Bf5dEA77",
+    tokenId: "0",
+    priority: 0
+  },
+  {
+    contract: "0x1dd24550890cEd98f4166968FCA1d5E7Bf5dEA77",
     tokenId: "2"
   },
   {
