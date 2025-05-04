@@ -15,7 +15,6 @@ import { client } from "@/lib/thirdwebClient";
 import React from "react";
 import { toast } from "sonner";
 import { getActiveClaimCondition } from "thirdweb/extensions/erc721";
-import { safeStringify } from "@/utils/safeStringify";
 import { motion } from "framer-motion";
 
 type Props = {
@@ -172,12 +171,18 @@ export function MintPage(props: Props) {
               Mint{quantity > 1 ? ` (${quantity})` : ""}
             </ClaimButton>
             {claimCondition && (
-              <div className="mt-4 p-4 bg-gray-800 rounded-lg text-white space-y-1">
-                {claimCondition.maxClaimableSupply && (
-                  <div>Max Supply: {claimCondition.maxClaimableSupply.toString()}</div>
-                )}
-                {/* Fallback: show all claimCondition as JSON for debugging */}
-                <pre className="text-xs text-gray-300 bg-gray-900 rounded p-2 overflow-x-auto">{safeStringify(claimCondition)}</pre>
+              <div className="mt-6 bg-[#181818] border border-yellow-500/40 rounded-lg px-6 py-4 text-white max-w-md">
+                <div className="flex items-center gap-4 mb-2">
+                  <span className="text-sm text-gray-400 uppercase tracking-widest">Max Supply</span>
+                  <span className="text-lg font-bold text-yellow-400">
+                    {claimCondition.maxClaimableSupply ? Number(claimCondition.maxClaimableSupply.toString()).toLocaleString() : '—'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-xs px-2 py-1 rounded bg-yellow-500 text-black font-semibold">
+                    Minting Live
+                  </span>
+                </div>
               </div>
             )}
           </>
