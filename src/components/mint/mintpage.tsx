@@ -27,6 +27,7 @@ type Props = {
   isERC1155: boolean;
   isERC721: boolean;
   tokenId?: string;
+  onMinted?: (tokenId: string) => void;
 };
 
 type MinimalClaimCondition = {
@@ -131,9 +132,6 @@ export function MintPage(props: Props) {
     // Add more checks as needed (e.g., sold out, phase ended, etc.)
     return true;
   }
-
-  // Track if mint was successful for "View your NFT" link
-  const [mintedTokenId, setMintedTokenId] = useState<string | null>(null);
 
   if (props.pricePerToken === null || props.pricePerToken === undefined) {
     return null;
@@ -285,7 +283,7 @@ export function MintPage(props: Props) {
                       const data = await res.json();
                       const latest = data.nfts?.[0];
                       if (latest && latest.token_id) {
-                        setMintedTokenId(latest.token_id);
+                        if (props.onMinted) props.onMinted(latest.token_id);
                       }
                     } catch {}
                   }
@@ -302,17 +300,6 @@ export function MintPage(props: Props) {
               {/* User feedback if not claimable */}
               {!isClaimable() && (
                 <div className="mt-2 text-yellow-400 text-sm font-satoshi">Sold out or you have already minted this NFT.</div>
-              )}
-              {/* View your NFT link after minting */}
-              {mintedTokenId && (
-                <a
-                  href={`https://opensea.io/assets/${props.contract.address}/${mintedTokenId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-yellow-400 font-bold underline text-lg font-epilogue hover:text-yellow-300 transition-colors"
-                >
-                  View your NFT
-                </a>
               )}
             </motion.div>
             {claimCondition && (
