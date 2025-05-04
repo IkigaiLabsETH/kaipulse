@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,7 @@ import { client } from "@/lib/thirdwebClient";
 import React from "react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getActiveClaimCondition } from "thirdweb/extensions/erc721";
 
 type Props = {
   contract: ThirdwebContract;
@@ -34,6 +35,19 @@ type Props = {
 export function MintPage(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
+  const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null>(null);
+
+  useEffect(() => {
+    async function fetchClaimCondition() {
+      try {
+        const condition = await getActiveClaimCondition({ contract: props.contract });
+        setClaimCondition(condition);
+      } catch {
+        setClaimCondition(null);
+      }
+    }
+    fetchClaimCondition();
+  }, [props.contract]);
 
   const decreaseQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
@@ -78,7 +92,16 @@ export function MintPage(props: Props) {
               </div>
               <h2 className="text-2xl font-bold mb-2 dark:text-white">{props.displayName}</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">{props.description}</p>
-              <div className="flex items-center justify-between mb-4">
+              {claimCondition && (
+                <div className="mt-4 p-4 bg-gray-800 rounded-lg text-white space-y-1">
+                  {claimCondition.maxClaimableSupply && (
+                    <div>Max Supply: {claimCondition.maxClaimableSupply.toString()}</div>
+                  )}
+                  {/* Fallback: show all claimCondition as JSON for debugging */}
+                  <pre className="text-xs text-gray-300 bg-gray-900 rounded p-2 overflow-x-auto">{JSON.stringify(claimCondition, null, 2)}</pre>
+                </div>
+              )}
+              <div className="flex items-center justify-between mb-4 mt-4">
                 <div className="flex items-center">
                   <Button
                     variant="outline"
