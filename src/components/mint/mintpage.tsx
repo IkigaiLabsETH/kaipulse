@@ -21,6 +21,7 @@ import React from "react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getActiveClaimCondition } from "thirdweb/extensions/erc721";
+import { safeStringify } from "@/utils/safeStringify";
 
 type Props = {
   contract: ThirdwebContract;
@@ -105,7 +106,7 @@ export function MintPage(props: Props) {
                     <div>Max Supply: {claimCondition.maxClaimableSupply.toString()}</div>
                   )}
                   {/* Fallback: show all claimCondition as JSON for debugging */}
-                  <pre className="text-xs text-gray-300 bg-gray-900 rounded p-2 overflow-x-auto">{JSON.stringify(claimCondition, null, 2)}</pre>
+                  <pre className="text-xs text-gray-300 bg-gray-900 rounded p-2 overflow-x-auto">{safeStringify(claimCondition)}</pre>
                 </div>
               )}
               <div className="flex items-center justify-between mb-4 mt-4">
