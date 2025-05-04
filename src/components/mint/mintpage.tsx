@@ -53,109 +53,135 @@ export function MintPage(props: Props) {
         <ConnectButton client={client} />
       </div>
       <Card className="w-full max-w-md">
-        <CardContent className="pt-6">
-          <div className="aspect-square overflow-hidden rounded-lg mb-4 relative">
-            {props.isERC1155 ? (
-              <NFTProvider contract={props.contract} tokenId={props.tokenId}>
-                <NFTMedia
-                  loadingComponent={<Skeleton className="w-full h-full object-cover" />}
-                  className="w-full h-full object-cover"
-                />
-              </NFTProvider>
-            ) : (
-              <MediaRenderer
-                client={client}
-                className="w-full h-full object-cover"
-                alt=""
-                src={props.contractImage || "/placeholder.svg?height=400&width=400"}
-              />
-            )}
-            <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-sm font-semibold">
-              {props.pricePerToken} {props.currencySymbol}/each
-            </div>
-          </div>
-          <h2 className="text-2xl font-bold mb-2 dark:text-white">{props.displayName}</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">{props.description}</p>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={decreaseQuantity}
-                disabled={quantity <= 1}
-                aria-label="Decrease quantity"
-                className="rounded-r-none"
+        {account ? (
+          <>
+            <CardContent className="pt-6">
+              <div className="aspect-square overflow-hidden rounded-lg mb-4 relative">
+                {props.isERC1155 ? (
+                  <NFTProvider contract={props.contract} tokenId={props.tokenId}>
+                    <NFTMedia
+                      loadingComponent={<Skeleton className="w-full h-full object-cover" />}
+                      className="w-full h-full object-cover"
+                    />
+                  </NFTProvider>
+                ) : (
+                  <MediaRenderer
+                    client={client}
+                    className="w-full h-full object-cover"
+                    alt=""
+                    src={props.contractImage || "/placeholder.svg?height=400&width=400"}
+                  />
+                )}
+                <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-sm font-semibold">
+                  {props.pricePerToken} {props.currencySymbol}/each
+                </div>
+              </div>
+              <h2 className="text-2xl font-bold mb-2 dark:text-white">{props.displayName}</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{props.description}</p>
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={decreaseQuantity}
+                    disabled={quantity <= 1}
+                    aria-label="Decrease quantity"
+                    className="rounded-r-none"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <Input
+                    type="number"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    className="w-28 text-center rounded-none border-x-0 pl-6"
+                    min="1"
+                  />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={increaseQuantity}
+                    aria-label="Increase quantity"
+                    className="rounded-l-none"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="text-base pr-1 font-semibold dark:text-white">
+                  Total: {props.pricePerToken * quantity} {props.currencySymbol}
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <ClaimButton
+                theme={"light"}
+                contractAddress={props.contract.address}
+                chain={props.contract.chain}
+                client={props.contract.client}
+                claimParams={
+                  props.isERC1155
+                    ? {
+                        type: "ERC1155",
+                        tokenId: props.tokenId,
+                        quantity: BigInt(quantity),
+                        to: account.address,
+                        from: account.address,
+                      }
+                    : props.isERC721
+                    ? {
+                        type: "ERC721",
+                        quantity: BigInt(quantity),
+                        to: account.address,
+                        from: account.address,
+                      }
+                    : {
+                        type: "ERC20",
+                        quantity: String(quantity),
+                        to: account.address,
+                        from: account.address,
+                      }
+                }
+                style={{
+                  backgroundColor: "#F7B500",
+                  color: "black",
+                  width: "100%",
+                  fontWeight: 700,
+                  fontSize: 18,
+                  borderRadius: 8,
+                  padding: "18px 32px",
+                  boxShadow: "0 4px 0 #000",
+                  marginBottom: 8,
+                }}
+                disabled={false}
+                onTransactionSent={() => toast.info("Minting NFT")}
+                onTransactionConfirmed={() => toast.success("Minted successfully")}
+                onError={(err) => toast.error(err.message)}
               >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <Input
-                type="number"
-                value={quantity}
-                onChange={handleQuantityChange}
-                className="w-28 text-center rounded-none border-x-0 pl-6"
-                min="1"
-              />
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={increaseQuantity}
-                aria-label="Increase quantity"
-                className="rounded-l-none"
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
-            <div className="text-base pr-1 font-semibold dark:text-white">
-              Total: {props.pricePerToken * quantity} {props.currencySymbol}
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter>
-          {account ? (
-            <ClaimButton
-              theme={"light"}
-              contractAddress={props.contract.address}
-              chain={props.contract.chain}
-              client={props.contract.client}
-              claimParams={
-                props.isERC1155
-                  ? {
-                      type: "ERC1155",
-                      tokenId: props.tokenId,
-                      quantity: BigInt(quantity),
-                      to: account.address,
-                      from: account.address,
-                    }
-                  : props.isERC721
-                  ? {
-                      type: "ERC721",
-                      quantity: BigInt(quantity),
-                      to: account.address,
-                      from: account.address,
-                    }
-                  : {
-                      type: "ERC20",
-                      quantity: String(quantity),
-                      to: account.address,
-                      from: account.address,
-                    }
-              }
-              style={{
-                backgroundColor: "black",
-                color: "white",
-                width: "100%",
+                Collect Art{quantity > 1 ? ` (${quantity})` : ""}
+              </ClaimButton>
+            </CardFooter>
+          </>
+        ) : (
+          <CardContent className="flex flex-col items-center justify-center min-h-[400px]">
+            <ConnectButton
+              client={client}
+              connectButton={{
+                style: {
+                  backgroundColor: '#F7B500',
+                  color: 'black',
+                  fontWeight: 700,
+                  fontSize: 18,
+                  borderRadius: 8,
+                  padding: '18px 32px',
+                  boxShadow: '0 4px 0 #000',
+                  marginBottom: 8,
+                  width: '100%'
+                },
+                label: 'Connect Wallet',
               }}
-              disabled={false}
-              onTransactionSent={() => toast.info("Minting NFT")}
-              onTransactionConfirmed={() => toast.success("Minted successfully")}
-              onError={(err) => toast.error(err.message)}
-            >
-              Mint {quantity} NFT{quantity > 1 ? "s" : ""}
-            </ClaimButton>
-          ) : (
-            <ConnectButton client={client} connectButton={{ style: { width: "100%" } }} />
-          )}
-        </CardFooter>
+            />
+          </CardContent>
+        )}
       </Card>
       {/* Toast notification can be conditionally rendered based on your logic */}
     </div>
