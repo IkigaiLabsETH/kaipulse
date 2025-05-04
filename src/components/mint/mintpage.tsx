@@ -40,6 +40,23 @@ export function MintPage(props: Props) {
   const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null>(null);
   const tokenIdBigInt = BigInt(props.tokenId);
 
+  // Countdown logic for claim phase
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+  function getCountdown(ts: string | number | bigint | undefined) {
+    if (!ts) return null;
+    const diff = Number(ts) * 1000 - now;
+    if (diff <= 0) return null;
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    return `${d > 0 ? d + 'd ' : ''}${h}h ${m}m ${s}s`;
+  }
+
   useEffect(() => {
     async function fetchClaimCondition() {
       try {
@@ -80,17 +97,17 @@ export function MintPage(props: Props) {
   }
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-white dark:bg-[#111]">
+    <div className={`flex flex-col-reverse md:flex-row min-h-screen bg-white dark:bg-[#111] transition-colors duration-200`}> {/* Responsive: stack on mobile */}
       {/* Left column */}
       <motion.div
-        className="flex-1 flex flex-col justify-center px-8 py-12 max-w-xl mx-auto"
+        className="flex-1 flex flex-col justify-center px-4 md:px-8 py-8 md:py-12 max-w-xl mx-auto"
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <div className="mb-4 text-xs tracking-widest text-gray-400 font-semibold uppercase">Eliza Edition</div>
-        <h1 className="text-6xl font-extrabold mb-6 font-serif text-black dark:text-white">{props.displayName}</h1>
-        <p className="text-lg text-black dark:text-white mb-8">{props.description}</p>
+        <div className="mb-4 text-xs tracking-widest text-gray-400 font-semibold uppercase font-epilogue">Eliza Edition</div>
+        <h1 className="text-6xl md:text-7xl font-extrabold mb-6 font-epilogue text-black dark:text-white leading-tight">{props.displayName}</h1>
+        <p className="text-lg md:text-xl text-black dark:text-white mb-8 font-satoshi">{props.description}</p>
         {!account ? (
           <ConnectButton
             client={client}
@@ -111,106 +128,123 @@ export function MintPage(props: Props) {
           />
         ) : (
           <>
-            <div className="flex items-center justify-between mb-4 mt-4">
-              <div className="flex items-center">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={decreaseQuantity}
-                  disabled={quantity <= 1}
-                  aria-label="Decrease quantity"
-                  className="rounded-r-none"
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-                <Input
-                  type="number"
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                  className="w-28 text-center rounded-none border-x-0 pl-6"
-                  min="1"
-                />
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={increaseQuantity}
-                  aria-label="Increase quantity"
-                  className="rounded-l-none"
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
-              <div className="text-base pr-1 font-semibold dark:text-white">
-                Total: {props.pricePerToken * quantity} {props.currencySymbol}
+            <div className="flex flex-col gap-4 mb-4 mt-4">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center rounded-lg overflow-hidden border border-gray-700 bg-black/10">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={decreaseQuantity}
+                    disabled={quantity <= 1}
+                    aria-label="Decrease quantity"
+                    className="rounded-none focus:ring-2 focus:ring-yellow-500"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <Input
+                    type="number"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    className="w-16 text-center border-0 bg-transparent font-bold text-lg focus:ring-0"
+                    min="1"
+                    aria-label="Mint quantity"
+                  />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={increaseQuantity}
+                    aria-label="Increase quantity"
+                    className="rounded-none focus:ring-2 focus:ring-yellow-500"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="text-base md:text-lg pr-1 font-semibold dark:text-white font-satoshi">
+                  Total: {props.pricePerToken * quantity} {props.currencySymbol}
+                </div>
               </div>
             </div>
-            <ClaimButton
-              theme={"light"}
-              contractAddress={props.contract.address}
-              chain={props.contract.chain}
-              client={props.contract.client}
-              claimParams={
-                props.isERC1155
-                  ? {
-                      type: "ERC1155",
-                      tokenId: tokenIdBigInt,
-                      quantity: BigInt(quantity),
-                      to: account.address,
-                      from: account.address,
-                    }
-                  : props.isERC721
-                  ? {
-                      type: "ERC721",
-                      quantity: BigInt(quantity),
-                      to: account.address,
-                      from: account.address,
-                    }
-                  : {
-                      type: "ERC20",
-                      quantity: String(quantity),
-                      to: account.address,
-                      from: account.address,
-                    }
-              }
-              style={{
-                backgroundColor: "#F7B500",
-                color: "black",
-                width: "100%",
-                fontWeight: 700,
-                fontSize: 18,
-                borderRadius: 8,
-                padding: "18px 32px",
-                boxShadow: "0 4px 0 #000",
-                marginBottom: 8,
-              }}
-              disabled={false}
-              onTransactionSent={() => toast.info("Minting NFT")}
-              onTransactionConfirmed={() => toast.success("Minted successfully")}
-              onError={(err) => toast.error(err.message)}
+            <motion.div
+              whileHover={{ scale: 1.02, boxShadow: '0 6px 0 #000' }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full"
             >
-              Mint{quantity > 1 ? ` (${quantity})` : ""}
-            </ClaimButton>
+              <ClaimButton
+                theme={"light"}
+                contractAddress={props.contract.address}
+                chain={props.contract.chain}
+                client={props.contract.client}
+                claimParams={
+                  props.isERC1155
+                    ? {
+                        type: "ERC1155",
+                        tokenId: tokenIdBigInt,
+                        quantity: BigInt(quantity),
+                        to: account.address,
+                        from: account.address,
+                      }
+                    : props.isERC721
+                    ? {
+                        type: "ERC721",
+                        quantity: BigInt(quantity),
+                        to: account.address,
+                        from: account.address,
+                      }
+                    : {
+                        type: "ERC20",
+                        quantity: String(quantity),
+                        to: account.address,
+                        from: account.address,
+                      }
+                }
+                style={{
+                  backgroundColor: "#F7B500",
+                  color: "black",
+                  width: "100%",
+                  fontWeight: 700,
+                  fontSize: 18,
+                  borderRadius: 12,
+                  padding: "20px 32px",
+                  boxShadow: "0 4px 0 #000",
+                  marginBottom: 8,
+                  outline: 'none',
+                  transition: 'box-shadow 0.2s, transform 0.2s',
+                }}
+                disabled={false}
+                onTransactionSent={() => toast.info("Minting NFT")}
+                onTransactionConfirmed={() => {
+                  toast.success("Minted successfully");
+                  // TODO: trigger confetti animation here
+                }}
+                onError={(err) => toast.error(err.message)}
+              >
+                Mint{quantity > 1 ? ` (${quantity})` : ""}
+              </ClaimButton>
+            </motion.div>
             {claimCondition && (
               <div className="mt-12 max-w-md">
                 <div className="flex items-center gap-3 mb-1">
                   <span className="text-xs font-epilogue font-bold tracking-widest uppercase text-gray-400">Mint Phase</span>
-                  <span className={`text-xs px-2 py-0.5 rounded font-semibold align-middle ml-1 ${isLive(claimCondition) ? 'bg-yellow-500 text-black' : isUpcoming(claimCondition) ? 'bg-gray-700 text-white' : 'bg-gray-800 text-white'}`}>{isLive(claimCondition) ? 'Live' : isUpcoming(claimCondition) ? 'Upcoming' : 'Ended'}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded font-semibold align-middle ml-1 ${isLive(claimCondition) ? 'bg-green-500 text-black' : isUpcoming(claimCondition) ? 'bg-yellow-500 text-black' : 'bg-gray-700 text-white'}`}>{isLive(claimCondition) ? 'Live' : isUpcoming(claimCondition) ? 'Upcoming' : 'Ended'}</span>
+                  {isUpcoming(claimCondition) && claimCondition.startTimestamp && (
+                    <span className="ml-2 text-xs text-yellow-400 font-satoshi">Starts in {getCountdown(claimCondition.startTimestamp)}</span>
+                  )}
                 </div>
                 <div className="space-y-1 font-satoshi text-base text-white/90">
                   {claimCondition.startTimestamp && (
-                    <div className="pt-2">
-                      <span className="font-semibold text-white font-epilogue">Start:</span>{' '}
+                    <div className="pt-2 flex items-center gap-2">
+                      <span className="font-semibold text-white font-epilogue flex items-center"><svg className="inline-block mr-1" width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M12 6v6l4 2"/></svg>Start:</span>{' '}
                       {formatDate(claimCondition.startTimestamp)}
                     </div>
                   )}
-                  <div>
-                    <span className="font-semibold text-white font-epilogue">Price:</span>{' '}
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white font-epilogue flex items-center"><svg className="inline-block mr-1" width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M18 6L6 18"/><circle cx="9" cy="9" r="7" stroke="currentColor" strokeWidth="2"/></svg>Price:</span>{' '}
                     {props.pricePerToken} {props.currencySymbol}
                   </div>
                   {('maxClaimablePerWallet' in claimCondition) &&
                     (typeof (claimCondition as MinimalClaimCondition).maxClaimablePerWallet === 'number' || typeof (claimCondition as MinimalClaimCondition).maxClaimablePerWallet === 'bigint') ? (
-                    <div>
-                      <span className="font-semibold text-white font-epilogue">Per Wallet:</span>{' '}
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-white font-epilogue flex items-center"><svg className="inline-block mr-1" width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M6.05 6.05L4.636 4.636"/></svg>Per Wallet:</span>{' '}
                       {(claimCondition as MinimalClaimCondition).maxClaimablePerWallet!.toString()}
                     </div>
                   ) : null}
@@ -220,21 +254,33 @@ export function MintPage(props: Props) {
           </>
         )}
       </motion.div>
-      {/* Right column */}
+      {/* Right column: Art */}
       <motion.div
-        className="flex-1 flex items-center justify-center bg-transparent p-8"
+        className="flex-1 flex items-center justify-center bg-transparent p-4 md:p-8"
         initial={{ x: 60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
-        <div className="w-full flex justify-center items-center">
-          <div className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 max-w-2xl w-full h-[70vh] flex items-center justify-center">
-            <MediaRenderer
-              client={client}
-              className="w-full h-full object-contain rounded-xl"
-              alt={props.displayName}
-              src={props.contractImage || "/arty.png"}
-            />
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="relative max-w-2xl w-full h-[50vh] md:h-[70vh] flex items-center justify-center group pt-24 md:pt-0">
+            {/* Soft yellow glow/gradient behind art */}
+            <div className="absolute inset-0 z-0 pointer-events-none rounded-2xl bg-gradient-to-br from-yellow-500/10 via-transparent to-yellow-500/10 blur-2xl" />
+            {/* Loading skeleton (optional) */}
+            {/* <div className="absolute inset-0 bg-gray-800 animate-pulse rounded-2xl" /> */}
+            <motion.div
+              className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full flex items-center justify-center relative z-10 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_8px_32px_0_rgba(247,181,0,0.15)]"
+              whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(247,181,0,0.15)' }}
+              tabIndex={0}
+              aria-label="Artwork preview"
+            >
+              <MediaRenderer
+                client={client}
+                className="w-full h-full object-contain rounded-xl"
+                alt={props.displayName}
+                src={props.contractImage || "/arty.png"}
+              />
+            </motion.div>
+            {/* Optional: <div className="mt-2 text-xs text-gray-400 text-center font-satoshi">Artwork by ...</div> */}
           </div>
         </div>
       </motion.div>
