@@ -297,21 +297,22 @@ export function MintPage(props: Props) {
                   setShowGlowPulse(false);
                   setShowCelebration(true);
                   if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
-                  celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
-                  // Fetch latest NFT for user (ERC721 only)
-                  if (props.isERC721 && account?.address) {
-                    try {
-                      // Use OpenSea API to get latest owned NFT for this contract
-                      const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/account/${account.address}/nfts?contractAddress=${props.contract.address}&limit=1&orderBy=acquired_at&orderDirection=desc`);
-                      const data = await res.json();
-                      const latest = data.nfts?.[0];
-                      if (latest && latest.token_id) {
-                        fetchMintedImage(latest.token_id);
-                        if (props.onMinted) props.onMinted(latest.token_id);
-                        if (props.onCelebration) props.onCelebration();
-                      }
-                    } catch {}
-                  }
+                  // Hide celebration after 2 seconds, then fetch NFT image
+                  celebrationTimeout.current = setTimeout(async () => {
+                    setShowCelebration(false);
+                    // Fetch latest NFT for user (ERC721 only)
+                    if (props.isERC721 && account?.address) {
+                      try {
+                        const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/account/${account.address}/nfts?contractAddress=${props.contract.address}&limit=1&orderBy=acquired_at&orderDirection=desc`);
+                        const data = await res.json();
+                        const latest = data.nfts?.[0];
+                        if (latest && latest.token_id) {
+                          fetchMintedImage(latest.token_id);
+                          if (props.onMinted) props.onMinted(latest.token_id);
+                        }
+                      } catch {}
+                    }
+                  }, 2000);
                 }}
                 onError={(err) => {
                   setShowGlowPulse(false);
