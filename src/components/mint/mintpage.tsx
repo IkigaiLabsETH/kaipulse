@@ -31,13 +31,14 @@ type Props = {
   currencySymbol: string | null;
   isERC1155: boolean;
   isERC721: boolean;
-  tokenId: bigint;
+  tokenId: string;
 };
 
 export function MintPage(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
   const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null>(null);
+  const tokenIdBigInt = BigInt(props.tokenId);
 
   useEffect(() => {
     async function fetchClaimCondition() {
@@ -74,7 +75,7 @@ export function MintPage(props: Props) {
             <CardContent className="pt-6">
               <div className="aspect-square overflow-hidden rounded-lg mb-4 relative">
                 {props.isERC1155 ? (
-                  <NFTProvider contract={props.contract} tokenId={props.tokenId}>
+                  <NFTProvider contract={props.contract} tokenId={tokenIdBigInt}>
                     <NFTMedia
                       loadingComponent={<Skeleton className="w-full h-full object-cover" />}
                       className="w-full h-full object-cover"
@@ -151,7 +152,7 @@ export function MintPage(props: Props) {
                   props.isERC1155
                     ? {
                         type: "ERC1155",
-                        tokenId: props.tokenId,
+                        tokenId: tokenIdBigInt,
                         quantity: BigInt(quantity),
                         to: account.address,
                         from: account.address,

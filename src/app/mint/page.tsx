@@ -100,7 +100,7 @@ export default function Mint() {
               currencySymbol={nftInfo.currencySymbol}
               isERC1155={false}
               isERC721={true}
-              tokenId={BigInt(1)}
+              tokenId={"1"}
             />
           </div>
         )}
