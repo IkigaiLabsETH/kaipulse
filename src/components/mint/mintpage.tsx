@@ -167,7 +167,7 @@ export function MintPage(props: Props) {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <div className="mb-4 text-xs tracking-widest text-gray-400 font-semibold uppercase font-epilogue">Eliza Edition</div>
+        <div className="mb-4 text-xs tracking-widest text-gray-400 font-semibold uppercase font-epilogue">AI ART by LTL</div>
         <h1 className="text-6xl md:text-7xl font-extrabold mb-6 font-epilogue text-black dark:text-white leading-tight">{props.displayName}</h1>
         <p className="text-lg md:text-xl text-black dark:text-white mb-8 font-satoshi">{props.description}</p>
         {!account ? (
