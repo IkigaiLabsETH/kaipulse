@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Minus, Plus } from "lucide-react";
 import type { ThirdwebContract } from "thirdweb";
@@ -10,18 +9,14 @@ import {
   ClaimButton,
   ConnectButton,
   MediaRenderer,
-  NFTProvider,
-  NFTMedia,
   useActiveAccount,
-  NFTName,
-  NFTDescription,
 } from "thirdweb/react";
 import { client } from "@/lib/thirdwebClient";
 import React from "react";
 import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
 import { getActiveClaimCondition } from "thirdweb/extensions/erc721";
 import { safeStringify } from "@/utils/safeStringify";
+import { motion } from "framer-motion";
 
 type Props = {
   contract: ThirdwebContract;
@@ -66,155 +61,142 @@ export function MintPage(props: Props) {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
-      <div className="absolute top-4 right-4">
-        <ConnectButton client={client} />
-      </div>
-      <Card className="w-full max-w-md">
-        {account ? (
-          <>
-            <CardContent className="pt-6">
-              <div className="aspect-square overflow-hidden rounded-lg mb-4 relative">
-                {props.isERC1155 ? (
-                  <NFTProvider contract={props.contract} tokenId={tokenIdBigInt}>
-                    <NFTMedia
-                      loadingComponent={<Skeleton className="w-full h-full object-cover" />}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="mt-2">
-                      <NFTName className="text-lg font-semibold dark:text-white" />
-                      <NFTDescription className="text-gray-600 dark:text-gray-300 text-sm mt-1" />
-                    </div>
-                  </NFTProvider>
-                ) : (
-                  <MediaRenderer
-                    client={client}
-                    className="w-full h-full object-cover"
-                    alt=""
-                    src={props.contractImage || "/placeholder.svg?height=400&width=400"}
-                  />
-                )}
-                <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-full text-sm font-semibold">
-                  {props.pricePerToken} {props.currencySymbol}/each
-                </div>
-              </div>
-              <h2 className="text-2xl font-bold mb-2 dark:text-white">{props.displayName}</h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">{props.description}</p>
-              {claimCondition && (
-                <div className="mt-4 p-4 bg-gray-800 rounded-lg text-white space-y-1">
-                  {claimCondition.maxClaimableSupply && (
-                    <div>Max Supply: {claimCondition.maxClaimableSupply.toString()}</div>
-                  )}
-                  {/* Fallback: show all claimCondition as JSON for debugging */}
-                  <pre className="text-xs text-gray-300 bg-gray-900 rounded p-2 overflow-x-auto">{safeStringify(claimCondition)}</pre>
-                </div>
-              )}
-              <div className="flex items-center justify-between mb-4 mt-4">
-                <div className="flex items-center">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={decreaseQuantity}
-                    disabled={quantity <= 1}
-                    aria-label="Decrease quantity"
-                    className="rounded-r-none"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <Input
-                    type="number"
-                    value={quantity}
-                    onChange={handleQuantityChange}
-                    className="w-28 text-center rounded-none border-x-0 pl-6"
-                    min="1"
-                  />
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={increaseQuantity}
-                    aria-label="Increase quantity"
-                    className="rounded-l-none"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
-                </div>
-                <div className="text-base pr-1 font-semibold dark:text-white">
-                  Total: {props.pricePerToken * quantity} {props.currencySymbol}
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <ClaimButton
-                theme={"light"}
-                contractAddress={props.contract.address}
-                chain={props.contract.chain}
-                client={props.contract.client}
-                claimParams={
-                  props.isERC1155
-                    ? {
-                        type: "ERC1155",
-                        tokenId: tokenIdBigInt,
-                        quantity: BigInt(quantity),
-                        to: account.address,
-                        from: account.address,
-                      }
-                    : props.isERC721
-                    ? {
-                        type: "ERC721",
-                        quantity: BigInt(quantity),
-                        to: account.address,
-                        from: account.address,
-                      }
-                    : {
-                        type: "ERC20",
-                        quantity: String(quantity),
-                        to: account.address,
-                        from: account.address,
-                      }
-                }
-                style={{
-                  backgroundColor: "#F7B500",
-                  color: "black",
-                  width: "100%",
-                  fontWeight: 700,
-                  fontSize: 18,
-                  borderRadius: 8,
-                  padding: "18px 32px",
-                  boxShadow: "0 4px 0 #000",
-                  marginBottom: 8,
-                }}
-                disabled={false}
-                onTransactionSent={() => toast.info("Minting NFT")}
-                onTransactionConfirmed={() => toast.success("Minted successfully")}
-                onError={(err) => toast.error(err.message)}
-              >
-                Collect Art{quantity > 1 ? ` (${quantity})` : ""}
-              </ClaimButton>
-            </CardFooter>
-          </>
+    <div className="flex flex-col md:flex-row min-h-screen bg-white dark:bg-[#111]">
+      {/* Left column */}
+      <motion.div
+        className="flex-1 flex flex-col justify-center px-8 py-12 max-w-xl mx-auto"
+        initial={{ x: -60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        <div className="mb-4 text-xs tracking-widest text-gray-400 font-semibold uppercase">Eliza Edition</div>
+        <h1 className="text-6xl font-extrabold mb-6 font-serif text-black dark:text-white">{props.displayName}</h1>
+        <p className="text-lg text-black dark:text-white mb-8">{props.description}</p>
+        {!account ? (
+          <ConnectButton
+            client={client}
+            connectButton={{
+              style: {
+                backgroundColor: '#F7B500',
+                color: 'black',
+                fontWeight: 700,
+                fontSize: 18,
+                borderRadius: 8,
+                padding: '18px 32px',
+                boxShadow: '0 4px 0 #000',
+                marginBottom: 8,
+                width: '100%'
+              },
+              label: 'Connect Wallet',
+            }}
+          />
         ) : (
-          <CardContent className="flex flex-col items-center justify-center min-h-[400px]">
-            <ConnectButton
-              client={client}
-              connectButton={{
-                style: {
-                  backgroundColor: '#F7B500',
-                  color: 'black',
-                  fontWeight: 700,
-                  fontSize: 18,
-                  borderRadius: 8,
-                  padding: '18px 32px',
-                  boxShadow: '0 4px 0 #000',
-                  marginBottom: 8,
-                  width: '100%'
-                },
-                label: 'Connect Wallet',
+          <>
+            <div className="flex items-center justify-between mb-4 mt-4">
+              <div className="flex items-center">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={decreaseQuantity}
+                  disabled={quantity <= 1}
+                  aria-label="Decrease quantity"
+                  className="rounded-r-none"
+                >
+                  <Minus className="h-4 w-4" />
+                </Button>
+                <Input
+                  type="number"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                  className="w-28 text-center rounded-none border-x-0 pl-6"
+                  min="1"
+                />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={increaseQuantity}
+                  aria-label="Increase quantity"
+                  className="rounded-l-none"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="text-base pr-1 font-semibold dark:text-white">
+                Total: {props.pricePerToken * quantity} {props.currencySymbol}
+              </div>
+            </div>
+            <ClaimButton
+              theme={"light"}
+              contractAddress={props.contract.address}
+              chain={props.contract.chain}
+              client={props.contract.client}
+              claimParams={
+                props.isERC1155
+                  ? {
+                      type: "ERC1155",
+                      tokenId: tokenIdBigInt,
+                      quantity: BigInt(quantity),
+                      to: account.address,
+                      from: account.address,
+                    }
+                  : props.isERC721
+                  ? {
+                      type: "ERC721",
+                      quantity: BigInt(quantity),
+                      to: account.address,
+                      from: account.address,
+                    }
+                  : {
+                      type: "ERC20",
+                      quantity: String(quantity),
+                      to: account.address,
+                      from: account.address,
+                    }
+              }
+              style={{
+                backgroundColor: "#F7B500",
+                color: "black",
+                width: "100%",
+                fontWeight: 700,
+                fontSize: 18,
+                borderRadius: 8,
+                padding: "18px 32px",
+                boxShadow: "0 4px 0 #000",
+                marginBottom: 8,
               }}
-            />
-          </CardContent>
+              disabled={false}
+              onTransactionSent={() => toast.info("Minting NFT")}
+              onTransactionConfirmed={() => toast.success("Minted successfully")}
+              onError={(err) => toast.error(err.message)}
+            >
+              Mint{quantity > 1 ? ` (${quantity})` : ""}
+            </ClaimButton>
+            {claimCondition && (
+              <div className="mt-4 p-4 bg-gray-800 rounded-lg text-white space-y-1">
+                {claimCondition.maxClaimableSupply && (
+                  <div>Max Supply: {claimCondition.maxClaimableSupply.toString()}</div>
+                )}
+                {/* Fallback: show all claimCondition as JSON for debugging */}
+                <pre className="text-xs text-gray-300 bg-gray-900 rounded p-2 overflow-x-auto">{safeStringify(claimCondition)}</pre>
+              </div>
+            )}
+          </>
         )}
-      </Card>
-      {/* Toast notification can be conditionally rendered based on your logic */}
+      </motion.div>
+      {/* Right column */}
+      <motion.div
+        className="flex-1 flex items-center justify-center bg-transparent p-8"
+        initial={{ x: 60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+      >
+        <MediaRenderer
+          client={client}
+          className="rounded-lg object-cover w-full max-w-lg aspect-[4/3] shadow-lg"
+          alt={props.displayName}
+          src={props.contractImage || "/arty.png"}
+        />
+      </motion.div>
     </div>
   );
 }
