@@ -76,6 +76,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.larvalabs.com',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.thirdwebcdn.com',
+        pathname: '/**',
       }
     ],
     minimumCacheTTL: 3600,
