@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
-import Image from 'next/image'
 import { ConnectButton } from "thirdweb/react"
 import { client } from "@/lib/thirdwebClient"
 import { getERC721Info } from "@/lib/erc721";
 import { contract } from "@/lib/constants";
+import { NFTProvider, NFTMedia, NFTName, NFTDescription } from "thirdweb/react";
 
 export default function Mint() {
   const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC721Info>> | null>(null);
@@ -74,19 +74,23 @@ export default function Mint() {
           </motion.div>
           {/* Right Side: NFT Image */}
           <motion.div
-            className="relative h-[400px] md:h-[600px]"
+            className="relative h-[400px] md:h-[600px] flex flex-col items-center justify-center"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Image
-              src={nftInfo?.contractImage || "/arty.png"}
-              alt={nftInfo?.displayName || "NFT"}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover rounded-xl"
-              priority
-            />
+            {nftInfo ? (
+              <NFTProvider contract={contract} tokenId={BigInt(0)}>
+                <NFTMedia
+                  className="object-cover rounded-xl w-full h-[300px] md:h-[500px] mb-4"
+                  loadingComponent={<div className="bg-gray-800 w-full h-full rounded-xl animate-pulse" />}
+                />
+                <NFTName className="text-3xl font-bold text-white mt-2" />
+                <NFTDescription className="text-lg text-gray-200 mt-2" />
+              </NFTProvider>
+            ) : (
+              <div className="bg-gray-800 w-full h-full rounded-xl animate-pulse" />
+            )}
           </motion.div>
         </div>
       </div>
