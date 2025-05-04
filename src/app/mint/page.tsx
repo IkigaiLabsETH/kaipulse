@@ -7,7 +7,7 @@ import { ConnectButton } from "thirdweb/react"
 import { client } from "@/lib/thirdwebClient"
 import { getERC721Info } from "@/lib/erc721";
 import { contract } from "@/lib/constants";
-import { NFTProvider, NFTMedia, NFTName, NFTDescription } from "thirdweb/react";
+import Image from "next/image";
 
 export default function Mint() {
   const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC721Info>> | null>(null);
@@ -80,14 +80,18 @@ export default function Mint() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             {nftInfo ? (
-              <NFTProvider contract={contract} tokenId={BigInt(0)}>
-                <NFTMedia
+              <>
+                <Image
+                  src={nftInfo.contractImage || "/arty.png"}
+                  alt={nftInfo.displayName || "NFT"}
                   className="object-cover rounded-xl w-full h-[300px] md:h-[500px] mb-4"
-                  loadingComponent={<div className="bg-gray-800 w-full h-full rounded-xl animate-pulse" />}
+                  width={800}
+                  height={800}
+                  priority
                 />
-                <NFTName className="text-3xl font-bold text-white mt-2" />
-                <NFTDescription className="text-lg text-gray-200 mt-2" />
-              </NFTProvider>
+                <div className="text-3xl font-bold text-white mt-2">{nftInfo.displayName}</div>
+                <div className="text-lg text-gray-200 mt-2">{nftInfo.description}</div>
+              </>
             ) : (
               <div className="bg-gray-800 w-full h-full rounded-xl animate-pulse" />
             )}
