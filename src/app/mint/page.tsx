@@ -3,14 +3,16 @@
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
-import { ConnectButton } from "thirdweb/react"
+import { ConnectButton, useActiveAccount } from "thirdweb/react"
 import { client } from "@/lib/thirdwebClient"
 import { getERC721Info } from "@/lib/erc721";
 import { contract } from "@/lib/constants";
 import Image from "next/image";
+import { MintPage } from "@/components/mint/mintpage";
 
 export default function Mint() {
   const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC721Info>> | null>(null);
+  const account = useActiveAccount();
 
   useEffect(() => {
     async function fetchInfo() {
@@ -87,6 +89,21 @@ export default function Mint() {
             </div>
           </motion.div>
         </div>
+        {account && nftInfo && (
+          <div className="mt-8">
+            <MintPage
+              contract={contract}
+              displayName={nftInfo.displayName}
+              description={nftInfo.description}
+              contractImage={nftInfo.contractImage}
+              pricePerToken={nftInfo.pricePerToken}
+              currencySymbol={nftInfo.currencySymbol}
+              isERC1155={false}
+              isERC721={true}
+              tokenId={BigInt(1)}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
