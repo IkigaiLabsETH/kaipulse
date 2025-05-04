@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Minus, Plus } from "lucide-react";
@@ -39,6 +39,10 @@ export function MintPage(props: Props) {
   const account = useActiveAccount();
   const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null>(null);
   const tokenIdBigInt = BigInt(props.tokenId);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   // Countdown logic for claim phase
   const [now, setNow] = useState(Date.now());
@@ -68,6 +72,27 @@ export function MintPage(props: Props) {
     }
     fetchClaimCondition();
   }, [props.contract]);
+
+  useEffect(() => {
+    return () => {
+      if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
+    };
+  }, []);
+
+  // Track user interaction for autoplay policy
+  useEffect(() => {
+    const handler = () => setUserInteracted(true);
+    window.addEventListener('pointerdown', handler, { once: true });
+    return () => window.removeEventListener('pointerdown', handler);
+  }, []);
+
+  // Play sound when celebration starts
+  useEffect(() => {
+    if (showCelebration && userInteracted && audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  }, [showCelebration, userInteracted]);
 
   const decreaseQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
@@ -214,7 +239,9 @@ export function MintPage(props: Props) {
                 onTransactionSent={() => toast.info("Minting NFT")}
                 onTransactionConfirmed={() => {
                   toast.success("Minted successfully");
-                  // TODO: trigger confetti animation here
+                  setShowCelebration(true);
+                  if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
+                  celebrationTimeout.current = setTimeout(() => setShowCelebration(false), 2000);
                 }}
                 onError={(err) => toast.error(err.message)}
               >
@@ -263,10 +290,39 @@ export function MintPage(props: Props) {
       >
         <div className="w-full flex flex-col items-center justify-center">
           <div className="relative max-w-2xl w-full h-[50vh] md:h-[70vh] flex items-center justify-center group pt-24 md:pt-0">
+            {/* Audio for cinematic effect */}
+            <audio ref={audioRef} src="/sounds/camera-shutter-mint.mp3" preload="auto" tabIndex={-1} aria-hidden="true" />
             {/* Soft yellow glow/gradient behind art */}
             <div className="absolute inset-0 z-0 pointer-events-none rounded-2xl bg-gradient-to-br from-yellow-500/10 via-transparent to-yellow-500/10 blur-2xl" />
-            {/* Loading skeleton (optional) */}
-            {/* <div className="absolute inset-0 bg-gray-800 animate-pulse rounded-2xl" /> */}
+            {/* Cinematic celebration animation */}
+            {showCelebration && (
+              <>
+                {/* Spotlight Sweep */}
+                <motion.div
+                  className="absolute inset-0 z-20 pointer-events-none rounded-2xl"
+                  initial={{ x: '-100%' }}
+                  animate={{ x: '100%' }}
+                  transition={{ duration: 1.6, ease: 'easeInOut' }}
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 40%, rgba(255,255,200,0.32) 50%, rgba(255,255,255,0.18) 60%, transparent 100%)',
+                    filter: 'blur(12px)',
+                  }}
+                />
+                {/* Minted! Text Overlay */}
+                <motion.div
+                  className="absolute inset-0 z-30 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  style={{ pointerEvents: 'none' }}
+                >
+                  <span className="text-5xl md:text-7xl font-epilogue font-extrabold text-yellow-400 drop-shadow-lg tracking-wide animate-pulse">
+                    Minted!
+                  </span>
+                </motion.div>
+              </>
+            )}
             <motion.div
               className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full flex items-center justify-center relative z-10 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_8px_32px_0_rgba(247,181,0,0.15)]"
               whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(247,181,0,0.15)' }}
