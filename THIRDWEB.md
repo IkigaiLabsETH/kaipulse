@@ -130,4 +130,42 @@ public/sounds/camera-shutter-mint.mp3
 
 ---
 
+## 10. Troubleshooting: 403 Forbidden Error (Wallet Does Not Pop Up)
+
+### Symptom
+- When clicking the Mint button, it shows a loading state but the wallet does **not** pop up and no transaction is triggered.
+- In the browser console, you see:
+  ```
+  GET https://pay.thirdweb.com/destination-tokens/v1 403 (Forbidden)
+  ```
+
+### What This Means
+- The thirdweb backend is rejecting your app's request to mint, blocking all wallet interactions.
+
+### Likely Causes
+- **Invalid, missing, or expired `NEXT_PUBLIC_THIRDWEB_CLIENT_ID`** in your environment variables.
+- **Your thirdweb project is not set up or your contract/chain is not whitelisted** for your client ID in the [thirdweb dashboard](https://thirdweb.com/dashboard).
+- **API key usage limits or restrictions** (rate limiting, billing, or policy changes by thirdweb).
+- **Recent changes to your environment or deployment** (env vars not loaded, redeploy needed).
+- **Thirdweb service outage or update** (check [thirdweb status](https://status.thirdweb.com/)).
+
+### Steps to Resolve
+1. **Check your environment variables:**
+   - Ensure `NEXT_PUBLIC_THIRDWEB_CLIENT_ID` is set and matches your thirdweb dashboard project.
+   - Restart your dev server or redeploy after any changes.
+2. **Check your thirdweb dashboard:**
+   - Make sure your contract address and chain are whitelisted/authorized for your client ID.
+   - If needed, regenerate your client ID and update your env vars.
+3. **Check for rate limits or outages:**
+   - If you minted a lot, you may be rate-limited. Wait or try a new client ID.
+   - Check [thirdweb status](https://status.thirdweb.com/).
+4. **If it worked before but not now:**
+   - Something has changed with your thirdweb project, client ID, or their API policy. Double-check all settings.
+
+### Note
+- This is **not** a frontend code bug, but a backend authorization issue with thirdweb.
+- If all else fails, contact thirdweb support with your client ID and contract details.
+
+---
+
 For further customization or questions, see the code comments or reach out to the dev team! 
