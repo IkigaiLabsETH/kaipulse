@@ -29,6 +29,11 @@ type Props = {
   tokenId: string;
 };
 
+type MinimalClaimCondition = {
+  startTimestamp?: string | number | bigint;
+  maxClaimablePerWallet?: number | bigint;
+};
+
 export function MintPage(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
@@ -54,6 +59,21 @@ export function MintPage(props: Props) {
     const value = Number.parseInt(e.target.value);
     if (!Number.isNaN(value)) setQuantity(Math.max(1, value));
   };
+
+  // Helper functions for claim phase status and formatting
+  function formatDate(ts: string | number | bigint | undefined) {
+    if (!ts) return null;
+    const date = new Date(Number(ts.toString()) * 1000);
+    return date.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  }
+  function isLive(condition: MinimalClaimCondition) {
+    const now = Date.now() / 1000;
+    return (!condition.startTimestamp || now >= Number(condition.startTimestamp));
+  }
+  function isUpcoming(condition: MinimalClaimCondition) {
+    const now = Date.now() / 1000;
+    return !!condition.startTimestamp && now < Number(condition.startTimestamp);
+  }
 
   if (props.pricePerToken === null || props.pricePerToken === undefined) {
     return null;
@@ -171,17 +191,29 @@ export function MintPage(props: Props) {
               Mint{quantity > 1 ? ` (${quantity})` : ""}
             </ClaimButton>
             {claimCondition && (
-              <div className="mt-6 bg-[#181818] border border-yellow-500/40 rounded-lg px-6 py-4 text-white max-w-md">
-                <div className="flex items-center gap-4 mb-2">
-                  <span className="text-sm text-gray-400 uppercase tracking-widest">Max Supply</span>
-                  <span className="text-lg font-bold text-yellow-400">
-                    {claimCondition.maxClaimableSupply ? Number(claimCondition.maxClaimableSupply.toString()).toLocaleString() : '—'}
-                  </span>
+              <div className="mt-12 max-w-md">
+                <div className="flex items-center gap-3 mb-1">
+                  <span className="text-xs font-epilogue font-bold tracking-widest uppercase text-gray-400">Mint Phase</span>
+                  <span className={`text-xs px-2 py-0.5 rounded font-semibold align-middle ml-1 ${isLive(claimCondition) ? 'bg-yellow-500 text-black' : isUpcoming(claimCondition) ? 'bg-gray-700 text-white' : 'bg-gray-800 text-white'}`}>{isLive(claimCondition) ? 'Live' : isUpcoming(claimCondition) ? 'Upcoming' : 'Ended'}</span>
                 </div>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="text-xs px-2 py-1 rounded bg-yellow-500 text-black font-semibold">
-                    Minting Live
-                  </span>
+                <div className="space-y-1 font-satoshi text-base text-white/90">
+                  {claimCondition.startTimestamp && (
+                    <div className="pt-2">
+                      <span className="font-semibold text-white font-epilogue">Start:</span>{' '}
+                      {formatDate(claimCondition.startTimestamp)}
+                    </div>
+                  )}
+                  <div>
+                    <span className="font-semibold text-white font-epilogue">Price:</span>{' '}
+                    {props.pricePerToken} {props.currencySymbol}
+                  </div>
+                  {('maxClaimablePerWallet' in claimCondition) &&
+                    (typeof (claimCondition as MinimalClaimCondition).maxClaimablePerWallet === 'number' || typeof (claimCondition as MinimalClaimCondition).maxClaimablePerWallet === 'bigint') ? (
+                    <div>
+                      <span className="font-semibold text-white font-epilogue">Per Wallet:</span>{' '}
+                      {(claimCondition as MinimalClaimCondition).maxClaimablePerWallet!.toString()}
+                    </div>
+                  ) : null}
                 </div>
               </div>
             )}
@@ -195,12 +227,16 @@ export function MintPage(props: Props) {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
       >
-        <MediaRenderer
-          client={client}
-          className="rounded-lg object-cover w-full max-w-lg aspect-[4/3] shadow-lg"
-          alt={props.displayName}
-          src={props.contractImage || "/arty.png"}
-        />
+        <div className="w-full flex justify-center items-center">
+          <div className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 max-w-2xl w-full h-[70vh] flex items-center justify-center">
+            <MediaRenderer
+              client={client}
+              className="w-full h-full object-contain rounded-xl"
+              alt={props.displayName}
+              src={props.contractImage || "/arty.png"}
+            />
+          </div>
+        </div>
       </motion.div>
     </div>
   );
