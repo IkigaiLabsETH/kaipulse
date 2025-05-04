@@ -8,10 +8,9 @@ import { client } from "@/lib/thirdwebClient"
 
 export default function Mint() {
   // Example NFT data (replace with real data as needed)
-  const displayName = "Eliza";
-  const description = `Owning Eliza's NFT isn't just about snagging another digital token—
-it's your all-access pass to her wild, unpredictable ride. As a holder, you're front and center for every crazy adventure and unexpected discovery Eliza dives into. Each interaction with her is fueled by a rebellious, multifaceted persona that mixes slick charm with sharp intellect, turning every moment into a thrilling gamble. Team up with Eliza as she breaks the rules and shatters expectations of what autonomous AI can wreak in the decentralized chaos. Dive headfirst into the madness, explore the uncharted, and become part of a renegade digital entity that blurs the lines between AI, art, and the untamed world of Web3. Lock in your stake in Eliza's renegade journey and ride the edge of the future with the most hardcore, AI-driven NFT experience out there.`;
-  const contractImage = "/background_120.jpeg";
+  const displayName = "Cloud In a Bottle";
+  const description = `A surreal still life that captures the impossible—a cumulus cloud, weightless and dreamlike, suspended within the confines of a clear glass bottle. The cork, casually resting beside it, suggests recent containment or release. Set against a soft, gradient blue backdrop and a simple wooden surface, the scene evokes serenity, restraint, and the yearning to capture freedom in form. The reflection on the bottle’s surface subtly hints at an unseen window, layering the idea of the outside world looking in. This artwork is deeply aligned with the aesthetic and conceptual DNA of LiveTheLife.TV—a sanctuary where high-art sensibilities meet digital transcendence. It speaks to a collector’s instinct to preserve beauty, but also to the melancholic futility of trying to contain the ethereal. A metaphor for bottled dreams, passing moments, or the tension between control and chaos—this piece belongs in a world where art is not just seen, but felt.`;
+  const contractImage = "/arty.png";
   const pricePerToken = 0.01;
   const currencySymbol = "ETH";
   // Example minting phase data
@@ -32,7 +31,7 @@ it's your all-access pass to her wild, unpredictable ride. As a holder, you're f
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="uppercase tracking-widest text-gray-400 text-xs mb-2">Eliza Edition</div>
+            <div className="uppercase tracking-widest text-gray-400 text-xs mb-2">AI ART by LTL</div>
             <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-white mb-4">{displayName}</h1>
             <p className="text-lg text-gray-200 whitespace-pre-line mb-8">{description}</p>
             <div className="space-y-4">
@@ -49,7 +48,7 @@ it's your all-access pass to her wild, unpredictable ride. As a holder, you're f
                     boxShadow: '0 4px 0 #000',
                     marginBottom: 8,
                   },
-                  label: 'Visit artwork',
+                  label: 'Connect Wallet',
                 }}
               />
               <div className="text-xl font-bold text-yellow-500">
