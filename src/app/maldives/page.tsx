@@ -29,7 +29,7 @@ export default function MaldivesPage() {
           <div className="flex-1 flex justify-center items-center">
             <div className="w-full max-w-[500px] aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)]">
               {/* Placeholder for hero image or video */}
-              <Image src="/photography/canary.jpg" alt="Malé Skyline" width={1200} height={675} className="w-full h-full object-cover rounded-2xl" priority />
+              <Image src="/maldives.jpg" alt="Malé Skyline" width={1200} height={675} className="w-full h-full object-cover rounded-2xl" priority />
             </div>
           </div>
         </div>
