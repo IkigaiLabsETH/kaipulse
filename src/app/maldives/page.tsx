@@ -20,7 +20,7 @@ export default function MaldivesPage() {
             <p className="text-lg md:text-2xl text-white/90 font-satoshi max-w-xl leading-snug">
               The Maldives is launching the MIFC, an initiative to turn Malé into a blockchain and digital asset hub, aiming to triple the nation&#39;s economy and redefine its financial future.
             </p>
-            <Link href="https://mifc.mv" target="_blank">
+            <Link href="https://www.mifc.gov.mv/" target="_blank">
               <Button className="bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-xl mt-2 hover:bg-yellow-400 transition-all duration-300 font-epilogue tracking-tight">
                 Visit Official MIFC Site
               </Button>
@@ -95,7 +95,7 @@ export default function MaldivesPage() {
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
             The Maldives&#39; MIFC project is a bold leap toward economic diversification and modernization. By embracing digital innovation and strategic investment, the nation aims to become a leading player in the global financial ecosystem.
           </p>
-          <Link href="https://mifc.mv" target="_blank">
+          <Link href="https://www.mifc.gov.mv/" target="_blank">
             <Button className="bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-xl mt-2 hover:bg-yellow-400 transition-all duration-300 font-epilogue tracking-tight">
               Learn More at MIFC.mv
             </Button>
