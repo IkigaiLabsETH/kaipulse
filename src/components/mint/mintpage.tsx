@@ -49,6 +49,7 @@ export function MintPage(props: Props) {
   const [mintedImageUrl, setMintedImageUrl] = useState<string | null>(null);
   const [mintedImageLoading, setMintedImageLoading] = useState(false);
   const [mintedImageError, setMintedImageError] = useState(false);
+  const [mintedTokenId, setMintedTokenId] = useState<string | null>(null);
 
   // Countdown logic for claim phase
   const [now, setNow] = useState(Date.now());
@@ -308,6 +309,7 @@ export function MintPage(props: Props) {
                         const latest = data.nfts?.[0];
                         if (latest && latest.token_id) {
                           fetchMintedImage(latest.token_id);
+                          setMintedTokenId(latest.token_id); // Store token ID for OpenSea link
                           if (props.onMinted) props.onMinted(latest.token_id);
                         }
                       } catch {}
@@ -441,6 +443,20 @@ export function MintPage(props: Props) {
                   height={1000}
                   className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
                 />
+                {/* OpenSea link below the image */}
+                {mintedTokenId && (
+                  <div className="absolute bottom-4 left-0 w-full flex justify-center z-40">
+                    <a
+                      href={`https://opensea.io/assets/ethereum/${props.contract.address}/${mintedTokenId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg shadow hover:bg-yellow-500 transition border-2 border-black"
+                    >
+                      View on OpenSea
+                      <svg className="ml-2" width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+                    </a>
+                  </div>
+                )}
               </motion.div>
             )}
             {/* Default: contract image if nothing else */}
