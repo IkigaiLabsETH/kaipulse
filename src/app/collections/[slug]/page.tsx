@@ -2,10 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import {
-  CollectionHeader,
-  CollectionStats,
   CollectionGrid,
-  CollectionActivity,
   CollectionTabs,
   CollectionSkeleton,
   CollectionError,
@@ -57,13 +54,8 @@ export default function CollectionPage({ params }: CollectionPageProps) {
 
   return (
     <Layout>
-      <section className="bg-black pb-8">
-        <div className="max-w-6xl mx-auto px-4">
-          <CollectionHeader collection={collection} />
-        </div>
-      </section>
       <section className="bg-black py-8">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="px-4">
           <CollectionTabs
             defaultTab="items"
             tabs={[
@@ -75,23 +67,9 @@ export default function CollectionPage({ params }: CollectionPageProps) {
                     <CollectionGrid collectionSlug={collection.slug} />
                   </Suspense>
                 ),
-              },
-              {
-                id: 'activity',
-                label: 'Provenance',
-                content: (
-                  <Suspense fallback={<div className="py-16 text-center text-white/60">Loading provenance...</div>}>
-                    <CollectionActivity collectionSlug={collection.slug} />
-                  </Suspense>
-                ),
-              },
+              }
             ]}
           />
-        </div>
-      </section>
-      <section className="bg-black pt-4 pb-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <CollectionStats stats={collection.stats ?? {}} />
         </div>
       </section>
     </Layout>
