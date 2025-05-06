@@ -79,4 +79,14 @@ export const CURATED_COLLECTIONS: CuratedCollection[] = CONTRACT_ADDRESSES.map(a
 
 // Useful links for finding collection information:
 // - OpenSea: https://opensea.io/collection/[collection-slug]
-// - Etherscan: https://etherscan.io/token/[contract-address] 
+// - Etherscan: https://etherscan.io/token/[contract-address]
+
+// Curated NFT collections for the /collections page.
+// Add OpenSea slugs (recommended) or contract addresses below.
+// Example: 'boredapeyachtclub' or '0x186e2eece5ddbac8f1dde73723586a7c6'
+export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
+  'fidenza-by-tyler-hobbs',
+  'cryptopunks',
+  '0x60e4d786628fea6478f785a6d7e704777c86a7c6', // contract address example
+  // Add more slugs or addresses as needed
+]; 

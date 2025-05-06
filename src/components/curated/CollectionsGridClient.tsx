@@ -3,17 +3,19 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, ImageIcon } from 'lucide-react';
 
 interface Collection {
   address: string;
   name: string;
   image_url: string;
-  description?: string;
 }
 
 export function CollectionsGridClient() {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [loading, setLoading] = useState(true);
+  const [imageErrorMap, setImageErrorMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     fetch('/api/collections')
@@ -22,56 +24,78 @@ export function CollectionsGridClient() {
       .finally(() => setLoading(false));
   }, []);
 
+  const handleImageError = (address: string) => {
+    setImageErrorMap((prev) => ({ ...prev, [address]: true }));
+  };
+
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8 text-white text-center text-xl">Loading collections...</div>
+      <div className="min-h-[300px] flex items-center justify-center">
+        <span className="text-white/60 text-xl">Loading collections...</span>
+      </div>
     );
   }
 
+  // Animation for each card as it appears
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-white">Featured Collections</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {collections.map((collection) => (
-          <Link
-            href={`/collections/${collection.address}`}
-            key={collection.address}
-            className="group relative aspect-[4/5] block overflow-hidden rounded-2xl bg-[#1A1A1A] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_-5px_rgba(247,181,0,0.15)]"
-          >
-            <div className="absolute inset-0">
-              <Image
-                src={collection.image_url || '/images/placeholder-banner.png'}
-                alt={collection.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-            </div>
-            <div className="absolute top-4 left-4">
-              <div className="h-16 w-16 rounded-lg overflow-hidden border-2 border-white/10 shadow-lg">
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
+    >
+      {collections.map((collection) => (
+        <motion.div
+          key={collection.address}
+          variants={itemVariants}
+        >
+          <Link href={`/collections/${collection.address}`} className="block group">
+            <div className="relative aspect-square overflow-hidden bg-black border border-white/10 shadow-[0_5px_20px_0_rgba(0,0,0,0.25)]">
+              {imageErrorMap[collection.address] ? (
+                <div className="w-full h-full flex items-center justify-center bg-black/30">
+                  <ImageIcon size={48} className="text-white/40" />
+                </div>
+              ) : (
                 <Image
-                  src={collection.image_url || '/images/placeholder-logo.png'}
-                  alt={`${collection.name} logo`}
-                  width={64}
-                  height={64}
-                  className="h-full w-full object-cover"
+                  src={collection.image_url || '/images/nft-placeholder.png'}
+                  alt={collection.name}
+                  fill
+                  className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
+                  onError={() => handleImageError(collection.address)}
+                  priority
                 />
+              )}
+              {/* Elegant hover state */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="border-b border-white/50 px-3 py-2 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
+                  <span className="uppercase tracking-wider text-sm font-light text-white">View</span>
+                  <ArrowUpRight size={16} className="text-white" />
+                </div>
               </div>
             </div>
-            <div className="absolute inset-x-4 bottom-4">
-              <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">
+            <div className="py-4 px-1">
+              <h3 className="text-base font-light text-white/80 group-hover:text-yellow-400 transition-colors duration-300" title={collection.name}>
                 {collection.name}
               </h3>
-              {collection.description && (
-                <p className="text-sm text-gray-200 line-clamp-2 drop-shadow-lg">
-                  {collection.description}
-                </p>
-              )}
             </div>
           </Link>
-        ))}
-      </div>
-    </div>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 } 
