@@ -155,6 +155,21 @@ export function MintPage(props: Props) {
     setMintedImageLoading(false);
   }
 
+  // Helper to fetch latest NFT from OpenSea via backend proxy
+  async function fetchLatestMintedNFT(accountAddress: string, contractAddress: string): Promise<string | null> {
+    // Call your own backend API route to proxy the OpenSea request securely
+    // e.g., /api/opensea/latest-nft?account=...&contract=...
+    // This avoids exposing OPENSEA_API_KEY to the client
+    try {
+      const res = await fetch(`/api/opensea/latest-nft?account=${accountAddress}&contract=${contractAddress}`);
+      if (!res.ok) return null;
+      const data = await res.json();
+      return data.token_id || null;
+    } catch {
+      return null;
+    }
+  }
+
   if (props.pricePerToken === null || props.pricePerToken === undefined) {
     return null;
   }
@@ -298,21 +313,21 @@ export function MintPage(props: Props) {
                   setShowGlowPulse(false);
                   setShowCelebration(true);
                   if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
-                  // Hide celebration after 2 seconds, then fetch NFT image
                   celebrationTimeout.current = setTimeout(async () => {
                     setShowCelebration(false);
                     // Fetch latest NFT for user (ERC721 only)
                     if (props.isERC721 && account?.address) {
-                      try {
-                        const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/account/${account.address}/nfts?contractAddress=${props.contract.address}&limit=1&orderBy=acquired_at&orderDirection=desc`);
-                        const data = await res.json();
-                        const latest = data.nfts?.[0];
-                        if (latest && latest.token_id) {
-                          fetchMintedImage(latest.token_id);
-                          setMintedTokenId(latest.token_id); // Store token ID for OpenSea link
-                          if (props.onMinted) props.onMinted(latest.token_id);
-                        }
-                      } catch {}
+                      let latestTokenId = null;
+                      for (let attempt = 0; attempt < 3; attempt++) {
+                        latestTokenId = await fetchLatestMintedNFT(account.address, props.contract.address);
+                        if (latestTokenId) break;
+                        await new Promise(res => setTimeout(res, 1000));
+                      }
+                      if (latestTokenId) {
+                        fetchMintedImage(latestTokenId);
+                        setMintedTokenId(latestTokenId);
+                        if (props.onMinted) props.onMinted(latestTokenId);
+                      }
                     }
                   }, 2000);
                 }}
