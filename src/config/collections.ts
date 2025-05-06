@@ -34,7 +34,6 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'pop-wonder-editions',
   'monstersoup',
   'machine-hallucinations-coral-generative-ai-data-pa',
-  'unsupervised-machine-hallucinations-moma-dreams-byp',
   'getijde-by-bart-simons',
   'pursuit-by-per-kristian-stoveland',
   '100-sunsets-by-zach-lieberman',
