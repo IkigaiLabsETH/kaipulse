@@ -138,14 +138,14 @@ export function MintPage(props: Props) {
     return true;
   }
 
-  // Fetch NFT metadata from OpenSea after mint
+  // Fetch NFT metadata from local API after mint
   async function fetchMintedImage(tokenId: string) {
     setMintedImageLoading(true);
     setMintedImageError(false);
     try {
-      const res = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${props.contract.address}/nfts/${tokenId}`);
+      const res = await fetch(`/api/collections/${props.contract.address}/${tokenId}`);
       const data = await res.json();
-      const imageUrl = data.nft?.metadata?.image_url || data.nft?.metadata?.image || null;
+      const imageUrl = data.nft?.image_url || null;
       if (imageUrl) setMintedImageUrl(imageUrl);
       else setMintedImageError(true);
     } catch {
@@ -430,11 +430,12 @@ export function MintPage(props: Props) {
             {/* Fade in the minted image if available and not loading/error */}
             {!mintedImageLoading && !mintedImageError && mintedImageUrl && (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
+                key={mintedImageUrl}
+                initial={{ opacity: 0, scale: 0.95, boxShadow: '0 0 0px #F7B500' }}
+                animate={{ opacity: 1, scale: 1, boxShadow: '0 0 60px #F7B50088' }}
+                transition={{ duration: 0.9, ease: 'easeOut' }}
                 className="w-full h-full"
-                style={{ position: 'absolute', inset: 0 }}
+                style={{ position: 'absolute', inset: 0, zIndex: 10 }}
               >
                 <Image
                   src={mintedImageUrl}
@@ -459,17 +460,30 @@ export function MintPage(props: Props) {
         </div>
         {/* OpenSea link always shown if mintedTokenId is set */}
         {mintedTokenId && (
-          <div className="mt-6 flex justify-center">
-            <a
-              href={`https://opensea.io/assets/ethereum/${props.contract.address}/${mintedTokenId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg shadow hover:bg-yellow-500 transition border-2 border-black"
-            >
-              View on OpenSea
-              <svg className="ml-2" width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M7 17L17 7M17 7H7m10 0v10"/></svg>
-            </a>
-          </div>
+          <>
+            {/* View NFT Details link (to our own app) */}
+            <div className="mt-6 flex justify-center">
+              <a
+                href={`/collections/${props.contract.address}/${mintedTokenId}`}
+                className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg shadow hover:bg-yellow-500 transition border-2 border-black"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View NFT Details
+                <svg className="ml-2" width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+              </a>
+            </div>
+            {/* View All Minted NFTs link */}
+            <div className="mt-4 flex justify-center">
+              <a
+                href="/collections/0x1dd24550890ced98f4166968fca1d5e7bf5dea77"
+                className="inline-flex items-center px-4 py-2 bg-black text-yellow-400 font-bold rounded-lg shadow hover:bg-yellow-500 hover:text-black transition border-2 border-yellow-400"
+              >
+                View All Minted NFTs
+                <svg className="ml-2" width="18" height="18" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M7 17L17 7M17 7H7m10 0v10"/></svg>
+              </a>
+            </div>
+          </>
         )}
       </motion.div>
     </div>
