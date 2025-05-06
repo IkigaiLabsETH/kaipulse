@@ -81,7 +81,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.thirdwebcdn.com',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'gmstudio.mypinata.cloud',
+        pathname: '/**',
+      },
     ],
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,
