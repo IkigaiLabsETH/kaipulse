@@ -76,6 +76,10 @@ export function SafeImage({ src, alt, className, fill = false, priority = false,
 
   // For local images, don't use unoptimized
   const isExternalImage = imgSrc.startsWith('http');
+  const isAnimated = /\.(gif|webp|apng)$/i.test(imgSrc) ||
+    imgSrc.includes('arweave.net') ||
+    imgSrc.includes('ipfs') ||
+    imgSrc.includes('seadn.io');
 
   return (
     <Image
@@ -85,14 +89,7 @@ export function SafeImage({ src, alt, className, fill = false, priority = false,
       fill={fill}
       priority={priority}
       onError={handleImageError}
-      unoptimized={
-        isExternalImage && (
-          imgSrc.includes('stream.mux.com') || 
-          imgSrc.includes('opensea') || 
-          imgSrc.includes('i.seadn.io') ||
-          imgSrc.includes('ipfs')
-        )
-      }
+      unoptimized={isExternalImage && isAnimated}
       width={!fill ? 500 : undefined}
       height={!fill ? 500 : undefined}
     />
