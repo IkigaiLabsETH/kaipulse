@@ -9,12 +9,6 @@ interface CuratedCollection {
 export const CONTRACT_ADDRESSES = [
   // Art & Photography
   '0x186e2eece5ddbac8f1dde73723586b2c86aa8b58', // Fidenza
-  '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d', // BAYC
-  '0x8a90cab2b38dba80c64b7734e58ee1db38b8992e', // Doodles
-  '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb', // CryptoPunks
-  '0x60e4d786628fea6478f785a6d7e704777c86a7c6', // MAYC
-  '0xed5af388653567af2f388e6224dc7c4b3241c544', // Azuki
-  '0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b', // CLONE X
 ];
 
 // Collection metadata mapped by contract address
@@ -87,6 +81,8 @@ export const CURATED_COLLECTIONS: CuratedCollection[] = CONTRACT_ADDRESSES.map(a
 export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'fidenza-by-tyler-hobbs',
   'cryptopunks',
-  '0x60e4d786628fea6478f785a6d7e704777c86a7c6', // contract address example
+  '0xdgb-thecameras',
+  'the-harvest-by-per-kristian-stoveland',
+  'terraforms',
   // Add more slugs or addresses as needed
 ]; 

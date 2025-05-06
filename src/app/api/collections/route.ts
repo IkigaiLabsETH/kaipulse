@@ -27,25 +27,27 @@ async function fetchCollectionData(slugOrAddress: string, apiKey: string) {
       slug = contractData.collection;
     }
 
-    // 2. Always fetch first NFT from the collection
+    // 2. Fetch up to 10 NFTs and pick a random one with an image
     const nftsRes = await fetch(
-      `https://api.opensea.io/api/v2/collection/${slug}/nfts?limit=1`,
+      `https://api.opensea.io/api/v2/collection/${slug}/nfts?limit=10`,
       { headers: { 'x-api-key': apiKey, 'Accept': 'application/json' } }
     );
     if (nftsRes.ok) {
       const nftsData = await nftsRes.json();
-      const nft = Array.isArray(nftsData.nfts) ? nftsData.nfts[0] : null;
-      if (nft && nft.image_url) {
+      type NFT = { image_url?: string; name?: string; description?: string };
+      const nfts = Array.isArray(nftsData.nfts) ? (nftsData.nfts as NFT[]).filter(n => n.image_url) : [];
+      if (nfts.length > 0) {
+        const randomNft = nfts[Math.floor(Math.random() * nfts.length)];
         return {
           address: slugOrAddress,
-          name: nft.name?.split('#')[0]?.trim() || slug,
-          image_url: nft.image_url,
-          description: nft.description || '',
+          name: randomNft.name?.split('#')[0]?.trim() || slug,
+          image_url: randomNft.image_url,
+          description: randomNft.description || '',
         };
       }
     }
 
-    // 3. If all else fails, return placeholder
+    // 3. Fallback
     return {
       address: slugOrAddress,
       name: slugOrAddress,
