@@ -289,6 +289,26 @@ export default function MSTRPage() {
           </div>
         </motion.div>
 
+        {/* Day 2 Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="relative mb-16"
+        >
+          <div className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-black/90 rounded-none">
+            <div className="relative aspect-video w-full">
+              <iframe
+                className="w-full h-full rounded-none"
+                src="https://www.youtube.com/embed/30ngfVWCdvs"
+                title="MicroStrategy Day 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </motion.div>
+
         {/* MSTY Connection */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
