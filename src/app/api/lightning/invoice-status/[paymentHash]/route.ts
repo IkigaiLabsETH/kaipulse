@@ -7,14 +7,19 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
+function base64ToHex(base64: string): string {
+  return Buffer.from(base64, 'base64').toString('hex');
+}
+
 export async function GET(
   _request: Request,
   { params }: { params: { paymentHash: string } }
 ) {
   const requestId = Math.random().toString(36).slice(2, 10);
   const { paymentHash } = params;
+  const paymentHashHex = base64ToHex(paymentHash);
   try {
-    const invoice = await prisma.invoice.findUnique({ where: { paymentHash } });
+    const invoice = await prisma.invoice.findUnique({ where: { paymentHash: paymentHashHex } });
     if (!invoice) {
       logger.warn(`[${requestId}] Invoice not found: ${paymentHash}`);
       return NextResponse.json({ error: 'Invoice not found', code: 'NOT_FOUND', requestId }, { status: 404 });
