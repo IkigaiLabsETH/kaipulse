@@ -27,10 +27,18 @@ export default function LightningPaymentWidget({
     expiresAt: string;
   }>(null);
   const [error, setError] = useState<string | null>(null);
+  const [pollingReady, setPollingReady] = useState(false);
 
   // Poll status if invoice exists
+  useEffect(() => {
+    if (invoice) {
+      setPollingReady(false);
+      const timer = setTimeout(() => setPollingReady(true), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [invoice]);
   const { data: statusData } = useSWR(
-    invoice ? `/api/lightning/invoice-status/${invoice.paymentHash}` : null,
+    invoice && pollingReady ? `/api/lightning/invoice-status/${invoice.paymentHash}` : null,
     fetcher,
     { refreshInterval: 2000 }
   );
