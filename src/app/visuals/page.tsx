@@ -36,7 +36,8 @@ const visuals = [
   "HASHRATE.jpeg",
   "SAYLOR.jpeg",
   "STRATEGY.jpeg",
-  "prodcost.jpeg"
+  "prodcost.jpeg",
+  "bitcoin_dominance.jpeg"
 ];
 
 const breakpointColumnsObj = {
