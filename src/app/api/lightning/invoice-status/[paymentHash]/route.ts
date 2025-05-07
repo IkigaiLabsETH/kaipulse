@@ -34,7 +34,7 @@ export async function GET(
     }
     return NextResponse.json({
       status: invoice.status,
-      amountSats: invoice.amountSats,
+      amountSats: invoice.amountSats.toString(),
       expiresAt: invoice.expiresAt,
       settledAt: invoice.settledAt,
       createdAt: invoice.createdAt,
