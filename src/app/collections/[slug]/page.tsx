@@ -9,6 +9,7 @@ import {
 } from '@/components/collection';
 import { Layout } from '@/components/ui';
 import type { OpenSeaCollection, OpenSeaCollectionStats } from '@/services/opensea/types';
+import { useRouter } from 'next/navigation';
 
 interface CollectionPageProps {
   params: { slug: string };
@@ -18,6 +19,7 @@ export default function CollectionPage({ params }: CollectionPageProps) {
   const [collection, setCollection] = useState<(OpenSeaCollection & { stats?: OpenSeaCollectionStats }) | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,12 +27,16 @@ export default function CollectionPage({ params }: CollectionPageProps) {
     fetch(`/api/collections/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
+        if (data.redirectTo) {
+          router.replace(data.redirectTo);
+          return;
+        }
         if (data.error) throw new Error(data.error);
         setCollection(data.collection);
       })
       .catch((err) => setError(err.message))
       .finally(() => setIsLoading(false));
-  }, [params.slug]);
+  }, [params.slug, router]);
 
   if (isLoading) {
     return (
