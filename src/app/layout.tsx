@@ -1,60 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import localFont from 'next/font/local';
 import { Header } from "@/components/Header";
 import { Analytics } from '@vercel/analytics/react';
 import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 import { Toaster } from "@/components/ui/toaster";
 import { ThirdwebProvider } from "thirdweb/react";
-
-const boska = localFont({
-  src: [
-    {
-      path: '../../public/fonts/boska/Boska-Variable.woff',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/boska/Boska-VariableItalic.woff',
-      weight: '400',
-      style: 'italic',
-    }
-  ],
-  variable: '--font-boska',
-});
-
-const epilogue = localFont({
-  src: [
-    {
-      path: '../../public/fonts/epilogue/Epilogue-Variable.woff',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/epilogue/Epilogue-VariableItalic.woff',
-      weight: '400',
-      style: 'italic',
-    }
-  ],
-  variable: '--font-epilogue',
-});
-
-const satoshi = localFont({
-  src: [
-    {
-      path: '../../public/fonts/satoshi/Satoshi-Variable.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/satoshi/Satoshi-VariableItalic.woff2',
-      weight: '400',
-      style: 'italic',
-    }
-  ],
-  variable: '--font-satoshi',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
@@ -163,7 +114,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={cn(
-        `min-h-screen bg-background font-satoshi antialiased ${boska.variable} ${epilogue.variable} ${satoshi.variable}`,
+        "min-h-screen bg-background font-satoshi antialiased",
         "selection:bg-accent selection:text-accent-foreground",
         "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30"
       )} style={{ fontFamily: 'Satoshi, Epilogue, Boska, system-ui, sans-serif' }}>
