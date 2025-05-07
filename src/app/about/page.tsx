@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function AboutPage() {
   // Interactive pyramid state
@@ -169,14 +170,11 @@ export default function AboutPage() {
               </p>
 
               <div className="mt-auto">
-                <Button
-                  href="https://www.strategy.com/strf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
-                >
-                  Learn more about STRF
-                </Button>
+                <Link href="https://www.strategy.com/strf" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
+                    Learn more about STRF
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
@@ -213,14 +211,11 @@ export default function AboutPage() {
               </p>
 
               <div className="mt-auto">
-                <Button
-                  href="https://www.strategy.com/strk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
-                >
-                  Learn more about STRK
-                </Button>
+                <Link href="https://www.strategy.com/strk" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
+                    Learn more about STRK
+                  </Button>
+                </Link>
               </div>
             </div>
           </Card>
