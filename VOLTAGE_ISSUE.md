@@ -160,5 +160,3 @@ If you have a base64-encoded macaroon string (e.g., from the Voltage dashboard o
 - [Voltage REST API Examples](https://docs.voltage.cloud/rest-api-examples)
 
 ---
-
-*Last updated: <!-- Add date here -->* 
