@@ -65,6 +65,20 @@ The changes have been applied to:
 
 ---
 
+## Frontend Error Handling Improvement
+To address the `Unexpected end of JSON input` error when the backend returns an empty or invalid response, we updated the LightningPaymentWidget fetch logic:
+
+- The widget now reads the response as text and only attempts to parse it as JSON if there is content.
+- If the backend returns an error or empty body, the widget displays a user-friendly error message instead of crashing.
+- This makes the UI more robust and helps surface backend issues to the user for easier debugging.
+
+**Relevant file:**
+- `src/components/LightningPaymentWidget.tsx`
+
+This change ensures that even if the backend fails to return a valid JSON response (e.g., due to node connectivity issues), the frontend will not throw a parsing error and will instead show a clear error message to the user.
+
+---
+
 ## Next Actions
 - [ ] Restart the node from the Voltage dashboard and monitor for successful peer connections.
 - [ ] Verify network/firewall settings to ensure the node can reach DNS seeds and peers.

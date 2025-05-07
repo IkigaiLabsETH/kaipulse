@@ -47,8 +47,16 @@ export default function LightningPaymentWidget({
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount, memo }),
           });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || "Failed to create invoice");
+
+          let data;
+          try {
+            const text = await res.text();
+            data = text ? JSON.parse(text) : {};
+          } catch {
+            data = {};
+          }
+
+          if (!res.ok) throw new Error(data.error || `Failed to create invoice (status ${res.status})`);
           setInvoice({
             paymentRequest: data.paymentRequest,
             paymentHash: data.paymentHash,
