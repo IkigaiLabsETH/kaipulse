@@ -24,7 +24,6 @@ export default function NFTImageGallery({
     ? images 
     : ['/images/placeholder-nft.svg'];
 
-  const hasMultipleImages = displayImages.length > 1;
   const currentImage = displayImages[activeIndex] || '/images/placeholder-nft.svg';
   
   // Check for placeholder or fallback images
