@@ -142,6 +142,7 @@ export async function POST(request: Request) {
         updatedAt: new Date(),
       },
     });
+    logger.info(`[${requestId}] Stored paymentHash (hex): ${invoice.id}`);
 
     // Respond
     return NextResponse.json({

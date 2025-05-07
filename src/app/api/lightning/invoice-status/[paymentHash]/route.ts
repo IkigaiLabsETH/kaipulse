@@ -18,6 +18,7 @@ export async function GET(
   const requestId = Math.random().toString(36).slice(2, 10);
   const { paymentHash } = params;
   const paymentHashHex = base64ToHex(paymentHash);
+  logger.info(`[${requestId}] Queried paymentHash (hex): ${paymentHashHex}`);
   try {
     const invoice = await prisma.invoice.findUnique({ where: { paymentHash: paymentHashHex } });
     if (!invoice) {
