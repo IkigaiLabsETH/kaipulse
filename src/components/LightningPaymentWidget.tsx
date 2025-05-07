@@ -100,15 +100,15 @@ export default function LightningPaymentWidget({
         </button>
         {error && <div className="text-red-400 mb-2">{error}</div>}
         {invoice && (
-          <div className="p-4 bg-white text-black rounded-lg border border-black shadow-lg" style={{ boxShadow: '5px 5px 0 #000' }}>
+          <div className="p-4 bg-[#18181b] text-white rounded-lg border border-[#333] shadow-lg" style={{ boxShadow: '5px 5px 0 #222' }}>
             <div>
               <span className="font-bold text-[#F7B500]">Invoice:</span>
-              <div className="break-all text-xs bg-gray-100 p-2 rounded border border-[#F7B500] mt-1">{invoice.paymentRequest}</div>
+              <div className="break-all text-xs bg-[#232323] text-[#F7B500] p-2 rounded border border-[#F7B500] mt-1">{invoice.paymentRequest}</div>
             </div>
             <div className="flex justify-center my-4">
               <QRCode value={invoice.paymentRequest} bgColor="#fff" fgColor="#111" size={180} />
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-400">
               Expires at: {new Date(invoice.expiresAt).toLocaleString()}
             </div>
           </div>
