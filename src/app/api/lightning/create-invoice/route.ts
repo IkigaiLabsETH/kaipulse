@@ -48,6 +48,10 @@ async function checkRateLimit(ip: string) {
   return count > 50;
 }
 
+function hexToBase64(hex: string): string {
+  return Buffer.from(hex, 'hex').toString('base64');
+}
+
 // --- API Route ---
 export async function POST(request: Request) {
   const requestId = randomUUID();
@@ -142,7 +146,7 @@ export async function POST(request: Request) {
     // Respond
     return NextResponse.json({
       paymentRequest: invoice.request,
-      paymentHash: invoice.id,
+      paymentHash: hexToBase64(invoice.id),
       expiresAt: invoice.expires_at,
       requestId,
       usedFallback,
