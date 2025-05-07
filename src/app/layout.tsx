@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 import { Toaster } from "@/components/ui/toaster";
 import { ThirdwebProvider } from "thirdweb/react";
-import Head from 'next/head';
 
 const boska = localFont({
   src: [
@@ -44,12 +43,12 @@ const epilogue = localFont({
 const satoshi = localFont({
   src: [
     {
-      path: '../../public/fonts/satoshi/Satoshi-Variable.woff',
+      path: '../../public/fonts/satoshi/Satoshi-Variable.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/satoshi/Satoshi-VariableItalic.woff',
+      path: '../../public/fonts/satoshi/Satoshi-VariableItalic.woff2',
       weight: '400',
       style: 'italic',
     }
@@ -142,13 +141,14 @@ export const metadata: Metadata = {
       }
     ]
   },
-  manifest: '/site.webmanifest'
+  manifest: '/site.webmanifest',
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  themeColor: '#111111',
 };
 
 export default function RootLayout({
@@ -159,18 +159,9 @@ export default function RootLayout({
   // For dynamic canonical URLs
   // const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
   // const canonicalUrl = `https://livethelife.tv${pathname}`;
-  const canonicalUrl = 'https://livethelife.tv';
 
   return (
     <html lang="en" className="dark">
-      <Head>
-        <meta name="theme-color" content="#111111" />
-        <link rel="preload" href="/fonts/satoshi/Satoshi-Variable.woff" as="font" type="font/woff" crossOrigin="anonymous" />
-        {/* Absolute URLs for OG/Twitter images */}
-        <meta property="og:image" content="https://livethelife.tv/background_helo.jpeg" />
-        <meta name="twitter:image" content="https://livethelife.tv/background_helo.jpeg" />
-        <link rel="canonical" href={canonicalUrl} />
-      </Head>
       <body className={cn(
         `min-h-screen bg-background font-satoshi antialiased ${boska.variable} ${epilogue.variable} ${satoshi.variable}`,
         "selection:bg-accent selection:text-accent-foreground",

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import Head from "next/head";
 
 export default function NavalPage() {
   // Animation variants
@@ -32,11 +31,6 @@ export default function NavalPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-zinc-900 text-white">
-      <Head>
-        <title>Why Builders Choose Bitcoin: A Naval-Inspired Field Guide</title>
-        <meta name="description" content="Naval Ravikant's wisdom applied to Bitcoin and wealth creation" />
-      </Head>
-
       {/* Hero Section with Subtle Pattern */}
       <div className="relative overflow-hidden">
         <div 
@@ -200,3 +194,8 @@ export default function NavalPage() {
     </div>
   );
 }
+
+export const metadata = {
+  title: "Why Builders Choose Bitcoin: A Naval-Inspired Field Guide",
+  description: "Naval Ravikant's wisdom applied to Bitcoin and wealth creation"
+};
