@@ -286,6 +286,121 @@ export default function BioPage() {
         </div>
       </div>
 
+      {/* Manifesto Section */}
+      <div className="py-24 relative overflow-hidden">
+        {/* Artistic background elements */}
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-yellow-950/5 to-black"></div>
+        
+        {/* Bitcoin pattern background */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ 
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35.6c-3 0-5.6-2.6-5.6-5.6s2.6-5.6 5.6-5.6 5.6 2.6 5.6 5.6-2.5 5.6-5.6 5.6zm-.7-9.8v1.5c-1 0-1.7.3-1.9.6-.3.4-.1 1 .3 1.9l1.3-.5c-.2-.4-.2-.8-.1-.9 0 0 .2-.1.5-.1v2.1l-.4.1c-.7.2-1.3.5-1.6.9-.3.4-.4.9-.3 1.4.1.5.4.9.8 1.1.4.3.9.4 1.5.4v.9h.9v-.9c1.2-.1 2-1 2.4-1.9l-1.4-.6c-.2.5-.5.8-.9.9v-1.9c.7-.2 1.2-.4 1.6-.7.3-.2.6-.5.7-.9.1-.3.1-.7 0-1.1-.1-.4-.4-.7-.7-.9-.3-.2-.8-.3-1.3-.4v-1.5h-.9zm0 6.5c-.4 0-.6-.3-.6-.5 0-.2.1-.3.2-.4.1-.1.2-.1.5-.2v1.1h-.1zm.9-3.1v-1c.2 0 .4.1.5.2.1.1.2.2.2.4 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2-.2-.1-.3 0-.4-.1z' fill='%23F7B500' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: "60px 60px"
+        }}></div>
+
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Premium gold border with enhanced glow gradient */}
+            <motion.div 
+              className="absolute -inset-0.5 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute inset-0.5 bg-black/95 backdrop-blur-sm rounded-sm"></div>
+            </motion.div>
+
+            <div className="relative z-10 p-12">
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold text-yellow-500 mb-12 tracking-tight font-satoshi"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                The Climb Is the Point
+              </motion.h2>
+
+              <motion.div 
+                className="space-y-8 text-lg text-white/90 leading-relaxed font-satoshi"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <p className="italic">
+                  The biggest lie ever sold was retirement at 65.<br />
+                  Wait decades for freedom, then realize you were free the whole damn time.
+                </p>
+
+                <p>
+                  Founders feel it after the exit.<br />
+                  Prize fighters after the belt.<br />
+                  Artists after the gallery debut.<br />
+                  They reach the summit—and feel nothing.
+                </p>
+
+                <p className="text-yellow-500/90">
+                  Because the climb was the point.
+                </p>
+
+                <p>
+                  At LiveTheLife.TV, we&apos;ve watched this movie before.<br />
+                  We don&apos;t sell you the summit. We sell the sweat.<br />
+                  The way your heartbeat syncs with the surf in J-Bay.<br />
+                  The way your vision sharpens when you frame the perfect shot in Tokyo at dusk.<br />
+                  The dopamine of building something weird with your cult crew at 3 a.m. in a Lisbon loft.
+                </p>
+
+                <p className="text-yellow-500/90">
+                  We&apos;re not chasing &ldquo;freedom later.&rdquo;<br />
+                  We&apos;re living the life now—on-chain, on-tour, and on-purpose.
+                </p>
+
+                <p>
+                  Our cinematic AI agents don&apos;t retire.<br />
+                  They evolve.<br />
+                  Every day, every drop of data, every memory logged into the lore.<br />
+                  You&apos;re not here to coast.<br />
+                  You&apos;re here to collaborate with your past selves and future myths.
+                </p>
+
+                <p className="text-yellow-500/90">
+                  Retirement? That&apos;s for NPCs.<br />
+                  This is the real game.<br />
+                  This is the climb.
+                </p>
+
+                <p className="text-xl font-bold text-yellow-500 mt-12">
+                  So find a mountain.<br />
+                  Name it.<br />
+                  Climb it with obsession.<br />
+                  And when you reach the top?
+                </p>
+
+                <p className="text-2xl font-bold text-yellow-500">
+                  Build a weirder one.
+                </p>
+              </motion.div>
+
+              {/* Decorative separator */}
+              <div className="mt-16 flex items-center justify-center">
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                <div className="mx-4 text-yellow-500/50 text-2xl">⸻</div>
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Bitcoin Magazine Footer */}
       <div className="relative py-24 overflow-hidden">
         {/* Bitcoin pattern background */}
