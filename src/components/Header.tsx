@@ -99,6 +99,7 @@ export function Header() {
         { name: 'WINE', href: '/wine' },
         { name: 'MINT', href: '/mint' },
         { name: 'PLAY', href: '/biohacking' },
+        { name: 'FIRE', href: '/fire' },
         { name: 'CLUB', href: '/club' },
         { name: 'DRIVE', href: '/tesla' },
         { name: 'SOLAR', href: '/ecoflow' },
