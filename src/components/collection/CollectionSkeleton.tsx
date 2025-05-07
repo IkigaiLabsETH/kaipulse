@@ -7,21 +7,22 @@ export function CollectionSkeleton() {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-black p-4"
+      className="min-h-screen bg-black p-8 md:p-12"
     >
-      {/* Header */}
-      <div className="container mx-auto">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="w-16 h-16 bg-white/5 rounded-lg animate-pulse" />
-          <div className="h-8 w-48 bg-white/5 rounded-lg animate-pulse" />
+      <div className="max-w-[1920px] mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-24">
+          <div className="h-12 w-64 bg-gradient-to-b from-[#F3CC3E]/5 to-transparent mx-auto rounded-lg animate-pulse" />
+          <div className="h-6 w-96 bg-gradient-to-b from-[#F3CC3E]/5 to-transparent mx-auto mt-4 rounded-lg animate-pulse" />
         </div>
-      </div>
 
-      {/* Grid */}
-      <div className="container mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {[...Array(12)].map((_, i) => (
-            <div key={i} className="aspect-square bg-white/5 rounded-lg animate-pulse" />
+            <div 
+              key={i} 
+              className="aspect-square bg-gradient-to-b from-[#F3CC3E]/5 to-transparent rounded-lg animate-pulse" 
+            />
           ))}
         </div>
       </div>
