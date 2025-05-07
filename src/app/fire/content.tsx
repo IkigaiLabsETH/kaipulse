@@ -163,7 +163,7 @@ export default function FireContent() {
                 The Call to Action
               </motion.h3>
               <div className="space-y-6 text-lg text-white/80 font-satoshi">
-                <p>Whether it&apos;s shooting film in Beirut&apos;s golden hour</p>
+                <p>Whether it&apos;s shooting film in Cape Town&apos;s golden hour</p>
                 <p>or building a Lightning-enabled app from a surf shack in Biarritz,</p>
                 <p>we&apos;re not waiting for permission.</p>
                 <p>We&apos;re living the life—on purpose, off-grid, on-chain.</p>
