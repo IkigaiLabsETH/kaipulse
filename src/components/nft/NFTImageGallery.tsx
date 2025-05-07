@@ -51,6 +51,10 @@ export default function NFTImageGallery({
     }
   };
 
+  // Only show navigation if there are multiple real images (not just placeholder)
+  const realImages = images.filter(img => img && !img.includes('placeholder-nft'));
+  const showNavigation = realImages.length > 1;
+
   return (
     <div className="relative rounded-sm overflow-hidden bg-gray-900 aspect-square">
       {/* Main image */}
@@ -82,7 +86,7 @@ export default function NFTImageGallery({
       </div>
 
       {/* Navigation arrows for multiple images */}
-      {hasMultipleImages && !fallbackMode && (
+      {showNavigation && !fallbackMode && (
         <>
           <button
             onClick={handlePrev}
@@ -108,7 +112,7 @@ export default function NFTImageGallery({
       )}
 
       {/* Thumbnail navigation for multiple images */}
-      {hasMultipleImages && !fallbackMode && (
+      {showNavigation && !fallbackMode && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
           {displayImages.map((_, index) => (
             <button
