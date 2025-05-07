@@ -41,7 +41,7 @@ export default function Home() {
             </h1>
             
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-             Preserve your Bitcoin wealth. Cold store 80%, let 20% work smarter with MSTR/MSTY. Focus on Digital Art, Digital Money, and Digital Intelligence.
+             Preserve your Bitcoin wealth. Cold store 80%, let 20% work smarter with MSTR/MSTY. Focus on Art, Digital Money, & Digital Intelligence. ₿ different
             </p>
           </motion.div>
 
