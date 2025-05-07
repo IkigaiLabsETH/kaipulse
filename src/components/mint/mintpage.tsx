@@ -440,6 +440,7 @@ export function MintPage(props: Props) {
                 width={800}
                 height={1000}
                 className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain blur-sm opacity-70"
+                unoptimized={true}
               />
             )}
             {/* Fade in the minted image if available and not loading/error */}
@@ -458,6 +459,7 @@ export function MintPage(props: Props) {
                   width={800}
                   height={1000}
                   className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
+                  unoptimized={true}
                 />
               </motion.div>
             )}
@@ -469,6 +471,7 @@ export function MintPage(props: Props) {
                 width={800}
                 height={1000}
                 className="bg-[#181818] rounded-2xl shadow-2xl border-4 border-yellow-500 p-2 w-full h-full object-contain"
+                unoptimized={true}
               />
             )}
           </div>

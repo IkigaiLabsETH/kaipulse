@@ -51,6 +51,7 @@ export function NFTCard({ nft, href }: NFTCardProps) {
                 className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
                 onError={handleImageError}
                 priority
+                unoptimized={true}
               />
             ) : (
               <div className="w-full h-full bg-black/30 flex items-center justify-center">

@@ -48,6 +48,7 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
             onLoad={handleImageLoad}
             onError={handleImageError}
             priority
+            unoptimized={true}
           />
         ) : (
           <div className="w-full h-full bg-black/30 flex items-center justify-center">

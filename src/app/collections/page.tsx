@@ -16,7 +16,7 @@ export default function CollectionsPage() {
               content: (
                 <Suspense fallback={<div className="py-16 text-center text-white/60">Loading collections...</div>}>
                   <h1 className="text-4xl font-bold text-yellow-400 mb-8 tracking-tight font-epilogue">
-                    Curated Collections
+                    21 Million+ NFTs - 21+ Curated Collections
                   </h1>
                   <CollectionsGridClient />
                 </Suspense>
