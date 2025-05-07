@@ -79,6 +79,39 @@ This change ensures that even if the backend fails to return a valid JSON respon
 
 ---
 
+## Troubleshooting: Macaroon Encoding/Hex Error
+
+### Symptom
+- API requests to `/api/lightning/create-invoice` fail with:
+  - `REST fallback failed: 500 Internal Server Error - {"code":2, "message":"encoding/hex: invalid byte: U+0067 'g'", "details":[]}`
+
+### Root Cause
+- The `VOLTAGE_LND_MACAROON` environment variable was not a valid hex string.
+- This can happen if:
+  - The macaroon file contents were pasted directly (binary, not hex)
+  - A placeholder or example value was used
+  - Extra characters, spaces, or line breaks were present
+  - The hex string included non-hex characters (e.g., 'g')
+
+### Resolution
+1. Download the `admin.macaroon` file from the Voltage dashboard.
+2. Convert it to a hex string using:
+   ```sh
+   xxd -ps -u -c 1000 admin.macaroon
+   ```
+3. Copy the output (should only contain 0-9, a-f, A-F).
+4. Set the environment variable in `.env.local`:
+   ```
+   VOLTAGE_LND_MACAROON=<hex-string>
+   ```
+5. Ensure there are no spaces, newlines, or extra characters.
+6. Restart the Next.js dev server.
+
+### Result
+- The encoding/hex error is resolved and the API can authenticate with the Voltage node.
+
+---
+
 ## Next Actions
 - [ ] Restart the node from the Voltage dashboard and monitor for successful peer connections.
 - [ ] Verify network/firewall settings to ensure the node can reach DNS seeds and peers.

@@ -13,7 +13,10 @@ const logger = winston.createLogger({
 });
 
 // --- Setup ---
-const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null;
+const redisUrl = process.env.REDIS_URL;
+const isValidRedisUrl = redisUrl && !redisUrl.includes('your_redis_url');
+const redis = isValidRedisUrl ? new Redis(redisUrl) : null;
+
 if (!redis) {
   logger.warn('Redis is not configured. Rate limiting is disabled.');
 }
