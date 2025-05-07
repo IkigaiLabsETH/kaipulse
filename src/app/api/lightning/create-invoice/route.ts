@@ -25,13 +25,12 @@ const InvoiceSchema = z.object({
 });
 
 // --- Lightning credentials ---
-const lndCert = process.env.VOLTAGE_LND_CERT;
 const lndMacaroon = process.env.VOLTAGE_LND_MACAROON;
 const lndSocket = process.env.VOLTAGE_LND_SOCKET;
 
 function getLnd() {
   return {
-    cert: lndCert,
+    cert: '', // Voltage uses CA certs, so we can leave this empty
     macaroon: lndMacaroon,
     socket: lndSocket,
   };

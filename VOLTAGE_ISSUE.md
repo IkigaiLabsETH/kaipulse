@@ -44,6 +44,27 @@ To improve reliability and aid debugging, we updated the `/api/lightning/create-
 
 ---
 
+## Certificate Handling Update
+We've simplified our certificate handling based on Voltage's use of CA certificates:
+
+- Removed explicit certificate usage since Voltage nodes use browser-trusted CA certificates
+- Updated all `getLnd()` functions to use an empty string for the `cert` field
+- Maintained the existing REST API fallback which was already correctly not using certificates
+- Removed unused `VOLTAGE_LND_CERT` environment variable references
+
+This change aligns with Voltage's documentation and should improve connection reliability by:
+- Simplifying the authentication process
+- Reducing potential points of failure
+- Leveraging browser-trusted certificates for REST API calls
+- Maintaining compatibility with both gRPC and REST interfaces
+
+The changes have been applied to:
+- `/api/lightning/balance/route.ts`
+- `/api/lightning/pay/route.ts`
+- `/api/lightning/create-invoice/route.ts`
+
+---
+
 ## Next Actions
 - [ ] Restart the node from the Voltage dashboard and monitor for successful peer connections.
 - [ ] Verify network/firewall settings to ensure the node can reach DNS seeds and peers.

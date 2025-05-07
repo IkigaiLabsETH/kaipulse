@@ -9,13 +9,12 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-const lndCert = process.env.VOLTAGE_LND_CERT;
 const lndMacaroon = process.env.VOLTAGE_LND_MACAROON;
 const lndSocket = process.env.VOLTAGE_LND_SOCKET;
 
 function getLnd() {
   return {
-    cert: lndCert,
+    cert: '',
     macaroon: lndMacaroon,
     socket: lndSocket,
   };
