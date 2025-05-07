@@ -48,8 +48,8 @@ async function checkRateLimit(ip: string) {
   return count > 50;
 }
 
-function hexToBase64(hex: string): string {
-  return Buffer.from(hex, 'hex').toString('base64');
+function base64ToHex(base64: string): string {
+  return Buffer.from(base64, 'base64').toString('hex');
 }
 
 // --- API Route ---
@@ -131,9 +131,10 @@ export async function POST(request: Request) {
     }
 
     // Persist invoice in DB
+    const paymentHashHex = base64ToHex(invoice.id);
     await prisma.invoice.create({
       data: {
-        paymentHash: invoice.id,
+        paymentHash: paymentHashHex,
         amountSats: BigInt(amount),
         memo: memo || null,
         status: 'pending',
@@ -142,12 +143,12 @@ export async function POST(request: Request) {
         updatedAt: new Date(),
       },
     });
-    logger.info(`[${requestId}] Stored paymentHash (hex): ${invoice.id}`);
+    logger.info(`[${requestId}] Stored paymentHash (hex): ${paymentHashHex}, base64: ${invoice.id}`);
 
     // Respond
     return NextResponse.json({
       paymentRequest: invoice.request,
-      paymentHash: hexToBase64(invoice.id),
+      paymentHash: invoice.id, // base64 for frontend
       expiresAt: invoice.expires_at,
       requestId,
       usedFallback,
