@@ -105,6 +105,7 @@ export function Header() {
         { name: 'SOLAR', href: '/ecoflow' },
         { name: 'THINK', href: '/naval' },
         { name: 'BUILD', href: '/ln' },
+        { name: 'COLLECT', href: '/collections' },
       ]
     },
     { 
