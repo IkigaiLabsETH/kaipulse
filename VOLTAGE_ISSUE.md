@@ -112,6 +112,40 @@ This change ensures that even if the backend fails to return a valid JSON respon
 
 ---
 
+## How to Convert a Base64 Macaroon to Hex
+
+If you have a base64-encoded macaroon string (e.g., from the Voltage dashboard or a previous export), you must convert it to hex before using it as the `VOLTAGE_LND_MACAROON` environment variable. Using base64 directly will cause authentication errors.
+
+### Steps
+1. **If you have the original `admin.macaroon` file:**
+   - Run:
+     ```sh
+     xxd -ps -u -c 1000 admin.macaroon
+     ```
+   - Copy the output (hex string) and use it for your environment variable.
+
+2. **If you only have a base64 string:**
+   - Convert it to hex with:
+     ```sh
+     echo '<your-base64-string-here>' | base64 -d | xxd -ps -u -c 1000
+     ```
+   - Replace `<your-base64-string-here>` with your actual base64 macaroon.
+   - Copy the output (hex string) and use it for your environment variable.
+
+3. **Set your environment variable in `.env.local`:**
+   ```
+   VOLTAGE_LND_MACAROON=<hex-string>
+   ```
+   (No spaces, newlines, or extra characters.)
+
+4. **Restart your Next.js dev server.**
+
+### Note
+- **Do not use the base64 string directly** for `VOLTAGE_LND_MACAROON`. It must be a hex string.
+- The hex string will only contain the characters 0-9 and a-f (or A-F).
+
+---
+
 ## Next Actions
 - [ ] Restart the node from the Voltage dashboard and monitor for successful peer connections.
 - [ ] Verify network/firewall settings to ensure the node can reach DNS seeds and peers.
