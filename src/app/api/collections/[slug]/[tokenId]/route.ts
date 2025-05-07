@@ -227,7 +227,14 @@ export async function GET(
 
       // Step 2: Fetch the NFT with the contract address
       logger.info('Fetching NFT data', { contractAddress, tokenId });
-      
+
+      // Ensure collectionData.collection.slug is the resolved slug, not the contract address
+      let resolvedSlug = slug;
+      if (collectionData && collectionData.collection && collectionData.collection.slug) {
+        resolvedSlug = collectionData.collection.slug;
+        collectionData.collection.slug = resolvedSlug;
+      }
+
       const fetchNFT = async () => {
         try {
           // Ensure clean parameters
