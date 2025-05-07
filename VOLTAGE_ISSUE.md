@@ -1,5 +1,29 @@
 # Voltage Lightning Node Connectivity Issue
 
+## UX & Vision Notes (2025 Demo Context)
+
+The core idea behind this demo is to reimagine what we built in 2016/2017—a web3 version of Instagram, originally with a FINRA license for the app store (the world's first at the time) and the ability to turn likes into real rewards for creators and fans.
+
+**2025 Edition:**
+- The challenge: Rapidly prototype a next-gen version of that concept, but instead of relying on a "sidechain" (as we did in 2016), we now use the Bitcoin Lightning Network (LN) and leverage VOLTAGE Cloud to eliminate the developer experience (DX) pain of running a node.
+- **Key UX blocker:** Scanning a QR code is not ideal for mobile-first social apps. Since 95% of users browse on their phones, asking them to scan a QR with the same device is a major friction point and not a viable mainstream UX. This is a fundamental challenge for Lightning-powered social apps.
+- The commits and workarounds below document our efforts to get the demo working despite this, focusing on the backend and payment flow, while acknowledging that a seamless mobile-native Lightning UX (e.g., WebLN, in-app wallets, or deep linking) is the real unlock for the future.
+
+---
+
+## Resolved Issues
+
+- **Node connectivity failures:** Fixed by verifying node status, credentials, and using fallback logic for invoice creation.
+- **Certificate handling confusion:** Simplified by removing explicit certs and relying on browser-trusted CA certs.
+- **Macaroon encoding errors:** Resolved by converting macaroons to hex and documenting the process for both file and base64 sources.
+- **Payment hash encoding mismatch:** Fixed by storing hashes as hex in the DB, sending as base64 to the frontend, and decoding back to hex in the status endpoint.
+- **Race condition on invoice polling:** Mitigated by adding a delay before the frontend starts polling for invoice status.
+- **BigInt serialization errors:** Fixed by converting all BigInt fields to strings in API responses.
+- **Frontend error handling:** Improved to show user-friendly messages for backend errors and empty responses.
+- **Dark mode payment popup:** Updated the Lightning payment modal to match the app's dark theme for a better UX.
+
+---
+
 ## Summary
 Our application is experiencing 500 Internal Server Errors on the `/api/lightning/create-invoice` endpoint. Investigation reveals that the root cause is connectivity issues with the Voltage-hosted Lightning node.
 
