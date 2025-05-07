@@ -194,8 +194,3 @@ export default function NavalPage() {
     </div>
   );
 }
-
-export const metadata = {
-  title: "Why Builders Choose Bitcoin: A Naval-Inspired Field Guide",
-  description: "Naval Ravikant's wisdom applied to Bitcoin and wealth creation"
-};

@@ -51,13 +51,3 @@ export default function Mint() {
     </div>
   )
 }
-
-export async function generateMetadata() {
-  const nftInfo = await getERC721Info(contract);
-  return {
-    title: nftInfo?.displayName || "Mint NFT",
-    description: nftInfo?.description || "Mint your NFT on LIVETHELIFETV.",
-    ogImage: nftInfo?.contractImage || "/arty.png",
-    twitterCard: "summary_large_image"
-  };
-}
