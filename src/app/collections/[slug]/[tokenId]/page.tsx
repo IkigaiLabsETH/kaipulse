@@ -303,15 +303,8 @@ function NFTContent({
     }
   };
 
-  // Transform images for gallery
-  const images = [
-    processImageUrl(nft.image_url)
-  ];
-
-  if (nft.animation_url) {
-    images.push(processImageUrl(nft.animation_url));
-  }
-
+  // Get the main image URL
+  const imageUrl = processImageUrl(nft.image_url);
   const alt = nft.name || `${collection.slug} #${nft.identifier}`;
   const currentPrice = listing?.current_price 
     ? Number(listing.current_price) / 1e18 
@@ -363,7 +356,7 @@ function NFTContent({
         {/* Large artwork display */}
         <div className="lg:col-span-7 xl:col-span-8">
           <div className="sticky top-8">
-            <NFTImageGallery images={images} alt={alt} fallbackMode={isFallbackData} />
+            <NFTImageGallery image={imageUrl} alt={alt} fallbackMode={isFallbackData} />
           </div>
         </div>
 
