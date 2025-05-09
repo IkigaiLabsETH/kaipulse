@@ -99,6 +99,7 @@ export function Header() {
         { name: 'DEFI', href: '/defi' },
         { name: 'BITBONDS', href: '/bitbonds' },
         { name: 'TWENTY ONE', href: '/twentyone' },
+        { name: 'WATCH LIST', href: '/crypto' },
       ]
     },
     { 
