@@ -33,6 +33,7 @@ const altcoins = [
   { id: 'blockstack', name: 'Stacks', symbol: 'STX' },
   { id: 'dogecoin', name: 'Dogecoin', symbol: 'DOGE' },
   { id: 'pepe', name: 'Pepe', symbol: 'PEPE' },
+  { id: 'mog-coin', name: 'Mog', symbol: 'MOG' },
   { id: 'bittensor', name: 'Bittensor', symbol: 'TAO' },
   { id: 'render-token', name: 'Render', symbol: 'RENDER' },
   { id: 'fartcoin', name: 'Fartcoin', symbol: 'FARTCOIN' },

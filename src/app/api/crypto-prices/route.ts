@@ -61,6 +61,7 @@ export async function GET() {
       'blockstack',
       'dogecoin',
       'pepe',
+      'mog-coin',
       'bittensor',
       'render-token',
       'fartcoin',
