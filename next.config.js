@@ -4,6 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'opepenai.nyc3.digitaloceanspaces.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'hashmasksstore.blob.core.windows.net',
         pathname: '/**',
       },

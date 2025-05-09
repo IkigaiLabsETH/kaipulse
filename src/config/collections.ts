@@ -28,7 +28,6 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'qql',
   'human-unreadable-by-operator',
   'jaknfthoodies',
-  'mind-the-gap-by-mountvitruvius',
   'non-either-by-rafael-rozendaal',
   'orbifold-by-kjetil-golid',
   'pop-wonder-editions',
@@ -41,5 +40,9 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'justinaversano-gabbagallery',
   'neural-sediments-by-eko33',
   'wavyscape-by-holger-lippmann',
+  'opepen-edition',
+  'mind-the-gap-by-mountvitruvius',
+  'trichro-matic-by-mountvitruvius',
+  'renders-game-by-mountvitruvius'
   // Add more slugs or addresses as needed
 ]; 
