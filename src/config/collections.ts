@@ -42,7 +42,13 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'wavyscape-by-holger-lippmann',
   'opepen-edition',
   'mind-the-gap-by-mountvitruvius',
+  'urban-transportation-red-trucks',
+  'reworld-by-roope-rainisto',
   'trichro-matic-by-mountvitruvius',
-  'renders-game-by-mountvitruvius'
-  // Add more slugs or addresses as needed
+  'the-world-is-a-book-by-jeff-davis',
+  'reworld-by-roope-rainisto',
+  'the-metascapes',
+  'renders-game-by-mountvitruvius',
+  'pink-such-a-useless-color-by-simon-raion',
+  'life-and-love-and-nothing-by-nat-sarkissian'
 ]; 
