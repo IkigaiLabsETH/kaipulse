@@ -165,34 +165,57 @@ export default function CryptoPage() {
           <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mt-8">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-medium text-yellow-500">Market Overview</h3>
+                <h3 className="text-xl font-medium text-yellow-500">Market Overview: Structural Shifts & Institutional Moves</h3>
                 <Coins className="h-6 w-6 text-yellow-500" />
               </div>
               <div className="space-y-4 text-white/80">
                 <p className="text-sm">
-                  The cryptocurrency market is experiencing unprecedented institutional adoption and structural integration into mainstream finance. 
-                  Major players like Stripe, Meta, and Robinhood are driving innovation in stablecoins, tokenized assets, and blockchain infrastructure.
+                  The cryptocurrency market is experiencing unprecedented institutional adoption and structural integration into mainstream finance. Major players like Stripe, Meta, and Robinhood are driving innovation in stablecoins, tokenized assets, and blockchain infrastructure. Meanwhile, the altcoin landscape reveals a cultural shift—one that blends memes, AI, DeFi, and narrative investing into a high-volatility cocktail that&apos;s hard to ignore.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <h4 className="text-yellow-500 font-medium mb-2">Institutional Adoption</h4>
+                    <h4 className="text-yellow-500 font-medium mb-2">Major Market Moves</h4>
                     <ul className="text-sm space-y-1">
-                      <li>• Stablecoin integration in 101 countries</li>
-                      <li>• Bitcoin as treasury-grade asset</li>
-                      <li>• Major M&A activity (e.g., Coinbase/Deribit)</li>
-                      <li>• Enterprise crypto adoption</li>
+                      <li>• Coinbase acquiring Deribit</li>
+                      <li>• Stripe&apos;s global stablecoin push</li>
+                      <li>• Meta&apos;s blockchain infrastructure</li>
+                      <li>• Robinhood&apos;s crypto expansion</li>
+                      <li>• Major TradFi M&A activity</li>
                     </ul>
                   </div>
                   <div className="bg-black/20 p-4 rounded-lg">
-                    <h4 className="text-yellow-500 font-medium mb-2">Key Innovations</h4>
+                    <h4 className="text-yellow-500 font-medium mb-2">Market Dynamics</h4>
                     <ul className="text-sm space-y-1">
-                      <li>• Tokenized real-world assets (RWA)</li>
-                      <li>• On-chain stock trading</li>
-                      <li>• Stablecoin payment rails</li>
-                      <li>• Cross-chain infrastructure</li>
+                      <li>• Memecoin cultural integration</li>
+                      <li>• AI infrastructure development</li>
+                      <li>• DeFi protocol maturation</li>
+                      <li>• L1 ecosystem evolution</li>
                     </ul>
                   </div>
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <h4 className="text-yellow-500 font-medium mb-2">Key Innovations</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• On-chain stock trading</li>
+                      <li>• Stablecoin payment rails</li>
+                      <li>• LSDfi infrastructure</li>
+                      <li>• Decentralized ML economies</li>
+                    </ul>
+                  </div>
+                  <div className="bg-black/20 p-4 rounded-lg">
+                    <h4 className="text-yellow-500 font-medium mb-2">Market Insights</h4>
+                    <ul className="text-sm space-y-1">
+                      <li>• Institutional adoption accelerating</li>
+                      <li>• Cultural narratives driving innovation</li>
+                      <li>• Infrastructure-first approach</li>
+                      <li>• Convergence of TradFi and DeFi</li>
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-sm mt-4">
+                  This isn&apos;t 2021 redux. It&apos;s more meta, more modular, and more memetic. We&apos;re witnessing the convergence of institutional adoption and cultural innovation—where traditional finance meets the edge of crypto, creating unprecedented opportunities for both builders and traders. The market is being reshaped by major structural moves rather than just price action.
+                </p>
               </div>
             </CardContent>
           </Card>
