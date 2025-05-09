@@ -60,14 +60,31 @@ export function Header() {
 
   const navigation: NavigationItem[] = [
     { name: 'HOME', href: '/', dropdown: false },
-    { name: 'DOCU', href: '/docu', dropdown: false },
+    { 
+      name: 'MEDIA', 
+      href: '#', 
+      dropdown: true,
+      items: [
+        { name: 'ART', href: '/art' },
+        { name: 'MINT', href: '/mint' },
+        { name: 'DOCU', href: '/docu' },
+        { name: 'DATA', href: '/data' },
+        { name: 'FIRE', href: '/fire' },
+        { name: 'MEMES', href: '/visuals' },
+        { name: 'COLLECT', href: '/collections' },
+      ]
+    },
     { 
       name: 'FREEDOM TOOLS', 
       href: '#', 
       dropdown: true,
       items: [
+        { name: 'VOICE CHAT', href: '/voice' },
         { name: 'CALCULATOR', href: '/calculator' },
         { name: 'THE 4% RULE', href: '/21' },
+        { name: 'LEDGER', href: '/ledger' },
+        { name: 'COINBASE', href: '/platforms/coinbase' },
+        { name: 'BROKERS', href: '/platforms/msty/brokers' },
       ]
     },
     { 
@@ -80,14 +97,8 @@ export function Header() {
         { name: 'MSTY', href: '/platforms/msty' },
         { name: 'IMST', href: '/platforms/bitwise' },
         { name: 'DEFI', href: '/defi' },
-        { name: 'LEDGER', href: '/ledger' },
-        { name: 'BROKERS', href: '/platforms/msty/brokers' },
         { name: 'BITBONDS', href: '/bitbonds' },
-        { name: 'COINBASE', href: '/platforms/coinbase' },
         { name: 'TWENTY ONE', href: '/twentyone' },
-        { name: 'DATA EXPLORER', href: '/data' },
-        { name: 'MEMES & DREAMS', href: '/visuals' },
-        { name: 'ART COLLECTION', href: '/art' },
       ]
     },
     { 
@@ -95,17 +106,13 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'TALK', href: '/voice' },
         { name: 'WINE', href: '/wine' },
-        { name: 'MINT', href: '/mint' },
         { name: 'PLAY', href: '/biohacking' },
-        { name: 'FIRE', href: '/fire' },
         { name: 'CLUB', href: '/club' },
         { name: 'DRIVE', href: '/tesla' },
         { name: 'SOLAR', href: '/ecoflow' },
         { name: 'THINK', href: '/naval' },
         { name: 'BUILD', href: '/ln' },
-        { name: 'COLLECT', href: '/collections' },
       ]
     },
     { 
