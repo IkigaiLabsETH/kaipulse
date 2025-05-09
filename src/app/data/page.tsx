@@ -317,7 +317,7 @@ export default function DataPage() {
                 </div>
                 <div className="text-sm text-white/60 mt-1">
                   {loading ? "..." : data?.network?.marketCap 
-                    ? `$${formatNumber(data.network.marketCap, { maximumFractionDigits: 0 })}` 
+                    ? `$${data.network.marketCap.toLocaleString('en-US', { maximumFractionDigits: 0 })}` 
                     : "..."
                   }
                 </div>
@@ -355,7 +355,7 @@ export default function DataPage() {
                 </div>
                 <div className="text-sm text-white/60 mt-1">
                   {loading ? "..." : data?.network?.marketCap 
-                    ? `$${formatNumber(data.network.marketCap)}` 
+                    ? `$${data.network.marketCap.toLocaleString('en-US', { maximumFractionDigits: 0 })}` 
                     : "..."
                   }
                 </div>
