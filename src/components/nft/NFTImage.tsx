@@ -12,9 +12,9 @@ interface NFTImageProps {
 
 // Multiple IPFS gateways for fallback
 const IPFS_GATEWAYS = [
-  'https://ipfs.io/ipfs/',
   'https://cloudflare-ipfs.com/ipfs/',
-  'https://gateway.pinata.cloud/ipfs/'
+  'https://gateway.pinata.cloud/ipfs/',
+  'https://ipfs.io/ipfs/'
 ];
 
 const ARWEAVE_GATEWAY = 'https://arweave.net/';
@@ -29,6 +29,7 @@ function transformImageUrl(url: string | null): string {
     // Handle IPFS URLs
     if (url.startsWith('ipfs://')) {
       const ipfsHash = url.slice(7);
+      // Start with Cloudflare gateway as it's more reliable
       const gateway = IPFS_GATEWAYS[0];
       const transformed = gateway + ipfsHash;
       logger.info('Transformed IPFS URL:', { original: url, transformed });
@@ -74,9 +75,11 @@ export function NFTImage({ src, alt }: NFTImageProps) {
       logger.info('Trying next IPFS gateway:', { gateway: nextGateway, newSrc });
       setGatewayIndex(gatewayIndex + 1);
       setImageSrc(newSrc);
+      setHasError(false); // Reset error state when trying new gateway
       return;
     }
 
+    // If we've tried all gateways or it's not an IPFS URL, show placeholder
     setHasError(true);
     setImageSrc('/images/nft-placeholder.png');
   };

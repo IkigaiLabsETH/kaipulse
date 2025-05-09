@@ -45,10 +45,11 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'urban-transportation-red-trucks',
   'reworld-by-roope-rainisto',
   'trichro-matic-by-mountvitruvius',
-  'the-world-is-a-book-by-jeff-davis',
-  'reworld-by-roope-rainisto',
   'the-metascapes',
   'renders-game-by-mountvitruvius',
   'pink-such-a-useless-color-by-simon-raion',
-  'life-and-love-and-nothing-by-nat-sarkissian'
+  'life-and-love-and-nothing-by-nat-sarkissian',
+  'highrises',
+  'lifeguard-towers-miami',
+  'stranger-together-by-brooke-didonato-ben-zank'
 ]; 
