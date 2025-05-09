@@ -37,7 +37,15 @@ const visuals = [
   "BTC_memes_and_dreams_33.png",
   "BTC_memes_and_dreams_34.png",
   "BTC_memes_and_dreams_35.png",
-  "BTC_memes_and_dreams_36.png"
+  "BTC_memes_and_dreams_36.png",
+  "BTC_memes_and_dreams_37.png",
+  "BTC_memes_and_dreams_38.png",
+  "BTC_memes_and_dreams_39.png",
+  "BTC_memes_and_dreams_40.png",
+  "BTC_memes_and_dreams_41.png",
+  "BTC_memes_and_dreams_42.png",
+  "BTC_memes_and_dreams_43.png",
+  "BTC_memes_and_dreams_44.png"
 ];
 
 const breakpointColumnsObj = {
