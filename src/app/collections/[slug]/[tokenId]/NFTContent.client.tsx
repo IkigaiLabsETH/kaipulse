@@ -39,7 +39,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
   };
 
   return (
-    <div className="min-h-screen bg-[#111111] text-white antialiased">
+    <div className="min-h-screen bg-[#111111] text-white antialiased" role="main" aria-label="NFT details">
       {/* Main Content */}
       <div className="relative flex flex-col-reverse md:flex-row w-full min-h-[80vh]">
         {/* Left: Info (on mobile, below image) */}

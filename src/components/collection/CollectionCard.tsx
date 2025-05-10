@@ -33,6 +33,7 @@ export function CollectionCard({ collection, index }: CollectionCardProps) {
       href={`/collections/${collection.collection}`}
       className="group relative flex h-full w-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700 animate-fadeIn"
       style={{ animationDelay: `${index * 100}ms` }}
+      aria-label={`View collection: ${collection.name}`}
     >
       {/* Glow Effect */}
       <div className="absolute inset-0 bg-yellow-500 rounded-2xl blur-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" />

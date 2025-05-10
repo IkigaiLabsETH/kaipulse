@@ -43,6 +43,7 @@ export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
       <Link
         href={href}
         className="block overflow-hidden relative"
+        aria-label={`View details for ${nft.name || `NFT #${nft.identifier}`}`}
       >
         {/* Art frame - artwork is the focus */}
         <div className="relative">

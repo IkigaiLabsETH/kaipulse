@@ -31,18 +31,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: collection.description || "",
       images: [
         {
-          url: collection.image_url || "https://livethelife.tv/background_helo.jpeg",
+          url: collection.banner_image_url || collection.image_url || "https://livethelife.tv/background_helo.jpeg",
           width: 1200,
           height: 630,
           alt: collection.name,
         },
       ],
+      type: "website",
+      siteName: "LiveTheLifeTV",
     },
     twitter: {
       card: "summary_large_image",
       title: collection.name,
       description: collection.description || "",
-      images: [collection.image_url || "https://livethelife.tv/background_helo.jpeg"],
+      images: [collection.banner_image_url || collection.image_url || "https://livethelife.tv/background_helo.jpeg"],
     },
     alternates: {
       canonical: `https://livethelife.tv/collections/${params.slug}`,
