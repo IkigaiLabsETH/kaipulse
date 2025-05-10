@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import type { OpenSeaNFT } from '@/services/opensea/types';
 import { NFTCard } from '@/components/nft/NFTCard';
-import { Loader } from '@/components/ui/loader';
 import { RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { logger } from '@/lib/logger';
@@ -15,6 +14,24 @@ interface CollectionGridProps {
 // Detect if the slug is actually an Ethereum address
 function isEthereumAddress(value: string): boolean {
   return /^0x[a-fA-F0-9]{40}$/.test(value);
+}
+
+function NFTGridSkeleton() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="animate-pulse">
+          <div className="relative aspect-square overflow-hidden bg-neutral-900 border border-white/10 shadow-[0_5px_20px_0_rgba(0,0,0,0.25)] flex items-center justify-center">
+            <div className="w-3/4 h-3/4 bg-neutral-800 rounded" />
+          </div>
+          <div className="py-4 px-1">
+            <div className="h-5 w-2/3 bg-neutral-800 rounded mb-2" />
+            <div className="h-3 w-1/2 bg-neutral-800 rounded" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
@@ -110,11 +127,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
   });
 
   if (isLoading) {
-    return (
-      <div className="min-h-[300px] flex items-center justify-center">
-        <Loader size="lg" className="text-yellow-400/50" />
-      </div>
-    );
+    return <NFTGridSkeleton />;
   }
 
   if (error) {
