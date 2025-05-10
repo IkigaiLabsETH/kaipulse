@@ -103,6 +103,30 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
               chain: 'ethereum'
             });
             collectionData = result;
+            // If the slug is missing or is a contract address, try to resolve the real slug
+            if (
+              typeof collectionData.collection.slug !== 'string' ||
+              collectionData.collection.slug.toLowerCase() === slug.toLowerCase()
+            ) {
+              // Try to get the slug from the contract mapping endpoint
+              try {
+                const contractInfo = await openSeaAPI.collections.getCollectionByContractAddress({
+                  contractAddress: slug,
+                  chain: 'ethereum'
+                });
+                if (
+                  typeof contractInfo.collection.slug === 'string' &&
+                  contractInfo.collection.slug.toLowerCase() !== slug.toLowerCase()
+                ) {
+                  collectionData.collection.slug = contractInfo.collection.slug;
+                }
+              } catch (resolveErr) {
+                logger.warn('Could not resolve human-friendly slug for contract', {
+                  contract: slug,
+                  error: resolveErr instanceof Error ? resolveErr.message : String(resolveErr)
+                });
+              }
+            }
           } catch (collErr) {
             logger.error('Failed to get collection by contract, creating fallback collection', { 
               error: collErr instanceof Error ? collErr.message : String(collErr)
