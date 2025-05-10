@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { logger } from '@/lib/logger';
 import { formatEthPrice } from '@/lib/format';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ImageIcon } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export interface NFTCardProps {
   nft: OpenSeaNFT;
@@ -49,7 +49,7 @@ export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
         <div className="relative">
           {/* Art piece */}
           <div className="relative aspect-square overflow-hidden bg-black">
-            {imageUrl ? (
+            {!imageError && imageUrl ? (
               <Image
                 src={imageUrl}
                 alt={nft.name || 'NFT'}
@@ -65,8 +65,19 @@ export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
                 placeholder="blur"
               />
             ) : (
-              <div className="w-full h-full bg-black/30 flex items-center justify-center">
-                <ImageIcon size={48} className="text-white/40" />
+              <div className="flex flex-col items-center justify-center w-full h-full bg-gradient-to-br from-yellow-100/10 to-black/80 rounded-lg">
+                <Image
+                  src="/IKIGAI_LABS_logo.svg"
+                  alt="IKIGAI Labs Logo"
+                  width={96}
+                  height={96}
+                  className="w-24 h-24 mb-4 drop-shadow-lg"
+                  style={{ filter: 'brightness(1.2) saturate(1.2)' }}
+                  draggable={false}
+                  priority
+                />
+                <span className="mt-2 text-yellow-400 text-lg font-serif">Artwork Unavailable</span>
+                <span className="text-white/60 text-sm mt-2">Please try again later.</span>
               </div>
             )}
 
