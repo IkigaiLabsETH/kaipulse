@@ -111,13 +111,11 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
                   alt={alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'contain', borderRadius: 0 }}
                   className="w-full h-full shadow-2xl shadow-yellow-900/10"
-                  priority={true}
-                  quality={90}
-                  unoptimized={imageUrl.includes('ipfs') || imageUrl.includes('arweave')}
-                  onError={() => {
-                    // Handle error if needed
-                  }}
+                  priority
+                  placeholder="blur"
+                  blurDataURL="/images/placeholder-nft-blur.png"
                 />
                 {hasVideo && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
