@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import type { OpenSeaNFT } from '@/services/opensea/types';
 import { NFTCard } from '@/components/nft/NFTCard';
-import { RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { logger } from '@/lib/logger';
+import { AlertTriangle } from 'lucide-react';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 interface CollectionGridProps {
   collectionSlug: string;
@@ -30,6 +31,22 @@ function NFTGridSkeleton() {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function ArtGalleryErrorFallback() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[400px] py-16 text-center bg-gradient-to-br from-[#111] to-[#222] rounded-xl border border-yellow-400/20 shadow-2xl">
+      <AlertTriangle size={64} className="text-yellow-400 mb-6 animate-pulse" />
+      <h2 className="text-3xl font-bold text-yellow-400 mb-4 font-serif tracking-tight">Something went wrong</h2>
+      <p className="text-lg text-white/80 mb-8 max-w-xl font-light">We couldn&apos;t load the artworks in this collection. This might be a network issue or a temporary glitch. Please try again in a moment.</p>
+      <button
+        onClick={() => window.location.reload()}
+        className="px-8 py-3 rounded-full bg-yellow-400 text-black font-bold text-lg shadow-lg hover:bg-yellow-300 transition-all duration-200 uppercase tracking-widest"
+      >
+        Try Again
+      </button>
     </div>
   );
 }
@@ -132,18 +149,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
 
   if (error) {
     return (
-      <div className="min-h-[300px] flex flex-col items-center justify-center text-center p-4">
-        <p className="text-white/60 mb-8 tracking-wide">{error}</p>
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => setRetryCount(prev => prev + 1)}
-          className="inline-flex items-center gap-2 px-5 py-2 text-sm font-light border border-yellow-400/30 text-yellow-400 uppercase tracking-wider hover:bg-yellow-400/10 transition-all duration-300"
-        >
-          <RefreshCw size={14} />
-          Try Again
-        </motion.button>
-      </div>
+      <ArtGalleryErrorFallback />
     );
   }
 
@@ -183,24 +189,26 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
   };
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
-    >
-      {nfts.map((nft, index) => (
-        <motion.div 
-          key={nft.identifier}
-          variants={itemVariants}
-        >
-          <NFTCard 
-            nft={nft} 
-            href={`/collections/${nft.contract}/${nft.identifier}`}
-            priority={index < 4}
-          />
-        </motion.div>
-      ))}
-    </motion.div>
+    <ErrorBoundary fallback={<ArtGalleryErrorFallback />}>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
+      >
+        {nfts.map((nft, index) => (
+          <motion.div 
+            key={nft.identifier}
+            variants={itemVariants}
+          >
+            <NFTCard 
+              nft={nft} 
+              href={`/collections/${nft.contract}/${nft.identifier}`}
+              priority={index < 4}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+    </ErrorBoundary>
   );
 } 
