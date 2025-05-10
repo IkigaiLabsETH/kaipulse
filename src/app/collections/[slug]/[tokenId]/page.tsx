@@ -104,22 +104,19 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
             });
             collectionData = result;
 
-            // Always try to get the human-friendly slug from OpenSea's contract mapping
-            try {
-              const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`, {
-                headers: {
-                  'X-API-KEY': env.OPENSEA_API_KEY
-                }
-              });
-              
-              if (mappingRes.ok) {
-                const mappingJson = await mappingRes.json();
-                if (mappingJson?.collection && typeof mappingJson.collection === 'string') {
-                  collectionData.collection.slug = mappingJson.collection;
-                }
-              }
-            } catch (mappingErr) {
-              logger.warn('Failed to fetch human-friendly slug:', mappingErr);
+            // For Art Blocks collections, ensure we have the correct slug
+            const collectionName = typeof collectionData.collection.name === 'string' ? collectionData.collection.name.toLowerCase() : '';
+            
+            if (collectionName.includes('fidenza')) {
+              collectionData.collection.slug = 'fidenza-by-tyler-hobbs';
+            } else if (collectionName.includes('chromie squiggle')) {
+              collectionData.collection.slug = 'chromie-squiggle';
+            } else if (collectionName.includes('ringers')) {
+              collectionData.collection.slug = 'ringers-by-dmitri-cherniak';
+            } else if (collectionName.includes('subscapes')) {
+              collectionData.collection.slug = 'subscapes-by-matt-deslauriers';
+            } else if (collectionName.includes('meridian')) {
+              collectionData.collection.slug = 'meridian-by-matt-deslauriers';
             }
           } catch (collErr) {
             logger.error('Failed to get collection by contract, creating fallback collection', { 
