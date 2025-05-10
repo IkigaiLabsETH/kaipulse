@@ -188,15 +188,8 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
-  // Filter out NFTs with missing or unavailable data
-  const filteredNFTs = nfts.filter(nft =>
-    nft &&
-    nft.identifier &&
-    (nft.name || nft.image_url) &&
-    nft.image_url &&
-    nft.image_url !== '/images/nft-placeholder.png' &&
-    nft.image_url !== '/images/placeholder-nft.svg'
-  );
+  // Loosen filtering: only filter out NFTs with no identifier (invalid data)
+  const filteredNFTs = nfts.filter(nft => nft && nft.identifier);
 
   return (
     <ErrorBoundary fallback={<ArtGalleryErrorFallback />}>
