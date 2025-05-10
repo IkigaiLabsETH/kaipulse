@@ -1,13 +1,8 @@
+// Remove 'use client' if present at the top of the file.
 import { logger } from '@/lib/logger';
-import type { 
-  OpenSeaNFT,
-  Listing,
-  Collection
-} from '@/services/opensea/types';
 import { env } from '@/env.mjs';
 import { Metadata } from 'next';
-import Image from 'next/image';
-
+import NFTContent from './NFTContent.client';
 // Use React cache to deduplicate requests
 import { cache } from 'react';
 
@@ -18,14 +13,6 @@ interface NFTPageProps {
     tokenId: string;
   };
   searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-// Component props interface
-interface NFTContentProps {
-  nft: OpenSeaNFT;
-  collection: Collection;
-  listing: Listing | null;
-  isFallbackData?: boolean;
 }
 
 // Detect if the slug is a contract address (0x...) or a collection slug
@@ -276,79 +263,6 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
   }
 });
 
-function NFTContent({ 
-  nft, 
-  collection
-}: NFTContentProps) {
-  const processImageUrl = (url: string | undefined | null): string => {
-    if (!url || url === '/images/nft-placeholder.png') {
-      return '/images/placeholder-nft.svg';
-    }
-    try {
-      if (url.startsWith('ipfs://')) {
-        return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
-      }
-      new URL(url);
-      return url;
-    } catch {
-      return '/images/placeholder-nft.svg';
-    }
-  };
-
-  const imageUrl = processImageUrl(nft.image_url);
-  const alt = nft.name || `${collection.slug} #${nft.identifier}`;
-
-  return (
-    <div className="min-h-screen bg-[#111111] text-white">
-      {/* Main Content */}
-      <div className="relative flex flex-col-reverse md:flex-row w-full min-h-[80vh]">
-        {/* Left: Info (on mobile, below image) */}
-        <div className="flex flex-col justify-center w-full md:w-1/2 px-8 md:px-16 py-8 md:py-0 max-w-3xl z-10 mt-0 md:mt-24">
-          {/* TODO: Ensure 'Epilogue' font is loaded in your project (Google Fonts, @fontsource, or similar) */}
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-yellow-400 mb-8 leading-tight"
-            style={{ fontFamily: 'Epilogue, sans-serif' }}
-          >
-            {nft.name || collection.name}
-          </h1>
-          <h2 className="text-lg md:text-2xl font-semibold text-yellow-400 uppercase mb-4 tracking-widest">About this work</h2>
-          <p className="text-white/90 text-base md:text-xl font-light mb-8" style={{lineHeight: 1.6}}>{nft.description || collection.description}</p>
-          <div className="mt-4 flex flex-col items-start gap-0">
-            <a
-              href={`https://opensea.io/assets/ethereum/${nft.contract}/${nft.identifier}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-yellow-400 hover:underline text-lg md:text-xl font-medium"
-            >
-              View on OpenSea
-            </a>
-            <a
-              href={`/collections/${collection.slug || nft.collection || nft.contract || ''}`}
-              className="inline-flex items-center gap-2 text-yellow-400 font-bold text-sm uppercase tracking-widest hover:underline hover:text-yellow-300 transition-colors mt-8"
-            >
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="inline-block"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
-              Back to Collection
-            </a>
-          </div>
-        </div>
-        {/* Right: NFT Image (on mobile, on top) */}
-        <div className="w-full md:w-1/2 flex items-center justify-center relative min-h-[400px] md:min-h-0 md:static mt-0 md:mt-24">
-          <div className="relative w-screen h-screen md:absolute md:top-0 md:right-0 md:w-1/2 md:h-screen">
-            <Image
-              src={imageUrl}
-              alt={alt}
-              fill
-              style={{ objectFit: 'contain', borderRadius: 0 }}
-              className="w-full h-full"
-              priority
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // Dynamic metadata for SEO optimization
 export async function generateMetadata({ params }: NFTPageProps): Promise<Metadata> {
   try {
@@ -385,28 +299,15 @@ export async function generateMetadata({ params }: NFTPageProps): Promise<Metada
 }
 
 export default async function NFTPage({ params }: NFTPageProps) {
-  // Import Layout here to avoid linter error
   const { Layout } = await import('@/components/ui');
-  try {
-    // Fetch NFT data on the server
-    const { nft, collection, listing, isFallbackData } = await fetchNFTData(params.slug, params.tokenId);
-    
-    return (
-      <Layout>
-        <NFTContent 
-          nft={nft}
-          collection={collection}
-          listing={listing}
-          isFallbackData={isFallbackData}
-        />
-      </Layout>
-    );
-  } catch (error) {
-    logger.error('Error loading NFT:', {
-      error: error instanceof Error ? error.message : 'Unknown error',
-      slug: params.slug,
-      tokenId: params.tokenId
-    });
-    throw error;
-  }
+  const { nft, collection } = await fetchNFTData(params.slug, params.tokenId);
+
+  return (
+    <Layout>
+      <NFTContent 
+        nft={nft}
+        collection={collection}
+      />
+    </Layout>
+  );
 }
