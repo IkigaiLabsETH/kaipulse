@@ -104,7 +104,7 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
             });
             collectionData = result;
 
-            // Always try to get the human-friendly slug
+            // Always try to get the human-friendly slug from OpenSea's contract mapping
             try {
               const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`, {
                 headers: {
