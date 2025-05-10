@@ -12,26 +12,27 @@ const platformComparison = [
   { feature: 'Collateral Requirement', bera: 'Varies by protocol' },
   { feature: 'Repayment Terms', bera: 'Protocol dependent' },
   { feature: 'Platform Maturity', bera: 'Emerging' },
+  { feature: 'Current Focus', bera: 'ETH-native yield, BEND' },
 ];
 
 const strengths = [
   {
-    title: 'Proof-of-Liquidity (PoL)',
-    highlight: 'A new consensus for a new era.',
-    description: `In theory, PoL aligns incentives. In practice, it's a work in progress—real liquidity is sticky, and the system is still finding its footing. But if we get it right, it could change the game for EVM chains.`,
-    note: `Builder's Note: The idea is bold, but the execution is what matters. We're still learning what works.`
+    title: 'Proof-of-Liquidity (PoL) v1.1',
+    highlight: 'Evolving consensus for sustainable yield.',
+    description: `PoL v1.1 introduces dynamic incentive redistribution (20% fee) to balance value accrual between BGT and BERA. This shift moves capital efficiency from BGT to BERA and chain-wide liquidity, marking a new era of sustainable yield mechanics.`,
+    note: `Builder's Note: The transition from easy-mode yield to sustainable flywheel-driven ecosystem is a sign of maturity.`
   },
   {
-    title: 'Tri-Token System',
-    highlight: 'Separation of powers, on-chain.',
-    description: `BERA (gas), BGT (governance, earned via liquidity), and HONEY (stablecoin) are designed to keep the system honest. The architecture gives us a shot at real decentralization—if we have the guts to follow through.`,
-    note: `Builder's Note: Separation of powers is great, but only if governance is truly decentralized. We're not there yet, but the Berachain foundation is working on it.`
+    title: 'ETH-Native Integration',
+    highlight: 'BEND: The next wave of yield.',
+    description: `Berachain's upcoming BEND protocol promises ETH-native yield opportunities, allowing users to deposit wETH, borrow BERA/stablecoins, and deploy into BEX LPs while earning PoL incentives, fees, and validator rewards.`,
+    note: `Builder's Note: The integration of ETH as a productive asset within Berachain opens new opportunities for yield generation.`
   },
   {
-    title: 'Builder Culture',
-    highlight: 'Resilience is the real alpha.',
-    description: `The ones who stuck around are here for the right reasons. The bear market exposed who's really in it for the long haul. But we need to make sure new builders feel welcome, not just the old guard. This is a family now—time to act like it.`,
-    note: `Builder's Note: The core is strong, but we need to open the doors wider.`
+    title: 'Chain Owned Liquidity (COL)',
+    highlight: 'Protocol-owned liquidity pools.',
+    description: `COL captures value from BGT emissions to seed BERA-native LPs like BERA-HONEY and BERA-wBTC, creating deeper liquidity and more sustainable yield opportunities.`,
+    note: `Builder's Note: This shift toward protocol-owned liquidity represents a more mature approach to ecosystem growth.`
   },
   {
     title: 'EVM Compatibility',
@@ -43,16 +44,16 @@ const strengths = [
 
 const pillars = [
   {
-    title: "Institutions",
-    description: "For real, sticky TVL and long-term adoption. Berachain needs to be a place where institutions can trust the protocols, the incentives, and the governance."
+    title: "ETH-Native Yield",
+    description: "The focus shifts toward ETH-native yield opportunities through BEND and other protocols, creating sustainable yield mechanics that benefit the entire ecosystem."
   },
   {
-    title: "Gen Moonshot",
-    description: "The next wave of risk-takers—builders and users who want to try new things, not just recycle the same old playbook. They need tools, support, and a reason to stay."
+    title: "Chain Utility",
+    description: "With PoL v1.1, capital is being reallocated toward chain utility and liquidity depth, creating a more sustainable foundation for long-term growth."
   },
   {
-    title: "Apps & Abstractions",
-    description: "We need new PoL abstractions that make Berachain accessible to outsiders. If it is too complex, nobody will come. If it is too insular, nobody will care."
+    title: "Protocol Innovation",
+    description: "New protocols like BEND are emerging to create modular, Aave-like systems deeply integrated with the PoL flywheel, offering new opportunities for yield generation."
   }
 ];
 
@@ -234,37 +235,29 @@ export default function BerachainHonestTake() {
       {/* Honest Flaws & Solutions */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          What&apos;s Broken &amp; How We Fix It
+          What&apos;s Changing &amp; How We Adapt
         </h2>
         <div className="space-y-20">
-          {/* Updated flaws with more direct language and lessons learned */}
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Asset Selection & Incentives</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">Hindsight is 20/20. The selection of assets and LSTs was too broad, diluting incentives and making it harder to build sticky liquidity. Being more selective is politically tough, but necessary for long-term health.</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-            <div className="font-satoshi text-white/90 text-lg">Focus on major assets and a smaller set of pools. Make hard, opinionated choices—even if it means some apps feel snubbed. Reward productive, sticky liquidity and let the DEX be the heart of the ecosystem.</div>
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">PoL v1.1 & Yield Compression</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Transition</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">The era of easy-mode yield is ending. PoL v1.1 introduces a 20% redistribution fee, compressing BGT yield and reducing the BGT:BERA premium from ~1.45 to ~1.25. This isn&apos;t a failure—it&apos;s a feature of maturity.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Adaptation</div>
+            <div className="font-satoshi text-white/90 text-lg">Capital is rotating toward ETH-native yield opportunities and BERA-native LPs. The focus is shifting from pure yield to sustainable ecosystem growth.</div>
           </div>
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Onboarding & Echo Chamber</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">Berachain has played in its own sandbox, hoping token launches would bring users. This insularity has limited growth and left onboarding funnels underdeveloped.</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-            <div className="font-satoshi text-white/90 text-lg">Build real onboarding funnels, amplify new teams, and actively seek cross-ecosystem partnerships. The next wave of growth will come from outside the current circle.</div>
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">BEND & ETH Integration</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Opportunity</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">BEND represents the next wave of yield opportunities, allowing ETH to become a productive asset within Berachain through modular, Aave-like functionality.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Strategy</div>
+            <div className="font-satoshi text-white/90 text-lg">Position for ETH-native yield while maintaining exposure to BERA ecosystem growth. Monitor BEND launch timeline and supported assets.</div>
           </div>
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Builder Support & Recognition</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">Not all teams have felt equally supported, and some pre-mainnet builders feel overlooked. The sense of fairness is fragile, and recognition is often lacking.</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-            <div className="font-satoshi text-white/90 text-lg">Actively recognize and reward teams that have shipped through tough times. Build a culture that values consistency, not just hype or newness.</div>
-          </div>
-          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Governance & Decentralization</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">Despite the rhetoric, governance is still too centralized. Key decisions are made by a small group, and the community&apos;s voice is often drowned out.</div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-            <div className="font-satoshi text-white/90 text-lg">Move toward real onchain governance. Give more weight to long-term builders, pre-mainnet contributors, and active users—not just whales or insiders.</div>
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Chain Owned Liquidity</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Innovation</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">COL captures value from BGT emissions to seed BERA-native LPs, creating deeper liquidity and more sustainable yield opportunities.</div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Focus</div>
+            <div className="font-satoshi text-white/90 text-lg">Monitor BEX LP yields vs LSTs, especially BERA-HONEY, and auto-incentive vaults as part of PoL v1.1 rollout.</div>
           </div>
         </div>
       </section>
