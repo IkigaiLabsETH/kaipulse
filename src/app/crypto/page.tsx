@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Coins, TrendingUp, TrendingDown } from 'lucide-react';
 import { clientLogger } from '@/utils/clientLogger';
 import { formatNumber } from '@/lib/utils';
+import PriceTicker from '@/components/AltCoins';
 
 interface AltcoinData {
   [key: string]: {
@@ -142,6 +143,8 @@ export default function CryptoPage() {
           transition={{ duration: 0.5 }}
           className="space-y-8"
         >
+          <PriceTicker />
+          
           <div className="flex items-center justify-between">
             <h1 className="text-4xl font-bold text-yellow-500">
               Altcoin Market Dashboard
