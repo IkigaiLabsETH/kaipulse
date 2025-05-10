@@ -14,6 +14,7 @@ interface Price {
 const TICKERS: Price[] = [
   { symbol: 'BTC', tradingViewSymbol: 'COINBASE:BTCUSD', exchange: 'COINBASE', color: 'text-white' },
   { symbol: 'ETH', tradingViewSymbol: 'COINBASE:ETHUSD', exchange: 'COINBASE', color: 'text-white' },
+  { symbol: 'ETHBTC', tradingViewSymbol: 'COINBASE:ETHBTC', exchange: 'COINBASE', color: 'text-white' },
   { symbol: 'SUI', tradingViewSymbol: 'COINBASE:SUIUSD', exchange: 'COINBASE', color: 'text-white' },
   { symbol: 'BERA', tradingViewSymbol: 'COINBASE:BERAUSD', exchange: 'COINBASE', color: 'text-white' },
   { symbol: 'MSTR', tradingViewSymbol: 'NASDAQ:MSTR', exchange: 'NASDAQ', color: 'text-white' },
