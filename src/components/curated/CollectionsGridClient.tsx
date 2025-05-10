@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ImageIcon } from 'lucide-react';
-import { SafeImage } from '@/components/ui/SafeImage';
 
 interface Collection {
   address: string;
@@ -59,7 +59,7 @@ export function CollectionsGridClient() {
       animate="visible"
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
     >
-      {collections.map((collection) => (
+      {collections.map((collection, index) => (
         <motion.div
           key={collection.address}
           variants={itemVariants}
@@ -71,15 +71,16 @@ export function CollectionsGridClient() {
                   <ImageIcon size={48} className="text-white/40" />
                 </div>
               ) : (
-                <SafeImage
+                <Image
                   src={collection.image_url || '/images/nft-placeholder.png'}
                   alt={collection.name}
                   fill
                   className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
                   onError={() => handleImageError(collection.address)}
-                  priority={true}
+                  priority={index < 4}
                   quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  unoptimized={collection.image_url.includes('ipfs') || collection.image_url.includes('arweave')}
                 />
               )}
               {/* Elegant hover state */}

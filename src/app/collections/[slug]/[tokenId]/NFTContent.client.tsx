@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Epilogue } from 'next/font/google';
 import type { OpenSeaNFT, Collection } from '@/services/opensea/types';
 import { motion } from 'framer-motion';
-import { SafeImage } from '@/components/ui/SafeImage';
+import Image from 'next/image';
 
 const epilogue = Epilogue({ subsets: ['latin'], weight: ['400', '700', '900'], display: 'swap' });
 
@@ -106,7 +106,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
               />
             ) : (
               <div className="relative w-full h-full cursor-pointer" onClick={() => hasVideo && setShowVideo(true)}>
-                <SafeImage
+                <Image
                   src={imageUrl}
                   alt={alt}
                   fill
@@ -114,6 +114,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
                   className="w-full h-full shadow-2xl shadow-yellow-900/10"
                   priority={true}
                   quality={90}
+                  unoptimized={imageUrl.includes('ipfs') || imageUrl.includes('arweave')}
                   onError={() => {
                     // Handle error if needed
                   }}

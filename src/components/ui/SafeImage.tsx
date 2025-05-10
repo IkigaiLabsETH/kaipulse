@@ -84,6 +84,9 @@ export function SafeImage({
   useEffect(() => {
     let processedSrc = src;
     try {
+      // Clean up the URL by removing line breaks and extra spaces
+      processedSrc = processedSrc.replace(/[\n\r\s]+/g, '').trim();
+
       // Handle local images (starting with /)
       if (processedSrc.startsWith('/')) {
         setImgSrc(processedSrc);
