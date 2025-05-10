@@ -60,7 +60,7 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
         background_color: null
       },
       collection: {
-        slug: slug,
+        slug: typeof slug === 'string' && slug ? slug.toLowerCase() : '',
         name: isContractAddress(slug) ? `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}` : slug,
         description: "This is fallback collection data shown when OpenSea API is unavailable.",
         image_url: "/images/placeholder-logo.svg",
@@ -108,15 +108,27 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
               typeof collectionData.collection.slug !== 'string' ||
               collectionData.collection.slug.toLowerCase() === slug.toLowerCase()
             ) {
-              // Use fetch to get the contract-to-slug mapping endpoint directly
-              const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`);
-              const mappingJson = await mappingRes.json();
-              if (
-                mappingJson &&
-                typeof mappingJson.collection === 'string' &&
-                mappingJson.collection.toLowerCase() !== slug.toLowerCase()
-              ) {
-                collectionData.collection.slug = mappingJson.collection;
+              // Try to get the slug from the contract mapping endpoint
+              try {
+                const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`);
+                const mappingJson = await mappingRes.json();
+                if (
+                  mappingJson &&
+                  typeof mappingJson.collection === 'string' &&
+                  mappingJson.collection.toLowerCase() !== slug.toLowerCase()
+                ) {
+                  collectionData.collection.slug = mappingJson.collection;
+                } else {
+                  // Fallback: use the contract address as the slug
+                  collectionData.collection.slug = slug.toLowerCase();
+                }
+              } catch (resolveErr) {
+                logger.warn('Could not resolve human-friendly slug for contract', {
+                  contract: slug,
+                  error: resolveErr instanceof Error ? resolveErr.message : String(resolveErr)
+                });
+                // Fallback: use the contract address as the slug
+                collectionData.collection.slug = slug.toLowerCase();
               }
             }
           } catch (collErr) {
@@ -126,7 +138,7 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
             // Create a fallback collection with the contract address
             collectionData = {
               collection: {
-                slug: slug.toLowerCase(),
+                slug: typeof slug === 'string' && slug ? slug.toLowerCase() : (typeof contractAddress === 'string' && contractAddress ? contractAddress.toLowerCase() : ''),
                 name: `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}`,
                 description: "Collection information unavailable",
                 image_url: "/images/placeholder-logo.svg",
