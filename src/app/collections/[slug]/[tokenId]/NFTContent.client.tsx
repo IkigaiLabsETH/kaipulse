@@ -115,7 +115,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
                   className="w-full h-full shadow-2xl shadow-yellow-900/10"
                   priority
                   placeholder="blur"
-                  blurDataURL="/images/placeholder-nft-blur.png"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="
                 />
                 {hasVideo && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
