@@ -96,6 +96,9 @@ const nextConfig = {
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: [
+      'api.opepen.art',
+    ],
   },
   typescript: {
     // Only ignore build errors in production
