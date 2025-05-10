@@ -108,23 +108,15 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
               typeof collectionData.collection.slug !== 'string' ||
               collectionData.collection.slug.toLowerCase() === slug.toLowerCase()
             ) {
-              // Try to get the slug from the contract mapping endpoint
-              try {
-                const contractInfo = await openSeaAPI.collections.getCollectionByContractAddress({
-                  contractAddress: slug,
-                  chain: 'ethereum'
-                });
-                if (
-                  typeof contractInfo.collection.slug === 'string' &&
-                  contractInfo.collection.slug.toLowerCase() !== slug.toLowerCase()
-                ) {
-                  collectionData.collection.slug = contractInfo.collection.slug;
-                }
-              } catch (resolveErr) {
-                logger.warn('Could not resolve human-friendly slug for contract', {
-                  contract: slug,
-                  error: resolveErr instanceof Error ? resolveErr.message : String(resolveErr)
-                });
+              // Use fetch to get the contract-to-slug mapping endpoint directly
+              const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`);
+              const mappingJson = await mappingRes.json();
+              if (
+                mappingJson &&
+                typeof mappingJson.collection === 'string' &&
+                mappingJson.collection.toLowerCase() !== slug.toLowerCase()
+              ) {
+                collectionData.collection.slug = mappingJson.collection;
               }
             }
           } catch (collErr) {
