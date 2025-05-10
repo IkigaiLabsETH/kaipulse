@@ -170,12 +170,6 @@ export function SafeImage({
           sizes={sizes}
           onLoadingComplete={() => setIsLoading(false)}
           loading={priority ? "eager" : "lazy"}
-          placeholder="blur"
-          blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
-            `<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
-              <rect width="100%" height="100%" fill="#f3f4f6"/>
-            </svg>`
-          ).toString('base64')}`}
         />
       )}
     </div>
