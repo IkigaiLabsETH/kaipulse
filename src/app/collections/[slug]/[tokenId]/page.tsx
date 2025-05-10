@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import NFTContent from './NFTContent.client';
 // Use React cache to deduplicate requests
 import { cache } from 'react';
+import { Suspense } from 'react';
 
 // Define page props interface
 interface NFTPageProps {
@@ -298,16 +299,29 @@ export async function generateMetadata({ params }: NFTPageProps): Promise<Metada
   }
 }
 
+function Spinner() {
+  return (
+    <div className="flex items-center justify-center min-h-[400px] w-full">
+      <svg className="animate-spin h-12 w-12 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+      </svg>
+    </div>
+  );
+}
+
 export default async function NFTPage({ params }: NFTPageProps) {
   const { Layout } = await import('@/components/ui');
   const { nft, collection } = await fetchNFTData(params.slug, params.tokenId);
 
   return (
     <Layout>
-      <NFTContent 
-        nft={nft}
-        collection={collection}
-      />
+      <Suspense fallback={<Spinner />}>
+        <NFTContent 
+          nft={nft}
+          collection={collection}
+        />
+      </Suspense>
     </Layout>
   );
 }
