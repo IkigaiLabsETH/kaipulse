@@ -188,6 +188,16 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
+  // Filter out NFTs with missing or unavailable data
+  const filteredNFTs = nfts.filter(nft =>
+    nft &&
+    nft.identifier &&
+    (nft.name || nft.image_url) &&
+    nft.image_url &&
+    nft.image_url !== '/images/nft-placeholder.png' &&
+    nft.image_url !== '/images/placeholder-nft.svg'
+  );
+
   return (
     <ErrorBoundary fallback={<ArtGalleryErrorFallback />}>
       <motion.div
@@ -196,7 +206,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
         animate="visible"
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
       >
-        {nfts.map((nft, index) => (
+        {filteredNFTs.map((nft, index) => (
           <motion.div 
             key={nft.identifier}
             variants={itemVariants}
