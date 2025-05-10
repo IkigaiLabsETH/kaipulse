@@ -44,7 +44,6 @@ The OpenSea API integration enables real-time NFT data for the art collection se
 - In your project root, create or update `.env.local`:
   ```env
   OPENSEA_API_KEY=your_actual_api_key_here
-  NEXT_PUBLIC_OPENSEA_API_KEY=your_actual_api_key_here
   ```
 - **Note:** `OPENSEA_API_KEY` is used server-side; `NEXT_PUBLIC_OPENSEA_API_KEY` is for client-side (if needed).
 - Restart your Next.js server after any changes to `.env.local`.
