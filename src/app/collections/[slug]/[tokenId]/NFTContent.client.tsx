@@ -9,6 +9,9 @@ const epilogue = Epilogue({ subsets: ['latin'], weight: ['400', '700', '900'], d
 
 export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; collection: Collection }) {
   const [copied, setCopied] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const hasVideo = !!nft.animation_url && nft.animation_url.endsWith('.mp4');
+
   const processImageUrl = (url: string | undefined | null): string => {
     if (!url || url === '/images/nft-placeholder.png') {
       return '/images/placeholder-nft.svg';
@@ -90,17 +93,41 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
           className="w-full md:w-1/2 flex items-center justify-center relative min-h-[400px] md:min-h-0 md:static mt-0 md:mt-24"
         >
           <div className="relative w-screen h-screen md:absolute md:top-0 md:right-0 md:w-1/2 md:h-screen">
-            <Image
-              src={imageUrl}
-              alt={alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: 'contain', borderRadius: 0 }}
-              className="w-full h-full shadow-2xl shadow-yellow-900/10"
-              priority
-              placeholder="blur"
-              blurDataURL="/images/placeholder-nft-blur.png"
-            />
+            {hasVideo && showVideo ? (
+              <video
+                src={nft.animation_url || undefined}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-contain rounded-none shadow-2xl shadow-yellow-900/10 cursor-pointer"
+                poster={imageUrl}
+                onClick={() => setShowVideo(false)}
+              />
+            ) : (
+              <div className="relative w-full h-full cursor-pointer" onClick={() => hasVideo && setShowVideo(true)}>
+                <Image
+                  src={imageUrl}
+                  alt={alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'contain', borderRadius: 0 }}
+                  className="w-full h-full shadow-2xl shadow-yellow-900/10"
+                  priority
+                  placeholder="blur"
+                  blurDataURL="/images/placeholder-nft-blur.png"
+                />
+                {hasVideo && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    {/* Play icon overlay */}
+                    <svg width={64} height={64} fill="none" viewBox="0 0 64 64">
+                      <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.4)" />
+                      <polygon points="26,20 48,32 26,44" fill="#fff" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
