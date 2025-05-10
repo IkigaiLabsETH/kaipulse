@@ -4,7 +4,6 @@ import { Epilogue } from 'next/font/google';
 import type { OpenSeaNFT, Collection } from '@/services/opensea/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 
 const epilogue = Epilogue({ subsets: ['latin'], weight: ['400', '700', '900'], display: 'swap' });
 
@@ -13,8 +12,6 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
   const [showVideo, setShowVideo] = useState(false);
   const hasVideo = !!nft.animation_url && nft.animation_url.endsWith('.mp4');
   const [imageLoadError, setImageLoadError] = useState(false);
-  const params = useParams();
-  const slug = typeof params.slug === 'string' ? params.slug : Array.isArray(params.slug) ? params.slug[0] : '';
 
   const processImageUrl = (url: string | undefined | null): string => {
     if (!url || url === '/images/nft-placeholder.png') {
@@ -83,7 +80,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
               View on OpenSea
             </a>
             <a
-              href={`/collections/${slug}`}
+              href={`/collections/${collection.slug}`}
               className="inline-flex items-center gap-2 text-yellow-400 font-bold text-xs md:text-sm uppercase tracking-widest hover:text-yellow-300 transition-all duration-200 underline underline-offset-4 hover:underline cursor-pointer mt-8"
             >
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="inline-block"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
