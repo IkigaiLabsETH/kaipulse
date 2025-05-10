@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { logger } from '@/lib/logger';
+import { cn } from '@/lib/utils';
 
 interface SafeImageProps {
   src: string;
@@ -11,11 +12,64 @@ interface SafeImageProps {
   fill?: boolean;
   priority?: boolean;
   onError?: () => void;
+  quality?: number;
+  sizes?: string;
+  preload?: boolean;
 }
 
-export function SafeImage({ src, alt, className, fill = false, priority = false, onError }: SafeImageProps) {
+export function SafeImage({ 
+  src, 
+  alt, 
+  className, 
+  fill = false, 
+  priority = false, 
+  onError,
+  quality = 75,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
+  preload = false
+}: SafeImageProps) {
   const [imgSrc, setImgSrc] = useState(src);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(priority);
+  const imageRef = useRef<HTMLDivElement>(null);
   
+  // Intersection Observer setup
+  useEffect(() => {
+    if (priority || !imageRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: '50px 0px', // Start loading when image is 50px from viewport
+        threshold: 0.1
+      }
+    );
+
+    observer.observe(imageRef.current);
+    return () => observer.disconnect();
+  }, [priority]);
+
+  // Preload image if needed
+  useEffect(() => {
+    if (preload && imgSrc) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = imgSrc;
+      document.head.appendChild(link);
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, [preload, imgSrc]);
+
   // Log image loading attempt
   useEffect(() => {
     logger.info('Loading image:', {
@@ -50,6 +104,17 @@ export function SafeImage({ src, alt, className, fill = false, priority = false,
       // Handle special characters
       processedSrc = processedSrc.replace(/[()]/g, encodeURIComponent);
       
+      // Optimize OpenSea URLs
+      if (processedSrc.includes('opensea.io') || processedSrc.includes('i.seadn.io')) {
+        const url = new URL(processedSrc);
+        if (!url.searchParams.has('w')) {
+          url.searchParams.set('w', '400'); // Request smaller initial size
+        }
+        // Add cache-busting parameter for OpenSea images
+        url.searchParams.set('t', Date.now().toString());
+        processedSrc = url.toString();
+      }
+      
       // Validate URL
       new URL(processedSrc);
       
@@ -82,16 +147,37 @@ export function SafeImage({ src, alt, className, fill = false, priority = false,
     imgSrc.includes('seadn.io');
 
   return (
-    <Image
-      src={imgSrc}
-      alt={alt}
-      className={className}
-      fill={fill}
-      priority={priority}
-      onError={handleImageError}
-      unoptimized={isExternalImage && isAnimated}
-      width={!fill ? 500 : undefined}
-      height={!fill ? 500 : undefined}
-    />
+    <div ref={imageRef} className="relative">
+      {isLoading && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+      )}
+      {isVisible && (
+        <Image
+          src={imgSrc}
+          alt={alt}
+          className={cn(
+            className,
+            "transition-opacity duration-300",
+            isLoading ? "opacity-0" : "opacity-100"
+          )}
+          fill={fill}
+          priority={priority}
+          onError={handleImageError}
+          unoptimized={isExternalImage && isAnimated}
+          width={!fill ? 500 : undefined}
+          height={!fill ? 500 : undefined}
+          quality={quality}
+          sizes={sizes}
+          onLoadingComplete={() => setIsLoading(false)}
+          loading={priority ? "eager" : "lazy"}
+          placeholder="blur"
+          blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
+            `<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100%" height="100%" fill="#f3f4f6"/>
+            </svg>`
+          ).toString('base64')}`}
+        />
+      )}
+    </div>
   );
 } 

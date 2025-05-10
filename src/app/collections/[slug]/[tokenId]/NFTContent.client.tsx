@@ -1,9 +1,9 @@
 "use client";
 import { useState } from 'react';
-import Image from 'next/image';
 import { Epilogue } from 'next/font/google';
 import type { OpenSeaNFT, Collection } from '@/services/opensea/types';
 import { motion } from 'framer-motion';
+import { SafeImage } from '@/components/ui/SafeImage';
 
 const epilogue = Epilogue({ subsets: ['latin'], weight: ['400', '700', '900'], display: 'swap' });
 
@@ -106,16 +106,17 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
               />
             ) : (
               <div className="relative w-full h-full cursor-pointer" onClick={() => hasVideo && setShowVideo(true)}>
-                <Image
+                <SafeImage
                   src={imageUrl}
                   alt={alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: 'contain', borderRadius: 0 }}
                   className="w-full h-full shadow-2xl shadow-yellow-900/10"
-                  priority
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder-nft-blur.png"
+                  priority={true}
+                  quality={90}
+                  onError={() => {
+                    // Handle error if needed
+                  }}
                 />
                 {hasVideo && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

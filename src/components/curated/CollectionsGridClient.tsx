@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ImageIcon } from 'lucide-react';
+import { SafeImage } from '@/components/ui/SafeImage';
 
 interface Collection {
   address: string;
@@ -71,13 +71,15 @@ export function CollectionsGridClient() {
                   <ImageIcon size={48} className="text-white/40" />
                 </div>
               ) : (
-                <Image
+                <SafeImage
                   src={collection.image_url || '/images/nft-placeholder.png'}
                   alt={collection.name}
                   fill
                   className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
                   onError={() => handleImageError(collection.address)}
-                  priority
+                  priority={true}
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               )}
               {/* Elegant hover state */}
