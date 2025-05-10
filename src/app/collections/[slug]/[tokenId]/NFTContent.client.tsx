@@ -66,17 +66,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
           </div>
           <div className="h-1 w-16 bg-yellow-400 rounded-full mb-6"></div>
           <h2 className="text-base md:text-lg font-semibold text-yellow-400 uppercase mb-2 tracking-widest" style={{ letterSpacing: '0.15em' }}>About this work</h2>
-          <p className="text-white/90 text-base md:text-lg font-light mb-6 max-w-prose" style={{lineHeight: 1.7}}>{nft.description || collection.description}</p>
-          {/* NFT Traits as tags */}
-          {nft.traits && nft.traits.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {nft.traits.slice(0, 8).map((trait, i) => (
-                <span key={i} className="bg-yellow-400/10 border border-yellow-400/30 text-yellow-300 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
-                  {trait.trait_type}: {trait.value}
-                </span>
-              ))}
-            </div>
-          )}
+          <p className="text-white/80 text-base md:text-lg font-light mb-6 max-w-prose" style={{lineHeight: 1.7}}>{nft.description || collection.description}</p>
           <div className="mt-2 flex flex-col items-start gap-0 w-full">
             <a
               href={`https://opensea.io/assets/ethereum/${nft.contract}/${nft.identifier}`}
