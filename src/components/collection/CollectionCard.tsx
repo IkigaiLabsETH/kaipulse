@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Users } from 'lucide-react';
-import { SafeImage } from '../ui/SafeImage';
+import Image from 'next/image';
 import { formatNumber } from '@/lib/utils';
 
 // Define our own collection type for this component
@@ -26,6 +26,8 @@ interface CollectionCardProps {
 }
 
 export function CollectionCard({ collection, index }: CollectionCardProps) {
+  const isUnoptimized = (url?: string) =>
+    !!url && (url.includes('ipfs') || url.includes('arweave') || /\.gif($|\?)/i.test(url) || /\.webp($|\?)/i.test(url));
   return (
     <Link
       href={`/collections/${collection.collection}`}
@@ -39,12 +41,17 @@ export function CollectionCard({ collection, index }: CollectionCardProps) {
       <div className="relative h-48 w-full overflow-hidden bg-[#1A1A1A]">
         {collection.banner_image_url ? (
           <>
-            <SafeImage
+            <Image
               src={collection.banner_image_url}
               alt={collection.name}
               fill
               className="object-cover transform transition-transform duration-700 group-hover:scale-110"
-              priority={index < 6}
+              priority={index < 4}
+              quality={85}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              unoptimized={isUnoptimized(collection.banner_image_url)}
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="
+              placeholder="blur"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] to-transparent opacity-80" />
           </>
@@ -59,11 +66,16 @@ export function CollectionCard({ collection, index }: CollectionCardProps) {
           <div className="absolute inset-0 bg-yellow-500 rounded-xl blur-lg opacity-0 group-hover/logo:opacity-30 transition-opacity duration-500" />
           <div className="relative h-24 w-24 rounded-xl border-[3px] border-yellow-500 overflow-hidden bg-[#1A1A1A] shadow-[4px_4px_0px_0px_rgba(234,179,8,1)] transform transition-all duration-300 group-hover/logo:scale-105 group-hover/logo:-translate-y-1 group-hover/logo:shadow-[6px_6px_0px_0px_rgba(234,179,8,1)]">
             {collection.image_url ? (
-              <SafeImage
+              <Image
                 src={collection.image_url}
                 alt={collection.name}
                 fill
                 className="object-cover"
+                quality={85}
+                sizes="96px"
+                unoptimized={isUnoptimized(collection.image_url)}
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="
+                placeholder="blur"
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center bg-[#2A2A2A] text-yellow-500 text-2xl font-bold">

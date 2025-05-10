@@ -12,9 +12,10 @@ import { ArrowUpRight, ImageIcon } from 'lucide-react';
 export interface NFTCardProps {
   nft: OpenSeaNFT;
   href: string;
+  priority?: boolean;
 }
 
-export function NFTCard({ nft, href }: NFTCardProps) {
+export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
   const [imageError, setImageError] = useState(false);
 
   const handleImageError = () => {
@@ -27,6 +28,11 @@ export function NFTCard({ nft, href }: NFTCardProps) {
 
   const imageUrl = !imageError && nft.image_url ? nft.image_url : '/images/nft-placeholder.png';
   const price = nft.listings?.[0]?.price?.current?.value;
+  const isUnoptimized =
+    imageUrl.includes('ipfs') ||
+    imageUrl.includes('arweave') ||
+    /\.gif($|\?)/i.test(imageUrl) ||
+    /\.webp($|\?)/i.test(imageUrl);
 
   return (
     <motion.div
@@ -48,10 +54,14 @@ export function NFTCard({ nft, href }: NFTCardProps) {
                 alt={nft.name || 'NFT'}
                 width={500}
                 height={500}
-                className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
+                className="object-cover transition-all duration-700 group-hover:scale-105"
                 onError={handleImageError}
-                priority
-                unoptimized={true}
+                priority={priority}
+                quality={85}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                unoptimized={isUnoptimized}
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="
+                placeholder="blur"
               />
             ) : (
               <div className="w-full h-full bg-black/30 flex items-center justify-center">

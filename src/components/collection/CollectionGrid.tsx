@@ -189,7 +189,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
       animate="visible"
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
     >
-      {nfts.map((nft) => (
+      {nfts.map((nft, index) => (
         <motion.div 
           key={nft.identifier}
           variants={itemVariants}
@@ -197,6 +197,7 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
           <NFTCard 
             nft={nft} 
             href={`/collections/${nft.contract}/${nft.identifier}`}
+            priority={index < 4}
           />
         </motion.div>
       ))}
