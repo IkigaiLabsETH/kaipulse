@@ -72,7 +72,7 @@ export default function NFTContent({ nft, collection }: { nft: OpenSeaNFT; colle
               href={`https://opensea.io/assets/ethereum/${nft.contract}/${nft.identifier}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-yellow-400 hover:text-yellow-300 transition-all duration-200 underline underline-offset-4 hover:underline cursor-pointer text-base md:text-lg font-medium mb-6"
+              className="text-yellow-400 hover:text-yellow-300 transition-all duration-200 underline underline-offset-4 hover:underline cursor-pointer text-base md:text-lg font-medium mt-8 mb-6"
             >
               View on OpenSea
             </a>
