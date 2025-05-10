@@ -103,42 +103,33 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
               chain: 'ethereum'
             });
             collectionData = result;
-            // If the slug is missing or is a contract address, try to resolve the real slug
-            if (
-              typeof collectionData.collection.slug !== 'string' ||
-              collectionData.collection.slug.toLowerCase() === slug.toLowerCase()
-            ) {
-              // Try to get the slug from the contract mapping endpoint
-              try {
-                const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`);
-                const mappingJson = await mappingRes.json();
-                if (
-                  mappingJson &&
-                  typeof mappingJson.collection === 'string' &&
-                  mappingJson.collection.toLowerCase() !== slug.toLowerCase()
-                ) {
-                  collectionData.collection.slug = mappingJson.collection;
-                } else {
-                  // Fallback: use the contract address as the slug
-                  collectionData.collection.slug = slug.toLowerCase();
+
+            // Always try to get the human-friendly slug
+            try {
+              const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`, {
+                headers: {
+                  'X-API-KEY': env.OPENSEA_API_KEY
                 }
-              } catch (resolveErr) {
-                logger.warn('Could not resolve human-friendly slug for contract', {
-                  contract: slug,
-                  error: resolveErr instanceof Error ? resolveErr.message : String(resolveErr)
-                });
-                // Fallback: use the contract address as the slug
-                collectionData.collection.slug = slug.toLowerCase();
+              });
+              
+              if (mappingRes.ok) {
+                const mappingJson = await mappingRes.json();
+                if (mappingJson?.collection && typeof mappingJson.collection === 'string') {
+                  collectionData.collection.slug = mappingJson.collection;
+                }
               }
+            } catch (mappingErr) {
+              logger.warn('Failed to fetch human-friendly slug:', mappingErr);
             }
           } catch (collErr) {
             logger.error('Failed to get collection by contract, creating fallback collection', { 
               error: collErr instanceof Error ? collErr.message : String(collErr)
             });
-            // Create a fallback collection with the contract address
+            
+            // Create fallback collection
             collectionData = {
               collection: {
-                slug: typeof slug === 'string' && slug ? slug.toLowerCase() : (typeof contractAddress === 'string' && contractAddress ? contractAddress.toLowerCase() : ''),
+                slug: slug.toLowerCase(),
                 name: `Collection ${slug.slice(0, 6)}...${slug.slice(-4)}`,
                 description: "Collection information unavailable",
                 image_url: "/images/placeholder-logo.svg",
@@ -150,6 +141,24 @@ const fetchNFTData = cache(async (slug: string, tokenId: string) => {
                 address: slug
               }
             };
+
+            // Try to get human-friendly slug even in fallback case
+            try {
+              const mappingRes = await fetch(`https://api.opensea.io/api/v2/chain/ethereum/contract/${slug}`, {
+                headers: {
+                  'X-API-KEY': env.OPENSEA_API_KEY
+                }
+              });
+              
+              if (mappingRes.ok) {
+                const mappingJson = await mappingRes.json();
+                if (mappingJson?.collection && typeof mappingJson.collection === 'string') {
+                  collectionData.collection.slug = mappingJson.collection;
+                }
+              }
+            } catch (mappingErr) {
+              logger.warn('Failed to fetch human-friendly slug in fallback case:', mappingErr);
+            }
           }
         } else {
           try {
