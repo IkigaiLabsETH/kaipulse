@@ -96,7 +96,6 @@ export function Header() {
         { name: 'MSTR', href: '/platforms/msty/mstr' },
         { name: 'MSTY', href: '/platforms/msty' },
         { name: 'IMST', href: '/platforms/bitwise' },
-        { name: 'DEFI', href: '/defi' },
         { name: 'BITBONDS', href: '/bitbonds' },
         { name: 'TWENTY ONE', href: '/twentyone' },
         { name: 'WATCH LIST', href: '/crypto' },
