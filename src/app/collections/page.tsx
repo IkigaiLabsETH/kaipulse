@@ -14,9 +14,9 @@ export default function CollectionsPage() {
               id: 'curated',
               label: 'Curated',
               content: (
-                <Suspense fallback={<div className="py-16 text-center text-white/60">Loading collections...</div>}>
+                <Suspense fallback={<div className="py-16 text-center text-white/60">Loading art collections...</div>}>
                   <h1 className="text-4xl font-bold text-yellow-400 mb-8 tracking-tight font-epilogue">
-                    21 Curated Collections
+                    Curated Art by LTL
                   </h1>
                   <CollectionsGridClient />
                 </Suspense>

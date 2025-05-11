@@ -6,7 +6,6 @@
 
 // Curated NFT collections for the /collections page.
 // Add OpenSea slugs (recommended) or contract addresses below.
-// Example: 'boredapeyachtclub' or '0x186e2eece5ddbac8f1dde73723586a7c6'
 export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'fidenza-by-tyler-hobbs',
   'cryptopunks',
@@ -51,5 +50,7 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'life-and-love-and-nothing-by-nat-sarkissian',
   'highrises',
   'lifeguard-towers-miami',
-  'stranger-together-by-brooke-didonato-ben-zank'
+  'stranger-together-by-brooke-didonato-ben-zank',
+  'the-vault-of-wonders-chapter-1-the-abyssal-unseen',
+  'skulptuur-by-piter-pasma'
 ]; 

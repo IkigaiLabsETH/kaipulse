@@ -92,6 +92,11 @@ const nextConfig = {
         hostname: 'gmstudio.mypinata.cloud',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/**',
+      },
     ],
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,

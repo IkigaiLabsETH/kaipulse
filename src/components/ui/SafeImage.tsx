@@ -147,7 +147,8 @@ export function SafeImage({
   const isAnimated = /\.(gif|webp|apng)$/i.test(imgSrc) ||
     imgSrc.includes('arweave.net') ||
     imgSrc.includes('ipfs') ||
-    imgSrc.includes('seadn.io');
+    imgSrc.includes('seadn.io') ||
+    imgSrc.includes('opepenai.nyc3.digitaloceanspaces.com');
 
   return (
     <div ref={imageRef} className="relative">
