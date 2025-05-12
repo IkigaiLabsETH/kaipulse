@@ -97,6 +97,11 @@ const nextConfig = {
         hostname: 'storage.googleapis.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'asynchronous-art-inc-res.cloudinary.com',
+        pathname: '/**',
+      },
     ],
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,
