@@ -14,6 +14,7 @@ const platformComparison = [
   { feature: 'Transaction Fees', sui: 'Low, predictable' },
   { feature: 'Ecosystem Maturity', sui: 'Growing rapidly' },
   { feature: 'NFT/DeFi Support', sui: 'Strong, expanding' },
+  { feature: 'Bitcoin Integration', sui: 'sBTC (Coming 2025)' },
 ];
 
 const strengths = [
@@ -24,16 +25,16 @@ const strengths = [
     note: `Builder's Note: The tech is legit—devs are starting to notice the speed.`
   },
   {
+    title: 'Bitcoin DeFi Integration',
+    highlight: 'Bringing $1.6T of BTC into DeFi.',
+    description: `SUI's upcoming sBTC integration positions it as a major player in Bitcoin DeFi. With a $96M market cap and full BTC backing, sBTC enables trustless DeFi while maintaining Bitcoin's security.`,
+    note: `Builder's Note: This is a game-changer for BTC holders looking to participate in DeFi.`
+  },
+  {
     title: 'Move Language',
     highlight: 'Asset-oriented, secure by design.',
     description: `Move's resource model makes asset management safer and more intuitive. SUI's flavor of Move is attracting new devs who want to avoid Solidity's pitfalls.`,
     note: `Builder's Note: Move onboarding is a hurdle, but the long-term benefits are real.`
-  },
-  {
-    title: 'User Experience',
-    highlight: 'Low fees, fast finality, smooth onboarding.',
-    description: `Wallet UX is improving, and SUI's low, predictable fees make it friendly for new users and dapps. The onboarding flow is less painful than most L1s.`,
-    note: `Builder's Note: Still early, but the basics are working well.`
   },
   {
     title: 'Ecosystem Momentum',
@@ -55,9 +56,9 @@ const flaws = [
     solution: `Invest in better docs, more tutorials, and grants for Move-native tooling. Make onboarding as smooth as possible.`
   },
   {
-    title: 'Perception & Awareness',
-    pain: `Some builders still see SUI as "just another alt-L1" or are skeptical of its long-term staying power.`,
-    solution: `Showcase real use cases, highlight success stories, and keep the momentum going with community-driven events.`
+    title: 'Bitcoin DeFi Competition',
+    pain: `The Bitcoin DeFi space is heating up with competitors like Cardano also entering the space. SUI needs to differentiate its offering.`,
+    solution: `Leverage SUI's technical advantages in speed and scalability to provide the best BTC DeFi experience.`
   },
   {
     title: 'CEX/DEX Liquidity',
@@ -68,8 +69,8 @@ const flaws = [
 
 const pillars = [
   {
-    title: "DeFi Builders",
-    description: "SUI's speed and low fees are perfect for DeFi protocols that need high throughput and composability. Early movers can define the standard."
+    title: "Bitcoin DeFi Builders",
+    description: "SUI's sBTC integration opens up $1.6T of BTC for DeFi. Builders can create innovative products for Bitcoin holders while maintaining BTC's security."
   },
   {
     title: "NFT & Gaming Creators",
