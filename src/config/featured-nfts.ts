@@ -170,6 +170,10 @@ export const featuredNFTs: FeaturedNFT[] = [
     tokenId: "407000228"
   },
   {
+    contract: "0xc96b48036fe497f15976b8a7fbc7e7210d77c5b6",
+    tokenId: "1"
+  },
+  {
     contract: "0xc04e0000726ed7c5b9f0045bc0c4806321bc6c65",
     tokenId: "169"
   },
@@ -180,6 +184,10 @@ export const featuredNFTs: FeaturedNFT[] = [
   {
     contract: "0x45aa3f3a6cf6e28fb4b762ce7cf5a62419b778c4",
     tokenId: "19"
+  },
+  {
+    contract: "0x293ecb98c48a43b8ab8c025e38a1e7f5261fbb1b",
+    tokenId: "16"
   },
   {
     contract: "0x2559bf029b4981c0701149ac7fde65170c82b449",
@@ -220,10 +228,6 @@ export const featuredNFTs: FeaturedNFT[] = [
   {
     contract: "0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0",
     tokenId: "22878"
-  },
-  {
-    contract: "0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0",
-    tokenId: "22629"
   },
   {
     contract: "0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0",
