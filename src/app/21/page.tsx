@@ -315,6 +315,19 @@ export default function BitcoinPage21() {
                   </svg>
                 </Link>
               </div>
+              <div className="mt-4">
+                <Link 
+                  href="https://www.qultra.io/p/qsim-bitcoin-stock-to-flow-s2f-cagr.html" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-yellow-500 hover:text-yellow-400 transition-colors"
+                >
+                  <span>Explore QSim Bitcoin S2F CAGR Simulator</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </Link>
+              </div>
             </div>
             
             <div className="mt-8 bg-black/30 p-6 rounded-lg border border-yellow-500/20">
