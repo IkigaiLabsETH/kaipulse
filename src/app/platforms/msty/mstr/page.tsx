@@ -40,17 +40,17 @@ const AccordionItem = ({
 const companyStats = [
   {
     title: "Bitcoin Holdings",
-    value: "499,226",
-    description: "Total BTC owned (as of March 2025)"
+    value: "568,840",
+    description: "Total BTC owned (as of May 2025)"
   },
   {
     title: "Avg Purchase Price",
-    value: "$66,360",
-    description: "Per Bitcoin (as of March 2025)"
+    value: "$69,287",
+    description: "Per Bitcoin (as of May 2025)"
   },
   {
     title: "Total Investment",
-    value: "$33.1B",
+    value: "$39.4B",
     description: "Total cost basis in Bitcoin"
   },
   {
@@ -145,14 +145,9 @@ const bitcoinTimeline = [
     details: "Saylor becomes Executive Chairman, Le becomes CEO"
   },
   {
-    date: "August 2024",
-    event: "Stock Split & 21/21 Plan",
-    details: "10-for-1 split and $42B capital plan announced"
-  },
-  {
-    date: "March 2025",
-    event: "Current Holdings",
-    details: "499,226 BTC at $33.1B total cost"
+    date: "May 2025",
+    event: "Latest Purchase",
+    details: "568,840 BTC at $39.4B total cost"
   }
 ]
 
