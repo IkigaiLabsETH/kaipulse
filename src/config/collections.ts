@@ -43,7 +43,7 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'mind-the-gap-by-mountvitruvius',
   'urban-transportation-red-trucks',
   'trichro-matic-by-mountvitruvius',
-  'the-metascapes',
+  'sam-spratt-masks-of-luci',
   'pink-such-a-useless-color-by-simon-raion',
   'life-and-love-and-nothing-by-nat-sarkissian',
   'highrises',
