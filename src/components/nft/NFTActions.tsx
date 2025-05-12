@@ -2,6 +2,7 @@
 
 import { OpenSeaNFT, OpenSeaListing, OpenSeaOffer } from '@/services/opensea/types';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export interface NFTActionsProps {
   nft: OpenSeaNFT;
@@ -41,10 +42,18 @@ export function NFTActions({ nft, listing, bestOffer }: NFTActionsProps) {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="flex-1 bg-[#F7B500] text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300 border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+            className="flex-1 bg-[#F7B500] text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300 border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-2"
             onClick={() => window.open(`https://opensea.io/assets/ethereum/${nft.contract}/${nft.identifier}`, '_blank')}
           >
             View on OpenSea
+            <Image 
+              src="/opensea-verified.svg" 
+              alt="OpenSea Verified" 
+              width={20} 
+              height={21}
+              priority
+              className="inline-block"
+            />
           </motion.button>
         </div>
       </div>
