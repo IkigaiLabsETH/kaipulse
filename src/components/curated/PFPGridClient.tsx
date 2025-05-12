@@ -64,6 +64,14 @@ export function PFPGridClient() {
     setImageErrorMap((prev) => ({ ...prev, [address]: true }));
   };
 
+  const getImageUrl = (url: string) => {
+    if (!url) return '/images/nft-placeholder.png';
+    if (url.includes('ipfs://')) {
+      return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
+    }
+    return url;
+  };
+
   if (loading) {
     return <PFPSkeleton />;
   }
@@ -105,7 +113,7 @@ export function PFPGridClient() {
                   </div>
                 ) : (
                   <Image
-                    src={collection.image_url || '/images/nft-placeholder.png'}
+                    src={getImageUrl(collection.image_url)}
                     alt={collection.name}
                     fill
                     className="object-cover w-full h-full transition-all duration-700 group-hover:scale-105"
@@ -113,7 +121,7 @@ export function PFPGridClient() {
                     priority={index < 4}
                     quality={85}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    unoptimized={collection.image_url.includes('ipfs') || collection.image_url.includes('arweave')}
+                    unoptimized={true}
                   />
                 )}
                 {/* Elegant hover state */}
