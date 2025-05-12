@@ -10,7 +10,5 @@ export const PFP_COLLECTION_SLUGS_OR_ADDRESSES = [
   'cryptopunks',
   'official-v1-punks',
   'pudgypenguins',
-  'azuki', 
-  'rektguy',
-  'cryptodickbutts-s3'
+  'rektguy'
 ]; 
