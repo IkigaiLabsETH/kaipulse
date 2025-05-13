@@ -78,14 +78,19 @@ export default function MSTYPlatformsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center"
+          className="text-center space-y-8"
         >
-          <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl text-yellow-500">
-            MSTY Trading in Europe
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Bitcoin Income • Options Strategy • Monthly Distributions</p>
+          <h1 className="text-center">
+            <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+              MSTY Trading
+            </span>
           </h1>
-          <p className="mt-6 text-lg leading-8 text-white/90">
-            Yieldmax MSTR Option Income Strategy ETF (MSTY).
-          </p>
+          <div className="flex items-center justify-center mt-6">
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Yieldmax MSTR Option Income Strategy ETF</p>
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+          </div>
         </motion.div>
 
         {/* Big Bold Quote Section */}
@@ -222,54 +227,6 @@ export default function MSTYPlatformsPage() {
               </div>
             </div>
           </Card>
-        </motion.div>
-
-                {/* Enhanced Status Levels Table */}
-                <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8"
-        >
-          <AccordionItem title="Freedom Status Levels">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-yellow-500/20">
-                    <th className="p-4 text-left text-yellow-500 font-bold">Status</th>
-                    <th className="p-4 text-left text-yellow-500 font-bold">Monthly Income</th>
-                    <th className="p-4 text-left text-yellow-500 font-bold">MSTY Shares</th>
-                    <th className="p-4 text-left text-yellow-500 font-bold">Capital @ $20/Share</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { status: "Beginner", income: "$20", shares: "20", capital: "$400" },
-                    { status: "Intermediate", income: "$500", shares: "500", capital: "$10,000" },
-                    { status: "Advanced", income: "$3,000", shares: "3,000", capital: "$60,000" },
-                    { status: "Elite", income: "$6,000", shares: "6,000", capital: "$120,000" },
-                    { status: "Supreme", income: "$10,000", shares: "10,000", capital: "$200,000" },
-                    { status: "Legend", income: "$50,000+", shares: "50,000+", capital: "$1,000,000+" }
-                  ].map((level, index) => (
-                    <motion.tr
-                      key={level.status}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                      className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors"
-                    >
-                      <td className="p-4 font-medium text-white">{level.status}</td>
-                      <td className="p-4 text-white/90">{level.income}</td>
-                      <td className="p-4 text-white/90">{level.shares}</td>
-                      <td className="p-4 text-white/90">{level.capital}</td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </AccordionItem>
         </motion.div>
 
                 {/* Enhanced FAQ Section */}
