@@ -335,6 +335,12 @@ export default function ALTBGPage() {
               <p className="text-lg">
                 A key aspect of successful Bitcoin ownership is maintaining focus on the core asset, despite the emergence of various alternatives.
               </p>
+              <p className="text-lg">
+                It&apos;s worth noting that large Bitcoin treasury positions (500-600k BTC) held by a single entity represent significant value beyond their spot price due to the substantial slippage that would occur when attempting to acquire such large positions in the open market. This creates an inherent premium to the underlying Bitcoin value.
+              </p>
+              <p className="text-lg">
+                Current market valuations, as indicated by metrics like mNAV (market-to-NAV ratio), suggest that Bitcoin treasury companies may be significantly undervalued. For instance, even with conservative replacement cost considerations, many of these companies are trading at mNAV ratios of 0.1-0.2, representing a substantial opportunity spread.
+              </p>
               <p className="text-lg font-bold text-red-500">
                 While some treasury companies may face challenges, well-managed ones with conservative and prudent strategies have the potential to thrive across multiple market cycles, serving as important bridges for institutional capital into the Bitcoin ecosystem.
               </p>
