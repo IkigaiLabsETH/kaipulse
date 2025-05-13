@@ -112,6 +112,19 @@ export default function ALTBGPage() {
             </div>
           </div>
 
+          {/* Video Section */}
+          <div className="bg-[#1c1f26] rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="w-full h-[600px]">
+              <iframe
+                src="https://www.youtube.com/embed/fZ_Oxlu-WE0"
+                title="The Blockchain Group (ALTBG) Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded-[10px]"
+              />
+            </div>
+          </div>
+
           {/* Key Features */}
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
