@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Inter } from 'next/font/google';
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,7 +35,7 @@ What if you saw the future—and acted early?`,
       title: "Need less to be happy."
     }
   ],
-  contrast: "Most people work for decades, defer happiness, and hope to be free… someday.",
+  contrast: "Work for decades, defer happiness, and hope to be free someday?",
   transition: "What if you didn't wait? What if you saw the future—and acted?"
 };
 
@@ -46,27 +47,56 @@ const sections = [
 He's not a tech bro or crypto anarchist.
 He's a well-off, well-adjusted adult with a healthy portfolio.`,
     assets: [
-      { color: "red", amount: "$400,000", type: "home equity" },
-      { color: "blue", amount: "$350,000", type: "in retirement accounts" },
-      { color: "blue", amount: "$200,000", type: "in brokerage" },
-      { color: "green", amount: "$50,000", type: "in cash" }
-    ]
+      { color: "yellow", amount: "$400,000", type: "home equity" },
+      { color: "yellow", amount: "$350,000", type: "in retirement accounts" },
+      { color: "yellow", amount: "$200,000", type: "in brokerage" },
+      { color: "yellow", amount: "$50,000", type: "in cash" }
+    ],
+    additionalContent: `That's $1 million net worth. He's in the top 1%, with the house, the vacations, the stability.
+
+You try to talk to Steve about Bitcoin. You explain it plainly:
+
+"At $100,000 per coin, your net worth is 10 BTC. But globally, there are less than 0.3 BTC per millionaire. That's how scarce this asset is."
+
+Steve listens. He nods. He even appreciates the thought.
+But he doesn't act. Why?
+Because Steve is normal.`
   },
   {
     year: "2032",
     price: "$1.8M",
     content: `Steve's worth has doubled. He's now worth $2 million.`,
     assets: [
-      { color: "red", amount: "$800K", type: "home equity" },
-      { color: "blue", amount: "$650K", type: "retirement" },
-      { color: "blue", amount: "$450K", type: "brokerage" },
-      { color: "green", amount: "$100K", type: "in cash" }
-    ]
+      { color: "yellow", amount: "$800K", type: "home equity" },
+      { color: "yellow", amount: "$650K", type: "retirement" },
+      { color: "yellow", amount: "$450K", type: "brokerage" },
+      { color: "yellow", amount: "$100K", type: "in cash" }
+    ],
+    additionalContent: `The world has shifted. Bitcoin has proven itself.
+Steve finally acts:
+He puts 30% of his cash and 20% of his safe assets into Bitcoin.
+His friends say he's nuts.
+
+"Sure, 5% is fine — but this much? That's too aggressive."
+
+Now Steve owns 0.06 BTC.
+
+It's a start.`
   },
   {
     year: "2036",
     price: "$3.7M",
-    content: `The fog lifts. Bitcoin isn't an "investment" anymore — it's the base layer of money.`
+    content: `The fog lifts. Bitcoin isn't an "investment" anymore — it's the base layer of money.`,
+    additionalContent: `Steve's net worth is $2.7 million.
+
+He holds $250K of Bitcoin. He gets bolder.
+He refinances 30% of his home equity, 70% of his brokerage, 50% of his retirement holdings, and 50% of his cash.
+
+After taxes and fees, he ends up with 0.32 BTC.
+
+Almost half his wealth is now in Bitcoin.
+And yet… he's uneasy.
+Over time, he trims the position.`
   },
   {
     year: "2045",
@@ -74,19 +104,34 @@ He's a well-off, well-adjusted adult with a healthy portfolio.`,
     content: `Steve is 20 years older. Wiser.
 Bitcoin is no longer a contrarian play — it's a pillar of the new economy.`,
     assets: [
-      { color: "orange", amount: "$3.6M", type: "in Bitcoin (0.28 BTC)" },
-      { color: "red", amount: "$1.2M", type: "home equity" },
-      { color: "blue", amount: "$600K", type: "retirement" },
-      { color: "blue", amount: "$250K", type: "brokerage" },
-      { color: "green", amount: "$150K", type: "cash" }
-    ]
+      { color: "yellow", amount: "$3.6M", type: "in Bitcoin (0.28 BTC)" },
+      { color: "yellow", amount: "$1.2M", type: "home equity" },
+      { color: "yellow", amount: "$600K", type: "retirement" },
+      { color: "yellow", amount: "$250K", type: "brokerage" },
+      { color: "yellow", amount: "$150K", type: "cash" }
+    ],
+    additionalContent: `Steve's net worth: $5.8M.
+
+But even now, he isn't fully satisfied. His cash and stocks feel… fragile.
+
+So he acts one final time.
+
+He converts most of his traditional liquidity — $400K — into 0.02 BTC.
+
+He now holds 0.3 BTC.`
   }
 ];
 
 export default function ZeroPage() {
   return (
     <main className={`min-h-screen bg-black text-white ${inter.className}`}>
-      <div className="max-w-4xl mx-auto px-4 py-16">
+      {/* Premium header accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#EAB308] to-transparent"></div>
+      
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-10"></div>
+
+      <div className="max-w-4xl mx-auto px-4 py-16 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,46 +139,130 @@ export default function ZeroPage() {
           className="space-y-16"
         >
           {/* Redesigned Editorial Intro */}
-          <section className="w-full bg-black rounded-2xl shadow-lg py-16 px-4 md:px-12 mb-20">
-            <div className="max-w-3xl mx-auto text-center space-y-8">
-              <h1 className="text-4xl md:text-6xl font-bold font-boska bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent tracking-tight leading-tight">
+          <section className="w-full bg-gradient-to-b from-black to-gray-900 rounded-2xl shadow-lg py-16 px-4 md:px-12 mb-20 relative overflow-hidden">
+            {/* Yellow border with subtle glow */}
+            <div className="absolute -inset-0.5 bg-[#EAB308]/20 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.1)]">
+              <div className="absolute inset-0.5 bg-black/95 backdrop-blur-sm rounded-sm"></div>
+            </div>
+            
+            <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
+              {/* Selfie Image with Premium Frame */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="relative w-full max-w-2xl aspect-square mx-auto mb-12"
+              >
+                {/* Artistic frame element */}
+                <div className="absolute -inset-4 z-0">
+                  <div className="absolute inset-0 rotate-[2deg] bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"></div>
+                </div>
+                
+                {/* Premium gold frame with subtle glow */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 rounded-sm z-10 shadow-[0_0_30px_rgba(234,179,8,0.3)]">
+                  <div className="absolute inset-0.5 bg-black rounded-sm"></div>
+                </div>
+                
+                {/* Bitcoin corner accents */}
+                <div className="absolute -top-3 -left-3 w-12 h-12 z-20 flex items-center justify-center">
+                  <div className="text-[#EAB308] text-2xl font-bold">₿</div>
+                </div>
+                <div className="absolute -bottom-3 -right-3 w-12 h-12 z-20 flex items-center justify-center">
+                  <div className="text-[#EAB308] text-2xl font-bold">₿</div>
+                </div>
+                
+                {/* Image container */}
+                <div className="relative w-full h-full rounded-sm overflow-hidden z-10">
+                  <Image
+                    src="/selfie.jpg"
+                    alt="Selfie"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+              </motion.div>
+
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-4xl md:text-6xl font-bold font-boska bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 bg-clip-text text-transparent tracking-tight leading-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]"
+              >
                 {navalSection.title}
-              </h1>
-              <p className="italic text-xl md:text-2xl text-orange-400 font-epilogue max-w-2xl mx-auto">
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="italic text-xl md:text-2xl text-[#EAB308] font-epilogue max-w-2xl mx-auto"
+              >
                 {navalSection.subtitle}
-              </p>
+              </motion.p>
               <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-8 mt-8">
                 {navalSection.pillars.map((pillar, idx) => (
-                  <div key={idx} className="flex flex-col items-center bg-[#18191c] border border-yellow-500/20 rounded-xl px-6 py-6 shadow-md w-full md:w-1/3">
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 + idx * 0.2 }}
+                    className="flex flex-col items-center bg-[#18191c] border border-[#EAB308]/20 rounded-xl px-6 py-6 shadow-[5px_5px_0px_0px_rgba(234,179,8,0.2)] w-full md:w-1/3 hover:border-[#EAB308]/40 transition-all duration-300"
+                  >
                     <div className="text-3xl mb-3">{pillar.icon}</div>
-                    <div className="font-epilogue text-lg md:text-xl text-yellow-400 font-semibold text-center mb-1">
+                    <div className="font-epilogue text-lg md:text-xl text-[#EAB308] font-semibold text-center mb-1">
                       {pillar.title}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <div className="flex items-center justify-center my-10">
-                <div className="h-px w-16 bg-yellow-500/30 mx-4" />
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className="flex items-center justify-center my-10"
+              >
+                <div className="h-px w-16 bg-[#EAB308]/30 mx-4" />
                 <span className="text-gray-400 font-satoshi text-base md:text-lg">{navalSection.contrast}</span>
-                <div className="h-px w-16 bg-yellow-500/30 mx-4" />
-              </div>
-              <div className="text-xl md:text-2xl font-boska text-white mb-2">
+                <div className="h-px w-16 bg-[#EAB308]/30 mx-4" />
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.4 }}
+                className="text-xl md:text-2xl font-boska text-white mb-2"
+              >
                 {navalSection.transition}
-              </div>
-              <div className="text-center text-gray-500 font-epilogue text-lg mt-8 tracking-wide">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.6 }}
+                className="text-center text-gray-500 font-epilogue text-lg mt-8 tracking-wide"
+              >
                 <span>Now, let&apos;s meet Steve…</span>
-              </div>
+              </motion.div>
             </div>
           </section>
 
           {/* Bitcoin Sections */}
           <div className="text-center space-y-8 pt-24 border-t border-gray-800 mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent font-boska tracking-tight leading-tight mb-4 md:mb-6">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 bg-clip-text text-transparent font-boska tracking-tight leading-tight mb-4 md:mb-6 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]"
+            >
               Most Millionaires Will Never Own 0.05 Bitcoin
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 font-epilogue max-w-2xl mx-auto">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl text-gray-300 font-epilogue max-w-2xl mx-auto"
+            >
               And That&apos;s Okay — They&apos;re Normal. You&apos;re Not.
-            </p>
+            </motion.p>
           </div>
 
           {/* Timeline Sections */}
@@ -144,26 +273,44 @@ export default function ZeroPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="border-l-4 border-orange-500/60 pl-8 space-y-6 bg-gray-900/60 rounded-xl py-8 shadow-md"
+                className="border-l-4 border-[#EAB308]/40 pl-8 space-y-6 bg-gradient-to-r from-gray-900/60 to-gray-900/40 rounded-xl py-8 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
               >
-                {section.year && (
-                  <div className="flex items-center gap-4 mb-2">
-                    <span className="text-2xl font-bold text-orange-500 font-epilogue">{section.year}</span>
-                    <span className="text-xl text-gray-400 font-epilogue">— Bitcoin is {section.price}</span>
-                  </div>
-                )}
-                <p className="text-lg text-gray-300 font-satoshi mb-2">{section.content}</p>
-                {section.assets && (
-                  <div className="grid gap-4">
-                    {section.assets.map((asset, i) => (
-                      <div key={i} className="flex items-center gap-4">
-                        <div className={`w-4 h-4 rounded-full bg-${asset.color}-500`} />
-                        <span className="font-bold font-epilogue">{asset.amount}</span>
-                        <span className="text-gray-400 font-satoshi">{asset.type}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {/* Yellow border with subtle glow */}
+                <div className="absolute -inset-0.5 bg-[#EAB308]/10 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.05)]">
+                  <div className="absolute inset-0.5 bg-black/95 backdrop-blur-sm rounded-sm"></div>
+                </div>
+                
+                <div className="relative z-10">
+                  {section.year && (
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-2xl font-bold text-[#EAB308] font-epilogue">{section.year}</span>
+                      <span className="text-xl text-gray-400 font-epilogue">— Bitcoin is {section.price}</span>
+                    </div>
+                  )}
+                  <p className="text-lg text-gray-300 font-satoshi mb-2">{section.content}</p>
+                  {section.additionalContent && (
+                    <div className="text-gray-400 font-satoshi text-base mt-4 whitespace-pre-line leading-relaxed">
+                      {section.additionalContent}
+                    </div>
+                  )}
+                  {section.assets && (
+                    <div className="grid gap-4 mt-6">
+                      {section.assets.map((asset, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                          className="flex items-center gap-4 hover:bg-gray-800/50 p-2 rounded-lg transition-colors duration-200"
+                        >
+                          <div className={`w-4 h-4 rounded-full bg-${asset.color}-500 shadow-lg shadow-${asset.color}-500/20`} />
+                          <span className="font-bold font-epilogue">{asset.amount}</span>
+                          <span className="text-gray-400 font-satoshi">{asset.type}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -173,17 +320,55 @@ export default function ZeroPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="text-center space-y-8 pt-16 mb-8"
+            className="text-center space-y-8 pt-16 mb-8 relative"
           >
-            <h2 className="text-3xl font-bold text-orange-500 font-boska mb-4">The Mantra is Simple: Get Off Zero</h2>
-            <p className="text-xl text-gray-300 font-epilogue max-w-2xl mx-auto">
-              Stay humble. Stack sats. Teach others. But don&apos;t expect them to follow.
-            </p>
-            <p className="text-lg text-gray-400 font-satoshi">
-              Some are Steves.<br />
-              Some are you.
-            </p>
-            <div className="text-2xl text-orange-500 font-boska">🟠 Choose wisely.</div>
+            {/* Yellow border with subtle glow */}
+            <div className="absolute -inset-8 bg-[#EAB308]/10 rounded-lg shadow-[0_0_50px_rgba(234,179,8,0.1)]">
+              <div className="absolute inset-0.5 bg-black/95 backdrop-blur-sm rounded-lg"></div>
+            </div>
+            
+            <div className="relative z-10 p-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
+                className="mb-8"
+              >
+                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 bg-clip-text text-transparent font-boska mb-6 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
+                  The Mantra is Simple:
+                </h2>
+                <h3 className="text-3xl md:text-4xl font-bold text-[#EAB308] font-boska">
+                  Get Off Zero
+                </h3>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.4 }}
+                className="space-y-6"
+              >
+                <p className="text-xl text-gray-300 font-epilogue max-w-2xl mx-auto">
+                  Stay humble. Stack sats. Teach others. But don&apos;t expect them to follow.
+                </p>
+                <div className="flex items-center justify-center gap-4">
+                  <div className="h-px w-16 bg-[#EAB308]/30"></div>
+                  <p className="text-lg text-gray-400 font-satoshi">
+                    Some are Steves.<br />
+                    Some are you.
+                  </p>
+                  <div className="h-px w-16 bg-[#EAB308]/30"></div>
+                </div>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 1.8 }}
+                  className="text-3xl text-[#EAB308] font-boska mt-8"
+                >
+                  🟠 Choose wisely.
+                </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
