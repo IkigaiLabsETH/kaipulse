@@ -111,7 +111,7 @@ export default function MSTYPlatformsPage() {
                 e.currentTarget.style.display = 'none';
               }}>
                 <Image 
-                  src="/magicformula.jpg" 
+                  src="/visuals/BTC_memes_and_dreams_15.jpeg" 
                   alt="MSTY Trading Video Thumbnail"
                   fill
                   className="object-cover"
@@ -128,7 +128,7 @@ export default function MSTYPlatformsPage() {
               {/* YouTube iframe */}
               <iframe
                 className="absolute top-0 left-0 w-full h-full hidden"
-                src="https://www.youtube.com/embed/rOnlvaB8hIU"
+                src="https://www.youtube.com/embed/dIOKlayHA8k"
                 title="MSTY Trading Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
