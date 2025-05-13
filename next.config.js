@@ -102,13 +102,15 @@ const nextConfig = {
         hostname: 'asynchronous-art-inc-res.cloudinary.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.opepen.art',
+        pathname: '/**',
+      },
     ],
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: [
-      'api.opepen.art',
-    ],
   },
   typescript: {
     // Only ignore build errors in production
