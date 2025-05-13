@@ -306,13 +306,19 @@ export default function ALTBGPage() {
                 Their primary product is essentially a derivative of Bitcoin, introducing traditional financial market risks.
               </p>
               <p className="text-lg">
-                Many investors may face substantial losses.
+                Market dynamics are important to understand: The market-to-NAV ratio will fluctuate significantly during bull and bear markets, potentially similar to the GBTC premium/discount dynamics of previous cycles.
+              </p>
+              <p className="text-lg">
+                However, it&apos;s crucial to recognize that Bitcoin&apos;s $2 trillion market cap exists in a world of $1000 trillion in traditional assets. Many institutional investors face regulatory constraints or tax considerations that prevent direct Bitcoin ownership.
+              </p>
+              <p className="text-lg">
+                This structural reality is similar to how certain stocks may appear overvalued on traditional metrics like CAPE, yet maintain their positions due to specific market conditions and constraints.
               </p>
               <p className="text-lg">
                 The current silver lining is that these businesses are absorbing speculative capital that might otherwise flow into higher-risk assets, while directing it toward Bitcoin.
               </p>
               <p className="text-lg">
-                However, there&apos;s a significant risk that many of these companies may be forced to liquidate their Bitcoin holdings when market conditions change, as investors realize the advantages of direct Bitcoin ownership.
+                However, there&apos;s a significant risk that poorly managed companies may be forced to liquidate their Bitcoin holdings when market conditions change, as investors realize the advantages of direct Bitcoin ownership.
               </p>
               <p className="text-lg">
                 True corporate Bitcoin adoption should be our primary focus.
@@ -330,7 +336,7 @@ export default function ALTBGPage() {
                 A key aspect of successful Bitcoin ownership is maintaining focus on the core asset, despite the emergence of various alternatives.
               </p>
               <p className="text-lg font-bold text-red-500">
-                Long-term success often comes to those who maintain this discipline.
+                While some treasury companies may face challenges, well-managed ones with conservative and prudent strategies have the potential to thrive across multiple market cycles, serving as important bridges for institutional capital into the Bitcoin ecosystem.
               </p>
             </div>
           </div>
