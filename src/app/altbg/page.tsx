@@ -289,6 +289,51 @@ export default function ALTBGPage() {
               ))}
             </div>
           </div>
+
+          {/* Disclaimer Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-red-500 shadow-[5px_5px_0px_0px_rgba(239,68,68,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-red-500 mb-6">
+              Important Disclaimer
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Bitcoin treasury companies represent a significant risk in the current market cycle.
+              </p>
+              <p className="text-lg">
+                Consider this: These companies are issuing new shares to investors seeking Bitcoin exposure, creating a layer of complexity and risk between investors and the underlying asset.
+              </p>
+              <p className="text-lg">
+                Their primary product is essentially a derivative of Bitcoin, introducing traditional financial market risks.
+              </p>
+              <p className="text-lg">
+                Many investors may face substantial losses.
+              </p>
+              <p className="text-lg">
+                The current silver lining is that these businesses are absorbing speculative capital that might otherwise flow into higher-risk assets, while directing it toward Bitcoin.
+              </p>
+              <p className="text-lg">
+                However, there&apos;s a significant risk that many of these companies may be forced to liquidate their Bitcoin holdings when market conditions change, as investors realize the advantages of direct Bitcoin ownership.
+              </p>
+              <p className="text-lg">
+                True corporate Bitcoin adoption should be our primary focus.
+              </p>
+              <p className="text-lg">
+                Companies that generate real economic value through their products and services, while maintaining Bitcoin as a treasury asset, are what will create sustainable value for the Bitcoin network.
+              </p>
+              <p className="text-lg">
+                Most other approaches represent traditional financial engineering with potential for significant unwinding.
+              </p>
+              <p className="text-lg">
+                As these companies emerge and investors share their apparent &quot;gains,&quot; remember that Bitcoin remains the most compelling risk-adjusted asset in this space.
+              </p>
+              <p className="text-lg">
+                A key aspect of successful Bitcoin ownership is maintaining focus on the core asset, despite the emergence of various alternatives.
+              </p>
+              <p className="text-lg font-bold text-red-500">
+                Long-term success often comes to those who maintain this discipline.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
