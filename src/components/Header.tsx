@@ -85,6 +85,7 @@ export function Header() {
         { name: 'LEDGER', href: '/ledger' },
         { name: 'COINBASE', href: '/platforms/coinbase' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
+        { name: 'HOLDINGS', href: '/tbs' },
       ]
     },
     { 
