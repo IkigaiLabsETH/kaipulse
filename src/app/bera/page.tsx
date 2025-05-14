@@ -18,9 +18,9 @@ const platformComparison = [
 const strengths = [
   {
     title: 'Proof-of-Liquidity (PoL) v1.1',
-    highlight: 'Evolving consensus for sustainable yield.',
-    description: `PoL v1.1 introduces dynamic incentive redistribution (20% fee) to balance value accrual between BGT and BERA. This shift moves capital efficiency from BGT to BERA and chain-wide liquidity, marking a new era of sustainable yield mechanics.`,
-    note: `Builder's Note: The transition from easy-mode yield to sustainable flywheel-driven ecosystem is a sign of maturity.`
+    highlight: 'Dynamic incentive redistribution for sustainable yield.',
+    description: `PoL v1.1 introduces a variable-rate fee (starting at 20%) on application-paid incentives to balance value accrual between BGT and BERA. This shift moves capital efficiency toward BERA and chain-wide liquidity, with proceeds building Chain Owned Liquidity (CoL) for BERA pairs. The dynamic formula ties redistribution to incentive efficiency, estimated to generate low 8-figures in revenue for BERA supply sinks.`,
+    note: `Builder's Note: The transition from easy-mode yield to sustainable flywheel-driven ecosystem marks a new era of maturity.`
   },
   {
     title: 'ETH-Native Integration',
@@ -241,9 +241,9 @@ export default function BerachainHonestTake() {
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
             <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">PoL v1.1 & Yield Compression</div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Transition</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">The era of easy-mode yield is ending. PoL v1.1 introduces a 20% redistribution fee, compressing BGT yield and reducing the BGT:BERA premium from ~1.45 to ~1.25. This isn&apos;t a failure—it&apos;s a feature of maturity.</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">The era of easy-mode yield is ending. PoL v1.1 introduces a variable-rate fee starting at 20% (ramped from 5% over 4 weeks), compressing BGT yield and reducing the BGT:BERA premium from ~1.45 to ~1.25. This isn&apos;t a failure—it&apos;s a feature of maturity, with proceeds building Chain Owned Liquidity for BERA pairs.</div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Adaptation</div>
-            <div className="font-satoshi text-white/90 text-lg">Capital is rotating toward ETH-native yield opportunities and BERA-native LPs. The focus is shifting from pure yield to sustainable ecosystem growth.</div>
+            <div className="font-satoshi text-white/90 text-lg">Capital is rotating toward ETH-native yield opportunities and BERA-native LPs. The focus is shifting from pure yield to sustainable ecosystem growth, with excess BERA being deployed across validators, dApp validators, native apps like BEND, and major asset LPs.</div>
           </div>
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
             <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">BEND & ETH Integration</div>
@@ -255,9 +255,9 @@ export default function BerachainHonestTake() {
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
             <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">Chain Owned Liquidity</div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Innovation</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">COL captures value from BGT emissions to seed BERA-native LPs, creating deeper liquidity and more sustainable yield opportunities.</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">CoL captures value from BGT emissions and PoL v1.1 fees to seed BERA-native LPs, creating deeper liquidity and more sustainable yield opportunities. The system may allocate 10-20% of BGT emissions to major BEX pairings, reinforcing the flywheel of CoL → Fees → PoL → Redistribution.</div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Focus</div>
-            <div className="font-satoshi text-white/90 text-lg">Monitor BEX LP yields vs LSTs, especially BERA-HONEY, and auto-incentive vaults as part of PoL v1.1 rollout.</div>
+            <div className="font-satoshi text-white/90 text-lg">Monitor BEX LP yields vs LSTs, especially BERA-HONEY, and auto-incentive vaults as part of PoL v1.1 rollout. The system enables auto-incentives on BEX, recycling fees into vaults for continuous liquidity growth.</div>
           </div>
         </div>
       </section>
