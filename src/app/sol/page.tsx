@@ -122,7 +122,7 @@ export default function SolanaHonestTake() {
           className="max-w-2xl mx-auto"
         >
           <p className="text-xl md:text-2xl font-epilogue text-yellow-400 italic mb-6 drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-            &quot;Solana is becoming the bridge between traditional finance and blockchain, with ETF prospects and institutional adoption reaching new heights.&quot;
+            The bridge between traditional finance and blockchain, with ETF prospects and institutional adoption reaching new heights.
           </p>
           <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
             Solana has evolved beyond its technical roots to become a serious contender in institutional finance. The combination of ETF momentum, traditional finance integration, and proven network resilience makes it a compelling platform for builders and investors alike.
@@ -743,7 +743,7 @@ export default function SolanaHonestTake() {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto"
         >
-          Solana&apos;s journey is accelerating with institutional adoption and traditional finance integration. The platform is maturing, and the opportunities for builders and investors are expanding. Let&apos;s continue building the future of finance together.
+          Solana&apos;s journey is accelerating with institutional adoption and traditional finance integration. The platform is maturing, and the opportunities for builders and investors are expanding.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
