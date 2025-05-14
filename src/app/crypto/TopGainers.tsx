@@ -33,7 +33,7 @@ export default function TopGainers() {
       });
   }, []);
 
-  if (loading) return <div className="text-yellow-500 text-center py-8">Loading top gainers...</div>;
+  if (loading) return <div className="text-yellow-500 text-center py-8">Loading UP ONLY...</div>;
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
   return (
