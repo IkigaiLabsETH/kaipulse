@@ -113,7 +113,7 @@ export default function SolanaHonestTake() {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 mb-8 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]"
         >
-          Solana: The Institutional Frontier
+          The Institutional Frontier
         </motion.h1>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -148,7 +148,7 @@ export default function SolanaHonestTake() {
           transition={{ duration: 0.8 }}
           className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]"
         >
-          Ethereum vs Solana: The Battle for Blockchain Supremacy
+          Ethereum vs Solana
         </motion.h2>
 
         <div className="space-y-8">
