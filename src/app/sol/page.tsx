@@ -130,6 +130,80 @@ export default function SolanaHonestTake() {
         </motion.div>
       </motion.section>
 
+      {/* Growth Metrics Section */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-[#18191c]/80 rounded-2xl p-12 border border-yellow-500/20 shadow-xl"
+        >
+          <div className="text-center mb-8">
+            <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-6 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+              From Nothing to Everything
+            </h2>
+            <p className="font-epilogue text-2xl text-yellow-400 italic mb-4 drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
+              The Most Explosive Growth in Crypto
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="bg-[#18191c]/80 rounded-xl p-6 border border-yellow-500/20 shadow-lg"
+            >
+              <div className="text-yellow-500/60 text-sm mb-2">Starting Point</div>
+              <div className="font-epilogue text-3xl text-yellow-400 mb-2">0.3%</div>
+              <div className="text-white/60 text-sm">Initial App Revenue Share</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="bg-[#18191c]/80 rounded-xl p-6 border border-yellow-500/20 shadow-lg"
+            >
+              <div className="text-yellow-500/60 text-sm mb-2">Current Position</div>
+              <div className="font-epilogue text-3xl text-yellow-400 mb-2">50%</div>
+              <div className="text-white/60 text-sm">Of All Crypto App Revenue</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="bg-[#18191c]/80 rounded-xl p-6 border border-yellow-500/20 shadow-lg"
+            >
+              <div className="text-yellow-500/60 text-sm mb-2">Growth Multiple</div>
+              <div className="font-epilogue text-3xl text-yellow-400 mb-2">166x</div>
+              <div className="text-white/60 text-sm">Revenue Share Increase</div>
+            </motion.div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-center mt-8 text-lg font-satoshi text-white/80"
+          >
+            For every $100 in crypto app revenue, $50 is now captured by Solana applications.
+          </motion.p>
+        </motion.div>
+      </motion.section>
+
       {/* SOL/ETH Chart */}
       <SolEth />
 
