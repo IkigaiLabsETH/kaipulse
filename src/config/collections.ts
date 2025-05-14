@@ -50,5 +50,6 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'lifeguard-towers-miami',
   'stranger-together-by-brooke-didonato-ben-zank',
   'the-vault-of-wonders-chapter-1-the-abyssal-unseen',
-  'skulptuur-by-piter-pasma'
+  'skulptuur-by-piter-pasma',
+  'dataland-biomelumina'
 ]; 
