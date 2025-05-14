@@ -67,7 +67,7 @@ export const featuredNFTs: FeaturedNFT[] = [
   },
   {
     contract: "0xe034bb2b1b9471e11cf1a0a9199a156fb227aa5d",
-    tokenId: "318"
+    tokenId: "319"
   },
   {
     contract: "0xbb6eefd83daab02fa1a697eb9d8495eec9f9b384",
