@@ -107,6 +107,11 @@ const nextConfig = {
         hostname: 'api.opepen.art',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'coin-images.coingecko.com',
+        pathname: '/**',
+      },
     ],
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,

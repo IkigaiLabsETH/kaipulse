@@ -14,13 +14,13 @@ interface Price {
 
 const TICKERS: Price[] = [
   { symbol: 'ETH', tradingViewSymbol: 'COINBASE:ETHUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'SOL', tradingViewSymbol: 'COINBASE:SOLUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'SUI', tradingViewSymbol: 'COINBASE:SUIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'BERA', tradingViewSymbol: 'COINBASE:BERAUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'LINK', tradingViewSymbol: 'COINBASE:LINKUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'UNI', tradingViewSymbol: 'COINBASE:UNIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'AAVE', tradingViewSymbol: 'COINBASE:AAVEUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'ONDO', tradingViewSymbol: 'COINBASE:ONDOUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'SOL', tradingViewSymbol: 'COINBASE:SOLUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'SUI', tradingViewSymbol: 'COINBASE:SUIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'AVAX', tradingViewSymbol: 'COINBASE:AVAXUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'STX', tradingViewSymbol: 'COINBASE:STXUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'TAO', tradingViewSymbol: 'COINBASE:TAOUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
