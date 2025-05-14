@@ -40,7 +40,7 @@ export default function TrendingAltcoins() {
     <div className="my-12">
       <h2 className="text-3xl font-bold text-yellow-500 mb-8 text-center font-epilogue tracking-tight">TRENDING ALTCOINS</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {coins.slice(0, 8).map((coin) => (
+        {coins.slice(0, 4).map((coin) => (
           <div
             key={coin.id}
             className="bg-[#18191c] border-[3px] border-[#F7B500] shadow-[5px_5px_0px_0px_#F7B500] flex flex-col items-center p-6 hover:scale-105 transition-transform duration-200"
