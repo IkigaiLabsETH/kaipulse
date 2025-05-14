@@ -33,17 +33,17 @@ export default function TrendingAltcoins() {
       });
   }, []);
 
-  if (loading) return <div className="text-yellow-500 text-center py-8">Loading trending altcoins...</div>;
+  if (loading) return <div className="text-yellow-500 text-center py-8">Loading TRENDING ALTCOINS...</div>;
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
   return (
     <div className="my-12">
-      <h2 className="text-3xl font-bold text-yellow-500 mb-8 text-center font-epilogue tracking-tight">Trending Altcoins</h2>
+      <h2 className="text-3xl font-bold text-yellow-500 mb-8 text-center font-epilogue tracking-tight">TRENDING ALTCOINS</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {coins.map((coin) => (
+        {coins.slice(0, 8).map((coin) => (
           <div
             key={coin.id}
-            className="bg-[#18191c] border-2 border-yellow-500 rounded-2xl shadow-[0_4px_16px_0_rgba(247,181,0,0.18)] flex flex-col items-center p-6 hover:scale-105 transition-transform duration-200"
+            className="bg-[#18191c] border-[3px] border-[#F7B500] shadow-[5px_5px_0px_0px_#F7B500] flex flex-col items-center p-6 hover:scale-105 transition-transform duration-200"
           >
             <Image src={coin.thumb} alt={coin.name} width={56} height={56} className="w-14 h-14 mb-3 rounded-full border border-yellow-500 bg-black" />
             <div className="text-yellow-500 font-bold text-lg mb-1 font-epilogue">{coin.name}</div>

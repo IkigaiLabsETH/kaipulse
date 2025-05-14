@@ -32,26 +32,32 @@ export async function GET() {
   }
 
   try {
+    // Fetch trending coins from CoinGecko
     const response = await fetch(COINGECKO_TRENDING_URL, {
       headers: { 'Accept': 'application/json' },
+      // Optionally, set a timeout in the future
     });
     if (!response.ok) {
-      throw new Error(`CoinGecko error: ${response.status}`);
+      // Return empty array on error for frontend resilience
+      return NextResponse.json([]);
     }
     const data = await response.json();
-    // Simplify the response
-    const trending: TrendingCoin[] = (data.coins || []).map((c: CoinGeckoTrendingItem) => ({
-      id: c.item.id,
-      name: c.item.name,
-      symbol: c.item.symbol,
-      market_cap_rank: c.item.market_cap_rank,
-      thumb: c.item.thumb,
-      score: c.item.score,
-    }));
+    // Map and validate trending coins
+    const trending: TrendingCoin[] = Array.isArray(data.coins)
+      ? data.coins.map((c: CoinGeckoTrendingItem) => ({
+          id: c.item.id,
+          name: c.item.name,
+          symbol: c.item.symbol,
+          market_cap_rank: c.item.market_cap_rank,
+          thumb: c.item.thumb,
+          score: c.item.score,
+        }))
+      : [];
     // Cache the result
     cache = { data: trending, timestamp: Date.now() };
     return NextResponse.json(trending);
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch trending altcoins' }, { status: 500 });
+    // Return empty array for frontend resilience
+    return NextResponse.json([]);
   }
 } 

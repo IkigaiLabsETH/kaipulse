@@ -181,8 +181,8 @@ export default function CryptoPage() {
           {/* Trending Altcoins Section */}
           <TrendingAltcoins />
 
-          {/* Stunning Navigation Buttons */}
-          <div className="max-w-6xl mx-auto w-full flex flex-wrap justify-center gap-8 mt-12 mb-12">
+          {/* Stunning Navigation Buttons - now directly under the chart */}
+          <div className="w-full max-w-[90rem] mx-auto flex flex-wrap justify-center gap-8 mt-12 mb-12">
             <Link href="/eth" className="w-full sm:w-auto flex-1">
               <Button
                 size="lg"
