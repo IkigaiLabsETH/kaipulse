@@ -12,17 +12,18 @@ interface Price {
 }
 
 const TICKERS: Price[] = [
-  { symbol: 'BTC', tradingViewSymbol: 'COINBASE:BTCUSD', exchange: 'COINBASE', color: 'text-white' },
-  { symbol: 'ETH', tradingViewSymbol: 'COINBASE:ETHUSD', exchange: 'COINBASE', color: 'text-white' },
-  { symbol: 'ETHBTC', tradingViewSymbol: 'COINBASE:ETHBTC', exchange: 'COINBASE', color: 'text-white' },
-  { symbol: 'SUI', tradingViewSymbol: 'COINBASE:SUIUSD', exchange: 'COINBASE', color: 'text-white' },
-  { symbol: 'MSTR', tradingViewSymbol: 'NASDAQ:MSTR', exchange: 'NASDAQ', color: 'text-white' },
+  { symbol: 'BTC', tradingViewSymbol: 'COINBASE:BTCUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'ETH', tradingViewSymbol: 'COINBASE:ETHUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'ETHBTC', tradingViewSymbol: 'COINBASE:ETHBTC', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'SUI', tradingViewSymbol: 'COINBASE:SUIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'SOL', tradingViewSymbol: 'COINBASE:SOLUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'MSTR', tradingViewSymbol: 'NASDAQ:MSTR', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'MSTY', tradingViewSymbol: 'AMEX:MSTY', exchange: 'AMEX', color: 'text-yellow-500' },
-  { symbol: 'STRF', tradingViewSymbol: 'NASDAQ:STRF', exchange: 'NASDAQ', color: 'text-white' },
-  { symbol: 'STRK', tradingViewSymbol: 'NASDAQ:STRK', exchange: 'NASDAQ', color: 'text-white' },
-  { symbol: 'COIN', tradingViewSymbol: 'NASDAQ:COIN', exchange: 'NASDAQ', color: 'text-white' },
-  { symbol: 'TSLA', tradingViewSymbol: 'NASDAQ:TSLA', exchange: 'NASDAQ', color: 'text-white' },
-  { symbol: 'NVDA', tradingViewSymbol: 'NASDAQ:NVDA', exchange: 'NASDAQ', color: 'text-white' },
+  { symbol: 'STRF', tradingViewSymbol: 'NASDAQ:STRF', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'STRK', tradingViewSymbol: 'NASDAQ:STRK', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'COIN', tradingViewSymbol: 'NASDAQ:COIN', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'TSLA', tradingViewSymbol: 'NASDAQ:TSLA', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'NVDA', tradingViewSymbol: 'NASDAQ:NVDA', exchange: 'NASDAQ', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
