@@ -33,6 +33,7 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'monstersoup',
   'machine-hallucinations-coral-generative-ai-data-pa',
   'getijde-by-bart-simons',
+  '24-hours-of-art',
   'pursuit-by-per-kristian-stoveland',
   '100-sunsets-by-zach-lieberman',
   'strands-of-solitude',
