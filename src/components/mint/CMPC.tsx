@@ -43,15 +43,6 @@ type MinimalClaimCondition = {
   // add other fields as needed
 };
 
-// Utility to convert ipfs:// URLs to https://ipfs.io/ipfs/
-function ipfsToHttp(url?: string | null): string {
-  if (!url) return '';
-  if (url.startsWith('ipfs://')) {
-    return url.replace('ipfs://', 'https://ipfs.io/ipfs/');
-  }
-  return url;
-}
-
 export function CMPC(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
@@ -540,7 +531,7 @@ export function CMPC(props: Props) {
             {/* Fallback: blurred contract image if error */}
             {mintedImageError && (
               <Image
-                src={ipfsToHttp(props.contractImage) || "/arty.png"}
+                src={props.contractImage || "/arty.png"}
                 alt={props.displayName}
                 width={800}
                 height={1000}
@@ -559,7 +550,7 @@ export function CMPC(props: Props) {
                 style={{ position: 'absolute', inset: 0, zIndex: 10 }}
               >
                 <Image
-                  src={ipfsToHttp(mintedImageUrl)}
+                  src={mintedImageUrl}
                   alt={props.displayName}
                   width={800}
                   height={1000}
@@ -571,7 +562,7 @@ export function CMPC(props: Props) {
             {/* Default: contract image if nothing else */}
             {!mintedImageLoading && !mintedImageError && !mintedImageUrl && (
               <Image
-                src={ipfsToHttp(props.contractImage) || "/arty.png"}
+                src={props.contractImage || "/arty.png"}
                 alt={props.displayName}
                 width={800}
                 height={1000}
