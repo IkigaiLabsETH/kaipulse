@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { CMPC } from "@/components/mint/CMPC";
 import { getContract } from "thirdweb";
 import { client } from "@/lib/thirdwebClient";
@@ -25,11 +25,11 @@ export default function CMPPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const contract = getContract({
+  const contract = useMemo(() => getContract({
     client,
     chain: ethereum,
     address: process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS as string,
-  });
+  }), []);
 
   useEffect(() => {
     let didCancel = false;
