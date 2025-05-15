@@ -32,7 +32,6 @@ type Props = {
   contractImage: string;
   pricePerToken: number | null;
   currencySymbol: string | null;
-  isERC1155: boolean;
   tokenId: string;
   onMinted?: (tokenId: string) => void;
   onCelebration?: () => void;
@@ -56,7 +55,7 @@ export function CMPC(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
   const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null | undefined>(undefined);
-  const tokenIdBigInt = props.isERC1155 && props.tokenId ? BigInt(props.tokenId) : undefined;
+  const tokenIdBigInt = BigInt(props.tokenId);
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -387,22 +386,13 @@ export function CMPC(props: Props) {
                 contractAddress={props.contract.address}
                 chain={props.contract.chain}
                 client={props.contract.client}
-                claimParams={
-                  props.isERC1155 && tokenIdBigInt !== undefined
-                    ? {
-                        type: "ERC1155",
-                        tokenId: tokenIdBigInt,
-                        quantity: BigInt(quantity),
-                        to: account.address,
-                        from: account.address,
-                      }
-                    : {
-                        type: "ERC20",
-                        quantity: String(quantity),
-                        to: account.address,
-                        from: account.address,
-                      }
-                }
+                claimParams={{
+                  type: "ERC1155",
+                  tokenId: tokenIdBigInt,
+                  quantity: BigInt(quantity),
+                  to: account.address,
+                  from: account.address,
+                }}
                 style={{
                   backgroundColor: "#F7B500",
                   color: "black",
@@ -428,7 +418,7 @@ export function CMPC(props: Props) {
                   if (celebrationTimeout.current) clearTimeout(celebrationTimeout.current);
                   celebrationTimeout.current = setTimeout(async () => {
                     setShowCelebration(false);
-                    if (props.isERC1155 && account?.address) {
+                    if (account?.address) {
                       let latestTokenId = null;
                       for (let attempt = 0; attempt < 3; attempt++) {
                         latestTokenId = await fetchLatestMintedNFT(account.address, props.contract.address);

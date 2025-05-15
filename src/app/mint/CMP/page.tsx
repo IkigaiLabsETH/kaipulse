@@ -6,6 +6,7 @@ import { getContract } from "thirdweb";
 import { client } from "@/lib/thirdwebClient";
 import { ethereum } from "thirdweb/chains";
 import { getERC1155Info } from "@/lib/erc1155";
+import Head from "next/head";
 
 if (!process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS) {
   throw new Error("NEXT_PUBLIC_CMP_CONTRACT_ADDRESS is not defined in environment variables");
@@ -56,8 +57,13 @@ export default function CMPPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <Head>
+        <title>Mint | Ethereal Visions</title>
+        <meta name="description" content="Mint your Chromo-Mythic Pop NFT" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {error && (
-        <div className="flex items-center justify-center min-h-[40vh] text-red-500 text-lg">{error}</div>
+        <div role="alert" className="flex items-center justify-center min-h-[40vh] text-red-500 text-lg">{error}</div>
       )}
       {loading && !error && (
         <div className="flex items-center justify-center min-h-[40vh] text-yellow-500 text-lg">Loading...</div>
@@ -70,8 +76,7 @@ export default function CMPPage() {
           contractImage={nftInfo.contractImage}
           pricePerToken={nftInfo.pricePerToken}
           currencySymbol={nftInfo.currencySymbol}
-          isERC1155={true}
-          tokenId={process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID!.trim()}
+          tokenId={String(process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID).trim()}
         />
       )}
     </div>
