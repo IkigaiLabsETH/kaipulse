@@ -370,6 +370,75 @@ export default function ZeroPage() {
               </motion.div>
             </div>
           </motion.div>
+
+          {/* New Outro Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="text-center space-y-12 pt-24 border-t border-gray-800 mb-16"
+          >
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 bg-clip-text text-transparent font-boska mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]"
+            >
+              From Accumulation to Preservation: The Shift Most Traders Learn Too Late
+            </motion.h2>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.6 }}
+              className="max-w-3xl mx-auto space-y-8 text-left"
+            >
+              <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                There&apos;s a silent killer in the crypto world—and no, it&apos;s not market volatility. It&apos;s ego disguised as strategy. It&apos;s the belief that what worked for your $10K portfolio will still work when you&apos;re managing $1M or more.
+              </p>
+
+              <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                It took me far too long to learn this.
+              </p>
+
+              <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                Like many others, I got into crypto during the wild west era. Back then, taking big swings felt like the right move—and in many ways, it was. When your entire bankroll is $1,000 or even $10,000, going down 50% isn&apos;t life-ruining. It stings, but it doesn&apos;t change the trajectory of your life. You can rebuild. You&apos;re not gambling your family&apos;s future or your peace of mind. You&apos;re risking a small stack to chase asymmetric upside.
+              </p>
+
+              <div className="bg-gray-900/50 p-6 rounded-xl border border-[#EAB308]/20">
+                <h3 className="text-2xl font-bold text-[#EAB308] font-boska mb-4">Risk Looks Different at $1M+</h3>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                  When you cross into six or seven-figure territory, your job is no longer to accumulate—it&apos;s to preserve.
+                </p>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed mt-4">
+                  If you&apos;ve built up a $1M portfolio, going to $2M will certainly feel great, but it won&apos;t double your quality of life in the way going from $1K to $100K might. Conversely, a catastrophic drawdown that takes you from $1M back down to $50K? That absolutely changes your life.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-[#EAB308] font-boska">The Art of Shifting Gears</h3>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                  The hardest part of this shift isn&apos;t technical—it&apos;s psychological. When you&apos;ve built your fortune by taking big risks, it feels counterintuitive to pull back. But that&apos;s the lesson: what got you here won&apos;t get you there.
+                </p>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                  And if you ignore that lesson, the market will teach it to you the hard way.
+                </p>
+              </div>
+
+              <div className="bg-gray-900/50 p-6 rounded-xl border border-[#EAB308]/20">
+                <h3 className="text-2xl font-bold text-[#EAB308] font-boska mb-4">Final Thoughts: Should You Be So Lucky</h3>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed">
+                  If you&apos;re early in the game, don&apos;t be afraid to play hard. Take smart risks. Swing for the fences.
+                </p>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed mt-4">
+                  But should you be lucky enough to build something meaningful—six figures, seven figures, more—do not make the mistake I did. Recognize the moment when your goal should shift from chasing more to protecting what you&apos;ve built.
+                </p>
+                <p className="text-gray-300 font-satoshi text-lg leading-relaxed mt-4">
+                  Because wealth isn&apos;t just about numbers going up. It&apos;s about freedom. And freedom only lasts if you learn how to preserve it.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </main>
