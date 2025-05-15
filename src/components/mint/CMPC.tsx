@@ -13,7 +13,8 @@ import {
 import { client } from "@/lib/thirdwebClient";
 import React from "react";
 import { toast } from "sonner";
-import { getActiveClaimCondition } from "thirdweb/extensions/erc721";
+import { getActiveClaimCondition as getActiveClaimConditionERC721 } from "thirdweb/extensions/erc721";
+import { getActiveClaimCondition as getActiveClaimConditionERC1155 } from "thirdweb/extensions/erc1155";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
@@ -56,7 +57,7 @@ function ipfsToHttp(url?: string | null): string {
 export function CMPC(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
-  const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null | undefined>(undefined);
+  const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimConditionERC721>> | null | undefined>(undefined);
   const tokenIdBigInt = props.isERC1155 && props.tokenId ? BigInt(props.tokenId) : undefined;
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -94,7 +95,17 @@ export function CMPC(props: Props) {
       async function fetchClaimCondition() {
         setClaimCondition(undefined); // loading
         try {
-          const condition = await getActiveClaimCondition({ contract: props.contract, tokenId: props.tokenId });
+          let condition;
+          if (props.isERC1155 && props.tokenId) {
+            condition = await getActiveClaimConditionERC1155({
+              contract: props.contract,
+              tokenId: BigInt(props.tokenId),
+            });
+          } else {
+            condition = await getActiveClaimConditionERC721({
+              contract: props.contract,
+            });
+          }
           if (!cancelled) setClaimCondition(condition);
         } catch {
           if (!cancelled) setClaimCondition(null);
@@ -107,7 +118,7 @@ export function CMPC(props: Props) {
       cancelled = true;
       if (timeout) clearTimeout(timeout);
     };
-  }, [props.contract, props.tokenId]);
+  }, [props.contract, props.tokenId, props.isERC1155]);
 
   useEffect(() => {
     return () => {
