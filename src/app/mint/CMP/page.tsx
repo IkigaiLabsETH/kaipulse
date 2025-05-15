@@ -8,17 +8,10 @@ import { ethereum } from "thirdweb/chains";
 import { getERC1155Info } from "@/lib/erc1155";
 import Head from "next/head";
 
-if (!process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS) {
-  throw new Error("NEXT_PUBLIC_CMP_CONTRACT_ADDRESS is not defined in environment variables");
-}
-
-if (!process.env.NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID) {
-  throw new Error("NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID is not defined in environment variables");
-}
-
-if (!process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID) {
-  throw new Error("NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID is not defined in environment variables");
-}
+// Default values for development
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS || "0x3cf279b3248E164F3e5C341826B878d350EC6AB1";
+// const CONTRACT_CHAIN_ID = process.env.NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID || "11155111"; // Removed unused variable
+const CONTRACT_TOKEN_ID = process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID || "1";
 
 export default function CMPPage() {
   const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC1155Info>> | null>(null);
@@ -28,7 +21,7 @@ export default function CMPPage() {
   const contract = useMemo(() => getContract({
     client,
     chain: ethereum,
-    address: process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS as string,
+    address: CONTRACT_ADDRESS,
   }), []);
 
   useEffect(() => {
@@ -42,10 +35,8 @@ export default function CMPPage() {
           setError(null);
         }
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error("Failed to load contract info:", err);
         if (!didCancel) {
-          setError("Failed to load contract info. Please try again later.");
+          setError(`Failed to load contract info: ${err instanceof Error ? err.message : 'Unknown error'}`);
         }
       } finally {
         if (!didCancel) setLoading(false);
@@ -76,7 +67,7 @@ export default function CMPPage() {
           contractImage={nftInfo.contractImage}
           pricePerToken={nftInfo.pricePerToken}
           currencySymbol={nftInfo.currencySymbol}
-          tokenId={String(process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID).trim()}
+          tokenId={CONTRACT_TOKEN_ID}
         />
       )}
     </div>
