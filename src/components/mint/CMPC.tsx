@@ -86,7 +86,7 @@ export function CMPC(props: Props) {
 
   // Only fetch claim condition on mount or when contract/tokenId changes, with debounce
   useEffect(() => {
-    let cancelled = false;
+    let didCancel = false;
     let timeout: NodeJS.Timeout | null = null;
 
     timeout = setTimeout(() => {
@@ -97,16 +97,16 @@ export function CMPC(props: Props) {
             contract: props.contract,
             tokenId: BigInt(props.tokenId),
           });
-          if (!cancelled) setClaimCondition(condition);
+          if (!didCancel) setClaimCondition(condition);
         } catch {
-          if (!cancelled) setClaimCondition(null);
+          if (!didCancel) setClaimCondition(null);
         }
       }
       fetchClaimCondition();
     }, 200);
 
     return () => {
-      cancelled = true;
+      didCancel = true;
       if (timeout) clearTimeout(timeout);
     };
   }, [props.contract, props.tokenId]);
