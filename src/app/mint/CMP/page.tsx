@@ -71,7 +71,7 @@ export default function CMPPage() {
           pricePerToken={nftInfo.pricePerToken}
           currencySymbol={nftInfo.currencySymbol}
           isERC1155={true}
-          tokenId={process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID!}
+          tokenId={process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID!.trim()}
         />
       )}
     </div>
