@@ -11,6 +11,9 @@ export const env = createEnv({
     REDIS_TOKEN: z.string().optional(),
   },
   client: {
+    NEXT_PUBLIC_CMP_CONTRACT_ADDRESS: z.string().optional(),
+    NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID: z.string().optional(),
+    NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID: z.string().optional(),
     // No client-side environment variables needed
   },
   runtimeEnv: {
@@ -20,5 +23,10 @@ export const env = createEnv({
     HUME_CLIENT_SECRET: process.env.HUME_CLIENT_SECRET,
     REDIS_URL: process.env.REDIS_URL,
     REDIS_TOKEN: process.env.REDIS_TOKEN,
+  },
+  experimental__runtimeEnv: {
+    NEXT_PUBLIC_CMP_CONTRACT_ADDRESS: process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS,
+    NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID: process.env.NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID,
+    NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID: process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID,
   },
 }); 
