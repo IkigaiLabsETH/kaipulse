@@ -40,6 +40,7 @@ type Props = {
 type MinimalClaimCondition = {
   startTimestamp?: string | number | bigint;
   maxClaimablePerWallet?: number | bigint;
+  // add other fields as needed
 };
 
 // Utility to convert ipfs:// URLs to https://ipfs.io/ipfs/
@@ -55,7 +56,6 @@ export function CMPC(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
   const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null | undefined>(undefined);
-  const tokenIdBigInt = BigInt(props.tokenId);
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -92,10 +92,10 @@ export function CMPC(props: Props) {
       async function fetchClaimCondition() {
         setClaimCondition(undefined); // loading
         try {
-          const tokenId = props.tokenId.toString().trim();
+          const tokenIdBigInt = BigInt(props.tokenId);
           const condition = await getActiveClaimCondition({
             contract: props.contract,
-            tokenId: BigInt(tokenId),
+            tokenId: tokenIdBigInt,
           });
           if (!didCancel) setClaimCondition(condition);
         } catch {
@@ -388,7 +388,7 @@ export function CMPC(props: Props) {
                 client={props.contract.client}
                 claimParams={{
                   type: "ERC1155",
-                  tokenId: tokenIdBigInt,
+                  tokenId: BigInt(props.tokenId),
                   quantity: BigInt(quantity),
                   to: account.address,
                   from: account.address,
@@ -449,8 +449,8 @@ export function CMPC(props: Props) {
               <div className="mt-12 max-w-md">
                 <div className="flex items-center gap-3 mb-1">
                   <span className="text-xs font-epilogue font-bold tracking-widest uppercase text-gray-400">Mint Phase</span>
-                  <span className={`text-xs px-2 py-0.5 rounded font-semibold align-middle ml-1 ${isLive(claimCondition) ? 'bg-green-500 text-black' : isUpcoming(claimCondition) ? 'bg-yellow-500 text-black' : 'bg-gray-700 text-white'}`}>{isLive(claimCondition) ? 'Live' : isUpcoming(claimCondition) ? 'Upcoming' : 'Ended'}</span>
-                  {isUpcoming(claimCondition) && claimCondition.startTimestamp && (
+                  <span className={`text-xs px-2 py-0.5 rounded font-semibold align-middle ml-1 ${isLive(claimCondition as MinimalClaimCondition) ? 'bg-green-500 text-black' : isUpcoming(claimCondition as MinimalClaimCondition) ? 'bg-yellow-500 text-black' : 'bg-gray-700 text-white'}`}>{isLive(claimCondition as MinimalClaimCondition) ? 'Live' : isUpcoming(claimCondition as MinimalClaimCondition) ? 'Upcoming' : 'Ended'}</span>
+                  {isUpcoming(claimCondition as MinimalClaimCondition) && claimCondition.startTimestamp && (
                     <span className="ml-2 text-xs text-yellow-400 font-satoshi">Starts in {getCountdown(claimCondition.startTimestamp)}</span>
                   )}
                 </div>
