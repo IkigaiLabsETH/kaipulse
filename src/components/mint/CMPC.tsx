@@ -56,7 +56,7 @@ function ipfsToHttp(url?: string | null): string {
 export function CMPC(props: Props) {
   const [quantity, setQuantity] = useState(1);
   const account = useActiveAccount();
-  const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null>(null);
+  const [claimCondition, setClaimCondition] = useState<Awaited<ReturnType<typeof getActiveClaimCondition>> | null | undefined>(undefined);
   const tokenIdBigInt = props.isERC1155 && props.tokenId ? BigInt(props.tokenId) : undefined;
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -86,15 +86,18 @@ export function CMPC(props: Props) {
   }
 
   useEffect(() => {
+    let cancelled = false;
     async function fetchClaimCondition() {
+      setClaimCondition(undefined); // loading
       try {
         const condition = await getActiveClaimCondition({ contract: props.contract });
-        setClaimCondition(condition);
+        if (!cancelled) setClaimCondition(condition);
       } catch {
-        setClaimCondition(null);
+        if (!cancelled) setClaimCondition(null);
       }
     }
     fetchClaimCondition();
+    return () => { cancelled = true; };
   }, [props.contract]);
 
   useEffect(() => {
@@ -180,6 +183,24 @@ export function CMPC(props: Props) {
     } catch {
       return null;
     }
+  }
+
+  // Loading state
+  if (claimCondition === undefined) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-black text-yellow-400 text-xl font-bold">
+        Loading mint info...
+      </div>
+    );
+  }
+
+  // Graceful error state if no claim condition
+  if (claimCondition === null) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-black text-red-500 text-xl font-bold">
+        Minting is not available yet. Please check back soon.
+      </div>
+    );
   }
 
   if (props.pricePerToken === null || props.pricePerToken === undefined) {
