@@ -384,7 +384,7 @@ export default function ZeroPage() {
               transition={{ duration: 0.8, delay: 1.4 }}
               className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#EAB308] to-[#EAB308]/80 bg-clip-text text-transparent font-boska mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]"
             >
-              From Accumulation to Preservation: The Shift Most Traders Learn Too Late
+              From Accumulation to Preservation: The Shift Traders Learn Too Late
             </motion.h2>
 
             <motion.div 
