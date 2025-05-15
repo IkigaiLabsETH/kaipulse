@@ -23,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { GasStats } from './GasStats';
 
 type Props = {
   contract: ThirdwebContract;
@@ -446,6 +447,9 @@ export function CMPC(props: Props) {
                       {(claimCondition as MinimalClaimCondition).maxClaimablePerWallet!.toString()}
                     </div>
                   ) : null}
+                </div>
+                <div className="mt-6">
+                  <GasStats />
                 </div>
               </div>
             )}
