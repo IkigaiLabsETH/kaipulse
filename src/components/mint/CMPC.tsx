@@ -24,6 +24,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { GasStats } from './GasStats';
+import { fetchWithIPFSFallback } from '@/lib/ipfs';
 
 type Props = {
   contract: ThirdwebContract;
@@ -166,8 +167,22 @@ export function CMPC(props: Props) {
       const res = await fetch(`/api/collections/${props.contract.address}/${tokenId}`);
       const data = await res.json();
       const imageUrl = data.nft?.image_url || null;
-      if (imageUrl) setMintedImageUrl(imageUrl);
-      else setMintedImageError(true);
+      if (imageUrl) {
+        if (imageUrl.startsWith('ipfs://')) {
+          try {
+            const response = await fetchWithIPFSFallback(imageUrl);
+            const blob = await response.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            setMintedImageUrl(objectUrl);
+          } catch {
+            setMintedImageError(true);
+          }
+        } else {
+          setMintedImageUrl(imageUrl);
+        }
+      } else {
+        setMintedImageError(true);
+      }
     } catch {
       setMintedImageUrl(null);
       setMintedImageError(true);
