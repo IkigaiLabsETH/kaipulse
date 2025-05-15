@@ -37,7 +37,9 @@ export default function CMPPage() {
         const info = await getERC1155Info(contract);
         setNftInfo(info);
         setError(null);
-      } catch {
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error("Failed to load contract info:", err);
         setError("Failed to load contract info. Please try again later.");
       } finally {
         setLoading(false);
