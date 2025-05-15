@@ -85,20 +85,29 @@ export function CMPC(props: Props) {
     return `${d > 0 ? d + 'd ' : ''}${h}h ${m}m ${s}s`;
   }
 
+  // Only fetch claim condition on mount or when contract/tokenId changes, with debounce
   useEffect(() => {
     let cancelled = false;
-    async function fetchClaimCondition() {
-      setClaimCondition(undefined); // loading
-      try {
-        const condition = await getActiveClaimCondition({ contract: props.contract });
-        if (!cancelled) setClaimCondition(condition);
-      } catch {
-        if (!cancelled) setClaimCondition(null);
+    let timeout: NodeJS.Timeout | null = null;
+
+    timeout = setTimeout(() => {
+      async function fetchClaimCondition() {
+        setClaimCondition(undefined); // loading
+        try {
+          const condition = await getActiveClaimCondition({ contract: props.contract, tokenId: props.tokenId });
+          if (!cancelled) setClaimCondition(condition);
+        } catch {
+          if (!cancelled) setClaimCondition(null);
+        }
       }
-    }
-    fetchClaimCondition();
-    return () => { cancelled = true; };
-  }, [props.contract]);
+      fetchClaimCondition();
+    }, 200);
+
+    return () => {
+      cancelled = true;
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [props.contract, props.tokenId]);
 
   useEffect(() => {
     return () => {
