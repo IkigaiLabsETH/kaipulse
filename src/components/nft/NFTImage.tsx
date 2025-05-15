@@ -19,67 +19,36 @@ const IPFS_GATEWAYS = [
 
 const ARWEAVE_GATEWAY = 'https://arweave.net/';
 
-function transformImageUrl(url: string | null): string {
-  if (!url) {
-    logger.warn('No image URL provided');
-    return '/images/nft-placeholder.png';
+function ipfsToHttp(url: string | null, gatewayIndex = 0): string {
+  if (!url) return '/images/nft-placeholder.png';
+  if (url.startsWith('ipfs://')) {
+    const ipfsHash = url.slice(7);
+    return IPFS_GATEWAYS[gatewayIndex] + ipfsHash;
   }
-
-  try {
-    // Handle IPFS URLs
-    if (url.startsWith('ipfs://')) {
-      const ipfsHash = url.slice(7);
-      // Start with Cloudflare gateway as it's more reliable
-      const gateway = IPFS_GATEWAYS[0];
-      const transformed = gateway + ipfsHash;
-      logger.info('Transformed IPFS URL:', { original: url, transformed });
-      return transformed;
-    }
-
-    // Handle Arweave URLs
-    if (url.startsWith('ar://')) {
-      const transformed = ARWEAVE_GATEWAY + url.slice(5);
-      logger.info('Transformed Arweave URL:', { original: url, transformed });
-      return transformed;
-    }
-
-    // Ensure URL is HTTPS
-    if (url.startsWith('http://')) {
-      const transformed = url.replace('http://', 'https://');
-      logger.info('Converted HTTP to HTTPS:', { original: url, transformed });
-      return transformed;
-    }
-
-    logger.info('Using original URL:', { url });
-    return url;
-  } catch (error) {
-    logger.error('Error transforming image URL:', { url, error });
-    return '/images/nft-placeholder.png';
+  if (url.startsWith('ar://')) {
+    return ARWEAVE_GATEWAY + url.slice(5);
   }
+  if (url.startsWith('http://')) {
+    return url.replace('http://', 'https://');
+  }
+  return url;
 }
 
 export function NFTImage({ src, alt }: NFTImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [gatewayIndex, setGatewayIndex] = useState(0);
-  const [imageSrc, setImageSrc] = useState(transformImageUrl(src));
+  const [imageSrc, setImageSrc] = useState(ipfsToHttp(src, 0));
 
   const handleError = () => {
-    logger.error('Failed to load NFT image:', { src: imageSrc, gatewayIndex });
-
     // Try next IPFS gateway if current URL is IPFS
     if (src?.startsWith('ipfs://') && gatewayIndex < IPFS_GATEWAYS.length - 1) {
-      const nextGateway = IPFS_GATEWAYS[gatewayIndex + 1];
-      const ipfsHash = src.slice(7);
-      const newSrc = nextGateway + ipfsHash;
-      logger.info('Trying next IPFS gateway:', { gateway: nextGateway, newSrc });
-      setGatewayIndex(gatewayIndex + 1);
-      setImageSrc(newSrc);
-      setHasError(false); // Reset error state when trying new gateway
+      const nextIndex = gatewayIndex + 1;
+      setGatewayIndex(nextIndex);
+      setImageSrc(ipfsToHttp(src, nextIndex));
+      setHasError(false);
       return;
     }
-
-    // If we've tried all gateways or it's not an IPFS URL, show placeholder
     setHasError(true);
     setImageSrc('/images/nft-placeholder.png');
   };
