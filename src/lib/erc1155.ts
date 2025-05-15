@@ -1,11 +1,11 @@
 import { ThirdwebContract, toTokens } from "thirdweb";
 import { getActiveClaimCondition, getNFT } from "thirdweb/extensions/erc1155";
-import { defaultTokenId, defaultChain } from "@/lib/constants";
+import { defaultChain } from "@/lib/constants";
 import { getContract } from "thirdweb";
 import { client } from "@/lib/thirdwebClient";
 import { getCurrencyMetadata } from "thirdweb/extensions/erc20";
 
-export async function getERC1155Info(contract: ThirdwebContract) {
+export async function getERC1155Info(contract: ThirdwebContract, tokenId: bigint) {
   let claimCondition = null;
   let nft = null;
   
@@ -13,14 +13,14 @@ export async function getERC1155Info(contract: ThirdwebContract) {
     [claimCondition, nft] = await Promise.all([
       getActiveClaimCondition({
         contract,
-        tokenId: defaultTokenId,
+        tokenId,
       }),
-      getNFT({ contract, tokenId: defaultTokenId }),
+      getNFT({ contract, tokenId }),
     ]);
   } catch {
     // If claim condition fails, try to get NFT data at least
     try {
-      nft = await getNFT({ contract, tokenId: defaultTokenId });
+      nft = await getNFT({ contract, tokenId });
     } catch {}
   }
 

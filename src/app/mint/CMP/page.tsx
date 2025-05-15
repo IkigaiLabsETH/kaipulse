@@ -29,7 +29,8 @@ export default function CMPPage() {
     async function fetchInfo() {
       try {
         setLoading(true);
-        const info = await getERC1155Info(contract);
+        const tokenId = BigInt(CONTRACT_TOKEN_ID);
+        const info = await getERC1155Info(contract, tokenId);
         if (!didCancel) {
           setNftInfo(info);
           setError(null);
