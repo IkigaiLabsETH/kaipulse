@@ -5,7 +5,7 @@ import { CMPC } from "@/components/mint/CMPC";
 import { getContract } from "thirdweb";
 import { client } from "@/lib/thirdwebClient";
 import { ethereum } from "thirdweb/chains";
-import { getERC721Info } from "@/lib/erc721";
+import { getERC1155Info } from "@/lib/erc1155";
 
 if (!process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS) {
   throw new Error("NEXT_PUBLIC_CMP_CONTRACT_ADDRESS is not defined in environment variables");
@@ -20,7 +20,7 @@ if (!process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID) {
 }
 
 export default function CMPPage() {
-  const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC721Info>> | null>(null);
+  const [nftInfo, setNftInfo] = useState<Awaited<ReturnType<typeof getERC1155Info>> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ export default function CMPPage() {
     async function fetchInfo() {
       try {
         setLoading(true);
-        const info = await getERC721Info(contract);
+        const info = await getERC1155Info(contract);
         setNftInfo(info);
         setError(null);
       } catch {
