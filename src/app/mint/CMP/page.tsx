@@ -31,21 +31,27 @@ export default function CMPPage() {
   });
 
   useEffect(() => {
+    let didCancel = false;
     async function fetchInfo() {
       try {
         setLoading(true);
         const info = await getERC1155Info(contract);
-        setNftInfo(info);
-        setError(null);
+        if (!didCancel) {
+          setNftInfo(info);
+          setError(null);
+        }
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error("Failed to load contract info:", err);
-        setError("Failed to load contract info. Please try again later.");
+        if (!didCancel) {
+          setError("Failed to load contract info. Please try again later.");
+        }
       } finally {
-        setLoading(false);
+        if (!didCancel) setLoading(false);
       }
     }
     fetchInfo();
+    return () => { didCancel = true; };
   }, [contract]);
 
   return (
