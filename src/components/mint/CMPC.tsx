@@ -93,9 +93,11 @@ export function CMPC(props: Props) {
       async function fetchClaimCondition() {
         setClaimCondition(undefined); // loading
         try {
+          const contractAddress = props.contract.address.trim();
+          const tokenId = props.tokenId.toString().trim();
           const condition = await getActiveClaimCondition({
             contract: props.contract,
-            tokenId: BigInt(props.tokenId),
+            tokenId: BigInt(tokenId),
           });
           if (!didCancel) setClaimCondition(condition);
         } catch {
