@@ -70,6 +70,7 @@ export function Header() {
         { name: 'MINT', href: '/mint' },
         { name: 'DOCU', href: '/docu' },
         { name: 'MEMETIC', href: '/visuals' },
+        { name: '1 ON 1', href: '/1on1' },
         { name: 'COLLECT', href: '/collections' },
       ]
     },
