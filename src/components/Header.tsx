@@ -124,6 +124,7 @@ export function Header() {
         { name: 'HOW', href: '/ai' },
         { name: 'WHO', href: '/bio' },
         { name: 'WHY', href: '/about' },
+        { name: 'OCP', href: '/fairmint' },
         { name: 'FIRE', href: '/fire' },
         { name: 'ZERO', href: '/zero' },
         { name: 'CHAT', href: '/voice' },
