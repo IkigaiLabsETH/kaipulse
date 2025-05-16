@@ -78,10 +78,6 @@ export const oneononeNFTs: OneOnOneNFT[] = [
     tokenId: "1"
   },
   {
-    contract: "0xb932a70A57673d89f4acfFBE830E8ed7f75Fb9e0",
-    tokenId: "50416"
-  },
-  {
     contract: "0x8b3f22d64012BFeeD58C9d510e65226CCb85773a",
     tokenId: "7"
   },
