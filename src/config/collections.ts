@@ -52,5 +52,6 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'stranger-together-by-brooke-didonato-ben-zank',
   'the-vault-of-wonders-chapter-1-the-abyssal-unseen',
   'skulptuur-by-piter-pasma',
-  'dataland-biomelumina'
+  'dataland-biomelumina',
+  'pop-wonder-superrare'
 ]; 
