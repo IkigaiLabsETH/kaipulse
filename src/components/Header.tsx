@@ -66,11 +66,10 @@ export function Header() {
       dropdown: true,
       items: [
         { name: 'ART', href: '/art' },
+        { name: 'PUNK', href: '/pfp' },
         { name: 'MINT', href: '/mint' },
         { name: 'DOCU', href: '/docu' },
-        { name: 'DATA', href: '/data' },
-        { name: 'FIRE', href: '/fire' },
-        { name: 'MEMES', href: '/visuals' },
+        { name: 'MEMETIC', href: '/visuals' },
         { name: 'COLLECT', href: '/collections' },
       ]
     },
@@ -79,9 +78,9 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'VOICE CHAT', href: '/voice' },
         { name: 'CALCULATOR', href: '/calculator' },
         { name: 'THE 4% RULE', href: '/21' },
+        { name: 'BTC DASHBOARD', href: '/data' },
         { name: 'LEDGER', href: '/ledger' },
         { name: 'COINBASE', href: '/platforms/coinbase' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
@@ -124,6 +123,9 @@ export function Header() {
         { name: 'HOW', href: '/ai' },
         { name: 'WHO', href: '/bio' },
         { name: 'WHY', href: '/about' },
+        { name: 'FIRE', href: '/fire' },
+        { name: 'ZERO', href: '/zero' },
+        { name: 'CHAT', href: '/voice' },
       ]
     },
   ];
