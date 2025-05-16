@@ -324,6 +324,62 @@ export default function OlympusPage() {
             </div>
           </div>
 
+          {/* Cooler Loans V2 Section */}
+          <div className="mt-16">
+            <div className="border-4 border-yellow-500 rounded-md bg-[#18191c] shadow-xl">
+              <div className="h-2 w-full bg-yellow-500 rounded-t-md" />
+              <div className="p-8 md:p-10">
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl mr-3">💎</span>
+                  <span className="font-bold text-yellow-500 text-2xl md:text-3xl">Cooler Loans V2: The Future of Protocol-Native Borrowing</span>
+                </div>
+                <div className="text-white/90 text-lg space-y-6 font-satoshi">
+                  <div>
+                    <b className="text-yellow-500">A New Paradigm in Lending</b><br/>
+                    Cooler Loans V2 represents a fundamental shift in how borrowing works in DeFi. Backed by the Olympus treasury, it offers a fixed-rate, perpetual borrowing system designed to preserve and empower users rather than extract value from them.
+                  </div>
+
+                  <div>
+                    <b className="text-yellow-500">Core Features</b>
+                    <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                      <li>Fixed 0.5% annual interest rate</li>
+                      <li>No price oracles or liquidations</li>
+                      <li>Perpetual loans with no expirations</li>
+                      <li>Direct treasury-backed liquidity</li>
+                      <li>Multi-wallet delegation support</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <b className="text-yellow-500">How It Works</b><br/>
+                    Users deposit gOHM as collateral and receive USDS directly from the Olympus Treasury. The system operates on transparent, rule-based mechanisms with no hidden variables or external dependencies.
+                  </div>
+
+                  <div>
+                    <b className="text-yellow-500">Key Benefits</b>
+                    <ul className="list-disc ml-6 mt-2 space-y-2 text-base">
+                      <li>Full transparency and trackability of loan parameters</li>
+                      <li>Flexible collateral and debt management</li>
+                      <li>Single unified position for all borrowing needs</li>
+                      <li>Governance-aligned risk parameters</li>
+                      <li>Interest payments reinforce treasury strength</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <b className="text-yellow-500">Treasury Integration</b><br/>
+                    As the Olympus Treasury grows, so does the borrowing capacity of Cooler Loans V2. All interest payments flow back into the treasury, creating a self-reinforcing system that aligns with Olympus&apos;s long-term sustainability.
+                  </div>
+
+                  <div>
+                    <b className="text-yellow-500">Why It Matters</b><br/>
+                    Cooler Loans V2 is more than just a lending system—it&apos;s a cornerstone of Olympus&apos;s vision for a unified, self-directed financial system. By providing transparent, predictable, and flexible borrowing options, it helps build the foundation for protocol-native credit and coordination.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Main Content Sections */}
           <motion.div className="space-y-16" variants={sectionVariants}>
             {/* Section 1 */}
@@ -448,7 +504,7 @@ export default function OlympusPage() {
                     <li><b>Treasury-Backed:</b> Every OHM is backed by liquid assets (DAI), giving it a real floor value and yield.</li>
                     <li><b>Protocol-Owned Liquidity:</b> Olympus owns its own LPs, ensuring deep, stable markets and fee income.</li>
                     <li><b>Range-Bound Stability:</b> Automated market ops keep OHM price within a band, smoothing volatility.</li>
-                    <li><b>Cooler Loans:</b> Borrow DAI against gOHM at low fixed rates—native credit, no selling required.</li>
+                    <li><b>Cooler Loans V2:</b> Borrow USDS against gOHM at a fixed 0.5% rate—native credit with no liquidations.</li>
                     <li><b>Convertible Deposits:</b> Soon to be launched, these function like low-risk call options.</li>
                   </ul>
                   <div className="flex gap-8 mt-4">
