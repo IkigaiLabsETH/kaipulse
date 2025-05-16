@@ -53,5 +53,6 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'the-vault-of-wonders-chapter-1-the-abyssal-unseen',
   'skulptuur-by-piter-pasma',
   'dataland-biomelumina',
-  'pop-wonder-superrare'
+  'pop-wonder-superrare',
+  'cryptodickbutts'
 ]; 
