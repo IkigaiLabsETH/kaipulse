@@ -55,7 +55,7 @@ export default function ClubPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Link href="/monaco">
+              <Link href="/mint">
                 <Button className="bg-[#1c1f26] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-xl px-8 py-6 rounded-xl transition-all duration-300">
                   Join the Club
                 </Button>
