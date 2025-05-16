@@ -14,9 +14,9 @@ export default function PFPPage() {
               id: 'pfp',
               label: 'PFP Collections',
               content: (
-                <Suspense fallback={<div className="py-16 text-center text-white/60">Loading PFP collections...</div>}>
+                <Suspense fallback={<div className="py-16 text-center text-white/60">Loading V1 & V2 CryptoPunks ...</div>}>
                   <h1 className="text-4xl font-bold text-yellow-400 mb-8 tracking-tight font-epilogue">
-                    Curated PFP Collections
+                   Why CryptoPunks Matter
                   </h1>
                   <PFPGridClient />
                 </Suspense>
