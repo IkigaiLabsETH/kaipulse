@@ -113,6 +113,14 @@ export default function ALTBGPage() {
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Europe&apos;s first Bitcoin Treasury Company</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
             </div>
+            <a 
+              href="https://fr.tradingview.com/symbols/EURONEXT-ALTBG/?timeframe=ALL" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block mt-8 px-6 py-3 bg-yellow-500 text-black font-bold rounded-none hover:bg-yellow-400 transition-colors duration-200 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-[2px] hover:-translate-y-[2px]"
+            >
+              View Live Chart on TradingView
+            </a>
           </div>
 
           {/* Video Section */}
