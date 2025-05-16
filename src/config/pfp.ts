@@ -8,7 +8,5 @@
 // Add OpenSea slugs (recommended) or contract addresses below.
 export const PFP_COLLECTION_SLUGS_OR_ADDRESSES = [
   'cryptopunks',
-  'official-v1-punks',
-  'pudgypenguins',
-  'rektguy'
+  'official-v1-punks'
 ]; 

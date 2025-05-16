@@ -16,15 +16,15 @@ interface PFPCollection {
 
 function PFPSkeleton() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16">
-      {Array.from({ length: 8 }).map((_, i) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20">
+      {Array.from({ length: 2 }).map((_, i) => (
         <div key={i} className="animate-pulse">
           <div className="relative aspect-square overflow-hidden bg-neutral-900 border border-white/10 shadow-[0_5px_20px_0_rgba(0,0,0,0.25)] flex items-center justify-center">
             <div className="w-3/4 h-3/4 bg-neutral-800 rounded" />
           </div>
-          <div className="py-4 px-1">
-            <div className="h-5 w-2/3 bg-neutral-800 rounded mb-2" />
-            <div className="h-3 w-1/2 bg-neutral-800 rounded" />
+          <div className="py-6 px-2">
+            <div className="h-6 w-2/3 bg-neutral-800 rounded mb-3" />
+            <div className="h-4 w-1/2 bg-neutral-800 rounded" />
           </div>
         </div>
       ))}
@@ -98,7 +98,7 @@ export function PFPGridClient() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-16"
+        className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20"
       >
         {collections.map((collection, index) => (
           <motion.div
@@ -132,8 +132,8 @@ export function PFPGridClient() {
                   </div>
                 </div>
               </div>
-              <div className="py-4 px-1">
-                <h3 className="text-base font-light text-white/80 group-hover:text-yellow-400 transition-colors duration-300" title={collection.name}>
+              <div className="py-6 px-2">
+                <h3 className="text-xl font-light text-white/80 group-hover:text-yellow-400 transition-colors duration-300" title={collection.name}>
                   {collection.name}
                 </h3>
               </div>
