@@ -324,6 +324,72 @@ export default function BTC8020Page() {
         </div>
       ),
     },
+    {
+      title: "The Infinite Money Glitch Strategy",
+      content: (
+        <div className="space-y-8">
+          {/* Individual Strategy */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">🔄</span>
+              <h3 className="text-xl font-bold text-yellow-500">Individual Approach</h3>
+            </div>
+            <div className="pl-8 space-y-2">
+              <ol className="list-decimal list-inside text-white/90 space-y-2">
+                <li>Own Bitcoin</li>
+                <li>Secure low-interest DeFi loans using Bitcoin</li>
+                <li>Buy MSTY during optimal market conditions</li>
+                <li>Use MSTY dividends to repay the loan</li>
+                <li>Take out another low-interest DeFi loan</li>
+                <li>Repay the new loan ~2x faster (with roughly double the MSTY shares)</li>
+                <li>Repeat until achieving desired passive income</li>
+              </ol>
+              <p className="text-white/90 mt-4 italic">
+                Strategy: Arbitrage low DeFi loan rates against MSTY dividends. NAV erosion is irrelevant since you&apos;re using borrowed capital.
+              </p>
+            </div>
+          </div>
+
+          {/* LLC Strategy */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">🏢</span>
+              <h3 className="text-xl font-bold text-yellow-500">LLC Protection Strategy</h3>
+            </div>
+            <div className="pl-8 space-y-2">
+              <ol className="list-decimal list-inside text-white/90 space-y-2">
+                <li>Form a L.L.C.</li>
+                <li>L.L.C. Own Bitcoin</li>
+                <li>L.L.C. Secure low-interest DeFi loans using Bitcoin</li>
+                <li>L.L.C. Buy MSTY during optimal market conditions</li>
+                <li>L.L.C. Use MSTY dividends to repay the loan</li>
+                <li>L.L.C. Take out another low-interest DeFi loan</li>
+                <li>L.L.C. Repay the new loan ~2x faster (with roughly double the MSTY shares)</li>
+                <li>L.L.C. Repeat until achieving desired passive income</li>
+              </ol>
+              <p className="text-white/90 mt-4 italic">
+                Key Benefit: L.L.C. protects Individual if L.L.C. goes bankrupt.
+              </p>
+            </div>
+          </div>
+
+          {/* Risk Warning */}
+          <div className="mt-8 p-4 border border-yellow-500/30 bg-yellow-500/5">
+            <p className="text-white/90 text-sm">
+              <strong className="text-yellow-500">Important:</strong> This strategy involves significant risks including but not limited to:
+              <ul className="list-disc list-inside mt-2 space-y-1">
+                <li>DeFi protocol risks and smart contract vulnerabilities</li>
+                <li>Interest rate fluctuations</li>
+                <li>MSTY dividend variability</li>
+                <li>Market volatility and liquidation risks</li>
+                <li>Regulatory considerations</li>
+              </ul>
+              Always consult with qualified legal and financial advisors before implementing any leveraged strategy.
+            </p>
+          </div>
+        </div>
+      ),
+    },
   ];
 
   return (
@@ -350,6 +416,12 @@ export default function BTC8020Page() {
 
           {/* Content Sections */}
           <div className="space-y-8">
+            {/* TradingView Chart First */}
+            <div className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <BTC8020Ticker />
+            </div>
+
+            {/* Other Sections */}
             {sections.map((section, index) => (
               <div key={index} className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                 <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
@@ -358,11 +430,6 @@ export default function BTC8020Page() {
                 {section.content}
               </div>
             ))}
-          </div>
-
-          {/* Next Steps with TradingView */}
-          <div className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <BTC8020Ticker />
           </div>
         </div>
       </div>
