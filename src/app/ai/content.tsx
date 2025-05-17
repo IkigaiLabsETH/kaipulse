@@ -568,25 +568,25 @@ export default function AIContent() {
               </motion.h3>
               <ul className="list-disc pl-8 space-y-2">
                 <li>
-                  <span className="text-yellow-400 font-bold">Pick Your Stack:</span> Start with OpenAI APIs. Use Next.js & Vercel for rapid prototyping. Explore elizaOS for agent workflows.
+                  <span className="text-yellow-400 font-bold">Pick Your Stack:</span> Start with OpenAI APIs. Use Next.js & Vercel for rapid prototyping.
                 </li>
                 <li>
-                  <span className="text-yellow-400 font-bold">Automate Your Workflow:</span> Connect AI to Notion, Google Drive, or Slack using Zapier, Make, or custom webhooks. Let bots handle your busywork.
+                  <span className="text-yellow-400 font-bold">Automate Your Workflow:</span> Connect AI to Notion, Google Drive, or Slack using custom webhooks.
                 </li>
                 <li>
-                  <span className="text-yellow-400 font-bold">Prompt Like a Pro:</span> Write, test, and version your prompts. Use PromptLayer or LangSmith to track what works. Treat prompts as reusable assets.
+                  <span className="text-yellow-400 font-bold">Prompt Like a Pro:</span> Write, test, and version your prompts. Treat prompts as reusable assets.
                 </li>
                 <li>
-                  <span className="text-yellow-400 font-bold">Build Modular:</span> Architect your project as micro-apps or serverless functions. Use dynamic imports and code-splitting for performance.
+                  <span className="text-yellow-400 font-bold">Build Modular:</span> Architect your project as micro-apps or serverless functions.
                 </li>
                 <li>
-                  <span className="text-yellow-400 font-bold">Ship Fast, Iterate Publicly:</span> Deploy MVPs in days, not months. Share your process on X, Discord, or GitHub. Get feedback, remix, and improve.
+                  <span className="text-yellow-400 font-bold">Ship Fast, Iterate Publicly:</span> Deploy MVPs in days, not months. 
                 </li>
                 <li>
-                  <span className="text-yellow-400 font-bold">Measure & Optimize:</span> Add event tracking (Plausible, PostHog, or GA4). Monitor usage, conversion, and latency. Let data drive your next iteration.
+                  <span className="text-yellow-400 font-bold">Measure & Optimize:</span> Add event tracking (Plausible, PostHog, or GA4).
                 </li>
                 <li>
-                  <span className="text-yellow-400 font-bold">Open Up:</span> Document your stack, publish your prompts, and open your API. Community is your multiplier—collaborate and co-create.
+                  <span className="text-yellow-400 font-bold">Open Up:</span> Document your stack, publish your prompts, and open your API.
                 </li>
               </ul>
               <p className="text-yellow-400 font-bold mt-6">
