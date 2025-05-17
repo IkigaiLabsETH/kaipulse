@@ -82,8 +82,8 @@ export function Header() {
         { name: 'CALCULATOR', href: '/calculator' },
         { name: 'THE 4% RULE', href: '/21' },
         { name: 'BTC DASHBOARD', href: '/data' },
+        { name: 'NODE ETF', href: '/node' },
         { name: 'LEDGER', href: '/ledger' },
-        { name: 'COINBASE', href: '/platforms/coinbase' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
         { name: 'HOLDINGS', href: '/tbs' },
       ]
