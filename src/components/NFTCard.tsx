@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ImageIcon } from 'lucide-react';
+import { Blurhash } from 'react-blurhash';
 
 interface NFTCardProps {
   name: string;
@@ -11,13 +12,34 @@ interface NFTCardProps {
   tokenId: string;
   onLoad?: () => void;
   priority?: boolean;
+  blurhash?: string;
+  placeholderColor?: string;
 }
 
-export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = false }: NFTCardProps) {
+export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = false, blurhash, placeholderColor = '#181818' }: NFTCardProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
   const [imageError, setImageError] = useState(false);
-  const [imageUrlToUse, setImageUrlToUse] = useState(imageUrl);
+
+  // Multi-gateway fallback logic
+  const ipfsGateways = [
+    'https://ipfs.io/ipfs/',
+    'https://cloudflare-ipfs.com/ipfs/',
+    'https://gateway.pinata.cloud/ipfs/',
+    'https://dweb.link/ipfs/'
+  ];
+  // If not IPFS, just use the original URL
+  const isIpfs = imageUrl.startsWith('ipfs://') || imageUrl.includes('/ipfs/');
+  const ipfsHash = isIpfs
+    ? imageUrl.replace('ipfs://', '').replace(/^https?:\/\/(?:[^/]+)\/ipfs\//, '')
+    : null;
+  const [gatewayIndex, setGatewayIndex] = useState(0);
+
+  // Compute the current image URL to use
+  let imageUrlToUse = imageUrl;
+  if (isIpfs && ipfsHash) {
+    imageUrlToUse = ipfsGateways[gatewayIndex] + ipfsHash;
+  }
 
   // Handler to get natural image dimensions
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -30,11 +52,8 @@ export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = 
   };
 
   const handleImageError = () => {
-    // If IPFS and not already tried fallback, try cloudflare gateway
-    if (imageUrlToUse.startsWith('https://ipfs.io/')) {
-      setImageUrlToUse(imageUrlToUse.replace('https://ipfs.io/', 'https://cloudflare-ipfs.com/'));
-    } else if (imageUrlToUse.startsWith('https://cloudflare-ipfs.com/')) {
-      setImageError(true);
+    if (isIpfs && gatewayIndex < ipfsGateways.length - 1) {
+      setGatewayIndex((prev) => prev + 1);
     } else {
       setImageError(true);
     }
@@ -50,6 +69,25 @@ export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = 
       <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl pointer-events-none z-10" />
       {/* Image Container with dynamic aspect ratio */}
       <div className="relative w-full bg-[#181818] rounded-xl overflow-hidden" style={aspectStyle}>
+        {/* Blurhash or color placeholder while loading */}
+        {isLoading && !imageError && (
+          blurhash ? (
+            <Blurhash
+              hash={blurhash}
+              width={700}
+              height={933}
+              resolutionX={32}
+              resolutionY={32}
+              punch={1}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 1 }}
+            />
+          ) : (
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{ backgroundColor: placeholderColor, zIndex: 1 }}
+            />
+          )
+        )}
         {displayImageUrl && !imageError ? (
           <Image
             src={displayImageUrl}
@@ -64,7 +102,9 @@ export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = 
             loading="eager"
             quality={85}
             style={{
-              objectFit: 'contain'
+              objectFit: 'contain',
+              position: 'relative',
+              zIndex: 2
             }}
           />
         ) : (
