@@ -57,6 +57,5 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'cryptodickbutts',
   'izanami-islands-by-richard-nadler',
   'yamabushi-s-horizons-by-richard-nadler',
-  'kinoko-dreams-by-richard-nadler',
-  'thecurrency'
+  'kinoko-dreams-by-richard-nadler'
 ]; 
