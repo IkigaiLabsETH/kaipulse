@@ -353,37 +353,47 @@ export default function NODEPage() {
             </p>
           </div>
 
+          {/* NODE Price Chart */}
+          <div className="bg-[#1c1f26] mb-16 p-0 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]" style={{ height: 500 }}>
+            <iframe
+              src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_advanced_chart&symbol=CBOE%3ANODE&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=1c1f26&studies=[]&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=0&hidelegend=0&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=en"
+              style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+              allowFullScreen
+              title="NODE TradingView Advanced Chart"
+            />
+          </div>
+
           {/* Where to Buy NODE */}
           <div className="bg-[#1c1f26] mt-16 p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-8">
               Where to Buy NODE
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              <a href="https://www.ally.com/invest/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://www.ally.com/invest/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Ally Invest
               </a>
-              <a href="https://robinhood.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://robinhood.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Robinhood
               </a>
-              <a href="https://www.schwab.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://www.schwab.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Charles Schwab
               </a>
-              <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Sofi Invest
               </a>
-              <a href="https://us.etrade.com/home" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://us.etrade.com/home" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 ETrade
               </a>
-              <a href="https://www.tdameritrade.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://www.tdameritrade.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 TD Ameritrade
               </a>
-              <a href="https://www.fidelity.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://www.fidelity.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Fidelity
               </a>
-              <a href="https://investor.vanguard.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://investor.vanguard.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Vanguard
               </a>
-              <a href="https://www.interactivebrokers.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[5px_5px_0px_0px_rgba(234,179,8,0.5)] transition-colors">
+              <a href="https://www.interactivebrokers.com/" target="_blank" rel="noopener noreferrer" className="block bg-[#1c1f26] text-white font-bold uppercase tracking-wide text-base border-2 border-yellow-500 p-6 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:shadow-[0_0_24px_4px_rgba(247,181,0,0.7)] transition-colors">
                 Interactive Brokers
               </a>
             </div>
