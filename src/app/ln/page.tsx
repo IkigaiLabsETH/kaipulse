@@ -69,7 +69,7 @@ export default function LightningNetworkPage() {
           </p>
 
           <p className="font-satoshi text-lg text-gray-200 mb-6">
-            Crypto is an arena where experiments get tested in production, with real money. No simulations. No mercy.<br/>
+            Crypto is an arena where experiments get tested in production, with real money. No simulations. No mercy.
             That's what makes it incredible. And brutal.
           </p>
 
