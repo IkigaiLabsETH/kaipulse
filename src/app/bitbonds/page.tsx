@@ -151,12 +151,100 @@ export default function BitBondsPage() {
 
           {/* Alignment Summary */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-2">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Why BitBonds?
             </h3>
-            <p className="text-white/90 text-lg">
-              BitBonds align incentives: The US government gets continued bond demand and novel reserves, while investors get inflation protection and BTC upside. It&rsquo;s a win-win for mismatched needs in a new era of finance.
-            </p>
+            <div className="space-y-6">
+              <p className="text-white/90 text-lg">
+                BitBonds on the federal, state, and municipal levels would be a game-changer—reducing debt burdens, boosting purchasing power, and making everyday life more manageable. By indexing repayment to the hardest asset on Earth—Bitcoin—BitBonds could restore trust in public debt, unlock dormant capital, and turn inflationary liabilities into deflationary incentives.
+              </p>
+
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">The French Precedent</h4>
+                <p className="text-white/90">
+                  In 1952, France faced a similar crisis of confidence in government debt. Antoine Pinay&apos;s solution? Bonds indexed to gold. The result? 17 tons of gold unlocked from private savings in just four days. This proved that aligning investor interests with inflation-resilient assets can restore faith in sovereign debt.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">The Modern Solution</h4>
+                <p className="text-white/90">
+                  BitBonds are inflation-resistant bonds indexed to Bitcoin&apos;s value, offering:
+                </p>
+                <ul className="list-none space-y-2 text-white/90">
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">📈</span>
+                    <span>Principal guaranteed (denominated in fiat or BTC)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">💸</span>
+                    <span>Interest paid in BTC or BTC-linked value</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🛡️</span>
+                    <span>CPI-beating performance via BTC&apos;s historical CAGR (~35%)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🧱</span>
+                    <span>Settlement rails via Ethereum/Solana, using tokenized BTC</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">Real-World Example</h4>
+                <p className="text-white/90">
+                  Consider a $100M BitBond from a company like Nike:
+                </p>
+                <ul className="list-none space-y-2 text-white/90">
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🎯</span>
+                    <span>Principal: 100% guaranteed</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">💰</span>
+                    <span>Interest: 10% annual, paid in BTC</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">💎</span>
+                    <span>Backed by: 35% of principal in BTC reserves</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">📊</span>
+                    <span>Expected outcome: 2.5x return over 7 years</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">Sovereign Potential</h4>
+                <p className="text-white/90">
+                  Governments can use BitBonds to:
+                </p>
+                <ul className="list-none space-y-2 text-white/90">
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🔓</span>
+                    <span>Tap into crypto wealth avoiding fiat systems</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🧲</span>
+                    <span>Attract international capital via hard-asset-linked securities</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🔄</span>
+                    <span>Align government incentives with sound money principles</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-500">🌐</span>
+                    <span>Issue programmable, fractionalized, globally tradable debt</span>
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-white/90 text-lg italic">
+                The question isn&apos;t whether we can afford to issue BitBonds. It&apos;s whether we can afford not to.
+              </p>
+            </div>
           </div>
 
           {/* Bitcoin Bond Revolution */}
