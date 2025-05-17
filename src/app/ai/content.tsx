@@ -456,6 +456,146 @@ export default function AIContent() {
                 I&apos;m rooting for you.
               </p>
             </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" />
+
+            <section className="space-y-8">
+              <motion.h3
+                className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-6 animate-fade-in uppercase tracking-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                👥 Generations of AI: The ChatGPT Generation Gap
+              </motion.h3>
+
+              <div className="space-y-6 text-lg text-white/80 font-satoshi">
+                <p>
+                  Since its public release, ChatGPT has rapidly become one of the most transformative tools in digital history. But how people use it varies wildly by age. While the underlying model remains the same, the way users approach it—what they ask, how they trust it, and what they expect from it—exposes deep generational differences in digital literacy, psychology, and ambition.
+                </p>
+
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-yellow-400">Boomers: &quot;ChatGPT is just a better Google&quot;</h4>
+                  <ul className="list-none space-y-2">
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Search queries like &quot;What is the capital of Brazil?&quot;
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Short, utilitarian questions: &quot;How do I make a PowerPoint?&quot;
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Occasional curiosity: &quot;What is this AI thing really?&quot;
+                    </li>
+                  </ul>
+                  <p className="italic text-white/70">
+                    &quot;I asked it about Medicare enrollment dates. It&apos;s quicker than Google.&quot; – Boomer user, 66
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-yellow-400">Millennials: &quot;ChatGPT is my therapist, coach, and late-night advisor&quot;</h4>
+                  <ul className="list-none space-y-2">
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Ask emotional, philosophical, or life advice questions
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Use it to brainstorm ideas, write dating profiles, or improve communication skills
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Occasionally joke with it, but keep it semi-professional
+                    </li>
+                  </ul>
+                  <p className="italic text-white/70">
+                    &quot;I wrote my breakup letter with GPT. It helped me say what I needed without sounding harsh.&quot; – Millennial user, 34
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-yellow-400">Gen Z: &quot;ChatGPT is my full-time assistant, editor, mentor—and maybe therapist too&quot;</h4>
+                  <ul className="list-none space-y-2">
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Uploads full PDFs, resumes, creative projects, pitch decks
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Builds and saves prompt templates for workflows
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Delegates decision-making (&quot;What should I major in?&quot; &quot;What side hustle suits me?&quot;)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Uses integrations and APIs; even writes their own GPTs
+                    </li>
+                  </ul>
+                  <p className="italic text-white/70">
+                    &quot;I uploaded all my class notes and had GPT create flashcards and study guides for me. My entire exam prep is outsourced.&quot; – Gen Z user, 21
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-yellow-400">Implications: Why This Divide Matters</h4>
+                  <ul className="list-none space-y-2">
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> The more users anthropomorphize ChatGPT, the more they trust it
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Millennials and Gen Z are pushing the boundary from utility to intimacy
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-yellow-400">•</span> Gen Z&apos;s sophistication is giving rise to a new kind of AI-native power user
+                    </li>
+                  </ul>
+                </div>
+
+                <p>
+                  The way we use ChatGPT is more than personal preference—it&apos;s a window into how each generation sees technology. Boomers want information. Millennials want support. Gen Z wants collaboration.
+                </p>
+                <p>
+                  And AI? It&apos;s learning from all of us.
+                </p>
+              </div>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" />
+
+            <section className="space-y-6 text-lg text-white/90 font-satoshi mt-16">
+              <motion.h3
+                className="text-2xl md:text-3xl font-bold font-boska text-yellow-400 mb-4 animate-fade-in uppercase tracking-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                🛠️ Build With AI: The Gen Z Action Plan
+              </motion.h3>
+              <ul className="list-disc pl-8 space-y-2">
+                <li>
+                  <span className="text-yellow-400 font-bold">Pick Your Stack:</span> Start with OpenAI APIs. Use Next.js & Vercel for rapid prototyping. Explore elizaOS for agent workflows.
+                </li>
+                <li>
+                  <span className="text-yellow-400 font-bold">Automate Your Workflow:</span> Connect AI to Notion, Google Drive, or Slack using Zapier, Make, or custom webhooks. Let bots handle your busywork.
+                </li>
+                <li>
+                  <span className="text-yellow-400 font-bold">Prompt Like a Pro:</span> Write, test, and version your prompts. Use PromptLayer or LangSmith to track what works. Treat prompts as reusable assets.
+                </li>
+                <li>
+                  <span className="text-yellow-400 font-bold">Build Modular:</span> Architect your project as micro-apps or serverless functions. Use dynamic imports and code-splitting for performance.
+                </li>
+                <li>
+                  <span className="text-yellow-400 font-bold">Ship Fast, Iterate Publicly:</span> Deploy MVPs in days, not months. Share your process on X, Discord, or GitHub. Get feedback, remix, and improve.
+                </li>
+                <li>
+                  <span className="text-yellow-400 font-bold">Measure & Optimize:</span> Add event tracking (Plausible, PostHog, or GA4). Monitor usage, conversion, and latency. Let data drive your next iteration.
+                </li>
+                <li>
+                  <span className="text-yellow-400 font-bold">Open Up:</span> Document your stack, publish your prompts, and open your API. Community is your multiplier—collaborate and co-create.
+                </li>
+              </ul>
+              <p className="text-yellow-400 font-bold mt-6">
+                Don&apos;t wait for permission. Build, automate, and scale with AI—today.
+              </p>
+              <p>
+                <span className="font-boska text-2xl text-yellow-400">The future is composable, agentic, and open. Be the architect, not just the user.</span>
+              </p>
+            </section>
           </motion.div>
         </div>
       </div>
