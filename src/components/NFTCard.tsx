@@ -9,9 +9,11 @@ interface NFTCardProps {
   imageUrl: string;
   contract: string;
   tokenId: string;
+  onLoad?: () => void;
+  priority?: boolean;
 }
 
-export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
+export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = false }: NFTCardProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [aspectRatio, setAspectRatio] = useState<number | null>(null);
   const [imageError, setImageError] = useState(false);
@@ -23,6 +25,7 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
     if (img?.naturalWidth && img?.naturalHeight) {
       setAspectRatio(img?.naturalWidth / img?.naturalHeight);
     }
+    onLoad?.();
   };
 
   const handleImageError = () => {
@@ -47,8 +50,14 @@ export function NFTCard({ name, imageUrl, contract, tokenId }: NFTCardProps) {
             className={`object-contain transition-all duration-700 ${isLoading ? 'scale-110 blur-2xl' : 'scale-100 blur-0'}`}
             onLoad={handleImageLoad}
             onError={handleImageError}
-            priority
+            priority={priority}
             unoptimized={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="eager"
+            quality={85}
+            style={{
+              objectFit: 'contain'
+            }}
           />
         ) : (
           <div className="w-full h-full bg-black/30 flex items-center justify-center">
