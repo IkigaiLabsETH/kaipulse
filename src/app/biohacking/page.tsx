@@ -80,7 +80,7 @@ const PillarCard = ({ children }: { children: React.ReactNode }) => (
   </motion.div>
 );
 
-const Protocol = ({ title, description }: { title: string, description: string }) => (
+const Protocol = ({ title, description }: { title: string, description: React.ReactNode }) => (
   <div className="mb-4 last:mb-0">
     <h4 className="text-yellow-500 font-semibold mb-1">{title}</h4>
     <p className="text-white/80">{description}</p>
@@ -312,7 +312,17 @@ export default function BiohackingPage() {
                     <PillarCard>
                       <Protocol 
                         title="Red-Light Therapy (660 + 850 nm)"
-                        description="NASA-tested panels crank mitochondrial ATP up to 200%. But most people stop at skin-deep benefits, therefore we target joints, brain, and thyroid 10 min/day for recovery, cognition, and hormonal balance."
+                        description={
+                          <span>
+                            NASA-tested panels crank mitochondrial ATP up to 200%. But most people stop at skin-deep benefits, therefore we target joints, brain, and thyroid 10 min/day for recovery, cognition, and hormonal balance.{' '}
+                            <a 
+                              href="/rlt" 
+                              className="text-yellow-500 hover:text-yellow-400 underline transition-colors"
+                            >
+                              Learn more about Red Light Therapy →
+                            </a>
+                          </span>
+                        }
                       />
                       <Protocol 
                         title="Sauna / Hammam / Hot-Tub"
