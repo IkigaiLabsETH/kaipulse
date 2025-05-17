@@ -1,8 +1,8 @@
-# KaiPulse: Value-for-Value Social, Built on Bitcoin ⚡
+# Bitcoin-First Creative Platform ⚡
 
-> **Every like moves real Bitcoin. No ads, no algorithms—just real support for real creators.**
+> **Building the future of value-for-value creative platforms on Bitcoin**
 
-KaiPulse is a Lightning-native, Bitcoin-first platform where every tap, like, or action instantly sends sats to creators. We're building the future of social and creative apps—where value, not vanity, is the metric that matters.
+A comprehensive platform for creators and collectors, combining NFT curation, AI-powered content, voice interfaces, and educational tools—all built with Bitcoin at the core.
 
 ## 📋 Table of Contents
 - [Vision & Philosophy](#vision--philosophy)
@@ -17,12 +17,12 @@ KaiPulse is a Lightning-native, Bitcoin-first platform where every tap, like, or
 
 ## 🎯 Vision & Philosophy
 
-KaiPulse represents a paradigm shift in social media and content creation, built on three core principles:
+Our platform represents a paradigm shift in creative content and digital ownership, built on three core principles:
 
 1. **Value-First Engagement**
-   - Every interaction carries real economic weight
-   - Direct creator compensation through Lightning Network
-   - No artificial engagement metrics or vanity numbers
+   - Direct creator compensation
+   - Transparent value exchange
+   - No artificial engagement metrics
 
 2. **Creator Sovereignty**
    - Complete ownership of content and audience
@@ -30,35 +30,32 @@ KaiPulse represents a paradigm shift in social media and content creation, built
    - Transparent revenue sharing
 
 3. **Bitcoin-Native Experience**
-   - Lightning Network integration at the core
-   - Seamless micropayments for all interactions
+   - Seamless integration with Bitcoin ecosystem
    - Educational tools for Bitcoin adoption
+   - Focus on sustainable creator economics
 
 ## ⚡ Core Features
 
-### 1. Lightning Like System
-- **Per-photo Lightning Likes:** Every like triggers a real Lightning invoice (21 sats by default) via our Voltage node integration.
-- **Instant Micropayments:** Payments settle in milliseconds, with real-time feedback and reward animations.
-- **Reward Logic:** Unlock digital/physical rewards as you support creators. Every sats counts.
-- **Production-grade Backend:** Secure, rate-limited, and monitored Lightning API.
+### 1. NFT Curation & Gallery
+- **Curated NFT Collections:** Responsive, beautiful gallery experience powered by OpenSea API
+- **Live Market Data:** Floor price, volume, and trading activity in real time
+- **NFT Cards & Details:** Deep metadata, trait explorer, price history, and activity feeds
+- **Mobile-First Design:** Optimized for seamless mobile experience
 
-### 2. NFT Curation & Gallery
-- **Curated NFT Collections:** Responsive, beautiful gallery experience powered by OpenSea API.
-- **Live Market Data:** Floor price, volume, and trading activity in real time.
-- **NFT Cards & Details:** Deep metadata, trait explorer, price history, and activity feeds.
+### 2. AI-Powered Content & News
+- **Notebook Interface:** Generate, analyze, and publish Bitcoin-focused content using OpenAI and Ghost CMS
+- **Twitter Integration:** Analyze tweets, extract insights, and auto-generate articles
+- **Dynamic News Hub:** Real-time Bitcoin news, AI-generated analysis, and seamless publishing
 
-### 3. AI-Powered Content & News
-- **Notebook Interface:** Generate, analyze, and publish Bitcoin-focused content using OpenAI and Ghost CMS.
-- **Twitter Integration:** Analyze tweets, extract insights, and auto-generate articles.
-- **Dynamic News Hub:** Real-time Bitcoin news, AI-generated analysis, and seamless publishing.
+### 3. Voice Interface (Hume AI)
+- **Voice-First UX:** Navigate, query, and interact with the platform using natural language
+- **Real-Time Audio Processing:** Instant feedback, secure authentication, and accessibility-first design
+- **Mobile-Optimized:** Seamless voice interaction on mobile devices
 
-### 4. Voice Interface (Hume AI)
-- **Voice-First UX:** Navigate, query, and interact with the platform using natural language.
-- **Real-Time Audio Processing:** Instant feedback, secure authentication, and accessibility-first design.
-
-### 5. MSTY Freedom Calculator
-- **Portfolio Planning:** Explore Bitcoin-first portfolio strategies and income scenarios.
-- **Educational Focus:** Tools and resources for understanding Bitcoin economics.
+### 4. MSTY Freedom Calculator
+- **Portfolio Planning:** Explore Bitcoin-first portfolio strategies and income scenarios
+- **Educational Focus:** Tools and resources for understanding Bitcoin economics
+- **Interactive Visualizations:** Dynamic charts and scenario modeling
 
 ## 🏗️ Technical Architecture
 
@@ -66,8 +63,7 @@ KaiPulse represents a paradigm shift in social media and content creation, built
 ```
 src/
 ├── app/                # Next.js 14 app directory
-│   ├── sats/          # Lightning Like system
-│   ├── collections/   # NFT gallery & collection pages
+│   ├── collections/    # NFT gallery & collection pages
 │   ├── news/          # News & content hub
 │   ├── notebook/      # AI-powered content generation
 │   ├── voice/         # Voice interface
@@ -76,10 +72,8 @@ src/
 ├── components/        # Modular React components
 │   ├── nft/           # NFT display & gallery
 │   ├── ai/            # AI & voice UI
-│   ├── LightningPaymentWidget.tsx
 │   └── ...
 ├── services/          # API/service integrations
-│   ├── lightning/     # Lightning Network (Voltage)
 │   ├── opensea/       # NFT/OpenSea
 │   ├── ai/            # OpenAI
 │   ├── ghost/         # Ghost CMS
@@ -93,7 +87,7 @@ src/
 - **Frontend:** Next.js 14 (App Router), TypeScript, React, Tailwind CSS, Framer Motion
 - **Backend:** Node.js, Express, Redis, Prisma
 - **Infrastructure:** AWS (ECS, RDS, ElastiCache)
-- **APIs:** Lightning Network (Voltage), OpenAI, Ghost CMS, Twitter, OpenSea, Hume AI
+- **APIs:** OpenAI, Ghost CMS, Twitter, OpenSea, Hume AI
 - **Monitoring:** Sentry, Winston, Prometheus
 
 ### Key Architectural Decisions
@@ -110,7 +104,7 @@ src/
 3. **Security Implementation**
    - JWT-based authentication
    - Rate limiting and DDoS protection
-   - Secure Lightning Network integration
+   - Secure API integrations
 
 ## 🚀 Getting Started
 
@@ -119,14 +113,13 @@ src/
 - Yarn package manager
 - Redis server
 - PostgreSQL database
-- Lightning Network node (Voltage recommended)
 
 ### Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/kai-pulse.git
-   cd kai-pulse
+   git clone https://github.com/yourusername/bitcoin-creative-platform.git
+   cd bitcoin-creative-platform
    ```
 
 2. **Install dependencies:**
@@ -141,14 +134,10 @@ src/
    Configure the following environment variables:
    ```
    # Database
-   DATABASE_URL=postgresql://user:password@localhost:5432/kaipulse
+   DATABASE_URL=postgresql://user:password@localhost:5432/bitcoin_platform
    
    # Redis
    REDIS_URL=redis://localhost:6379
-   
-   # Lightning Network
-   LIGHTNING_API_KEY=your_voltage_api_key
-   LIGHTNING_API_URL=https://api.voltage.cloud
    
    # External APIs
    OPENAI_API_KEY=your_openai_key
@@ -223,12 +212,6 @@ yarn type-check
 - CSRF protection
 - Secure headers
 
-### Lightning Network Security
-- Secure key management
-- Payment validation
-- Invoice verification
-- Rate limiting per user
-
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
@@ -245,4 +228,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Built with ⚡ by the KaiPulse Team
+Built with ⚡ by the Bitcoin Creative Platform Team
