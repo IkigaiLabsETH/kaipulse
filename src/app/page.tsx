@@ -41,7 +41,7 @@ export default function Home() {
             </h1>
             
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-             Preserve your Bitcoin wealth. Cold store 80%, let 20% work smarter with MSTR/MSTY. Focus on Art, Digital Money, & Digital Intelligence. ₿ different
+              Preserve your Bitcoin wealth. <Link href="/8020" className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200">Cold store 80%, let 20% work smarter with MSTR/MSTY</Link>. Focus on Art, Digital Money, & Digital Intelligence. ₿ different
             </p>
           </motion.div>
 
@@ -106,7 +106,7 @@ export default function Home() {
             <div className="flex items-center justify-center mb-8">
               <div className="h-px w-16 bg-yellow-500/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
-                &ldquo;If you don’t believe it or don’t get it, I don’t have the time to try to convince you, sorry.&rdquo;
+                &ldquo;If you don&apos;t believe it or don&apos;t get it, I don&apos;t have the time to try to convince you, sorry.&rdquo;
               </p>
               <div className="h-px w-16 bg-yellow-500/30"></div>
             </div>
