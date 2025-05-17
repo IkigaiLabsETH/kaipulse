@@ -54,5 +54,9 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'skulptuur-by-piter-pasma',
   'dataland-biomelumina',
   'pop-wonder-superrare',
-  'cryptodickbutts'
+  'cryptodickbutts',
+  'izanami-islands-by-richard-nadler',
+  'yamabushi-s-horizons-by-richard-nadler',
+  'kinoko-dreams-by-richard-nadler',
+  'thecurrency'
 ]; 
