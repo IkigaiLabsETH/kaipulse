@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Card } from "@/components/ui/card"
+import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function BitBondsPage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -67,82 +68,90 @@ export default function BitBondsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
+      {/* Premium header accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="space-y-16">
           {/* Hero Section */}
           <div className="text-center space-y-8">
-            <h1 className="text-4xl md:text-6xl font-bold text-yellow-400">
-              BitBonds: The Aligned Solution
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Bitcoin Bonds • Treasury Innovation • Capital Markets</p>
+            <h1 className="text-center">
+              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+                BitBonds
+              </span>
             </h1>
+            <div className="flex items-center justify-center mt-6">
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Aligned Solution</p>
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
             <div className="max-w-3xl mx-auto space-y-4">
-              <p className="text-xl md:text-2xl">
-                The U.S. needs to refinance <span className="text-yellow-400">$14T</span> in debt.
+              <p className="text-xl md:text-2xl text-white/90">
+                The U.S. needs to refinance <span className="text-yellow-500">$14T</span> in debt.
               </p>
-              <p className="text-xl md:text-2xl">
+              <p className="text-xl md:text-2xl text-white/90">
                 Investors want protection from inflation and asset debasement.
               </p>
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-yellow-400">
-              Enter BitBonds:
-            </h2>
           </div>
 
           {/* Visual Breakdown */}
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <span className="text-4xl">🇺🇸</span>
-                <h3 className="text-2xl md:text-3xl font-bold text-yellow-400">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
                   90% Treasury
                 </h3>
               </div>
-              <p className="text-center text-lg md:text-xl">
+              <p className="text-center text-lg md:text-xl text-white/90">
                 Stable, government-backed bond
               </p>
             </div>
-            <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <span className="text-4xl">₿</span>
-                <h3 className="text-2xl md:text-3xl font-bold text-yellow-400">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
                   10% Bitcoin
                 </h3>
               </div>
-              <p className="text-center text-lg md:text-xl">
+              <p className="text-center text-lg md:text-xl text-white/90">
                 Full BTC upside exposure
               </p>
             </div>
           </div>
 
           {/* How It Works */}
-          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               How It Works
             </h3>
             <ul className="space-y-4 text-lg md:text-xl">
               <li className="flex items-start gap-3">
-                <span className="text-yellow-400">🔗</span>
-                <span>
-                  <strong>Full BTC upside</strong> until you reach a <span className="text-yellow-400">4.5% annual return</span>.
+                <span className="text-yellow-500">🔗</span>
+                <span className="text-white/90">
+                  <strong>Full BTC upside</strong> until you reach a <span className="text-yellow-500">4.5% annual return</span>.
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-yellow-400">🔗</span>
-                <span>
-                  <strong>After 4.5% YTM</strong>, any additional BTC gains are split <span className="text-yellow-400">50/50</span> between the investor and the US government.
+                <span className="text-yellow-500">🔗</span>
+                <span className="text-white/90">
+                  <strong>After 4.5% YTM</strong>, any additional BTC gains are split <span className="text-yellow-500">50/50</span> between the investor and the US government.
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-yellow-400">🔗</span>
-                <span>
-                  <strong>Sale Value: $100</strong> → <span className="text-yellow-400">Redemption: $90 + BTC Value</span>
+                <span className="text-yellow-500">🔗</span>
+                <span className="text-white/90">
+                  <strong>Sale Value: $100</strong> → <span className="text-yellow-500">Redemption: $90 + BTC Value</span>
                 </span>
               </li>
             </ul>
           </div>
 
           {/* Alignment Summary */}
-          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-2">
               Why BitBonds?
             </h3>
             <p className="text-white/90 text-lg">
@@ -150,20 +159,61 @@ export default function BitBondsPage() {
             </p>
           </div>
 
+          {/* Bitcoin Bond Revolution */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              The Bitcoin Bond Revolution
+            </h3>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h4 className="text-xl font-bold text-yellow-500">The Zero-Risk Model</h4>
+                <p className="text-white/90">
+                  The issuer of BitBonds maintains zero Bitcoin exposure. Through intermediaries like Cantor, the Bitcoin-linked cash flows are swapped for traditional fixed or floating rate debt, resulting in cheaper financing costs for the issuer.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="text-xl font-bold text-yellow-500">Retail Investor Appeal</h4>
+                <p className="text-white/90">
+                  BitBonds are designed to be instant hits with retail investors seeking Bitcoin exposure. They can offer high coupons and yields even under modest Bitcoin growth assumptions, making them attractive investment vehicles.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="text-xl font-bold text-yellow-500">The Saylor Effect</h4>
+                <p className="text-white/90">
+                  Following MicroStrategy&apos;s success with $STRF and $STRK, sovereign and municipal BitBonds could be even more powerful. A triple tax-free municipal BitBond yielding 10% would be revolutionary in the fixed income market.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="text-xl font-bold text-yellow-500">The Ultimate Strategy</h4>
+                <p className="text-white/90">
+                  The true power of BitBonds as a Service (BBAAS) lies in the residual Bitcoin accumulation. By structuring these instruments correctly, issuers can potentially accumulate more Bitcoin than even MicroStrategy, creating a new paradigm in treasury management.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* FAQ Section */}
-          <div className="bg-[#1c1f26] p-8 rounded-xl border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               FAQ: The Big Picture of Bitcoin Bonds
             </h3>
             <div className="space-y-4">
               {faqs.map((item, i) => (
-                <Card key={i} className="border-yellow-500 rounded-xl overflow-hidden shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <div key={i} className="bg-[#1c1f26]">
                   <button
-                    className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
+                    className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none hover:bg-white/5 transition-colors duration-200"
                     onClick={() => setOpen(open === i ? null : i)}
                   >
                     <span className="text-lg font-semibold text-white">{item.q}</span>
-                    <span className={`ml-4 transition-transform text-yellow-500 ${open === i ? 'rotate-180' : ''}`}>▼</span>
+                    <ChevronDown 
+                      className={cn(
+                        "h-5 w-5 text-yellow-500 transition-transform duration-200",
+                        open === i ? "rotate-180" : ""
+                      )}
+                    />
                   </button>
                   <motion.div
                     initial={false}
@@ -173,7 +223,7 @@ export default function BitBondsPage() {
                   >
                     {open === i && <div className="py-4 text-white/90 text-base">{item.a}</div>}
                   </motion.div>
-                </Card>
+                </div>
               ))}
             </div>
           </div>
