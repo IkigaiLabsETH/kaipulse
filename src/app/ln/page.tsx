@@ -25,58 +25,167 @@ export default function LightningNetworkPage() {
       {/* Premium header accent */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-30"></div>
       
-      {/* Breaking News Banner */}
+      {/* Main Content */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="max-w-4xl mx-auto px-4 pt-16 md:pt-20 relative z-20"
       >
-        {/* First Breaking News */}
-        <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6 mb-6">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold text-sm font-satoshi">BREAKING NEWS</div>
-            <div className="h-1 w-1 bg-yellow-500 rounded-full"></div>
-            <div className="text-yellow-500 text-sm font-medium font-satoshi">Just In</div>
-          </div>
-          <h2 className="font-boska text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-            Former PayPal President Launches New Lightning-Compatible L2 on Bitcoin ⚡️
-          </h2>
-          <p className="font-satoshi text-lg text-gray-200 mb-4">
-            A groundbreaking development for Bitcoin scalability: The TCP/IP of Money promises to enhance Bitcoin's Layer 2 ecosystem with seamless Lightning Network compatibility.
+        <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6 mb-6">
+          <h1 className="font-boska text-4xl md:text-5xl font-bold text-yellow-400 mb-6 tracking-tight">
+            The Graveyard of Crypto Experiments — and the Path Beyond HODL 🪦₿
+          </h1>
+          
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Crypto has always been a playground for economic experiments—some brilliant, some bizarre, most destined to die.
           </p>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-green-400 font-medium font-satoshi">Bitcoin Innovation</span>
-            </div>
-            <div className="text-gray-400">•</div>
-            <div className="text-gray-300 font-satoshi">Layer 2 Scaling</div>
-          </div>
-        </div>
 
-        {/* Second Breaking News */}
-        <div className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold text-sm font-satoshi">BREAKING NEWS</div>
-            <div className="h-1 w-1 bg-yellow-500 rounded-full"></div>
-            <div className="text-yellow-500 text-sm font-medium font-satoshi">Just In</div>
-          </div>
-          <h2 className="font-boska text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-            Coinbase Report: 15% of All Bitcoin Transactions Now Use Lightning Network ⚡️
-          </h2>
           <p className="font-satoshi text-lg text-gray-200 mb-4">
-            Major milestone: One of the world's largest crypto exchanges confirms significant Lightning Network adoption, proving that Bitcoin is successfully scaling for global payments.
+            A few fallen giants from the last cycle:
           </p>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-green-400 font-medium font-satoshi">Bitcoin is Scaling</span>
-            </div>
-            <div className="text-gray-400">•</div>
-            <div className="text-gray-300 font-satoshi">Lightning Network Adoption</div>
+
+          <ul className="list-disc pl-6 text-gray-200 space-y-2 font-satoshi text-lg mb-6">
+            <li>Fractional NFTs / ERC-404 – Liquidity theater, mostly.</li>
+            <li>NFT Lending – Cool in theory, but illiquid and clunky.</li>
+            <li>Music NFTs – UX friction + cultural mismatch.</li>
+            <li>Elastic supply tokens (AMPL) – Still breathing, but no one's listening.</li>
+            <li>$YFI-style fair launches – Short-term egalitarianism, long-term ghost towns.</li>
+            <li>(3,3) – Reflexivity weaponized, but unsustainable.</li>
+            <li>Move-to-Earn – Burnt out as fast as your sneaker's reward curve.</li>
+            <li>Two-token models – Too clever by half. $Bera is the final boss.</li>
+            <li>Algo-stables – $UST's collapse triggered an entire market PTSD.</li>
+            <li>$RAI – Conceptually elegant, practically irrelevant.</li>
+            <li>$FEI and PCV – Olympus still keeps the dream alive with POL, but the narrative moved on.</li>
+          </ul>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            So what happened?
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Nothing went wrong. This is the process.<br/>
+            Innovation dies to evolve. Each failure gives birth to new primitives and cultural memory.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Crypto is an arena where experiments get tested in production, with real money. No simulations. No mercy.<br/>
+            That's what makes it incredible. And brutal.
+          </p>
+
+          <div className="border-l-4 border-yellow-400 bg-yellow-900/30 p-4 rounded mb-6">
+            <p className="font-satoshi text-lg text-yellow-200">
+              But here's the shift you need to make:
+            </p>
           </div>
-        </div>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            If you're rational, the majority of your savings should be in Bitcoin.<br/>
+            Not ETH. Not altcoins. Certainly not bags that can be printed into oblivion.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Bitcoin is finite. Everything else isn't.<br/>
+            Sell the infinite. Buy the scarce. Hold it long enough, and your purchasing power won't just grow—it will teleport.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            That's not a radical statement anymore. It's just logical.
+          </p>
+
+          <div className="border-l-4 border-yellow-400 bg-yellow-900/30 p-4 rounded mb-6">
+            <p className="font-satoshi text-lg text-yellow-200">
+              But HODLing comes with a subtle curse.
+            </p>
+          </div>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            When you get fabulously wealthy by sitting on your hands, you risk internalizing a dangerous illusion:<br/>
+            That wealth is something that happens to you.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            And that's not satisfying.<br/>
+            That's not fulfilling.<br/>
+            That's not what you're here for.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Bitcoin is the best savings technology ever invented.<br/>
+            But saving is not the same as creating.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Wealth is created by helping people at scale.<br/>
+            By solving real problems.<br/>
+            By putting something valuable out into the world.
+          </p>
+
+          <div className="border-l-4 border-yellow-400 bg-yellow-900/30 p-4 rounded mb-6">
+            <p className="font-satoshi text-lg text-yellow-200">
+              Even if Bitcoin hits $4M, a broke 20-year-old with zero sats can still become wealthy—by building, serving, and creating.
+            </p>
+          </div>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            That's the secret most Bitcoin maxis forget:<br/>
+            Bitcoin is finite.<br/>
+            But wealth is not.<br/>
+            Abundance isn't zero-sum.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            And here's the kicker: the internet and AI just gave you the ultimate leverage.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            You don't need a storefront on 5th Avenue anymore.<br/>
+            You don't need venture capital.<br/>
+            You don't even need a team.
+          </p>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            You need an idea.<br/>
+            You need to help someone.<br/>
+            You need to ship.
+          </p>
+
+          <div className="border-l-4 border-yellow-400 bg-yellow-900/30 p-4 rounded mb-6">
+            <p className="font-satoshi text-lg text-yellow-200">
+              The real opportunity is this:
+            </p>
+          </div>
+
+          <ul className="list-disc pl-6 text-gray-200 space-y-2 font-satoshi text-lg mb-6">
+            <li>Use Bitcoin to store the wealth you extract from the system.</li>
+            <li>Use your skills and time to generate wealth that Bitcoin can't give you: meaning, growth, purpose.</li>
+          </ul>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            The path forward isn't: "HODL and pray."<br/>
+            It's: "HODL and build."<br/>
+            Build something that helps others.<br/>
+            Build something that makes Bitcoin worth spending someday.
+          </p>
+
+          <div className="border-l-4 border-yellow-400 bg-yellow-900/30 p-4 rounded mb-6">
+            <p className="font-satoshi text-lg text-yellow-200">
+              Maybe you read this far because you're meant to do more than just watch number go up.<br/>
+              Maybe you're here to launch something.<br/>
+              To contribute.<br/>
+              To leave your fingerprint on this timeline.
+            </p>
+          </div>
+
+          <p className="font-satoshi text-lg text-gray-200 mb-6">
+            Bitcoin will store your wealth.<br/>
+            But only you can create it.
+          </p>
+
+          <p className="font-boska text-2xl text-yellow-400 font-bold">
+            So go create.
+          </p>
+        </Card>
       </motion.div>
 
       {/* Logo section */}
