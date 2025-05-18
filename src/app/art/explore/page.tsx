@@ -7,7 +7,8 @@ export const metadata: Metadata = {
   description: 'Discover a curated collection of unique NFTs from various artists and collections.',
 };
 
-export const revalidate = 3600; // Revalidate every hour
+// Increase revalidation time to reduce build load
+export const revalidate = 86400; // 24 hours
 
 // Structured data for SEO
 const structuredData = {
@@ -18,16 +19,23 @@ const structuredData = {
   url: 'https://yourdomain.com/art/explore',
 };
 
-export default async function ExplorePage() {
-  const nftConfigs = [
-    {
-      contract: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
-      tokenId: '1234',
-      priority: 1
-    },
-    // Add more NFT configurations here
-  ];
+// Split NFT configs into smaller chunks for better build performance
+const nftConfigs = [
+  // First batch - high priority NFTs
+  {
+    contract: "0x4e1f41613c9084fdb9e34e11fae9412427480e56",
+    tokenId: "8246",
+    priority: 1
+  },
+  {
+    contract: "0x2559bf029b4981c0701149ac7fde65170c82b449",
+    tokenId: "5",
+    priority: 2
+  },
+  // ... rest of your NFT configs with priorities
+].slice(0, 10); // Limit initial build to 10 NFTs
 
+export default async function ExplorePage() {
   const nfts = await fetchNFTs(nftConfigs);
 
   return (
