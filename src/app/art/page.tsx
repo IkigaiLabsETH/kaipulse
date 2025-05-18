@@ -91,7 +91,7 @@ async function NFTGallery() {
           </div>
 
           {/* Gallery */}
-          <NFTMasonryGrid nfts={validNFTs} />
+          <NFTMasonryGrid nfts={validNFTs.map(nft => ({ ...nft, placeholderColor: '#181818' }))} />
         </div>
       </div>
     );
