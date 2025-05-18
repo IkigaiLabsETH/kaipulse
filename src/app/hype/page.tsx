@@ -21,63 +21,25 @@ const strengths = [
     title: 'Sovereign Trading System',
     highlight: 'Not just a DEX, but a complete trading infrastructure.',
     description: `Hyperliquid is a vertically integrated system built from scratch for low-latency trading. Its custom Layer 1 architecture supports high TPS with full composability, making it more like an "onchain NASDAQ" than a typical DEX.`,
-    note: `Builder's Note: This is infrastructure-level innovation, not just another perp DEX.`
+    note: `Builder&apos;s Note: This is infrastructure-level innovation, not just another perp DEX.`
   },
   {
     title: 'Fully Onchain Orderbook',
     highlight: 'No compromises on decentralization.',
     description: `Unlike competitors that rely on offchain sequencers or DA layers, Hyperliquid maintains a fully onchain orderbook. All matching logic and fills happen onchain, ensuring true decentralization without sacrificing performance.`,
-    note: `Builder's Note: This solves the latency vs decentralization tradeoff natively.`
+    note: `Builder&apos;s Note: This solves the latency vs decentralization tradeoff natively.`
   },
   {
     title: 'Zero External Dependencies',
     highlight: 'Complete ownership of the stack.',
     description: `Hyperliquid owns the entire stack—execution, settlement, and verification. This independence from external dependencies allows for unprecedented control over the trading experience and infrastructure evolution.`,
-    note: `Builder's Note: Full stack ownership means faster iteration and better UX.`
+    note: `Builder&apos;s Note: Full stack ownership means faster iteration and better UX.`
   },
   {
     title: "Developer Ecosystem",
     highlight: 'Building the onchain HFT stack.',
     description: `With public APIs supporting bots, analytics, and agent strategies, Hyperliquid is becoming the go-to infrastructure for DeFi quant vaults and autonomous trading agents.`,
-    note: `Builder's Note: The API ecosystem is a moat that's hard to replicate.`
-  }
-];
-
-const flaws = [
-  {
-    title: 'Pseudonymous Team',
-    pain: `The protocol and team are pseudonymous, which limits traditional BD and governance traction in the short term.`,
-    solution: `Focus on protocol metrics and technical execution rather than traditional BD. The pseudonymous nature hasn't hindered technical progress.`
-  },
-  {
-    title: 'Limited Roadmap Transparency',
-    pain: `The lack of public roadmap can make it difficult to assess long-term direction.`,
-    solution: `Focus on delivered features and technical execution. The team's track record of shipping speaks for itself.`
-  },
-  {
-    title: 'Pre-Token Stage',
-    pain: `No token yet means limited governance and potential uncertainty around token mechanics.`,
-    solution: `The upcoming token launch presents an opportunity for early positioning. The points system provides a proxy for future distribution.`
-  },
-  {
-    title: 'Competition from CEXs',
-    pain: `Established CEXs have significant market share and resources.`,
-    solution: `Hyperliquid's fully onchain nature and superior composability provide unique advantages that CEXs can't match.`
-  }
-];
-
-const pillars = [
-  {
-    title: "Onchain HFT Infrastructure",
-    description: "Hyperliquid is building the infrastructure for the next generation of onchain trading bots and autonomous agents."
-  },
-  {
-    title: "Sovereign Trading Layer",
-    description: "As a fully onchain system, Hyperliquid offers unprecedented control and composability for trading strategies."
-  },
-  {
-    title: "Developer Ecosystem",
-    description: "The growing API ecosystem and developer tools make Hyperliquid the go-to platform for onchain trading innovation."
+    note: `Builder&apos;s Note: The API ecosystem is a moat that&apos;s hard to replicate.`
   }
 ];
 
@@ -400,47 +362,149 @@ export default function HyperliquidHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
-      {/* Who is Hyperliquid For Now? */}
+      {/* Deep Dive: Understanding Hyperliquid */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Who Is Hyperliquid For Now?
+          Beyond the Surface: Understanding Hyperliquid
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
-          Hyperliquid&apos;s next chapter is about:
+          Hyperliquid represents a fundamental shift in onchain trading infrastructure. Here&apos;s why it&apos;s different.
         </p>
-        <div className="grid md:grid-cols-3 gap-10">
-          {pillars.map((pillar) => (
-            <div key={pillar.title} className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20 flex flex-col gap-3">
-              <div className="font-epilogue text-2xl text-yellow-400 font-bold">{pillar.title}</div>
-              <div className="font-satoshi text-white/90 text-lg">{pillar.description}</div>
+
+        {/* TVL Composition */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">TVL Composition</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Asset Distribution</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Billions in stablecoins</li>
+                <li>• Billions in HYPE on EVM</li>
+                <li>• Billions in staked HYPE</li>
+                <li>• Growing BTC/ETH/SOL positions</li>
+              </ul>
             </div>
-          ))}
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Revenue Distribution</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Millions in daily fees</li>
+                <li>• 97/3 split for HLP depositors</li>
+                <li>• 100% revenue to token sinks</li>
+                <li>• No traditional buybacks needed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Technical Superiority */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Technical Edge</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Precompiles & Architecture</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Custom Layer 1 for trading</li>
+                <li>• Native precompiles for performance</li>
+                <li>• No external dependencies</li>
+                <li>• True onchain orderbook</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Beyond Alt L1s</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Not just another EVM chain</li>
+                <li>• Purpose-built for trading</li>
+                <li>• CEX-level performance</li>
+                <li>• Full decentralization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Token Economics */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Token Economics</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Token Sinks</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Native staking ($stHYPE)</li>
+                <li>• Looped staking ($LHYPE)</li>
+                <li>• Magpie staking ($mHYPE)</li>
+                <li>• Protocol-owned liquidity</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Revenue Model</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• 100% revenue to token sinks</li>
+                <li>• No token sales or buybacks</li>
+                <li>• HLP depositor rewards</li>
+                <li>• Protocol-owned liquidity</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Market Position */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Market Position</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Institutional Interest</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Growing fund pressure</li>
+                <li>• Liquid fund demand</li>
+                <li>• Fund of funds interest</li>
+                <li>• Prop trading adoption</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Market Valuation</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• No direct comparables</li>
+                <li>• Unique value proposition</li>
+                <li>• Growing user base</li>
+                <li>• Expanding ecosystem</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Study */}
+        <div className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20">
+          <h4 className="font-epilogue text-xl text-yellow-400 mb-4">The Path Forward</h4>
+          <p className="text-white/80 text-lg mb-4">
+            Hyperliquid represents a fundamental shift in onchain trading infrastructure. With hundreds of thousands of users and millions in daily fees, it&apos;s building something unprecedented in the crypto space.
+          </p>
+          <p className="text-white/80 text-lg">
+            The market has yet to fully understand Hyperliquid&apos;s value proposition. Traditional comparisons fall short, as no other protocol has attempted—let alone achieved—what Hyperliquid is building in real-time.
+          </p>
         </div>
       </section>
 
-      <div className="w-full flex justify-center mb-24">
+      <div className="w-full flex justify-center mb-16">
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
-      {/* Honest Flaws & Solutions */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          What&apos;s Broken &amp; How We Fix It
-        </h2>
-        <div className="space-y-20">
-          {flaws.map((item) => (
-            <div key={item.title} className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-              <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{item.title}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-              <div className="font-satoshi text-white/90 text-lg">{item.solution}</div>
-            </div>
-          ))}
-        </div>
+      {/* Final Note: On-Chain AI Trading Agents */}
+      <section className="max-w-screen-md mx-auto px-4 mb-24 text-center relative z-10">
+        <h3 className="font-epilogue text-3xl md:text-4xl font-bold text-yellow-400 mb-6 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+          Do we really need on-chain AI trading agents?
+        </h3>
+        <p className="text-lg font-satoshi text-white/80 mb-6">
+          We already have solid vault managers on <a href="https://twitter.com/HyperliquidX" target="_blank" rel="noopener noreferrer" className="text-yellow-400 underline hover:text-yellow-300">@HyperliquidX</a>.
+        </p>
+        <blockquote className="italic text-yellow-400 font-epilogue text-xl mb-6 border-l-4 border-yellow-500/60 pl-4">
+          Only the good ones survive—like HYPE and BTC (long).<br />
+          Short memes and high mcap alts into the void.
+        </blockquote>
+        <p className="text-lg font-satoshi text-white/80">
+          Save your time. Let them do the heavy lifting.
+        </p>
       </section>
 
-      <div className="w-full flex justify-center mb-28">
+      <div className="w-full flex justify-center mb-24">
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
