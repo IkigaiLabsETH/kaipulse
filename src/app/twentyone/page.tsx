@@ -1,7 +1,5 @@
 'use client'
 
-export const revalidate = 86400
-
 import { motion } from 'framer-motion'
 import { Bitcoin, TrendingUp, Users } from 'lucide-react'
 import { Card } from "@/components/ui/card"
