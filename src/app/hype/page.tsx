@@ -302,6 +302,104 @@ export default function HyperliquidHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
+      {/* Farming Opportunities */}
+      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
+        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+          Farming Opportunities
+        </h2>
+        <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
+          With 38.9% of $HYPE tokens locked for community rewards and future emissions, discover the best ways to maximize your yield in the Hyperliquid ecosystem.
+        </p>
+
+        {/* Entry Points */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Getting Started</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Direct Entry</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Hyperliquid Perp Site - Bridge $USDC (ARB)</li>
+                <li>• HyperUnit - Bridge BTC, ETH, SOL</li>
+                <li>• Hybridge - Multi-chain bridge with HyPoints</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Staking Options</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Native Staking ($stHYPE)</li>
+                <li>• Looped Hype ($LHYPE) - Phase 2 live</li>
+                <li>• Magpie Hype ($mHYPE) - Position for $HPP</li>
+                <li>• Kinetiq Hype ($kHYPE) - Coming soon</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Yield Strategies */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Advanced Strategies</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Yield Aggregators</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Hyperbeat - Multi-asset vaults (5x Upshift Points)</li>
+                <li>• MizuLabs - ETH chain deposits</li>
+                <li>• Hyperyield - 36.83% APY on USDXL</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Lending & CDPs</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• HypurrFi - Supply/borrow + USDXL minting</li>
+                <li>• HyperLend - USDe lending</li>
+                <li>• Felix - HYPE → feUSD minting</li>
+                <li>• Keiko - Asset-backed KEI stablecoin</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* LP Opportunities */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Liquidity Pools</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Kittenswap Pools</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• feUSD/USDT0 - 37.5% APY</li>
+                <li>• feUSD/USDe - 11.12% APY</li>
+                <li>• KEI/USDT0 - 19.03% APY + Keiko points</li>
+                <li>• USDT0/USDXL - 46.88% APY + Hypurr points</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Optimization Strategies</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Loop mHYPE on HypurrFi (2x multiplier)</li>
+                <li>• HYPE/mHYPE or HYPE/LHYPE pools (10-15x points)</li>
+                <li>• Hyperbeat passive deposits (5x Upshift points)</li>
+                <li>• Keiko stability pool rewards</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Important Notes */}
+        <div className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20">
+          <h4 className="font-epilogue text-xl text-yellow-400 mb-4">Important Considerations</h4>
+          <ul className="space-y-3 text-white/80">
+            <li>• Hyperbeat deposits are locked for 1 hour before withdrawal</li>
+            <li>• 5x Upshift Points available until $750M TVL (currently $335M)</li>
+            <li>• Some pools are cap-sensitive - early entry recommended</li>
+            <li>• Consider combining multiple strategies for optimal returns</li>
+          </ul>
+        </div>
+      </section>
+
+      <div className="w-full flex justify-center mb-24">
+        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+      </div>
+
       {/* Who is Hyperliquid For Now? */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
