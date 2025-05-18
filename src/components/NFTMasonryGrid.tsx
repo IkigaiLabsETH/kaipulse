@@ -2,7 +2,7 @@
 
 import Masonry from 'react-masonry-css';
 import { NFTCard } from './NFTCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 interface NFTGridProps {
@@ -47,8 +47,33 @@ function LazyNFTCard({ nft, idx, onPriorityLoad }: { nft: NFTGridProps['nfts'][n
   );
 }
 
+const BATCH_SIZE = 16;
+
 export function NFTMasonryGrid({ nfts }: NFTGridProps) {
   const [priorityLoadedCount, setPriorityLoadedCount] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
+
+  // Handler to load more NFTs
+  const loadMore = useCallback(() => {
+    setVisibleCount((prev) => Math.min(prev + BATCH_SIZE, nfts.length));
+  }, [nfts.length]);
+
+  // Listen for scroll near bottom
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 800 &&
+        visibleCount < nfts.length
+      ) {
+        loadMore();
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visibleCount, nfts.length, loadMore]);
+
+  // Only render visible NFTs
+  const visibleNFTs = nfts.slice(0, visibleCount);
 
   const handlePriorityImageLoad = () => {
     setPriorityLoadedCount((prev) => prev + 1);
@@ -57,6 +82,7 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
   useEffect(() => {
     // Reset loading state when nfts change
     setPriorityLoadedCount(0);
+    setVisibleCount(BATCH_SIZE);
   }, [nfts]);
 
   return (
@@ -84,7 +110,7 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
         className="flex w-auto"
         columnClassName="pl-8 first:pl-0 bg-clip-padding space-y-12 md:space-y-16"
       >
-        {nfts.map((nft, idx) => (
+        {visibleNFTs.map((nft, idx) => (
           <LazyNFTCard
             key={`${nft.contract_address}-${nft.token_id}`}
             nft={nft}
