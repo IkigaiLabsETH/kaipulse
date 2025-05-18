@@ -94,18 +94,6 @@ async function NFTGallery() {
               return null;
             }
 
-            // Validate image URL is accessible
-            try {
-              const imageResponse = await fetch(nft.image_url, { method: 'HEAD' });
-              if (!imageResponse.ok) {
-                logger.warn(`NFT image not accessible: ${nft.image_url}`);
-                return null;
-              }
-            } catch (error) {
-              logger.warn(`Failed to validate NFT image: ${nft.image_url}`, error);
-              return null;
-            }
-
             return {
               name: title || nft.name || 'Untitled',
               description: nft.description || '',
