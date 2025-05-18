@@ -134,4 +134,16 @@ export class TwitterService {
       throw error;
     }
   }
+
+  getQuotaStatus() {
+    const now = new Date();
+    const nextReset = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    
+    return {
+      remainingReads: TwitterService.MONTHLY_READ_LIMIT - this.quota.reads,
+      totalReads: TwitterService.MONTHLY_READ_LIMIT,
+      nextReset,
+      lastReset: this.quota.lastReset
+    };
+  }
 } 
