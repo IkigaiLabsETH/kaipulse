@@ -1,51 +1,67 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { OpenSeaNFT } from '@/services/opensea/types';
-import { useState } from 'react';
-import { logger } from '@/lib/logger';
-import { formatEthPrice } from '@/lib/format';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { formatEthPrice } from '@/lib/utils';
 
-export interface NFTCardProps {
-  nft: OpenSeaNFT;
+interface NFTCardProps {
+  nft: {
+    name: string;
+    image_url: string;
+    contract: string;
+    tokenId: string;
+    price?: string;
+    description?: string;
+  };
   href: string;
   priority?: boolean;
+  blurhash?: string;
 }
 
-export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
+export function NFTCard({ nft, href, priority = false, blurhash }: NFTCardProps) {
   const [imageError, setImageError] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const handleImageError = () => {
-    logger.warn('Failed to load NFT image:', { 
-      nftId: nft.identifier,
-      imageUrl: nft.image_url 
-    });
+  const handleImageError = useCallback(() => {
     setImageError(true);
-  };
+  }, []);
 
-  const imageUrl = !imageError && nft.image_url ? nft.image_url : '/images/nft-placeholder.png';
-  const price = nft.listings?.[0]?.price?.current?.value;
-  const isUnoptimized =
-    imageUrl.includes('ipfs') ||
-    imageUrl.includes('arweave') ||
-    /\.gif($|\?)/i.test(imageUrl) ||
-    /\.webp($|\?)/i.test(imageUrl);
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+  }, []);
+
+  const imageUrl = nft.image_url;
+  const isUnoptimized = imageUrl?.includes('ipfs') || imageUrl?.includes('arweave');
+
+  const cardVariants = {
+    initial: { scale: 1 },
+    hover: { 
+      scale: 1.02,
+      transition: {
+        duration: 0.3,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
 
   return (
     <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ type: "spring", stiffness: 200, damping: 25 }}
-      className="relative group"
+      className="group relative overflow-hidden rounded-xl bg-black border border-white/10 shadow-[0_5px_20px_0_rgba(0,0,0,0.25)]"
+      variants={cardVariants}
+      initial="initial"
+      whileHover="hover"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      role="article"
+      aria-label={`NFT: ${nft.name}`}
     >
-      <Link
-        href={href}
-        className="block overflow-hidden relative"
-        aria-label={`View details for ${nft.name || `NFT #${nft.identifier}`}`}
-      >
-        {/* Art frame - artwork is the focus */}
+      <Link href={href} className="block">
         <div className="relative">
           {/* Art piece */}
           <div className="relative aspect-square overflow-hidden bg-black">
@@ -61,11 +77,15 @@ export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
                 quality={85}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 unoptimized={isUnoptimized}
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="
+                blurDataURL={blurhash || "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="}
                 placeholder="blur"
               />
             ) : (
-              <div className="flex flex-col items-center justify-center w-full h-full bg-gradient-to-br from-yellow-100/10 to-black/80 rounded-lg">
+              <div 
+                className="flex flex-col items-center justify-center w-full h-full bg-gradient-to-br from-yellow-100/10 to-black/80 rounded-lg"
+                role="img"
+                aria-label="Artwork unavailable"
+              >
                 <Image
                   src="/IKIGAI_LABS_logo.svg"
                   alt="IKIGAI Labs Logo"
@@ -82,26 +102,33 @@ export function NFTCard({ nft, href, priority = false }: NFTCardProps) {
             )}
 
             {/* Subtle price display */}
-            {price && (
-              <div className="absolute bottom-0 right-0 bg-black/80 px-3 py-1.5 text-sm font-light">
-                <span className="text-yellow-400">Ξ</span> {formatEthPrice(price)}
-              </div>
+            {nft.price && (
+              <motion.div 
+                className="absolute bottom-0 right-0 bg-black/80 px-3 py-1.5 text-sm font-light"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <span className="text-yellow-400">Ξ</span> {formatEthPrice(parseFloat(nft.price))}
+              </motion.div>
             )}
 
             {/* Elegant hover state */}
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <div className="border-b border-white/50 px-3 py-2 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
-                <span className="uppercase tracking-wider text-sm font-light text-white">View</span>
-                <ArrowUpRight size={16} className="text-white" />
-              </div>
-            </div>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              initial={false}
+              animate={{ opacity: isHovered ? 1 : 0 }}
+            />
           </div>
 
-          {/* Minimal artwork title - only shows artwork name */}
-          <div className="py-4 px-1">
-            <h3 className="text-base font-light text-white/80 group-hover:text-yellow-400 transition-colors duration-300" title={nft.name || `#${nft.identifier}`}>
-              {nft.name || `#${nft.identifier}`}
+          {/* NFT Info */}
+          <div className="p-4">
+            <h3 className="text-lg font-medium text-white group-hover:text-yellow-400 transition-colors duration-300 line-clamp-1">
+              {nft.name || 'Untitled'}
             </h3>
+            <p className="mt-1 text-sm text-white/60 line-clamp-2">
+              {nft.description || 'No description available'}
+            </p>
           </div>
         </div>
       </Link>

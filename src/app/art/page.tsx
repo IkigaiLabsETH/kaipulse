@@ -5,6 +5,31 @@ import { logger } from '@/lib/logger';
 import { featuredNFTs } from '@/config/featured-nfts';
 import { NFTMasonryGrid } from '@/components/NFTMasonryGrid';
 import Head from 'next/head';
+import { Metadata } from 'next';
+
+// Add metadata for SEO
+export const metadata: Metadata = {
+  title: 'Featured Collection | Digital Art Gallery',
+  description: 'A curated selection of exceptional digital artworks showcasing unique pieces from our featured collection.',
+  openGraph: {
+    title: 'Featured Collection | Digital Art Gallery',
+    description: 'A curated selection of exceptional digital artworks showcasing unique pieces from our featured collection.',
+    type: 'website',
+  },
+};
+
+// Add structured data for SEO
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Featured Collection',
+  description: 'A curated selection of exceptional digital artworks',
+  about: {
+    '@type': 'Thing',
+    name: 'Digital Art',
+    description: 'A collection of unique digital artworks'
+  }
+};
 
 function Skeleton() {
   return (
@@ -38,7 +63,7 @@ async function NFTGallery() {
       (a.priority || Infinity) - (b.priority || Infinity)
     );
 
-    // Fetch all NFTs in parallel
+    // Fetch all NFTs in parallel with error handling
     const nfts = await Promise.all(
       sortedNFTs.map(async ({ contract, tokenId, title }) => {
         try {
@@ -56,6 +81,7 @@ async function NFTGallery() {
             image_url: nft.image_url || '',
             contract_address: contract,
             token_id: tokenId,
+            blurhash: nft.blurhash || undefined, // Add blurhash for better loading experience
           };
         } catch (error) {
           logger.error(`Error fetching NFT ${contract}/${tokenId}:`, error);
@@ -77,9 +103,17 @@ async function NFTGallery() {
     return (
       <>
         <Head>
+          {/* Preload critical resources */}
+          <link rel="preconnect" href="https://opensea.io" />
+          <link rel="preconnect" href="https://storage.googleapis.com" />
           {preloadImages.map((url, i) => (
             <link key={i} rel="preload" as="image" href={url} />
           ))}
+          {/* Add structured data */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
         </Head>
         <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
           {/* Art Magazine Header Element */}

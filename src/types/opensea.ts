@@ -106,6 +106,7 @@ export interface NFT extends BaseAsset {
   traits?: NFTTrait[];
   rarity?: NFTRarity;
   listings?: NFTListing[];
+  blurhash?: string;
 }
 
 // API Response types
