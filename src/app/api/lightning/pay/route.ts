@@ -12,9 +12,27 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null;
-if (!redis) {
-  logger.warn('Redis is not configured. Rate limiting is disabled.');
+// Lazy-loaded Redis instance
+let redisInstance: Redis | null = null;
+
+// Get or initialize Redis instance
+function getRedis(): Redis | null {
+  if (redisInstance) return redisInstance;
+
+  const redisUrl = process.env.REDIS_URL;
+  if (!redisUrl) {
+    logger.info('Redis not configured, rate limiting disabled');
+    return null;
+  }
+
+  try {
+    redisInstance = new Redis(redisUrl);
+    logger.info('Redis initialized for rate limiting');
+    return redisInstance;
+  } catch (error) {
+    logger.error('Failed to initialize Redis:', error);
+    return null;
+  }
 }
 
 const PaySchema = z.object({
@@ -34,6 +52,7 @@ function getLnd() {
 }
 
 async function checkRateLimit(ip: string) {
+  const redis = getRedis();
   if (!redis) return false;
   const key = `pay:rate:${ip}`;
   const count = await redis.incr(key);

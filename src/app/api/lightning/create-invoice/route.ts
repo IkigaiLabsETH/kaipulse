@@ -12,13 +12,29 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-// --- Setup ---
-const redisUrl = process.env.REDIS_URL;
-const isValidRedisUrl = redisUrl && !redisUrl.includes('your_redis_url');
-const redis = isValidRedisUrl ? new Redis(redisUrl) : null;
+// Lazy-loaded Redis instance
+let redisInstance: Redis | null = null;
 
-if (!redis) {
-  logger.warn('Redis is not configured. Rate limiting is disabled.');
+// Get or initialize Redis instance
+function getRedis(): Redis | null {
+  if (redisInstance) return redisInstance;
+
+  const redisUrl = process.env.REDIS_URL;
+  const isValidRedisUrl = redisUrl && !redisUrl.includes('your_redis_url');
+
+  if (!isValidRedisUrl) {
+    logger.info('Redis not configured, rate limiting disabled');
+    return null;
+  }
+
+  try {
+    redisInstance = new Redis(redisUrl);
+    logger.info('Redis initialized for rate limiting');
+    return redisInstance;
+  } catch (error) {
+    logger.error('Failed to initialize Redis:', error);
+    return null;
+  }
 }
 
 // --- Zod schema ---
@@ -41,6 +57,7 @@ function getLnd() {
 
 // --- Rate limiting ---
 async function checkRateLimit(ip: string) {
+  const redis = getRedis();
   if (!redis) return false; // If Redis is not available, skip rate limiting
   const key = `invoice:rate:${ip}`;
   const count = await redis.incr(key);

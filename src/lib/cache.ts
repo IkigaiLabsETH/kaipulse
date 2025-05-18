@@ -89,14 +89,20 @@ class RedisCache implements CacheInterface {
   }
 }
 
-// Initialize cache based on environment configuration
-function initializeCache(): CacheInterface {
+// Lazy-loaded cache instance
+let cacheInstance: CacheInterface | null = null;
+
+// Get or initialize cache instance
+export function getCache(): CacheInterface {
+  if (cacheInstance) return cacheInstance;
+
   const redisUrl = process.env.REDIS_URL;
   const redisToken = process.env.REDIS_TOKEN;
 
   if (!redisUrl || !redisToken) {
     logger.info('Redis not configured, using no-op cache');
-    return new NoOpCache();
+    cacheInstance = new NoOpCache();
+    return cacheInstance;
   }
 
   try {
@@ -105,11 +111,20 @@ function initializeCache(): CacheInterface {
       token: redisToken
     });
     logger.info('Redis cache initialized');
-    return new RedisCache(redis);
+    cacheInstance = new RedisCache(redis);
+    return cacheInstance;
   } catch (error) {
     logger.error('Failed to initialize Redis cache:', error);
-    return new NoOpCache();
+    cacheInstance = new NoOpCache();
+    return cacheInstance;
   }
 }
 
-export const cache = initializeCache(); 
+// Export a function that gets the cache instance
+export const cache = {
+  get: async <T>(key: string) => getCache().get<T>(key),
+  set: async (key: string, value: unknown, ttl?: number) => getCache().set(key, value, ttl),
+  delete: async (key: string) => getCache().delete(key),
+  exists: async (key: string) => getCache().exists(key),
+  clear: async () => getCache().clear()
+}; 
