@@ -8,6 +8,8 @@ import { logger } from '@/lib/logger';
 interface NFTImageProps {
   src: string | null;
   alt: string;
+  fill?: boolean;
+  className?: string;
 }
 
 // Multiple IPFS gateways for fallback
@@ -34,7 +36,7 @@ function ipfsToHttp(url: string | null, gatewayIndex = 0): string {
   return url;
 }
 
-export function NFTImage({ src, alt }: NFTImageProps) {
+export function NFTImage({ src, alt, fill, className }: NFTImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [gatewayIndex, setGatewayIndex] = useState(0);
@@ -76,12 +78,13 @@ export function NFTImage({ src, alt }: NFTImageProps) {
             <Image
               src={imageSrc}
               alt={alt}
-              fill
+              fill={fill}
               className={`
                 object-contain p-2 
                 transform transition-all duration-700 
                 group-hover:scale-105 
                 ${isLoaded ? 'opacity-100' : 'opacity-0'}
+                ${className}
               `}
               priority
               unoptimized={true}
