@@ -176,7 +176,7 @@ export default function HyperliquidHonestTake() {
           The Hyperliquid Ecosystem
         </h2>
         <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
-          A comprehensive financial ecosystem built on Hyperliquid's high-performance infrastructure
+          A comprehensive financial ecosystem built on Hyperliquid high-performance infrastructure
         </p>
 
         {/* DeFi Protocols */}
