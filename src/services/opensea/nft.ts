@@ -29,8 +29,8 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
       identifier: nft.identifier,
       token_id: nft.token_id,
       contract: nft.contract,
-      contract_address: nft.contract, // For collection NFTs, contract is the same as contract_address
-      chain: 'ethereum', // Collection NFTs are always from ethereum
+      contract_address: nft.contract,
+      chain: 'ethereum',
       collection: nft.collection,
       name: nft.name,
       description: nft.description,
@@ -203,10 +203,10 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
           ...this.mapNFTResponse(data),
           listings
         };
-      } catch (parseError) {
+      } catch (error) {
         // Log the specific error that caused the validation to fail
         logger.error('NFT data validation failed:', {
-          error: parseError instanceof Error ? parseError.message : String(parseError),
+          error: error instanceof Error ? error.message : String(error),
           endpoint,
           params: validatedParams
         });
@@ -312,13 +312,16 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
           : []
       };
     } catch (error) {
-      logger.error('Error in getNFTsByCollection:', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-        collection_slug: validatedParams.collection_slug
+      logger.error('Failed to fetch NFTs by collection:', {
+        error: error instanceof Error ? error.message : String(error),
+        params: validatedParams
       });
       
-      // Return empty result instead of throwing to prevent UI from breaking
-      return { nfts: [], next: null };
+      // Return empty result instead of throwing
+      return {
+        nfts: [],
+        next: null
+      };
     }
   }
 

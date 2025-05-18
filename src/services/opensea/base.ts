@@ -30,6 +30,9 @@ export class OpenSeaAPIError extends Error {
 export class BaseOpenSeaAPI {
   private readonly apiKey: string;
   private readonly baseUrl: string;
+  private requestQueue: Promise<unknown> = Promise.resolve();
+  private lastRequestTime: number = 0;
+  private readonly minRequestInterval: number = 200; // Minimum time between requests in ms
 
   constructor(apiKey: string, baseUrl = 'https://api.opensea.io') {
     this.apiKey = apiKey;
@@ -49,7 +52,7 @@ export class BaseOpenSeaAPI {
     }
   }
 
-  protected cleanParams(params: Record<string, unknown>): Record<string, string> {
+  private cleanParams(params: Record<string, unknown>): Record<string, string> {
     return Object.entries(params).reduce((acc, [key, value]) => {
       if (value !== undefined && value !== null) {
         acc[key] = String(value);
@@ -58,21 +61,38 @@ export class BaseOpenSeaAPI {
     }, {} as Record<string, string>);
   }
 
-  protected async request<T>({
+  private async waitForRateLimit(): Promise<void> {
+    const now = Date.now();
+    const timeSinceLastRequest = now - this.lastRequestTime;
+    
+    if (timeSinceLastRequest < this.minRequestInterval) {
+      await new Promise(resolve => 
+        setTimeout(resolve, this.minRequestInterval - timeSinceLastRequest)
+      );
+    }
+    
+    this.lastRequestTime = Date.now();
+  }
+
+  private async executeRequest<T>({
     method,
     url,
     params,
     body,
-    validateResponse
-  }: RequestOptions<T>): Promise<T> {
+    validateResponse,
+    retryCount = 0
+  }: RequestOptions<T> & { retryCount?: number }): Promise<T> {
     const queryParams = params ? new URLSearchParams(this.cleanParams(params)).toString() : '';
     const fullUrl = `${this.baseUrl}${url}${queryParams ? `?${queryParams}` : ''}`;
 
     try {
+      await this.waitForRateLimit();
+
       logger.info('Making OpenSea API request:', {
         method,
         url: fullUrl,
         params,
+        retryCount
       });
 
       const response = await fetch(fullUrl, {
@@ -87,12 +107,53 @@ export class BaseOpenSeaAPI {
 
       const responseBody = await response.json() as OpenSeaErrorResponse;
 
+      // Handle rate limiting
+      if (response.status === 429) {
+        const retryAfter = parseInt(response.headers.get('Retry-After') || '5', 10);
+        logger.warn('Rate limited by OpenSea API, waiting before retry', {
+          retryAfter,
+          retryCount
+        });
+        
+        if (retryCount < 3) {
+          await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+          return this.executeRequest({
+            method,
+            url,
+            params,
+            body,
+            validateResponse,
+            retryCount: retryCount + 1
+          });
+        }
+      }
+
       if (!response.ok) {
         logger.error('OpenSea API request failed:', {
           status: response.status,
           url: fullUrl,
-          response: responseBody
+          response: responseBody,
+          retryCount
         });
+
+        // Handle specific error cases
+        if (response.status === 404) {
+          throw new OpenSeaAPIError(
+            'Resource not found',
+            response.status,
+            'NOT_FOUND',
+            responseBody
+          );
+        }
+
+        if (response.status === 403) {
+          throw new OpenSeaAPIError(
+            'API key invalid or expired',
+            response.status,
+            'AUTH_ERROR',
+            responseBody
+          );
+        }
 
         throw new OpenSeaAPIError(
           responseBody.message || 'OpenSea API request failed',
@@ -107,7 +168,8 @@ export class BaseOpenSeaAPI {
       } catch (error) {
         logger.error('Failed to validate OpenSea API response:', {
           error,
-          responseBody
+          responseBody,
+          retryCount
         });
         throw error;
       }
@@ -116,14 +178,53 @@ export class BaseOpenSeaAPI {
       if (error instanceof OpenSeaAPIError) {
         throw error;
       }
+
+      // Handle network errors with retry
+      if (retryCount < 3 && (
+        error instanceof TypeError || // Network error
+        error instanceof SyntaxError // JSON parse error
+      )) {
+        logger.warn('Network error, retrying request', {
+          error: error instanceof Error ? error.message : String(error),
+          retryCount
+        });
+        
+        await new Promise(resolve => 
+          setTimeout(resolve, Math.pow(2, retryCount) * 1000)
+        );
+        
+        return this.executeRequest({
+          method,
+          url,
+          params,
+          body,
+          validateResponse,
+          retryCount: retryCount + 1
+        });
+      }
+
       logger.error('OpenSea API request failed:', {
         error: error instanceof Error ? error.message : 'Unknown error',
-        url: fullUrl
+        url: fullUrl,
+        retryCount
       });
+      
       throw new OpenSeaAPIError(
         `Request failed: ${error instanceof Error ? error.message : 'Unknown error'}`
       );
     }
+  }
+
+  protected async request<T>(options: RequestOptions<T>): Promise<T> {
+    // Queue requests to prevent overwhelming the API
+    this.requestQueue = this.requestQueue.then(() => 
+      this.executeRequest(options)
+    ).catch(error => {
+      logger.error('Request queue error:', error);
+      throw error;
+    });
+    
+    return this.requestQueue as Promise<T>;
   }
 
   protected async get<T>(url: string, params?: Record<string, unknown>): Promise<T> {
