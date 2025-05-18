@@ -63,30 +63,50 @@ async function NFTGallery() {
       (a.priority || Infinity) - (b.priority || Infinity)
     );
 
-    // Fetch all NFTs in parallel with error handling
+    // Fetch all NFTs in parallel with retry logic
     const nfts = await Promise.all(
       sortedNFTs.map(async ({ contract, tokenId, title }) => {
-        try {
-          const nft = await openSeaService.nft.getNFT({
-            address: contract,
-            tokenId,
-            chain: 'ethereum'
-          });
+        const maxRetries = 3;
+        let retryCount = 0;
 
-          if (!nft) return null;
+        while (retryCount < maxRetries) {
+          try {
+            const nft = await openSeaService.nft.getNFT({
+              address: contract,
+              tokenId,
+              chain: 'ethereum'
+            });
 
-          return {
-            name: title || nft.name || 'Untitled',
-            description: nft.description || '',
-            image_url: nft.image_url || '',
-            contract_address: contract,
-            token_id: tokenId,
-            blurhash: nft.blurhash || undefined, // Add blurhash for better loading experience
-          };
-        } catch (error) {
-          logger.error(`Error fetching NFT ${contract}/${tokenId}:`, error);
-          return null;
+            if (!nft) {
+              logger.warn(`NFT not found: ${contract}/${tokenId}`);
+              return null;
+            }
+
+            // Validate required fields
+            if (!nft.image_url) {
+              logger.warn(`NFT missing image_url: ${contract}/${tokenId}`);
+              return null;
+            }
+
+            return {
+              name: title || nft.name || 'Untitled',
+              description: nft.description || '',
+              image_url: nft.image_url,
+              contract_address: contract,
+              token_id: tokenId,
+              blurhash: nft.blurhash || undefined,
+            };
+          } catch (error) {
+            retryCount++;
+            if (retryCount === maxRetries) {
+              logger.error(`Failed to fetch NFT after ${maxRetries} attempts: ${contract}/${tokenId}`, error);
+              return null;
+            }
+            // Exponential backoff
+            await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
+          }
         }
+        return null;
       })
     );
 
@@ -94,6 +114,7 @@ async function NFTGallery() {
     const validNFTs = nfts.filter((nft): nft is NonNullable<typeof nft> => nft !== null);
 
     if (validNFTs.length === 0) {
+      logger.error('No valid NFTs found after fetching');
       return notFound();
     }
 

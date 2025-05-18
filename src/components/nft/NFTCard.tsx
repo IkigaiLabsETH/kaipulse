@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -23,9 +23,15 @@ interface NFTCardProps {
 export function NFTCard({ nft, href, priority = false, blurhash }: NFTCardProps) {
   const [imageError, setImageError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageError = useCallback(() => {
     setImageError(true);
+    setImageLoaded(true);
+  }, []);
+
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
   }, []);
 
   const handleMouseEnter = useCallback(() => {
@@ -35,6 +41,12 @@ export function NFTCard({ nft, href, priority = false, blurhash }: NFTCardProps)
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
   }, []);
+
+  // Reset state when image URL changes
+  useEffect(() => {
+    setImageError(false);
+    setImageLoaded(false);
+  }, [nft.image_url]);
 
   const imageUrl = nft.image_url;
   const isUnoptimized = imageUrl?.includes('ipfs') || imageUrl?.includes('arweave');
@@ -66,20 +78,28 @@ export function NFTCard({ nft, href, priority = false, blurhash }: NFTCardProps)
           {/* Art piece */}
           <div className="relative aspect-square overflow-hidden bg-black">
             {!imageError && imageUrl ? (
-              <Image
-                src={imageUrl}
-                alt={nft.name || 'NFT'}
-                width={500}
-                height={500}
-                className="object-cover transition-all duration-700 group-hover:scale-105"
-                onError={handleImageError}
-                priority={priority}
-                quality={85}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                unoptimized={isUnoptimized}
-                blurDataURL={blurhash || "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="}
-                placeholder="blur"
-              />
+              <>
+                <Image
+                  src={imageUrl}
+                  alt={nft.name || 'NFT'}
+                  width={500}
+                  height={500}
+                  className={`object-cover transition-all duration-700 group-hover:scale-105 ${
+                    imageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onError={handleImageError}
+                  onLoad={handleImageLoad}
+                  priority={priority}
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  unoptimized={isUnoptimized}
+                  blurDataURL={blurhash || "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIUlEQVQoU2NkYGD4z0AEYBxVSFJgFIwC0QwMDAwMDAwMDAwAAAwA4nQn2QAAAABJRU5ErkJggg=="}
+                  placeholder="blur"
+                />
+                {!imageLoaded && (
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#F3CC3E]/5 to-transparent animate-pulse" />
+                )}
+              </>
             ) : (
               <div 
                 className="flex flex-col items-center justify-center w-full h-full bg-gradient-to-br from-yellow-100/10 to-black/80 rounded-lg"
