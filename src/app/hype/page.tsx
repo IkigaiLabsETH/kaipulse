@@ -487,6 +487,88 @@ export default function HyperliquidHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
+      {/* Valuation Comparison & Analysis */}
+      <section className="max-w-screen-md mx-auto px-4 mb-24 text-center relative z-10">
+        <h3 className="font-epilogue text-3xl md:text-4xl font-bold text-yellow-400 mb-8 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+          HYPE Valuation: Context Matters
+        </h3>
+        <p className="text-lg font-satoshi text-white/80 mb-6">
+          If Hype is pushing ~$600M annualized revenue and trading at a ~26.5x FDV multiple, it&apos;s operating in the same valuation range as peak ETH (Nov &lsquo;21) and SOL (Jan &lsquo;25) — but the context and quality of that revenue matters a lot more now.
+        </p>
+        <div className="w-full flex justify-center mb-8">
+          <div className="h-1 w-32 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+        </div>
+        <div className="overflow-x-auto rounded-2xl bg-[#18191c]/80 p-6 mb-8 shadow-xl border border-yellow-500/20">
+          <table className="w-full font-epilogue text-white/90 text-lg">
+            <thead>
+              <tr className="border-b border-yellow-500/40">
+                <th className="text-left py-3 text-yellow-500 font-bold text-xl">Metric</th>
+                <th className="text-left py-3 text-yellow-500 font-bold text-xl">HYPE (Est.)</th>
+                <th className="text-left py-3 text-yellow-500 font-bold text-xl">SOL (Jan &lsquo;25)</th>
+                <th className="text-left py-3 text-yellow-500 font-bold text-xl">ETH (Nov &lsquo;21)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors">
+                <td className="py-3 font-epilogue font-semibold text-lg">Annualized Rev ($bn)</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">~$0.60</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">$6.61</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">$21.90</td>
+              </tr>
+              <tr className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors">
+                <td className="py-3 font-epilogue font-semibold text-lg">FDV ($bn)</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">~$15.9</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">$177.00</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">$578.71</td>
+              </tr>
+              <tr className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors">
+                <td className="py-3 font-epilogue font-semibold text-lg">FDV/Revenue Multiple</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">~26.5x</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">26.77x</td>
+                <td className="py-3 font-satoshi text-white/80 text-lg">26.42x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="w-full flex justify-center mb-8">
+          <div className="h-1 w-32 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+        </div>
+        <h4 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold">But Here&apos;s Why It&apos;s More Impressive:</h4>
+        <div className="text-left max-w-2xl mx-auto mb-8">
+          <ol className="list-decimal list-inside text-white/80 text-lg space-y-3">
+            <li>
+              <span className="font-bold text-yellow-400">Revenue Quality</span><br />
+              Likely more recurring, less speculative vs. gas fee spikes during L1 mania.<br />
+              Stickier users + more sustainable use cases = better earnings durability.
+            </li>
+            <li>
+              <span className="font-bold text-yellow-400">Float Dynamics</span><br />
+              Lower float &rarr; smaller circulating supply = price impact from marginal demand is more amplified.<br />
+              Compare to ETH/SOL where more supply was already unlocked at peak.
+            </li>
+            <li>
+              <span className="font-bold text-yellow-400">Market Regime</span><br />
+              ETH/SOL peaked during full-on retail/euphoria; Hype is reaching these multiples in a more selective, fundamentally-aware environment.
+            </li>
+            <li>
+              <span className="font-bold text-yellow-400">Product-Market Fit</span><br />
+              Hype feels like it&apos;s operating with a higher PMF / community coherence, which boosts conviction in long-term growth, even if revs are smaller now.
+            </li>
+          </ol>
+        </div>
+        <div className="w-full flex justify-center mb-8">
+          <div className="h-1 w-32 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+        </div>
+        <h4 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold">TL;DR</h4>
+        <p className="text-lg font-satoshi text-white/80">
+          Hype is in the same valuation league as SOL/ETH at peak, but arguably doing it with cleaner revenue, less hype-based demand, and more favorable token economics. That&apos;s structurally bullish.
+        </p>
+      </section>
+
+      <div className="w-full flex justify-center mb-24">
+        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+      </div>
+
       {/* Final Note: On-Chain AI Trading Agents */}
       <section className="max-w-screen-md mx-auto px-4 mb-24 text-center relative z-10">
         <h3 className="font-epilogue text-3xl md:text-4xl font-bold text-yellow-400 mb-6 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
