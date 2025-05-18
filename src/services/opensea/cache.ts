@@ -153,6 +153,9 @@ export class OpenSeaCache {
   }
 }
 
+// Lazy-loaded cache instance
+let cacheInstance: InMemoryCache | null = null;
+
 // In-memory cache for when Redis is not available
 class InMemoryCache {
   private store: Map<string, { data: unknown; expires: number }> = new Map();
@@ -183,12 +186,10 @@ class InMemoryCache {
   }
 }
 
-// Singleton cache instance
-let cacheInstance: InMemoryCache | null = null;
-
-export function getCache() {
+export function getCache(): InMemoryCache {
   if (!cacheInstance) {
     cacheInstance = new InMemoryCache();
+    logger.info('In-memory cache initialized');
   }
   return cacheInstance;
 }
@@ -198,40 +199,46 @@ export async function getCachedData<T>(
   fetchFn: () => Promise<T>,
   ttl: number = 3600 // 1 hour default TTL
 ): Promise<T> {
-  const cache = getCache();
-  
-  try {
-    // Try to get from cache first
-    const cached = await cache.get<T>(key);
-    if (cached) {
-      return cached;
-    }
+  // Only use cache on server-side
+  if (typeof window === 'undefined') {
+    const cache = getCache();
+    try {
+      // Try to get from cache first
+      const cached = await cache.get<T>(key);
+      if (cached) {
+        return cached;
+      }
 
-    // If not in cache, fetch and cache the data
-    const data = await fetchFn();
-    await cache.set(key, data, ttl);
-    return data;
-  } catch (error) {
-    logger.error('Cache error:', error);
-    // If cache fails, just fetch the data
-    return fetchFn();
+      // If not in cache, fetch and cache the data
+      const data = await fetchFn();
+      await cache.set(key, data, ttl);
+      return data;
+    } catch (error) {
+      logger.error('Cache error:', error);
+    }
   }
+  // Client-side or cache error: just fetch the data
+  return fetchFn();
 }
 
 export async function invalidateCache(key: string): Promise<void> {
-  const cache = getCache();
-  try {
-    await cache.delete(key);
-  } catch (error) {
-    logger.error('Cache invalidation error:', error);
+  if (typeof window === 'undefined') {
+    const cache = getCache();
+    try {
+      await cache.delete(key);
+    } catch (error) {
+      logger.error('Cache invalidation error:', error);
+    }
   }
 }
 
 export async function clearCache(): Promise<void> {
-  const cache = getCache();
-  try {
-    await cache.clear();
-  } catch (error) {
-    logger.error('Cache clear error:', error);
+  if (typeof window === 'undefined') {
+    const cache = getCache();
+    try {
+      await cache.clear();
+    } catch (error) {
+      logger.error('Cache clear error:', error);
+    }
   }
 } 

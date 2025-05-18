@@ -46,7 +46,7 @@ export class InMemoryRateLimiter {
   }
 }
 
-// Singleton rate limiter instance
+// Lazy-loaded rate limiter instance
 let rateLimiterInstance: InMemoryRateLimiter | null = null;
 
 export function getRateLimiter(): InMemoryRateLimiter {
@@ -57,7 +57,13 @@ export function getRateLimiter(): InMemoryRateLimiter {
   return rateLimiterInstance;
 }
 
+// This function should only be called in API routes
 export async function rateLimit(ip: string): Promise<{ success: boolean; remaining: number }> {
-  const limiter = getRateLimiter();
-  return limiter.check(ip);
+  // Only initialize rate limiter when actually needed
+  if (typeof window === 'undefined') { // Server-side only
+    const limiter = getRateLimiter();
+    return limiter.check(ip);
+  }
+  // Client-side: always allow
+  return { success: true, remaining: 50 };
 } 

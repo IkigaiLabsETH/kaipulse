@@ -3,6 +3,9 @@ import { z } from 'zod';
 import { logger } from '@/lib/logger';
 import { InMemoryRateLimiter } from '@/lib/rate-limit';
 
+// Force dynamic route
+export const dynamic = 'force-dynamic';
+
 // In-memory rate limiter for when Redis is not available
 const rateLimiter = new InMemoryRateLimiter({
   maxRequests: 50,
