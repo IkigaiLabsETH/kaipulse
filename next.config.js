@@ -118,10 +118,10 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   typescript: {
-    // Only ignore build errors in production
-    ignoreBuildErrors: process.env.NODE_ENV === 'production',
+    // Enable type checking during build
+    ignoreBuildErrors: false,
   },
-  // Add some performance optimizations
+  // Performance optimizations
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
@@ -129,11 +129,40 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  webpack: (config) => {
+  webpack: (config, { _dev, _isServer }) => {
+    // Optimize webpack configuration
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
     };
+    
+    // Add memory optimization
+    config.optimization = {
+      ...config.optimization,
+      moduleIds: 'deterministic',
+      chunkIds: 'deterministic',
+      splitChunks: {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        cacheGroups: {
+          defaultVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        },
+      },
+    };
+
     config.ignoreWarnings = [
       (warning) =>
         typeof warning.message === 'string' &&

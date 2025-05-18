@@ -205,7 +205,14 @@ export function CollectionGrid({ collectionSlug }: CollectionGridProps) {
             variants={itemVariants}
           >
             <NFTCard 
-              nft={nft}
+              nft={{
+                name: nft.name,
+                image_url: nft.image_url,
+                contract: nft.contract,
+                tokenId: nft.identifier,
+                price: nft.listings?.[0]?.price?.current?.value?.toString(),
+                description: nft.description
+              }}
               href={`/collections/${nft.contract}/${nft.identifier}`}
               priority={index < 4}
             />
