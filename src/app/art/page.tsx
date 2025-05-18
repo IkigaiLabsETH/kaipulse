@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { fetchNFTs } from '@/lib/nft';
 import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
