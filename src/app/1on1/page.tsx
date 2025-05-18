@@ -1,137 +1,63 @@
-import { Suspense } from 'react';
-import { openSeaService } from '@/services/opensea';
-import { notFound } from 'next/navigation';
-import { logger } from '@/lib/logger';
+import { fetchNFTs } from '@/lib/nft';
+import { NFTGallery } from '@/components/NFTGallery';
+import { Metadata } from 'next';
 import { oneononeNFTs } from '@/config/one-on-one';
-import { NFTMasonryGrid } from '@/components/NFTMasonryGrid';
-import Head from 'next/head';
 
-// Add revalidation time
-export const revalidate = 3600; // Revalidate every hour
+// Increase revalidation time to reduce build load
+export const revalidate = 86400; // 24 hours
 
-function Skeleton() {
+export const metadata: Metadata = {
+  title: 'One-on-One Collection | Digital Art Gallery',
+  description: 'A curated selection of unique one-on-one digital artworks.',
+  openGraph: {
+    title: 'One-on-One Collection | Digital Art Gallery',
+    description: 'A curated selection of unique one-on-one digital artworks.',
+    type: 'website',
+  },
+};
+
+// Structured data for SEO
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'One-on-One Collection',
+  description: 'A curated selection of unique one-on-one digital artworks',
+  about: {
+    '@type': 'Thing',
+    name: 'Digital Art',
+    description: 'A collection of unique one-on-one digital artworks'
+  }
+};
+
+// Limit initial build to 5 NFTs
+const nftConfigs = oneononeNFTs.slice(0, 5);
+
+export default async function OneOnOnePage() {
+  const nfts = await fetchNFTs(nftConfigs);
+
   return (
-    <div className="min-h-screen bg-black p-8 md:p-12">
+    <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
       <div className="max-w-[1920px] mx-auto">
-        {/* Title Section */}
-        <div className="text-center mb-16 md:mb-24">
-          <h1 className="text-4xl md:text-6xl font-serif tracking-tight text-[#F3CC3E] mb-4">
-            One-on-One Collection
+        <div className="mb-16 relative z-10 text-center">
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Art • One-on-One</p>
+          <h1 className="text-center">
+            <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+              One-on-One Collection
+            </span>
           </h1>
-          <p className="text-[#F3CC3E]/60 font-serif text-lg md:text-xl max-w-2xl mx-auto">
-            A curated selection of unique one-on-one digital artworks
-          </p>
+          <div className="flex items-center justify-center mt-6">
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">A curated selection of unique one-on-one digital artworks</p>
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+          </div>
         </div>
-
-        {/* Loading Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="aspect-[3/4] bg-gradient-to-b from-[#F3CC3E]/5 to-transparent" />
-          ))}
-        </div>
+        <NFTGallery nfts={nfts} />
       </div>
     </div>
-  );
-}
-
-// Separate data fetching into its own function
-async function fetchNFTs() {
-  try {
-    // Sort NFTs by priority if specified
-    const sortedNFTs = [...oneononeNFTs].sort((a, b) => 
-      (a.priority || Infinity) - (b.priority || Infinity)
-    );
-
-    // Fetch NFTs in smaller batches to prevent timeout
-    const batchSize = 5;
-    const nfts = [];
-    
-    for (let i = 0; i < sortedNFTs.length; i += batchSize) {
-      const batch = sortedNFTs.slice(i, i + batchSize);
-      const batchResults = await Promise.all(
-        batch.map(async ({ contract, tokenId, title }) => {
-          try {
-            const nft = await openSeaService.nft.getNFT({
-              address: contract,
-              tokenId,
-              chain: 'ethereum'
-            });
-
-            if (!nft) return null;
-
-            return {
-              name: title || nft.name || 'Untitled',
-              description: nft.description || '',
-              image_url: nft.image_url || '',
-              contract_address: contract,
-              token_id: tokenId,
-            };
-          } catch (error) {
-            logger.error(`Error fetching NFT ${contract}/${tokenId}:`, error);
-            return null;
-          }
-        })
-      );
-      
-      nfts.push(...batchResults);
-    }
-
-    // Filter out failed fetches and null values
-    return nfts.filter((nft): nft is NonNullable<typeof nft> => nft !== null);
-  } catch (error) {
-    logger.error('Error fetching NFTs:', error);
-    return [];
-  }
-}
-
-async function NFTGallery() {
-  const validNFTs = await fetchNFTs();
-
-  if (validNFTs.length === 0) {
-    return notFound();
-  }
-
-  // Preload first 4 images for LCP
-  const preloadImages = validNFTs.slice(0, 4).map(nft => nft.image_url).filter(Boolean);
-
-  return (
-    <>
-      <Head>
-        {preloadImages.map((url, i) => (
-          <link key={i} rel="preload" as="image" href={url} />
-        ))}
-      </Head>
-      <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
-        {/* Art Magazine Header Element */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
-        
-        <div className="max-w-[1920px] mx-auto">
-          <div className="mb-16 relative z-10 text-center">
-            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Art • One-on-One</p>
-            <h1 className="text-center">
-              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-                One-on-One Collection
-              </span>
-            </h1>
-            <div className="flex items-center justify-center mt-6">
-              <div className="h-px w-24 bg-yellow-500/30"></div>
-              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">A curated selection of unique one-on-one digital artworks</p>
-              <div className="h-px w-24 bg-yellow-500/30"></div>
-            </div>
-          </div>
-
-          {/* Gallery */}
-          <NFTMasonryGrid nfts={validNFTs} />
-        </div>
-      </div>
-    </>
-  );
-}
-
-export default function OneOnOnePage() {
-  return (
-    <Suspense fallback={<Skeleton />}>
-      <NFTGallery />
-    </Suspense>
   );
 }
