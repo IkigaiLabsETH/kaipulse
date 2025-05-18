@@ -1,4 +1,5 @@
 import { Collection, NFT } from '@/types/opensea';
+import { logger } from '../lib/logger';
 
 /**
  * Shared cache implementation for OpenSea API services
@@ -149,5 +150,88 @@ export class OpenSeaCache {
   clear(): void {
     this.collections.clear();
     this.nfts.clear();
+  }
+}
+
+// In-memory cache for when Redis is not available
+class InMemoryCache {
+  private store: Map<string, { data: unknown; expires: number }> = new Map();
+
+  async get<T>(key: string): Promise<T | null> {
+    const item = this.store.get(key);
+    if (!item) return null;
+    if (Date.now() > item.expires) {
+      this.store.delete(key);
+      return null;
+    }
+    return item.data as T;
+  }
+
+  async set(key: string, value: unknown, ttl: number): Promise<void> {
+    this.store.set(key, {
+      data: value,
+      expires: Date.now() + ttl * 1000
+    });
+  }
+
+  async delete(key: string): Promise<void> {
+    this.store.delete(key);
+  }
+
+  async clear(): Promise<void> {
+    this.store.clear();
+  }
+}
+
+// Singleton cache instance
+let cacheInstance: InMemoryCache | null = null;
+
+export function getCache() {
+  if (!cacheInstance) {
+    cacheInstance = new InMemoryCache();
+  }
+  return cacheInstance;
+}
+
+export async function getCachedData<T>(
+  key: string,
+  fetchFn: () => Promise<T>,
+  ttl: number = 3600 // 1 hour default TTL
+): Promise<T> {
+  const cache = getCache();
+  
+  try {
+    // Try to get from cache first
+    const cached = await cache.get<T>(key);
+    if (cached) {
+      return cached;
+    }
+
+    // If not in cache, fetch and cache the data
+    const data = await fetchFn();
+    await cache.set(key, data, ttl);
+    return data;
+  } catch (error) {
+    logger.error('Cache error:', error);
+    // If cache fails, just fetch the data
+    return fetchFn();
+  }
+}
+
+export async function invalidateCache(key: string): Promise<void> {
+  const cache = getCache();
+  try {
+    await cache.delete(key);
+  } catch (error) {
+    logger.error('Cache invalidation error:', error);
+  }
+}
+
+export async function clearCache(): Promise<void> {
+  const cache = getCache();
+  try {
+    await cache.clear();
+  } catch (error) {
+    logger.error('Cache clear error:', error);
   }
 } 

@@ -23,7 +23,7 @@ interface TweetData {
     name: string;
   };
   createdAt: string;
-  metrics?: {
+  metrics: {
     likes: number;
     retweets: number;
     replies: number;
@@ -35,12 +35,31 @@ interface QuotaManager {
   lastReset: Date;
 }
 
+// In-memory cache for when Redis is not available
+class InMemoryCache {
+  private store: Map<string, { data: unknown; expires: number }> = new Map();
+
+  async get<T>(key: string): Promise<T | null> {
+    const item = this.store.get(key);
+    if (!item) return null;
+    if (Date.now() > item.expires) {
+      this.store.delete(key);
+      return null;
+    }
+    return item.data as T;
+  }
+
+  async set(key: string, value: unknown, ttl: number): Promise<void> {
+    this.store.set(key, {
+      data: value,
+      expires: Date.now() + ttl * 1000
+    });
+  }
+}
+
 export class TwitterService {
   private v2Client: TwitterApi;
-  private redis?: {
-    client: ReturnType<typeof createClient>;
-    ttl: number;
-  };
+  private cache: InMemoryCache;
   private quota: QuotaManager = {
     reads: 0,
     lastReset: new Date()
@@ -51,37 +70,20 @@ export class TwitterService {
   constructor(config: TwitterConfig) {
     // Initialize v2 client with bearer token only (free tier)
     this.v2Client = new TwitterApi(config.bearerToken);
-
-    // Set up Redis if provided
-    if (config.redis) {
-      this.redis = {
-        client: config.redis.client,
-        ttl: config.redis.ttl || 3600 // Default 1 hour TTL
-      };
-    }
-
-    // Reset quota monthly
-    setInterval(() => this.resetQuotaIfNeeded(), 24 * 60 * 60 * 1000); // Check daily
+    this.cache = new InMemoryCache();
   }
 
-  private resetQuotaIfNeeded() {
+  private async checkQuota(): Promise<void> {
     const now = new Date();
-    const monthsSinceReset = (now.getFullYear() - this.quota.lastReset.getFullYear()) * 12 + 
-                            (now.getMonth() - this.quota.lastReset.getMonth());
-    
-    if (monthsSinceReset >= 1) {
-      this.quota = {
-        reads: 0,
-        lastReset: now
-      };
-      logger.info('Twitter API quota reset');
+    if (now.getMonth() !== this.quota.lastReset.getMonth()) {
+      this.quota.reads = 0;
+      this.quota.lastReset = now;
     }
-  }
 
-  private async checkQuota() {
     if (this.quota.reads >= TwitterService.MONTHLY_READ_LIMIT) {
-      throw new Error('Monthly API read limit reached. Please try again next month.');
+      throw new Error('Monthly API quota exceeded');
     }
+
     this.quota.reads++;
   }
 
@@ -90,12 +92,10 @@ export class TwitterService {
       // Check quota before proceeding
       await this.checkQuota();
 
-      // Try to get from cache first if Redis is configured
-      if (this.redis) {
-        const cached = await this.redis.client.get(`tweet:${tweetId}`);
-        if (cached) {
-          return JSON.parse(cached);
-        }
+      // Try to get from cache first
+      const cached = await this.cache.get<TweetData>(`tweet:${tweetId}`);
+      if (cached) {
+        return cached;
       }
 
       // Fetch from Twitter API using v2 client with minimal fields to optimize quota
@@ -125,31 +125,13 @@ export class TwitterService {
         },
       };
 
-      // Cache the result if Redis is configured
-      if (this.redis) {
-        await this.redis.client.setEx(
-          `tweet:${tweetId}`,
-          this.redis.ttl,
-          JSON.stringify(tweetData)
-        );
-      }
+      // Cache the result
+      await this.cache.set(`tweet:${tweetId}`, tweetData, 3600); // 1 hour TTL
 
       return tweetData;
     } catch (error) {
       logger.error('Error fetching tweet:', error);
       throw error;
     }
-  }
-
-  // Get current quota status
-  getQuotaStatus() {
-    return {
-      remainingReads: TwitterService.MONTHLY_READ_LIMIT - this.quota.reads,
-      nextReset: new Date(
-        this.quota.lastReset.getFullYear(),
-        this.quota.lastReset.getMonth() + 1,
-        1
-      )
-    };
   }
 } 
