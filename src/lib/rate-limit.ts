@@ -36,24 +36,30 @@ class InMemoryRateLimiter {
   }
 }
 
-// Initialize Redis if configured
-const redisUrl = process.env.REDIS_URL || '';
-const redisToken = process.env.REDIS_TOKEN || '';
-let redis: Redis | null = null;
+// Lazy-loaded Redis instance
+let redisInstance: Redis | null = null;
 let inMemoryLimiter: InMemoryRateLimiter | null = null;
 
-if (redisUrl.startsWith('https://') && redisToken) {
-  try {
-    redis = new Redis({ url: redisUrl, token: redisToken });
-    logger.info('Redis rate limiter initialized');
-  } catch (error) {
-    logger.error('Failed to initialize Redis:', error);
-  }
-}
+// Initialize rate limiter only when needed
+function getRateLimiter() {
+  if (inMemoryLimiter) return inMemoryLimiter;
+  
+  const redisUrl = process.env.REDIS_URL || '';
+  const redisToken = process.env.REDIS_TOKEN || '';
 
-if (!redis) {
+  if (redisUrl.startsWith('https://') && redisToken) {
+    try {
+      redisInstance = new Redis({ url: redisUrl, token: redisToken });
+      logger.info('Redis rate limiter initialized');
+      return null; // Will use Redis directly
+    } catch (error) {
+      logger.error('Failed to initialize Redis:', error);
+    }
+  }
+
   inMemoryLimiter = new InMemoryRateLimiter();
   logger.info('Using in-memory rate limiter');
+  return inMemoryLimiter;
 }
 
 export async function rateLimit(
@@ -62,10 +68,11 @@ export async function rateLimit(
 ): Promise<{ success: boolean; remaining: number }> {
   const ip = request.ip || 'anonymous';
 
-  if (redis) {
+  // Try Redis first if it's initialized
+  if (redisInstance) {
     const key = `rate-limit:${ip}`;
     try {
-      const [requests] = await redis
+      const [requests] = await redisInstance
         .multi()
         .incr(key)
         .expire(key, Math.ceil(config.windowMs / 1000))
@@ -78,13 +85,13 @@ export async function rateLimit(
       };
     } catch (error) {
       logger.error('Redis rate limit error:', error);
-      // Fall back to in-memory limiter if Redis fails
-      if (!inMemoryLimiter) {
-        inMemoryLimiter = new InMemoryRateLimiter();
-      }
+      // Fall back to in-memory limiter
+      const limiter = getRateLimiter();
+      if (limiter) return limiter.checkLimit(ip, config);
     }
   }
 
-  // Use in-memory limiter if Redis is not available or failed
-  return inMemoryLimiter!.checkLimit(ip, config);
+  // Use in-memory limiter
+  const limiter = getRateLimiter();
+  return limiter!.checkLimit(ip, config);
 } 
