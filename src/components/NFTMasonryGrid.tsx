@@ -3,6 +3,7 @@
 import Masonry from 'react-masonry-css';
 import { NFTCard } from './NFTCard';
 import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 interface NFTGridProps {
   nfts: Array<{
@@ -11,7 +12,39 @@ interface NFTGridProps {
     image_url: string;
     contract_address: string;
     token_id: string;
+    placeholderColor?: string;
+    blurhash?: string;
   }>;
+}
+
+function NFTCardSkeleton() {
+  return (
+    <div className="w-full aspect-[3/4] bg-[#181818] rounded-xl animate-pulse flex items-center justify-center border-4 border-yellow-400">
+      <div className="w-16 h-16 bg-yellow-900/20 rounded-full" />
+    </div>
+  );
+}
+
+function LazyNFTCard({ nft, idx, onPriorityLoad }: { nft: NFTGridProps['nfts'][number]; idx: number; onPriorityLoad?: () => void }) {
+  const { ref, inView } = useInView({ triggerOnce: true, rootMargin: '200px' });
+  return (
+    <div className="mb-6 w-full" ref={ref}>
+      {inView ? (
+        <NFTCard
+          name={nft.name}
+          imageUrl={nft.image_url}
+          contract={nft.contract_address}
+          tokenId={nft.token_id}
+          onLoad={idx < 4 ? onPriorityLoad : undefined}
+          priority={idx < 4}
+          placeholderColor={nft.placeholderColor}
+          blurhash={nft.blurhash}
+        />
+      ) : (
+        <NFTCardSkeleton />
+      )}
+    </div>
+  );
 }
 
 export function NFTMasonryGrid({ nfts }: NFTGridProps) {
@@ -52,19 +85,12 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
         columnClassName="pl-8 first:pl-0 bg-clip-padding space-y-12 md:space-y-16"
       >
         {nfts.map((nft, idx) => (
-          <div 
-            key={`${nft.contract_address}-${nft.token_id}`} 
-            className="mb-6 w-full"
-          >
-            <NFTCard
-              name={nft.name}
-              imageUrl={nft.image_url}
-              contract={nft.contract_address}
-              tokenId={nft.token_id}
-              onLoad={idx < 4 ? handlePriorityImageLoad : undefined}
-              priority={idx < 4}
-            />
-          </div>
+          <LazyNFTCard
+            key={`${nft.contract_address}-${nft.token_id}`}
+            nft={nft}
+            idx={idx}
+            onPriorityLoad={handlePriorityImageLoad}
+          />
         ))}
       </Masonry>
     </div>
