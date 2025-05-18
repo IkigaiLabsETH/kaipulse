@@ -1,5 +1,8 @@
 'use client'
 
+// Add revalidation time
+export const revalidate = 86400; // 24 hours
+
 import { motion } from 'framer-motion'
 import { Bitcoin, TrendingUp, Users } from 'lucide-react'
 import { Card } from "@/components/ui/card"
