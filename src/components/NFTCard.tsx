@@ -103,7 +103,6 @@ export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = 
             quality={85}
             style={{
               objectFit: 'contain',
-              position: 'relative',
               zIndex: 2
             }}
           />
