@@ -63,14 +63,20 @@ async function NFTGallery() {
       (a.priority || Infinity) - (b.priority || Infinity)
     );
 
-    // Fetch all NFTs in parallel with retry logic
+    // Fetch all NFTs in parallel with improved retry logic
     const nfts = await Promise.all(
       sortedNFTs.map(async ({ contract, tokenId, title }) => {
         const maxRetries = 3;
         let retryCount = 0;
+        let lastError: Error | null = null;
 
         while (retryCount < maxRetries) {
           try {
+            // Add delay between retries to avoid rate limiting
+            if (retryCount > 0) {
+              await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
+            }
+
             const nft = await openSeaService.nft.getNFT({
               address: contract,
               tokenId,
@@ -88,6 +94,18 @@ async function NFTGallery() {
               return null;
             }
 
+            // Validate image URL is accessible
+            try {
+              const imageResponse = await fetch(nft.image_url, { method: 'HEAD' });
+              if (!imageResponse.ok) {
+                logger.warn(`NFT image not accessible: ${nft.image_url}`);
+                return null;
+              }
+            } catch (error) {
+              logger.warn(`Failed to validate NFT image: ${nft.image_url}`, error);
+              return null;
+            }
+
             return {
               name: title || nft.name || 'Untitled',
               description: nft.description || '',
@@ -97,13 +115,16 @@ async function NFTGallery() {
               blurhash: nft.blurhash || undefined,
             };
           } catch (error) {
+            lastError = error instanceof Error ? error : new Error(String(error));
             retryCount++;
+            
             if (retryCount === maxRetries) {
-              logger.error(`Failed to fetch NFT after ${maxRetries} attempts: ${contract}/${tokenId}`, error);
+              logger.error(`Failed to fetch NFT after ${maxRetries} attempts: ${contract}/${tokenId}`, {
+                error: lastError.message,
+                stack: lastError.stack
+              });
               return null;
             }
-            // Exponential backoff
-            await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
           }
         }
         return null;
@@ -114,7 +135,13 @@ async function NFTGallery() {
     const validNFTs = nfts.filter((nft): nft is NonNullable<typeof nft> => nft !== null);
 
     if (validNFTs.length === 0) {
-      logger.error('No valid NFTs found after fetching');
+      logger.error('No valid NFTs found after fetching', {
+        totalAttempted: sortedNFTs.length,
+        failedNFTs: sortedNFTs.filter((_, i) => nfts[i] === null).map(nft => ({
+          contract: nft.contract,
+          tokenId: nft.tokenId
+        }))
+      });
       return notFound();
     }
 
@@ -162,7 +189,10 @@ async function NFTGallery() {
       </>
     );
   } catch (error) {
-    logger.error('Error in NFTGallery:', error);
+    logger.error('Error in NFTGallery:', {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
     return (
       <div className="flex items-center justify-center min-h-screen bg-black">
         <p className="text-[#F3CC3E] font-serif text-xl">Failed to load gallery</p>
