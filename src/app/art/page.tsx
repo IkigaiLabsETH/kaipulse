@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { fetchNFTs } from '@/lib/nft';
 import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
-import { featuredNFTs } from '@/config/featured';
+import { featuredNFTs } from '@/config/featured-nfts';
 
 // Increase revalidation time to reduce build load
 export const revalidate = 86400; // 24 hours
