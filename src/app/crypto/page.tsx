@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import TrendingAltcoins from './TrendingAltcoins';
 import TopGainers from './TopGainers';
 import TopLosers from './TopLosers';
+import BtcRelativePerformance from './BtcRelativePerformance';
 
 interface AltcoinData {
   [key: string]: {
@@ -109,7 +110,8 @@ export default function CryptoPage() {
             </div>
           )}
 
-          {/* Removed ticker price cards grid */}
+          {/* BTC Relative Performance Section */}
+          <BtcRelativePerformance />
 
           {/* DOWN BAD Section */}
           <TopLosers />
@@ -146,12 +148,12 @@ export default function CryptoPage() {
                 Solana (SOL)
               </Button>
             </Link>
-            <Link href="/bera" className="w-full sm:w-auto flex-1">
+            <Link href="/hype" className="w-full sm:w-auto flex-1">
               <Button
                 size="lg"
                 className="relative w-full gap-2 sm:gap-3 font-semibold text-sm sm:text-base py-3 sm:py-6 bg-gradient-to-r from-black via-zinc-900 to-black hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500] text-[#F7B500] hover:text-black transition-all duration-300 ease-out border border-[#F7B500] shadow-[3px_3px_0px_0px_#F7B500] sm:shadow-[5px_5px_0px_0px_#F7B500] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] disabled:opacity-70 disabled:cursor-not-allowed rounded-md text-xl sm:text-2xl font-epilogue tracking-tight"
               >
-                Berachain (BERA)
+                Hyperliquid (HYPE)
               </Button>
             </Link>
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Camera } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -12,24 +12,55 @@ interface Price {
   color?: string;
 }
 
-const TICKERS: Price[] = [
-  { symbol: 'ETH', tradingViewSymbol: 'COINBASE:ETHUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'HYPE', tradingViewSymbol: 'CRYPTO:HYPEHUSD', exchange: 'CRYPTO', color: 'text-yellow-500' },
-  { symbol: 'SOL', tradingViewSymbol: 'COINBASE:SOLUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'SUI', tradingViewSymbol: 'COINBASE:SUIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'BERA', tradingViewSymbol: 'COINBASE:BERAUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'LINK', tradingViewSymbol: 'COINBASE:LINKUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'UNI', tradingViewSymbol: 'COINBASE:UNIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'AAVE', tradingViewSymbol: 'COINBASE:AAVEUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'ONDO', tradingViewSymbol: 'COINBASE:ONDOUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'AVAX', tradingViewSymbol: 'COINBASE:AVAXUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'STX', tradingViewSymbol: 'COINBASE:STXUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'TAO', tradingViewSymbol: 'COINBASE:TAOUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
-  { symbol: 'RENDER', tradingViewSymbol: 'COINBASE:RENDERUSD', exchange: 'COINBASE', color: 'text-yellow-500' }
+interface BtcOutperformer {
+  id: string;
+  symbol: string;
+  tradingViewSymbol: string;
+  exchange: string;
+  btc_relative_performance: number;
+  image: string;
+  market_cap_rank: number;
+}
+
+const DEFAULT_TICKERS: Price[] = [
+  { symbol: 'ETH', tradingViewSymbol: 'BINANCE:ETHBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'SOL', tradingViewSymbol: 'BINANCE:SOLBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'SUI', tradingViewSymbol: 'BINANCE:SUIBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'HYPE', tradingViewSymbol: 'BINANCE:HYPEBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
   const [selectedSymbol, setSelectedSymbol] = useState<string>('ETH');
+  const [tickers, setTickers] = useState<Price[]>(DEFAULT_TICKERS);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBtcOutperformers = async () => {
+      try {
+        const response = await fetch('/api/btc-relative-performance');
+        const data = await response.json();
+        
+        if (data.error) throw new Error(data.error);
+
+        // Convert BTC outperformers to ticker format with BTC pairs
+        const outperformerTickers: Price[] = data.map((coin: BtcOutperformer) => ({
+          symbol: coin.symbol.toUpperCase(),
+          tradingViewSymbol: `BINANCE:${coin.symbol.toUpperCase()}BTC`,
+          exchange: 'BINANCE',
+          color: 'text-yellow-500'
+        }));
+
+        // Combine with default tickers, prioritizing outperformers
+        setTickers([...outperformerTickers, ...DEFAULT_TICKERS]);
+        setLoading(false);
+      } catch {
+        setTickers(DEFAULT_TICKERS);
+        setLoading(false);
+      }
+    };
+
+    fetchBtcOutperformers();
+  }, []);
 
   const handleSymbolClick = (symbol: string) => {
     if (symbol === selectedSymbol) {
@@ -38,13 +69,31 @@ export default function PriceTicker() {
     setSelectedSymbol(symbol);
   };
 
+  // Helper to get the correct TradingView symbol
+  const getTradingViewSymbol = (symbol: string) => {
+    if (symbol === 'HYPE') {
+      return 'GATEIO:HYPEUSDT'; // fallback to USDT if BTC pair is not available
+    }
+    return `BINANCE:${symbol}BTC`;
+  };
+
+  if (loading) {
+    return (
+      <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+        <CardContent className="p-4">
+          <div className="text-yellow-500 text-center">Loading BTC Outperformers...</div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
       <CardContent className="p-0">
         {/* Chart Header */}
         <div className="flex items-center justify-between border-b border-yellow-500/20 px-4">
           <div className="flex items-center space-x-8 overflow-x-auto py-2">
-            {TICKERS.map((item) => (
+            {tickers.map((item) => (
               <button
                 key={item.symbol}
                 onClick={() => handleSymbolClick(item.symbol)}
@@ -54,7 +103,7 @@ export default function PriceTicker() {
                     : 'text-white/60 hover:text-white'
                 }`}
               >
-                {item.symbol}
+                {item.symbol}/BTC
                 {selectedSymbol === item.symbol && (
                   <motion.div
                     layoutId="activeTab"
@@ -77,7 +126,7 @@ export default function PriceTicker() {
         <div className="w-full h-[400px] bg-black">
           <iframe
             key={selectedSymbol}
-            src={`https://s.tradingview.com/widgetembed/?frameElementId=tradingview_${selectedSymbol}&symbol=${TICKERS.find(p => p.symbol === selectedSymbol)?.tradingViewSymbol}&interval=D&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=exchange&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%22header_widget%22%5D&locale=en&utm_source=www.tradingview.com&utm_medium=widget_new&utm_campaign=chart&utm_term=${TICKERS.find(p => p.symbol === selectedSymbol)?.tradingViewSymbol}`}
+            src={`https://s.tradingview.com/widgetembed/?frameElementId=tradingview_${selectedSymbol}&symbol=${getTradingViewSymbol(selectedSymbol)}&interval=4H&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=exchange&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%22header_widget%22%5D&locale=en&utm_source=www.tradingview.com&utm_medium=widget_new&utm_campaign=chart&utm_term=${getTradingViewSymbol(selectedSymbol)}`}
             style={{
               width: '100%',
               height: '100%',

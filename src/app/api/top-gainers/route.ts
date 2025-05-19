@@ -31,7 +31,7 @@ export async function GET() {
     const sorted = data
       .filter((coin) => typeof coin.price_change_percentage_24h === 'number')
       .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
-      .slice(0, 8)
+      .slice(0, 4)
       .map((coin) => ({
         id: coin.id,
         name: coin.name,
