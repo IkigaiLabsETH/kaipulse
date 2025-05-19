@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
+import { fetchNFTs } from '@/lib/nft';
+import { NFTGallery } from '@/components/NFTGallery';
 import { featuredNFTs } from '@/config/featured-nfts-2';
-import { Suspense } from 'react';
-import { NFTGallerySkeleton } from '@/components/NFTGallerySkeleton';
-import { NFTGalleryClient } from '@/components/NFTGalleryClient';
 
-// Remove revalidation since we're using client-side fetching
+// Force dynamic rendering to prevent build timeouts
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
@@ -16,6 +15,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
+
+// Increase revalidation time to reduce build load
+export const revalidate = 86400; // 24 hours
 
 // Structured data for SEO
 const structuredData = {
@@ -33,7 +35,9 @@ const structuredData = {
 // Use all featured NFTs
 const nftConfigs = featuredNFTs;
 
-export default function ExplorePage() {
+export default async function ExplorePage() {
+  const nfts = await fetchNFTs(nftConfigs);
+
   return (
     <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
       <script
@@ -55,9 +59,7 @@ export default function ExplorePage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <Suspense fallback={<NFTGallerySkeleton />}>
-          <NFTGalleryClient nftConfigs={nftConfigs} />
-        </Suspense>
+        <NFTGallery nfts={nfts} />
       </div>
     </div>
   );
