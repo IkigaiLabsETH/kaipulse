@@ -1,12 +1,12 @@
-import { fetchNFTs } from '@/lib/nft';
 import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { featuredNFTs } from '@/config/featured-nfts';
 import { Suspense } from 'react';
 import { NFTGallerySkeleton } from '@/components/NFTGallerySkeleton';
+import { NFTGalleryClient } from '@/components/NFTGalleryClient';
 
-// Remove force-dynamic and implement proper caching
-export const revalidate = 3600; // Cache for 1 hour
+// Remove revalidation since we're using client-side fetching
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Featured Collection | Digital Art Gallery',
@@ -34,12 +34,6 @@ const structuredData = {
 // Use all featured NFTs
 const nftConfigs = featuredNFTs;
 
-// Separate the NFT fetching into its own component for better loading states
-async function NFTGalleryWrapper() {
-  const nfts = await fetchNFTs(nftConfigs, 4); // Load first 4 NFTs with priority
-  return <NFTGallery nfts={nfts} />;
-}
-
 export default function ArtPage() {
   return (
     <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
@@ -63,7 +57,7 @@ export default function ArtPage() {
           </div>
         </div>
         <Suspense fallback={<NFTGallerySkeleton />}>
-          <NFTGalleryWrapper />
+          <NFTGalleryClient nftConfigs={nftConfigs} />
         </Suspense>
       </div>
       <div className="flex justify-center mt-16 mb-12">
