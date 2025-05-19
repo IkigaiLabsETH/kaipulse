@@ -23,10 +23,16 @@ interface BtcOutperformer {
 }
 
 const DEFAULT_TICKERS: Price[] = [
+  { symbol: 'BTC.D', tradingViewSymbol: 'CRYPTOCAP:BTC.D', exchange: 'CRYPTOCAP', color: 'text-yellow-500' },
+  { symbol: 'TOTAL2', tradingViewSymbol: 'CRYPTOCAP:TOTAL2', exchange: 'CRYPTOCAP', color: 'text-yellow-500' },
+  { symbol: 'TOTAL3', tradingViewSymbol: 'CRYPTOCAP:TOTAL3', exchange: 'CRYPTOCAP', color: 'text-yellow-500' },
+  { symbol: 'OTHERS.D', tradingViewSymbol: 'CRYPTOCAP:OTHERS.D', exchange: 'CRYPTOCAP', color: 'text-yellow-500' },
   { symbol: 'ETH', tradingViewSymbol: 'BINANCE:ETHBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
-  { symbol: 'SOL', tradingViewSymbol: 'BINANCE:SOLBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
   { symbol: 'SUI', tradingViewSymbol: 'BINANCE:SUIBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
-  { symbol: 'HYPE', tradingViewSymbol: 'BINANCE:HYPEBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'SOL', tradingViewSymbol: 'BINANCE:SOLBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'AAVE', tradingViewSymbol: 'BINANCE:AAVEBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'STX', tradingViewSymbol: 'BINANCE:STXBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'DOGE', tradingViewSymbol: 'BINANCE:DOGEBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
@@ -67,14 +73,6 @@ export default function PriceTicker() {
       return;
     }
     setSelectedSymbol(symbol);
-  };
-
-  // Helper to get the correct TradingView symbol
-  const getTradingViewSymbol = (symbol: string) => {
-    if (symbol === 'HYPE') {
-      return 'GATEIO:HYPEUSDT'; // fallback to USDT if BTC pair is not available
-    }
-    return `BINANCE:${symbol}BTC`;
   };
 
   if (loading) {
@@ -126,7 +124,7 @@ export default function PriceTicker() {
         <div className="w-full h-[400px] bg-black">
           <iframe
             key={selectedSymbol}
-            src={`https://s.tradingview.com/widgetembed/?frameElementId=tradingview_${selectedSymbol}&symbol=${getTradingViewSymbol(selectedSymbol)}&interval=4H&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=exchange&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%22header_widget%22%5D&locale=en&utm_source=www.tradingview.com&utm_medium=widget_new&utm_campaign=chart&utm_term=${getTradingViewSymbol(selectedSymbol)}`}
+            src={`https://s.tradingview.com/widgetembed/?frameElementId=tradingview_${selectedSymbol}&symbol=${tickers.find(t => t.symbol === selectedSymbol)?.tradingViewSymbol}&interval=4H&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=exchange&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%22header_widget%22%5D&locale=en&utm_source=www.tradingview.com&utm_medium=widget_new&utm_campaign=chart&utm_term=${tickers.find(t => t.symbol === selectedSymbol)?.tradingViewSymbol}`}
             style={{
               width: '100%',
               height: '100%',
