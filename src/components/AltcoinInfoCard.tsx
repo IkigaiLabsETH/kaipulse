@@ -19,13 +19,6 @@ interface CoinGeckoCoinData {
     price_change_percentage_30d_in_currency?: { usd?: number };
     price_change_percentage_1y_in_currency?: { usd?: number };
   };
-  developer_data?: {
-    stars?: number;
-    forks?: number;
-    subscribers?: number;
-    total_issues?: number;
-    pull_requests_merged?: number;
-  };
   liquidity_score?: number;
   tickers?: { trust_score?: string }[];
 }
@@ -134,31 +127,6 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
             </span>
           </div>
         </div>
-        {/* Developer data */}
-        {data.developer_data && (
-          <div className="flex flex-col gap-1 w-full mt-2">
-            <div className="flex justify-between w-full text-xs text-white/60">
-              <span>Stars</span>
-              <span className="text-white/90">{data.developer_data.stars ?? 'N/A'}</span>
-            </div>
-            <div className="flex justify-between w-full text-xs text-white/60">
-              <span>Forks</span>
-              <span className="text-white/90">{data.developer_data.forks ?? 'N/A'}</span>
-            </div>
-            <div className="flex justify-between w-full text-xs text-white/60">
-              <span>Subscribers</span>
-              <span className="text-white/90">{data.developer_data.subscribers ?? 'N/A'}</span>
-            </div>
-            <div className="flex justify-between w-full text-xs text-white/60">
-              <span>Issues</span>
-              <span className="text-white/90">{data.developer_data.total_issues ?? 'N/A'}</span>
-            </div>
-            <div className="flex justify-between w-full text-xs text-white/60">
-              <span>Pull Requests</span>
-              <span className="text-white/90">{data.developer_data.pull_requests_merged ?? 'N/A'}</span>
-            </div>
-          </div>
-        )}
         {/* Liquidity/Trust score */}
         {(typeof data.liquidity_score === 'number' || typeof data.tickers?.[0]?.trust_score === 'string') && (
           <div className="flex flex-col gap-1 w-full mt-2">
