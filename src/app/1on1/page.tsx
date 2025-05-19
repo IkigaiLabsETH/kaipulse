@@ -1,11 +1,13 @@
+import { fetchNFTs } from '@/lib/nft';
+import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { oneononeNFTs } from '@/config/one-on-one';
-import { Suspense } from 'react';
-import { NFTGallerySkeleton } from '@/components/NFTGallerySkeleton';
-import { NFTGalleryClient } from '@/components/NFTGalleryClient';
 
-// Remove revalidation since we're using client-side fetching
+// Force dynamic rendering to prevent build timeouts
 export const dynamic = 'force-dynamic';
+
+// Increase revalidation time to reduce build load
+export const revalidate = 86400; // 24 hours
 
 export const metadata: Metadata = {
   title: 'One-on-One Collection | Digital Art Gallery',
@@ -33,7 +35,9 @@ const structuredData = {
 // Use all one-on-one NFTs
 const nftConfigs = oneononeNFTs;
 
-export default function OneOnOnePage() {
+export default async function OneOnOnePage() {
+  const nfts = await fetchNFTs(nftConfigs);
+
   return (
     <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
       <script
@@ -55,9 +59,7 @@ export default function OneOnOnePage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <Suspense fallback={<NFTGallerySkeleton />}>
-          <NFTGalleryClient nftConfigs={nftConfigs} />
-        </Suspense>
+        <NFTGallery nfts={nfts} />
       </div>
     </div>
   );
