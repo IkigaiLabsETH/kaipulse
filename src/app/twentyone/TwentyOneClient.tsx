@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, Bitcoin, ChevronRight, DollarSign, TrendingUp } from 'lucide-react'
-import { Card } from "@/components/ui/card"
 import { useEffect, useState } from 'react'
 
 // Animated Bitcoin component
@@ -167,7 +166,7 @@ export default function TwentyOneClient() {
             >
               <h2 className="text-3xl md:text-4xl font-bold">Our Strategy</h2>
               <p className="text-gray-300 text-lg">
-                We believe in Bitcoin's long-term value proposition and are committed to holding our Bitcoin treasury for the long term. Our strategy focuses on:
+                We believe in Bitcoin&apos;s long-term value proposition and are committed to holding our Bitcoin treasury for the long term. Our strategy focuses on:
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
