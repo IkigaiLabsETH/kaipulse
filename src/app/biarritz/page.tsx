@@ -68,6 +68,16 @@ export default function BiarritzPage() {
             Welcome to Bilbao! Get ready to be wowed by this vibrant city where art meets luxury. We&apos;ve got you staying at The Artist Grand Hotel (hello, Guggenheim views!) and dining at the mind-blowing three-Michelin-starred Azurmendi.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bilbao/the-artist-grand-hotel-of-art-1271" target="_blank" className="w-full sm:w-auto">
+              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                The Artist Grand Hotel
+              </Button>
+            </Link>
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bilbao/radisson-collection-bilbao-12670" target="_blank" className="w-full sm:w-auto">
+              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                Radisson Collection Bilbao
+              </Button>
+            </Link>
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/getxo/palacio-arriluce-hotel-14058" target="_blank" className="w-full sm:w-auto">
               <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
                 Palacio Arriluce Hotel
