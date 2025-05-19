@@ -1,5 +1,6 @@
 import { openSeaService } from '@/services/opensea';
 import { logger } from './logger';
+import { cache } from 'react';
 
 export interface NFT {
   name: string;
@@ -17,90 +18,37 @@ interface NFTConfig {
   priority?: number;
 }
 
-export async function fetchNFTs(configs: NFTConfig[]): Promise<NFT[]> {
+// Create a cached version of the fetch function
+export const fetchNFTs = cache(async (configs: NFTConfig[], priorityCount: number = 4): Promise<NFT[]> => {
   try {
     // Sort NFTs by priority if specified
     const sortedConfigs = [...configs].sort((a, b) => 
       (a.priority || Infinity) - (b.priority || Infinity)
     );
 
-    // Fetch NFTs in smaller batches to prevent timeout
-    const batchSize = 5;
-    const nfts: (NFT | null)[] = [];
-    
-    for (let i = 0; i < sortedConfigs.length; i += batchSize) {
-      const batch = sortedConfigs.slice(i, i + batchSize);
-      const batchResults = await Promise.all(
-        batch.map(async ({ contract, tokenId, title }) => {
-          const maxRetries = 3;
-          let retryCount = 0;
-          let lastError: Error | null = null;
+    // Split configs into priority and non-priority
+    const priorityConfigs = sortedConfigs.slice(0, priorityCount);
+    const remainingConfigs = sortedConfigs.slice(priorityCount);
 
-          while (retryCount < maxRetries) {
-            try {
-              // Add exponential backoff between retries
-              if (retryCount > 0) {
-                await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 1000));
-              }
+    // Fetch priority NFTs first
+    const priorityNFTs = await Promise.all(
+      priorityConfigs.map(async ({ contract, tokenId, title }) => {
+        const nft = await fetchSingleNFT(contract, tokenId, title);
+        return nft;
+      })
+    );
 
-              const nft = await openSeaService.nft.getNFT({
-                address: contract,
-                tokenId,
-                chain: 'ethereum'
-              });
+    // Start fetching remaining NFTs in the background
+    const remainingNFTsPromise = fetchRemainingNFTs(remainingConfigs);
 
-              if (!nft) {
-                logger.warn(`NFT not found: ${contract}/${tokenId}`);
-                return null;
-              }
+    // Return priority NFTs immediately
+    const validPriorityNFTs = priorityNFTs.filter((nft): nft is NFT => nft !== null);
 
-              if (!nft.image_url) {
-                logger.warn(`NFT missing image_url: ${contract}/${tokenId}`);
-                return null;
-              }
+    // Wait for remaining NFTs in the background
+    const remainingNFTs = await remainingNFTsPromise;
+    const validRemainingNFTs = remainingNFTs.filter((nft): nft is NFT => nft !== null);
 
-              return {
-                name: title || nft.name || 'Untitled',
-                description: nft.description || '',
-                image_url: nft.image_url,
-                contract_address: contract,
-                token_id: tokenId,
-                blurhash: nft.blurhash || undefined,
-              };
-            } catch (error) {
-              lastError = error instanceof Error ? error : new Error(String(error));
-              retryCount++;
-              if (retryCount === maxRetries) {
-                logger.error(`Failed to fetch NFT after ${maxRetries} attempts: ${contract}/${tokenId}`, {
-                  error: lastError.message,
-                  stack: lastError.stack
-                });
-                return null;
-              }
-            }
-          }
-          return null;
-        })
-      );
-      
-      nfts.push(...batchResults);
-    }
-
-    // Filter out failed fetches and null values
-    const validNFTs = nfts.filter((nft): nft is NFT => nft !== null);
-
-    if (validNFTs.length === 0) {
-      logger.error('No valid NFTs found after fetching', {
-        totalAttempted: sortedConfigs.length,
-        failedNFTs: sortedConfigs.filter((_, i) => nfts[i] === null).map(nft => ({
-          contract: nft.contract,
-          tokenId: nft.tokenId
-        }))
-      });
-      return [];
-    }
-
-    return validNFTs;
+    return [...validPriorityNFTs, ...validRemainingNFTs];
   } catch (error) {
     logger.error('Error fetching NFTs:', {
       error: error instanceof Error ? error.message : String(error),
@@ -108,4 +56,67 @@ export async function fetchNFTs(configs: NFTConfig[]): Promise<NFT[]> {
     });
     return [];
   }
+});
+
+// Helper function to fetch a single NFT
+async function fetchSingleNFT(contract: string, tokenId: string, title?: string): Promise<NFT | null> {
+  const maxRetries = 2;
+  let retryCount = 0;
+  let lastError: Error | null = null;
+
+  while (retryCount < maxRetries) {
+    try {
+      if (retryCount > 0) {
+        await new Promise(resolve => setTimeout(resolve, Math.pow(2, retryCount) * 500));
+      }
+
+      const nft = await openSeaService.nft.getNFT({
+        address: contract,
+        tokenId,
+        chain: 'ethereum'
+      });
+
+      if (!nft || !nft.image_url) {
+        return null;
+      }
+
+      return {
+        name: title || nft.name || 'Untitled',
+        description: nft.description || '',
+        image_url: nft.image_url,
+        contract_address: contract,
+        token_id: tokenId,
+        blurhash: nft.blurhash || undefined,
+      };
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      retryCount++;
+      if (retryCount === maxRetries) {
+        logger.error(`Failed to fetch NFT after ${maxRetries} attempts: ${contract}/${tokenId}`, {
+          error: lastError.message,
+          stack: lastError.stack
+        });
+        return null;
+      }
+    }
+  }
+  return null;
+}
+
+// Helper function to fetch remaining NFTs in batches
+async function fetchRemainingNFTs(configs: NFTConfig[]): Promise<(NFT | null)[]> {
+  const batchSize = 10;
+  const nfts: (NFT | null)[] = [];
+  
+  for (let i = 0; i < configs.length; i += batchSize) {
+    const batch = configs.slice(i, i + batchSize);
+    const batchResults = await Promise.all(
+      batch.map(({ contract, tokenId, title }) => 
+        fetchSingleNFT(contract, tokenId, title)
+      )
+    );
+    nfts.push(...batchResults);
+  }
+  
+  return nfts;
 } 
