@@ -12,6 +12,7 @@ import TrendingAltcoins from './TrendingAltcoins';
 import TopGainers from './TopGainers';
 import TopLosers from './TopLosers';
 import BtcRelativePerformance from './BtcRelativePerformance';
+import GlobalMarketDashboardCard from '@/components/GlobalMarketDashboardCard';
 
 interface AltcoinData {
   [key: string]: {
@@ -103,6 +104,8 @@ export default function CryptoPage() {
               {lastUpdated && `Last updated: ${lastUpdated}`}
             </div>
           </div>
+
+          <GlobalMarketDashboardCard />
 
           {error && (
             <div className="bg-red-500/10 border border-red-500 rounded-lg p-4 mb-4 text-red-500">
