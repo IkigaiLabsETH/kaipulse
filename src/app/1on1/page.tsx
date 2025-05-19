@@ -1,4 +1,3 @@
-import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { oneononeNFTs } from '@/config/one-on-one';
 import { Suspense } from 'react';
