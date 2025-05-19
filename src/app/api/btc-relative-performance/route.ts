@@ -63,7 +63,13 @@ export async function GET() {
     cache = { data: sorted, timestamp: Date.now() };
     return NextResponse.json(sorted);
   } catch (error) {
-    console.error('Error fetching BTC relative performance:', error);
-    return NextResponse.json({ error: 'Failed to fetch BTC relative performance' }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    return NextResponse.json(
+      { 
+        error: 'Failed to fetch BTC relative performance',
+        details: errorMessage 
+      }, 
+      { status: 500 }
+    );
   }
 } 
