@@ -14,6 +14,9 @@ interface NFTGalleryClientProps {
   }>;
 }
 
+// Simple in-memory cache for client-side
+const clientCache = new Map<string, NFT[]>();
+
 export function NFTGalleryClient({ nftConfigs }: NFTGalleryClientProps) {
   const [nfts, setNfts] = useState<NFT[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,9 +26,23 @@ export function NFTGalleryClient({ nftConfigs }: NFTGalleryClientProps) {
 
     async function loadNFTs() {
       try {
+        // Create a cache key from the configs
+        const cacheKey = JSON.stringify(nftConfigs);
+        
+        // Check if we have cached data
+        if (clientCache.has(cacheKey)) {
+          if (mounted) {
+            setNfts(clientCache.get(cacheKey)!);
+            setIsLoading(false);
+          }
+          return;
+        }
+
         const fetchedNFTs = await fetchNFTs(nftConfigs, 4);
         if (mounted) {
           setNfts(fetchedNFTs);
+          // Cache the results
+          clientCache.set(cacheKey, fetchedNFTs);
           setIsLoading(false);
         }
       } catch {

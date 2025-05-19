@@ -1,6 +1,5 @@
 import { openSeaService } from '@/services/opensea';
 import { logger } from './logger';
-import { cache } from 'react';
 
 export interface NFT {
   name: string;
@@ -18,8 +17,8 @@ interface NFTConfig {
   priority?: number;
 }
 
-// Create a cached version of the fetch function
-export const fetchNFTs = cache(async (configs: NFTConfig[], priorityCount: number = 4): Promise<NFT[]> => {
+// Fetch NFTs without React cache
+export async function fetchNFTs(configs: NFTConfig[], priorityCount: number = 4): Promise<NFT[]> {
   try {
     // Sort NFTs by priority if specified
     const sortedConfigs = [...configs].sort((a, b) => 
@@ -56,7 +55,7 @@ export const fetchNFTs = cache(async (configs: NFTConfig[], priorityCount: numbe
     });
     return [];
   }
-});
+}
 
 // Helper function to fetch a single NFT
 async function fetchSingleNFT(contract: string, tokenId: string, title?: string): Promise<NFT | null> {

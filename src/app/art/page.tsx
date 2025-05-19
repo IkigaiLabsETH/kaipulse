@@ -1,9 +1,6 @@
-import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { featuredNFTs } from '@/config/featured-nfts';
-import { Suspense } from 'react';
-import { NFTGallerySkeleton } from '@/components/NFTGallerySkeleton';
-import { NFTGalleryClient } from '@/components/NFTGalleryClient';
+import { ArtGalleryWrapper } from '@/components/ArtGalleryWrapper';
 
 // Remove revalidation since we're using client-side fetching
 export const dynamic = 'force-dynamic';
@@ -56,9 +53,7 @@ export default function ArtPage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <Suspense fallback={<NFTGallerySkeleton />}>
-          <NFTGalleryClient nftConfigs={nftConfigs} />
-        </Suspense>
+        <ArtGalleryWrapper nftConfigs={nftConfigs} />
       </div>
       <div className="flex justify-center mt-16 mb-12">
         <a
