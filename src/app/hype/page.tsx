@@ -53,6 +53,47 @@ export default function HyperliquidHonestTake() {
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
       </div>
       <Header />
+      
+      {/* HyBridge Integration */}
+      <section className="max-w-screen-2xl mx-auto pt-20 pb-14 px-4 relative z-10">
+        <div className="text-center mb-12">
+          <Badge className="bg-yellow-500 text-black text-sm mb-6 font-satoshi tracking-wide shadow-md">Bridge Integration</Badge>
+          <h1 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-6 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+            Bridge to Hyperliquid
+          </h1>
+          <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug max-w-2xl mx-auto">
+            Seamlessly bridge your assets to Hyperliquid using our native bridge integration. Fast, secure, and fully onchain.
+          </p>
+        </div>
+        
+        <div className="flex justify-center">
+          <div className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20 w-full max-w-4xl">
+            <iframe
+              src="https://v2.hybridge.xyz/?widget=1
+                   &referralFee=0.01
+                   &referralAddress=0x7B8B70e1C57F9dD0FE5eb2Fa84CCE710c21D0164
+                   &primary=%23F7B500
+                   &text-colour=%23FFFFFF
+                   &border-radius=16px
+                   &paper-bg=%2318191C
+                   &border-width=1px
+                   &border-colour=%23F7B500
+                   &input-bg=%230A0A0A
+                   &font-family=epilogue"
+              width="100%"
+              height="600"
+              style={{ border: 'none', overflow: 'hidden' }}
+              scrolling="no"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      <div className="w-full flex justify-center mb-24">
+        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+      </div>
+
       <section className="max-w-screen-lg mx-auto pt-32 pb-14 px-4 text-center relative z-10">
         <Badge className="bg-yellow-500 text-black text-sm mb-6 font-satoshi tracking-wide shadow-md">Builder&apos;s Honest Take</Badge>
         <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 mb-8 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
