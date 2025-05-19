@@ -1,10 +1,16 @@
 import { Metadata } from 'next';
 import { fetchNFTs } from '@/lib/nft';
-import { NFTGallery } from '../../../components/NFTGallery';
+import { NFTGallery } from '@/components/NFTGallery';
+import { featuredNFTs } from '@/config/featured-nfts-2';
 
 export const metadata: Metadata = {
-  title: 'Explore NFTs | Art Gallery',
-  description: 'Discover a curated collection of unique NFTs from various artists and collections.',
+  title: 'Explore Collection | Digital Art Gallery',
+  description: 'Explore our complete collection of exceptional digital artworks showcasing unique pieces from our featured collection.',
+  openGraph: {
+    title: 'Explore Collection | Digital Art Gallery',
+    description: 'Explore our complete collection of exceptional digital artworks showcasing unique pieces from our featured collection.',
+    type: 'website',
+  },
 };
 
 // Increase revalidation time to reduce build load
@@ -14,38 +20,44 @@ export const revalidate = 86400; // 24 hours
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'NFT Art Gallery',
-  description: 'Explore our curated collection of unique NFTs from various artists and collections.',
-  url: 'https://yourdomain.com/art/explore',
+  name: 'Explore Collection',
+  description: 'Explore our complete collection of exceptional digital artworks',
+  about: {
+    '@type': 'Thing',
+    name: 'Digital Art',
+    description: 'A collection of unique digital artworks'
+  }
 };
 
-// Split NFT configs into smaller chunks for better build performance
-const nftConfigs = [
-  // First batch - high priority NFTs
-  {
-    contract: "0x4e1f41613c9084fdb9e34e11fae9412427480e56",
-    tokenId: "8246",
-    priority: 1
-  },
-  {
-    contract: "0x2559bf029b4981c0701149ac7fde65170c82b449",
-    tokenId: "5",
-    priority: 2
-  },
-  // ... rest of your NFT configs with priorities
-].slice(0, 10); // Limit initial build to 10 NFTs
+// Use all featured NFTs
+const nftConfigs = featuredNFTs;
 
 export default async function ExplorePage() {
   const nfts = await fetchNFTs(nftConfigs);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <h1 className="text-4xl font-bold mb-8">Explore NFTs</h1>
-      <NFTGallery nfts={nfts} />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      <div className="max-w-[1920px] mx-auto">
+        <div className="mb-16 relative z-10 text-center">
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Art • Explore</p>
+          <h1 className="text-center">
+            <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+              Explore Collection
+            </span>
+          </h1>
+          <div className="flex items-center justify-center mt-6">
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Explore our complete collection of exceptional digital artworks</p>
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+          </div>
+        </div>
+        <NFTGallery nfts={nfts} />
+      </div>
     </div>
   );
 } 

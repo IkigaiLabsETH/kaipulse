@@ -29,8 +29,8 @@ const structuredData = {
   }
 };
 
-// Limit initial build to 5 NFTs
-const nftConfigs = oneononeNFTs.slice(0, 5);
+// Use all one-on-one NFTs
+const nftConfigs = oneononeNFTs;
 
 export default async function OneOnOnePage() {
   const nfts = await fetchNFTs(nftConfigs);

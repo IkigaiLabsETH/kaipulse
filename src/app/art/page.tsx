@@ -29,8 +29,8 @@ const structuredData = {
   }
 };
 
-// Limit initial build to 5 NFTs
-const nftConfigs = featuredNFTs.slice(0, 5);
+// Use all featured NFTs
+const nftConfigs = featuredNFTs;
 
 export default async function ArtPage() {
   const nfts = await fetchNFTs(nftConfigs);
