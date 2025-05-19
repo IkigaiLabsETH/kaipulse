@@ -108,10 +108,11 @@ export default function CryptoPage() {
 
           <GlobalMarketDashboardCard />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <AltcoinInfoCard id="solana" />
             <AltcoinInfoCard id="sui" />
             <AltcoinInfoCard id="aave" />
+            <AltcoinInfoCard id="dogecoin" />
           </div>
 
           {error && (

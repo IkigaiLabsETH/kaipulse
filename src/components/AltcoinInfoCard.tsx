@@ -38,6 +38,7 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
   const [data, setData] = useState<CoinGeckoCoinData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [retry, setRetry] = useState(0);
 
   useEffect(() => {
     let url = '';
@@ -58,7 +59,7 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
         setError('Failed to load altcoin data');
         setLoading(false);
       });
-  }, [id, platform, contract]);
+  }, [id, platform, contract, retry]);
 
   if (loading) {
     return <Card className="bg-[#1c1f26] border-2 border-yellow-500"><CardContent className="p-4 text-yellow-500">Loading...</CardContent></Card>;
@@ -66,7 +67,23 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
   // Type guard for error response
   const isError = (d: unknown): d is { error: string } => typeof d === 'object' && d !== null && 'error' in d;
   if (error || (data && isError(data))) {
-    return <Card className="bg-[#1c1f26] border-2 border-red-500"><CardContent className="p-4 text-red-500">{error || (isError(data) ? data.error : undefined)}</CardContent></Card>;
+    let msg = error || (isError(data) ? data.error : undefined);
+    if (typeof msg === 'string' && msg.toLowerCase().includes('rate limit')) {
+      msg = 'API rate limit reached. Please wait a minute and try again.';
+    }
+    return (
+      <Card className="bg-[#1c1f26] border-2 border-red-500">
+        <CardContent className="p-4 text-red-500 flex flex-col items-center gap-2">
+          <span>{msg}</span>
+          <button
+            className="mt-2 px-3 py-1 bg-yellow-500 text-black rounded hover:bg-yellow-400 font-semibold text-xs"
+            onClick={() => setRetry(r => r + 1)}
+          >
+            Retry
+          </button>
+        </CardContent>
+      </Card>
+    );
   }
   if (!data) return null;
 
