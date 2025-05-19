@@ -55,9 +55,15 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
   }, [id, platform, contract, retry]);
 
   if (loading) {
-    return <Card className="bg-[#1c1f26] border-2 border-yellow-500"><CardContent className="p-4 text-yellow-500">Loading...</CardContent></Card>;
+    return (
+      <Card className="bg-[#1c1f26] border-2 border-yellow-500">
+        <CardContent className="p-3 sm:p-4 text-yellow-500 text-sm sm:text-base">
+          Loading...
+        </CardContent>
+      </Card>
+    );
   }
-  // Type guard for error response
+
   const isError = (d: unknown): d is { error: string } => typeof d === 'object' && d !== null && 'error' in d;
   if (error || (data && isError(data))) {
     let msg = error || (isError(data) ? data.error : undefined);
@@ -66,10 +72,10 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
     }
     return (
       <Card className="bg-[#1c1f26] border-2 border-red-500">
-        <CardContent className="p-4 text-red-500 flex flex-col items-center gap-2">
-          <span>{msg}</span>
+        <CardContent className="p-3 sm:p-4 text-red-500 flex flex-col items-center gap-2">
+          <span className="text-sm sm:text-base text-center">{msg}</span>
           <button
-            className="mt-2 px-3 py-1 bg-yellow-500 text-black rounded hover:bg-yellow-400 font-semibold text-xs"
+            className="mt-2 px-3 py-1.5 bg-yellow-500 text-black rounded hover:bg-yellow-400 font-semibold text-xs sm:text-sm transition-colors"
             onClick={() => setRetry(r => r + 1)}
           >
             Retry
@@ -81,22 +87,29 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
   if (!data) return null;
 
   return (
-    <Card className="bg-[#1c1f26] border-2 border-yellow-500 max-w-md mx-auto my-4">
-      <CardContent className="p-6 flex flex-col items-center gap-4">
-        <Image
-          src={data.image?.large || data.image?.thumb || '/placeholder.png'}
-          alt={data.name}
-          width={64}
-          height={64}
-          className="w-16 h-16 rounded-full bg-black border border-yellow-500"
-          unoptimized
-        />
-        <h2 className="text-2xl font-bold text-yellow-500">{data.name} <span className="text-white text-lg">({data.symbol?.toUpperCase()})</span></h2>
-        <div className="text-lg text-white font-semibold">Price: ${data.market_data?.current_price?.usd?.toLocaleString() ?? 'N/A'}</div>
-        <div className="text-white/80">Market Cap: ${data.market_data?.market_cap?.usd?.toLocaleString() ?? 'N/A'}</div>
+    <Card className="bg-[#1c1f26] border-2 border-yellow-500 w-full mx-0 sm:max-w-md sm:mx-auto my-3 sm:my-4">
+      <CardContent className="p-4 sm:p-6 flex flex-col items-center gap-3 sm:gap-4">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16">
+          <Image
+            src={data.image?.large || data.image?.thumb || '/placeholder.png'}
+            alt={data.name}
+            fill
+            className="rounded-full bg-black border border-yellow-500 object-cover"
+            unoptimized
+          />
+        </div>
+        <h2 className="text-xl sm:text-2xl font-bold text-yellow-500 text-center">
+          {data.name} <span className="text-white text-base sm:text-lg">({data.symbol?.toUpperCase()})</span>
+        </h2>
+        <div className="text-base sm:text-lg text-white font-semibold">
+          Price: ${data.market_data?.current_price?.usd?.toLocaleString() ?? 'N/A'}
+        </div>
+        <div className="text-sm sm:text-base text-white/80">
+          Market Cap: ${data.market_data?.market_cap?.usd?.toLocaleString() ?? 'N/A'}
+        </div>
         {/* Price changes */}
-        <div className="flex flex-col gap-1 w-full">
-          <div className="flex justify-between w-full text-sm">
+        <div className="flex flex-col gap-1.5 w-full">
+          <div className="flex justify-between w-full text-xs sm:text-sm">
             <span className="text-white/60">7d Change</span>
             <span className={
               typeof data.market_data?.price_change_percentage_7d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_7d_in_currency.usd > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_7d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_7d_in_currency.usd < 0 ? 'text-red-500' : 'text-white/80'
@@ -106,7 +119,7 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
                 : 'N/A'}
             </span>
           </div>
-          <div className="flex justify-between w-full text-sm">
+          <div className="flex justify-between w-full text-xs sm:text-sm">
             <span className="text-white/60">30d Change</span>
             <span className={
               typeof data.market_data?.price_change_percentage_30d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_30d_in_currency.usd > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_30d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_30d_in_currency.usd < 0 ? 'text-red-500' : 'text-white/80'
@@ -116,7 +129,7 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
                 : 'N/A'}
             </span>
           </div>
-          <div className="flex justify-between w-full text-sm">
+          <div className="flex justify-between w-full text-xs sm:text-sm">
             <span className="text-white/60">1y Change</span>
             <span className={
               typeof data.market_data?.price_change_percentage_1y_in_currency?.usd === 'number' && data.market_data.price_change_percentage_1y_in_currency.usd > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_1y_in_currency?.usd === 'number' && data.market_data.price_change_percentage_1y_in_currency.usd < 0 ? 'text-red-500' : 'text-white/80'
@@ -129,15 +142,15 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
         </div>
         {/* Liquidity/Trust score */}
         {(typeof data.liquidity_score === 'number' || typeof data.tickers?.[0]?.trust_score === 'string') && (
-          <div className="flex flex-col gap-1 w-full mt-2">
+          <div className="flex flex-col gap-1.5 w-full mt-1 sm:mt-2">
             {typeof data.liquidity_score === 'number' && (
-              <div className="flex justify-between w-full text-xs text-white/60">
+              <div className="flex justify-between w-full text-[10px] sm:text-xs text-white/60">
                 <span>Liquidity Score</span>
                 <span className="text-white/90">{data.liquidity_score.toFixed(2)}</span>
               </div>
             )}
             {typeof data.tickers?.[0]?.trust_score === 'string' && (
-              <div className="flex justify-between w-full text-xs text-white/60">
+              <div className="flex justify-between w-full text-[10px] sm:text-xs text-white/60">
                 <span>Trust Score</span>
                 <span className="text-white/90">{data.tickers[0].trust_score}</span>
               </div>

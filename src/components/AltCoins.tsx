@@ -86,7 +86,7 @@ export default function PriceTicker() {
   }
 
   return (
-    <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+    <Card className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mt-24 sm:mt-0">
       <CardContent className="p-0">
         {/* Chart Header */}
         <div className="flex items-center justify-between border-b border-yellow-500/20 px-4">

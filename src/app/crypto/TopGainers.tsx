@@ -37,19 +37,36 @@ export default function TopGainers() {
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
   return (
-    <div className="my-8 sm:my-12">
-      <h2 className="text-2xl sm:text-3xl font-bold text-yellow-500 mb-6 sm:mb-8 text-center font-epilogue tracking-tight">UP ONLY (24h)</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+    <div className="my-4 sm:my-8">
+      <h2 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6 text-center font-epilogue tracking-tight">
+        UP ONLY (24h)
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         {coins.map((coin) => (
           <div
             key={coin.id}
-            className="bg-[#18191c] border-[2px] sm:border-[3px] border-[#F7B500] shadow-[3px_3px_0px_0px_#F7B500] sm:shadow-[5px_5px_0px_0px_#F7B500] flex flex-col items-center p-4 sm:p-6 hover:scale-105 transition-transform duration-200"
+            className="bg-[#18191c] border-[2px] sm:border-[3px] border-[#F7B500] shadow-[3px_3px_0px_0px_#F7B500] sm:shadow-[5px_5px_0px_0px_#F7B500] flex flex-col items-center p-3 sm:p-4 hover:scale-[1.02] transition-transform duration-200 rounded-lg"
           >
-            <Image src={coin.image} alt={coin.name} width={48} height={48} className="w-12 h-12 sm:w-14 sm:h-14 mb-2 sm:mb-3 rounded-full border border-yellow-500 bg-black" />
-            <div className="text-yellow-500 font-bold text-base sm:text-lg mb-1 font-epilogue">{coin.name}</div>
-            <div className="text-white/80 text-sm sm:text-base mb-1 font-satoshi">{coin.symbol}</div>
-            <div className="text-xs text-white/50 font-satoshi mb-1">Rank: {coin.market_cap_rank ?? "-"}</div>
-            <div className="text-green-500 font-bold text-sm sm:text-base font-satoshi">+{coin.price_change_percentage_24h.toFixed(2)}%</div>
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 mb-2 sm:mb-3">
+              <Image 
+                src={coin.image} 
+                alt={coin.name} 
+                fill
+                className="rounded-full border border-yellow-500 bg-black object-cover" 
+              />
+            </div>
+            <div className="text-yellow-500 font-bold text-sm sm:text-base mb-1 font-epilogue">
+              {coin.name}
+            </div>
+            <div className="text-white/80 text-xs sm:text-sm mb-1 font-satoshi">
+              {coin.symbol}
+            </div>
+            <div className="text-[10px] sm:text-xs text-white/50 font-satoshi mb-1">
+              Rank: {coin.market_cap_rank ?? "-"}
+            </div>
+            <div className="text-green-500 font-bold text-xs sm:text-sm font-satoshi">
+              +{coin.price_change_percentage_24h.toFixed(2)}%
+            </div>
           </div>
         ))}
       </div>
