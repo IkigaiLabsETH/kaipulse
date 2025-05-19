@@ -1,9 +1,13 @@
+import { fetchNFTs } from '@/lib/nft';
+import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { featuredNFTs } from '@/config/featured-nfts';
-import { ArtGalleryWrapper } from '@/components/ArtGalleryWrapper';
 
-// Remove revalidation since we're using client-side fetching
+// Force dynamic rendering to prevent build timeouts
 export const dynamic = 'force-dynamic';
+
+// Increase revalidation time to reduce build load
+export const revalidate = 86400; // 24 hours
 
 export const metadata: Metadata = {
   title: 'Featured Collection | Digital Art Gallery',
@@ -31,7 +35,9 @@ const structuredData = {
 // Use all featured NFTs
 const nftConfigs = featuredNFTs;
 
-export default function ArtPage() {
+export default async function ArtPage() {
+  const nfts = await fetchNFTs(nftConfigs);
+
   return (
     <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
       <script
@@ -53,7 +59,7 @@ export default function ArtPage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <ArtGalleryWrapper nftConfigs={nftConfigs} />
+        <NFTGallery nfts={nfts} />
       </div>
       <div className="flex justify-center mt-16 mb-12">
         <a
