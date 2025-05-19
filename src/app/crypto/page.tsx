@@ -13,6 +13,7 @@ import TopGainers from './TopGainers';
 import TopLosers from './TopLosers';
 import BtcRelativePerformance from './BtcRelativePerformance';
 import GlobalMarketDashboardCard from '@/components/GlobalMarketDashboardCard';
+import AltcoinInfoCard from '@/components/AltcoinInfoCard';
 
 interface AltcoinData {
   [key: string]: {
@@ -106,6 +107,12 @@ export default function CryptoPage() {
           </div>
 
           <GlobalMarketDashboardCard />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <AltcoinInfoCard id="solana" />
+            <AltcoinInfoCard id="sui" />
+            <AltcoinInfoCard id="aave" />
+          </div>
 
           {error && (
             <div className="bg-red-500/10 border border-red-500 rounded-lg p-4 mb-4 text-red-500">
