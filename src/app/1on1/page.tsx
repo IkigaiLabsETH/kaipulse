@@ -3,6 +3,9 @@ import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { oneononeNFTs } from '@/config/one-on-one';
 
+// Force dynamic rendering to prevent build timeouts
+export const dynamic = 'force-dynamic';
+
 // Increase revalidation time to reduce build load
 export const revalidate = 86400; // 24 hours
 

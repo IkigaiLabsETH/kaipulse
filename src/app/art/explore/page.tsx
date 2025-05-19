@@ -3,6 +3,9 @@ import { fetchNFTs } from '@/lib/nft';
 import { NFTGallery } from '@/components/NFTGallery';
 import { featuredNFTs } from '@/config/featured-nfts-2';
 
+// Force dynamic rendering to prevent build timeouts
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Explore Collection | Digital Art Gallery',
   description: 'Explore our complete collection of exceptional digital artworks showcasing unique pieces from our featured collection.',

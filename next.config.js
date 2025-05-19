@@ -116,6 +116,10 @@ const nextConfig = {
     minimumCacheTTL: 3600,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: [
+      'highlight-creator-assets.highlight.xyz',
+      // add other domains as needed
+    ],
   },
   typescript: {
     // Enable type checking during build
