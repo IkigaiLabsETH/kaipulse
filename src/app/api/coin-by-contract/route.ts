@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Missing required query params: id, platform, contract' }, { status: 400 });
   }
 
-  const url = `https://api.coingecko.com/api/v3/coins/${id}/contract/${contract}`;
+  const url = `https://api.coingecko.com/api/v3/coins/${id}/contract/${contract}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false&vs_currencies=usd,btc`;
 
   try {
     const response = await fetch(url, {

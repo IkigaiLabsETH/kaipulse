@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   if (!id) {
     return NextResponse.json({ error: 'Missing required query param: id' }, { status: 400 });
   }
-  const url = `https://api.coingecko.com/api/v3/coins/${id}`;
+  const url = `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false&vs_currencies=usd,btc`;
   try {
     const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
     if (!response.ok) {

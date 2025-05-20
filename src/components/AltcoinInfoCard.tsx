@@ -13,11 +13,23 @@ interface CoinGeckoCoinData {
   symbol: string;
   image?: { large?: string; thumb?: string };
   market_data?: {
-    current_price?: { usd?: number };
+    current_price?: { 
+      usd?: number;
+      btc?: number;
+    };
     market_cap?: { usd?: number };
-    price_change_percentage_7d_in_currency?: { usd?: number };
-    price_change_percentage_30d_in_currency?: { usd?: number };
-    price_change_percentage_1y_in_currency?: { usd?: number };
+    price_change_percentage_7d_in_currency?: { 
+      usd?: number;
+      btc?: number;
+    };
+    price_change_percentage_30d_in_currency?: { 
+      usd?: number;
+      btc?: number;
+    };
+    price_change_percentage_1y_in_currency?: { 
+      usd?: number;
+      btc?: number;
+    };
   };
   liquidity_score?: number;
   tickers?: { trust_score?: string }[];
@@ -105,12 +117,15 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
           Price: ${data.market_data?.current_price?.usd?.toLocaleString() ?? 'N/A'}
         </div>
         <div className="text-sm sm:text-base text-white/80">
+          BTC Price: {data.market_data?.current_price?.btc?.toFixed(8) ?? 'N/A'} BTC
+        </div>
+        <div className="text-sm sm:text-base text-white/80">
           Market Cap: ${data.market_data?.market_cap?.usd?.toLocaleString() ?? 'N/A'}
         </div>
         {/* Price changes */}
         <div className="flex flex-col gap-1.5 w-full">
           <div className="flex justify-between w-full text-xs sm:text-sm">
-            <span className="text-white/60">7d Change</span>
+            <span className="text-white/60">7d Change (USD)</span>
             <span className={
               typeof data.market_data?.price_change_percentage_7d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_7d_in_currency.usd > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_7d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_7d_in_currency.usd < 0 ? 'text-red-500' : 'text-white/80'
             }>
@@ -120,7 +135,17 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
             </span>
           </div>
           <div className="flex justify-between w-full text-xs sm:text-sm">
-            <span className="text-white/60">30d Change</span>
+            <span className="text-white/60">7d Change (BTC)</span>
+            <span className={
+              typeof data.market_data?.price_change_percentage_7d_in_currency?.btc === 'number' && data.market_data.price_change_percentage_7d_in_currency.btc > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_7d_in_currency?.btc === 'number' && data.market_data.price_change_percentage_7d_in_currency.btc < 0 ? 'text-red-500' : 'text-white/80'
+            }>
+              {typeof data.market_data?.price_change_percentage_7d_in_currency?.btc === 'number'
+                ? data.market_data.price_change_percentage_7d_in_currency.btc.toFixed(2) + '%'
+                : 'N/A'}
+            </span>
+          </div>
+          <div className="flex justify-between w-full text-xs sm:text-sm">
+            <span className="text-white/60">30d Change (USD)</span>
             <span className={
               typeof data.market_data?.price_change_percentage_30d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_30d_in_currency.usd > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_30d_in_currency?.usd === 'number' && data.market_data.price_change_percentage_30d_in_currency.usd < 0 ? 'text-red-500' : 'text-white/80'
             }>
@@ -130,12 +155,32 @@ export default function AltcoinInfoCard({ id, platform, contract }: AltcoinInfoC
             </span>
           </div>
           <div className="flex justify-between w-full text-xs sm:text-sm">
-            <span className="text-white/60">1y Change</span>
+            <span className="text-white/60">30d Change (BTC)</span>
+            <span className={
+              typeof data.market_data?.price_change_percentage_30d_in_currency?.btc === 'number' && data.market_data.price_change_percentage_30d_in_currency.btc > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_30d_in_currency?.btc === 'number' && data.market_data.price_change_percentage_30d_in_currency.btc < 0 ? 'text-red-500' : 'text-white/80'
+            }>
+              {typeof data.market_data?.price_change_percentage_30d_in_currency?.btc === 'number'
+                ? data.market_data.price_change_percentage_30d_in_currency.btc.toFixed(2) + '%'
+                : 'N/A'}
+            </span>
+          </div>
+          <div className="flex justify-between w-full text-xs sm:text-sm">
+            <span className="text-white/60">1y Change (USD)</span>
             <span className={
               typeof data.market_data?.price_change_percentage_1y_in_currency?.usd === 'number' && data.market_data.price_change_percentage_1y_in_currency.usd > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_1y_in_currency?.usd === 'number' && data.market_data.price_change_percentage_1y_in_currency.usd < 0 ? 'text-red-500' : 'text-white/80'
             }>
               {typeof data.market_data?.price_change_percentage_1y_in_currency?.usd === 'number'
                 ? data.market_data.price_change_percentage_1y_in_currency.usd.toFixed(2) + '%'
+                : 'N/A'}
+            </span>
+          </div>
+          <div className="flex justify-between w-full text-xs sm:text-sm">
+            <span className="text-white/60">1y Change (BTC)</span>
+            <span className={
+              typeof data.market_data?.price_change_percentage_1y_in_currency?.btc === 'number' && data.market_data.price_change_percentage_1y_in_currency.btc > 0 ? 'text-green-500' : typeof data.market_data?.price_change_percentage_1y_in_currency?.btc === 'number' && data.market_data.price_change_percentage_1y_in_currency.btc < 0 ? 'text-red-500' : 'text-white/80'
+            }>
+              {typeof data.market_data?.price_change_percentage_1y_in_currency?.btc === 'number'
+                ? data.market_data.price_change_percentage_1y_in_currency.btc.toFixed(2) + '%'
                 : 'N/A'}
             </span>
           </div>
