@@ -305,9 +305,117 @@ export default function BiohackingPage() {
                   </AccordionItem>
 
                   <AccordionItem 
+                    title="Nourish Your Way to Longevity: Science-Backed Food Biohacks" 
+                    icon={<Utensils className="h-6 w-6" />}
+                    index={3}
+                  >
+                    <PillarCard>
+                      <p className="mb-4 text-white/90">
+                        A growing body of research confirms that the path to a long, vibrant life isn&apos;t found in a miracle pill or extreme diet—it&apos;s on our plates. What we eat each day can profoundly influence our longevity, gut health, immune resilience, energy levels, and even the radiance of our skin.
+                      </p>
+
+                      <Protocol 
+                        title="Nutrient Synergies for Maximum Benefit"
+                        description={
+                          <div className="space-y-4">
+                            <p>Our bodies thrive not just on individual nutrients but on combinations of foods working together. &quot;Food synergy&quot; means certain nutrients are far more powerful or better absorbed when consumed in tandem:</p>
+                            <ul className="list-disc ml-6 space-y-2 text-white/80">
+                              <li><span className="text-yellow-500">Vitamin C + Iron</span> - Eating iron-rich plant foods with vitamin C-rich foods greatly enhances iron absorption. Vitamin C transforms plant-based iron into a form more easily taken up by the body.</li>
+                              <li><span className="text-yellow-500">Turmeric + Black Pepper</span> - Black pepper contains piperine, which can enhance curcumin absorption by up to 2,000%. Simply adding a pinch of black pepper to your turmeric-spiced dishes unlocks curcumin&apos;s full benefits.</li>
+                              <li><span className="text-yellow-500">Healthy Fats + Fat-Soluble Nutrients</span> - Many antioxidants and vitamins are fat-soluble, meaning they&apos;re better absorbed with dietary fat. For instance, cooking tomatoes with olive oil drastically increases absorption of lycopene.</li>
+                              <li><span className="text-yellow-500">Allium Timing</span> - For garlic, chop or crush it and let it sit for about 10 minutes before cooking to allow enzyme activity to generate allicin, preserving ~70% of its anticancer and cardioprotective properties.</li>
+                            </ul>
+                          </div>
+                        }
+                      />
+
+                      <Protocol 
+                        title="Gut-Boosting Rituals for Microbiome Health"
+                        description={
+                          <div className="space-y-4">
+                            <p>A healthy gut is the cornerstone of immunity, digestion, and even mood. Our gut microbiome thrives on diverse, fiber-rich plant foods and fermented goodies:</p>
+                            <ul className="list-disc ml-6 space-y-2 text-white/80">
+                              <li><span className="text-yellow-500">Feed Your Friends with Fiber</span> - Dietary fiber is essentially prebiotic – it feeds the good bacteria in your colon. Every 10 gram increase in fiber intake is linked to a ~10% lower risk of early death.</li>
+                              <li><span className="text-yellow-500">Diversity: 30+ Plant Foods Weekly</span> - People consuming at least 30 different plant types per week had much more diverse and robust gut microbiomes than those eating under 10 plant types.</li>
+                              <li><span className="text-yellow-500">Probiotics and Fermented Foods</span> - Consuming foods teeming with live beneficial bacteria can directly add allies to your gut ecosystem. A recent Stanford study showed that increasing fermented food intake over 10 weeks led to significantly higher microbiome diversity and lower inflammation.</li>
+                            </ul>
+                          </div>
+                        }
+                      />
+
+                      <Protocol 
+                        title="Longevity Staples of the Mediterranean Diet"
+                        description={
+                          <div className="space-y-4">
+                            <p>Research on Blue Zones and countless studies on the Mediterranean diet reveal a pattern: people who regularly eat these staple foods have lower rates of chronic disease and extended lifespans:</p>
+                            <ul className="list-disc ml-6 space-y-2 text-white/80">
+                              <li><span className="text-yellow-500">Extra-Virgin Olive Oil</span> - Rich in monounsaturated fats and polyphenols, olive oil has been shown to protect against heart disease, metabolic diseases, and cognitive decline. A large study found that those who consumed more than 1/2 tablespoon of olive oil per day had a 19% lower risk of all-cause mortality.</li>
+                              <li><span className="text-yellow-500">Legumes</span> - A common denominator in every Blue Zone diet. A study found that for every 20 gram increase in daily legume intake, the risk of death fell by 7–8%.</li>
+                              <li><span className="text-yellow-500">Nuts and Seeds</span> - Harvard researchers reported that people who ate nuts every day were 20% less likely to die over 30 years than those who didn&apos;t eat nuts.</li>
+                              <li><span className="text-yellow-500">Fatty Fish and Omega-3s</span> - A recent analysis found that those with the highest omega-3 levels had around a 17–21% lower risk of all-cause mortality compared to those with low omega-3.</li>
+                            </ul>
+                          </div>
+                        }
+                      />
+
+                      <Protocol 
+                        title="Immune-Enhancing Nutrition Habits"
+                        description={
+                          <div className="space-y-4">
+                            <p>Strengthening your immune system isn&apos;t about mega-doses of a single &quot;super supplement&quot; – it&apos;s achieved through balanced nutrition and a resilient gut:</p>
+                            <ul className="list-disc ml-6 space-y-2 text-white/80">
+                              <li><span className="text-yellow-500">Vitamin C</span> - Helps stimulate the production and function of white blood cells and protects them from oxidative damage during infections.</li>
+                              <li><span className="text-yellow-500">Vitamin D</span> - Helps immune cells identify and destroy pathogens. Deficiency is associated with increased susceptibility to infections.</li>
+                              <li><span className="text-yellow-500">Zinc and Selenium</span> - Zinc is crucial for development and communication of immune cells, while selenium supports the antioxidant defenses of immune cells.</li>
+                              <li><span className="text-yellow-500">Garlic and Onions</span> - Contain organosulfur compounds like allicin that have immune-boosting and antimicrobial properties.</li>
+                            </ul>
+                          </div>
+                        }
+                      />
+
+                      <Protocol 
+                        title="Eating for Sustained Energy and Vitality"
+                        description={
+                          <div className="space-y-4">
+                            <p>Rather than reaching for caffeine or sugar rushes, focus on dietary habits that stabilize blood sugar and provide steady fuel for body and brain:</p>
+                            <ul className="list-disc ml-6 space-y-2 text-white/80">
+                              <li><span className="text-yellow-500">Low Glycemic, High Fiber Meals</span> - Emphasize low-glycemic foods that release glucose slowly, including intact whole grains, legumes, vegetables, nuts, and fiber-rich fruits.</li>
+                              <li><span className="text-yellow-500">Balanced Meals with Protein and Healthy Fats</span> - Protein and fats slow the absorption of carbs, preventing spikes. Include a source of protein at each meal and healthy fats for satiety.</li>
+                              <li><span className="text-yellow-500">Smart Coffee and Tea Habits</span> - Use caffeine strategically and not rely on it to prop up a poor diet. Have coffee or tea with or after breakfast to keep energy more stable.</li>
+                              <li><span className="text-yellow-500">Hydration and Electrolytes</span> - Even mild dehydration can cause fatigue and brain fog. Include sources of electrolytes like potassium and magnesium.</li>
+                            </ul>
+                          </div>
+                        }
+                      />
+
+                      <Protocol 
+                        title="Skin Health from Within: Nutritional Radiance"
+                        description={
+                          <div className="space-y-4">
+                            <p>Our diet profoundly affects our skin&apos;s appearance and resilience. While topical skincare is useful, feeding your skin from the inside can yield lasting benefits:</p>
+                            <ul className="list-disc ml-6 space-y-2 text-white/80">
+                              <li><span className="text-yellow-500">Hydrating Healthy Fats</span> - Omega-3s and monounsaturated fats help keep cell membranes supple and intact. Higher intakes of linoleic acid were associated with less skin aging.</li>
+                              <li><span className="text-yellow-500">Vitamin C</span> - Essential for collagen synthesis. Research shows that vitamin C not only boosts collagen production but also acts as a potent antioxidant in the skin.</li>
+                              <li><span className="text-yellow-500">Colorful Carotenoids</span> - Carotenoids deposit in the skin and can impart a healthy hue while also functioning as in-skin antioxidants.</li>
+                              <li><span className="text-yellow-500">Polyphenols</span> - Green tea, dark chocolate, berries, and pomegranate are rich in polyphenols that can protect collagen from damage.</li>
+                            </ul>
+                          </div>
+                        }
+                      />
+
+                      <div className="mt-6 p-4 bg-gray-900/70 rounded-lg backdrop-blur-sm">
+                        <h4 className="text-yellow-500 font-semibold mb-2">Conclusion: Sustainable Habits Over Fads</h4>
+                        <p className="text-white/80">
+                          Small, consistent dietary habits can translate into major health dividends across longevity, gut health, immunity, energy, and skin vibrancy. The common thread is a nutrient-dense, predominantly plant-based diet with diverse whole foods – much like the Mediterranean way of eating. Instead of extreme &quot;hacks&quot; or restrictive fads, it&apos;s the sustainable practices that truly move the needle for long-term wellness.
+                        </p>
+                      </div>
+                    </PillarCard>
+                  </AccordionItem>
+
+                  <AccordionItem 
                     title="Light • Heat • Cold—Stack Photons & Sauna Sats" 
                     icon={<Flame className="h-6 w-6" />}
-                    index={3}
+                    index={4}
                   >
                     <PillarCard>
                       <Protocol 
@@ -339,7 +447,7 @@ export default function BiohackingPage() {
                   <AccordionItem 
                     title="Smart Supplementation—Cap Your Downside, 10× Upside" 
                     icon={<Pill className="h-6 w-6" />}
-                    index={4}
+                    index={5}
                   >
                     <PillarCard>
                       <div className="bg-gray-900/70 rounded-lg p-4 mb-4 backdrop-blur-sm">
@@ -375,7 +483,7 @@ export default function BiohackingPage() {
                   <AccordionItem 
                     title="Mindset Protocol—Proof-of-Self-Custody" 
                     icon={<Brain className="h-6 w-6" />}
-                    index={5}
+                    index={6}
                   >
                     <PillarCard>
                       <div className="space-y-1 mb-4">
@@ -392,7 +500,7 @@ export default function BiohackingPage() {
                   <AccordionItem
                     title="Sleep Optimization—The Ultimate Biohack"
                     icon={<Bed className="h-6 w-6" />}
-                    index={6}
+                    index={7}
                   >
                     <PillarCard>
                       <div className="mb-4">
