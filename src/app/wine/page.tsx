@@ -167,6 +167,18 @@ export default function WinePage() {
                   </Button>
                 </Link>
               </div>
+              <div className="mt-6 w-full max-w-[500px] mx-auto aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)]">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/ChR8FqY8DL0"
+                  title="Loire Valley Wine Region"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full rounded-2xl"
+                ></iframe>
+              </div>
             </div>
 
             {/* Champagne Region Links */}
