@@ -15,43 +15,179 @@ interface Supplier {
 
 // Styled Components
 const Container = styled.div`
-  min-h-screen bg-black text-white font-satoshi;
+  min-h-screen bg-black text-white font-satoshi relative overflow-hidden;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(28, 31, 38, 0.8) 0%, rgba(0, 0, 0, 1) 100%),
+      linear-gradient(45deg, rgba(234, 179, 8, 0.03) 0%, transparent 100%);
+    z-index: 0;
+    animation: pulse 15s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
 `;
 
 const Header = styled.header`
-  text-center space-y-8 pt-24 pb-16 px-4;
+  text-center space-y-12 pt-40 pb-24 px-4 relative z-10;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.3), transparent);
+  }
 `;
 
 const CategorySection = styled.section`
-  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24;
+  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32 relative z-10;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const CategoryTitle = styled.h2`
+  text-2xl sm:text-3xl font-bold text-yellow-500 mb-12 capitalize;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #EAB308;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
 `;
 
 const SupplierGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 3rem;
+  margin-top: 3rem;
   
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 `;
 
 const SupplierCard = styled(motion.div)`
-  background: #1c1f26;
-  padding: 2rem;
+  background: rgba(28, 31, 38, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem;
   border: 2px solid #EAB308;
   box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #EAB308, transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(234, 179, 8, 0.03), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
   
   @media (max-width: 640px) {
-    padding: 1.5rem;
+    padding: 2rem;
   }
   
   &:hover {
     transform: translateY(-4px);
     box-shadow: 8px 8px 0px 0px rgba(234, 179, 8, 1);
+    background: rgba(28, 31, 38, 0.9);
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    &::after {
+      opacity: 1;
+    }
+  }
+`;
+
+const StyledLink = styled.a`
+  position: relative;
+  color: #EAB308;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #EAB308;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover {
+    color: #FCD34D;
+    transform: translateX(4px);
+    
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
   }
 `;
 
@@ -328,53 +464,75 @@ export default function LuxurySuppliers() {
   return (
     <Container>
       {/* Premium header accent */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10"></div>
       
       <Header>
-        <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light">Premium Brands • Exceptional Quality</p>
-        <h1 className="text-center">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light"
+        >
+          Premium Brands • Exceptional Quality
+        </motion.p>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center"
+        >
           <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
-            Premium Home Suppliers
+            Smart Home
           </span>
-        </h1>
-        <div className="flex flex-col sm:flex-row items-center justify-center mt-6 gap-4 sm:gap-0">
-          <div className="h-px w-24 bg-yellow-500/30"></div>
-          <p className="mx-6 text-base sm:text-lg text-white/70 font-light italic text-center">Curated selection of premium brands for your dream home</p>
-          <div className="h-px w-24 bg-yellow-500/30"></div>
-        </div>
+        </motion.h1>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center mt-8 gap-4 sm:gap-0"
+        >
+          <div className="h-px w-32 bg-yellow-500/30"></div>
+          <p className="mx-8 text-base sm:text-lg text-white/70 font-light italic text-center">Curated selection of premium brands for your dream home</p>
+          <div className="h-px w-32 bg-yellow-500/30"></div>
+        </motion.div>
       </Header>
 
-      {Object.entries(suppliers).map(([category, items]) => (
-        <CategorySection key={category}>
-          <h2 className="text-2xl sm:text-3xl font-bold text-yellow-500 mb-8 capitalize">{category}</h2>
+      {Object.entries(suppliers).map(([category, items], index) => (
+        <CategorySection 
+          key={category}
+          style={{ animationDelay: `${index * 0.2}s` }}
+        >
+          <CategoryTitle>
+            {category}
+          </CategoryTitle>
           <SupplierGrid>
             {items.map((supplier) => (
               <SupplierCard
                 key={supplier.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
               >
-                <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-4">{supplier.name}</h3>
-                <p className="text-white/60 mb-4">{supplier.category}</p>
-                <p className="text-white/80 mb-6">{supplier.description}</p>
-                <div className="space-y-4 mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                <p className="text-white/60 mb-6">{supplier.category}</p>
+                <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                <div className="space-y-4 mb-8">
                   {supplier.standoutFeatures.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
                       <span className="text-yellow-500">•</span>
-                      <span className="text-white/90">{feature}</span>
+                      <span className="text-white/90 leading-relaxed">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <div className="flex justify-end">
-                  <a
+                  <StyledLink
                     href={supplier.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-yellow-500 hover:text-yellow-400 transition-colors"
                   >
                     Visit Website →
-                  </a>
+                  </StyledLink>
                 </div>
               </SupplierCard>
             ))}
