@@ -297,6 +297,20 @@ const suppliers: Record<string, Supplier[]> = {
         'Phantom speaker technology',
         'Artistic collaboration program'
       ]
+    },
+    {
+      name: 'Bose',
+      category: 'Audio Systems',
+      description: 'American manufacturer of premium audio systems, known for their innovative sound technology and immersive home entertainment solutions.',
+      website: 'https://www.bose.com',
+      specialties: ['Home theater systems', 'Smart speakers', 'Architectural speakers', 'Soundbars'],
+      priceRange: 'Luxury',
+      standoutFeatures: [
+        'Proprietary waveguide technology',
+        'Adaptive audio calibration',
+        'Seamless multi-room audio',
+        'Smart home integration'
+      ]
     }
   ]
 };
