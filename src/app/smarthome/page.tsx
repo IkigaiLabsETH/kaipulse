@@ -19,18 +19,23 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  text-center space-y-8 pt-24 pb-16;
+  text-center space-y-8 pt-24 pb-16 px-4;
 `;
 
 const CategorySection = styled.section`
-  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16;
+  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24;
 `;
 
 const SupplierGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const SupplierCard = styled(motion.div)`
@@ -39,6 +44,10 @@ const SupplierCard = styled(motion.div)`
   border: 2px solid #EAB308;
   box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1);
   transition: all 0.3s ease;
+  
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+  }
   
   &:hover {
     transform: translateY(-4px);
@@ -77,17 +86,17 @@ const suppliers: Record<string, Supplier[]> = {
       ]
     },
     {
-      name: 'Petersen Tegl',
-      category: 'Brick Manufacturing',
-      description: 'Danish manufacturer of handmade bricks, known for their exceptional quality and unique colors.',
-      website: 'https://www.petersen-tegl.dk',
-      specialties: ['Handmade bricks', 'Custom colors', 'Traditional craftsmanship'],
-      priceRange: 'Luxury',
+      name: 'Antolini',
+      category: 'Natural Stone',
+      description: 'Italian manufacturer of premium natural stone surfaces, known for their exceptional selection of marble, travertine, and onyx.',
+      website: 'https://www.antolini.com',
+      specialties: ['Marble walls', 'Travertine cladding', 'Stone slabs', 'Custom stone solutions'],
+      priceRange: 'Ultra-Luxury',
       standoutFeatures: [
-        'Over 100 years of brick-making heritage',
-        'Unique color palette with 50+ shades',
-        'Handcrafted using traditional methods',
-        'Sustainable production process'
+        'World\'s largest selection of natural stone',
+        'Proprietary stone treatment technology',
+        'Custom architectural solutions',
+        'Sustainable quarrying practices'
       ]
     }
   ],
@@ -322,22 +331,22 @@ export default function LuxurySuppliers() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
       
       <Header>
-        <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light">Luxury Living • Premium Brands • Exceptional Quality</p>
+        <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light">Premium Brands • Exceptional Quality</p>
         <h1 className="text-center">
-          <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
-            Luxury Home Suppliers
+          <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
+            Premium Home Suppliers
           </span>
         </h1>
-        <div className="flex items-center justify-center mt-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center mt-6 gap-4 sm:gap-0">
           <div className="h-px w-24 bg-yellow-500/30"></div>
-          <p className="mx-6 text-lg text-white/70 font-light italic">Curated selection of premium brands for your dream home</p>
+          <p className="mx-6 text-base sm:text-lg text-white/70 font-light italic text-center">Curated selection of premium brands for your dream home</p>
           <div className="h-px w-24 bg-yellow-500/30"></div>
         </div>
       </Header>
 
       {Object.entries(suppliers).map(([category, items]) => (
         <CategorySection key={category}>
-          <h2 className="text-3xl font-bold text-yellow-500 mb-8 capitalize">{category}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-yellow-500 mb-8 capitalize">{category}</h2>
           <SupplierGrid>
             {items.map((supplier) => (
               <SupplierCard
@@ -346,7 +355,7 @@ export default function LuxurySuppliers() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold text-yellow-500 mb-4">{supplier.name}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-4">{supplier.name}</h3>
                 <p className="text-white/60 mb-4">{supplier.category}</p>
                 <p className="text-white/80 mb-6">{supplier.description}</p>
                 <div className="space-y-4 mb-6">
@@ -357,8 +366,7 @@ export default function LuxurySuppliers() {
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yellow-500 font-semibold">{supplier.priceRange}</span>
+                <div className="flex justify-end">
                   <a
                     href={supplier.website}
                     target="_blank"
