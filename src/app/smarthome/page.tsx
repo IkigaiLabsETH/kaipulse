@@ -163,20 +163,6 @@ const suppliers: Record<string, Supplier[]> = {
         'Architectural integration',
         'Smart home connectivity'
       ]
-    },
-    {
-      name: 'La Cornue',
-      category: 'Kitchen Appliances',
-      description: 'French manufacturer of luxury ranges and kitchen appliances, known for their handcrafted quality.',
-      website: 'https://www.lacornue.com',
-      specialties: ['Custom ranges', 'Ovens', 'Kitchen islands'],
-      priceRange: 'Ultra-Luxury',
-      standoutFeatures: [
-        'Handcrafted in France since 1908',
-        'Custom color options',
-        'Dual-fuel technology',
-        'Artisanal craftsmanship'
-      ]
     }
   ],
   bathroom: [
@@ -225,20 +211,6 @@ const suppliers: Record<string, Supplier[]> = {
   ],
   smartHome: [
     {
-      name: 'Lutron',
-      category: 'Smart Lighting & Shading',
-      description: 'American manufacturer of premium lighting control and motorized shading systems.',
-      website: 'https://www.lutron.com',
-      specialties: ['Lighting control', 'Motorized shades', 'Smart home integration'],
-      priceRange: 'Luxury',
-      standoutFeatures: [
-        'Pioneer in lighting control since 1961',
-        'Advanced energy management',
-        'Seamless integration capabilities',
-        'Customizable control solutions'
-      ]
-    },
-    {
       name: 'Savant',
       category: 'Smart Home Systems',
       description: 'American manufacturer of premium smart home systems, known for their intuitive control and reliability.',
@@ -253,17 +225,17 @@ const suppliers: Record<string, Supplier[]> = {
       ]
     },
     {
-      name: 'Crestron',
-      category: 'Smart Home Systems',
-      description: 'American manufacturer of high-end automation systems, known for their comprehensive solutions.',
-      website: 'https://www.crestron.com',
-      specialties: ['Home automation', 'Commercial automation', 'Custom solutions'],
-      priceRange: 'Ultra-Luxury',
+      name: 'Philips Hue',
+      category: 'Smart Lighting',
+      description: 'Dutch manufacturer of innovative smart lighting solutions, known for their extensive ecosystem and user-friendly control.',
+      website: 'https://www.philips-hue.com',
+      specialties: ['Smart bulbs', 'Lighting control', 'Ambient lighting', 'Entertainment lighting'],
+      priceRange: 'Luxury',
       standoutFeatures: [
-        'End-to-end automation solutions',
-        'Advanced security features',
-        'Scalable architecture',
-        'Professional-grade reliability'
+        '16 million color options with precise control',
+        'Seamless integration with major smart home platforms',
+        'Advanced scene creation and scheduling',
+        'Entertainment sync for gaming and movies'
       ]
     }
   ],
@@ -283,17 +255,17 @@ const suppliers: Record<string, Supplier[]> = {
       ]
     },
     {
-      name: 'Effegibi',
+      name: 'Storvatt',
       category: 'Wellness Systems',
-      description: 'Italian manufacturer of luxury hammams and wellness systems, known for their traditional designs.',
-      website: 'https://www.effegibi.com',
-      specialties: ['Hammams', 'Steam rooms', 'Wellness systems'],
-      priceRange: 'Luxury',
+      description: 'Norwegian manufacturer of luxury wellness and spa solutions, known for their innovative water technology and sustainable design.',
+      website: 'https://www.storvatt.com',
+      specialties: ['Swimming pools', 'Wellness pools', 'Water features', 'Spa systems'],
+      priceRange: 'Ultra-Luxury',
       standoutFeatures: [
-        'Traditional hammam expertise',
-        'Customizable wellness spaces',
-        'Advanced steam technology',
-        'Luxury spa integration'
+        'Advanced water purification technology',
+        'Sustainable energy solutions',
+        'Custom architectural integration',
+        'Smart control systems'
       ]
     }
   ],
