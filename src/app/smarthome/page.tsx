@@ -55,18 +55,30 @@ const Container = styled.div`
 const VideoContainer = styled.div`
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 6rem auto 3rem auto;
+  padding: 2.5rem 2.5rem;
   position: relative;
   z-index: 10;
-  margin-top: 120px;
-  
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   iframe {
     width: 100%;
     aspect-ratio: 16/9;
-    border: 2px solid #EAB308;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(234, 179, 8, 0.2);
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `;
 
@@ -468,9 +480,10 @@ const BudgetSection = styled.section`
   background: rgba(28, 31, 38, 0.8);
   backdrop-filter: blur(10px);
   border: 2px solid #EAB308;
-  border-radius: 12px;
+  border-radius: 24px;
   padding: 3rem;
   margin-top: 4rem;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
 `;
 
 const BudgetTitle = styled.h2`
