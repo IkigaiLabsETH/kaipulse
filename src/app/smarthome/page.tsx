@@ -16,6 +16,13 @@ interface Supplier {
 // Styled Components
 const Container = styled.div`
   min-h-screen bg-black text-white font-satoshi relative overflow-hidden;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
   
   &::before {
     content: '';
@@ -93,9 +100,20 @@ const CategorySection = styled.section`
 `;
 
 const CategoryTitle = styled.h2`
-  text-2xl sm:text-3xl font-bold text-yellow-500 mb-12 capitalize;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-yellow-500 mb-12 capitalize;
   position: relative;
   display: inline-block;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  
+  @media (min-width: 640px) {
+    font-size: 3.5rem;
+  }
+  @media (min-width: 1024px) {
+    font-size: 4.5rem;
+  }
   
   &::after {
     content: '';
@@ -134,7 +152,9 @@ const SupplierCard = styled(motion.div)`
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  
+  border-radius: 16px;
+  min-width: 0;
+
   &::before {
     content: '';
     position: absolute;
@@ -160,7 +180,9 @@ const SupplierCard = styled(motion.div)`
   }
   
   @media (max-width: 640px) {
-    padding: 2rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
   }
   
   &:hover {
@@ -449,17 +471,18 @@ const suppliers: Record<string, Supplier[]> = {
       ]
     },
     {
-      name: 'Geberit AquaClean',
+      name: 'TOTO Neorest',
       category: 'Smart Toilets',
-      description: 'Swiss manufacturer of premium smart toilets, known for their innovative hygiene technology and sustainable design.',
-      website: 'https://www.geberit.com',
-      specialties: ['Smart toilets', 'Bathroom technology', 'Hygiene systems'],
+      description: 'Japanese manufacturer renowned for pioneering luxury smart toilets with advanced hygiene and comfort features.',
+      website: 'https://eu.toto.com/en',
+      specialties: ['Washlet bidet', 'Automatic lid', 'Heated seat', 'Deodorizer', 'Self-cleaning'],
       priceRange: 'Ultra-Luxury',
       standoutFeatures: [
-        'Advanced hygiene technology',
-        'Smart control systems',
-        'Sustainable water usage',
-        'Seamless design integration'
+        'Ewater+ electrolyzed water cleaning',
+        'Actilight self-cleaning technology',
+        'Auto open/close and flush',
+        'Integrated air deodorizer',
+        'Award-winning Japanese design'
       ]
     }
   ],
@@ -591,7 +614,7 @@ export default function LuxurySuppliers() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light text-center w-full"
         >
-          Premium Brands • Exceptional Quality
+          Premium Smart Home Brands
         </motion.p>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
