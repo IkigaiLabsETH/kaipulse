@@ -166,6 +166,9 @@ const StyledLink = styled.a`
   text-decoration: none;
   transition: all 0.3s ease;
   padding: 0.5rem 0;
+  z-index: 1;
+  pointer-events: auto;
+  cursor: pointer;
   
   &::after {
     content: '';
