@@ -374,12 +374,17 @@ const CategoryTitle = styled.h2`
 
 const SupplierGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 3rem;
   margin-top: 3rem;
-  
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
   @media (max-width: 640px) {
-    grid-template-columns: 1fr;
     gap: 2rem;
   }
 `;
@@ -819,6 +824,13 @@ const suppliers: Record<string, Supplier[]> = {
   ]
 };
 
+// Custom grid for wellness and audio sections (2 per row on desktop)
+const TwoColSupplierGrid = styled(SupplierGrid)`
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
 export default function LuxurySuppliers() {
   return (
     <Container>
@@ -879,7 +891,7 @@ export default function LuxurySuppliers() {
               </AudioVideoContainer>
               <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
                 <CategoryTitle>{category}</CategoryTitle>
-                <SupplierGrid>
+                <TwoColSupplierGrid>
                   {items.map((supplier) => (
                     <SupplierCard
                       key={supplier.name}
@@ -910,7 +922,7 @@ export default function LuxurySuppliers() {
                       </div>
                     </SupplierCard>
                   ))}
-                </SupplierGrid>
+                </TwoColSupplierGrid>
               </CategorySection>
             </React.Fragment>
           );
@@ -928,7 +940,7 @@ export default function LuxurySuppliers() {
               </WellnessVideoContainer>
               <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
                 <CategoryTitle>{category}</CategoryTitle>
-                <SupplierGrid>
+                <TwoColSupplierGrid>
                   {items.map((supplier) => (
                     <SupplierCard
                       key={supplier.name}
@@ -959,7 +971,7 @@ export default function LuxurySuppliers() {
                       </div>
                     </SupplierCard>
                   ))}
-                </SupplierGrid>
+                </TwoColSupplierGrid>
               </CategorySection>
             </React.Fragment>
           );
@@ -1728,7 +1740,11 @@ export default function LuxurySuppliers() {
           <hr className="border-yellow-500/30 my-4" />
           <div>
             <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">✨ Final Notes</h3>
-            <p>This home must feel effortless, hide complexity behind tactile interfaces, and reflect a lifestyle of quiet tech-forward luxury. It is a reference villa — a stage for curated excellence.</p>
+            <p>
+              This villa is more than a home—it is a living manifesto of intentional design, technological harmony, and elemental beauty. Every detail, from the tactile feel of lime plaster to the seamless orchestration of light, sound, and climate, is curated to foster a sense of calm, clarity, and inspiration. Complexity is hidden behind intuitive, tactile interfaces, empowering residents to shape their environment with a touch or a word, while the architecture itself recedes into the landscape, blurring the boundaries between inside and out.<br /><br />
+              Here, luxury is measured not by excess, but by the effortless integration of world-class materials, passive performance, and adaptive smart systems. The villa is a sanctuary for both solitude and connection—a place where mornings are filled with natural light and evenings glow with intention, where every space supports wellness, creativity, and meaningful living.<br /><br />
+              As a reference project, this home sets a new standard for tech-forward, sustainable luxury. It is a showcase for curated excellence, a canvas for future innovation, and a testament to the idea that true comfort is found in the seamless union of nature, technology, and human experience.
+            </p>
           </div>
         </div>
       </BudgetSection>
