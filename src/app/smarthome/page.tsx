@@ -1386,6 +1386,12 @@ export default function LuxurySuppliers() {
                   <StyledLink href="https://www.axor-design.com/int/bath/new-products/axor-showercomposition" target="_blank" rel="noopener noreferrer">Axor by Hansgrohe</StyledLink> – Dornbracht-level quality but more expressive
                 </span>
               </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.antoniolupi.it/en/products/showerheads" target="_blank" rel="noopener noreferrer">Antonio Lupi</StyledLink> – Contemporary Italian bathroom design with innovative shower systems
+                </span>
+              </div>
             </div>
           </SupplierCard>
 
@@ -1401,13 +1407,37 @@ export default function LuxurySuppliers() {
               <div className="flex items-start gap-3">
                 <span className="text-yellow-500">•</span>
                 <span className="text-white/90 leading-relaxed">
-                  <StyledLink href="https://www.arclinea.com" target="_blank" rel="noopener noreferrer">Arclinea</StyledLink> – Integrated pro kitchens with Boffi DNA
+                  <StyledLink href="https://www.arclinea.com" target="_blank" rel="noopener noreferrer">Arclinea</StyledLink> — Integrated pro kitchens with Boffi DNA
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-yellow-500">•</span>
                 <span className="text-white/90 leading-relaxed">
-                  <StyledLink href="https://www.henrybuilt.com/luxury-kitchen/overview" target="_blank" rel="noopener noreferrer">Henrybuilt</StyledLink> – USA-based, super-custom joinery with architectural finesse
+                  <StyledLink href="https://www.henrybuilt.com/luxury-kitchen/overview" target="_blank" rel="noopener noreferrer">Henrybuilt</StyledLink> — USA-based, super-custom joinery with architectural finesse
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.bulthaup.com" target="_blank" rel="noopener noreferrer">Bulthaup</StyledLink> — German minimalist kitchens with architectural precision
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.poliform.it/en/kitchens/" target="_blank" rel="noopener noreferrer">Poliform</StyledLink> — Italian modular kitchens and storage, seamless integration
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.molteni.it/en/kitchens" target="_blank" rel="noopener noreferrer">Molteni&C Dada</StyledLink> — Luxury Italian kitchens, innovative materials and design
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.valcucine.com/" target="_blank" rel="noopener noreferrer">Valcucine</StyledLink> — Eco-friendly Italian kitchens, glass and aluminum innovation
                 </span>
               </div>
             </div>
@@ -1425,7 +1455,37 @@ export default function LuxurySuppliers() {
               <div className="flex items-start gap-3">
                 <span className="text-yellow-500">•</span>
                 <span className="text-white/90 leading-relaxed">
-                  <StyledLink href="https://vibia.com/en/int/collections" target="_blank" rel="noopener noreferrer">Vibia</StyledLink> – Mediterranean modern lighting for minimalist spaces
+                  <StyledLink href="https://vibia.com/en/int/collections" target="_blank" rel="noopener noreferrer">Vibia</StyledLink> — Mediterranean modern lighting for minimalist spaces
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.davidegroppi.com/en/" target="_blank" rel="noopener noreferrer">Davide Groppi</StyledLink> — Sculptural, poetic lighting with architectural impact
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://flos.com/en/" target="_blank" rel="noopener noreferrer">Flos</StyledLink> — Iconic Italian lighting, collaborations with top designers
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.artemide.com/en/" target="_blank" rel="noopener noreferrer">Artemide</StyledLink> — Human-centered, innovative Italian lighting solutions
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://bocci.com/" target="_blank" rel="noopener noreferrer">Bocci</StyledLink> — Artistic glass pendant lighting, hand-blown in Canada
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.luceplan.com/" target="_blank" rel="noopener noreferrer">Luceplan</StyledLink> — Award-winning Italian lighting, technical and aesthetic excellence
                 </span>
               </div>
             </div>
@@ -1474,6 +1534,134 @@ export default function LuxurySuppliers() {
           </SupplierCard>
         </SupplierGrid>
       </CategorySection>
+
+      {/* Final Architectural Brief Section */}
+      <BudgetSection className="!px-4 !py-6 sm:!px-8 sm:!py-12">
+        <BudgetTitle className="text-2xl sm:text-3xl md:text-4xl">🏛️ ARCHITECTURAL BRIEF — LTL SMART VILLA</BudgetTitle>
+        <div className="space-y-6 text-sm sm:text-base md:text-lg leading-relaxed">
+          <div>
+            <strong>Project Name:</strong> LTL Passive Villa<br />
+            <strong>Client:</strong> IKIGAI LABS XYZ<br />
+            <strong>Location:</strong> Southwest France<br />
+            <strong>Plot Status:</strong> Acquired<br />
+            <strong>Build Footprint:</strong> 20m x 10m<br />
+            <strong>Interior Area:</strong> ~200 m²<br />
+            <strong>Use:</strong> Primary residence, reference showcase for Smart Home Living<br />
+            <strong>Architectural Style:</strong> Malibu Minimalism × Passive Performance × Mediterranean Warmth
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🎯 Core Vision</h3>
+            <p>Create a calm, intelligent, and spatially refined villa inspired by Malibu minimalism.<br />
+            This home is designed to disappear into the landscape during the day and glow with intention at night — blending smart technology with elemental architecture.</p>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🧱 Architectural Principles</h3>
+            <ul className="list-disc pl-5 sm:pl-6 space-y-1">
+              <li>Form: Single-storey, 20x10m rectangle with high gabled roof and thin eaves</li>
+              <li>Glazing: Full-length Vitrocsa sliding glass facing pool (south), integrated ventilation fins</li>
+              <li>Roofing: Zinc or aluminium dark standing seam roof, prepped for solar</li>
+              <li>Structure: ICF or hempcrete wall system with polished concrete slab</li>
+              <li>Passive Strategy: Orientation, thermal mass, airtight envelope, HRV + geothermal/low-temp system</li>
+              <li>Aesthetic: Clean, continuous surfaces, layered warm neutrals, texture over color</li>
+            </ul>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">📐 Spatial Program</h3>
+            <div className="overflow-x-auto w-full">
+              <table className="min-w-[500px] w-full text-left mb-4 text-xs sm:text-sm md:text-base">
+                <thead>
+                  <tr className="text-yellow-500">
+                    <th className="pr-4">Space</th>
+                    <th className="pr-4">Size</th>
+                    <th>Features</th>
+                  </tr>
+                </thead>
+                <tbody className="text-white/90">
+                  <tr><td>Living / Dining / Kitchen</td><td>~80 m²</td><td>Island, travertine slab, high ceilings, centered fireplace (Focus or Gyrofocus)</td></tr>
+                  <tr><td>Master Bedroom Suite</td><td>~45 m²</td><td>WIC, en-suite, private access to pool</td></tr>
+                  <tr><td>Bedroom 2</td><td>~25 m²</td><td>En-suite or shared access to bath</td></tr>
+                  <tr><td>Home Office / Library</td><td>~20 m²</td><td>Glass pocket doors, acoustic ceiling</td></tr>
+                  <tr><td>Bathrooms (x2)</td><td>~12 m² ea</td><td>Vola or Axor + Agape or Antonio Lupi</td></tr>
+                  <tr><td>Utility + Tech</td><td>~5 m²</td><td>HVAC, Smart Panel, Storage</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ul className="list-disc pl-5 sm:pl-6 space-y-1">
+              <li>Total GFA: 200 m²</li>
+              <li>Terrace: ~25 m² shaded + ~60 m² open</li>
+              <li>Pool (existing): 12 × 6 m, needs seamless integration</li>
+            </ul>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🛋️ Interior Systems & Finishes</h3>
+            <ul className="list-disc pl-5 sm:pl-6 space-y-1">
+              <li><strong>Walls & Floors</strong><br />Walls: Acoustic lime plaster (Living), travertine panels (Bath), Porro wardrobes<br />Floors: Smoked oak (sleeping), seamless microcement (main), Antolini travertine (wet)</li>
+              <li><strong>Furniture</strong><br />Lounge: Minotti / Flexform / Living Divani<br />Storage: Molteni&C, Porro<br />Dining: Meridiani or Carl Hansen & Søn</li>
+              <li><strong>Kitchen</strong><br />Brand: Bulthaup B3 or Arclinea<br />Appliances: Gaggenau or Miele MasterCool<br />Surfaces: Pietra Serena or Neolith for high use, Antolini for visual</li>
+              <li><strong>Bathrooms</strong><br />Vanities: Antonio Lupi, Falper, or Agape<br />Fixtures: Vola, Axor, Zucchetti.Kos<br />Smart Toilets: Toto Neorest</li>
+            </ul>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🧠 Smart Systems</h3>
+            <p>Platform: KNX + Savant + Black Nova Touch Panels</p>
+            <div className="overflow-x-auto w-full">
+              <table className="min-w-[400px] w-full text-left mb-4 text-xs sm:text-sm md:text-base">
+                <thead>
+                  <tr className="text-yellow-500">
+                    <th className="pr-4">System</th>
+                    <th>Brands / Specs</th>
+                  </tr>
+                </thead>
+                <tbody className="text-white/90">
+                  <tr><td>Lighting</td><td>Vibia, Flos, Davide Groppi / DALI or KNX-controlled</td></tr>
+                  <tr><td>Blinds</td><td>Lutron Sivoia QS, solar-tuned</td></tr>
+                  <tr><td>HVAC</td><td>Daikin Altherma, underfloor radiant + Zehnder HRV</td></tr>
+                  <tr><td>Security</td><td>Doorbird, smart locks, surveillance nodes</td></tr>
+                  <tr><td>Audio</td><td>Bang & Olufsen, Bose, Apple AirPlay</td></tr>
+                  <tr><td>Control</td><td>Black Nova or Basalte wall panels + iOS App mirroring</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ul className="list-disc pl-5 sm:pl-6 space-y-1">
+              <li>AI Energy Mode via Savant for predictive optimization</li>
+              <li>Room Scenes for lighting, audio, thermal, shading presets</li>
+            </ul>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🌿 Sustainability & Energy</h3>
+            <ul className="list-disc pl-5 sm:pl-6 space-y-1">
+              <li>Triple-glazed Vitrocsa w/ thermal break</li>
+              <li>Greywater prep + rainwater collection</li>
+              <li>Tesla Powerwall or EcoFlow backup optional</li>
+              <li>Solar-ready roof system</li>
+              <li>RE2020 compliant</li>
+            </ul>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">📦 Required Deliverables</h3>
+            <ol className="list-decimal pl-5 sm:pl-6 space-y-1">
+              <li>Conceptual Floor Plan (based on current 20x10 plan)</li>
+              <li>3D Massing Model – Vaulted interior volume, solar study</li>
+              <li>Interior Render Pack – Lounge, kitchen, master bath</li>
+              <li>Material Moodboard – Aligning with Figma Files</li>
+              <li>Smart System Pre-Wire Plan</li>
+              <li>HVAC & Passive Certification Coordination</li>
+            </ol>
+          </div>
+          <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">✨ Final Notes</h3>
+            <p>This home must feel effortless, hide complexity behind tactile interfaces, and reflect a lifestyle of quiet tech-forward luxury. It is a reference villa — a stage for curated excellence.</p>
+          </div>
+        </div>
+      </BudgetSection>
     </Container>
   );
 }
