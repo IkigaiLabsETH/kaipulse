@@ -711,21 +711,6 @@ const suppliers: Record<string, Supplier[]> = {
         'Customizable configurations',
         'Artistic collaboration program'
       ]
-    },
-    {
-      name: 'TOTO Neorest',
-      category: 'Smart Toilets',
-      description: 'Japanese manufacturer renowned for pioneering luxury smart toilets with advanced hygiene and comfort features.',
-      website: 'https://eu.toto.com/en',
-      specialties: ['Washlet bidet', 'Automatic lid', 'Heated seat', 'Deodorizer', 'Self-cleaning'],
-      priceRange: 'Ultra-Luxury',
-      standoutFeatures: [
-        'Ewater+ electrolyzed water cleaning',
-        'Actilight self-cleaning technology',
-        'Auto open/close and flush',
-        'Integrated air deodorizer',
-        'Award-winning Japanese design'
-      ]
     }
   ],
   smartHome: [
@@ -1351,6 +1336,12 @@ export default function LuxurySuppliers() {
                 <span className="text-yellow-500">•</span>
                 <span className="text-white/90 leading-relaxed">
                   <StyledLink href="https://www.porro.com/en/products/systems/storage+closets/" target="_blank" rel="noopener noreferrer">Porro</StyledLink> – Sleek custom wardrobes and open shelving systems
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.rimadesio.it/en/product/spin/" target="_blank" rel="noopener noreferrer">Rimadesio</StyledLink> – Premium sliding doors and partition systems with invisible tracks
                 </span>
               </div>
             </div>
