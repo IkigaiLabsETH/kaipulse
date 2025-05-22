@@ -146,6 +146,158 @@ const SmartHomeVideoContainer = styled.div`
   }
 `;
 
+const WellnessVideoContainer = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  align-items: center;
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 600px;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    height: auto;
+    iframe {
+      height: 600px;
+    }
+  }
+`;
+
+const AudioVideoContainer = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  align-items: center;
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 600px;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    height: auto;
+    iframe {
+      height: 600px;
+    }
+  }
+`;
+
+const BathroomVideoContainer = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  align-items: center;
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 600px;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    height: auto;
+    iframe {
+      height: 600px;
+    }
+  }
+`;
+
+const InteriorVideoContainer = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  align-items: center;
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 600px;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    height: auto;
+    iframe {
+      height: 600px;
+    }
+  }
+`;
+
 const Header = styled.header`
   text-center space-y-12 pt-40 pb-24 px-4 relative z-10;
   position: relative;
@@ -506,17 +658,17 @@ const suppliers: Record<string, Supplier[]> = {
   ],
   bathroom: [
     {
-      name: 'Dornbracht',
+      name: 'THG Paris',
       category: 'Bathroom Fixtures',
-      description: 'German manufacturer of premium bathroom fixtures, known for their innovative designs and exceptional quality.',
-      website: 'https://www.dornbracht.com',
-      specialties: ['Faucets', 'Shower systems', 'Bathroom accessories'],
+      description: 'French manufacturer of luxury bathroom fittings and accessories, renowned for their artistic collaborations and exquisite craftsmanship.',
+      website: 'https://www.thg-paris.com',
+      specialties: ['Faucets', 'Shower systems', 'Bathroom accessories', 'Artisan finishes'],
       priceRange: 'Ultra-Luxury',
       standoutFeatures: [
-        'Architectural approach to bathroom design',
-        'Innovative water technology',
-        'Customizable finishes',
-        'Smart home integration'
+        'Collaborations with world-renowned designers and luxury brands',
+        'Handcrafted in France with precious materials',
+        'Bespoke finishes and customization',
+        'Award-winning French design and innovation'
       ]
     },
     {
@@ -716,6 +868,104 @@ export default function LuxurySuppliers() {
       </Header>
 
       {Object.entries(suppliers).map(([category, items], index) => {
+        if (category === 'audio') {
+          return (
+            <React.Fragment key={category}>
+              <AudioVideoContainer>
+                <iframe
+                  src="https://www.youtube.com/embed/xqEpMpyvopg"
+                  title="Audio Showcase"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </AudioVideoContainer>
+              <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SupplierGrid>
+                  {items.map((supplier) => (
+                    <SupplierCard
+                      key={supplier.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                      <p className="text-white/60 mb-6">{supplier.category}</p>
+                      <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                      <div className="space-y-4 mb-8">
+                        {supplier.standoutFeatures.map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <span className="text-yellow-500">•</span>
+                            <span className="text-white/90 leading-relaxed">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-end">
+                        <StyledLink
+                          href={supplier.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Website →
+                        </StyledLink>
+                      </div>
+                    </SupplierCard>
+                  ))}
+                </SupplierGrid>
+              </CategorySection>
+            </React.Fragment>
+          );
+        }
+        if (category === 'wellness') {
+          return (
+            <React.Fragment key={category}>
+              <WellnessVideoContainer>
+                <iframe
+                  src="https://www.youtube.com/embed/KSfx12M_1Qk"
+                  title="Wellness Showcase"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </WellnessVideoContainer>
+              <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SupplierGrid>
+                  {items.map((supplier) => (
+                    <SupplierCard
+                      key={supplier.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                      <p className="text-white/60 mb-6">{supplier.category}</p>
+                      <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                      <div className="space-y-4 mb-8">
+                        {supplier.standoutFeatures.map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <span className="text-yellow-500">•</span>
+                            <span className="text-white/90 leading-relaxed">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-end">
+                        <StyledLink
+                          href={supplier.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Website →
+                        </StyledLink>
+                      </div>
+                    </SupplierCard>
+                  ))}
+                </SupplierGrid>
+              </CategorySection>
+            </React.Fragment>
+          );
+        }
         if (category === 'smartHome') {
           return (
             <React.Fragment key={category}>
@@ -776,6 +1026,104 @@ export default function LuxurySuppliers() {
                   allowFullScreen
                 />
               </KitchenVideoContainer>
+              <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SupplierGrid>
+                  {items.map((supplier) => (
+                    <SupplierCard
+                      key={supplier.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                      <p className="text-white/60 mb-6">{supplier.category}</p>
+                      <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                      <div className="space-y-4 mb-8">
+                        {supplier.standoutFeatures.map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <span className="text-yellow-500">•</span>
+                            <span className="text-white/90 leading-relaxed">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-end">
+                        <StyledLink
+                          href={supplier.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Website →
+                        </StyledLink>
+                      </div>
+                    </SupplierCard>
+                  ))}
+                </SupplierGrid>
+              </CategorySection>
+            </React.Fragment>
+          );
+        }
+        if (category === 'bathroom') {
+          return (
+            <React.Fragment key={category}>
+              <BathroomVideoContainer>
+                <iframe
+                  src="https://www.youtube.com/embed/N5lmibTqrZM"
+                  title="Bathroom Showcase"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </BathroomVideoContainer>
+              <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SupplierGrid>
+                  {items.map((supplier) => (
+                    <SupplierCard
+                      key={supplier.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                      <p className="text-white/60 mb-6">{supplier.category}</p>
+                      <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                      <div className="space-y-4 mb-8">
+                        {supplier.standoutFeatures.map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <span className="text-yellow-500">•</span>
+                            <span className="text-white/90 leading-relaxed">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-end">
+                        <StyledLink
+                          href={supplier.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Website →
+                        </StyledLink>
+                      </div>
+                    </SupplierCard>
+                  ))}
+                </SupplierGrid>
+              </CategorySection>
+            </React.Fragment>
+          );
+        }
+        if (category === 'interior') {
+          return (
+            <React.Fragment key={category}>
+              <InteriorVideoContainer>
+                <iframe
+                  src="https://www.youtube.com/embed/xEdrTclYBTQ"
+                  title="Interior Showcase"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </InteriorVideoContainer>
               <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
                 <CategoryTitle>{category}</CategoryTitle>
                 <SupplierGrid>
