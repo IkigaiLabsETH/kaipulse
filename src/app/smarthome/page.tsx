@@ -44,6 +44,24 @@ const Container = styled.div`
   }
 `;
 
+const VideoContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 10;
+  margin-top: 120px;
+  
+  iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 2px solid #EAB308;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(234, 179, 8, 0.2);
+  }
+`;
+
 const Header = styled.header`
   text-center space-y-12 pt-40 pb-24 px-4 relative z-10;
   position: relative;
@@ -194,6 +212,66 @@ const StyledLink = styled.a`
   }
 `;
 
+const BudgetSection = styled.section`
+  max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32 relative z-10;
+  background: rgba(28, 31, 38, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid #EAB308;
+  border-radius: 12px;
+  padding: 3rem;
+  margin-top: 4rem;
+`;
+
+const BudgetTitle = styled.h2`
+  text-3xl sm:text-4xl font-bold text-yellow-500 mb-8 text-center;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: #EAB308;
+  }
+`;
+
+const BudgetGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+`;
+
+const BudgetCard = styled.div`
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(234, 179, 8, 0.2);
+`;
+
+const BudgetItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(234, 179, 8, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+`;
+
+const UpgradeSection = styled.div`
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(234, 179, 8, 0.2);
+`;
+
 const suppliers: Record<string, Supplier[]> = {
   architecture: [
     {
@@ -311,6 +389,20 @@ const suppliers: Record<string, Supplier[]> = {
         'Architectural integration',
         'Smart home connectivity'
       ]
+    },
+    {
+      name: 'Miele MasterCool',
+      category: 'Luxury Appliances',
+      description: 'German manufacturer of premium refrigeration and cooking systems, known for their exceptional quality and innovative technology.',
+      website: 'https://www.miele.com',
+      specialties: ['Refrigeration', 'Cooking systems', 'Wine storage'],
+      priceRange: 'Ultra-Luxury',
+      standoutFeatures: [
+        'MasterCool refrigeration technology',
+        'PerfectClean system',
+        'SmartDevice connectivity',
+        'German engineering excellence'
+      ]
     }
   ],
   bathroom: [
@@ -354,6 +446,20 @@ const suppliers: Record<string, Supplier[]> = {
         'Innovative material combinations',
         'Customizable configurations',
         'Artistic collaboration program'
+      ]
+    },
+    {
+      name: 'Geberit AquaClean',
+      category: 'Smart Toilets',
+      description: 'Swiss manufacturer of premium smart toilets, known for their innovative hygiene technology and sustainable design.',
+      website: 'https://www.geberit.com',
+      specialties: ['Smart toilets', 'Bathroom technology', 'Hygiene systems'],
+      priceRange: 'Ultra-Luxury',
+      standoutFeatures: [
+        'Advanced hygiene technology',
+        'Smart control systems',
+        'Sustainable water usage',
+        'Seamless design integration'
       ]
     }
   ],
@@ -483,12 +589,21 @@ export default function LuxurySuppliers() {
       {/* Premium header accent */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent z-10"></div>
       
+      <VideoContainer>
+        <iframe
+          src="https://www.youtube.com/embed/E4hIluTclek"
+          title="Luxury Home Technology"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </VideoContainer>
+
       <Header>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light"
+          className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light text-center w-full"
         >
           Premium Brands • Exceptional Quality
         </motion.p>
@@ -556,6 +671,111 @@ export default function LuxurySuppliers() {
           </SupplierGrid>
         </CategorySection>
       ))}
+
+      <BudgetSection>
+        <BudgetTitle>Project Budget Breakdown</BudgetTitle>
+        <p className="text-white/70 text-center mb-8">Based on ~300 m² Build Area</p>
+        
+        <BudgetGrid>
+          <BudgetCard>
+            <h3 className="text-yellow-500 text-xl font-bold mb-4">Core Construction</h3>
+            <BudgetItem>
+              <span className="text-white/80">Architectural Design + Engineer</span>
+              <span className="text-yellow-500">70,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Shell Construction</span>
+              <span className="text-yellow-500">480,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Roof Geometry + Steel Framing</span>
+              <span className="text-yellow-500">40,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Glazing (Vitrocsa full system)</span>
+              <span className="text-yellow-500">120,000 €</span>
+            </BudgetItem>
+          </BudgetCard>
+
+          <BudgetCard>
+            <h3 className="text-yellow-500 text-xl font-bold mb-4">Interior & Systems</h3>
+            <BudgetItem>
+              <span className="text-white/80">Custom Fireplace</span>
+              <span className="text-yellow-500">15,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Kitchen (Bulthaup / Gaggenau)</span>
+              <span className="text-yellow-500">60,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Bathrooms (x3)</span>
+              <span className="text-yellow-500">40,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Flooring</span>
+              <span className="text-yellow-500">35,000 €</span>
+            </BudgetItem>
+          </BudgetCard>
+
+          <BudgetCard>
+            <h3 className="text-yellow-500 text-xl font-bold mb-4">Technology & Finishing</h3>
+            <BudgetItem>
+              <span className="text-white/80">Smart Home (KNX / Basalte)</span>
+              <span className="text-yellow-500">35,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Lighting</span>
+              <span className="text-yellow-500">20,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Furniture</span>
+              <span className="text-yellow-500">85,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">HVAC + Passive Systems</span>
+              <span className="text-yellow-500">45,000 €</span>
+            </BudgetItem>
+          </BudgetCard>
+
+          <BudgetCard>
+            <h3 className="text-yellow-500 text-xl font-bold mb-4">Exterior & Contingency</h3>
+            <BudgetItem>
+              <span className="text-white/80">Outdoor (kitchen, pool area)</span>
+              <span className="text-yellow-500">60,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Landscaping / Access Drive</span>
+              <span className="text-yellow-500">35,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white/80">Contingency (10%)</span>
+              <span className="text-yellow-500">115,000 €</span>
+            </BudgetItem>
+            <BudgetItem>
+              <span className="text-white font-bold">TOTAL</span>
+              <span className="text-yellow-500 font-bold">1.335M – 1.4M €</span>
+            </BudgetItem>
+          </BudgetCard>
+        </BudgetGrid>
+
+        <UpgradeSection>
+          <h3 className="text-yellow-500 text-xl font-bold mb-4 text-center">Optional Upgrades</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+            <div className="bg-black/30 p-4 rounded-lg">
+              <p className="text-white/80">Tesla Powerwall + Solar Tiles</p>
+              <p className="text-yellow-500">+40–50k €</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <p className="text-white/80">Geothermal HVAC</p>
+              <p className="text-yellow-500">+25–30k €</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <p className="text-white/80">Zehnder ComfoAir Q600 HRV</p>
+              <p className="text-yellow-500">+8–12k €</p>
+            </div>
+          </div>
+        </UpgradeSection>
+      </BudgetSection>
     </Container>
   );
 }
