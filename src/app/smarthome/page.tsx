@@ -2,6 +2,7 @@
 
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import React from 'react';
 
 interface Supplier {
   name: string;
@@ -66,6 +67,82 @@ const VideoContainer = styled.div`
     border: 2px solid #EAB308;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(234, 179, 8, 0.2);
+  }
+`;
+
+const KitchenVideoContainer = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  align-items: center;
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 600px;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    height: auto;
+    iframe {
+      height: 600px;
+    }
+  }
+`;
+
+const SmartHomeVideoContainer = styled.div`
+  width: 100%;
+  margin: 3rem 0;
+  padding: 2.5rem 2.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  border: 3px solid #EAB308;
+  border-radius: 24px;
+  box-shadow: 5px 5px 0px 0px rgba(234, 179, 8, 1), 0 4px 20px rgba(234, 179, 8, 0.15);
+  overflow: hidden;
+  align-items: center;
+
+  iframe {
+    width: 100%;
+    height: 56vw;
+    max-height: 600px;
+    min-height: 300px;
+    border: none;
+    border-radius: 0;
+    background: #181818;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 1024px) {
+    height: auto;
+    iframe {
+      height: 600px;
+    }
   }
 `;
 
@@ -638,48 +715,143 @@ export default function LuxurySuppliers() {
         </motion.div>
       </Header>
 
-      {Object.entries(suppliers).map(([category, items], index) => (
-        <CategorySection 
-          key={category}
-          style={{ animationDelay: `${index * 0.2}s` }}
-        >
-          <CategoryTitle>
-            {category}
-          </CategoryTitle>
-          <SupplierGrid>
-            {items.map((supplier) => (
-              <SupplierCard
-                key={supplier.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
-                <p className="text-white/60 mb-6">{supplier.category}</p>
-                <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
-                <div className="space-y-4 mb-8">
-                  {supplier.standoutFeatures.map((feature) => (
-                    <div key={feature} className="flex items-start gap-3">
-                      <span className="text-yellow-500">•</span>
-                      <span className="text-white/90 leading-relaxed">{feature}</span>
-                    </div>
+      {Object.entries(suppliers).map(([category, items], index) => {
+        if (category === 'smartHome') {
+          return (
+            <React.Fragment key={category}>
+              <SmartHomeVideoContainer>
+                <iframe
+                  src="https://www.youtube.com/embed/gPQRrAXhEXk"
+                  title="Smart Home Showcase"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </SmartHomeVideoContainer>
+              <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SupplierGrid>
+                  {items.map((supplier) => (
+                    <SupplierCard
+                      key={supplier.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                      <p className="text-white/60 mb-6">{supplier.category}</p>
+                      <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                      <div className="space-y-4 mb-8">
+                        {supplier.standoutFeatures.map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <span className="text-yellow-500">•</span>
+                            <span className="text-white/90 leading-relaxed">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-end">
+                        <StyledLink
+                          href={supplier.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Website →
+                        </StyledLink>
+                      </div>
+                    </SupplierCard>
                   ))}
-                </div>
-                <div className="flex justify-end">
-                  <StyledLink
-                    href={supplier.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit Website →
-                  </StyledLink>
-                </div>
-              </SupplierCard>
-            ))}
-          </SupplierGrid>
-        </CategorySection>
-      ))}
+                </SupplierGrid>
+              </CategorySection>
+            </React.Fragment>
+          );
+        }
+        if (category === 'kitchen') {
+          return (
+            <React.Fragment key={category}>
+              <KitchenVideoContainer>
+                <iframe
+                  src="https://www.youtube.com/embed/vKkwYW5YPJQ"
+                  title="Luxury Kitchen Showcase"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </KitchenVideoContainer>
+              <CategorySection style={{ animationDelay: `${index * 0.2}s` }}>
+                <CategoryTitle>{category}</CategoryTitle>
+                <SupplierGrid>
+                  {items.map((supplier) => (
+                    <SupplierCard
+                      key={supplier.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                      <p className="text-white/60 mb-6">{supplier.category}</p>
+                      <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                      <div className="space-y-4 mb-8">
+                        {supplier.standoutFeatures.map((feature) => (
+                          <div key={feature} className="flex items-start gap-3">
+                            <span className="text-yellow-500">•</span>
+                            <span className="text-white/90 leading-relaxed">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex justify-end">
+                        <StyledLink
+                          href={supplier.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Visit Website →
+                        </StyledLink>
+                      </div>
+                    </SupplierCard>
+                  ))}
+                </SupplierGrid>
+              </CategorySection>
+            </React.Fragment>
+          );
+        }
+        return (
+          <CategorySection key={category} style={{ animationDelay: `${index * 0.2}s` }}>
+            <CategoryTitle>{category}</CategoryTitle>
+            <SupplierGrid>
+              {items.map((supplier) => (
+                <SupplierCard
+                  key={supplier.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">{supplier.name}</h3>
+                  <p className="text-white/60 mb-6">{supplier.category}</p>
+                  <p className="text-white/80 mb-8 leading-relaxed">{supplier.description}</p>
+                  <div className="space-y-4 mb-8">
+                    {supplier.standoutFeatures.map((feature) => (
+                      <div key={feature} className="flex items-start gap-3">
+                        <span className="text-yellow-500">•</span>
+                        <span className="text-white/90 leading-relaxed">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-end">
+                    <StyledLink
+                      href={supplier.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit Website →
+                    </StyledLink>
+                  </div>
+                </SupplierCard>
+              ))}
+            </SupplierGrid>
+          </CategorySection>
+        );
+      })}
 
       <BudgetSection>
         <BudgetTitle>Project Budget Breakdown</BudgetTitle>
