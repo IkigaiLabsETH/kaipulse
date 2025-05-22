@@ -674,26 +674,26 @@ export default function LuxurySuppliers() {
 
       <BudgetSection>
         <BudgetTitle>Project Budget Breakdown</BudgetTitle>
-        <p className="text-white/70 text-center mb-8">Based on ~300 m² Build Area</p>
+        <p className="text-white/70 text-center mb-8">Based on 200 m² Build Area (20m × 10m)</p>
         
         <BudgetGrid>
           <BudgetCard>
             <h3 className="text-yellow-500 text-xl font-bold mb-4">Core Construction</h3>
             <BudgetItem>
               <span className="text-white/80">Architectural Design + Engineer</span>
-              <span className="text-yellow-500">70,000 €</span>
+              <span className="text-yellow-500">60,000 €</span>
             </BudgetItem>
             <BudgetItem>
-              <span className="text-white/80">Shell Construction</span>
-              <span className="text-yellow-500">480,000 €</span>
+              <span className="text-white/80">Shell Construction (200m² × 1,600 €/m²)</span>
+              <span className="text-yellow-500">320,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Roof Geometry + Steel Framing</span>
-              <span className="text-yellow-500">40,000 €</span>
+              <span className="text-yellow-500">35,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Glazing (Vitrocsa full system)</span>
-              <span className="text-yellow-500">120,000 €</span>
+              <span className="text-yellow-500">90,000 €</span>
             </BudgetItem>
           </BudgetCard>
 
@@ -705,15 +705,15 @@ export default function LuxurySuppliers() {
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Kitchen (Bulthaup / Gaggenau)</span>
-              <span className="text-yellow-500">60,000 €</span>
+              <span className="text-yellow-500">50,000 €</span>
             </BudgetItem>
             <BudgetItem>
-              <span className="text-white/80">Bathrooms (x3)</span>
-              <span className="text-yellow-500">40,000 €</span>
+              <span className="text-white/80">Bathrooms (x2)</span>
+              <span className="text-yellow-500">30,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Flooring</span>
-              <span className="text-yellow-500">35,000 €</span>
+              <span className="text-yellow-500">25,000 €</span>
             </BudgetItem>
           </BudgetCard>
 
@@ -721,19 +721,19 @@ export default function LuxurySuppliers() {
             <h3 className="text-yellow-500 text-xl font-bold mb-4">Technology & Finishing</h3>
             <BudgetItem>
               <span className="text-white/80">Smart Home (KNX / Basalte)</span>
-              <span className="text-yellow-500">35,000 €</span>
+              <span className="text-yellow-500">30,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Lighting</span>
-              <span className="text-yellow-500">20,000 €</span>
+              <span className="text-yellow-500">18,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Furniture</span>
-              <span className="text-yellow-500">85,000 €</span>
+              <span className="text-yellow-500">65,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">HVAC + Passive Systems</span>
-              <span className="text-yellow-500">45,000 €</span>
+              <span className="text-yellow-500">35,000 €</span>
             </BudgetItem>
           </BudgetCard>
 
@@ -741,19 +741,19 @@ export default function LuxurySuppliers() {
             <h3 className="text-yellow-500 text-xl font-bold mb-4">Exterior & Contingency</h3>
             <BudgetItem>
               <span className="text-white/80">Outdoor (kitchen, pool area)</span>
-              <span className="text-yellow-500">60,000 €</span>
+              <span className="text-yellow-500">45,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Landscaping / Access Drive</span>
-              <span className="text-yellow-500">35,000 €</span>
+              <span className="text-yellow-500">30,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white/80">Contingency (10%)</span>
-              <span className="text-yellow-500">115,000 €</span>
+              <span className="text-yellow-500">85,000 €</span>
             </BudgetItem>
             <BudgetItem>
               <span className="text-white font-bold">TOTAL</span>
-              <span className="text-yellow-500 font-bold">1.335M – 1.4M €</span>
+              <span className="text-yellow-500 font-bold">950,000 – 1M €</span>
             </BudgetItem>
           </BudgetCard>
         </BudgetGrid>
@@ -763,11 +763,11 @@ export default function LuxurySuppliers() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             <div className="bg-black/30 p-4 rounded-lg">
               <p className="text-white/80">Tesla Powerwall + Solar Tiles</p>
-              <p className="text-yellow-500">+40–50k €</p>
+              <p className="text-yellow-500">+35–45k €</p>
             </div>
             <div className="bg-black/30 p-4 rounded-lg">
               <p className="text-white/80">Geothermal HVAC</p>
-              <p className="text-yellow-500">+25–30k €</p>
+              <p className="text-yellow-500">+20–25k €</p>
             </div>
             <div className="bg-black/30 p-4 rounded-lg">
               <p className="text-white/80">Zehnder ComfoAir Q600 HRV</p>
