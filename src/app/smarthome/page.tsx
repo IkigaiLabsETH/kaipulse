@@ -1318,7 +1318,7 @@ export default function LuxurySuppliers() {
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.02 }}
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Furniture & Interior Systems</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Furniture & Interior</h3>
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
                 <span className="text-yellow-500">•</span>
@@ -1342,6 +1342,37 @@ export default function LuxurySuppliers() {
                 <span className="text-yellow-500">•</span>
                 <span className="text-white/90 leading-relaxed">
                   <StyledLink href="https://www.rimadesio.it/en/product/spin/" target="_blank" rel="noopener noreferrer">Rimadesio</StyledLink> – Premium sliding doors and partition systems with invisible tracks
+                </span>
+              </div>
+              {/* New Inspirations */}
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.kettal.com/" target="_blank" rel="noopener noreferrer">Kettal</StyledLink> – Outdoor and indoor furniture, innovative materials, contemporary design
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.cassina.com/fr/fr/products/category-page/all-products.5.html" target="_blank" rel="noopener noreferrer">Cassina</StyledLink> – Iconic Italian modern furniture, collaborations with top architects
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.flexform.it/en" target="_blank" rel="noopener noreferrer">Flexform</StyledLink> – Elegant Italian sofas and lounge furniture, understated luxury
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://livingdivani.it/en/products/beds/" target="_blank" rel="noopener noreferrer">Living Divani</StyledLink> – Minimalist sofas and seating, contemporary Italian design
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.carlhansen.com/en/fr" target="_blank" rel="noopener noreferrer">Carl Hansen & Søn</StyledLink> – Danish classics, natural materials, timeless craftsmanship
                 </span>
               </div>
             </div>
@@ -1506,6 +1537,19 @@ export default function LuxurySuppliers() {
                   <StyledLink href="https://www.blacknova.co" target="_blank" rel="noopener noreferrer">Black Nova</StyledLink> – Italian smart panels with luxury hotel DNA
                 </span>
               </div>
+              {/* New Inspirations */}
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.basalte.be/en/product/adelante" target="_blank" rel="noopener noreferrer">Basalte</StyledLink> – Belgian touch-sensitive switches and smart controls, minimalist design
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.gira.com/en/en/products/socket-outlets/gira-outdoor-socket-outlets#" target="_blank" rel="noopener noreferrer">Gira</StyledLink> – German smart home systems, KNX integration, high-end switches
+                </span>
+              </div>
             </div>
           </SupplierCard>
 
@@ -1530,6 +1574,30 @@ export default function LuxurySuppliers() {
                   <StyledLink href="https://www.rodaonline.com" target="_blank" rel="noopener noreferrer">Roda</StyledLink> – Neutral-toned outdoor systems in natural fabrics
                 </span>
               </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.kettal.com" target="_blank" rel="noopener noreferrer">Kettal</StyledLink> – Premium outdoor furniture with innovative materials and timeless design
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.dedon.de/en/Product-Finder/furniture/nestrest/Standing-lounger" target="_blank" rel="noopener noreferrer">Dedon</StyledLink> – Iconic woven outdoor furniture, innovative weatherproof materials
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.tribu.com/en/" target="_blank" rel="noopener noreferrer">Tribù</StyledLink> – Belgian luxury outdoor furniture, refined minimalism
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.gloster.com/en/products/collections/deck" target="_blank" rel="noopener noreferrer">Gloster</StyledLink> – Teak and aluminum outdoor furniture, timeless craftsmanship
+                </span>
+              </div>
             </div>
           </SupplierCard>
         </SupplierGrid>
@@ -1552,7 +1620,10 @@ export default function LuxurySuppliers() {
           <hr className="border-yellow-500/30 my-4" />
           <div>
             <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🎯 Core Vision</h3>
-            <p>Create a calm, intelligent, and spatially refined villa inspired by Malibu minimalism. This home is designed to disappear into the landscape during the day and glow with intention at night — blending smart technology with elemental architecture.</p>
+            <p>
+              Create a calm, intelligent, and spatially refined villa inspired by Malibu minimalism, where every detail is curated for effortless living and sensory harmony. The architecture should dissolve into the natural landscape, using expansive glazing and organic materials to blur the boundaries between indoors and out. By day, the home is nearly invisible—its presence felt through subtle textures, shadow play, and the gentle transition of light. At night, it transforms into a warm, intentional beacon, softly illuminated to foster a sense of sanctuary and belonging.<br /><br />
+              The villa seamlessly integrates advanced smart home technology, allowing intuitive control over lighting, climate, security, and entertainment, all while remaining unobtrusive and tactile. Spaces are designed for both privacy and connection, supporting moments of solitude as well as vibrant gatherings. The result is a living environment that feels both elemental and futuristic—where technology enhances, rather than overwhelms, the experience of home.
+            </p>
           </div>
           <hr className="border-yellow-500/30 my-4" />
           <div>
