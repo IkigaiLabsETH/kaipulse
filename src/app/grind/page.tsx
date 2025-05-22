@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, CheckCircle2, Rocket, Target, Zap, Shield } from "lucide-react";
+import { TrendingUp, CheckCircle2, Rocket, Target, Zap, Shield, ArrowUpRight, Trophy, Flag } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "The $1K Grind Challenge - Turn $1,000 into $100K",
@@ -61,28 +61,12 @@ export default function GrindPage() {
               Phase 1: Microcap Ascent
             </h2>
             <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-[#1c1f26] border-2 border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,1)] flex items-center justify-center flex-shrink-0">
-                  <span className="font-semibold text-yellow-400">1</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-yellow-400">Strategic Entry</h3>
-                  <p className="text-muted-foreground">
-                    Find 1-2 microcaps under or near $1M market cap with real utility, active teams, and steady charts. Avoid hype and rugs — you&apos;re not gambling, you&apos;re filtering for survivors.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-[#1c1f26] border-2 border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,1)] flex items-center justify-center flex-shrink-0">
-                  <span className="font-semibold text-yellow-400">2</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-yellow-400">Initial Deployment</h3>
-                  <p className="text-muted-foreground">
-                    Split $900 into two $450 bets. Dive into their Telegrams, ask hard questions, and hunt for a clean 3x. Hit that? Sell 50%. Now you&apos;ve got $1,350 in capital and $1,350 in unrealized gains.
-                  </p>
-                </div>
-              </div>
+              <p className="text-muted-foreground">
+                Find 1-2 microcaps under or near $1M market cap with real utility, active teams, and steady charts. Avoid hype and rugs — you&apos;re not gambling, you&apos;re filtering for survivors.
+              </p>
+              <p className="text-muted-foreground">
+                Split $900 into two $450 bets. Dive into their Telegrams, ask hard questions, and hunt for a clean 3x. Hit that? Sell 50%. Now you&apos;ve got $1,350 in capital and $1,350 in unrealized gains.
+              </p>
             </div>
           </Card>
 
@@ -139,28 +123,81 @@ export default function GrindPage() {
 
           <Card className="p-6 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2 text-yellow-400">
-              <Shield className="w-6 h-6" />
-              Risk Management Rules
+              <ArrowUpRight className="w-6 h-6" />
+              Phase 4: Mid-Cap Upgrades
             </h2>
             <div className="space-y-4">
+              <p className="text-muted-foreground">
+                Clean up the portfolio. Kill laggards. Ride the strong hands. You probably still have a moonbag worth $1k. That one could 5x–10x while you&apos;re working elsewhere.
+              </p>
+              <p className="text-muted-foreground">
+                Now you&apos;re doing $2k trades, looking for quick 2x–3x momentum swings. Two wins here, and you&apos;re at $12k. Again, take some off, stash a moonbag, and sell the rest.
+              </p>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2 text-yellow-400">
+              <Trophy className="w-6 h-6" />
+              Phase 5: Big League
+            </h2>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                With $10k liquid, you move into $5k trades. More conservative, more stable. You target safer 2x gains on trending alts. Take profits faster. A single clean 2x gets you to $15k —
+              </p>
+              <p className="text-muted-foreground">
+                Meanwhile, that original moonbag? Maybe it 10xed. That&apos;s another $10k.
+              </p>
+              <p className="text-yellow-400 font-semibold">
+                You&apos;re at $25k. Cash out $5k. Realized profits now total $6k.
+              </p>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2 text-yellow-400">
+              <Shield className="w-6 h-6" />
+              Phase 6: Professional Mode
+            </h2>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                You&apos;re now making $5k trades, aiming for 10–20% swings. Or small $5k microcap plays. The goal isn&apos;t doubling — it&apos;s compounding $5k wins. Do it 5 times? You&apos;re at $50k.
+              </p>
+              <p className="text-yellow-400 font-semibold">
+                Feel like a genius? You are. But slow down. Cash out $14k more. Realized profits now $20k. Even if it all crashes, you turned $1k into $20k. You won.
+              </p>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2 text-yellow-400">
+              <Flag className="w-6 h-6" />
+              Final Phase: Exit Plan
+            </h2>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                You keep compounding, but the mindset has shifted:
+              </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
-                  <span>Always secure profits by taking 50% off the table at 3x returns</span>
+                  <span>You&apos;re playing with house money.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
-                  <span>Maintain a moonbag in your best performing position</span>
+                  <span>You never re-fund the account.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
-                  <span>Never reinvest more than 50% of your profits</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
-                  <span>Keep detailed records of all trades and profit-taking points</span>
+                  <span>You treat $100k as done — not a starting line.</span>
                 </li>
               </ul>
+              <p className="text-muted-foreground mt-4">
+                That&apos;s how you go from $1k to $100k. Not by chasing, but by surviving, compounding, and exiting.
+              </p>
+              <p className="text-muted-foreground">
+                If it doesn&apos;t work out? Maybe this wasn&apos;t your cycle. That&apos;s not failure — it&apos;s tuition. Focus on your job, business, family. Crypto will always be here. Your time is the scarce asset.
+              </p>
             </div>
           </Card>
 
