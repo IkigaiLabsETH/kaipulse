@@ -385,6 +385,20 @@ const suppliers: Record<string, Supplier[]> = {
         'Advanced scene creation and scheduling',
         'Entertainment sync for gaming and movies'
       ]
+    },
+    {
+      name: 'Basalte',
+      category: 'Smart Controls',
+      description: 'Belgian manufacturer of premium touch-sensitive switches and smart home controls, known for their minimalist design and exceptional build quality.',
+      website: 'https://www.basalte.be',
+      specialties: ['Touch-sensitive switches', 'Smart home controls', 'Architectural integration'],
+      priceRange: 'Ultra-Luxury',
+      standoutFeatures: [
+        'Patented touch-sensitive technology',
+        'Belgian design heritage',
+        'Seamless architectural integration',
+        'Premium materials and craftsmanship'
+      ]
     }
   ],
   wellness: [
