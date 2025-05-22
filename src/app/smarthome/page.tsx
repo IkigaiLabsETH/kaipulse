@@ -1552,8 +1552,7 @@ export default function LuxurySuppliers() {
           <hr className="border-yellow-500/30 my-4" />
           <div>
             <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🎯 Core Vision</h3>
-            <p>Create a calm, intelligent, and spatially refined villa inspired by Malibu minimalism.<br />
-            This home is designed to disappear into the landscape during the day and glow with intention at night — blending smart technology with elemental architecture.</p>
+            <p>Create a calm, intelligent, and spatially refined villa inspired by Malibu minimalism. This home is designed to disappear into the landscape during the day and glow with intention at night — blending smart technology with elemental architecture.</p>
           </div>
           <hr className="border-yellow-500/30 my-4" />
           <div>
@@ -1580,12 +1579,12 @@ export default function LuxurySuppliers() {
                   </tr>
                 </thead>
                 <tbody className="text-white/90">
-                  <tr><td>Living / Dining / Kitchen</td><td>~80 m²</td><td>Island, travertine slab, high ceilings, centered fireplace (Focus or Gyrofocus)</td></tr>
-                  <tr><td>Master Bedroom Suite</td><td>~45 m²</td><td>WIC, en-suite, private access to pool</td></tr>
-                  <tr><td>Bedroom 2</td><td>~25 m²</td><td>En-suite or shared access to bath</td></tr>
-                  <tr><td>Home Office / Library</td><td>~20 m²</td><td>Glass pocket doors, acoustic ceiling</td></tr>
-                  <tr><td>Bathrooms (x2)</td><td>~12 m² ea</td><td>Vola or Axor + Agape or Antonio Lupi</td></tr>
-                  <tr><td>Utility + Tech</td><td>~5 m²</td><td>HVAC, Smart Panel, Storage</td></tr>
+                  <tr><td>Living / Dining / Kitchen</td><td>80</td><td>Island, travertine slab, high ceilings, centered fireplace (Focus or Gyrofocus)</td></tr>
+                  <tr><td>Master Bedroom Suite</td><td>45</td><td>WIC, en-suite, private access to pool</td></tr>
+                  <tr><td>Bedroom 2</td><td>25</td><td>En-suite or shared access to bath</td></tr>
+                  <tr><td>Home Office</td><td>20</td><td>Glass pocket doors, acoustic ceiling</td></tr>
+                  <tr><td>Bathrooms (x2)</td><td>12</td><td>Vola or Axor + Agape or Antonio Lupi</td></tr>
+                  <tr><td>Utility + Tech</td><td>5</td><td>HVAC, Smart Panel, Storage</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1647,8 +1646,8 @@ export default function LuxurySuppliers() {
           <div>
             <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">📦 Required Deliverables</h3>
             <ol className="list-decimal pl-5 sm:pl-6 space-y-1">
-              <li>Conceptual Floor Plan (based on current 20x10 plan)</li>
-              <li>3D Massing Model – Vaulted interior volume, solar study</li>
+              <li>Conceptual Floor Plan</li>
+              <li>3D Massing Model – Vaulted interior volume, solar</li>
               <li>Interior Render Pack – Lounge, kitchen, master bath</li>
               <li>Material Moodboard – Aligning with Figma Files</li>
               <li>Smart System Pre-Wire Plan</li>
