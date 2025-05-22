@@ -553,20 +553,6 @@ const suppliers: Record<string, Supplier[]> = {
       ]
     },
     {
-      name: 'Devialet',
-      category: 'Audio Systems',
-      description: 'French manufacturer of high-end audio equipment, known for their innovative technology and design.',
-      website: 'https://www.devialet.com',
-      specialties: ['Speakers', 'Amplifiers', 'Sound systems'],
-      priceRange: 'Ultra-Luxury',
-      standoutFeatures: [
-        'Revolutionary ADH amplification',
-        'SAM speaker matching technology',
-        'Phantom speaker technology',
-        'Artistic collaboration program'
-      ]
-    },
-    {
       name: 'Bose',
       category: 'Audio Systems',
       description: 'American manufacturer of premium audio systems, known for their innovative sound technology and immersive home entertainment solutions.',
@@ -684,7 +670,7 @@ export default function LuxurySuppliers() {
               <span className="text-yellow-500">60,000 €</span>
             </BudgetItem>
             <BudgetItem>
-              <span className="text-white/80">Shell Construction (200m² × 1,600 €/m²)</span>
+              <span className="text-white/80">Shell Construction (1,600 €/m²)</span>
               <span className="text-yellow-500">320,000 €</span>
             </BudgetItem>
             <BudgetItem>
