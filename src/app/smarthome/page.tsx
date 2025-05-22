@@ -1318,6 +1318,293 @@ export default function LuxurySuppliers() {
           </div>
         </UpgradeSection>
       </BudgetSection>
+
+      <CategorySection style={{ marginTop: '8rem' }}>
+        <CategoryTitle>Inspiration</CategoryTitle>
+        <SupplierGrid>
+          {/* Furniture & Interior Systems */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Furniture & Interior Systems</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.molteni.it" target="_blank" rel="noopener noreferrer">Molteni&C</StyledLink> – Minimalist integrated storage, sofas, beds
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.meridiani.it" target="_blank" rel="noopener noreferrer">Meridiani</StyledLink> – Modern Italian furniture, softer textures
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.livingdivani.it" target="_blank" rel="noopener noreferrer">Living Divani</StyledLink> – Refined and discreet luxury
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.porro.com" target="_blank" rel="noopener noreferrer">Porro</StyledLink> – Sleek custom wardrobes and open shelving systems
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.desalto.it" target="_blank" rel="noopener noreferrer">Desalto</StyledLink> – Architectural tables and modular shelving
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://apparatusstudio.uk" target="_blank" rel="noopener noreferrer">Apparatus Studio</StyledLink> – Artistic lighting/furniture hybrid pieces
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+
+          {/* Bathroom Brands */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Bathroom Brands</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.falper.it" target="_blank" rel="noopener noreferrer">Falper</StyledLink> – Bold designer bathroom furniture, resin basins
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.rexadesign.com" target="_blank" rel="noopener noreferrer">Rexa Design</StyledLink> – Corian-like resin baths and sculptural elements
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.inbani.com" target="_blank" rel="noopener noreferrer">Inbani</StyledLink> – Sleek, minimal Spanish bath furniture
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.neutra.it" target="_blank" rel="noopener noreferrer">Neutra</StyledLink> – Italian brand blending natural stone + wood
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.zucchettikos.it" target="_blank" rel="noopener noreferrer">Zucchetti.Kos</StyledLink> – Iconic mixer taps and spa bathtubs
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.duravit.com" target="_blank" rel="noopener noreferrer">Duravit</StyledLink> (Cecilie Manz, Philippe Starck lines) – Clean but less flashy
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.axor-design.com" target="_blank" rel="noopener noreferrer">Axor by Hansgrohe</StyledLink> – Dornbracht-level quality but more expressive
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+
+          {/* Kitchen & Joinery */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Kitchen & Joinery</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.arclinea.com" target="_blank" rel="noopener noreferrer">Arclinea</StyledLink> – Integrated pro kitchens with Boffi DNA
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.valcucine.com" target="_blank" rel="noopener noreferrer">Valcucine</StyledLink> – Glass and carbon-fiber framed kitchens
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.henrybuilt.com" target="_blank" rel="noopener noreferrer">Henrybuilt</StyledLink> – USA-based, super-custom joinery with architectural finesse
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+
+          {/* Lighting Design */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Lighting Design</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.michaelanastassiades.com" target="_blank" rel="noopener noreferrer">Michael Anastassiades</StyledLink> – Poetic sculptural pieces
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.pslab.com" target="_blank" rel="noopener noreferrer">PSLab</StyledLink> – Beirut-based bespoke lighting design
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.bocci.ca" target="_blank" rel="noopener noreferrer">Bocci</StyledLink> – Canadian blown-glass installations
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.deltalight.com" target="_blank" rel="noopener noreferrer">Delta Light</StyledLink> – Discreet, modular architectural lighting
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.vibia.com" target="_blank" rel="noopener noreferrer">Vibia</StyledLink> – Mediterranean modern lighting for minimalist spaces
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+
+          {/* Smart Systems & Control */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Smart Systems & Control</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.jung.de" target="_blank" rel="noopener noreferrer">JUNG LS 990</StyledLink> – German-designed smart switch plates
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.gira.com" target="_blank" rel="noopener noreferrer">Gira X1</StyledLink> – Powerful visual control interface for KNX
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.blacknova.it" target="_blank" rel="noopener noreferrer">Black Nova</StyledLink> – Italian smart panels with luxury hotel DNA
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+
+          {/* Wellness & Outdoor */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Wellness & Outdoor</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.effegibi.com" target="_blank" rel="noopener noreferrer">Effegibi</StyledLink> – Designer saunas and steam rooms
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.treesse.com" target="_blank" rel="noopener noreferrer">Treesse</StyledLink> – Outdoor wellness tubs with hidden jets
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.talentioutdoor.com" target="_blank" rel="noopener noreferrer">Talenti Outdoor</StyledLink> – Italian outdoor dining/lounging sets
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.exteta.it" target="_blank" rel="noopener noreferrer">Exteta</StyledLink> – Artisanal Mediterranean outdoor furniture
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.rodaonline.com" target="_blank" rel="noopener noreferrer">Roda</StyledLink> – Neutral-toned outdoor systems in natural fabrics
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+
+          {/* Audio & Media */}
+          <SupplierCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-yellow-500 mb-6">Audio & Media</h3>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.jamesloudspeaker.com" target="_blank" rel="noopener noreferrer">James Loudspeaker</StyledLink> – Architectural-grade hidden sound
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.leonspeakers.com" target="_blank" rel="noopener noreferrer">Leon Speakers</StyledLink> – Custom TVs with soundbar casings
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.barco.com" target="_blank" rel="noopener noreferrer">Barco Residential</StyledLink> – Luxury home theater setups
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-500">•</span>
+                <span className="text-white/90 leading-relaxed">
+                  <StyledLink href="https://www.amina.com" target="_blank" rel="noopener noreferrer">Amina Invisible Speakers</StyledLink> – Plaster-over speaker tech
+                </span>
+              </div>
+            </div>
+          </SupplierCard>
+        </SupplierGrid>
+      </CategorySection>
     </Container>
   );
 }
