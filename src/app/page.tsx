@@ -141,6 +141,8 @@ export default function Home() {
               This website and its tools are for educational purposes only. Not financial advice. 
               Always do your own research and consult with qualified professionals before making investment decisions. 
               Past performance is not indicative of future results. Investing involves risk of loss.
+              
+              Warning: Many investors have experienced significant wealth leakage through multiple conversions between Bitcoin and Bitcoin-related equities (MSTR, Metaplanet, etc.) at various mNAV multiples. This pattern of trading often leads to diminished Bitcoin holdings over time. Remember: making a single conversion at an mNAV multiple requires patience until Bitcoin per share catches up. Bitcoin Treasury companies should not be treated as meme coins - exercise extreme caution and maintain long-term perspective.
             </p>
           </div>
         </motion.div>
