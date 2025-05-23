@@ -201,6 +201,55 @@ export default function GrindPage() {
             </div>
           </Card>
 
+          <Card className="p-6 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2 text-yellow-400">
+              <Shield className="w-6 h-6" />
+              Personal Trading Principles
+            </h2>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                Success isn&apos;t just about the strategy — it&apos;s about the rules you live by. Here are the non-negotiables:
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>Zero leverage — know your limits and stick to them</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>10% of liquid holdings sold on every screenshot shared</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>Tax money in treasuries, never in algorithmic stables</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>10% of post-tax profits reserved for art you love</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>NFT bags hitting 7 figures? Instant 50% market dump</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>Max 5% in sub-10M mcap plays</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>Max 5% in angel investments</span>
+                </li>
+              </ul>
+              <p className="text-yellow-400 font-semibold mt-4">
+                A 5x this cycle is enough to comfortably exit. This isn&apos;t 2021 — it&apos;s okay to be defensive.
+              </p>
+              <p className="text-muted-foreground">
+                Keep 80%+ in boring blue chips.<br />
+                You&apos;re not trying to turn nothing into everything anymore. You&apos;re playing the long game.
+              </p>
+            </div>
+          </Card>
+
           <div className="text-center mt-8">
             <Button size="lg" className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold">
               Start Your Challenge
