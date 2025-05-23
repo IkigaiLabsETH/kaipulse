@@ -250,6 +250,154 @@ export default function GrindPage() {
             </div>
           </Card>
 
+          <Card className="p-6 bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2 text-yellow-400">
+              <Shield className="w-6 h-6" />
+              Microcap Risk Management Framework
+            </h2>
+            <div className="space-y-4">
+              <p className="text-muted-foreground">
+                Trading microcaps without proper risk management is a recipe for disaster. Every token is unique, and your position sizes should reflect that. Here&apos;s a systematic approach:
+              </p>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">The Rating System (1-10)</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                      <h4 className="font-semibold text-yellow-400 mb-2">Level 1 (Highest Risk)</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-400">•</span>
+                          <span>Brand new launches</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-400">•</span>
+                          <span>No website or track record</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-400">•</span>
+                          <span>High taxes, bundled supply</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                      <h4 className="font-semibold text-yellow-400 mb-2">Level 10 (Lowest Risk)</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-400">•</span>
+                          <span>Years of proven track record</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-400">•</span>
+                          <span>Transparent team and operations</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-400">•</span>
+                          <span>Established community and trust</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">Position Sizing Strategy</h3>
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                      <h4 className="font-semibold text-yellow-400 mb-2">Base Unit Calculation</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Determine your base unit - an amount you&apos;d be upset losing for 5 minutes then get over it. For most microcap traders, this is around 0.25 ETH.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                        <h4 className="font-semibold text-yellow-400 mb-2">Level 1-2 (Gambles)</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>0.1 ETH per position</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>Max 2-3 positions</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>Expect 2 rugs, 1 5-10x</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                        <h4 className="font-semibold text-yellow-400 mb-2">Level 3-6 (Core)</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>0.25 ETH per position</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>4 positions (30% portfolio)</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>Target 2x, hold strength</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                        <h4 className="font-semibold text-yellow-400 mb-2">Level 7-10 (Premium)</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>0.75-1 ETH per position</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>1-2 positions max</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-yellow-400">•</span>
+                            <span>Target 50% returns</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-lg bg-[#1c1f26] border border-yellow-500/50">
+                  <h4 className="font-semibold text-yellow-400 mb-2">Portfolio Example (3 ETH)</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-400">•</span>
+                      <span>3 gambles (0.1 ETH each) = 0.3 ETH</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-400">•</span>
+                      <span>4 core positions (0.25 ETH each) = 1 ETH</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-400">•</span>
+                      <span>2 premium positions (0.75 ETH each) = 1.5 ETH</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-400">•</span>
+                      <span>0.5 ETH reserved for opportunities</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <p className="text-yellow-400 font-semibold">
+                  Remember: The goal isn&apos;t to hit home runs on every trade. It&apos;s to manage risk while giving yourself enough exposure to catch the big moves when they happen.
+                </p>
+              </div>
+            </div>
+          </Card>
+
           <div className="text-center mt-8">
             <Button size="lg" className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold">
               Start Your Challenge
