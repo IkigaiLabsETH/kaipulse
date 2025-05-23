@@ -2,10 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useState } from 'react';
 import PriceTicker from '@/components/PriceTicker';
+import Modal from '@/components/Modal';
+import BullPeakSignals from '@/components/BullPeakSignals';
+import Link from 'next/link';
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Enhanced Hero Section */}
@@ -41,7 +46,12 @@ export default function Home() {
             </h1>
             
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-              <Link href="/bull-peak" className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200">Hold 90% in Bitcoin, use 10% for strategic lifestyle exits</Link>.
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200"
+              >
+                Hold 90% in Bitcoin, use 10% for strategic lifestyle exits
+              </button>.
               <span className="block h-4"></span>
               Track market signals and focus on long-term Bitcoin accumulation.
             </p>
@@ -81,6 +91,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))] backdrop-blur-[200px]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/50 to-black pointer-events-none" />
       </motion.div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <BullPeakSignals />
+      </Modal>
 
       <div className="container mx-auto px-4 py-16 space-y-24">
         {/* Core Strategy section stays the same */}
