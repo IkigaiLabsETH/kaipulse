@@ -37,11 +37,13 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-400 tracking-tight font-boska uppercase">
-              Level Up Your Bitcoin
+              ₿ different
             </h1>
             
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Preserve your Bitcoin wealth. <Link href="/8020" className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200">Cold store 80%, let 20% work smarter with MSTR/MSTY</Link>. Focus on Art, Digital Money, & Digital Intelligence. ₿ different
+              <Link href="/bull-peak" className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200">Hold 90% in Bitcoin, use 10% for strategic lifestyle exits</Link>.
+              <span className="block h-4"></span>
+              Track market signals and focus on long-term Bitcoin accumulation.
             </p>
           </motion.div>
 
