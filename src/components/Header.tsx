@@ -79,13 +79,13 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'CALCULATOR', href: '/calculator' },
-        { name: 'THE 4% RULE', href: '/21' },
         { name: 'BTC DASHBOARD', href: '/data' },
+        { name: 'THE 4% RULE', href: '/21' },
+        { name: 'CALCULATOR', href: '/calculator' },
         { name: 'NODE ETF', href: '/node' },
+        { name: 'HOLDINGS', href: '/tbs' },
         { name: 'LEDGER', href: '/ledger' },
         { name: 'BROKERS', href: '/platforms/msty/brokers' },
-        { name: 'HOLDINGS', href: '/tbs' },
       ]
     },
     { 
