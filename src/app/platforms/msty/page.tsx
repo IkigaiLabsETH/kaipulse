@@ -93,13 +93,6 @@ export default function MSTYPlatformsPage() {
           </div>
         </motion.div>
 
-        {/* Big Bold Quote Section */}
-        <div className="mt-12 flex justify-center">
-          <blockquote className="max-w-3xl mx-auto text-center text-2xl sm:text-3xl font-bold text-yellow-500 font-boska">
-            &quot;HODLing solves the future — $MSTY solves today. It gives us time, freedom, and monthly income to live now, not just later. Allocate accordingly.&quot;
-          </blockquote>
-        </div>
-
         {/* YouTube Video Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -138,6 +131,48 @@ export default function MSTYPlatformsPage() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Narrative Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12"
+        >
+          <div className="relative p-4 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="space-y-6 text-lg text-white/90">
+              <p className="font-medium text-yellow-500">I&apos;ve got a question for you.</p>
+              
+              <p>Why would you leverage trade?</p>
+              
+              <p>Why would you risk your sanity over red candles and liquidation wicks?</p>
+              
+              <p>Why would you bet the house just to maybe catch a 20% pump—when one wrong move nukes your entire account?</p>
+              
+              <p className="text-yellow-500 font-medium">MSTY gets all the hate, but it pays you every single month. No stress. No price alerts. No 3AM panic sweats. Just dividends, dropping like clockwork.</p>
+              
+              <p>Gone are the days as a pump chaser, so are the days praying for &quot;God candles&quot; (we all know who that retard is). 😂</p>
+              
+              <p>In fact, all you need to do? Absolutely nothing.</p>
+              
+              <p>If this isn&apos;t the easiest way to balloon up your wealth, I don&apos;t know what is.</p>
+              
+              <p>And let&apos;s be honest—to those complaining about NAV erosion?</p>
+              
+              <p className="text-yellow-500 font-medium">You&apos;re weak.</p>
+              
+              <p>Think about it. With MSTY, you&apos;re trading countless emotional breakdowns, failed entries, and margin calls for a tiny NAV dip and a guaranteed payout.</p>
+              
+              <p>That&apos;s not erosion to me. That&apos;s evolution.</p>
+              
+              <p>MSTY isn&apos;t for the hype chasers. It&apos;s about being smarter—with your time, your capital, and your peace of mind.</p>
+              
+              <p>It sure doesn&apos;t promise the moon, but quietly pays for your life, all while your friends are still busy hoping for the next shitcoin moonshot, gambling on leverage, or HODLing Bitcoin forever as a paper millionaire with no exit plan.</p>
+              
+              <p className="text-yellow-500 font-medium">Quiet wealth wins.</p>
             </div>
           </div>
         </motion.div>
