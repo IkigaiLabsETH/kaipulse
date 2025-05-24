@@ -113,6 +113,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="preconnect" href="https://opensea.io" />
+        <link rel="preconnect" href="https://storage.googleapis.com" />
+        <link rel="dns-prefetch" href="https://opensea.io" />
+        <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+      </head>
       <body className={cn(
         "min-h-screen bg-background font-satoshi antialiased",
         "selection:bg-accent selection:text-accent-foreground",
