@@ -2,12 +2,10 @@ import { fetchNFTs } from '@/lib/nft';
 import { NFTGallery } from '@/components/NFTGallery';
 import { Metadata } from 'next';
 import { featuredNFTs } from '@/config/featured-nfts';
+import { Suspense } from 'react';
 
-// Force dynamic rendering to prevent build timeouts
-export const dynamic = 'force-dynamic';
-
-// Increase revalidation time to reduce build load
-export const revalidate = 86400; // 24 hours
+// Use ISR with 1 hour revalidation
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Featured Collection | Digital Art Gallery',
@@ -59,7 +57,9 @@ export default async function ArtPage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <NFTGallery nfts={nfts} />
+        <Suspense fallback={<div className="py-16 text-center text-white/60">Loading artworks...</div>}>
+          <NFTGallery nfts={nfts} />
+        </Suspense>
       </div>
       <div className="flex justify-center mt-16 mb-12">
         <a
