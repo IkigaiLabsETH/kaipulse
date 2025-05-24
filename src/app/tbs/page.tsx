@@ -306,6 +306,76 @@ export default function PublicTreasuryPage() {
           </TabsContent>
         </Tabs>
       </div>
+      <div className="container mx-auto py-24 px-4">
+        <motion.div 
+          className="mb-20 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-4xl font-boska mb-6 text-[#FFD700]">
+            2026 Institutional Bitcoin Adoption Projection
+          </h2>
+          <p className="text-gray-400 text-lg font-epilogue mb-12">
+            A bold projection for institutional Bitcoin adoption by the end of 2026, estimating $426.9 billion in inflows
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-8"
+        >
+          <Card className="bg-black border border-[#FFD700] shadow-[0_0_30px_rgba(255,215,0,0.15)]">
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🔵 Nation-States</h3>
+                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$161.7B</p>
+                    <p className="text-white/80 font-epilogue">1,617,000 BTC (7.70%)</p>
+                  </div>
+                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🟡 Wealth Management</h3>
+                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$120.0B</p>
+                    <p className="text-white/80 font-epilogue">1,200,000 BTC (5.71%)</p>
+                  </div>
+                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🔴 Public Companies</h3>
+                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$117.8B</p>
+                    <p className="text-white/80 font-epilogue">1,178,000 BTC (5.61%)</p>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🟢 U.S. States</h3>
+                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$19.6B</p>
+                    <p className="text-white/80 font-epilogue">196,000 BTC (0.93%)</p>
+                  </div>
+                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🟣 Sovereign Wealth Funds</h3>
+                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$7.8B</p>
+                    <p className="text-white/80 font-epilogue">78,000 BTC (0.37%)</p>
+                  </div>
+                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🧠 Total Forecast</h3>
+                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$426.9B</p>
+                    <p className="text-white/80 font-epilogue">4,269,000 BTC (20.32%)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-12 p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                <h3 className="text-[#FFD700] text-xl font-boska mb-4">🧩 Key Insight</h3>
+                <p className="text-white/80 font-epilogue">
+                  With Bitcoin already trading above $100K, these projections become even more compelling. The institutional demand outlined here could create a significant supply shock, as the available Bitcoin supply becomes increasingly scarce. This structural scarcity, combined with institutional FOMO, could drive prices significantly higher than current levels.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
     </div>
   );
 }
