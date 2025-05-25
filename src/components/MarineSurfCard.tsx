@@ -5,13 +5,20 @@ interface MarineSurfCardProps {
   surf: SurfInfo;
 }
 
+type MarineSurfFrameData = {
+  wave_height: number;
+  wave_period: number;
+  wave_direction: number;
+  sea_surface_temperature: number;
+};
+
 function getCardinalDirection(degrees: number): string {
   const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
   const index = Math.round(degrees / 22.5) % 16;
   return directions[index];
 }
 
-function MarineSurfFrame({ label, data, timeLabel, timeValue }: { label: string; data: any; timeLabel: string; timeValue: string }) {
+function MarineSurfFrame({ label, data, timeLabel, timeValue }: { label: string; data: MarineSurfFrameData; timeLabel: string; timeValue: string }) {
   return (
     <div className="relative bg-black rounded-xl p-6 h-full flex flex-col justify-between min-h-[320px] min-w-[260px] transition-transform duration-200 hover:-translate-y-1 group">
       {/* Yellow frame */}
