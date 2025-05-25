@@ -208,20 +208,28 @@ export default function BitcoinPage() {
   
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Premium header accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center"
+          className="text-center space-y-8"
         >
-          <h1 className="font-epilogue text-4xl font-bold tracking-tight sm:text-6xl text-yellow-500">
-            Bitcoin & MSTY
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Gold • Store of Value • Global Reserve Asset</p>
+          <h1 className="text-center">
+            <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+              Bitcoin
+            </span>
           </h1>
-          <p className="mt-6 text-lg leading-8 text-white/90">
-            Understanding Bitcoin&apos;s impact on MSTY and MicroStrategy&apos;s Bitcoin strategy
-          </p>
+          <div className="flex items-center justify-center mt-6">
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Future of Money</p>
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+          </div>
         </motion.div>
 
         {/* Video Section */}
