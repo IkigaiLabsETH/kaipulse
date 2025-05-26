@@ -6,10 +6,17 @@ import { useState } from 'react';
 import PriceTicker from '@/components/PriceTicker';
 import Modal from '@/components/Modal';
 import BullPeakSignals from '@/components/BullPeakSignals';
+import MandoMinutes from '@/components/MandoMinutes';
 import Link from 'next/link';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<'bullpeak' | 'mandominutes'>('bullpeak');
+
+  const openModal = (type: 'bullpeak' | 'mandominutes') => {
+    setActiveModal(type);
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -47,13 +54,24 @@ export default function Home() {
             
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => openModal('bullpeak')}
                 className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200"
               >
                 Hold 90% in Bitcoin, use 10% for strategic lifestyle exits
               </button>.
-              <span className="block h-4"></span>
-              Track market signals and focus on long-term Bitcoin accumulation.
+              <button
+                onClick={() => openModal('mandominutes')}
+                className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200 ml-4"
+              >
+                <Image
+                  src="/bitcoin/bitcoin-plus.svg"
+                  alt="Newsletter"
+                  width={18}
+                  height={18}
+                  className="w-4 h-4"
+                />
+                Daily market updates by Mando Minutes
+              </button>
             </p>
           </motion.div>
 
@@ -93,7 +111,7 @@ export default function Home() {
       </motion.div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <BullPeakSignals />
+        {activeModal === 'bullpeak' ? <BullPeakSignals /> : <MandoMinutes />}
       </Modal>
 
       <div className="container mx-auto px-4 py-16 space-y-24">
