@@ -275,6 +275,117 @@ export default function BitcoinPage() {
           </div>
         </motion.div>
 
+        {/* Museum Narrative Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-16"
+        >
+          <Card>
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-yellow-500">Bitcoin, But as a Museum</h2>
+              <div className="mt-8 space-y-8">
+                <div className="prose prose-invert max-w-none">
+                  <p className="text-lg text-white/80 leading-relaxed">
+                    Imagine if, instead of trying to understand Bitcoin through charts, jargon, and maximalist memes, you stepped into a museum.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    No blinking tickers. No candlestick patterns. No talk of &quot;halvings&quot; or &quot;hash rates.&quot;
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    Just a quiet room. A timeline on the wall. A flicker of 2008 — a shadowy whitepaper released in the aftermath of a global financial collapse. A digital artifact from someone called Satoshi Nakamoto. Unbranded. Unshilled. Just… there.
+                  </p>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2 mt-12">
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-yellow-500">Bitcoin Is Not Crypto</h3>
+                    <p className="text-white/80 leading-relaxed">
+                      You turn the corner, and suddenly the lights shift. ICOs. NFTs. Luna. FTX. The floor tilts under your feet.
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      This wing of the museum feels different. Flashier. Faster. But also… hollow.
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      A guide whispers: &quot;Bitcoin is not crypto. It&apos;s the foundation. The rest is noise.&quot;
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      And now it clicks. Bitcoin isn&apos;t trying to sell you something. It&apos;s not trying to pump. It&apos;s not VC-backed. It doesn&apos;t have a marketing team. It doesn&apos;t move fast and break things.
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      It just… is.
+                    </p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-yellow-500">The Emotional Architecture</h3>
+                    <p className="text-white/80 leading-relaxed">
+                      This museum doesn&apos;t give you a product to buy. It gives you something rarer: context.
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      Bitcoin emerged not as tech hype — but as a cultural response. It is a refusal.
+                      A refusal to trust those who&apos;ve broken trust.
+                      A refusal to let banks gamble with your savings.
+                      A refusal to let borders, governments, or corporations decide who deserves access to wealth.
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      It&apos;s a form of civil disobedience written in code. A slow revolution. No leaders. No pause button. No CEO.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <h3 className="text-xl font-bold text-yellow-500">Bitcoin as Culture</h3>
+                  <p className="text-white/80 leading-relaxed">
+                    People think Bitcoin is too technical. But the real barrier isn&apos;t the tech — it&apos;s the framing.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    Most people didn&apos;t understand the internet in the &apos;90s either. They understood the websites they loved.
+                    Most people don&apos;t understand TCP/IP, but they use Instagram.
+                    You don&apos;t need to explain how Bitcoin works. You need to show why it matters.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    That&apos;s why we need galleries. Zines. Films. Stories.
+                    We need memes more than whitepapers.
+                    We need timelines more than tickers.
+                    We need places where people can wander into the Bitcoin story and feel something.
+                  </p>
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <h3 className="text-xl font-bold text-yellow-500">Not About Convincing. About Curating.</h3>
+                  <p className="text-white/80 leading-relaxed">
+                    You can&apos;t evangelize Bitcoin. You can&apos;t &quot;sell&quot; decentralization.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    But you can curate a space where people can come to their own conclusions. That&apos;s the beauty of a museum. You walk. You look. You think. You don&apos;t get yelled at. You just… explore.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    Bitcoin doesn&apos;t need to be simplified — it needs to be humanized.
+                  </p>
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <h3 className="text-xl font-bold text-yellow-500">Final Thought</h3>
+                  <p className="text-white/80 leading-relaxed">
+                    Maybe the best way to understand Bitcoin isn&apos;t through a podcast or a YouTube tutorial. Maybe it&apos;s through a photograph. A headline. A letter. A meme.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    Something real. Something felt.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    Bitcoin isn&apos;t a product. It&apos;s a story.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    And the next chapter? That&apos;s up to us.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+
         {/* Market Stats */}
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {marketStats.map((stat, index) => (
