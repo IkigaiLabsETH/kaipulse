@@ -36,6 +36,9 @@ export default function GrindPage() {
                 But if you still have $1k? You&apos;re not out.
               </p>
               <p className="text-muted-foreground">
+                The Overton window has shifted. Even altcoin traders now admit Bitcoin is the top asset, but claim it&apos;s &quot;too late&quot; for normal folks to stack enough for meaningful gains. While Bitcoin has averaged ~50% annually over the past decade (compared to S&P 500&apos;s ~10%), that 30-50% annual return isn&apos;t enough when you&apos;re starting with less than $5,000. For those with $100k+ and an understanding of compounding, Bitcoin is the clear choice. But for the impatient with limited capital? Microcaps offer a different path.
+              </p>
+              <p className="text-muted-foreground">
                 You don&apos;t have time for a safe 2x in BTC or ETH. If this is a short, explosive run, time is not your ally. Therefore, you need asymmetric bets — smart, not desperate.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -238,6 +241,10 @@ export default function GrindPage() {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
                   <span>Max 5% in angel investments</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                  <span>Once you hit $100k, shift focus to Bitcoin and blue chips</span>
                 </li>
               </ul>
               <p className="text-yellow-400 font-semibold mt-4">
