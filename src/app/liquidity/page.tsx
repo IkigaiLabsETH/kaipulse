@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 
 interface TokenData {
@@ -13,7 +13,38 @@ interface TokenData {
   image: string;
   current_price: number;
   price_change_percentage_24h: number;
+  total_volume: number;
+  market_cap_rank: number;
+  total_value_locked?: {
+    usd: number;
+  };
+  watchlist_portfolio_users: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number | null;
+  platforms?: { [key: string]: string };
 }
+
+type DexscreenerToken = {
+  address: string;
+  name: string;
+  symbol: string;
+  image: string;
+  totalLiquidity: number;
+  pools: unknown[];
+  current_price?: number;
+  market_cap?: number;
+  total_liquidity?: number;
+  liquidity_ratio?: number;
+  market_cap_rank?: number;
+  priceUsd?: number;
+  marketCap?: number;
+  totalVolume?: number;
+  poolsCount?: number;
+  liquidityRatio?: number;
+  chainId?: string;
+};
 
 export default function LiquidityPage() {
   const [tokens, setTokens] = useState<TokenData[]>([]);
@@ -22,8 +53,16 @@ export default function LiquidityPage() {
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [useDexscreener, setUseDexscreener] = useState(false);
+  const [dexscreenerData, setDexscreenerData] = useState<DexscreenerToken[]>([]);
+  const [dexLoading, setDexLoading] = useState(false);
+  const [selectedChain, setSelectedChain] = useState('solana');
+  const supportedChains = [
+    { id: 'solana', label: 'Solana' },
+  ];
 
-  const fetchData = async (pageNum: number) => {
+  const fetchData = useCallback(async (pageNum: number) => {
+    setLoading(true);
     try {
       const response = await fetch(`/api/coingecko?page=${pageNum}`);
       if (!response.ok) {
@@ -36,17 +75,40 @@ export default function LiquidityPage() {
         setTokens(prev => [...prev, ...data.tokens]);
       }
       setHasMore(data.hasMore);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+    } catch {
+      setError('An error occurred');
     } finally {
       setLoading(false);
       setLoadingMore(false);
     }
-  };
-
-  useEffect(() => {
-    fetchData(1);
   }, []);
+
+  // Fetch CoinGecko data on mount
+  useEffect(() => {
+    if (!useDexscreener) fetchData(1);
+  }, [fetchData, useDexscreener]);
+
+  // Fetch DEXScreener best buys when toggled or chain changes
+  useEffect(() => {
+    if (!useDexscreener) return;
+    setDexLoading(true);
+    setError(null);
+    fetch(`/api/dexscreener/best-buys?chain=${selectedChain}`)
+      .then(res => res.json())
+      .then((tokens) => {
+        if (!Array.isArray(tokens)) {
+          setDexscreenerData([]);
+          setDexLoading(false);
+          return;
+        }
+        setDexscreenerData(tokens as DexscreenerToken[]);
+        setDexLoading(false);
+      })
+      .catch(() => {
+        setError('Failed to fetch DEXScreener data');
+        setDexLoading(false);
+      });
+  }, [useDexscreener, selectedChain]);
 
   const handleLoadMore = () => {
     setLoadingMore(true);
@@ -64,11 +126,160 @@ export default function LiquidityPage() {
     }).format(num);
   };
 
-  const formatPercentage = (num: number) => {
-    return `${num >= 0 ? '+' : ''}${num.toFixed(2)}%`;
-  };
+  function isDexscreenerToken(token: DexscreenerToken | TokenData): token is DexscreenerToken {
+    return (token as DexscreenerToken).address !== undefined;
+  }
 
-  if (loading) {
+  function shortenAddress(address: string) {
+    return address.slice(0, 6) + '...' + address.slice(-4);
+  }
+
+  const renderCards = (data: DexscreenerToken[] | TokenData[]) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {data.map((token) => {
+        let displayName: string = '';
+        if ('symbol' in token && typeof token.symbol === 'string' && token.symbol) {
+          displayName = token.symbol;
+        } else if ('label' in token && typeof token.label === 'string' && token.label) {
+          displayName = token.label;
+        } else if ('address' in token && typeof token.address === 'string' && token.address) {
+          displayName = shortenAddress(token.address);
+        } else {
+          displayName = '';
+        }
+        // Only use valid image URLs for next/image
+        const isValidImage = typeof token.image === 'string' && (token.image.startsWith('http://') || token.image.startsWith('https://'));
+        const fallbackImage = '/default-token.png'; // Place a default image in your public/ directory
+        const imageSrc = isValidImage ? token.image : fallbackImage;
+        // DEXScreener link (only for DEXScreener tokens)
+        let cardHref: string | undefined = undefined;
+        if (
+          isDexscreenerToken(token) &&
+          typeof token.address === 'string' &&
+          typeof token.chainId === 'string'
+        ) {
+          cardHref = `https://dexscreener.com/${token.chainId}/${token.address}`;
+        }
+        const cardContent = (
+          <>
+            <div className="flex items-center gap-4 mb-4">
+              <Image
+                src={imageSrc}
+                alt={token.name}
+                width={40}
+                height={40}
+                className="rounded-full border-2 border-yellow-500"
+              />
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-yellow-500">{displayName}</h3>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-400 text-sm">{token.symbol}</span>
+                  {'market_cap_rank' in token && token.market_cap_rank && (
+                    <span className="text-gray-500 text-xs">#{token.market_cap_rank}</span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-sm">
+              <div className="text-gray-400">
+                Price:{' '}
+                <span className="text-white font-medium">
+                  {isDexscreenerToken(token)
+                    ? token.priceUsd !== null && token.priceUsd !== undefined
+                      ? formatNumber(token.priceUsd)
+                      : 'N/A'
+                    : 'current_price' in token && token.current_price !== undefined
+                    ? formatNumber(token.current_price)
+                    : 'N/A'}
+                </span>
+              </div>
+              <div className="text-gray-400">
+                Market Cap:{' '}
+                <span className="text-white font-medium">
+                  {isDexscreenerToken(token)
+                    ? token.marketCap !== null && token.marketCap !== undefined
+                      ? formatNumber(token.marketCap)
+                      : 'N/A'
+                    : 'market_cap' in token && token.market_cap !== undefined
+                    ? formatNumber(token.market_cap)
+                    : 'N/A'}
+                </span>
+              </div>
+              <div className="text-gray-400">
+                24h Volume:{' '}
+                <span className="text-white font-medium">
+                  {isDexscreenerToken(token)
+                    ? token.totalVolume !== undefined
+                      ? formatNumber(token.totalVolume)
+                      : 'N/A'
+                    : 'total_liquidity' in token && token.total_liquidity !== undefined
+                    ? formatNumber(token.total_liquidity)
+                    : 'N/A'}
+                </span>
+              </div>
+              <div className="text-gray-400">
+                Liquidity (TVL):{' '}
+                <span className="text-white font-medium">
+                  {isDexscreenerToken(token)
+                    ? token.totalLiquidity !== undefined
+                      ? formatNumber(token.totalLiquidity)
+                      : 'N/A'
+                    : 'total_liquidity' in token && token.total_liquidity !== undefined
+                    ? formatNumber(token.total_liquidity)
+                    : 'N/A'}
+                </span>
+              </div>
+              <div className="text-gray-400">
+                Pools:{' '}
+                <span className="text-white font-medium">
+                  {isDexscreenerToken(token)
+                    ? token.poolsCount !== undefined
+                      ? token.poolsCount
+                      : 'N/A'
+                    : 'N/A'}
+                </span>
+              </div>
+              <div className="text-gray-400">
+                Liquidity Ratio:{' '}
+                <span className="text-yellow-500 font-medium">
+                  {isDexscreenerToken(token)
+                    ? token.liquidityRatio !== undefined && token.liquidityRatio !== null
+                      ? (token.liquidityRatio * 100).toFixed(2) + '%'
+                      : 'N/A'
+                    : 'liquidity_ratio' in token && token.liquidity_ratio !== undefined && token.liquidity_ratio !== null
+                    ? (token.liquidity_ratio * 100).toFixed(2) + '%'
+                    : 'N/A'}
+                </span>
+              </div>
+            </div>
+          </>
+        );
+        return (
+          <div key={isDexscreenerToken(token) ? token.address : token.id}>
+            {cardHref ? (
+              <a
+                href={cardHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-6 transition-all duration-200 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] hover:-translate-x-[3px] hover:-translate-y-[3px] block"
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <div
+                className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-6 transition-all duration-200 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] hover:-translate-x-[3px] hover:-translate-y-[3px]"
+              >
+                {cardContent}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  if (loading || dexLoading) {
     return (
       <div className="min-h-screen bg-black text-white p-8 font-mono">
         <div className="flex justify-center items-center min-h-[200px] text-yellow-400">
@@ -90,9 +301,43 @@ export default function LiquidityPage() {
     <div className="min-h-screen bg-black text-white font-satoshi">
       {/* Premium header accent */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="space-y-16">
+          {/* Toggle Button */}
+          <div className="flex justify-center mb-8">
+            <button
+              onClick={() => setUseDexscreener(false)}
+              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 mr-2 ${!useDexscreener ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
+            >
+              CoinGecko
+            </button>
+            <button
+              onClick={() => setUseDexscreener(true)}
+              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 ${useDexscreener ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
+            >
+              DEXScreener
+            </button>
+          </div>
+
+          {/* Chain Button Group (DEXScreener only) */}
+          {useDexscreener && (
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {supportedChains.map((chain) => (
+                <button
+                  key={chain.id}
+                  onClick={() => setSelectedChain(chain.id)}
+                  className={`px-5 py-2 font-bold border-2 rounded-none transition-all duration-200 uppercase tracking-wide text-sm
+                    ${selectedChain === chain.id
+                      ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]'
+                      : 'bg-black text-yellow-500 border-yellow-500 hover:bg-yellow-500 hover:text-black'}
+                  `}
+                >
+                  {chain.label}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Hero Section */}
           <div className="text-center space-y-8">
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light">Token Analysis • Market Liquidity • Trading Metrics</p>
@@ -108,70 +353,11 @@ export default function LiquidityPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tokens.map((token) => (
-              <div
-                key={token.id}
-                className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-6 transition-all duration-200 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] hover:-translate-x-[3px] hover:-translate-y-[3px]"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <Image
-                    src={token.image}
-                    alt={token.name}
-                    width={40}
-                    height={40}
-                    className="rounded-full border-2 border-yellow-500"
-                  />
-                  <div className="flex-1">
-                    <h3 className="text-lg font-medium text-yellow-500">{token.name}</h3>
-                    <span className="text-gray-400 text-sm">{token.symbol}</span>
-                  </div>
-                </div>
+          {/* Cards */}
+          {useDexscreener ? renderCards(dexscreenerData) : renderCards(tokens)}
 
-                <div className="space-y-2 text-sm">
-                  <div className="text-gray-400">
-                    Price:{' '}
-                    <span className="text-white font-medium">
-                      {formatNumber(token.current_price)}
-                    </span>
-                  </div>
-                  <div className="text-gray-400">
-                    24h Change:{' '}
-                    <span
-                      className={`font-medium ${
-                        token.price_change_percentage_24h >= 0
-                          ? 'text-green-400'
-                          : 'text-red-400'
-                      }`}
-                    >
-                      {formatPercentage(token.price_change_percentage_24h)}
-                    </span>
-                  </div>
-                  <div className="text-gray-400">
-                    Market Cap:{' '}
-                    <span className="text-white font-medium">
-                      {formatNumber(token.market_cap)}
-                    </span>
-                  </div>
-                  <div className="text-gray-400">
-                    Total Liquidity:{' '}
-                    <span className="text-white font-medium">
-                      {formatNumber(token.total_liquidity)}
-                    </span>
-                  </div>
-                  <div className="text-gray-400">
-                    Liquidity Ratio:{' '}
-                    <span className="text-yellow-500 font-medium">
-                      {(token.liquidity_ratio * 100).toFixed(2)}%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Load More Button */}
-          {hasMore && (
+          {/* Load More Button (CoinGecko only) */}
+          {!useDexscreener && hasMore && (
             <div className="flex justify-center mt-8">
               <button
                 onClick={handleLoadMore}
@@ -187,6 +373,13 @@ export default function LiquidityPage() {
           <div className="space-y-12">
             <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-8 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-3xl font-bold text-yellow-500 mb-6">Understanding Liquidity Metrics</h2>
+              <div className="mb-6 text-yellow-400 text-sm">
+                <strong>Note:</strong> For true on-chain liquidity (pool reserves), use DEX analytics platforms like
+                {' '}
+                <a href="https://www.geckoterminal.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">GeckoTerminal</a>
+                {' '}or{' '}
+                <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">DEXScreener</a>.
+              </div>
               
               <div className="space-y-6">
                 <div>

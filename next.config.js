@@ -118,6 +118,8 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: [
       'highlight-creator-assets.highlight.xyz',
+      'assets.coingecko.com',
+      'dd.dexscreener.com',
       // add other domains as needed
     ],
   },
