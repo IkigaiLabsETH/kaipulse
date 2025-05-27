@@ -456,6 +456,70 @@ export default function MSTRPage() {
             </AccordionItem>
           </div>
         </motion.div>
+
+        {/* Proof of Reserves Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-16 bg-[#1c1f26] p-8 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-none"
+        >
+          <h2 className="text-2xl font-bold text-yellow-500">Zero-Knowledge Proof of Reserves</h2>
+          <div className="mt-8 space-y-4">
+            <AccordionItem title="The Challenge">
+              <p className="mb-4 text-white/90">The transparency vs. security dilemma:</p>
+              <ul className="list-disc pl-4 space-y-2 text-white/90">
+                <li>Public wallet disclosure provides transparency but creates security risks</li>
+                <li>Exposed wallets become targets for attacks and surveillance</li>
+                <li>Traditional proof of reserves methods compromise privacy</li>
+                <li>Need for balance between verification and security</li>
+              </ul>
+            </AccordionItem>
+
+            <AccordionItem title="zk-PoR Solution">
+              <p className="mb-4 text-white/90">How Zero-Knowledge Proof of Reserves works:</p>
+              <ul className="list-disc pl-4 space-y-2 text-white/90">
+                <li>Proves solvency without revealing wallet addresses</li>
+                <li>Maintains privacy while ensuring transparency</li>
+                <li>Protects against MEV attacks and surveillance</li>
+                <li>Enables secure third-party verification</li>
+              </ul>
+            </AccordionItem>
+
+            <AccordionItem title="Implementation Steps">
+              <p className="mb-4 text-white/90">The technical process of zk-PoR:</p>
+              <ul className="list-disc pl-4 space-y-2 text-white/90">
+                <li>Construct Merkle Tree of wallet balances</li>
+                <li>Encrypt wallet metadata (address, chain, balance)</li>
+                <li>Generate zk-SNARK proof of total assets</li>
+                <li>Verify wallet control via valid signatures</li>
+                <li>Publish proof and liabilities hash</li>
+                <li>Optional third-party zk attestation</li>
+              </ul>
+            </AccordionItem>
+
+            <AccordionItem title="Benefits">
+              <p className="mb-4 text-white/90">Advantages of implementing zk-PoR:</p>
+              <ul className="list-disc pl-4 space-y-2 text-white/90">
+                <li>Enhanced security through wallet privacy</li>
+                <li>Public verifiability without data exposure</li>
+                <li>Cross-chain and multi-asset compatibility</li>
+                <li>Reduced attack surface and surveillance risk</li>
+                <li>Improved trust through cryptographic proof</li>
+              </ul>
+            </AccordionItem>
+
+            <AccordionItem title="Technical Tools">
+              <p className="mb-4 text-white/90">Available implementation options:</p>
+              <ul className="list-disc pl-4 space-y-2 text-white/90">
+                <li>Polygon ID&apos;s zkPoR for ready-made solutions</li>
+                <li>Succinct Labs for custom zk proof APIs</li>
+                <li>zkLedger by MIT/Algorand for accounting logic</li>
+                <li>ConsenSys ZK-Kit for custom circuits</li>
+              </ul>
+            </AccordionItem>
+          </div>
+        </motion.div>
       </div>
     </div>
   )
