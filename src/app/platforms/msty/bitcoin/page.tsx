@@ -835,7 +835,212 @@ export default function BitcoinPage() {
           </Card>
         </motion.div>
 
-        
+        {/* Quantum Computing Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-16"
+        >
+          <Card>
+            <div className="p-8">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7 }}
+                className="flex items-center justify-between mb-8"
+              >
+                <motion.h2 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="text-2xl font-bold text-yellow-500"
+                >
+                  Quantum Computing & Bitcoin
+                </motion.h2>
+                <div className="flex space-x-2">
+                  <span className="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-500 rounded-full">
+                    Updated April 2024
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Key Points */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="mt-8"
+              >
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">Key Points at a Glance</h3>
+                </div>
+                <ul className="space-y-4 text-white/80">
+                  <li className="flex items-start">
+                    <span className="text-yellow-500 mr-2">•</span>
+                    Quantum computers could crack Bitcoin&apos;s ECDSA and eventually SHA-256, but today&apos;s prototypes are still far from the millions of logical qubits needed.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-yellow-500 mr-2">•</span>
+                    Upgrading Bitcoin is technically doable but socially hard, because every full node must accept new, heavier signature schemes.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-yellow-500 mr-2">•</span>
+                    Roughly 25% of all BTC already sit in addresses whose public keys are exposed—making them &quot;low-hanging fruit&quot; once a cryptographically-relevant quantum computer (CRQC) arrives.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-yellow-500 mr-2">•</span>
+                    Post-quantum signatures such as SPHINCS+ or FALCON are 5–16× larger than ECDSA, therefore block space, fees and relay bandwidth all take a hit.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-yellow-500 mr-2">•</span>
+                    Most researchers expect a realistic threat window in the early-to-mid-2030s, but forecasts range from &quot;five years&quot; Reddit pessimists to &quot;never in our lifetime&quot; NSA realists.
+                  </li>
+                </ul>
+              </motion.div>
+
+              {/* Technical Analysis */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="mt-12"
+              >
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">Technical Roadblocks</h3>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="border-b border-yellow-500/20">
+                        <th className="text-left py-4 px-4 text-yellow-500">Hurdle</th>
+                        <th className="text-left py-4 px-4 text-yellow-500">Why it&apos;s tough</th>
+                        <th className="text-left py-4 px-4 text-yellow-500">Trade-offs</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-white/80">
+                      <tr className="border-b border-yellow-500/20">
+                        <td className="py-4 px-4">Algorithm swap</td>
+                        <td className="py-4 px-4">From ECDSA → PQC (e.g., SPHINCS+, FALCON, Dilithium)</td>
+                        <td className="py-4 px-4">5–16× larger sigs; slower verification; new wallet firmware</td>
+                      </tr>
+                      <tr className="border-b border-yellow-500/20">
+                        <td className="py-4 px-4">Vulnerable stock</td>
+                        <td className="py-4 px-4">4-5 million BTC in P2PK & reused P2PKH</td>
+                        <td className="py-4 px-4">Can&apos;t all move—lost keys, Satoshi&apos;s stash, dead wallets</td>
+                      </tr>
+                      <tr className="border-b border-yellow-500/20">
+                        <td className="py-4 px-4">Consensus layer</td>
+                        <td className="py-4 px-4">Soft-fork vs hard-fork vs &quot;flag day&quot;</td>
+                        <td className="py-4 px-4">Risk of chain split and MEV games during migration</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-4">Performance hit</td>
+                        <td className="py-4 px-4">SPHINCS+ adds ~30 kB per tx at 128-bit quantum security</td>
+                        <td className="py-4 px-4">Blocks fill faster → higher fees → usability drop</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </motion.div>
+
+              {/* Timeline and Progress */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+                className="mt-12"
+              >
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">Timing the Migration</h3>
+                </div>
+                <div className="grid gap-6 md:grid-cols-3">
+                  <motion.div 
+                    className="bg-black/20 p-6 rounded-lg border border-yellow-500/20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1 }}
+                  >
+                    <h4 className="font-medium text-white mb-3">IBM&apos;s Roadmap</h4>
+                    <p className="text-white/80">
+                      Shows ~2,000 fault-tolerant qubits by 2033, still orders of magnitude short of what&apos;s needed for breaking Bitcoin&apos;s cryptography.
+                    </p>
+                  </motion.div>
+                  <motion.div 
+                    className="bg-black/20 p-6 rounded-lg border border-yellow-500/20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.1 }}
+                  >
+                    <h4 className="font-medium text-white mb-3">Google&apos;s Progress</h4>
+                    <p className="text-white/80">
+                      Willow chip (105 qubits) proves progress but confirms we&apos;re &quot;at least a decade away&quot; from code-breaking power.
+                    </p>
+                  </motion.div>
+                  <motion.div 
+                    className="bg-black/20 p-6 rounded-lg border border-yellow-500/20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
+                  >
+                    <h4 className="font-medium text-white mb-3">NIST Standards</h4>
+                    <p className="text-white/80">
+                      Finalized first PQC standards (Kyber, Dilithium, SPHINCS+) in Aug 2024 and urges production migration &quot;as soon as possible.&quot;
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Community Action */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.3 }}
+                className="mt-12"
+              >
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">Community Action</h3>
+                </div>
+                <div className="space-y-4 text-white/80">
+                  <p className="text-lg">
+                    The Bitcoin community is actively working on quantum resistance through:
+                  </p>
+                  <ul className="space-y-4">
+                    <li className="flex items-start">
+                      <span className="text-yellow-500 mr-2">•</span>
+                      Research: Universities & BTQ benchmark post-quantum signature costs on mainnet-like test-nets
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-yellow-500 mr-2">•</span>
+                      Development: Bitcoin Core PRs exploring OP_CAT-based PQ sig verification; Taproot-style versioning for new scripts
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-yellow-500 mr-2">•</span>
+                      Education: QRL Show, ARK Invest &quot;Bitcoin Brainstorm&quot; podcasts keep miners and HODLers informed
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+
+              {/* Bottom Line */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.4 }}
+                className="mt-12 p-6 bg-yellow-500/10 rounded-lg border border-yellow-500/20"
+              >
+                <h3 className="text-xl font-bold text-yellow-500 mb-4">Bottom Line</h3>
+                <p className="text-white/80">
+                  Quantum computing is a long-tail existential risk for Bitcoin: not tomorrow, but too big to ignore. The technical primitives exist, therefore the real battle is social—achieving rough consensus without shattering Bitcoin&apos;s cohesion or its block-space economics.
+                </p>
+              </motion.div>
+            </div>
+          </Card>
+        </motion.div>
       </div>
     </div>
   )
