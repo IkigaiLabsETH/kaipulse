@@ -94,7 +94,7 @@ export default function SharpLinkAnalysis() {
                 <CardContent>
                   <ScrollArea className="h-[600px] pr-4">
                     <p className="mb-4 text-lg">
-                      On May 27, 2025, SharpLink Gaming, Inc. (NASDAQ: SBET) announced a landmark $425 million private placement to fund an Ethereum-based treasury strategy. This move transforms SharpLink – traditionally an online marketing partner for sports betting and iGaming – into one of the first U.S. public companies to adopt Ethereum (ETH) as a primary reserve asset.
+                      On May 27, 2025, SharpLink Gaming, Inc. (NASDAQ: SBET) announced a landmark $425 million private placement to fund an Ethereum-based treasury strategy. This move transforms SharpLink – traditionally an online marketing partner for sports betting and iGaming – into one of the first U.S. public companies to adopt Ethereum (ETH) as a primary reserve asset. The following report delves into the deal&apos;s structure and terms, the key investors backing it, legal and regulatory considerations, comparisons to other crypto treasury adopters, market reactions, and SharpLink&apos;s long-term strategy for its Ethereum exposure.
                     </p>
                     <Separator className="my-4 bg-yellow-500/30" />
                     <h2 className="text-2xl font-semibold mb-4 text-yellow-500">Key Highlights</h2>
@@ -104,7 +104,14 @@ export default function SharpLinkAnalysis() {
                       <li>Joseph Lubin (Ethereum co-founder) joining as Chairman</li>
                       <li>Stock price surged 420% on announcement</li>
                       <li>Strategic partnership with ConsenSys</li>
+                      <li>Transformative shift in corporate treasury strategy</li>
+                      <li>Integration of blockchain technology into core business</li>
                     </ul>
+                    <Separator className="my-4 bg-yellow-500/30" />
+                    <h2 className="text-2xl font-semibold mb-4 text-yellow-500">Market Impact</h2>
+                    <p className="mb-4 text-lg">
+                      The announcement triggered an immediate and dramatic market response, with SharpLink&apos;s stock price surging 420% in pre-market trading. This unprecedented jump reflects strong market approval of the company&apos;s strategic pivot and the credibility brought by high-profile crypto investors. The stock&apos;s performance suggests investors are pricing SharpLink not just as a marketing company, but as a high-growth crypto proxy with substantial Ethereum exposure.
+                    </p>
                   </ScrollArea>
                 </CardContent>
               </Card>
@@ -126,13 +133,15 @@ export default function SharpLinkAnalysis() {
                           <li>$6.15 per share (executives at $6.72)</li>
                           <li>Gross proceeds: $425 million</li>
                           <li>Expected closing: May 29, 2025</li>
+                          <li>PIPE deal structure via securities purchase agreements</li>
+                          <li>At-the-market or slight premium pricing</li>
                         </ul>
                       </section>
                       <Separator className="bg-yellow-500/30" />
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Use of Proceeds</h3>
                         <p className="mb-4 text-lg">
-                          The bulk of funds will be deployed to purchase Ethereum (ETH), making it the company&apos;s primary treasury reserve asset. A portion may be retained for working capital and general corporate needs.
+                          The bulk of funds will be deployed to purchase Ethereum (ETH), making it the company&apos;s primary treasury reserve asset. A portion may be retained for working capital and general corporate needs. This represents a significant strategic shift in how SharpLink manages its corporate reserves.
                         </p>
                       </section>
                       <Separator className="bg-yellow-500/30" />
@@ -143,7 +152,15 @@ export default function SharpLinkAnalysis() {
                           <li>Restricted shares until resale registration</li>
                           <li>Registration rights agreement in place</li>
                           <li>Sole placement agent: A.G.P./Alliance Global Partners</li>
+                          <li>Legal advisors involved for all parties</li>
                         </ul>
+                      </section>
+                      <Separator className="bg-yellow-500/30" />
+                      <section>
+                        <h3 className="text-xl font-semibold mb-3 text-yellow-500">Leadership Changes</h3>
+                        <p className="mb-4 text-lg">
+                          Joseph Lubin, Ethereum&apos;s co-founder and CEO of ConsenSys, will join SharpLink&apos;s board as Chairman upon closing. This governance change indicates the strategic nature of the investment and provides direct access to Ethereum ecosystem expertise at the highest level.
+                        </p>
                       </section>
                     </div>
                   </ScrollArea>
@@ -163,26 +180,32 @@ export default function SharpLinkAnalysis() {
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Lead Investor: ConsenSys</h3>
                         <p className="mb-4 text-lg">
-                          Led by Joseph Lubin, ConsenSys is a leading Ethereum software and infrastructure company. Lubin will become SharpLink&apos;s Board Chairman, providing strategic guidance on blockchain implementation.
+                          Led by Joseph Lubin, ConsenSys is a leading Ethereum software and infrastructure company. Lubin will become SharpLink&apos;s Board Chairman, providing strategic guidance on blockchain implementation. ConsenSys brings deep technical expertise and ecosystem connections.
                         </p>
                       </section>
                       <Separator className="bg-yellow-500/30" />
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Major Participants</h3>
                         <ul className="list-disc pl-6 space-y-2 text-lg">
-                          <li>ParaFi Capital - DeFi expertise</li>
-                          <li>Electric Capital - Developer ecosystem</li>
-                          <li>Pantera Capital - Crypto market expertise</li>
-                          <li>Galaxy Digital - Institutional-grade insight</li>
-                          <li>Arrington Capital - Innovation focus</li>
+                          <li>ParaFi Capital - DeFi expertise and yield strategies</li>
+                          <li>Electric Capital - Developer ecosystem and technical integration</li>
+                          <li>Pantera Capital - Crypto market expertise and trading</li>
+                          <li>Galaxy Digital - Institutional-grade insight and custody</li>
+                          <li>Arrington Capital - Innovation focus and Web3 strategy</li>
                         </ul>
                       </section>
                       <Separator className="bg-yellow-500/30" />
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Additional Investors</h3>
                         <p className="mb-4 text-lg">
-                          The round includes Ondo Finance, White Star Capital, GSR, Hivemind Capital, Hypersphere Ventures, Primitive Ventures, and Republic Crypto, forming a comprehensive network of crypto expertise.
+                          The round includes Ondo Finance, White Star Capital, GSR, Hivemind Capital, Hypersphere Ventures, Primitive Ventures, and Republic Crypto. This diverse group brings expertise in:
                         </p>
+                        <ul className="list-disc pl-6 space-y-2 text-lg">
+                          <li>On-chain financial products (Ondo Finance)</li>
+                          <li>Liquidity provision and market making (GSR)</li>
+                          <li>DeFi and Web3 project development</li>
+                          <li>Institutional crypto investment strategies</li>
+                        </ul>
                       </section>
                     </div>
                   </ScrollArea>
@@ -202,28 +225,44 @@ export default function SharpLinkAnalysis() {
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Business Integration</h3>
                         <ul className="list-disc pl-6 space-y-2 text-lg">
-                          <li>Blockchain-based gaming platforms</li>
+                          <li>Blockchain-based gaming platforms with smart contracts</li>
                           <li>NFT and fan engagement initiatives</li>
-                          <li>Crypto payment integration</li>
-                          <li>Ethereum staking participation</li>
+                          <li>Crypto payment integration for betting platforms</li>
+                          <li>Ethereum staking participation (4% annual yield)</li>
+                          <li>Web3 betting products development</li>
                         </ul>
                       </section>
                       <Separator className="bg-yellow-500/30" />
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Security & Custody</h3>
                         <p className="mb-4 text-lg">
-                          Implementation of institutional-grade custody solutions with multiple custodians, cold storage, and multi-signature requirements for all transactions.
+                          Implementation of institutional-grade custody solutions with multiple custodians, cold storage, and multi-signature requirements. The strategy includes:
                         </p>
+                        <ul className="list-disc pl-6 space-y-2 text-lg">
+                          <li>Multiple regulated custodians for risk distribution</li>
+                          <li>Cold storage implementation</li>
+                          <li>Multi-signature wallet requirements</li>
+                          <li>Insurance coverage for digital assets</li>
+                          <li>Regular security audits and monitoring</li>
+                        </ul>
                       </section>
                       <Separator className="bg-yellow-500/30" />
                       <section>
                         <h3 className="text-xl font-semibold mb-3 text-yellow-500">Risk Management</h3>
                         <ul className="list-disc pl-6 space-y-2 text-lg">
-                          <li>Price volatility management</li>
+                          <li>Price volatility management and hedging strategies</li>
                           <li>Regulatory compliance monitoring</li>
-                          <li>Liquidity planning</li>
+                          <li>Liquidity planning and reserve management</li>
                           <li>Accounting strategy for crypto assets</li>
+                          <li>Network upgrade and protocol change monitoring</li>
                         </ul>
+                      </section>
+                      <Separator className="bg-yellow-500/30" />
+                      <section>
+                        <h3 className="text-xl font-semibold mb-3 text-yellow-500">Strategic Partnership with ConsenSys</h3>
+                        <p className="mb-4 text-lg">
+                          Joseph Lubin&apos;s role as Chairman will be pivotal in shaping SharpLink&apos;s Ethereum strategy. ConsenSys will provide technical infrastructure, ecosystem connections, and regulatory guidance, ensuring SharpLink&apos;s successful integration into the Ethereum ecosystem.
+                        </p>
                       </section>
                     </div>
                   </ScrollArea>
