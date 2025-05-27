@@ -835,7 +835,7 @@ export default function BitcoinPage() {
           </Card>
         </motion.div>
 
-        {/* Quantum Computing Section */}
+        {/* Quantum Computing Section (Foldable) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -844,200 +844,133 @@ export default function BitcoinPage() {
         >
           <Card>
             <div className="p-8">
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7 }}
-                className="flex items-center justify-between mb-8"
-              >
-                <motion.h2 
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  className="text-2xl font-bold text-yellow-500"
-                >
-                  Quantum Computing & Bitcoin
-                </motion.h2>
-                <div className="flex space-x-2">
-                  <span className="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-500 rounded-full">
-                    Updated April 2024
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Key Points */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className="mt-8"
-              >
-                <div className="flex items-center space-x-3 mb-6">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-yellow-500">Quantum Computing & Bitcoin</h2>
+                <span className="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-500 rounded-full">Updated April 2024</span>
+              </div>
+              {/* Intro */}
+              <div className="mb-6">
+                <p className="text-white/80 text-lg">
+                  <strong>Why does quantum computing matter for Bitcoin?</strong> Quantum computers could one day break the cryptography that secures Bitcoin wallets and transactions. While today&apos;s quantum machines are far from this capability, advances like Shor&apos;s algorithm (which could instantly reveal private keys from public ones) and Grover&apos;s algorithm (which could speed up mining attacks) mean the risk is real—just not immediate. Fortunately, Bitcoin&apos;s design and current quantum limitations mean users are safe for now, but the community is already planning for a secure future.
+                </p>
+              </div>
+              {/* Foldable Technical Section */}
+              <AccordionItem title="Show Technical Details (Quantum Risk, Migration, and Community Response)">
+                {/* Key Points at a Glance */}
+                <div className="flex items-center space-x-3 mb-6 mt-4">
                   <div className="h-8 w-1 bg-yellow-500 rounded-full" />
                   <h3 className="text-xl font-bold text-white">Key Points at a Glance</h3>
                 </div>
                 <ul className="space-y-4 text-white/80">
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">•</span>
-                    Quantum computers could crack Bitcoin&apos;s ECDSA and eventually SHA-256, but today&apos;s prototypes are still far from the millions of logical qubits needed.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">•</span>
-                    Upgrading Bitcoin is technically doable but socially hard, because every full node must accept new, heavier signature schemes.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">•</span>
-                    Roughly 25% of all BTC already sit in addresses whose public keys are exposed—making them &quot;low-hanging fruit&quot; once a cryptographically-relevant quantum computer (CRQC) arrives.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">•</span>
-                    Post-quantum signatures such as SPHINCS+ or FALCON are 5–16× larger than ECDSA, therefore block space, fees and relay bandwidth all take a hit.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">•</span>
-                    Most researchers expect a realistic threat window in the early-to-mid-2030s, but forecasts range from &quot;five years&quot; Reddit pessimists to &quot;never in our lifetime&quot; NSA realists.
-                  </li>
+                  <li>Quantum computers could crack Bitcoin&apos;s ECDSA and eventually SHA-256, but today&apos;s prototypes are still far from the millions of logical qubits needed.</li>
+                  <li>Upgrading Bitcoin is technically doable but socially hard, because every full node must accept new, heavier signature schemes.</li>
+                  <li>Roughly 25% of all BTC already sit in addresses whose public keys are exposed—making them &quot;low-hanging fruit&quot; once a cryptographically-relevant quantum computer (CRQC) arrives.</li>
+                  <li>Post-quantum signatures such as SPHINCS+ or FALCON are 5–16× larger than ECDSA, therefore block space, fees and relay bandwidth all take a hit.</li>
+                  <li>Most researchers expect a realistic threat window in the early-to-mid-2030s, but forecasts range from &quot;five years&quot; Reddit pessimists to &quot;never in our lifetime&quot; NSA realists.</li>
                 </ul>
-              </motion.div>
 
-              {/* Technical Analysis */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="mt-12"
-              >
-                <div className="flex items-center space-x-3 mb-6">
+                {/* 1. Why quantum matters—for real */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
                   <div className="h-8 w-1 bg-yellow-500 rounded-full" />
-                  <h3 className="text-xl font-bold text-white">Technical Roadblocks</h3>
+                  <h3 className="text-xl font-bold text-white">1. Why Quantum Matters—for Real</h3>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
+                <div className="text-white/80 mb-4 space-y-2">
+                  <p>Shor&apos;s algorithm can solve the discrete-log problem that underpins ECDSA, allowing an attacker to derive a private key from any revealed public key instantly once enough qubits and error-correction are available. Grover&apos;s algorithm offers only a quadratic speed-up against SHA-256, so mining is less vulnerable—but hash power could still centralize around whoever owns the first CRQC.</p>
+                  <p>But Bitcoin&apos;s built-in 10-minute settlement window buys time: today&apos;s estimates say a quantum box would need 30 minutes–8 hours to break a single key, leaving current users safe for now.</p>
+                </div>
+
+                {/* 2. Technical Roadblocks */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">2. Technical Roadblocks</h3>
+                </div>
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full border-collapse text-white/80 text-sm">
                     <thead>
                       <tr className="border-b border-yellow-500/20">
-                        <th className="text-left py-4 px-4 text-yellow-500">Hurdle</th>
-                        <th className="text-left py-4 px-4 text-yellow-500">Why it&apos;s tough</th>
-                        <th className="text-left py-4 px-4 text-yellow-500">Trade-offs</th>
+                        <th className="text-left py-2 px-2 text-yellow-500">Hurdle</th>
+                        <th className="text-left py-2 px-2 text-yellow-500">Why it&apos;s tough</th>
+                        <th className="text-left py-2 px-2 text-yellow-500">Trade-offs</th>
                       </tr>
                     </thead>
-                    <tbody className="text-white/80">
+                    <tbody>
                       <tr className="border-b border-yellow-500/20">
-                        <td className="py-4 px-4">Algorithm swap</td>
-                        <td className="py-4 px-4">From ECDSA → PQC (e.g., SPHINCS+, FALCON, Dilithium)</td>
-                        <td className="py-4 px-4">5–16× larger sigs; slower verification; new wallet firmware</td>
+                        <td className="py-2 px-2">Algorithm swap</td>
+                        <td className="py-2 px-2">From ECDSA → PQC (e.g., SPHINCS+, FALCON, Dilithium)</td>
+                        <td className="py-2 px-2">5–16× larger sigs; slower verification; new wallet firmware</td>
                       </tr>
                       <tr className="border-b border-yellow-500/20">
-                        <td className="py-4 px-4">Vulnerable stock</td>
-                        <td className="py-4 px-4">4-5 million BTC in P2PK & reused P2PKH</td>
-                        <td className="py-4 px-4">Can&apos;t all move—lost keys, Satoshi&apos;s stash, dead wallets</td>
+                        <td className="py-2 px-2">Vulnerable stock</td>
+                        <td className="py-2 px-2">4-5 million BTC in P2PK &amp; reused P2PKH</td>
+                        <td className="py-2 px-2">Can&apos;t all move—lost keys, Satoshi&apos;s stash, dead wallets</td>
                       </tr>
                       <tr className="border-b border-yellow-500/20">
-                        <td className="py-4 px-4">Consensus layer</td>
-                        <td className="py-4 px-4">Soft-fork vs hard-fork vs &quot;flag day&quot;</td>
-                        <td className="py-4 px-4">Risk of chain split and MEV games during migration</td>
+                        <td className="py-2 px-2">Consensus layer</td>
+                        <td className="py-2 px-2">Soft-fork vs hard-fork vs &quot;flag day&quot;</td>
+                        <td className="py-2 px-2">Risk of chain split and MEV games during migration</td>
                       </tr>
                       <tr>
-                        <td className="py-4 px-4">Performance hit</td>
-                        <td className="py-4 px-4">SPHINCS+ adds ~30 kB per tx at 128-bit quantum security</td>
-                        <td className="py-4 px-4">Blocks fill faster → higher fees → usability drop</td>
+                        <td className="py-2 px-2">Performance hit</td>
+                        <td className="py-2 px-2">SPHINCS+ adds ~30 kB per tx at 128-bit quantum security</td>
+                        <td className="py-2 px-2">Blocks fill faster → higher fees → usability drop</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </motion.div>
 
-              {/* Timeline and Progress */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.9 }}
-                className="mt-12"
-              >
-                <div className="flex items-center space-x-3 mb-6">
+                {/* 3. Governance & Coordination */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
                   <div className="h-8 w-1 bg-yellow-500 rounded-full" />
-                  <h3 className="text-xl font-bold text-white">Timing the Migration</h3>
+                  <h3 className="text-xl font-bold text-white">3. Governance &amp; Coordination</h3>
                 </div>
-                <div className="grid gap-6 md:grid-cols-3">
-                  <motion.div 
-                    className="bg-black/20 p-6 rounded-lg border border-yellow-500/20"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1 }}
-                  >
-                    <h4 className="font-medium text-white mb-3">IBM&apos;s Roadmap</h4>
-                    <p className="text-white/80">
-                      Shows ~2,000 fault-tolerant qubits by 2033, still orders of magnitude short of what&apos;s needed for breaking Bitcoin&apos;s cryptography.
-                    </p>
-                  </motion.div>
-                  <motion.div 
-                    className="bg-black/20 p-6 rounded-lg border border-yellow-500/20"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.1 }}
-                  >
-                    <h4 className="font-medium text-white mb-3">Google&apos;s Progress</h4>
-                    <p className="text-white/80">
-                      Willow chip (105 qubits) proves progress but confirms we&apos;re &quot;at least a decade away&quot; from code-breaking power.
-                    </p>
-                  </motion.div>
-                  <motion.div 
-                    className="bg-black/20 p-6 rounded-lg border border-yellow-500/20"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                  >
-                    <h4 className="font-medium text-white mb-3">NIST Standards</h4>
-                    <p className="text-white/80">
-                      Finalized first PQC standards (Kyber, Dilithium, SPHINCS+) in Aug 2024 and urges production migration &quot;as soon as possible.&quot;
-                    </p>
-                  </motion.div>
+                <div className="text-white/80 mb-4 space-y-2">
+                  <p>Banks can pause ledgers during upgrades, but Bitcoin can&apos;t; a messy fork war would shred trust. P2QRH (BIP-360) proposes opt-in Pay-to-Quantum-Resistant-Hash addresses plus fee discounts to coax users across, therefore lowering friction without halting the network.</p>
+                  <p>Multisig, Lightning channels, and hardware wallets all embed ECDSA assumptions; each vendor must ship firmware updates before any cut-over date, or funds risk bricking.</p>
                 </div>
-              </motion.div>
 
-              {/* Community Action */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.3 }}
-                className="mt-12"
-              >
-                <div className="flex items-center space-x-3 mb-6">
+                {/* 4. Timing the Migration */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
                   <div className="h-8 w-1 bg-yellow-500 rounded-full" />
-                  <h3 className="text-xl font-bold text-white">Community Action</h3>
+                  <h3 className="text-xl font-bold text-white">4. Timing the Migration</h3>
                 </div>
-                <div className="space-y-4 text-white/80">
-                  <p className="text-lg">
-                    The Bitcoin community is actively working on quantum resistance through:
-                  </p>
-                  <ul className="space-y-4">
-                    <li className="flex items-start">
-                      <span className="text-yellow-500 mr-2">•</span>
-                      Research: Universities & BTQ benchmark post-quantum signature costs on mainnet-like test-nets
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-yellow-500 mr-2">•</span>
-                      Development: Bitcoin Core PRs exploring OP_CAT-based PQ sig verification; Taproot-style versioning for new scripts
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-yellow-500 mr-2">•</span>
-                      Education: QRL Show, ARK Invest &quot;Bitcoin Brainstorm&quot; podcasts keep miners and HODLers informed
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
+                <ul className="space-y-2 text-white/80 mb-4">
+                  <li>IBM&apos;s roadmap shows ~2,000 fault-tolerant qubits by 2033, still orders of magnitude short.</li>
+                  <li>Google&apos;s Willow chip (105 qubits) proves progress but confirms we&apos;re &quot;at least a decade away&quot; from code-breaking power.</li>
+                  <li>NIST finalized the first PQC standards (Kyber, Dilithium, SPHINCS+) in Aug 2024 and urges production migration &quot;as soon as possible.&quot;</li>
+                </ul>
+                <p className="text-white/80 mb-4">The prudent path is phased opt-in addresses starting now, full deprecation of ECDSA by mid-2030s, and SHA-256→SHA-512 or SHA-3 for future-proof mining once Grover-level machines become plausible.</p>
 
-              {/* Bottom Line */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.4 }}
-                className="mt-12 p-6 bg-yellow-500/10 rounded-lg border border-yellow-500/20"
-              >
-                <h3 className="text-xl font-bold text-yellow-500 mb-4">Bottom Line</h3>
-                <p className="text-white/80">
+                {/* 5. Economic Blast Radius */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">5. Economic Blast Radius</h3>
+                </div>
+                <div className="text-white/80 mb-4 space-y-2">
+                  <p>If a CRQC steals coins in dead addresses, it could dump billions on exchanges, hammering price and confidence—something the Hudson Institute and WSJ both warn could spark a wider recession.</p>
+                  <p>Conversely, a badly planned upgrade that halts the network even for hours risks the same panic. That is why early, optional, well-tested migrations beat last-minute &quot;flag-day&quot; flips.</p>
+                </div>
+
+                {/* 6. What the Community is Doing Right Now */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">6. What the Community is Doing Right Now</h3>
+                </div>
+                <ul className="space-y-2 text-white/80 mb-4">
+                  <li><strong>Research:</strong> Universities &amp; BTQ benchmark post-quantum signature costs on mainnet-like test-nets.</li>
+                  <li><strong>Development:</strong> Bitcoin Core PRs exploring OP_CAT-based PQ sig verification; Taproot-style versioning for new scripts.</li>
+                  <li><strong>Education:</strong> QRL Show, ARK Invest &quot;Bitcoin Brainstorm&quot; podcasts keep miners and HODLers informed.</li>
+                </ul>
+                <p className="text-white/80 mb-4">But progress remains scattered. Therefore, a cross-ecosystem task force—Core devs, wallet vendors, miners, exchanges—must align on a single transition path before 2028, giving wallets 5+ years to auto-migrate UX-simply.</p>
+
+                {/* Bottom Line */}
+                <div className="flex items-center space-x-3 mb-6 mt-12">
+                  <div className="h-8 w-1 bg-yellow-500 rounded-full" />
+                  <h3 className="text-xl font-bold text-white">Bottom Line</h3>
+                </div>
+                <div className="text-white/80 mb-4">
                   Quantum computing is a long-tail existential risk for Bitcoin: not tomorrow, but too big to ignore. The technical primitives exist, therefore the real battle is social—achieving rough consensus without shattering Bitcoin&apos;s cohesion or its block-space economics.
-                </p>
-              </motion.div>
+                </div>
+              </AccordionItem>
             </div>
           </Card>
         </motion.div>
