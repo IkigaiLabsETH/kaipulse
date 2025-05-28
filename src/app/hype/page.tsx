@@ -403,6 +403,156 @@ export default function HyperliquidHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
+      {/* New Protocols to Explore */}
+      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
+        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+          Hidden Gems: New Protocols to Explore
+        </h2>
+        <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
+          Most people are sleeping on HyperEVM. After analyzing 65+ native protocols, here&apos;s a comprehensive playbook for potential 6-7 figure airdrops.
+        </p>
+
+        {/* Getting Started */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Step 1: Getting Funds On-Chain</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Recommended Bridges</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• HyperUnit - Primary bridge for most assets</li>
+                <li>• HyperSwapX Bridge - Alternative option</li>
+                <li>• HyBridge - Multi-chain bridge</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Bridge Strategy</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Use HyperUnit for primary bridging</li>
+                <li>• Bridge to Hypercore first</li>
+                <li>• Two clicks to HyperEVM</li>
+                <li>• All bridges are tokenless</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Yield Strategy */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Step 2: Delta-Neutral Yield Strategy</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Core Strategy</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Bridge via HyperUnit</li>
+                <li>• Swap to $USDC → spot $HYPE</li>
+                <li>• Stake 20% HYPE → HypurrCollective</li>
+                <li>• Transfer rest to HyperEVM</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Advanced Setup</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Stake HYPE for $stHYPE on HyperBeat</li>
+                <li>• Supply $stHYPE to HypurrFi</li>
+                <li>• Borrow $HYPE → swap to $stHYPE</li>
+                <li>• Supply $stHYPE to HyperLend</li>
+                <li>• Hedge with 1x short (35% APR)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bonus Plays */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Step 3: Bonus Opportunities</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">NFT & Domain Plays</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Acquire .hl domains from HLNames</li>
+                <li>• Get Hypio NFT on Drip Trade</li>
+                <li>• Early adopter benefits</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Stablecoin Strategy</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• USDC in HLP Protocol Vaults</li>
+                <li>• Lend USDT0 on HypurrFi</li>
+                <li>• LP USDT0/feUSD on HyperSwapX</li>
+                <li>• Supply feUSD on Felix Protocol</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Points & Rewards */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Step 4: Points & Rewards</h3>
+          <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Confirmed Points</h4>
+                <ul className="space-y-3 text-white/80">
+                  <li>• Unit Points</li>
+                  <li>• Hyperliquid Points</li>
+                  <li>• Nansen Points</li>
+                  <li>• Hyperbeat Points</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Speculative Points</h4>
+                <ul className="space-y-3 text-white/80">
+                  <li>• Drip Points</li>
+                  <li>• Hypio Points</li>
+                  <li>• Felix Points</li>
+                  <li>• HyperSwap Points</li>
+                  <li>• HyperLend Points</li>
+                  <li>• HyperEVM Points</li>
+                  <li>• HL Names Points</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hidden Meta */}
+        <div className="mb-16">
+          <h3 className="font-epilogue text-2xl text-yellow-400 mb-6 font-bold">Step 5: Hidden Meta Opportunities</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">HyperUnit</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Most underrated protocol</li>
+                <li>• Live and tokenless</li>
+                <li>• Potential for real stocks on-chain</li>
+                <li>• Billion-dollar airdrop potential</li>
+              </ul>
+            </div>
+            <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Project X</h4>
+              <ul className="space-y-3 text-white/80">
+                <li>• Early InfoFi pioneer</li>
+                <li>• Proven track record</li>
+                <li>• Pre-launch traction</li>
+                <li>• High potential upside</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20">
+          <p className="text-white/80 text-lg italic">
+            Note: This is not financial advice. Not affiliated with or paid by any of these protocols. Always do your own research (DYOR).
+          </p>
+        </div>
+      </section>
+
+      <div className="w-full flex justify-center mb-24">
+        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
+      </div>
+
       {/* Deep Dive: Understanding Hyperliquid */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
