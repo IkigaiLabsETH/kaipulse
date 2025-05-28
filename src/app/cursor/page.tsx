@@ -2,62 +2,6 @@
 
 import { useEffect } from 'react';
 
-const codeExample1 = `// pages/index.tsx (simplified)
-import { GetServerSideProps } from "next";
-
-type Coin = {
-  id: string;
-  name: string;
-  symbol: string;
-  current_price: number;
-  price_change_percentage_24h: number;
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10");
-  const data: Coin[] = await res.json();
-  return { props: { coins: data } };
-};
-
-const HomePage = ({ coins }: { coins: Coin[] }) => {
-  return (
-    <div>
-      <h1>Top 10 Cryptocurrencies</h1>
-      <table>
-        <thead><tr><th>Name</th><th>Price (USD)</th><th>24h Change</th></tr></thead>
-        <tbody>
-          {coins.map(coin => (
-            <tr key={coin.id}>
-              <td>{coin.name} ({coin.symbol.toUpperCase()})</td>
-              <td>${'${'}coin.current_price.toLocaleString(){'}'}</td>
-              <td style={{color: coin.price_change_percentage_24h >= 0 ? 'green' : 'red'}}>
-                {coin.price_change_percentage_24h.toFixed(2)}%
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
-
-export default HomePage;`;
-
-const codeExample2 = `// pages/api/crypto-news.ts
-const NEWS_API_URL = ` +
-  '`https://newsdata.io/api/1/news?apikey=${process.env.NEWS_API_KEY}&q=crypto&language=en`' + `;
-
-export default async function handler(req, res) {
-  const resp = await fetch(NEWS_API_URL);
-  const data = await resp.json();
-  // The API returns an array of news in data.results
-  const headlines = data.results?.map((item: any) => ({
-    title: item.title,
-    link: item.link
-  })) || [];
-  res.status(200).json(headlines);
-}`;
-
 export default function CursorPage() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -119,7 +63,7 @@ export default function CursorPage() {
               </ul>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Prompt Example</span>
-                <span className="text-white/90 text-sm">"Write a Next.js API route in /pages/api/prices.js that fetches the top 10 cryptocurrency prices from CoinGecko and stores them in our Prisma database."</span>
+                <span className="text-white/90 text-sm">&quot;Write a Next.js API route in /pages/api/prices.js that fetches the top 10 cryptocurrency prices from CoinGecko and stores them in our Prisma database.&quot;</span>
               </div>
             </div>
 
@@ -147,7 +91,7 @@ export default function CursorPage() {
               </p>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Example</span>
-                <span className="text-white/90 text-sm">"Rename all occurrences of the Customer model to Client across the codebase." Cursor will search all files, prepare the changes, and let you review a multi-file diff before applying.</span>
+                <span className="text-white/90 text-sm">&quot;Rename all occurrences of the Customer model to Client across the codebase.&quot; Cursor will search all files, prepare the changes, and let you review a multi-file diff before applying.</span>
               </div>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Pro Tip</span>
@@ -166,11 +110,11 @@ export default function CursorPage() {
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Prompt Templates</span>
                 <ul className="list-disc pl-6 text-white/90 text-sm space-y-1">
-                  <li>"Explain why I am getting [X error] in this file and suggest a fix."</li>
-                  <li>"Refactor this function to be more modular and readable."</li>
-                  <li>"Add JSDoc comments to the following function."</li>
-                  <li>"Optimize the database calls in this API route for performance."</li>
-                  <li>"Create a Prisma schema for a Post model with fields: id (string, ID), title (string), content (string), authorId (relation to User)." </li>
+                  <li>&quot;Explain why I am getting [X error] in this file and suggest a fix.&quot;</li>
+                  <li>&quot;Refactor this function to be more modular and readable.&quot;</li>
+                  <li>&quot;Add JSDoc comments to the following function.&quot;</li>
+                  <li>&quot;Optimize the database calls in this API route for performance.&quot;</li>
+                  <li>&quot;Create a Prisma schema for a Post model with fields: id (string, ID), title (string), content (string), authorId (relation to User).&quot;</li>
                 </ul>
               </div>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
