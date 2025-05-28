@@ -7,13 +7,15 @@ import PriceTicker from '@/components/PriceTicker';
 import Modal from '@/components/Modal';
 import BullPeakSignals from '@/components/BullPeakSignals';
 import MandoMinutes from '@/components/MandoMinutes';
+import Mindshare from '@/components/Mindshare';
+import Flows from '@/components/Flows';
 import Link from 'next/link';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeModal, setActiveModal] = useState<'bullpeak' | 'mandominutes'>('bullpeak');
+  const [activeModal, setActiveModal] = useState<'bullpeak' | 'mandominutes' | 'mindshare' | 'flows'>('bullpeak');
 
-  const openModal = (type: 'bullpeak' | 'mandominutes') => {
+  const openModal = (type: 'bullpeak' | 'mandominutes' | 'mindshare' | 'flows') => {
     setActiveModal(type);
     setIsModalOpen(true);
   };
@@ -72,6 +74,19 @@ export default function Home() {
                 />
                 Daily market updates by Mando Minutes
               </button>
+              <button
+                onClick={() => openModal('flows')}
+                className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200 ml-4"
+              >
+                <Image
+                  src="/bitcoin/bitcoin-plus.svg"
+                  alt="Flows"
+                  width={18}
+                  height={18}
+                  className="w-4 h-4"
+                />
+                Flows by Chain
+              </button>
             </p>
           </motion.div>
 
@@ -111,7 +126,10 @@ export default function Home() {
       </motion.div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        {activeModal === 'bullpeak' ? <BullPeakSignals /> : <MandoMinutes />}
+        {activeModal === 'bullpeak' && <BullPeakSignals />}
+        {activeModal === 'mandominutes' && <MandoMinutes />}
+        {activeModal === 'mindshare' && <Mindshare />}
+        {activeModal === 'flows' && <Flows />}
       </Modal>
 
       <div className="container mx-auto px-4 py-16 space-y-24">
