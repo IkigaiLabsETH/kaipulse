@@ -111,7 +111,7 @@ export default function HX50Page() {
         >
           <div className="border-l-4 border-emerald-500 pl-6 py-2">
             <p className="text-xl text-white/90 leading-relaxed">
-              The Hill HX50 represents a bold new chapter in personal helicopter aviation, combining cutting-edge technology, luxury, and performance in a package designed specifically for private owners. With its proprietary GT50 turbine engine, carbon-fiber monocoque construction, and revolutionary digital cockpit, the HX50 aims to bring "Elon Musk-style disruption" to the rotorcraft sector.
+              The Hill HX50 represents a bold new chapter in personal helicopter aviation, combining cutting-edge technology, luxury, and performance in a package designed specifically for private owners. With its proprietary GT50 turbine engine, carbon-fiber monocoque construction, and revolutionary digital cockpit, the HX50 aims to bring &quot;Elon Musk-style disruption&quot; to the rotorcraft sector.
             </p>
           </div>
         </motion.div>
@@ -136,7 +136,7 @@ export default function HX50Page() {
             </p>
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <h4 className="text-emerald-500 font-semibold">Engine & Performance</h4>
+                <h4 className="text-emerald-500 font-semibold">Engine &amp; Performance</h4>
                 <ul className="list-disc pl-5 space-y-1 text-white/70">
                   <li>GT50 Turbine: 500 shp (440 hp takeoff)</li>
                   <li>Fuel Consumption: ~35 US gallons/hour at MCP</li>
