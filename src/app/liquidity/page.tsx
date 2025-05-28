@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 interface TokenData {
   id: string;
@@ -46,6 +47,21 @@ type DexscreenerToken = {
   chainId?: string;
 };
 
+// Add Raydium and Jupiter SVG icons
+const RaydiumIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="16" fill="#19D4FA"/>
+    <path d="M16 7L25 25H7L16 7Z" fill="#fff"/>
+  </svg>
+);
+const JupiterIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="16" fill="#FFD166"/>
+    <circle cx="16" cy="16" r="10" fill="#073763"/>
+    <circle cx="16" cy="16" r="6" fill="#FFD166"/>
+  </svg>
+);
+
 export default function LiquidityPage() {
   const [tokens, setTokens] = useState<TokenData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,6 +72,13 @@ export default function LiquidityPage() {
   const [useDexscreener, setUseDexscreener] = useState(false);
   const [dexscreenerData, setDexscreenerData] = useState<DexscreenerToken[]>([]);
   const [dexLoading, setDexLoading] = useState(false);
+  const [showPools, setShowPools] = useState(false);
+  const [poolAddress, setPoolAddress] = useState('');
+  const [poolData, setPoolData] = useState<any>(null);
+  const [poolLoading, setPoolLoading] = useState(false);
+  const [poolError, setPoolError] = useState<string | null>(null);
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+  const copyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchData = useCallback(async (pageNum: number) => {
     setLoading(true);
@@ -130,6 +153,13 @@ export default function LiquidityPage() {
     return address.slice(0, 6) + '...' + address.slice(-4);
   }
 
+  const handleCopyAddress = (address: string) => {
+    navigator.clipboard.writeText(address);
+    setCopiedAddress(address);
+    if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+    copyTimeoutRef.current = setTimeout(() => setCopiedAddress(null), 1500);
+  };
+
   const renderCards = (data: DexscreenerToken[] | TokenData[]) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {data.map((token) => {
@@ -156,6 +186,12 @@ export default function LiquidityPage() {
         ) {
           cardHref = `https://dexscreener.com/${token.chainId}/${token.address}`;
         }
+        // For CoinGecko tokens, link to CoinGecko
+        if (!isDexscreenerToken(token) && 'id' in token && typeof token.id === 'string') {
+          cardHref = `https://www.coingecko.com/en/coins/${token.id}`;
+        }
+        // For DEXScreener tokens, show copy address button
+        const showCopy = isDexscreenerToken(token) && typeof token.address === 'string';
         const cardContent = (
           <>
             <div className="flex items-center gap-4 mb-4">
@@ -167,7 +203,41 @@ export default function LiquidityPage() {
                 className="rounded-full border-2 border-yellow-500"
               />
               <div className="flex-1">
-                <h3 className="text-lg font-medium text-yellow-500">{displayName}</h3>
+                <h3 className="text-lg font-medium text-yellow-500 flex items-center gap-2">
+                  {displayName}
+                  {showCopy && (
+                    <button
+                      onClick={e => { e.stopPropagation(); e.preventDefault(); handleCopyAddress(token.address as string); }}
+                      className="ml-2 px-2 py-1 text-xs bg-yellow-500 text-black rounded hover:bg-yellow-400 focus:outline-none border border-yellow-700"
+                      title="Copy address"
+                    >
+                      {copiedAddress === token.address ? 'Copied!' : 'Copy'}
+                    </button>
+                  )}
+                  {/* Raydium & Jupiter icons for Solana tokens */}
+                  {isDexscreenerToken(token) && token.chainId === 'solana' && token.address && (
+                    <span className="flex gap-1 ml-2">
+                      <a
+                        href={`https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=${token.address}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Swap on Raydium"
+                        className="hover:scale-110 transition-transform"
+                      >
+                        <RaydiumIcon />
+                      </a>
+                      <a
+                        href={`https://jup.ag/swap/SOL-${token.address}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Swap on Jupiter"
+                        className="hover:scale-110 transition-transform"
+                      >
+                        <JupiterIcon />
+                      </a>
+                    </span>
+                  )}
+                </h3>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-400 text-sm">{token.symbol}</span>
                   {'market_cap_rank' in token && token.market_cap_rank && (
@@ -201,40 +271,58 @@ export default function LiquidityPage() {
                   </span>
                 </div>
               )}
-              <div className="text-gray-400 font-bold">
-                Liquidity (TVL):{' '}
-                <span className="text-yellow-500 font-bold">
-                  {isDexscreenerToken(token)
-                    ? token.totalLiquidity !== undefined
-                      ? formatNumber(token.totalLiquidity)
-                      : 'N/A'
-                    : 'total_liquidity' in token && token.total_liquidity !== undefined
-                    ? formatNumber(token.total_liquidity)
-                    : 'N/A'}
-                </span>
-              </div>
-              <div className="text-gray-400 font-bold">
-                24h Volume:{' '}
-                <span className="text-yellow-500 font-bold">
-                  {isDexscreenerToken(token)
-                    ? token.totalVolume !== undefined
-                      ? formatNumber(token.totalVolume)
-                      : 'N/A'
-                    : 'total_liquidity' in token && token.total_liquidity !== undefined
-                    ? formatNumber(token.total_liquidity)
-                    : 'N/A'}
-                </span>
-              </div>
-              <div className="text-gray-400">
-                Pools:{' '}
-                <span className="text-white font-medium">
-                  {isDexscreenerToken(token)
-                    ? token.poolsCount !== undefined
+              {/* For DEXScreener tokens, show both TVL and 24h Volume. For CoinGecko, show TVL if available, else 24h Volume. */}
+              {isDexscreenerToken(token) ? (
+                <>
+                  <div className="text-gray-400 font-bold">
+                    Liquidity (TVL):{' '}
+                    <span className="text-yellow-500 font-bold">
+                      {token.totalLiquidity !== undefined
+                        ? formatNumber(token.totalLiquidity)
+                        : 'N/A'}
+                    </span>
+                  </div>
+                  <div className="text-gray-400 font-bold">
+                    24h Volume:{' '}
+                    <span className="text-yellow-500 font-bold">
+                      {token.totalVolume !== undefined
+                        ? formatNumber(token.totalVolume)
+                        : 'N/A'}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {'total_value_locked' in token && token.total_value_locked && token.total_value_locked.usd ? (
+                    <div className="text-gray-400 font-bold">
+                      Liquidity (TVL):{' '}
+                      <span className="text-yellow-500 font-bold">
+                        {formatNumber(token.total_value_locked.usd)}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="text-gray-400 font-bold">
+                      24h Volume:{' '}
+                      <span className="text-yellow-500 font-bold">
+                        {'total_volume' in token && token.total_volume !== undefined
+                          ? formatNumber(token.total_volume)
+                          : 'N/A'}
+                      </span>
+                    </div>
+                  )}
+                </>
+              )}
+              {/* Pools: Only for DEXScreener tokens */}
+              {isDexscreenerToken(token) && (
+                <div className="text-gray-400">
+                  Pools:{' '}
+                  <span className="text-white font-medium">
+                    {token.poolsCount !== undefined
                       ? token.poolsCount
-                      : 'N/A'
-                    : 'N/A'}
-                </span>
-              </div>
+                      : 'N/A'}
+                  </span>
+                </div>
+              )}
               <div className="text-gray-400">
                 Liquidity Ratio:{' '}
                 <span className="text-yellow-500 font-medium">
@@ -274,6 +362,26 @@ export default function LiquidityPage() {
     </div>
   );
 
+  // Handler for fetching pool data
+  const handleFetchPools = async () => {
+    setPoolLoading(true);
+    setPoolError(null);
+    setPoolData(null);
+    try {
+      const res = await fetch(`/api/dexscreener/pools?chain=solana&address=${poolAddress}`);
+      const data = await res.json();
+      if (data.error) {
+        setPoolError(data.error);
+      } else {
+        setPoolData(data.pools);
+      }
+    } catch {
+      setPoolError('Failed to fetch pool data');
+    } finally {
+      setPoolLoading(false);
+    }
+  };
+
   if (loading || dexLoading) {
     return (
       <div className="min-h-screen bg-black text-white p-8 font-mono">
@@ -299,20 +407,78 @@ export default function LiquidityPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="space-y-16">
           {/* Toggle Button */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-8 gap-2">
             <button
-              onClick={() => setUseDexscreener(false)}
-              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 mr-2 ${!useDexscreener ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
+              onClick={() => { setUseDexscreener(false); setShowPools(false); }}
+              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 mr-2 ${!useDexscreener && !showPools ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
             >
               CoinGecko
             </button>
             <button
-              onClick={() => setUseDexscreener(true)}
-              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 ${useDexscreener ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
+              onClick={() => { setUseDexscreener(true); setShowPools(false); }}
+              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 mr-2 ${useDexscreener && !showPools ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
             >
               DEXScreener
             </button>
+            <button
+              onClick={() => { setShowPools(true); setUseDexscreener(false); }}
+              className={`px-6 py-2 font-bold border-2 rounded-none transition-all duration-200 ${showPools ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]' : 'bg-black text-yellow-500 border-yellow-500'}`}
+            >
+              Pools
+            </button>
           </div>
+
+          {/* Pools UI */}
+          {showPools && (
+            <div className="max-w-xl mx-auto bg-[#181a20] border-2 border-yellow-500 rounded p-8 mb-12">
+              <h2 className="text-2xl font-bold text-yellow-400 mb-4">Track Token Pools (Solana)</h2>
+              <div className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  placeholder="Enter token address..."
+                  value={poolAddress}
+                  onChange={e => setPoolAddress(e.target.value)}
+                  className="flex-1 px-4 py-2 rounded-none border-2 border-yellow-500 bg-black text-white focus:outline-none"
+                />
+                <button
+                  onClick={handleFetchPools}
+                  className="px-6 py-2 bg-yellow-500 text-black font-bold border-2 border-yellow-500 rounded-none transition-all duration-200 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] hover:-translate-x-[3px] hover:-translate-y-[3px]"
+                  disabled={poolLoading || !poolAddress}
+                >
+                  {poolLoading ? 'Loading...' : 'Fetch Pools'}
+                </button>
+              </div>
+              {poolError && <div className="text-red-500 mb-2">{poolError}</div>}
+              {poolData && Array.isArray(poolData) && poolData.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full text-sm text-yellow-100">
+                    <thead>
+                      <tr className="bg-[#232323] text-yellow-400">
+                        <th className="px-4 py-2">DEX</th>
+                        <th className="px-4 py-2">Pair</th>
+                        <th className="px-4 py-2">Liquidity (USD)</th>
+                        <th className="px-4 py-2">24h Volume</th>
+                        <th className="px-4 py-2">Price (USD)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {poolData.map((pool: any, idx: number) => (
+                        <tr key={idx} className="border-b border-yellow-900">
+                          <td className="px-4 py-2">{pool.dexId || '-'}</td>
+                          <td className="px-4 py-2">{pool.baseToken?.symbol} / {pool.quoteToken?.symbol}</td>
+                          <td className="px-4 py-2">{pool.liquidity?.usd ? Number(pool.liquidity.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }) : '-'}</td>
+                          <td className="px-4 py-2">{pool.volume?.h24 ? Number(pool.volume.h24).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }) : '-'}</td>
+                          <td className="px-4 py-2">{pool.priceUsd ? Number(pool.priceUsd).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 6 }) : '-'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : poolData && Array.isArray(poolData) && poolData.length === 0 ? (
+                <div className="text-yellow-400">No pools found for this address.</div>
+              ) : null}
+            </div>
+          )}
 
           {/* Hero Section */}
           <div className="text-center space-y-8">
@@ -433,6 +599,9 @@ export default function LiquidityPage() {
                   </p>
                   <p className="mt-4 text-yellow-300 font-semibold">
                     <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it&apos;s important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research, and never invest more than you can afford to lose.
+                  </p>
+                  <p className="mt-4 text-yellow-200">
+                    <strong>API Limitations:</strong> The free CoinGecko API does <span className="text-yellow-300">not</span> provide reliable pool-level or locked liquidity data for most tokens, especially memecoins. It also cannot detect pool manipulation or show how liquidity is distributed across pools. For advanced liquidity analysis, DEX analytics platforms (like DEXScreener) or direct on-chain data are required.
                   </p>
                 </div>
               </div>
