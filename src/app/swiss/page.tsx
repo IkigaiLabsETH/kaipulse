@@ -171,11 +171,18 @@ export default function SwissPage() {
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-8 leading-relaxed">
             Discover more exceptional accommodations across Switzerland, curated by the Michelin Guide. From historic palaces to modern mountain retreats, find your perfect luxury stay.
           </p>
-          <Link href="https://guide.michelin.com/fr/fr/hotels-stays/switzerland?arr=2025-06-25&dep=2025-06-26&nA=1&nC=0&nR=1&distinction=all-keys" target="_blank" className="inline-block">
-            <Button className="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all duration-300 text-lg">
-              Explore Michelin Guide Hotels
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/switzerland?arr=2025-06-25&dep=2025-06-26&nA=1&nC=0&nR=1&distinction=all-keys" target="_blank" className="inline-block">
+              <Button className="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all duration-300 text-lg">
+                Explore Michelin Guide Hotels
+              </Button>
+            </Link>
+            <Link href="https://www.swissdeluxehotels.com/luxury-hotels/" target="_blank" className="inline-block">
+              <Button className="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all duration-300 text-lg">
+                View Swiss Deluxe Hotels
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
