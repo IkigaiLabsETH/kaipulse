@@ -45,7 +45,7 @@ export default function CursorPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Cursor IDE Workflows for Solo Developers</h2>
               <p className="text-lg text-white/80 leading-relaxed mb-4">
-                Cursor is an "AI-first" IDE that integrates a powerful AI assistant directly into the coding workflow. Its features like inline AI prompts, context-aware chat, and multi-file edits allow a single developer to generate and refactor code quickly using natural language. Below, we detail how to maximize Cursor's capabilities in a Next.js/TypeScript/Prisma project.
+                Cursor is an &quot;AI-first&quot; IDE that integrates a powerful AI assistant directly into the coding workflow. Its features like inline AI prompts, context-aware chat, and multi-file edits allow a single developer to generate and refactor code quickly using natural language. Below, we detail how to maximize Cursor&apos;s capabilities in a Next.js/TypeScript/Prisma project.
               </p>
             </div>
 
@@ -54,12 +54,12 @@ export default function CursorPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Inline AI Prompting and Code Generation (Composer)</h2>
               <p className="text-lg text-white/80 leading-relaxed mb-4">
-                One of Cursor's core features is the Inline Composer (Cmd/Ctrl + K), which opens a prompt bar for generating or modifying code via natural language. You can describe a task in plain English and have Cursor write the code for you at the cursor location. For example, highlight a section and prompt: "Convert this callback-based function to async/await", or ask: "Write a Next.js API route that fetches Bitcoin prices from an API." Cursor will suggest code changes, visible in a diff view for review.
+                One of Cursor&apos;s core features is the Inline Composer (Cmd/Ctrl + K), which opens a prompt bar for generating or modifying code via natural language. You can describe a task in plain English and have Cursor write the code for you at the cursor location. For example, highlight a section and prompt: &quot;Convert this callback-based function to async/await&quot;, or ask: &quot;Write a Next.js API route that fetches Bitcoin prices from an API.&quot; Cursor will suggest code changes, visible in a diff view for review.
               </p>
               <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
-                <li><span className="text-yellow-500 font-semibold">Be Specific:</span> "Create a Prisma model for User with fields id, name, email (unique), createdAt timestamp" yields a precise schema.</li>
-                <li><span className="text-yellow-500 font-semibold">Request Refactoring:</span> "Optimize this query using Prisma transactions" returns an editable diff.</li>
-                <li><span className="text-yellow-500 font-semibold">Instant Apply:</span> Review and apply changes with one click—the "play" button merges the AI-generated diff into your codebase.</li>
+                <li><span className="text-yellow-500 font-semibold">Be Specific:</span> &quot;Create a Prisma model for User with fields id, name, email (unique), createdAt timestamp&quot; yields a precise schema.</li>
+                <li><span className="text-yellow-500 font-semibold">Request Refactoring:</span> &quot;Optimize this query using Prisma transactions&quot; returns an editable diff.</li>
+                <li><span className="text-yellow-500 font-semibold">Instant Apply:</span> Review and apply changes with one click—the &quot;play&quot; button merges the AI-generated diff into your codebase.</li>
               </ul>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Prompt Example</span>
@@ -71,7 +71,7 @@ export default function CursorPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">AI Chat: In-IDE Assistant for Debugging and Q&A</h2>
               <p className="text-lg text-white/80 leading-relaxed mb-4">
-                Cursor provides an AI Chat panel (Cmd/Ctrl + L) where you can have a conversation with an AI that is aware of your codebase. This is extremely useful for debugging, getting explanations, or brainstorming implementation approaches without leaving the IDE. The chat is context-aware: it automatically includes the current file and even specific code you've selected in the conversation, so you can ask questions like, "Why am I getting a type error on this Prisma query?" and the AI will examine the code and respond with an explanation or fix suggestion.
+                Cursor provides an AI Chat panel (Cmd/Ctrl + L) where you can have a conversation with an AI that is aware of your codebase. This is extremely useful for debugging, getting explanations, or brainstorming implementation approaches without leaving the IDE. The chat is context-aware: it automatically includes the current file and even specific code you&apos;ve selected in the conversation, so you can ask questions like, &quot;Why am I getting a type error on this Prisma query?&quot; and the AI will examine the code and respond with an explanation or fix suggestion.
               </p>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Tip</span>
@@ -87,7 +87,7 @@ export default function CursorPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Multi-File Context and Refactoring at Scale</h2>
               <p className="text-lg text-white/80 leading-relaxed mb-4">
-                Cursor's multi-file context awareness means the AI can understand your entire project structure, not just the file you're editing. You can explicitly bring other files into the conversation using <span className="text-yellow-500 font-mono">@filename</span>. Multi-file editing lets you apply a single instruction to multiple files at once, saving huge amounts of time on refactoring and consistency.
+                Cursor&apos;s multi-file context awareness means the AI can understand your entire project structure, not just the file you&apos;re editing. You can explicitly bring other files into the conversation using <span className="text-yellow-500 font-mono">@filename</span>. Multi-file editing lets you apply a single instruction to multiple files at once, saving huge amounts of time on refactoring and consistency.
               </p>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Example</span>
@@ -95,7 +95,7 @@ export default function CursorPage() {
               </div>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Pro Tip</span>
-                <span className="text-white/90 text-sm">Use <span className="font-mono">Ctrl + Enter</span> in chat to trigger a codebase-wide query, like "List all files where getServerSideProps is used."</span>
+                <span className="text-white/90 text-sm">Use <span className="font-mono">Ctrl + Enter</span> in chat to trigger a codebase-wide query, like &quot;List all files where getServerSideProps is used.&quot;</span>
               </div>
             </div>
 
@@ -103,8 +103,8 @@ export default function CursorPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Prompt Engineering Strategies in Cursor</h2>
               <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
-                <li><span className="text-yellow-500 font-semibold">Be Specific with Tasks:</span> Break down complex tasks into clear, single-purpose prompts. E.g., "Generate a Next.js API route that returns the current Bitcoin price using CoinGecko API."</li>
-                <li><span className="text-yellow-500 font-semibold">Use Step-by-Step Instructions:</span> Guide the AI with ordered steps, e.g., "Write tests first, then implement the code to make those tests pass."</li>
+                <li><span className="text-yellow-500 font-semibold">Be Specific with Tasks:</span> Break down complex tasks into clear, single-purpose prompts. E.g., &quot;Generate a Next.js API route that returns the current Bitcoin price using CoinGecko API.&quot;</li>
+                <li><span className="text-yellow-500 font-semibold">Use Step-by-Step Instructions:</span> Guide the AI with ordered steps, e.g., &quot;Write tests first, then implement the code to make those tests pass.&quot;</li>
                 <li><span className="text-yellow-500 font-semibold">Leverage Project Context:</span> Remind the AI of relevant context, libraries, or conventions in your prompt.</li>
               </ul>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
@@ -119,7 +119,7 @@ export default function CursorPage() {
               </div>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Multi-Step Fixes</span>
-                <span className="text-white/90 text-sm">Ask Cursor's agent to iterate until done: "Run npm run build and fix any TypeScript errors, then repeat until the build passes."</span>
+                <span className="text-white/90 text-sm">Ask Cursor&apos;s agent to iterate until done: &quot;Run npm run build and fix any TypeScript errors, then repeat until the build passes.&quot;</span>
               </div>
             </div>
 
@@ -133,7 +133,7 @@ export default function CursorPage() {
               </ul>
               <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 mt-4 overflow-x-auto">
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Pro Tip</span>
-                <span className="text-white/90 text-sm">Enable YOLO mode to let Cursor "just do it"—create files, run commands, and iterate until a goal is reached. Always use version control!</span>
+                <span className="text-white/90 text-sm">Enable YOLO mode to let Cursor &quot;just do it&quot;—create files, run commands, and iterate until a goal is reached. Always use version control!</span>
               </div>
             </div>
 
@@ -141,11 +141,11 @@ export default function CursorPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Summary of API Integration Tips</h2>
               <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
-                <li><span className="text-yellow-500 font-semibold">Choose the Right API:</span> CoinGecko's free API is an excellent default for price data. For broader info, consider CryptoCompare or blockchain.com for network data.</li>
+                <li><span className="text-yellow-500 font-semibold">Choose the Right API:</span> CoinGecko&apos;s free API is an excellent default for price data. For broader info, consider CryptoCompare or blockchain.com for network data.</li>
                 <li><span className="text-yellow-500 font-semibold">Avoid Overuse:</span> Respect rate limits and use server-side caching and revalidation.</li>
                 <li><span className="text-yellow-500 font-semibold">Secure Your Keys:</span> Keep API keys in .env and never push them to git or expose them client-side.</li>
                 <li><span className="text-yellow-500 font-semibold">Test and Handle Errors:</span> Always handle fetch failures and validate external data before saving.</li>
-                <li><span className="text-yellow-500 font-semibold">Stay Updated:</span> The crypto world evolves quickly—keep an eye on API docs and use Cursor's web search for alternatives if needed.</li>
+                <li><span className="text-yellow-500 font-semibold">Stay Updated:</span> The crypto world evolves quickly—keep an eye on API docs and use Cursor&apos;s web search for alternatives if needed.</li>
               </ul>
             </div>
           </div>
