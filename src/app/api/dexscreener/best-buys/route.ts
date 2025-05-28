@@ -16,16 +16,11 @@ type Pool = {
   info?: { imageUrl?: string };
 };
 
-export async function GET(request: Request) {
+export async function GET(_request: Request) {
   // 1. Fetch trending/boosted tokens
   const url = 'https://api.dexscreener.com/token-boosts/top/v1';
   try {
-    const { searchParams } = new URL(request.url);
-    const chainParam = searchParams.get('chain'); // e.g., 'solana,ethereum'
-    const allowedChains = chainParam
-      ? chainParam.split(',').map((c) => c.trim().toLowerCase())
-      : ['solana']; // default
-
+    // Only Solana is supported for now
     const res = await fetch(url);
     if (!res.ok) throw new Error('DEXScreener API error');
     const topTokens: BoostedToken[] = await res.json();
@@ -84,16 +79,14 @@ export async function GET(request: Request) {
     // 3. Filter and rank tokens
     const filtered = enriched
       .filter((t): t is NonNullable<typeof t> => t !== null)
-      .filter((t) => allowedChains.includes(t.chainId)) // Filter by allowed chains
+      .filter((t) => t.chainId === 'solana')
       .filter(
         (t) =>
-          t.totalLiquidity > 200_000 && // min $200k liquidity
+          t.totalLiquidity > 500_000 && // min $500k liquidity
           t.totalVolume > 50_000 &&     // min $50k 24h volume
-          t.liquidityRatio && t.liquidityRatio > 0.02 && // min 2% liquidity/market cap
-          t.marketCap && t.marketCap > 1_000_000 && t.marketCap < 50_000_000 && // $1M < MC < $50M
           t.poolsCount && t.poolsCount > 1 // at least 2 pools
       )
-      .sort((a, b) => (b.liquidityRatio ?? 0) - (a.liquidityRatio ?? 0));
+      .sort((a, b) => (b.totalLiquidity ?? 0) - (a.totalLiquidity ?? 0)); // Sort by TVL
 
     return NextResponse.json(filtered);
   } catch {

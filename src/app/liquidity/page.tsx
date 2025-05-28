@@ -56,10 +56,6 @@ export default function LiquidityPage() {
   const [useDexscreener, setUseDexscreener] = useState(false);
   const [dexscreenerData, setDexscreenerData] = useState<DexscreenerToken[]>([]);
   const [dexLoading, setDexLoading] = useState(false);
-  const [selectedChain, setSelectedChain] = useState('solana');
-  const supportedChains = [
-    { id: 'solana', label: 'Solana' },
-  ];
 
   const fetchData = useCallback(async (pageNum: number) => {
     setLoading(true);
@@ -88,12 +84,12 @@ export default function LiquidityPage() {
     if (!useDexscreener) fetchData(1);
   }, [fetchData, useDexscreener]);
 
-  // Fetch DEXScreener best buys when toggled or chain changes
+  // Fetch DEXScreener best buys when toggled
   useEffect(() => {
     if (!useDexscreener) return;
     setDexLoading(true);
     setError(null);
-    fetch(`/api/dexscreener/best-buys?chain=${selectedChain}`)
+    fetch(`/api/dexscreener/best-buys?chain=solana`)
       .then(res => res.json())
       .then((tokens) => {
         if (!Array.isArray(tokens)) {
@@ -108,7 +104,7 @@ export default function LiquidityPage() {
         setError('Failed to fetch DEXScreener data');
         setDexLoading(false);
       });
-  }, [useDexscreener, selectedChain]);
+  }, [useDexscreener]);
 
   const handleLoadMore = () => {
     setLoadingMore(true);
@@ -194,36 +190,35 @@ export default function LiquidityPage() {
                     : 'N/A'}
                 </span>
               </div>
-              <div className="text-gray-400">
-                Market Cap:{' '}
-                <span className="text-white font-medium">
+              {/* Market Cap: Only show for CoinGecko tokens */}
+              {!isDexscreenerToken(token) && (
+                <div className="text-gray-400">
+                  Market Cap:{' '}
+                  <span className="text-white font-medium">
+                    {'market_cap' in token && token.market_cap !== undefined
+                      ? formatNumber(token.market_cap)
+                      : 'N/A'}
+                  </span>
+                </div>
+              )}
+              <div className="text-gray-400 font-bold">
+                Liquidity (TVL):{' '}
+                <span className="text-yellow-500 font-bold">
                   {isDexscreenerToken(token)
-                    ? token.marketCap !== null && token.marketCap !== undefined
-                      ? formatNumber(token.marketCap)
-                      : 'N/A'
-                    : 'market_cap' in token && token.market_cap !== undefined
-                    ? formatNumber(token.market_cap)
-                    : 'N/A'}
-                </span>
-              </div>
-              <div className="text-gray-400">
-                24h Volume:{' '}
-                <span className="text-white font-medium">
-                  {isDexscreenerToken(token)
-                    ? token.totalVolume !== undefined
-                      ? formatNumber(token.totalVolume)
+                    ? token.totalLiquidity !== undefined
+                      ? formatNumber(token.totalLiquidity)
                       : 'N/A'
                     : 'total_liquidity' in token && token.total_liquidity !== undefined
                     ? formatNumber(token.total_liquidity)
                     : 'N/A'}
                 </span>
               </div>
-              <div className="text-gray-400">
-                Liquidity (TVL):{' '}
-                <span className="text-white font-medium">
+              <div className="text-gray-400 font-bold">
+                24h Volume:{' '}
+                <span className="text-yellow-500 font-bold">
                   {isDexscreenerToken(token)
-                    ? token.totalLiquidity !== undefined
-                      ? formatNumber(token.totalLiquidity)
+                    ? token.totalVolume !== undefined
+                      ? formatNumber(token.totalVolume)
                       : 'N/A'
                     : 'total_liquidity' in token && token.total_liquidity !== undefined
                     ? formatNumber(token.total_liquidity)
@@ -319,36 +314,17 @@ export default function LiquidityPage() {
             </button>
           </div>
 
-          {/* Chain Button Group (DEXScreener only) */}
-          {useDexscreener && (
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {supportedChains.map((chain) => (
-                <button
-                  key={chain.id}
-                  onClick={() => setSelectedChain(chain.id)}
-                  className={`px-5 py-2 font-bold border-2 rounded-none transition-all duration-200 uppercase tracking-wide text-sm
-                    ${selectedChain === chain.id
-                      ? 'bg-yellow-500 text-black border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]'
-                      : 'bg-black text-yellow-500 border-yellow-500 hover:bg-yellow-500 hover:text-black'}
-                  `}
-                >
-                  {chain.label}
-                </button>
-              ))}
-            </div>
-          )}
-
           {/* Hero Section */}
           <div className="text-center space-y-8">
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light">Token Analysis • Market Liquidity • Trading Metrics</p>
             <h1 className="text-center">
-              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
-                Token Liquidity Analysis
+              <span className="text-5xl md:text-7xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
+                liquidity-first token explorer
               </span>
             </h1>
             <div className="flex items-center justify-center mt-6">
               <div className="h-px w-24 bg-yellow-500/30"></div>
-              <p className="mx-6 text-lg text-white/70 font-light italic">Top tokens by liquidity ratio</p>
+              <p className="mx-6 text-lg text-white/70 font-light italic">Top tokens by real liquidity, not fake market cap</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
             </div>
           </div>
@@ -373,6 +349,9 @@ export default function LiquidityPage() {
           <div className="space-y-12">
             <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-8 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-3xl font-bold text-yellow-500 mb-6">Understanding Liquidity Metrics</h2>
+              <p className="mb-6 text-yellow-300 text-lg font-semibold">
+                Why Liquidity Matters More Than Market Cap: Market cap can be easily manipulated by controlling token supply, but real, locked liquidity is much harder to fake. Always prioritize tokens with high liquidity and volume over those with just a high market cap.
+              </p>
               <div className="mb-6 text-yellow-400 text-sm">
                 <strong>Note:</strong> For true on-chain liquidity (pool reserves), use DEX analytics platforms like
                 {' '}
@@ -435,6 +414,26 @@ export default function LiquidityPage() {
                     <li>Monitor liquidity depth at different price levels</li>
                     <li>Check for liquidity concentration in specific price ranges</li>
                   </ul>
+                </div>
+
+                <div className="mt-10 p-6 bg-[#181a20] border-l-4 border-yellow-500 rounded text-yellow-200 text-base">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-2">How We Select Tokens for This List</h4>
+                  <p className="mb-2">
+                    To ensure quality and safety, we apply the following hardcoded filters to all tokens:
+                  </p>
+                  <ul className="list-disc list-inside mb-2">
+                    <li><strong>Solana Only:</strong> Only tokens on the Solana blockchain are included.</li>
+                    <li><strong>Liquidity (TVL):</strong> More than <span className="text-yellow-300">$500,000</span> in total on-chain liquidity.</li>
+                    <li><strong>24h Volume:</strong> At least <span className="text-yellow-300">$50,000</span> in trading volume in the last 24 hours.</li>
+                    <li><strong>Pools Count:</strong> Liquidity in at least <span className="text-yellow-300">2 pools</span> (to avoid single-pool risk).</li>
+                    <li><strong>Ranking:</strong> Tokens are ranked by <span className="text-yellow-300">total liquidity (TVL)</span>, not market cap.</li>
+                  </ul>
+                  <p>
+                    These filters are hardcoded to ensure that only tokens with real, substantial liquidity and active trading are displayed. This approach helps protect users from illiquid, risky, or manipulated tokens and ensures the list is focused on quality opportunities.
+                  </p>
+                  <p className="mt-4 text-yellow-300 font-semibold">
+                    <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it&apos;s important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research, and never invest more than you can afford to lose.
+                  </p>
                 </div>
               </div>
             </div>
