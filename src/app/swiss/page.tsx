@@ -33,7 +33,7 @@ export default function SwissPage() {
               Road Trip Through Switzerland
             </h1>
             <p className="text-base sm:text-lg md:text-2xl text-white/90 font-satoshi max-w-xl leading-relaxed">
-              Switzerland is more than a postcard-perfect destination; it's a sanctuary of elevated hospitality, world-class wellness, and majestic alpine panoramas. For the refined traveler, a 14-day road trip through the Swiss landscape reveals not just five-star hotels, but immersive experiences where spa rituals, Michelin-starred dining, and jaw-dropping drives converge.
+              Switzerland is more than a postcard-perfect destination; it&apos;s a sanctuary of elevated hospitality, world-class wellness, and majestic alpine panoramas. For the refined traveler, a 14-day road trip through the Swiss landscape reveals not just five-star hotels, but immersive experiences where spa rituals, Michelin-starred dining, and jaw-dropping drives converge.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
               <Button className="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all duration-300 text-lg w-full sm:w-auto">
@@ -65,7 +65,7 @@ export default function SwissPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase text-3xl md:text-4xl">Featured Luxury Stays</h2>
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-12 text-center leading-relaxed">
-            Discover our curated selection of Switzerland's most exceptional hotels, each offering unique experiences and world-class hospitality.
+            Discover our curated selection of Switzerland&apos;s most exceptional hotels, each offering unique experiences and world-class hospitality.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
@@ -186,7 +186,7 @@ export default function SwissPage() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 1-2: Geneva</h2>
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-8 leading-relaxed">
-            Begin your journey in Geneva, where luxury meets lakeside elegance. Stay at La Réserve Genève Hotel & Spa, indulge in the award-winning Nescens Spa, and savor dinner at Tsé Fung, the hotel's Michelin-starred Chinese restaurant.
+            Begin your journey in Geneva, where luxury meets lakeside elegance. Stay at La Réserve Genève Hotel & Spa, indulge in the award-winning Nescens Spa, and savor dinner at Tsé Fung, the hotel&apos;s Michelin-starred Chinese restaurant.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <Link href="https://www.lareserve.ch/en/geneva" target="_blank" className="w-full sm:w-auto">
@@ -217,7 +217,7 @@ export default function SwissPage() {
             <CardTitle className="font-epilogue text-xl text-yellow-400">Jet d'Eau</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-white/80 font-satoshi leading-relaxed">Geneva's iconic water fountain, reaching 140 meters high. Best viewed from the lakeshore or during a sunset boat cruise.</p>
+            <p className="text-white/80 font-satoshi leading-relaxed">Geneva&apos;s iconic water fountain, reaching 140 meters high. Best viewed from the lakeshore or during a sunset boat cruise.</p>
           </CardContent>
         </Card>
         <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
@@ -346,7 +346,7 @@ export default function SwissPage() {
             <CardTitle className="font-epilogue text-xl text-yellow-400">Mount Pilatus</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-white/80 font-satoshi">Take the world's steepest cogwheel railway to the summit for breathtaking views and unforgettable dining experiences.</p>
+            <p className="text-white/80 font-satoshi">Take the world&apos;s steepest cogwheel railway to the summit for breathtaking views and unforgettable dining experiences.</p>
           </CardContent>
         </Card>
       </Grid>
@@ -358,7 +358,7 @@ export default function SwissPage() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 7-8: Bad Ragaz</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Experience the legendary Grand Resort Bad Ragaz, a pilgrimage for wellness enthusiasts. Home to 'Memories' by Sven Wassmer, one of Switzerland's few three-star Michelin restaurants, and thermal waters sourced from the nearby Tamina Gorge.
+            Experience the legendary Grand Resort Bad Ragaz, a pilgrimage for wellness enthusiasts. Home to &apos;Memories&apos; by Sven Wassmer, one of Switzerland&apos;s few three-star Michelin restaurants, and thermal waters sourced from the nearby Tamina Gorge.
           </p>
           <div className="flex justify-center gap-4 mt-8">
             <Link href="https://www.resortragaz.ch/en" target="_blank">
@@ -381,7 +381,7 @@ export default function SwissPage() {
             <CardTitle className="font-epilogue text-xl text-yellow-400">Thermal Spa</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-white/80 font-satoshi">Experience the healing thermal waters from the Tamina Gorge in the resort's state-of-the-art spa facilities.</p>
+            <p className="text-white/80 font-satoshi">Experience the healing thermal waters from the Tamina Gorge in the resort&apos;s state-of-the-art spa facilities.</p>
           </CardContent>
         </Card>
         <Card className="bg-black border-yellow-500">
@@ -397,7 +397,7 @@ export default function SwissPage() {
             <CardTitle className="font-epilogue text-xl text-yellow-400">Golf Course</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-white/80 font-satoshi">Play on the resort's championship golf course, surrounded by stunning mountain views and alpine landscapes.</p>
+            <p className="text-white/80 font-satoshi">Play on the resort&apos;s championship golf course, surrounded by stunning mountain views and alpine landscapes.</p>
           </CardContent>
         </Card>
       </Grid>
@@ -412,7 +412,7 @@ export default function SwissPage() {
             <CardContent className="p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Badrutt's Palace Hotel</h3>
+                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Badrutt&apos;s Palace Hotel</h3>
                   <ul className="list-disc list-inside text-white/80 font-satoshi space-y-3">
                     <li>Historic luxury since 1896</li>
                     <li>Michelin-starred IGNIV restaurant</li>
@@ -475,7 +475,7 @@ export default function SwissPage() {
             <CardTitle className="font-epilogue text-xl text-yellow-400">Gemsstock Mountain</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-white/80 font-satoshi">Access world-class skiing and hiking trails from the resort's doorstep, with stunning views of the Swiss Alps.</p>
+            <p className="text-white/80 font-satoshi">Access world-class skiing and hiking trails from the resort&apos;s doorstep, with stunning views of the Swiss Alps.</p>
           </CardContent>
         </Card>
         <Card className="bg-black border-yellow-500">

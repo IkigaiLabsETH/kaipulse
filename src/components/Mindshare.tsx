@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export default function Mindshare() {
   return (
     <div className="w-screen max-w-none h-[80vh] p-0 m-0 overflow-hidden flex flex-col">
