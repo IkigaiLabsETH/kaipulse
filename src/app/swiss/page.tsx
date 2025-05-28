@@ -214,7 +214,7 @@ export default function SwissPage() {
         </Card>
         <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
           <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Jet d'Eau</CardTitle>
+            <CardTitle className="font-epilogue text-xl text-yellow-400">Jet d&apos;Eau</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-white/80 font-satoshi leading-relaxed">Geneva&apos;s iconic water fountain, reaching 140 meters high. Best viewed from the lakeshore or during a sunset boat cruise.</p>
