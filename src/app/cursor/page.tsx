@@ -148,6 +148,63 @@ export default function CursorPage() {
                 <li><span className="text-yellow-500 font-semibold">Stay Updated:</span> The crypto world evolves quickly—keep an eye on API docs and use Cursor&apos;s web search for alternatives if needed.</li>
               </ul>
             </div>
+
+            {/* Final Section: Cursor Instructions */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Current Cursor Instructions</h2>
+              <pre className="text-xs md:text-sm bg-black rounded-none border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-4 text-white whitespace-pre overflow-x-auto">
+{`# ─── Core Architecture ──────────────────────────────────────────────────────
+- USE Next.js 14+, React functional components (TSX), strict TypeScript, and Prisma ORM (db code in /lib/db).
+- FOLLOW atomic-design folders (atoms/ molecules/ organisms/ templates/ pages); separate presentation, logic, data.
+- ENFORCE progressive-enhancement: site must render core content without JS; layer JS features afterward.
+- WRITE semantic HTML5 + ARIA; meet WCAG 2.1 AA.
+
+# ─── Styling & Design System ────────────────────────────────────────────────
+- STYLE with styled-components; expose theme + design-tokens (colors, spacing, typography) via ThemeProvider.
+- DEFINE mobile-first breakpoints: 375 px, 768 px, 1024 px, 1440 px.
+- EXPORT critical CSS above-the-fold; lazy-load non-critical styles.
+
+# ─── Performance Targets ───────────────────────────────────────────────────
+- HIT Lighthouse ≥ 90; Core Web Vitals LCP &lt; 2.5 s, INP/FID &lt; 100 ms, CLS &lt; 0.1, TTFB &lt; 200 ms.
+- SPLIT code with dynamic imports + route-based chunking; enable React.lazy + Suspense where possible.
+- LAZY-LOAD below-the-fold images; serve AVIF/WEBP; generate &lt;source&gt; sets automatically.
+- ADD resource hints (preconnect, preload hero assets, dns-prefetch APIs); apply immutable cache-control headers.
+
+# ─── Conversion UX ──────────────────────────────────────────────────────────
+- USE F- or Z-pattern hierarchy; primary CTA ≥ 60 px touch area, contrast ≥ 3:1.
+- PROVIDE inline form validation + real-time feedback; microcopy next to inputs.
+- ANIMATE key conversion elements with Intersection Observer; 200 ms ease-out, prefers-reduced-motion respected.
+- SHOW social-proof blocks with quantifiable metrics (e.g., &quot;10 k users&quot;).
+
+# ─── Analytics & Tracking ──────────────────────────────────────────────────
+- FIRE event-based tracking (GA4) for every user interaction; define micro vs. macro funnels.
+- HANDLE UTMs server-side; enable cross-domain + enhanced ecommerce where relevant.
+
+# ─── Security Hardening ────────────────────────────────────────────────────
+- SET strict Content-Security-Policy, X-Frame-Options, HSTS, and granular CORS allowlist.
+- SANITIZE &amp; validate all inputs; enable CSRF tokens; RATE-LIMIT form posts (&le; 5/min/IP).
+
+# ─── SEO Essentials ────────────────────────────────────────────────────────
+- ADD canonical &lt;link&gt;, meta tags, and JSON-LD (Website, Organization, Product).
+- AUTO-GENERATE sitemap.xml (lastmod) &amp; robots.txt; maintain h1-h6 hierarchy.
+
+# ─── Deployment / CI-CD ────────────────────────────────────────────────────
+- ISOLATE env vars (local | staging | prod); secrets via Vercel.
+- RUN pre-commit lint, test, type-check; fail pipeline on error.
+- OPTIMIZE build: tree-shaking, source-map-extraction, bundle-analyzer when NODE_ENV=analyze.
+- LOG errors to Sentry; configure 308 redirects for legacy URLs.
+
+# ─── Crypto / Web3 Data Layer ──────────────────────────────────────────────
+- FETCH live crypto prices &amp; news from CoinGecko (no-key) or CryptoCompare/NewsData (key) in server routes.
+- CACHE responses in Prisma; revalidate ISR pages every 60 s.
+- EXPOSE /api/prices &amp; /api/news endpoints; front-end consumes via SWR.
+
+# ─── Deliverables ──────────────────────────────────────────────────────────
+- DOCUMENT exported functions with JSDoc/TSdoc; auto-generate typed API docs.
+- INCLUDE README (setup, env vars, architecture rationale), Lighthouse report, breakpoint screenshots.
+`}
+              </pre>
+            </div>
           </div>
         </div>
       </div>
