@@ -4,7 +4,6 @@ import { Header } from '@/components/Header';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Grid } from '@/components/ui/grid';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -33,7 +32,7 @@ export default function ItalyPage() {
               Road Trip Through Italy
             </h1>
             <p className="text-base sm:text-lg md:text-2xl text-white/90 font-satoshi max-w-xl leading-relaxed">
-              Italy is a symphony of culinary excellence, artistic heritage, and timeless luxury. This 14-day road trip through Italy's most prestigious destinations combines five-star accommodations with Michelin-starred dining, from the fashion capital of Milan to the rolling hills of Tuscany and the romantic canals of Venice.
+              Embark on a 16-day journey through Italy&apos;s most enchanting landscapes, from the fashion-forward streets of Milan to the sun-kissed shores of Puglia. This carefully curated road trip weaves together the finest luxury accommodations, Michelin-starred dining experiences, and cultural treasures, creating an unforgettable tapestry of Italian excellence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
               <Button className="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all duration-300 text-lg w-full sm:w-auto">
@@ -211,9 +210,9 @@ export default function ItalyPage() {
       {/* Day 1-2: Milan Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 1-2: Milan</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 1-2: Milan - The Gateway to Italian Elegance</h2>
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-8 leading-relaxed">
-            Begin your journey in Milan, Italy's fashion and design capital. Stay at the Portrait Milano, indulge in the award-winning spa, and savor dinner at their Michelin-starred restaurant.
+            Begin your journey in Milan, where contemporary luxury meets centuries of artistic heritage. At Portrait Milano, you&apos;ll experience the perfect blend of modern sophistication and timeless Italian hospitality. This exclusive boutique hotel, located in the heart of the Quadrilatero della Moda, offers just 73 meticulously designed suites, each featuring custom-made furniture and curated art pieces. The hotel&apos;s rooftop terrace provides panoramic views of the city&apos;s iconic Duomo, while its private spa offers bespoke treatments using exclusive Italian skincare products. As you explore the city&apos;s fashion district, you&apos;ll discover why Milan is considered the beating heart of Italian design and innovation.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/milan/portrait-milano-12981" target="_blank" className="w-full sm:w-auto">
@@ -230,9 +229,9 @@ export default function ItalyPage() {
       {/* Day 3-4: Lake Como Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 3-4: Lake Como</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 3-4: Lake Como - A Symphony of Natural Beauty</h2>
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-4">
-            Drive to Lake Como (1 hour, 50 km from Milan). Experience the Grand Hotel Victoria Concept & Spa, offering stunning views of the lake and exceptional dining experiences.
+            As you leave Milan&apos;s urban sophistication behind, a scenic one-hour drive (50 km) brings you to the timeless elegance of Lake Como. Here, the Grand Hotel Victoria Concept & Spa awaits, offering a perfect blend of Belle Époque charm and modern luxury. This historic property, dating back to 1834, features 84 elegantly appointed rooms and suites, many with private balconies overlooking the lake. The hotel&apos;s state-of-the-art spa spans 1,000 square meters, offering a range of treatments using local ingredients and cutting-edge technology. The lake&apos;s mirror-like waters reflect centuries of aristocratic history, while the surrounding mountains create a dramatic backdrop for your stay. Don&apos;t miss the hotel&apos;s private beach club and the Michelin-starred restaurant, where you can savor innovative interpretations of traditional Lombard cuisine.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/menaggio/grand-hotel-victoria-concept-spa-12002" target="_blank" className="w-full sm:w-auto">
@@ -249,9 +248,9 @@ export default function ItalyPage() {
       {/* Day 5-6: Florence Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 5-6: Florence</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 5-6: Florence - The Cradle of Renaissance</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Drive to Florence (3.5 hours, 300 km from Lake Como). Experience Villa Cora, a magnificent 19th-century villa with stunning gardens and panoramic views of Florence.
+            The journey south to Florence (3.5 hours, 300 km) takes you through the heart of Lombardy and Emilia-Romagna, where the landscape gradually transforms into the rolling hills of Tuscany. Villa Cora, your Florentine sanctuary, stands as a testament to the city&apos;s golden age, offering panoramic views of the city that gave birth to the Renaissance. This magnificent 19th-century villa, once home to Empress Eugénie de Montijo, features 44 opulent rooms and suites, each decorated with period antiques and original frescoes. The property&apos;s 11-acre park includes a heated outdoor pool, a tennis court, and a private helipad. The hotel&apos;s restaurant, Il Cora, serves refined Tuscan cuisine in a setting of unparalleled elegance, while the spa offers treatments inspired by ancient Roman bathing rituals. Here, art, architecture, and culinary excellence converge in perfect harmony.
           </p>
           <div className="flex justify-center gap-4 mt-8">
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/florence/villa-cora-79" target="_blank">
@@ -268,9 +267,9 @@ export default function ItalyPage() {
       {/* Day 7-8: Tuscany Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 7-8: Tuscany</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 7-8: Tuscany - The Soul of Italian Countryside</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Drive to Castelfalfi (1 hour, 70 km from Florence). Experience this medieval village transformed into a luxury resort, featuring a golf course, spa, and authentic Tuscan experiences.
+            A short drive through the Tuscan countryside (1 hour, 70 km) brings you to Castelfalfi, where medieval history meets contemporary luxury. This ancient village, transformed into a world-class resort, offers an authentic taste of rural Tuscany. The property features 120 rooms and suites spread across restored medieval buildings, each offering a unique blend of historic charm and modern comfort. The resort&apos;s 27-hole golf course, designed by Tom Weiskopf, is one of Italy&apos;s finest, while its spa offers treatments using local olive oil and wine. The estate&apos;s organic farm supplies the resort&apos;s restaurants with fresh produce, and guests can participate in cooking classes, wine tastings, and truffle hunting excursions. Here, you&apos;ll discover the region&apos;s rich agricultural heritage through immersive experiences that connect you with the land and its traditions.
           </p>
           <div className="flex justify-center gap-4 mt-8">
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/montaione/castelfalfi-8779" target="_blank">
@@ -287,9 +286,9 @@ export default function ItalyPage() {
       {/* Day 9-10: Rome Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 9-10: Rome</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 9-10: Rome - The Eternal City</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Drive to Rome (2.5 hours, 250 km from Tuscany). Stay at Hotel Vilòn, a boutique hotel in a 16th-century palace, offering an intimate atmosphere and exceptional service in the heart of Rome.
+            As you journey south to Rome (2.5 hours, 250 km), the landscape gradually changes, preparing you for the grandeur of the Eternal City. Hotel Vilòn, nestled in a 16th-century palace, offers an intimate retreat in the heart of Rome&apos;s historic center. This boutique property features just 18 exquisitely designed rooms and suites, each showcasing a unique blend of contemporary art and historic architecture. The hotel&apos;s private garden, a rare luxury in central Rome, provides a peaceful oasis, while its rooftop terrace offers stunning views of the city&apos;s iconic landmarks. The property&apos;s restaurant, Sistina, serves innovative Roman cuisine in a setting of understated elegance. Here, ancient history and modern luxury coexist, creating an unforgettable experience of la dolce vita.
           </p>
           <div className="flex justify-center gap-4 mt-8">
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/rome/hotel-vilon-11138" target="_blank">
@@ -306,9 +305,9 @@ export default function ItalyPage() {
       {/* Day 11-12: Amalfi Coast Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 11-12: Amalfi Coast</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 11-12: Amalfi Coast - Mediterranean Paradise</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Drive to the Amalfi Coast (3.5 hours, 280 km from Rome). Experience Borgo Santandrea, a luxury cliffside hotel with private beach access and stunning Mediterranean views.
+            The journey to the Amalfi Coast (3.5 hours, 280 km) takes you through the picturesque landscapes of Campania. Borgo Santandrea and Art Hotel Villa Fiorella offer contrasting yet complementary experiences of coastal luxury. Borgo Santandrea, perched on a cliffside, features 30 rooms and suites, each with a private terrace and sea views. The hotel&apos;s private beach club, accessible by elevator, offers exclusive access to the Mediterranean&apos;s crystal-clear waters. Meanwhile, Art Hotel Villa Fiorella, set in an olive grove, provides a more intimate experience with just 20 rooms, each decorated with contemporary art and designer furniture. Both properties offer exceptional dining experiences, with restaurants showcasing the region&apos;s fresh seafood and local produce. Here, the Mediterranean&apos;s azure waters meet dramatic cliffs, creating a setting that has inspired artists and travelers for centuries.
           </p>
           <div className="flex justify-center gap-4 mt-8">
             <Link href="https://guide.michelin.com/fr/fr/hotels-stays/amalfi/borgo-santandrea-12461" target="_blank">
@@ -330,9 +329,9 @@ export default function ItalyPage() {
       {/* Day 13-14: Puglia Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 13-14: Puglia</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 13-14: Puglia - The Hidden Gem of Southern Italy</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Drive to Puglia (4 hours, 350 km from Amalfi Coast). Experience the unique charm of southern Italy, from the trulli houses of Alberobello to the baroque architecture of Lecce.
+            Your journey continues to Puglia (4 hours, 350 km), where the authentic soul of southern Italy reveals itself. From the iconic trulli houses of Alberobello to the baroque splendor of Lecce, this region offers a unique blend of architectural wonders and culinary traditions. Here, time seems to slow down, allowing you to savor the true essence of Italian hospitality.
           </p>
           <div className="flex justify-center gap-4 mt-8">
             <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
@@ -344,32 +343,96 @@ export default function ItalyPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
-      {/* Day 15-16: Return to Milan Section */}
+      {/* Day 15-18: Return to Milan Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-4xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 15-16: Return to Milan</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 15-18: The Culinary Journey Back to Milan</h2>
           <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
             <CardContent className="p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Return Journey</h3>
-                  <ul className="list-disc list-inside text-white/80 font-satoshi space-y-3">
-                    <li>Drive from Puglia to Milan (8 hours, 800 km)</li>
-                    <li>Consider breaking the journey in Bologna</li>
-                    <li>Final luxury shopping in Milan</li>
-                    <li>Farewell dinner at Portrait Milano</li>
-                    <li>Private transfer to airport</li>
-                  </ul>
+                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 15: Puglia to Naples</h3>
+                  <p className="text-white/80 font-satoshi mb-4">
+                    Begin your return journey with a scenic drive to Naples (3 hours, 250 km). Stay at the Grand Hotel Vesuvio, a historic 5-star property overlooking the Bay of Naples. The hotel&apos;s Caruso Roof Garden Restaurant offers panoramic views and Michelin-starred dining, featuring innovative interpretations of Neapolitan cuisine.
+                  </p>
+                  <div className="bg-black/50 p-4 rounded-lg mb-4">
+                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Experiences in Naples:</h4>
+                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                      <li>Private guided tour of the historic center, including the underground city</li>
+                      <li>Exclusive pizza-making class with a master pizzaiolo</li>
+                      <li>Sunset aperitivo at the Caruso Roof Garden</li>
+                      <li>Private boat tour to Capri with lunch at a local trattoria</li>
+                      <li>Wine tasting of Campania&apos;s finest wines</li>
+                    </ul>
+                  </div>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/naples/grand-hotel-vesuvio-123" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                      Grand Hotel Vesuvio
+                    </Button>
+                  </Link>
                 </div>
                 <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Travel Tips</h3>
-                  <ul className="list-disc list-inside text-white/80 font-satoshi space-y-3">
-                    <li>Book hotels 6-12 months in advance</li>
-                    <li>Reserve Michelin restaurants early</li>
-                    <li>Plan for seasonal road conditions</li>
-                    <li>Consider private transfers for long drives</li>
-                    <li>Check spa booking requirements</li>
-                  </ul>
+                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 16: Naples to Bologna</h3>
+                  <p className="text-white/80 font-satoshi mb-4">
+                    Continue north to Bologna (4 hours, 350 km), the culinary capital of Italy. Check into the Grand Hotel Majestic già Baglioni, a historic 5-star hotel in the heart of the city. The hotel&apos;s I Carracci Restaurant, set in a frescoed hall, offers a Michelin-starred dining experience showcasing the best of Emilia-Romagna&apos;s culinary traditions.
+                  </p>
+                  <div className="bg-black/50 p-4 rounded-lg mb-4">
+                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Experiences in Bologna:</h4>
+                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                      <li>Private tour of the Quadrilatero market with a local chef</li>
+                      <li>Hands-on pasta-making class featuring tortellini and tagliatelle</li>
+                      <li>Exclusive balsamic vinegar tasting at a local acetaia</li>
+                      <li>Private tour of the University of Bologna, the oldest in Europe</li>
+                      <li>Evening aperitivo at the hotel&apos;s historic bar</li>
+                    </ul>
+                  </div>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bologna/grand-hotel-majestic-gia-baglioni-123" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                      Grand Hotel Majestic
+                    </Button>
+                  </Link>
+                </div>
+                <div>
+                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 17: Bologna to Modena</h3>
+                  <p className="text-white/80 font-satoshi mb-4">
+                    A short drive brings you to Modena (40 minutes, 40 km), home to Massimo Bottura&apos;s Osteria Francescana. Stay at Casa Maria Luigia, Bottura&apos;s country house turned luxury hotel. This intimate property offers just 12 rooms, each uniquely designed, and features a private kitchen where guests can watch the culinary team prepare breakfast and aperitivo.
+                  </p>
+                  <div className="bg-black/50 p-4 rounded-lg mb-4">
+                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Experiences in Modena:</h4>
+                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                      <li>Private tour of the Enzo Ferrari Museum</li>
+                      <li>Exclusive balsamic vinegar aging cellar visit</li>
+                      <li>Private cooking class with Casa Maria Luigia&apos;s chefs</li>
+                      <li>Wine tasting of local Lambrusco wines</li>
+                      <li>Evening aperitivo in the hotel&apos;s private kitchen</li>
+                    </ul>
+                  </div>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/Modena/casa-maria-luigia-13611" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                      Casa Maria Luigia
+                    </Button>
+                  </Link>
+                </div>
+                <div>
+                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 18: Modena to Milan</h3>
+                  <p className="text-white/80 font-satoshi mb-4">
+                    Complete your journey with the final drive to Milan (2 hours, 180 km). Return to Portrait Milano for your farewell stay, where you can reflect on your Italian adventure over a final dinner at the hotel&apos;s restaurant, savoring the memories of your extraordinary journey through Italy&apos;s most luxurious destinations.
+                  </p>
+                  <div className="bg-black/50 p-4 rounded-lg mb-4">
+                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Final Experiences in Milan:</h4>
+                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
+                      <li>Private shopping experience in the Quadrilatero della Moda</li>
+                      <li>Exclusive tour of the Last Supper with a local art historian</li>
+                      <li>Farewell aperitivo at the hotel&apos;s rooftop terrace</li>
+                      <li>Private tour of the La Scala Opera House</li>
+                      <li>Final dinner at Portrait Milano&apos;s restaurant</li>
+                    </ul>
+                  </div>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/milan/portrait-milano-12981" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                      Portrait Milano
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </CardContent>
@@ -382,9 +445,9 @@ export default function ItalyPage() {
       {/* Final CTA Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Ready to Experience Italy?</h2>
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Begin Your Italian Odyssey</h2>
           <p className="text-lg md:text-xl text-white/80 font-satoshi mb-8">
-            Book your luxury Italian road trip today and create memories that will last a lifetime. Our travel experts are ready to craft your perfect itinerary.
+            Let us craft your perfect Italian journey, where every mile tells a story and every destination reveals a new chapter in the rich narrative of Italy&apos;s cultural heritage. From the fashion-forward streets of Milan to the sun-drenched shores of Puglia, your luxury road trip awaits.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button className="bg-yellow-500 text-black font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 transition-all duration-300 text-lg">
