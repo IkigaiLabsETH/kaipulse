@@ -72,6 +72,24 @@ const JupiterIcon = () => (
   </svg>
 );
 
+// Accordion component
+function AccordionSection({ title, children, defaultOpen = false }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="mb-2 border-b border-yellow-700">
+      <button
+        className="w-full text-left py-3 px-2 font-bold text-yellow-400 flex items-center justify-between focus:outline-none"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        <span>{title}</span>
+        <span className="ml-2">{open ? '−' : '+'}</span>
+      </button>
+      {open && <div className="px-4 pb-4 text-yellow-100 text-base">{children}</div>}
+    </div>
+  );
+}
+
 export default function LiquidityPage() {
   const [tokens, setTokens] = useState<TokenData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -79,7 +97,7 @@ export default function LiquidityPage() {
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [useDexscreener, setUseDexscreener] = useState(false);
+  const [useDexscreener, setUseDexscreener] = useState(true);
   const [dexscreenerData, setDexscreenerData] = useState<DexscreenerToken[]>([]);
   const [dexLoading, setDexLoading] = useState(false);
   const [showPools, setShowPools] = useState(false);
@@ -89,6 +107,9 @@ export default function LiquidityPage() {
   const [poolError, setPoolError] = useState<string | null>(null);
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
   const copyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [trendingTokens, setTrendingTokens] = useState<DexscreenerToken[]>([]);
+  const [trendingLoading, setTrendingLoading] = useState(false);
+  const [trendingError, setTrendingError] = useState<string | null>(null);
 
   const fetchData = useCallback(async (pageNum: number) => {
     setLoading(true);
@@ -136,6 +157,28 @@ export default function LiquidityPage() {
       .catch(() => {
         setError('Failed to fetch DEXScreener data');
         setDexLoading(false);
+      });
+  }, [useDexscreener]);
+
+  // Fetch trending tokens when DEXScreener is selected
+  useEffect(() => {
+    if (!useDexscreener) return;
+    setTrendingLoading(true);
+    setTrendingError(null);
+    fetch('/api/dexscreener/trending')
+      .then(res => res.json())
+      .then((tokens) => {
+        if (!Array.isArray(tokens)) {
+          setTrendingTokens([]);
+          setTrendingLoading(false);
+          return;
+        }
+        setTrendingTokens(tokens as DexscreenerToken[]);
+        setTrendingLoading(false);
+      })
+      .catch(() => {
+        setTrendingError('Failed to fetch trending tokens');
+        setTrendingLoading(false);
       });
   }, [useDexscreener]);
 
@@ -392,7 +435,7 @@ export default function LiquidityPage() {
     }
   };
 
-  if (loading || dexLoading) {
+  if ((!useDexscreener && loading) || (useDexscreener && trendingLoading)) {
     return (
       <div className="min-h-screen bg-black text-white p-8 font-mono">
         <div className="flex justify-center items-center min-h-[200px] text-yellow-400">
@@ -506,7 +549,26 @@ export default function LiquidityPage() {
           </div>
 
           {/* Cards */}
-          {useDexscreener ? renderCards(dexscreenerData) : renderCards(tokens)}
+          {!useDexscreener && renderCards(tokens)}
+
+          {/* Trending Section (DEXScreener only) */}
+          {useDexscreener && (
+            <div className="mt-20">
+              <h2 className="text-3xl font-bold text-yellow-400 mb-4">Trending Solana Tokens</h2>
+              <div className="mb-4 text-yellow-300 text-base font-semibold">
+                These tokens have strong recent momentum but may not meet all safety criteria. Trending tokens are higher risk and may be more volatile.
+              </div>
+              {trendingLoading ? (
+                <div className="text-yellow-400">Loading trending tokens...</div>
+              ) : trendingError ? (
+                <div className="text-red-500">{trendingError}</div>
+              ) : trendingTokens.length === 0 ? (
+                <div className="text-yellow-400">No trending tokens found right now. Check back soon as new tokens gain momentum!</div>
+              ) : (
+                renderCards(trendingTokens)
+              )}
+            </div>
+          )}
 
           {/* Load More Button (CoinGecko only) */}
           {!useDexscreener && hasMore && (
@@ -525,96 +587,63 @@ export default function LiquidityPage() {
           <div className="space-y-12">
             <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-8 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-3xl font-bold text-yellow-500 mb-6">Understanding Liquidity Metrics</h2>
-              <p className="mb-6 text-yellow-300 text-lg font-semibold">
-                Why Liquidity Matters More Than Market Cap: Market cap can be easily manipulated by controlling token supply, but real, locked liquidity is much harder to fake. Always prioritize tokens with high liquidity and volume over those with just a high market cap.
-              </p>
-              <div className="mb-6 text-yellow-400 text-sm">
-                <strong>Note:</strong> For true on-chain liquidity (pool reserves), use DEX analytics platforms like
-                {' '}
-                <a href="https://www.geckoterminal.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">GeckoTerminal</a>
-                {' '}or{' '}
-                <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-500">DEXScreener</a>.
-              </div>
-              
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-bold text-yellow-500 mb-3">Why Liquidity/Market Cap Ratio Matters</h3>
+              <AccordionSection title="What is the Liquidity Ratio?" defaultOpen>
+                The liquidity ratio is calculated as <span className="text-yellow-300">total liquidity divided by market cap</span>. A higher liquidity ratio means a larger portion of the token's market cap is actually backed by real, tradable liquidity. This makes it much harder for prices to be manipulated and allows for safer, larger trades with less slippage. Tokens with a low liquidity ratio are more vulnerable to price manipulation and illiquidity risk.
+              </AccordionSection>
+              <AccordionSection title="How do we rank tokens?">
+                We rank tokens by their liquidity ratio, after filtering for real on-chain liquidity, active trading, and pool count. This approach helps surface tokens that are safer and more tradeable. However, it's important to note that this method is not foolproof: market cap can be manipulated, and some tokens may game their pools to appear more liquid than they are. For even stronger curation, we recommend also checking for locked liquidity, token age, and suspicious pool structures. Always do your own research and be aware of the risks.
+              </AccordionSection>
+              <AccordionSection title="How We Select Tokens for This List">
+                <ul className="list-disc list-inside mb-2">
+                  <li><strong>Solana Only:</strong> Only tokens on the Solana blockchain are included.</li>
+                  <li><strong>Liquidity (TVL):</strong> More than <span className="text-yellow-300">$100,000</span> in total on-chain liquidity.</li>
+                  <li><strong>24h Volume:</strong> At least <span className="text-yellow-300">$20,000</span> in trading volume in the last 24 hours.</li>
+                  <li><strong>Pools Count:</strong> Liquidity in at least <span className="text-yellow-300">1 pool</span>.</li>
+                  <li><strong>Ranking:</strong> Tokens are ranked by <span className="text-yellow-300">liquidity ratio</span>, not market cap.</li>
+                </ul>
+                These filters are hardcoded to ensure that only tokens with real, substantial liquidity and active trading are displayed. This approach helps protect users from illiquid, risky, or manipulated tokens and ensures the list is focused on quality opportunities.
+              </AccordionSection>
+              <AccordionSection title="Types of Liquidity Pools">
+                <div className="mb-4">
+                  <h4 className="text-lg font-bold text-yellow-500/90">Locked Liquidity Pools</h4>
                   <p className="text-white/90 leading-relaxed">
-                    The liquidity to market cap ratio is a crucial metric that reveals the true trading efficiency of a token. A high ratio indicates that a token has substantial liquidity relative to its market cap, suggesting:
+                    Locked liquidity pools are a security feature where liquidity providers' tokens are locked in a smart contract for a predetermined period. This prevents:
                   </p>
-                  <ul className="list-disc list-inside mt-3 space-y-2 text-white/90">
-                    <li>Lower price impact for large trades</li>
-                    <li>Better price stability during market volatility</li>
-                    <li>Higher confidence from institutional investors</li>
-                    <li>Reduced risk of price manipulation</li>
+                  <ul className="list-disc list-inside mt-2 space-y-1 text-white/90">
+                    <li>Rug pulls and sudden liquidity removal</li>
+                    <li>Price manipulation through liquidity withdrawal</li>
+                    <li>Short-term speculation by liquidity providers</li>
                   </ul>
                 </div>
-
                 <div>
-                  <h3 className="text-xl font-bold text-yellow-500 mb-3">Types of Liquidity Pools</h3>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-lg font-bold text-yellow-500/90">Locked Liquidity Pools</h4>
-                      <p className="text-white/90 leading-relaxed">
-                        Locked liquidity pools are a security feature where liquidity providers&apos; tokens are locked in a smart contract for a predetermined period. This prevents:
-                      </p>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-white/90">
-                        <li>Rug pulls and sudden liquidity removal</li>
-                        <li>Price manipulation through liquidity withdrawal</li>
-                        <li>Short-term speculation by liquidity providers</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-bold text-yellow-500/90">Uniswap V3 vs V2 Pools</h4>
-                      <p className="text-white/90 leading-relaxed">
-                        Uniswap V3 introduced concentrated liquidity, a significant improvement over V2:
-                      </p>
-                      <ul className="list-disc list-inside mt-2 space-y-1 text-white/90">
-                        <li>V2: Liquidity spread across all prices (0 to ∞)</li>
-                        <li>V3: Liquidity concentrated in specific price ranges</li>
-                        <li>V3: Up to 4000x more capital efficiency</li>
-                        <li>V3: Better price discovery and reduced slippage</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-yellow-500 mb-3">Best Practices for Liquidity Analysis</h3>
-                  <ul className="list-disc list-inside space-y-2 text-white/90">
-                    <li>Look for tokens with liquidity locked for extended periods (6+ months)</li>
-                    <li>Prefer V3 pools for major tokens due to better capital efficiency</li>
-                    <li>Consider the distribution of liquidity across different DEXs</li>
-                    <li>Monitor liquidity depth at different price levels</li>
-                    <li>Check for liquidity concentration in specific price ranges</li>
+                  <h4 className="text-lg font-bold text-yellow-500/90">Uniswap V3 vs V2 Pools</h4>
+                  <p className="text-white/90 leading-relaxed">
+                    <span className="text-yellow-300 font-semibold">Note:</span> The Uniswap V2 vs V3 pool model is primarily relevant for Ethereum and other EVM chains. Most Solana tokens use different DEX pool models (such as Raydium and Orca), which may not have the same concentrated liquidity features. The principles of liquidity depth and distribution still apply, but the technical details differ on Solana.
+                  </p>
+                  <ul className="list-disc list-inside mt-2 space-y-1 text-white/90">
+                    <li>V2/V3: Applies to Ethereum and EVM chains</li>
+                    <li>Solana: Uses AMMs like Raydium, Orca, Phoenix, etc.</li>
+                    <li>Focus on total liquidity and pool health for Solana tokens</li>
                   </ul>
                 </div>
-
-                <div className="mt-10 p-6 bg-[#181a20] border-l-4 border-yellow-500 rounded text-yellow-200 text-base">
-                  <h4 className="text-lg font-bold text-yellow-400 mb-2">How We Select Tokens for This List</h4>
-                  <p className="mb-2">
-                    To ensure quality and safety, we apply the following hardcoded filters to all tokens:
-                  </p>
-                  <ul className="list-disc list-inside mb-2">
-                    <li><strong>Solana Only:</strong> Only tokens on the Solana blockchain are included.</li>
-                    <li><strong>Liquidity (TVL):</strong> More than <span className="text-yellow-300">$500,000</span> in total on-chain liquidity.</li>
-                    <li><strong>24h Volume:</strong> At least <span className="text-yellow-300">$50,000</span> in trading volume in the last 24 hours.</li>
-                    <li><strong>Pools Count:</strong> Liquidity in at least <span className="text-yellow-300">2 pools</span> (to avoid single-pool risk).</li>
-                    <li><strong>Ranking:</strong> Tokens are ranked by <span className="text-yellow-300">total liquidity (TVL)</span>, not market cap.</li>
-                  </ul>
-                  <p>
-                    These filters are hardcoded to ensure that only tokens with real, substantial liquidity and active trading are displayed. This approach helps protect users from illiquid, risky, or manipulated tokens and ensures the list is focused on quality opportunities.
-                  </p>
-                  <p className="mt-4 text-yellow-300 font-semibold">
-                    <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it&apos;s important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research, and never invest more than you can afford to lose.
-                  </p>
-                  <p className="mt-4 text-yellow-200">
-                    <strong>API Limitations:</strong> The free CoinGecko API does <span className="text-yellow-300">not</span> provide reliable pool-level or locked liquidity data for most tokens, especially memecoins. It also cannot detect pool manipulation or show how liquidity is distributed across pools. For advanced liquidity analysis, DEX analytics platforms (like DEXScreener) or direct on-chain data are required.
-                  </p>
-                </div>
-              </div>
+              </AccordionSection>
+              <AccordionSection title="Best Practices for Liquidity Analysis">
+                <ul className="list-disc list-inside space-y-2 text-white/90">
+                  <li>Look for tokens with liquidity locked for extended periods (6+ months)</li>
+                  <li>Prefer V3 pools for major tokens due to better capital efficiency (on EVM chains)</li>
+                  <li>Consider the distribution of liquidity across different DEXs</li>
+                  <li>Monitor liquidity depth at different price levels</li>
+                  <li>Check for liquidity concentration in specific price ranges</li>
+                </ul>
+              </AccordionSection>
+              <AccordionSection title="Important Disclaimers & API Limitations">
+                <p className="text-yellow-300 font-semibold">
+                  <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it's important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research and never invest more than you can afford to lose.
+                </p>
+                <p className="mt-4 text-yellow-200">
+                  <strong>API Limitations:</strong> The free CoinGecko API does <span className="text-yellow-300">not</span> provide reliable pool-level or locked liquidity data for most tokens, especially memecoins. It also cannot detect pool manipulation or show how liquidity is distributed across pools. For advanced liquidity analysis, DEX analytics platforms (like DEXScreener) or direct on-chain data are required.
+                </p>
+              </AccordionSection>
             </div>
           </div>
         </div>

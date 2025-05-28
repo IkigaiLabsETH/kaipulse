@@ -20,7 +20,6 @@ export async function GET(_request: Request) {
   // 1. Fetch trending/boosted tokens
   const url = 'https://api.dexscreener.com/token-boosts/top/v1';
   try {
-    // Only Solana is supported for now
     const res = await fetch(url);
     if (!res.ok) throw new Error('DEXScreener API error');
     const topTokens: BoostedToken[] = await res.json();
@@ -76,20 +75,21 @@ export async function GET(_request: Request) {
       })
     );
 
-    // 3. Filter and rank tokens
+    // 3. Filter and rank tokens (looser filters for trending)
     const filtered = enriched
       .filter((t): t is NonNullable<typeof t> => t !== null)
       .filter((t) => t.chainId === 'solana')
       .filter(
         (t) =>
-          t.totalLiquidity > 700_000 && // min $700k liquidity
-          t.totalVolume > 80_000 &&     // min $80k 24h volume
-          t.poolsCount && t.poolsCount > 1 // at least 2 pools
+          t.totalLiquidity > 100_000 && // min $100k liquidity
+          t.totalVolume > 20_000 && // min $20k 24h volume
+          t.poolsCount && t.poolsCount > 0 // at least 1 pool
       )
-      .sort((a, b) => (b.totalLiquidity ?? 0) - (a.totalLiquidity ?? 0)); // Sort by TVL
+      .sort((a, b) => (b.liquidityRatio ?? 0) - (a.liquidityRatio ?? 0)) // Sort by liquidity ratio
+      .slice(0, 9); // Limit to top 9
 
     return NextResponse.json(filtered);
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch DEXScreener best buys' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch trending tokens' }, { status: 500 });
   }
 } 
