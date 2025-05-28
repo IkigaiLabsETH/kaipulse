@@ -294,7 +294,7 @@ export default function HX50Page() {
               With over 1,200 pre-orders from customers in 60+ countries, the HX50 has generated unprecedented interest in the personal helicopter market. The base price of £649,000 positions it significantly below competing five-seat turbine helicopters while offering superior performance and features.
             </p>
             <p>
-              The HX50's success could revolutionize the light helicopter market, similar to how the Robinson R66 expanded private helicopter ownership in the past. Its innovative approach to design, manufacturing, and customer experience sets a new standard for the industry.
+              The HX50&apos;s success could revolutionize the light helicopter market, similar to how the Robinson R66 expanded private helicopter ownership in the past. Its innovative approach to design, manufacturing, and customer experience sets a new standard for the industry.
             </p>
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
