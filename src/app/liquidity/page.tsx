@@ -98,8 +98,6 @@ export default function LiquidityPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [useDexscreener, setUseDexscreener] = useState(true);
-  const [dexscreenerData, setDexscreenerData] = useState<DexscreenerToken[]>([]);
-  const [dexLoading, setDexLoading] = useState(false);
   const [showPools, setShowPools] = useState(false);
   const [poolAddress, setPoolAddress] = useState('');
   const [poolData, setPoolData] = useState<DexscreenerPool[] | null>(null);
@@ -137,28 +135,6 @@ export default function LiquidityPage() {
   useEffect(() => {
     if (!useDexscreener) fetchData(1);
   }, [fetchData, useDexscreener]);
-
-  // Fetch DEXScreener best buys when toggled
-  useEffect(() => {
-    if (!useDexscreener) return;
-    setDexLoading(true);
-    setError(null);
-    fetch(`/api/dexscreener/best-buys?chain=solana`)
-      .then(res => res.json())
-      .then((tokens) => {
-        if (!Array.isArray(tokens)) {
-          setDexscreenerData([]);
-          setDexLoading(false);
-          return;
-        }
-        setDexscreenerData(tokens as DexscreenerToken[]);
-        setDexLoading(false);
-      })
-      .catch(() => {
-        setError('Failed to fetch DEXScreener data');
-        setDexLoading(false);
-      });
-  }, [useDexscreener]);
 
   // Fetch trending tokens when DEXScreener is selected
   useEffect(() => {
@@ -588,10 +564,10 @@ export default function LiquidityPage() {
             <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-8 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-3xl font-bold text-yellow-500 mb-6">Understanding Liquidity Metrics</h2>
               <AccordionSection title="What is the Liquidity Ratio?" defaultOpen>
-                The liquidity ratio is calculated as <span className="text-yellow-300">total liquidity divided by market cap</span>. A higher liquidity ratio means a larger portion of the token's market cap is actually backed by real, tradable liquidity. This makes it much harder for prices to be manipulated and allows for safer, larger trades with less slippage. Tokens with a low liquidity ratio are more vulnerable to price manipulation and illiquidity risk.
+                The liquidity ratio is calculated as <span className="text-yellow-300">total liquidity divided by market cap</span>. A higher liquidity ratio means a larger portion of the token&apos;s market cap is actually backed by real, tradable liquidity. This makes it much harder for prices to be manipulated and allows for safer, larger trades with less slippage. Tokens with a low liquidity ratio are more vulnerable to price manipulation and illiquidity risk.
               </AccordionSection>
               <AccordionSection title="How do we rank tokens?">
-                We rank tokens by their liquidity ratio, after filtering for real on-chain liquidity, active trading, and pool count. This approach helps surface tokens that are safer and more tradeable. However, it's important to note that this method is not foolproof: market cap can be manipulated, and some tokens may game their pools to appear more liquid than they are. For even stronger curation, we recommend also checking for locked liquidity, token age, and suspicious pool structures. Always do your own research and be aware of the risks.
+                We rank tokens by their liquidity ratio, after filtering for real on-chain liquidity, active trading, and pool count. This approach helps surface tokens that are safer and more tradeable. However, it&apos;s important to note that this method is not foolproof: market cap can be manipulated, and some tokens may game their pools to appear more liquid than they are. For even stronger curation, we recommend also checking for locked liquidity, token age, and suspicious pool structures. Always do your own research and be aware of the risks.
               </AccordionSection>
               <AccordionSection title="How We Select Tokens for This List">
                 <ul className="list-disc list-inside mb-2">
@@ -607,7 +583,7 @@ export default function LiquidityPage() {
                 <div className="mb-4">
                   <h4 className="text-lg font-bold text-yellow-500/90">Locked Liquidity Pools</h4>
                   <p className="text-white/90 leading-relaxed">
-                    Locked liquidity pools are a security feature where liquidity providers' tokens are locked in a smart contract for a predetermined period. This prevents:
+                    Locked liquidity pools are a security feature where liquidity providers&apos; tokens are locked in a smart contract for a predetermined period. This prevents:
                   </p>
                   <ul className="list-disc list-inside mt-2 space-y-1 text-white/90">
                     <li>Rug pulls and sudden liquidity removal</li>
@@ -638,7 +614,7 @@ export default function LiquidityPage() {
               </AccordionSection>
               <AccordionSection title="Important Disclaimers & API Limitations">
                 <p className="text-yellow-300 font-semibold">
-                  <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it's important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research and never invest more than you can afford to lose.
+                  <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it&apos;s important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research and never invest more than you can afford to lose.
                 </p>
                 <p className="mt-4 text-yellow-200">
                   <strong>API Limitations:</strong> The free CoinGecko API does <span className="text-yellow-300">not</span> provide reliable pool-level or locked liquidity data for most tokens, especially memecoins. It also cannot detect pool manipulation or show how liquidity is distributed across pools. For advanced liquidity analysis, DEX analytics platforms (like DEXScreener) or direct on-chain data are required.
