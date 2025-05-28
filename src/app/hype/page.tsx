@@ -305,6 +305,30 @@ export default function HyperliquidHonestTake() {
         <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
 
+      {/* Cautionary Tale: James Wynn */}
+      <section className="max-w-screen-lg mx-auto px-4 mb-24 relative z-10">
+        <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20 mb-6">
+          <h5 className="font-epilogue text-xl text-yellow-400 mb-3">⚠️ A Cautionary Tale</h5>
+          <p className="text-white/80 text-lg mb-4">
+            James Wynn (@JamesWynnReal) made headlines on Hyperliquid with an incredible trading journey:
+          </p>
+          <ul className="text-white/80 text-lg mb-4 space-y-2">
+            <li>• 70 days to build $87M+ in profit</li>
+            <li>• Lost almost all profits in just 5 days</li>
+          </ul>
+          <p className="text-white/80 text-lg mb-4">
+            This serves as a stark reminder of the risks of excessive leverage. Even the most successful traders can face devastating losses when market conditions change rapidly. This is why you need to watch out and not be degen on leverage.
+          </p>
+          <div className="mt-4">
+            <Link href="https://hyperdash.info/trader/0x5078C2fBeA2b2aD61bc840Bc023E35Fce56BeDb6" target="_blank">
+              <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-6 py-3 rounded-xl shadow-[0_4px_16px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-base focus:ring-4 focus:ring-yellow-500/40">
+                View Trading History <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Farming Opportunities */}
       <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
         <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
@@ -752,6 +776,26 @@ export default function HyperliquidHonestTake() {
         </div>
         <h4 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold">Interpretation</h4>
         <div className="text-left mx-auto mb-8">
+          <div className="bg-[#18191c]/80 rounded-2xl p-6 shadow-xl border border-yellow-500/20 mb-6">
+            <h5 className="font-epilogue text-xl text-yellow-400 mb-3">⚠️ A Cautionary Tale</h5>
+            <p className="text-white/80 text-lg mb-4">
+              James Wynn (@JamesWynnReal) made headlines on Hyperliquid with an incredible trading journey:
+            </p>
+            <ul className="text-white/80 text-lg mb-4 space-y-2">
+              <li>• 70 days to build $87M+ in profit</li>
+              <li>• Lost almost all profits in just 5 days</li>
+            </ul>
+            <p className="text-white/80 text-lg mb-4">
+              This serves as a stark reminder of the risks of excessive leverage. Even the most successful traders can face devastating losses when market conditions change rapidly.
+            </p>
+            <div className="mt-4">
+              <Link href="https://hyperdash.info/trader/0x5078C2fBeA2b2aD61bc840Bc023E35Fce56BeDb6" target="_blank">
+                <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-6 py-3 rounded-xl shadow-[0_4px_16px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-base focus:ring-4 focus:ring-yellow-500/40">
+                  View Trading History <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
           <p className="text-white/80 text-lg mb-4">
             Berachain, a blockchain network that launched its mainnet in February 2025, has experienced volatile metrics as of May 2025. Its daily active users (DAUs) range from 25,000 to 60,000, with transaction volume holding steady at 1.5–2 million transactions daily, reflecting sustained engagement. Average transaction fees remain low, likely under $0.001 per transaction, consistent with its cost-efficient design.
           </p>
