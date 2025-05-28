@@ -64,7 +64,7 @@ export default function ItalyPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase text-3xl md:text-4xl">Featured Luxury Stays</h2>
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-12 text-center leading-relaxed">
-            Discover our curated selection of Italy's most exceptional hotels, each offering unique experiences and world-class hospitality.
+            Discover our curated selection of Italy&apos;s most exceptional hotels, each offering unique experiences and world-class hospitality.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
@@ -88,7 +88,7 @@ export default function ItalyPage() {
                 <p className="text-white/60 font-satoshi text-sm">Milan</p>
               </CardHeader>
               <CardContent>
-                <p className="text-white/80 font-satoshi mb-4">A luxury boutique hotel in the heart of Milan's fashion district, offering personalized service and elegant accommodations.</p>
+                <p className="text-white/80 font-satoshi mb-4">A luxury boutique hotel in the heart of Milan&apos;s fashion district, offering personalized service and elegant accommodations.</p>
                 <Link href="https://guide.michelin.com/fr/fr/hotels-stays/milan/portrait-milano-12981" target="_blank">
                   <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
                     View on Michelin Guide
