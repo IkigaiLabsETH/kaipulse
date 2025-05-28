@@ -47,6 +47,16 @@ type DexscreenerToken = {
   chainId?: string;
 };
 
+// Add DexscreenerPool type for pool data
+type DexscreenerPool = {
+  dexId?: string;
+  baseToken?: { symbol?: string };
+  quoteToken?: { symbol?: string };
+  liquidity?: { usd?: string | number };
+  volume?: { h24?: string | number };
+  priceUsd?: string | number;
+};
+
 // Add Raydium and Jupiter SVG icons
 const RaydiumIcon = () => (
   <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +84,7 @@ export default function LiquidityPage() {
   const [dexLoading, setDexLoading] = useState(false);
   const [showPools, setShowPools] = useState(false);
   const [poolAddress, setPoolAddress] = useState('');
-  const [poolData, setPoolData] = useState<any>(null);
+  const [poolData, setPoolData] = useState<DexscreenerPool[] | null>(null);
   const [poolLoading, setPoolLoading] = useState(false);
   const [poolError, setPoolError] = useState<string | null>(null);
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
@@ -462,7 +472,7 @@ export default function LiquidityPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {poolData.map((pool: any, idx: number) => (
+                      {poolData.map((pool: DexscreenerPool, idx: number) => (
                         <tr key={idx} className="border-b border-yellow-900">
                           <td className="px-4 py-2">{pool.dexId || '-'}</td>
                           <td className="px-4 py-2">{pool.baseToken?.symbol} / {pool.quoteToken?.symbol}</td>
