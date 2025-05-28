@@ -21,7 +21,7 @@ export default function CursorPage() {
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light">AI Coding • Next.js • Crypto APIs</p>
             <h1 className="text-center">
               <span className="text-5xl md:text-7xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
-                Accelerate Next.js with Cursor AI & Crypto APIs
+                Cursor & Crypto APIs
               </span>
             </h1>
             <div className="flex items-center justify-center mt-6">
