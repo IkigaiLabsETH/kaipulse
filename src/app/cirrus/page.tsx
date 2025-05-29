@@ -91,12 +91,11 @@ export default function CirrusPage() {
             <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_30px_rgba(234,179,8,0.4)]"></div>
             <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
             <iframe
-              src="https://www.youtube.com/embed/jN_AUwzCUA4?rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/jN_AUwzCUA4"
               title="Cirrus SR Series G7+ Announcement"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full rounded-lg z-0"
-              loading="lazy"
             />
           </div>
           <div className="mt-4 text-center">
@@ -316,12 +315,11 @@ export default function CirrusPage() {
             <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_30px_rgba(234,179,8,0.4)]"></div>
             <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
             <iframe
-              src="https://www.youtube.com/embed/-4-0nm88j0U?rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/-4-0nm88j0U"
               title="Cirrus SR Series G7+ Overview"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full rounded-lg z-0"
-              loading="lazy"
             />
           </div>
           <div className="mt-4 text-center">

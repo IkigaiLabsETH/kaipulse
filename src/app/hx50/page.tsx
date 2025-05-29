@@ -29,7 +29,7 @@ export default function HX50Page() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-            <span className="text-emerald-500">Hill</span> HX50
+            <span className="text-yellow-500">Hill</span> HX50
           </h1>
           <p className="text-xl text-white/70 max-w-3xl mx-auto">
             The Future of Personal Helicopter Aviation
@@ -42,8 +42,8 @@ export default function HX50Page() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative w-full h-[65vh] mb-16 rounded-xl overflow-hidden group"
         >
-          <div className="absolute inset-0 border-2 border-emerald-500 rounded-xl z-10 shadow-[0_0_20px_rgba(16,185,129,0.3)]"></div>
-          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-emerald-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
+          <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
           <Image
             src="/hx50.jpg"
             alt="Hill HX50 Helicopter"
@@ -57,9 +57,9 @@ export default function HX50Page() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-black/60 backdrop-blur-sm p-6 rounded-lg border border-emerald-500/30"
+              className="bg-black/60 backdrop-blur-sm p-6 rounded-lg border border-yellow-500/30"
             >
-              <h2 className="text-3xl font-bold mb-2 text-emerald-500">HX50 Helicopter</h2>
+              <h2 className="text-3xl font-bold mb-2 text-yellow-500">HX50 Helicopter</h2>
               <p className="text-white/90">Revolutionizing personal rotorcraft aviation</p>
             </motion.div>
           </div>
@@ -73,13 +73,13 @@ export default function HX50Page() {
           className="mb-20"
         >
           <div className="flex items-center mb-8">
-            <h2 className="text-3xl font-bold text-emerald-500">Featured Video</h2>
-            <div className="h-px flex-grow bg-emerald-500/20 ml-6"></div>
+            <h2 className="text-3xl font-bold text-yellow-500">Featured Video</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
           </div>
           
           <div className="relative w-full aspect-video rounded-xl overflow-hidden group">
-            <div className="absolute inset-0 border-2 border-emerald-500 rounded-xl z-10 shadow-[0_0_20px_rgba(16,185,129,0.3)]"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-emerald-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
+            <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
             
             <iframe
               src="https://www.youtube.com/embed/T8PidxZqVg0"
@@ -109,7 +109,7 @@ export default function HX50Page() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mb-16 text-lg"
         >
-          <div className="border-l-4 border-emerald-500 pl-6 py-2">
+          <div className="border-l-4 border-yellow-500 pl-6 py-2">
             <p className="text-xl text-white/90 leading-relaxed">
               The Hill HX50 represents a bold new chapter in personal helicopter aviation, combining cutting-edge technology, luxury, and performance in a package designed specifically for private owners. With its proprietary GT50 turbine engine, carbon-fiber monocoque construction, and revolutionary digital cockpit, the HX50 aims to bring &quot;Elon Musk-style disruption&quot; to the rotorcraft sector.
             </p>
@@ -124,10 +124,10 @@ export default function HX50Page() {
           className="mb-20"
         >
           <div className="flex items-center mb-6">
-            <h2 className="text-3xl font-bold text-emerald-500">Technical Specifications</h2>
-            <div className="h-px flex-grow bg-emerald-500/20 ml-6"></div>
+            <h2 className="text-3xl font-bold text-yellow-500">Technical Specifications</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
           </div>
-          <div className="space-y-4 text-white/80 bg-zinc-900/40 p-6 rounded-xl border border-emerald-500/10">
+          <div className="space-y-4 text-white/80 bg-zinc-900/40 p-6 rounded-xl border border-yellow-500/10">
             <p>
               The HX50 features a revolutionary design with a carbon-fiber monocoque fuselage, proprietary GT50 turboshaft engine (500 shp), and advanced avionics suite. With a cruise speed of 140 knots and range of 700 nautical miles, it offers unprecedented performance for a light helicopter.
             </p>
@@ -136,7 +136,7 @@ export default function HX50Page() {
             </p>
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <h4 className="text-emerald-500 font-semibold">Engine &amp; Performance</h4>
+                <h4 className="text-yellow-500 font-semibold">Engine &amp; Performance</h4>
                 <ul className="list-disc pl-5 space-y-1 text-white/70">
                   <li>GT50 Turbine: 500 shp (440 hp takeoff)</li>
                   <li>Fuel Consumption: ~35 US gallons/hour at MCP</li>
@@ -145,7 +145,7 @@ export default function HX50Page() {
                 </ul>
               </div>
               <div className="space-y-2">
-                <h4 className="text-emerald-500 font-semibold">Rotor System</h4>
+                <h4 className="text-yellow-500 font-semibold">Rotor System</h4>
                 <ul className="list-disc pl-5 space-y-1 text-white/70">
                   <li>Main Rotor Diameter: 10.1 m (33 ft)</li>
                   <li>High-inertia rotor system for safety</li>
@@ -165,8 +165,8 @@ export default function HX50Page() {
           className="mb-20"
         >
           <div className="flex items-center mb-8">
-            <h2 className="text-3xl font-bold text-emerald-500">Key Features</h2>
-            <div className="h-px flex-grow bg-emerald-500/20 ml-6"></div>
+            <h2 className="text-3xl font-bold text-yellow-500">Key Features</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -179,13 +179,13 @@ export default function HX50Page() {
               className="h-full"
             >
               <div className="relative h-full">
-                <div className="absolute inset-0 border-2 border-emerald-500 rounded-xl z-10 shadow-[0_0_20px_rgba(16,185,129,0.3)]"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-emerald-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
+                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
                 
                 <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <h3 className="text-2xl font-bold mb-4 text-emerald-500">Performance</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-yellow-500">Performance</h3>
                   <ul className="list-disc pl-5 space-y-2 text-white/80 text-lg mb-8">
                     <motion.li
                       initial={{ opacity: 0, x: -10 }}
@@ -232,13 +232,13 @@ export default function HX50Page() {
               className="h-full"
             >
               <div className="relative h-full">
-                <div className="absolute inset-0 border-2 border-emerald-500 rounded-xl z-10 shadow-[0_0_20px_rgba(16,185,129,0.3)]"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-emerald-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
+                <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
                 
                 <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <h3 className="text-2xl font-bold mb-4 text-emerald-500">Innovation</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-yellow-500">Innovation</h3>
                   <ul className="list-disc pl-5 space-y-2 text-white/80 text-lg mb-8">
                     <motion.li
                       initial={{ opacity: 0, x: -10 }}
@@ -286,10 +286,10 @@ export default function HX50Page() {
           className="mb-20"
         >
           <div className="flex items-center mb-6">
-            <h2 className="text-3xl font-bold text-emerald-500">Market Impact</h2>
-            <div className="h-px flex-grow bg-emerald-500/20 ml-6"></div>
+            <h2 className="text-3xl font-bold text-yellow-500">Market Impact</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
           </div>
-          <div className="space-y-4 text-white/80 bg-zinc-900/40 p-6 rounded-xl border border-emerald-500/10">
+          <div className="space-y-4 text-white/80 bg-zinc-900/40 p-6 rounded-xl border border-yellow-500/10">
             <p>
               With over 1,200 pre-orders from customers in 60+ countries, the HX50 has generated unprecedented interest in the personal helicopter market. The base price of £649,000 positions it significantly below competing five-seat turbine helicopters while offering superior performance and features.
             </p>
@@ -298,7 +298,7 @@ export default function HX50Page() {
             </p>
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <h4 className="text-emerald-500 font-semibold">Orders</h4>
+                <h4 className="text-yellow-500 font-semibold">Orders</h4>
                 <ul className="list-disc pl-5 space-y-1 text-white/70">
                   <li>1,200+ Total Orders</li>
                   <li>945 HX50 (Experimental)</li>
@@ -306,7 +306,7 @@ export default function HX50Page() {
                 </ul>
               </div>
               <div className="space-y-2">
-                <h4 className="text-emerald-500 font-semibold">Timeline</h4>
+                <h4 className="text-yellow-500 font-semibold">Timeline</h4>
                 <ul className="list-disc pl-5 space-y-1 text-white/70">
                   <li>First Flight: Dec 2025</li>
                   <li>HX50 Deliveries: 2026-27</li>
@@ -314,7 +314,7 @@ export default function HX50Page() {
                 </ul>
               </div>
               <div className="space-y-2">
-                <h4 className="text-emerald-500 font-semibold">Production</h4>
+                <h4 className="text-yellow-500 font-semibold">Production</h4>
                 <ul className="list-disc pl-5 space-y-1 text-white/70">
                   <li>Initial: 250/year</li>
                   <li>Target: 500/year</li>
