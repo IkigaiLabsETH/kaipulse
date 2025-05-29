@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@/components/ui/table';
-import { SafeImage } from '@/components/ui/SafeImage';
 
 const featureComparison = [
   { feature: 'Cold Storage', ledger: '✅', sparrow: '✅ (w/ air-gap QR flow)' },
@@ -87,7 +86,7 @@ export default function LedgerToSparrowMigration() {
         <Badge className="bg-yellow-500 text-black text-sm mb-6 font-satoshi tracking-wide shadow-md">Migration Guide</Badge>
         <div className="flex flex-col items-center justify-center gap-6 mb-8">
           <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-            Migrate from Ledger to Sparrow
+            From Ledger to Sparrow
           </h1>
         </div>
         <div className="max-w-2xl mx-auto">
@@ -124,6 +123,135 @@ export default function LedgerToSparrowMigration() {
               ))}
             </TableBody>
           </Table>
+        </div>
+      </section>
+
+      {/* BIP-360 Section */}
+      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
+        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-10 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
+          Future-Proofing with BIP-360
+        </h2>
+        <div className="space-y-12">
+          {/* What is BIP-360 */}
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 shadow-xl">
+            <h3 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
+              What is BIP-360?
+            </h3>
+            <p className="font-satoshi text-white/90 text-lg mb-4">
+              BIP-360 introduces Pay to Quantum Resistant Hash (P2QRH) — a new Bitcoin address type that uses post-quantum cryptography (PQC). It&apos;s designed to be added via a soft fork, requiring no hard fork or block size increase.
+            </p>
+            <div className="bg-black/40 rounded-xl p-6 mt-6">
+              <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Key Features</h4>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 mt-1">•</span>
+                  <span className="font-satoshi text-white/90">SegWit v3 format (bc1r... addresses)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 mt-1">•</span>
+                  <span className="font-satoshi text-white/90">New qrh() descriptor format for wallets</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 mt-1">•</span>
+                  <span className="font-satoshi text-white/90">Multisig support with hybrid cryptography</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 mt-1">•</span>
+                  <span className="font-satoshi text-white/90">Attestation system for secure key revelation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Why It Matters */}
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 shadow-xl">
+            <h3 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
+              Why Quantum Resistance Matters
+            </h3>
+            <p className="font-satoshi text-white/90 text-lg mb-4">
+              Quantum computers could break Bitcoin&apos;s current Elliptic Curve Cryptography. When public keys are visible on-chain, quantum computers might extract private keys and steal funds. BIP-360 solves this by:
+            </p>
+            <ul className="space-y-3 mt-4">
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-400 mt-1">•</span>
+                <span className="font-satoshi text-white/90">Storing hashed public keys instead of raw keys</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-400 mt-1">•</span>
+                <span className="font-satoshi text-white/90">Revealing keys only during spending</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-yellow-400 mt-1">•</span>
+                <span className="font-satoshi text-white/90">Supporting hybrid cryptography (current + PQC)</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Supported Algorithms */}
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 shadow-xl">
+            <h3 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
+              Supported Algorithms
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-black/40 rounded-xl p-6">
+                <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Current</h4>
+                <ul className="space-y-2">
+                  <li className="font-satoshi text-white/90">secp256k1 (Schnorr)</li>
+                </ul>
+              </div>
+              <div className="bg-black/40 rounded-xl p-6">
+                <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Post-Quantum</h4>
+                <ul className="space-y-2">
+                  <li className="font-satoshi text-white/90">FALCON-512 (Fast & compact)</li>
+                  <li className="font-satoshi text-white/90">CRYSTALS-Dilithium (NIST-approved)</li>
+                  <li className="font-satoshi text-white/90">SPHINCS+ (Maximum security)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Limitations & Future */}
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 shadow-xl">
+            <h3 className="font-epilogue text-2xl text-yellow-400 mb-4 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
+              Limitations & Future Path
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Current Limitations</h4>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-400 mt-1">•</span>
+                    <span className="font-satoshi text-white/90">Larger transaction size → higher fees</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-400 mt-1">•</span>
+                    <span className="font-satoshi text-white/90">Slower verification → heavier on nodes</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-400 mt-1">•</span>
+                    <span className="font-satoshi text-white/90">Not compatible with old wallets</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-epilogue text-xl text-yellow-400 mb-3">Future Improvements</h4>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-400 mt-1">•</span>
+                    <span className="font-satoshi text-white/90">Full PQ security (P2QS)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-400 mt-1">•</span>
+                    <span className="font-satoshi text-white/90">Signature aggregation</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-400 mt-1">•</span>
+                    <span className="font-satoshi text-white/90">Expanded hardware wallet support</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
