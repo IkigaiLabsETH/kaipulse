@@ -171,6 +171,37 @@ export default function MSTRPage() {
             <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Understanding MicroStrategy&apos;s business model and its impact on MSTY performance</p>
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
+          
+          {/* ARKM Intel Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-8 flex justify-center"
+          >
+            <a
+              href="https://intel.arkm.com/explorer/entity/microstrategy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-black bg-yellow-500 hover:bg-yellow-400 transition-colors duration-200 rounded-none border-2 border-yellow-500 shadow-[4px_4px_0px_0px_rgba(234,179,8,1)] hover:shadow-[2px_2px_0px_0px_rgba(234,179,8,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+            >
+              View on ARKM Intel
+              <svg
+                className="ml-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          </motion.div>
         </div>
       </div>
 
