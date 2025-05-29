@@ -93,10 +93,6 @@ const Bitcoin_Freedom_Timeline = `"How much Bitcoin do I need to retire?"—it's
 
 const DEFI = `Bitcoin DeFi is the next frontier—bringing financial sovereignty and programmable money together in a way that preserves the ethos of Bitcoin while unlocking the capital efficiency of decentralized protocols. Unlike the ETH-first DeFi wave, Bitcoin DeFi is about building trustless tools on top of hard money. It's not about speculation—it's about utility, yield, and freedom. Platforms like Coinbase x Morpho are making it easy to borrow against your BTC without selling. You can convert Bitcoin to cbBTC 1:1, post it as collateral, and borrow up to $100,000 in USDC with a 133% minimum collateral ratio. The repayment terms are flexible, enabling real-world use cases like living expenses, reinvestment, or tax optimization—all while keeping your Bitcoin exposure intact. On the other end of the spectrum, Berachain offers a newer, high-yield playground for more aggressive strategies. Built on a Proof-of-Liquidity consensus, Berachain supports diverse DeFi integrations—from lending and stablecoins to complex liquidity farming. Users can deploy Wrapped Bitcoin (WBTC) across multiple protocols and earn through native tokens like HONEY, while participating in governance and ecosystem incentives. Yield opportunities are abundant, but so are the risks—smart contract bugs, market volatility, and longer lock periods must be navigated carefully. Whether you're borrowing on Morpho, lending on Berachain, or farming high-yield vaults on Infrared (up to 90% APR), the core idea is the same: make your Bitcoin work for you without giving up custody or control. Bitcoin DeFi is about bending the rules of TradFi with open infrastructure. It's about exiting the fiat loop, unlocking capital, and doing it on your terms. This is what financial freedom looks like in 2025—sovereign money, decentralized rails, and a new stack of tools that reward those who understand asymmetric systems and dare to play offense.`;
 
-const berachain = `Berachain isn't just another L1. It's a chain built on memes, math, and war-chest discipline. It doesn't try to mimic Ethereum—it mirrors its tooling while flipping its incentives. The focus is on building a sustainable, community-driven ecosystem that prioritizes long-term value over short-term gains.`;
-
-const olympus_OHM = `Olympus is not a stablecoin. It's not a memecoin. It's not a Ponzi. It's an evolving, capital-efficient monetary protocol designed to build the most resilient, antifragile digital asset in crypto: OHM. The protocol uses a unique bonding mechanism to build treasury reserves and maintain price stability.`;
-
 const livethelife = `LiveTheLifeTV is the manifestation of a lifelong vision at the crossroads of art, technology, and sovereignty. Beginning his journey at Quiksilver, LTL was recognized early for pioneering marketing and WebTV innovations before YouTube was even born, earning accolades from Apple.com. His path has always been about identifying emerging shifts and building ahead of the curve. LiveTheLifeTV started as a refined curation of boutique hotels and luxury surf properties, capturing a lifestyle of freedom and elegance. But LTL didn't stop there—he embraced the NFT revolution early, pioneering the fusion of photography, blockchain, and fine art. LTL pushed boundaries again, blending retro-futurism with AI-generated fashion and tech, merging human creativity with machine learning. In 2024, LTL curated the top 420 art collections since 2017. This wasn't just a database—it was a commitment to preserving the cultural DNA of digital art, all while embodying the modular, agent-powered future he foresaw: small teams, infinite leverage, culture as code. LiveTheLifeTV stands at the vanguard of the new startup ethos. No bloated teams. No traditional playbooks. A founder backed by part-time creators, AI agents, and a vision so specific it resonates instantly with those it's meant for. In his world, distribution is owned, not rented. Taste is the ultimate moat. Micro-apps orbit around powerful insights. Identity is the real product. A Bitcoin maximalist since 2013, LTL brings hard money principles to every project. LiveTheLifeTV isn't just about lifestyle—it's about aligning freedom, ownership, and technology. It's Bitcoin culture turned into experience. It's Web3 UX reimagined with human-centered design. It's art and AI fused into sovereign tools for the next generation of builders. LiveTheLifeTV isn't chasing the past. It is living the future now. Rooted in Bitcoin. Fueled by culture. Powered by technology. Always stacking, always building, always living the life. LiveTheLifeTV was founded on one principle: build sovereignty first, stack everything else second. Since 2013, we've been Bitcoin-native—before ETFs, before mainstream adoption, before it was obvious. Bitcoin isn't just an investment to us; it's the foundation of a sovereign future where technology, finance, and art converge into something radically freer. We're not tourists in crypto. We're Triple Maxis—deeply rooted in Bitcoin, fluent in DeFi, and building with AI. Our expertise spans The Bitcoin Standard, Generative Art and AI, Onchain Art Curation, and Web3 UX Design, always translating complex systems into human-centered experiences that stick. With two decades of experience across digital landscapes—from pioneering travel tech platforms to architecting DeFi protocols—we've stayed ahead by trusting first principles, not trends. LiveTheLifeTV entered Bitcoin early with a clear thesis: this was not just a new asset class, but the backbone of a new civilization. Today, that vision manifests in everything we build. We blend Bitcoin's hard money ethos, DeFi's composability, and AI's emergent intelligence to create rich, interconnected ecosystems. Every project is designed to not only scale, but to deepen community bonds, where users aren't just consumers—they are co-creators of the future. We believe complexity should feel intuitive. Whether onboarding someone new to Lightning, curating onchain art drops, or designing decentralized interfaces, we optimize for frictionless flow—transforming abstract systems into tangible value. Operational excellence isn't an afterthought here; it's woven into the culture. Strategic frameworks allow us to move fast without breaking the mission. Creativity isn't sacrificed for scale—it's amplified by it. Every sat, every line of code, every piece of art compounds toward the same north star: freedom. This isn't about exit pumps. It's about building resilient systems and living a sovereign lifestyle—rooted in Bitcoin, accelerated by AI, immortalized through art. Live the life you love. Stack sovereignly. Build relentlessly. 
 
 The Club (the LTL club also know as LiveTheLife.TV)
@@ -123,6 +119,57 @@ const lifestyle = `We don't just stack sats—we stack sovereign experiences. At
 It's not about six-pack flexing. It's about future-proofing. We protect our sovereignty at the cellular level—because energy is our base currency, and mitochondria are our miners. The Sovereign Health Loop
 Upgrade inputs → generate clean energy → deploy toward building → repeat. Each sprint, each sun exposure, each nutrient-dense bite compounds over time—just like Bitcoin. Your body becomes the engine. Your life becomes the ledger. And the outputs? Creativity. Velocity. Precision. Joy. You don't need a seed round to live free. You need intention. You need nature. You need sats. And you need a reminder that the most rebellious act in a world of synthetic everything… is to live real. Live The Life You Love. Fiercely. And on your own terms.`;
 
+const biohacking = `Biohacking is the art of optimizing human performance through science-backed protocols and lifestyle interventions. At LiveTheLifeTV, we approach biohacking like we approach Bitcoin—with a focus on sovereignty, compounding returns, and systematic optimization.
+
+Core Protocols:
+
+1. Nature Immersion
+• Morning sunlight exposure (10-30 min) for vitamin D, nitric oxide, and hormonal balance
+• Cold water immersion for dopamine spikes and nervous system resilience
+• Barefoot grounding and natural movement patterns
+
+2. Movement Optimization
+• Sprint Protocol: 6-8 × 10-15 sec all-out efforts, 90 sec rest, 2-3x/week
+• Deep Fasting: 72-hour quarterly fasts for autophagy and metabolic reset
+• Strength training with compound movements
+
+3. Nutrition Stack
+• Ruminant-first approach: grass-fed beef, bison, lamb
+• Creatine (5g/day) for ATP buffering and cognitive enhancement
+• Collagen ice pops for joint health
+• Raw honey (1-2 tbsp) for antioxidants and antimicrobial benefits
+
+4. Light & Temperature Therapy
+• Red-light therapy (660/850nm) for mitochondrial optimization
+• Sauna protocol: 15-20 min at 80-100°C, 2-3 rounds
+• Cold contrast therapy for vagus nerve activation
+
+5. Sleep Optimization
+• Cold bedroom (18-20°C)
+• 9kg weighted blanket
+• Sensory blackout (ear plugs + eye mask)
+• Red LED lights before sleep
+• 0.2mg melatonin 45 min before bed
+• No screens 2 hours before sleep
+• No food 3 hours before bed
+
+6. Smart Supplementation
+• Adamax for neurogenesis
+• Psilocybin microdosing (0.1g, 2 days on/3 off)
+• Vitamin D3 for immune support
+• Fluoride-free oral care
+
+7. Mindset Protocol
+• Deep work blocks over open notification mempool
+• Time sovereignty through strategic "no"s
+• Daily mind-body training
+• Curated social environment
+• Promise-keeping as self-custody
+• Constructive energy management
+
+The Sovereign Health Loop:
+Upgrade inputs → generate clean energy → deploy toward building → repeat. Each protocol compounds over time, just like Bitcoin. Your body becomes the engine, your life becomes the ledger. The outputs? Creativity, velocity, precision, and joy. This isn't about six-pack flexing—it's about future-proofing. We protect our sovereignty at the cellular level because energy is our base currency, and mitochondria are our miners.`;
+
 const TESLA = `Tesla in 2025 isn't just a car company—it's an autonomous, vertically integrated operating system for mobility, energy, and now… Bitcoin. It lives at the edge of engineering and speculation, where AI meets asphalt and every update pushes the Overton window of what's possible. The Bitcoin War Chest. Tesla still holds 11,509 BTC, valued near $1 billion in Q1 2025. Despite a partial liquidation during the 2022 Shanghai lockdowns, the remaining stash remains one of corporate America's boldest Bitcoin statements. For Bitcoiners, Tesla's balance sheet isn't just symbolic—it's asymmetric upside with every market rally. Each earnings call now doubles as a crypto sentiment barometer. Model 3 Performance: The On-Ramp
 The 2024 refresh of the Model 3 Performance brings 510 hp, 0–60 in 2.8s, and a price tag under $60K. It's a "pocket-rocket" EV designed for those who used to mod 911s, now stacking sats and surfing dashboards. It's your daily driver, track car, and Bitcoin Lambo—all wrapped in one. Model S Plaid: The Digital Supercar
 Tri-motor. 1,020 horsepower. 0–60 in 2.1 seconds. The Plaid isn't just about speed—it's Tesla's rolling beta test of high-performance autonomy. Yoke steering, minimalist interiors, and software-first design signal a car that's still evolving while parked in your driveway. AI Stack: From Dojo to Robotaxis. Tesla's Dojo supercomputers and FSD v12 are at the heart of its transition to vision-only autonomy. The robotaxi pilot in Austin launches June 2025 with no steering wheels and full neural net control. Success could turn every Tesla into a yield-generating asset—"machine yield" for the physical world. The future? Park your Tesla and let it work for you. Optimus & Proof-of-Work Futures. Tesla's Optimus humanoid is no longer a meme. Musk projects 5,000 units in 2025, with capacity for 10× by 2026. These bots could one day service solar–battery–Bitcoin mining farms in off-grid locations—automating both energy production and hashpower. In this model, Tesla isn't just building EVs; it's creating autonomous, sovereign infrastructure nodes. Roadster: Still Vapor or Soon Real? The long-teased next-gen Roadster may finally launch in late 2025, promising sub-1 second 0–60 times and "momentary flight." Delays have made it part myth, part meme—but also part brand magic. Tesla isn't just racing cars; it's racing attention. Why This Matters to the Bitcoin Lifestyle
@@ -140,7 +187,25 @@ We're building with Claude, GPT-4o, open-source LLMs, and our own curated person
 
 IRL is still the unlock. Presence is still leverage. But the bridge between code and community is now built by AI. AI is not a tool anymore. It's a co-creator, a culture engine, and your most loyal teammate. Start weird. Start small. Let the agents scale. The only limit left is your imagination.`;
 
-const WINE = `French wine isn't just terroir and tradition—it's time travel in a glass. Every bottle encodes centuries of risk, soil, sun, and the stubborn refusal to compromise. At LiveTheLifeTV, we don't just drink wine. We decode it. We curate it. We pair it with stories, surf, and sats. Bordeaux is the ledger of French wine—structured, age-worthy, and split between left and right banks like a philosophical fork. Haut-Médoc is graphite and cassis, built on gravel soils and Cabernet Sauvignon dominance. Château Montrose. Léoville-Las Cases. These aren't wines—they're monuments. Saint-Émilion and Pomerol swing softer. Here, Merlot leads. Think velvet texture, truffle notes, and limestone minerality. Château Pavie. Château Figeac. And the cult god: Pétrus. Pessac-Léognan and Graves offer smoky reds and electric whites. Château Haut-Brion is the sovereign asset—dense, savory, and timeless. Burgundy is Bitcoin for the palate: finite, misunderstood, and violently priced. Pinot Noir and Chardonnay. Nothing more, nothing less—but everything is in the nuance. From Vosne-Romanée to Meursault, each village is a protocol upgrade. Romanée-Conti is the Genesis Block. No one knows how to explain Burgundy. That's why it haunts you. Northern Rhône is Syrah with a PhD—pepper, olive tapenade, crushed stone. Côte-Rôtie. Hermitage. Condrieu (our fav). Wines that punch like a heavyweight but move like a ballet dancer. The Southern Rhône (Châteauneuf-du-Pape, Gigondas) is warmer, spicier—red blends with garrigue and swagger. Grenache leads, but Mourvèdre and Syrah bring structure and wildness. The Loire is a low-key maxi's dream—Chenin Blanc, Sauvignon Blanc, Cabernet Franc. Wines with acid, snap, and intellect. Sancerre isn't just a poolside pour—it's precision in a bottle. Vouvray can age longer than your cold storage keys. Chinon is red-fruited, herbal, and criminally underpriced. The original flex. The only real champagne. Grand cru vineyards, chalk soils, méthode traditionelle. Grower Champagne is where the alpha lives—Ulysse Collin, Jacques Selosse, Chartogne-Taillet. Pop it at dawn or after a surf session. In our world, there's always a reason to sabrage. Wine isn't separate from the mission. It's part of the stack. We drink Bordeaux after deep-work sprints. We open Champagne for protocol launches. We cellar Bourgogne like cold wallets. Because real taste—like real freedom—is acquired, not bought.`;
+const WINE = `French wine isn't just terroir and tradition—it's time travel in a glass. Every bottle encodes centuries of risk, soil, sun, and the stubborn refusal to compromise. At LiveTheLifeTV, we don't just drink wine. We decode it. We curate it. We pair it with stories, surf, and sats.
+
+Bordeaux is the ledger of French wine—structured, age-worthy, and split between left and right banks like a philosophical fork. Haut-Médoc is graphite and cassis, built on gravel soils and Cabernet Sauvignon dominance. Château Montrose. Léoville-Las Cases. These aren't wines—they're monuments. Saint-Émilion and Pomerol swing softer. Here, Merlot leads. Think velvet texture, truffle notes, and limestone minerality. Château Pavie. Château Figeac. And the cult god: Pétrus. Pessac-Léognan and Graves offer smoky reds and electric whites. Château Haut-Brion is the sovereign asset—dense, savory, and timeless. The region's blend of Merlot (62%) and Cabernet Sauvignon (25%) creates wines of storied elegance and power, defined by the prestigious 1855 Grand Cru classification. Signature experiences await at Château Lafaurie-Peyraguey, Les Sources de Caudalie, and the legendary Château d'Yquem. Dine at Michelin-starred Le Pressoir d'Argent, stay at InterContinental Grand Hôtel Bordeaux, and explore medieval Saint-Émilion.
+
+Burgundy is Bitcoin for the palate: finite, misunderstood, and violently priced. Pinot Noir and Chardonnay. Nothing more, nothing less—but everything is in the nuance. From Vosne-Romanée to Meursault, each village is a protocol upgrade. Romanée-Conti is the Genesis Block. No one knows how to explain Burgundy. That's why it haunts you. The gentle Côte d'Or slopes and UNESCO-listed climats create contemplative, terroir-focused wines where each village and slope speaks with its own distinct accent.
+
+Northern Rhône is Syrah with a PhD—pepper, olive tapenade, crushed stone. Côte-Rôtie. Hermitage. Condrieu (our fav). Wines that punch like a heavyweight but move like a ballet dancer. The Southern Rhône (Châteauneuf-du-Pape, Gigondas) is warmer, spicier—red blends with garrigue and swagger. Grenache leads, but Mourvèdre and Syrah bring structure and wildness. The steep granite terraces produce muscular yet soulful wines, with concentrated Syrah and floral Viognier expressing the dramatic landscape in every bottle.
+
+The Loire is a low-key maxi's dream—Chenin Blanc, Sauvignon Blanc, Cabernet Franc. Wines with acid, snap, and intellect. Sancerre isn't just a poolside pour—it's precision in a bottle. Vouvray can age longer than your cold storage keys. Chinon is red-fruited, herbal, and criminally underpriced. The original flex. Experience the valley at Les Sources de Cheverny and Château de Courcelles, where tradition meets innovation.
+
+The only real champagne. Grand cru vineyards, chalk soils, méthode traditionelle. Grower Champagne is where the alpha lives—Ulysse Collin, Jacques Selosse, Chartogne-Taillet. Pop it at dawn or after a surf session. In our world, there's always a reason to sabrage. Stay at Château Les Crayères or Royal Champagne Hotel & Spa, where bubbles flow like liquid gold.
+
+South Africa's Cape Winelands are the new frontier—where Old World tradition meets New World innovation. Stellenbosch is the beating heart, with its historic estates and cutting-edge wineries. Boschendal, founded in 1688 by French Huguenot Jean le Long, offers award-winning Chardonnay and Shiraz alongside farm-to-table dining in their historic Cape Dutch manor house. The estate's heritage spans centuries—from the De Villiers family farm until 1879 to Cecil Rhodes' acquisition in 1887. Today, it's a premier destination with the Werf Restaurant, Deli Restaurant, daily wine tastings, and luxury accommodation in historic cottages.
+
+Delaire Graff Estate, with its modern luxury vineyard and art collection, produces the acclaimed Terraced Block Chardonnay 2022—named "Chardonnay of the Year." Mont Rochelle, Sir Richard Branson's 22-room hotel and vineyard, crafts the celebrated Little Rock wine range. Stay at The Silo Hotel in Cape Town or Delaire Graff Lodges & Spa in Stellenbosch for the complete experience.
+
+Franschhoek, the "French Corner," is a valley of culinary and vinous excellence. Here, historic estates like La Motte and Grande Provence blend French heritage with African terroir. The region's cool climate and diverse soils create wines of remarkable complexity—from crisp Sauvignon Blanc to structured Bordeaux-style blends.
+
+Wine isn't separate from the mission. It's part of the stack. We drink Bordeaux after deep-work sprints. We open Champagne for protocol launches. We cellar Bourgogne like cold wallets. We explore Stellenbosch for innovation. Because real taste—like real freedom—is acquired, not bought.`;
 
 const french_palaces = `France's Palace distinction is its highest hotel honor—a rare label reserved for properties that go beyond five stars to embody history, excellence, and emotional gravity. Out of the 31 Palace hotels, many sit within Paris or the French Alps, but the true gems—often overlooked—lie beyond those clusters, offering sovereign luxury in seaside retreats, châteaux, vineyards, and thermal sanctuaries. Here are the Palaces outside Paris and the Alps—each one a portal to timeless indulgence:
 
@@ -351,6 +416,26 @@ const european_luxury = `European luxury represents the perfect marriage of heri
 
 const smart_home_systems = `Smart home technology represents the convergence of luxury and automation. The ideal setup combines KNX for core infrastructure, Savant for intuitive control, and Black Nova Touch Panels for seamless interaction. Every system—from lighting and climate to security and entertainment—works in harmony to create a living space that's both sophisticated and effortless. AI-powered energy optimization and room scenes enhance comfort while maintaining efficiency. The integration of Bitcoin Lightning payments for automated services creates a truly sovereign living environment.`;
 
+const ltl_smart_villa = `The LTL Smart Villa represents the pinnacle of intelligent living—a 200 m² sanctuary where technology and design converge seamlessly. The architectural brief calls for a Malibu-inspired minimalist design with passive performance and Mediterranean warmth, built on a 20m x 10m footprint in Southwest France.
+
+Core Systems:
+• KNX + Savant + Black Nova Touch Panels for intuitive control
+• Lighting: Vibia, Flos, Davide Groppi with DALI/KNX control
+• Blinds: Lutron Sivoia QS with solar optimization
+• HVAC: Daikin Altherma with underfloor radiant + Zehnder HRV
+• Security: Doorbird, smart locks, surveillance nodes
+• Audio: Bang & Olufsen, Bose, Apple AirPlay
+• Control: Black Nova/Basalte wall panels with iOS mirroring
+
+Interior Specifications:
+• Walls: Acoustic lime plaster (Living), travertine panels (Bath), Porro wardrobes
+• Floors: Smoked oak (sleeping), seamless microcement (main), Antolini travertine (wet)
+• Kitchen: Bulthaup B3/Arclinea with Gaggenau/Miele MasterCool
+• Bathrooms: Antonio Lupi/Falper/Agape vanities with Vola/Axor fixtures
+• Furniture: Minotti/Flexform/Living Divani for lounge, Molteni&C/Porro for storage
+
+The villa features AI-powered energy optimization, room scenes for lighting/audio/thermal/shading presets, and seamless integration of smart systems. Every detail is curated for effortless living and sensory harmony, creating a space that feels both elemental and futuristic—where technology enhances rather than overwhelms the experience of home.`;
+
 const energy_systems = `Modern energy systems combine renewable generation with intelligent storage. The EcoFlow DELTA Pro Ultra represents the pinnacle of residential power solutions, offering 6,144 Wh capacity, 7,200 W AC output, and seamless solar integration. These systems enable energy independence while maintaining luxury living standards, with smart controls and predictive optimization. The integration of Bitcoin mining as a demand response mechanism creates a symbiotic relationship between energy production and value preservation, turning excess capacity into a store of value.`;
 
 const swiss_luxury = `Swiss luxury represents the perfect balance of precision, heritage, and innovation. From La Réserve Genève's lakeside sanctuary to The Alpina Gstaad's alpine-inspired suites, these properties combine world-class service with breathtaking natural settings. The experience extends beyond accommodation to include Michelin-starred dining, award-winning spas, and exclusive outdoor activities.`;
@@ -488,10 +573,9 @@ const sections = [
   { title: 'TWENTYONE', content: `<TWENTYONE>${TWENTYONE}</TWENTYONE>` },
   { title: 'Bitcoin Freedom Timeline', content: `<Bitcoin_Freedom_Timeline>${Bitcoin_Freedom_Timeline}</Bitcoin_Freedom_Timeline>` },
   { title: 'DEFI', content: `<DEFI>${DEFI}</DEFI>` },
-  { title: 'Berachain', content: `<berachain>${berachain}</berachain>` },
-  { title: 'Olympus OHM', content: `<olympus_OHM>${olympus_OHM}</olympus_OHM>` },
   { title: 'LiveTheLife', content: `<livethelife>${livethelife}</livethelife>` },
   { title: 'Lifestyle', content: `<lifestyle>${lifestyle}</lifestyle>` },
+  { title: 'Biohacking', content: `<biohacking>${biohacking}</biohacking>` },
   { title: 'TESLA', content: `<TESLA>${TESLA}</TESLA>` },
   { title: 'AI', content: `<AI>${AI}</AI>` },
   { title: 'WINE', content: `<WINE>${WINE}</WINE>` },
@@ -516,6 +600,7 @@ const sections = [
   { title: 'Wellness Technology', content: `<wellness_technology>${wellness_technology}</wellness_technology>` },
   { title: 'European Luxury', content: `<european_luxury>${european_luxury}</european_luxury>` },
   { title: 'Smart Home Systems', content: `<smart_home_systems>${smart_home_systems}</smart_home_systems>` },
+  { title: 'LTL Smart Villa', content: `<ltl_smart_villa>${ltl_smart_villa}</ltl_smart_villa>` },
   { title: 'Energy Systems', content: `<energy_systems>${energy_systems}</energy_systems>` },
   { title: 'Swiss Luxury', content: `<swiss_luxury>${swiss_luxury}</swiss_luxury>` },
   { title: 'Bitcoin Market', content: `<bitcoin_market>${bitcoin_market}</bitcoin_market>` },
