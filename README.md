@@ -93,12 +93,23 @@ Our platform represents a comprehensive ecosystem for Bitcoin and Web3 innovatio
 ```
 src/
 ├── app/                # Next.js 14 app directory
-│   ├── collections/    # NFT gallery & collection pages
+│   ├── collections/    # NFT collections & gallery
 │   ├── news/          # News & content hub
 │   ├── notebook/      # AI-powered content generation
 │   ├── voice/         # Voice interface
 │   ├── calculator/    # MSTY Freedom Calculator
-│   └── ...            # More routes & features
+│   ├── crypto/        # Crypto-related features
+│   ├── defi/          # DeFi platform analysis
+│   ├── platforms/     # Platform integrations
+│   ├── gallery/       # Digital art gallery
+│   ├── ai/            # AI features & tools
+│   ├── api/           # API routes
+│   ├── data/          # Data visualization
+│   ├── legal/         # Legal documentation
+│   ├── whitepaper/    # Project documentation
+│   ├── about/         # About pages
+│   ├── bio/           # Team & profiles
+│   └── ...            # Additional feature routes
 ├── components/        # Modular React components
 │   ├── nft/           # NFT display & gallery
 │   ├── ai/            # AI & voice UI
