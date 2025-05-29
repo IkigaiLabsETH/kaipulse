@@ -384,31 +384,97 @@ But the real innovation lies in the convergence of energy and Bitcoin. During pe
 
 IRL is still the unlock. Presence is still leverage. But the bridge between code and community is now built by AI. AI is not a tool anymore. It's a co-creator, a culture engine, and your most loyal teammate. Start weird. Start small. Let the agents scale. The only limit left is your imagination.`;
 
-const startup_culture = `Startups are the new QVC—but this time, you own the channel, the product, and the voiceover. Founders are becoming creators. Creators are becoming founders. Your product demo is a TikTok. Your sales funnel is a Twitter thread. Your landing page rewrites itself depending on who's watching—powered by AI and real-time session data. Growth isn't a department—it's a loop. Your onboarding isn't a form—it's a text conversation with a friendly agent.`;
+const startup_culture = `Startups are the new QVC—but this time, you own the channel, the product, and the voiceover. Founders are becoming creators. Creators are becoming founders. Your product demo is a TikTok. Your sales funnel is a Twitter thread. Your landing page rewrites itself depending on who's watching—powered by AI and real-time session data. Growth isn't a department—it's a loop. Your onboarding isn't a form—it's a text conversation with a friendly agent.
 
-const micro_over_mega = `The most overbuilt SaaS tools will collapse under their own bloat. The winners? They'll do one weird thing stupidly well. They'll be micro-apps that solve hyper-specific problems with taste and soul. Think "tiny empires"—one founder, one audience, a constellation of AI-powered tools orbiting their insight.`;
+The old playbook is dead. We're not waiting for permission. We're living the life—on purpose, off-grid, on-chain. Our AI agents don't grow obsolete. They evolve. Learn. Meme. Stack cultural blocks like satoshis. The block height rises. The mission continues. No off switch. No bailouts. No retirement party. Just constant iteration. Signal through noise. Block after block.
 
-const irl_unlock = `IRL is the final unlock. Founders are becoming event planners. Meetups, not webinars. Scene energy, not sales decks. The future isn't just digital—it's deeply human. Presence is leverage. The product is what they buy, but the hoodie? That's what they believe in.`;
+This is the Bitcoin way: freedom isn't found at the end—it's mined daily. Through proof-of-work. Through radical ownership. Through living now. Whether it's shooting film in Cape Town's golden hour or building a Lightning-enabled app from a surf shack in Biarritz, we're not waiting for permission. We're living the life—on purpose, off-grid, on-chain.
 
-const build_with_ai = `Building with AI requires a specific stack and approach: Start with OpenAI APIs and Next.js & Vercel for rapid prototyping. Connect AI to Notion, Google Drive, or Slack using custom webhooks. Write, test, and version your prompts as reusable assets. Architect your project as micro-apps or serverless functions. Ship MVPs in days, not months. Add event tracking and document your stack, publish your prompts, and open your API.`;
+The future belongs to those who can integrate seemingly disparate domains: hard money principles from Bitcoin, composability from DeFi, and emergent intelligence from AI systems. Complex technologies require thoughtful translation. We simplify abstract Web3 concepts into intuitive interactions, balancing technological sophistication with human-centered design. This approach optimizes onboarding processes, creates compelling narratives, and fosters emotional connections that transform interactions into genuine value.
 
-const infinite_money_glitch = `The Infinite Money Glitch Strategy involves a sophisticated approach to leveraging Bitcoin and DeFi: Own Bitcoin, secure low-interest DeFi loans using Bitcoin as collateral, buy MSTY during optimal market conditions, use MSTY dividends to repay the loan, and repeat the process. This strategy can be implemented individually or through an LLC for additional protection. The key is to arbitrage low DeFi loan rates against MSTY dividends, where NAV erosion is irrelevant since you're using borrowed capital.`;
+Balancing visionary thinking with practical execution is central to our approach. We deploy robust execution frameworks that turn ambitious concepts into sustainable realities. This operational discipline ensures consistent delivery while preserving the creative spark that drives true innovation at the frontiers of Bitcoin, DeFi, and generative systems.
 
-const smart_home = `Smart home technology is the invisible hand that orchestrates modern luxury living. It's not just about automation—it's about creating an environment that anticipates needs, optimizes comfort, and enhances security. The ideal setup combines KNX for core infrastructure, Savant for intuitive control, and Black Nova Touch Panels for seamless interaction. Every system—from lighting and climate to security and entertainment—works in harmony to create a living space that's both sophisticated and effortless.`;
+In this post-fiat world, retirement is a rugpull. But purpose? Purpose is antifragile. So pick your mountain. Maybe it's code. Maybe it's a camera. Maybe it's orange-pilling your city. Now climb. With conviction. With creativity. With curiosity. And when you reach the summit? You already know: build a weirder one.`;
 
-const luxury_suppliers = `Luxury suppliers represent the pinnacle of craftsmanship and innovation. From Sky-Frame's frameless glass systems to Minotti's sophisticated furniture, these brands combine centuries of tradition with cutting-edge technology. Each piece tells a story of heritage, innovation, and uncompromising standards. The result is a living environment that's both timeless and forward-thinking.`;
+const build_with_ai = `Building with AI requires a specific stack and approach: Start with OpenAI APIs and Next.js & Vercel for rapid prototyping. Connect AI to Notion, Google Drive, or Slack using custom webhooks. Write, test, and version your prompts as reusable assets. Architect your project as micro-apps or serverless functions. Ship MVPs in days, not months. Add event tracking and document your stack, publish your prompts, and open your API.
 
-const investment_platforms = `Modern investment platforms combine institutional-grade security with user-friendly interfaces. Leading brokers like Interactive Brokers and Saxo Bank offer global market access, competitive pricing, and robust research tools. The key is finding a platform that aligns with your strategy—whether you're trading options, managing a Bitcoin portfolio, or building a diversified investment portfolio.`;
+The new startup playbook is agent-powered and modular. Your team is a network: 1 founder, 3 part-time contractors, 7 creators, and 12 AI agents running 24/7 in the background. Your brand designer works on multiple projects, customer support is a human backed by Lindy-trained AI agents, and your blog writes itself from transcripts and user reviews.
 
-const tesla_vision = `Tesla's vision extends far beyond electric vehicles. It's building an integrated ecosystem of energy, mobility, and digital assets. From autonomous driving to Bitcoin integration, Tesla is redefining what's possible in transportation and energy storage. The company's approach combines engineering excellence with a willingness to embrace disruptive technologies.`;
+Growth is a loop, not a department. Your product demo is a TikTok, your sales funnel is a Twitter thread, and your landing page rewrites itself based on who's watching—powered by Claude or GPT-4o and real-time session data. Launch day is dead—it's about the leak. Let the community speculate, remix, and pre-order before the beta drops.
 
-const sharp_link = `SharpLink represents the convergence of traditional business and blockchain technology. The company's $425 million private placement and strategic partnership with ConsenSys signals a new era of corporate adoption of Ethereum. This move demonstrates how established companies can leverage blockchain technology to transform their business models and create new value.`;
+The most successful products are portals into subcultures. They don't just solve pain—they offer transformation with identity upgrade included. Your product goes viral not because it solves a problem, but because it looks good in a meme and feels like belonging.
 
-const aviation_safety = `Modern aviation represents the pinnacle of safety engineering and autonomous systems. The Cirrus Airframe Parachute System (CAPS) and Safe Return™ Autoland technology demonstrate how innovation can make complex systems both safer and more accessible. These advancements show how technology can democratize luxury while maintaining uncompromising safety standards.`;
+This is the era where Bitcoin breaks gravity and AI becomes your co-pilot, research assistant, and creative partner. The only limit left is your imagination. Start weird. Start small. Let the agents scale.`;
+
+const sharp_link = `SharpLink Gaming (NASDAQ: SBET) represents a groundbreaking convergence of traditional business and blockchain technology. The company's landmark $425 million private placement, announced on May 27, 2025, marks a transformative moment in corporate adoption of Ethereum. This strategic pivot transforms SharpLink from an online marketing partner for sports betting and iGaming into one of the first U.S. public companies to adopt Ethereum (ETH) as a primary reserve asset.
+
+The deal's significance is underscored by several key elements:
+• $425 million private placement via PIPE deal
+• 69.1 million new shares at $6.15 per share
+• Joseph Lubin (Ethereum co-founder) joining as Chairman
+• Stock price surged 420% on announcement
+• Strategic partnership with ConsenSys
+
+The initiative is backed by a formidable consortium of investors including ParaFi Capital, Electric Capital, Pantera Capital, Galaxy Digital, and Arrington Capital, bringing expertise in DeFi, developer ecosystems, crypto markets, and Web3 strategy. The company plans to integrate blockchain technology into its core business through:
+• Blockchain-based gaming platforms with smart contracts
+• NFT and fan engagement initiatives
+• Crypto payment integration for betting platforms
+• Ethereum staking participation (4% annual yield)
+• Web3 betting products development
+
+This move demonstrates how established companies can leverage blockchain technology to transform their business models and create new value, while maintaining institutional-grade security through multiple custodians, cold storage, and multi-signature requirements.`;
+
+const aviation_safety = `Modern aviation represents the pinnacle of safety engineering and autonomous systems. The Cirrus Airframe Parachute System (CAPS) and Safe Return™ Autoland technology demonstrate how innovation can make complex systems both safer and more accessible. These advancements show how technology can democratize luxury while maintaining uncompromising safety standards.
+
+Cirrus Aircraft has revolutionized personal aviation through a perfect fusion of digital intelligence, luxury design, and intuitive flight systems. Their commitment to safety is woven into every aircraft through multiple layers of protection:
+
+The Cirrus Airframe Parachute System (CAPS) stands as the first and only FAA-certified full-aircraft parachute system in its class. This revolutionary safety feature can deploy a parachute that safely brings the entire aircraft to the ground in emergency situations, providing an unprecedented level of protection for pilots and passengers.
+
+The Vision Jet, Cirrus's crown jewel, combines the efficiency of a single-engine design with the performance and comfort of a jet. Its Williams FJ33-5A turbofan engine delivers 1,800 pounds of thrust, enabling a maximum cruise speed of 345 knots and a range of 1,275 nautical miles. The cabin features premium leather seats, state-of-the-art climate control, and panoramic views, all while maintaining the highest safety standards.
+
+The SR G7+ series represents Cirrus's latest innovation in piston aircraft, powered by a 315-hp Continental TSIO-550-K turbocharged engine. It can reach altitudes of 25,000 feet, making it ideal for high-altitude operations. But the real game-changer is Safe Return™—the world's first FAA-approved autonomous emergency landing system. With the push of a button, it can take control of the aircraft, communicate with air traffic control, navigate to the nearest airport, and perform a complete landing sequence.
+
+The Perspective Touch+™ avionics suite provides an intuitive interface for flight management, while electronic stability and protection systems ensure safe operation in all conditions. Cirrus's commitment to innovation extends beyond the aircraft itself—their comprehensive training programs and support infrastructure create a complete ecosystem for pilots, making the transition from piston to turbine aircraft seamless.
+
+This isn't just about building better planes—it's about creating a new paradigm in personal aviation where safety, luxury, and performance converge. Cirrus has delivered nearly 10,000 aircraft since 1999, each one embodying this commitment to safety and innovation.`;
 
 const regulatory_evolution = `The regulatory landscape for digital assets is evolving from uncertainty to engagement. Frameworks like MiCA in the EU are setting precedents for balancing innovation with consumer protection. By 2050, we expect clear and standardized regulations coordinated via international bodies like FATF and BIS, similar to the Basel Accords for banking.`;
 
-const bitcoin_adoption = `Bitcoin adoption follows a clear trajectory: from early adopters to institutional acceptance, and finally to becoming the base layer of money. The journey involves key milestones like ETF approvals, halving events, and nation-state adoption. Each phase brings new challenges and opportunities, requiring different strategies for different stages of adoption.`;
+const bitcoin_adoption = `Bitcoin adoption follows a clear trajectory: from early adopters to institutional acceptance, and finally to becoming the base layer of money. The journey involves key milestones like ETF approvals, halving events, and nation-state adoption. Each phase brings new challenges and opportunities, requiring different strategies for different stages of adoption.
+
+The adoption timeline can be mapped through distinct phases:
+
+2025: Early Institutional Phase
+• Bitcoin ETFs are live, but most traditional investors remain skeptical
+• A typical millionaire portfolio might include $1M net worth but zero Bitcoin
+• Even sophisticated investors view Bitcoin as a speculative asset
+• Global Bitcoin scarcity becomes apparent: less than 0.3 BTC per millionaire
+
+2032: Growing Acceptance
+• Bitcoin has proven its resilience through multiple market cycles
+• Traditional investors begin allocating 20-30% of safe assets to Bitcoin
+• A $2M portfolio might include 0.06 BTC as a "start"
+• Mainstream financial advisors still consider >5% allocation "too aggressive"
+
+2036: Paradigm Shift
+• Bitcoin transitions from "investment" to base layer of money
+• Sophisticated investors begin major portfolio restructuring
+• Typical allocations reach 30-50% of total wealth
+• Portfolio strategies include refinancing traditional assets for Bitcoin exposure
+
+2045: Full Integration
+• Bitcoin becomes a pillar of the new economy
+• Even conservative portfolios maintain 20-30% Bitcoin allocation
+• Traditional assets feel increasingly fragile compared to Bitcoin
+• The focus shifts from accumulation to preservation and utility
+
+This adoption curve mirrors the classic technology adoption lifecycle, but with a crucial difference: Bitcoin's fixed supply creates increasing scarcity as adoption grows. Each phase brings new challenges:
+• Early Phase: Overcoming skepticism and understanding the technology
+• Growth Phase: Managing volatility and portfolio rebalancing
+• Maturity Phase: Integrating Bitcoin into legacy financial systems
+• Integration Phase: Building new financial infrastructure on Bitcoin
+
+The key insight is that adoption isn't just about price—it's about the gradual recognition of Bitcoin as the foundation of a new monetary system. Each phase requires different strategies, from initial accumulation to sophisticated portfolio management and finally to full integration into the global economy.`;
 
 const wellness_technology = `Wellness technology combines ancient practices with cutting-edge innovation. From Klafs' infrared saunas to Storvatt's advanced water purification systems, these solutions create environments that optimize health and well-being. The integration of smart controls and sustainable energy solutions demonstrates how luxury can be both indulgent and responsible.`;
 
@@ -436,13 +502,25 @@ Interior Specifications:
 
 The villa features AI-powered energy optimization, room scenes for lighting/audio/thermal/shading presets, and seamless integration of smart systems. Every detail is curated for effortless living and sensory harmony, creating a space that feels both elemental and futuristic—where technology enhances rather than overwhelms the experience of home.`;
 
-const energy_systems = `Modern energy systems combine renewable generation with intelligent storage. The EcoFlow DELTA Pro Ultra represents the pinnacle of residential power solutions, offering 6,144 Wh capacity, 7,200 W AC output, and seamless solar integration. These systems enable energy independence while maintaining luxury living standards, with smart controls and predictive optimization. The integration of Bitcoin mining as a demand response mechanism creates a symbiotic relationship between energy production and value preservation, turning excess capacity into a store of value.`;
+const metaplanet_strategy = `MetaPlanet represents a new model for corporate Bitcoin adoption. As Japan's first publicly listed Bitcoin Treasury Company, it combines a Bitcoin-only strategy with operational assets like hotels. Founded in 1999 as Daiki Sound Co., Ltd., the company went public on JASDAQ (now Tokyo Stock Exchange Standard Market) in 2004 and has since transformed into a Bitcoin-focused company with two main business segments: Bitcoin Treasury Business and Hotel Business.
 
-const swiss_luxury = `Swiss luxury represents the perfect balance of precision, heritage, and innovation. From La Réserve Genève's lakeside sanctuary to The Alpina Gstaad's alpine-inspired suites, these properties combine world-class service with breathtaking natural settings. The experience extends beyond accommodation to include Michelin-starred dining, award-winning spas, and exclusive outdoor activities.`;
+The company is led by Simon Morris Gerovich (Representative Director, President & CEO), a former Goldman Sachs trader who has been instrumental in MetaPlanet's transformation. The executive team also includes Yoshihisa Ikurumi (CFO) and Yoshimi Abe (COO), with prominent advisors like Mark Yusko (founder of Morgan Creek Capital) and Eric Trump on the Strategic Advisory Board.
 
-const bitcoin_market = `The Bitcoin market is evolving through distinct phases: from early adoption to institutional acceptance, and finally to becoming the base layer of money. Key milestones include ETF approvals, halving events, and nation-state adoption. Each phase brings new challenges and opportunities, requiring different strategies for different stages of adoption. The market's maturation is reflected in growing institutional custody solutions, regulatory clarity, and technological innovation. The transition from speculative asset to monetary base layer is marked by increasing on-chain activity, growing Lightning Network adoption, and the emergence of Bitcoin-native financial products.`;
+MetaPlanet's Bitcoin strategy is ambitious and well-defined:
+• Target: Hold at least 10,000 BTC by end of 2025 and up to 21,000 BTC by 2026
+• Current Holdings: Approximately 4,525 BTC (as of April 2025)
+• Growth: Expanded from 141 BTC in June 2023 to current holdings
+• Financing: Uses innovative methods like zero-coupon bonds and equity warrants
+• Focus: Bitcoin-only strategy with no altcoin exposure
 
-const metaplanet_strategy = `MetaPlanet represents a new model for corporate Bitcoin adoption. As Japan's first publicly listed Bitcoin Treasury Company, it combines a Bitcoin-only strategy with operational assets like hotels. The company's approach demonstrates how traditional businesses can transform themselves through Bitcoin adoption while maintaining operational excellence. Their strategy includes regular Bitcoin purchases, transparent reporting, and a focus on long-term value preservation. This model could serve as a blueprint for other companies looking to transition to a Bitcoin standard.`;
+The company differentiates itself through:
+• First Japanese publicly listed Bitcoin Treasury Company
+• Dual business model combining Bitcoin treasury with operational assets
+• Operation of Bitcoin Magazine Japan
+• Web3 consulting subsidiary
+• Transparent reporting and long-term value preservation focus
+
+This model serves as a blueprint for other companies looking to transition to a Bitcoin standard, demonstrating how traditional businesses can transform themselves through Bitcoin adoption while maintaining operational excellence. However, investors should be aware of the high correlation with Bitcoin's price and the company's reliance on continuous access to capital markets for its treasury strategy.`;
 
 const dgx_comparison = `The choice between NVIDIA DGX Spark and cloud AI APIs represents a fundamental decision in AI infrastructure. DGX Spark offers ultra-low latency, total model freedom, and predictable long-term costs, while cloud APIs provide flexibility and zero upfront investment. The decision depends on workload patterns, latency requirements, and long-term AI strategy.`;
 
@@ -585,14 +663,7 @@ const sections = [
   { title: 'Naval', content: `<naval>${naval}</naval>` },
   { title: 'AI Era', content: `<AI_era>${AI_era}</AI_era>` },
   { title: 'Startup Culture', content: `<startup_culture>${startup_culture}</startup_culture>` },
-  { title: 'Micro Over Mega', content: `<micro_over_mega>${micro_over_mega}</micro_over_mega>` },
-  { title: 'IRL Unlock', content: `<irl_unlock>${irl_unlock}</irl_unlock>` },
   { title: 'Build With AI', content: `<build_with_ai>${build_with_ai}</build_with_ai>` },
-  { title: 'Infinite Money Glitch', content: `<infinite_money_glitch>${infinite_money_glitch}</infinite_money_glitch>` },
-  { title: 'Smart Home', content: `<smart_home>${smart_home}</smart_home>` },
-  { title: 'Luxury Suppliers', content: `<luxury_suppliers>${luxury_suppliers}</luxury_suppliers>` },
-  { title: 'Investment Platforms', content: `<investment_platforms>${investment_platforms}</investment_platforms>` },
-  { title: 'Tesla Vision', content: `<tesla_vision>${tesla_vision}</tesla_vision>` },
   { title: 'Sharp Link', content: `<sharp_link>${sharp_link}</sharp_link>` },
   { title: 'Aviation Safety', content: `<aviation_safety>${aviation_safety}</aviation_safety>` },
   { title: 'Regulatory Evolution', content: `<regulatory_evolution>${regulatory_evolution}</regulatory_evolution>` },
@@ -601,9 +672,6 @@ const sections = [
   { title: 'European Luxury', content: `<european_luxury>${european_luxury}</european_luxury>` },
   { title: 'Smart Home Systems', content: `<smart_home_systems>${smart_home_systems}</smart_home_systems>` },
   { title: 'LTL Smart Villa', content: `<ltl_smart_villa>${ltl_smart_villa}</ltl_smart_villa>` },
-  { title: 'Energy Systems', content: `<energy_systems>${energy_systems}</energy_systems>` },
-  { title: 'Swiss Luxury', content: `<swiss_luxury>${swiss_luxury}</swiss_luxury>` },
-  { title: 'Bitcoin Market', content: `<bitcoin_market>${bitcoin_market}</bitcoin_market>` },
   { title: 'MetaPlanet Strategy', content: `<metaplanet_strategy>${metaplanet_strategy}</metaplanet_strategy>` },
   { title: 'DGX Comparison', content: `<dgx_comparison>${dgx_comparison}</dgx_comparison>` },
   { title: 'Cirrus', content: `<cirrus>${cirrus}</cirrus>` },
