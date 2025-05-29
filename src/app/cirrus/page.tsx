@@ -40,33 +40,20 @@ export default function CirrusPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative w-full h-[65vh] mb-16 rounded-xl overflow-hidden group"
+          className="mb-16"
         >
-          <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
-          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
-          <div className="w-full h-full">
-            <iframe
-              src="https://www.youtube.com/embed/v2cPb5Dl_P8"
-              title="Cirrus Vision Jet"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full rounded-lg z-0"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-0"></div>
-          <div className="absolute bottom-8 left-8 max-w-xl z-20">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="bg-black/60 backdrop-blur-sm p-6 rounded-lg border border-yellow-500/30"
-            >
-              <h2 className="text-3xl font-bold mb-2 text-yellow-500">Vision Jet SF50</h2>
-              <p className="text-white/90">The world&apos;s first single-engine personal jet</p>
-            </motion.div>
+          <div className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="w-full h-[65vh]">
+              <iframe
+                src="https://www.youtube.com/embed/v2cPb5Dl_P8"
+                title="Cirrus Vision Jet"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </div>
         </motion.div>
-
 
         {/* Intro Paragraph */}
         <motion.div
@@ -82,23 +69,23 @@ export default function CirrusPage() {
           </div>
         </motion.div>
 
-                {/* Video Section */}
-                <motion.div 
+        {/* Video Section */}
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mb-16"
         >
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden group">
-            <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_30px_rgba(234,179,8,0.4)]"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
-            <iframe
-              src="https://www.youtube.com/embed/jN_AUwzCUA4"
-              title="Cirrus SR Series G7+ Announcement"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full rounded-lg z-0"
-            />
+          <div className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="w-full aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/jN_AUwzCUA4"
+                title="Cirrus SR Series G7+ Announcement"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </div>
           <div className="mt-4 text-center">
             <p className="text-white/70 text-sm">
@@ -313,16 +300,16 @@ export default function CirrusPage() {
             <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
           </div>
           
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden group">
-            <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_30px_rgba(234,179,8,0.4)]"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
-            <iframe
-              src="https://www.youtube.com/embed/-4-0nm88j0U"
-              title="Cirrus SR Series G7+ Overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full rounded-lg z-0"
-            />
+          <div className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="w-full aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/-4-0nm88j0U"
+                title="Cirrus SR Series G7+ Overview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </div>
           <div className="mt-4 text-center">
             <p className="text-white/70 text-sm">
