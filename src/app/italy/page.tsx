@@ -207,6 +207,24 @@ export default function ItalyPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
+      {/* Video Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 font-bold tracking-tight uppercase">Experience the Journey</h2>
+          <div className="w-full aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)] transform hover:scale-[1.02] transition-transform duration-300">
+            <iframe
+              src="https://www.youtube.com/embed/G7pFfltyPQw"
+              title="Italian Luxury Journey"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-2xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
       {/* Day 1-2: Milan Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
@@ -229,6 +247,24 @@ export default function ItalyPage() {
       {/* Day 3-4: Lake Como Section */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 font-bold tracking-tight uppercase">Experience Lake Como</h2>
+          <div className="w-full aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)] transform hover:scale-[1.02] transition-transform duration-300">
+            <iframe
+              src="https://www.youtube.com/embed/ISMpqKc9sJ0"
+              title="Lake Como Experience"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-2xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Day 3-4: Lake Como Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
           <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 3-4: Lake Como - A Symphony of Natural Beauty</h2>
           <p className="text-base md:text-lg text-white/80 font-satoshi mb-4">
             As you leave Milan&apos;s urban sophistication behind, a scenic one-hour drive (50 km) brings you to the timeless elegance of Lake Como. Here, the Grand Hotel Victoria Concept & Spa awaits, offering a perfect blend of Belle Époque charm and modern luxury. This historic property, dating back to 1834, features 84 elegantly appointed rooms and suites, many with private balconies overlooking the lake. The hotel&apos;s state-of-the-art spa spans 1,000 square meters, offering a range of treatments using local ingredients and cutting-edge technology. The lake&apos;s mirror-like waters reflect centuries of aristocratic history, while the surrounding mountains create a dramatic backdrop for your stay. Don&apos;t miss the hotel&apos;s private beach club and the Michelin-starred restaurant, where you can savor innovative interpretations of traditional Lombard cuisine.
@@ -239,6 +275,24 @@ export default function ItalyPage() {
                 Grand Hotel Victoria
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Florence Video Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-8 font-bold tracking-tight uppercase">Experience Florence</h2>
+          <div className="w-full aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)] transform hover:scale-[1.02] transition-transform duration-300">
+            <iframe
+              src="https://www.youtube.com/embed/FHNIEajewW8"
+              title="Florence Experience"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-2xl"
+            />
           </div>
         </div>
       </section>
@@ -343,100 +397,77 @@ export default function ItalyPage() {
 
       <Separator className="my-8 bg-yellow-500/20" />
 
-      {/* Day 15-18: Return to Milan Section */}
+      {/* Day 15: Naples Section */}
       <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase text-3xl md:text-4xl">Day 15-18: The Culinary Journey Back to Milan</h2>
-          <Card className="bg-black border-yellow-500 hover:border-yellow-400 transition-colors duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 15: Puglia to Naples</h3>
-                  <p className="text-white/80 font-satoshi mb-4">
-                    Begin your return journey with a scenic drive to Naples (3 hours, 250 km). Stay at the Grand Hotel Vesuvio, a historic 5-star property overlooking the Bay of Naples. The hotel&apos;s Caruso Roof Garden Restaurant offers panoramic views and Michelin-starred dining, featuring innovative interpretations of Neapolitan cuisine.
-                  </p>
-                  <div className="bg-black/50 p-4 rounded-lg mb-4">
-                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Experiences in Naples:</h4>
-                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                      <li>Private guided tour of the historic center, including the underground city</li>
-                      <li>Exclusive pizza-making class with a master pizzaiolo</li>
-                      <li>Sunset aperitivo at the Caruso Roof Garden</li>
-                      <li>Private boat tour to Capri with lunch at a local trattoria</li>
-                      <li>Wine tasting of Campania&apos;s finest wines</li>
-                    </ul>
-                  </div>
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/naples/grand-hotel-vesuvio-123" target="_blank">
-                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
-                      Grand Hotel Vesuvio
-                    </Button>
-                  </Link>
-                </div>
-                <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 16: Naples to Bologna</h3>
-                  <p className="text-white/80 font-satoshi mb-4">
-                    Continue north to Bologna (4 hours, 350 km), the culinary capital of Italy. Check into the Grand Hotel Majestic già Baglioni, a historic 5-star hotel in the heart of the city. The hotel&apos;s I Carracci Restaurant, set in a frescoed hall, offers a Michelin-starred dining experience showcasing the best of Emilia-Romagna&apos;s culinary traditions.
-                  </p>
-                  <div className="bg-black/50 p-4 rounded-lg mb-4">
-                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Experiences in Bologna:</h4>
-                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                      <li>Private tour of the Quadrilatero market with a local chef</li>
-                      <li>Hands-on pasta-making class featuring tortellini and tagliatelle</li>
-                      <li>Exclusive balsamic vinegar tasting at a local acetaia</li>
-                      <li>Private tour of the University of Bologna, the oldest in Europe</li>
-                      <li>Evening aperitivo at the hotel&apos;s historic bar</li>
-                    </ul>
-                  </div>
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bologna/grand-hotel-majestic-gia-baglioni-123" target="_blank">
-                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
-                      Grand Hotel Majestic
-                    </Button>
-                  </Link>
-                </div>
-                <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 17: Bologna to Modena</h3>
-                  <p className="text-white/80 font-satoshi mb-4">
-                    A short drive brings you to Modena (40 minutes, 40 km), home to Massimo Bottura&apos;s Osteria Francescana. Stay at Casa Maria Luigia, Bottura&apos;s country house turned luxury hotel. This intimate property offers just 12 rooms, each uniquely designed, and features a private kitchen where guests can watch the culinary team prepare breakfast and aperitivo.
-                  </p>
-                  <div className="bg-black/50 p-4 rounded-lg mb-4">
-                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Experiences in Modena:</h4>
-                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                      <li>Private tour of the Enzo Ferrari Museum</li>
-                      <li>Exclusive balsamic vinegar aging cellar visit</li>
-                      <li>Private cooking class with Casa Maria Luigia&apos;s chefs</li>
-                      <li>Wine tasting of local Lambrusco wines</li>
-                      <li>Evening aperitivo in the hotel&apos;s private kitchen</li>
-                    </ul>
-                  </div>
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/Modena/casa-maria-luigia-13611" target="_blank">
-                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
-                      Casa Maria Luigia
-                    </Button>
-                  </Link>
-                </div>
-                <div>
-                  <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Day 18: Modena to Milan</h3>
-                  <p className="text-white/80 font-satoshi mb-4">
-                    Complete your journey with the final drive to Milan (2 hours, 180 km). Return to Portrait Milano for your farewell stay, where you can reflect on your Italian adventure over a final dinner at the hotel&apos;s restaurant, savoring the memories of your extraordinary journey through Italy&apos;s most luxurious destinations.
-                  </p>
-                  <div className="bg-black/50 p-4 rounded-lg mb-4">
-                    <h4 className="text-yellow-400 font-epilogue text-lg mb-2">Final Experiences in Milan:</h4>
-                    <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                      <li>Private shopping experience in the Quadrilatero della Moda</li>
-                      <li>Exclusive tour of the Last Supper with a local art historian</li>
-                      <li>Farewell aperitivo at the hotel&apos;s rooftop terrace</li>
-                      <li>Private tour of the La Scala Opera House</li>
-                      <li>Final dinner at Portrait Milano&apos;s restaurant</li>
-                    </ul>
-                  </div>
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/milan/portrait-milano-12981" target="_blank">
-                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
-                      Portrait Milano
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 15: Naples - The Gateway to Southern Flavors</h2>
+          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
+            Begin your return journey with a scenic drive to Naples (3 hours, 250 km). Stay at the Grand Hotel Vesuvio, a historic 5-star property overlooking the Bay of Naples. The hotel&apos;s Caruso Roof Garden Restaurant offers panoramic views and Michelin-starred dining, featuring innovative interpretations of Neapolitan cuisine. Experience private guided tours of the historic center, exclusive pizza-making classes with master pizzaioli, and sunset aperitivi with views of Mount Vesuvius.
+          </p>
+          <div className="flex justify-center gap-4 mt-8">
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/naples/grand-hotel-vesuvio-123" target="_blank">
+              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
+                Grand Hotel Vesuvio
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Day 16: Bologna Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 16: Bologna - The Culinary Capital</h2>
+          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
+            Continue north to Bologna (4 hours, 350 km), the culinary capital of Italy. Check into the Grand Hotel Majestic già Baglioni, a historic 5-star hotel in the heart of the city. The hotel&apos;s I Carracci Restaurant, set in a frescoed hall, offers a Michelin-starred dining experience showcasing the best of Emilia-Romagna&apos;s culinary traditions. Explore the Quadrilatero market with local chefs, master the art of pasta-making, and discover the secrets of traditional balsamic vinegar.
+          </p>
+          <div className="flex justify-center gap-4 mt-8">
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bologna/grand-hotel-majestic-gia-baglioni-123" target="_blank">
+              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
+                Grand Hotel Majestic
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Day 17: Modena Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 17: Modena - The Heart of Italian Gastronomy</h2>
+          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
+            A short drive brings you to Modena (40 minutes, 40 km), home to Massimo Bottura&apos;s Osteria Francescana. Stay at Casa Maria Luigia, Bottura&apos;s country house turned luxury hotel. This intimate property offers just 12 rooms, each uniquely designed, and features a private kitchen where guests can watch the culinary team prepare breakfast and aperitivo. Experience exclusive balsamic vinegar tastings, private cooking classes, and explore the Enzo Ferrari Museum.
+          </p>
+          <div className="flex justify-center gap-4 mt-8">
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/Modena/casa-maria-luigia-13611" target="_blank">
+              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
+                Casa Maria Luigia
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Separator className="my-8 bg-yellow-500/20" />
+
+      {/* Day 18: Return to Milan Section */}
+      <section className="py-16 md:py-20 px-4">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Day 18: Return to Milan - The Grand Finale</h2>
+          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
+            Complete your journey with the final drive to Milan (2 hours, 180 km). Return to Portrait Milano for your farewell stay, where you can reflect on your Italian adventure over a final dinner at the hotel&apos;s restaurant. Enjoy a private shopping experience in the Quadrilatero della Moda, an exclusive tour of the Last Supper, and a farewell aperitivo at the hotel&apos;s rooftop terrace, savoring the memories of your extraordinary journey through Italy&apos;s most luxurious destinations.
+          </p>
+          <div className="flex justify-center gap-4 mt-8">
+            <Link href="https://guide.michelin.com/fr/fr/hotels-stays/milan/portrait-milano-12981" target="_blank">
+              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
+                Portrait Milano
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
