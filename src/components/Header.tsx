@@ -85,7 +85,7 @@ export function Header() {
         { name: 'NODE ETF', href: '/node' },
         { name: 'HOLDINGS', href: '/tbs' },
         { name: 'LEDGER', href: '/ledger' },
-        { name: 'LIQUIDITY', href: '/liquidity' },
+        { name: 'CIRRUS', href: '/cirrus' },
       ]
     },
     { 
