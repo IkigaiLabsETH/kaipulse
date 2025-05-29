@@ -960,6 +960,280 @@ export default function CirrusPage() {
             </a>
           </motion.div>
         </motion.section>
+
+        {/* ICON A5 Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.2 }}
+          className="mb-20"
+        >
+          <div className="flex items-center mb-8">
+            <h2 className="text-3xl font-bold text-yellow-500">ICON A5: The Ultimate Recreational Amphibian</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <motion.div
+              custom={0}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="h-full"
+            >
+              <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Performance & Specifications</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Key Metrics</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Engine: 100 hp Rotax 912iS</li>
+                      <li>Cruise Speed: 84 knots (97 mph)</li>
+                      <li>Range: 427 nautical miles</li>
+                      <li>Fuel Capacity: 20 gallons</li>
+                      <li>Useful Load: 490 lbs</li>
+                      <li>Wingspan: 34 ft 10 in (foldable)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Operating Costs</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Annual Fixed Costs: ~$24,200</li>
+                      <li>Base Price: $409,000</li>
+                      <li>Optional Garmin G3X Touch</li>
+                      <li>Optional Autopilot</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              custom={1}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="h-full"
+            >
+              <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Safety & Features</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Safety Innovations</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>FAA-compliant spin-resistant design</li>
+                      <li>Real-time angle of attack indicator</li>
+                      <li>Optional ballistic parachute system</li>
+                      <li>Carbon fiber composite construction</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Unique Capabilities</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Amphibious operation (land/water)</li>
+                      <li>Folding wings for storage</li>
+                      <li>Removable side windows</li>
+                      <li>500 ft takeoff distance</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Pilot Requirements</h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Sport Pilot License (minimum 20 hours)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Daytime VFR operations
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Uncongested airspace
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-6 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Perfect For</h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Recreational flying adventures
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Water-based operations
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Compact storage solutions
+                </li>
+              </ul>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Smartflyer SF-1 Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.3 }}
+          className="mb-20"
+        >
+          <div className="flex items-center mb-8">
+            <h2 className="text-3xl font-bold text-yellow-500">Smartflyer SF-1: The Future of Sustainable Aviation</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <motion.div
+              custom={0}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="h-full"
+            >
+              <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Development Timeline</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Key Milestones</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>First Flight: Late 2025 (Anticipated)</li>
+                      <li>European Certification: 2030 (Target)</li>
+                      <li>Current Phase: Prototype & Pre-certification</li>
+                      <li>Market Readiness: TBD</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Market Position</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Cost-effective alternative</li>
+                      <li>Low-emission design</li>
+                      <li>Competitive light aircraft segment</li>
+                      <li>Sustainable aviation focus</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              custom={1}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="h-full"
+            >
+              <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Target Market & Applications</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Primary Users</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Flight Schools</li>
+                      <li>Private Owners</li>
+                      <li>Regional Operators</li>
+                      <li>Sustainability-focused Organizations</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Key Benefits</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Reduced environmental impact</li>
+                      <li>Lower operating costs</li>
+                      <li>Modern technology integration</li>
+                      <li>Future-proof design</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Pricing & Availability</h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Purchase price not yet disclosed
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Pricing to be finalized near market readiness
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Expected to be competitive in light aircraft segment
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-6 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Stay Updated</h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Contact Smartflyer directly for latest information
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Visit official website: smartflyer.ch
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Follow development progress
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.4 }}
+            className="text-center mt-8"
+          >
+            <a
+              href="https://smartflyer.ch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-black bg-yellow-500 rounded-lg hover:bg-yellow-400 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              Visit Smartflyer
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+          </motion.div>
+        </motion.section>
       </div>
     </div>
   );
