@@ -476,12 +476,6 @@ This adoption curve mirrors the classic technology adoption lifecycle, but with 
 
 The key insight is that adoption isn't just about price—it's about the gradual recognition of Bitcoin as the foundation of a new monetary system. Each phase requires different strategies, from initial accumulation to sophisticated portfolio management and finally to full integration into the global economy.`;
 
-const wellness_technology = `Wellness technology combines ancient practices with cutting-edge innovation. From Klafs' infrared saunas to Storvatt's advanced water purification systems, these solutions create environments that optimize health and well-being. The integration of smart controls and sustainable energy solutions demonstrates how luxury can be both indulgent and responsible.`;
-
-const european_luxury = `European luxury represents the perfect marriage of heritage and innovation. From Sky-Frame's frameless glass systems to Minotti's sophisticated furniture, these brands combine centuries of craftsmanship with cutting-edge technology. The result is a living environment that's both timeless and forward-thinking.`;
-
-const smart_home_systems = `Smart home technology represents the convergence of luxury and automation. The ideal setup combines KNX for core infrastructure, Savant for intuitive control, and Black Nova Touch Panels for seamless interaction. Every system—from lighting and climate to security and entertainment—works in harmony to create a living space that's both sophisticated and effortless. AI-powered energy optimization and room scenes enhance comfort while maintaining efficiency. The integration of Bitcoin Lightning payments for automated services creates a truly sovereign living environment.`;
-
 const ltl_smart_villa = `The LTL Smart Villa represents the pinnacle of intelligent living—a 200 m² sanctuary where technology and design converge seamlessly. The architectural brief calls for a Malibu-inspired minimalist design with passive performance and Mediterranean warmth, built on a 20m x 10m footprint in Southwest France.
 
 Core Systems:
@@ -522,7 +516,34 @@ The company differentiates itself through:
 
 This model serves as a blueprint for other companies looking to transition to a Bitcoin standard, demonstrating how traditional businesses can transform themselves through Bitcoin adoption while maintaining operational excellence. However, investors should be aware of the high correlation with Bitcoin's price and the company's reliance on continuous access to capital markets for its treasury strategy.`;
 
-const dgx_comparison = `The choice between NVIDIA DGX Spark and cloud AI APIs represents a fundamental decision in AI infrastructure. DGX Spark offers ultra-low latency, total model freedom, and predictable long-term costs, while cloud APIs provide flexibility and zero upfront investment. The decision depends on workload patterns, latency requirements, and long-term AI strategy.`;
+const dgx_comparison = `The choice between NVIDIA DGX Spark and cloud AI APIs represents a fundamental decision in AI infrastructure. DGX Spark offers ultra-low latency, total model freedom, and predictable long-term costs, while cloud APIs provide flexibility and zero upfront investment. The decision depends on workload patterns, latency requirements, and long-term AI strategy.
+
+Strategic Edge:
+• Independence and Control: With a self-hosted model, you're not at the mercy of a provider's changing terms
+• Data Privacy and Governance: Keep your data in-house, under your strict governance
+• Differentiation and Customization: Freedom to fine-tune on your proprietary data
+• No Hard Limits or Censorship: Remove usage quotas and content filters
+• Long-Term Cost Efficiency: Predictable costs that amortize over time
+
+Technical Comparison:
+DGX Spark (Owned On-Prem):
+• Large upfront hardware cost, then low incremental cost per use
+• Ultra-low latency on local network
+• Limited by hardware capacity, great for steady workloads
+• Total freedom to choose or switch models
+
+Cloud API (OpenAI/Anthropic):
+• No upfront cost, but pay-as-you-go for every call
+• Adds network latency for each request
+• Virtually unlimited on-demand scaling
+• Limited to provider's models
+
+New Possibilities:
+• Creative Agents & Autonomous Ideation: Enable fluid creative workflows with real-time iteration
+• Real-Time Decisioning: Achieve millisecond-level response times for critical applications
+• Multimodal AI Pipelines: Integrate multiple models for complex, multi-modal AI applications
+
+The future belongs to the builders who own their tools. By running your AI agents on infrastructure you control, you're not just using AI – you're ushering in a new class of AI, one that will drive breakthroughs and businesses in ways we are only beginning to imagine.`;
 
 const cirrus = `Cirrus Aircraft isn't just building planes—it's architecting the future of personal aviation. With nearly 10,000 aircraft delivered since 1999, Cirrus has revolutionized the industry through a perfect fusion of digital intelligence, luxury design, and intuitive flight systems. The Vision Jet, their crown jewel, represents the pinnacle of this evolution, while the SR G7+ series serves as the intelligent gateway to jet ownership.
 
@@ -668,9 +689,6 @@ const sections = [
   { title: 'Aviation Safety', content: `<aviation_safety>${aviation_safety}</aviation_safety>` },
   { title: 'Regulatory Evolution', content: `<regulatory_evolution>${regulatory_evolution}</regulatory_evolution>` },
   { title: 'Bitcoin Adoption', content: `<bitcoin_adoption>${bitcoin_adoption}</bitcoin_adoption>` },
-  { title: 'Wellness Technology', content: `<wellness_technology>${wellness_technology}</wellness_technology>` },
-  { title: 'European Luxury', content: `<european_luxury>${european_luxury}</european_luxury>` },
-  { title: 'Smart Home Systems', content: `<smart_home_systems>${smart_home_systems}</smart_home_systems>` },
   { title: 'LTL Smart Villa', content: `<ltl_smart_villa>${ltl_smart_villa}</ltl_smart_villa>` },
   { title: 'MetaPlanet Strategy', content: `<metaplanet_strategy>${metaplanet_strategy}</metaplanet_strategy>` },
   { title: 'DGX Comparison', content: `<dgx_comparison>${dgx_comparison}</dgx_comparison>` },
