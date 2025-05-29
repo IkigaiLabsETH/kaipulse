@@ -60,7 +60,7 @@ export default function CirrusPage() {
               className="bg-black/60 backdrop-blur-sm p-6 rounded-lg border border-yellow-500/30"
             >
               <h2 className="text-3xl font-bold mb-2 text-yellow-500">Vision Jet SF50</h2>
-              <p className="text-white/90">The world's first single-engine personal jet</p>
+              <p className="text-white/90">The world&apos;s first single-engine personal jet</p>
             </motion.div>
           </div>
         </motion.div>
@@ -75,7 +75,7 @@ export default function CirrusPage() {
         >
           <div className="border-l-4 border-yellow-500 pl-6 py-2">
             <p className="text-xl text-white/90 leading-relaxed">
-              If the Vision Jet is the crown jewel of Cirrus's ecosystem, the SR G7+ is the first intelligent rung of the ladder—the aircraft that builds pilot confidence while embedding jet-level safety from day one. Together, they represent a revolutionary step in personal aviation, combining cutting-edge technology with unparalleled safety features.
+              If the Vision Jet is the crown jewel of Cirrus&apos;s ecosystem, the SR G7+ is the first intelligent rung of the ladder—the aircraft that builds pilot confidence while embedding jet-level safety from day one. Together, they represent a revolutionary step in personal aviation, combining cutting-edge technology with unparalleled safety features.
             </p>
           </div>
         </motion.div>
@@ -122,7 +122,7 @@ export default function CirrusPage() {
               With nearly 10,000 aircraft delivered since 1999, the SR Series has been the beating heart of personal aviation. The G7+ represents not just a refresh, but a philosophical evolution: the fusion of digital intelligence, luxury design, and intuitive flight systems.
             </p>
             <p>
-              The G7+ serves as the perfect gateway to jet ownership, offering a seamless transition path from piston to turbine aircraft. It's not just about learning to fly—it's about experiencing the future of aviation today.
+              The G7+ serves as the perfect gateway to jet ownership, offering a seamless transition path from piston to turbine aircraft. It&apos;s not just about learning to fly—it&apos;s about experiencing the future of aviation today.
             </p>
           </div>
         </motion.section>
@@ -150,10 +150,10 @@ export default function CirrusPage() {
             >
               <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <h3 className="text-2xl font-bold mb-4 text-yellow-500">World's First FAA-Approved Autonomous Emergency Landing</h3>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">World&apos;s First FAA-Approved Autonomous Emergency Landing</h3>
                 <div className="space-y-4">
                   <p className="text-white/80">
-                    The SR Series G7+ features the world's first FAA-approved autonomous emergency landing system integrated into a single-engine piston aircraft. Safe Return™ Emergency Autoland provides the pilot and passengers with an automated landing option in an emergency.
+                    The SR Series G7+ features the world&apos;s first FAA-approved autonomous emergency landing system integrated into a single-engine piston aircraft. Safe Return™ Emergency Autoland provides the pilot and passengers with an automated landing option in an emergency.
                   </p>
                   <div className="bg-zinc-900/40 p-4 rounded-lg border border-yellow-500/20">
                     <h4 className="text-lg font-semibold text-yellow-500 mb-2">How It Works</h4>
@@ -520,7 +520,7 @@ export default function CirrusPage() {
               {
                 title: "Safe Return™ Autoland",
                 content: [
-                  "The world's first autonomous emergency landing system in a jet aircraft.",
+                  "The world&apos;s first autonomous emergency landing system in a jet aircraft.",
                   "With a single button press, the system can navigate to a suitable airport, communicate with ATC, and execute a safe landing."
                 ],
                 index: 0
