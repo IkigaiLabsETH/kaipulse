@@ -823,6 +823,157 @@ export default function CirrusPage() {
             </div>
           </motion.div>
         </motion.section>
+
+        {/* HX50 Comparison Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
+          className="mb-20"
+        >
+          <div className="flex items-center mb-8">
+            <h2 className="text-3xl font-bold text-yellow-500">Cirrus vs Hill HX50: The Future of Personal Aviation</h2>
+            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <motion.div
+              custom={0}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="h-full"
+            >
+              <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Cirrus SR22T G7+</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Performance</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Cruise: 180-213 KTAS</li>
+                      <li>Range: 1,000+ NM</li>
+                      <li>Fuel Burn: 17-20 gal/hr (100LL)</li>
+                      <li>Annual Cost: $50,000-75,000</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Safety Features</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>CAPS Parachute System</li>
+                      <li>Safe Return™ Autoland</li>
+                      <li>Perspective Touch+™ Avionics</li>
+                      <li>Smart Pitot System</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              custom={1}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="h-full"
+            >
+              <Card className="p-6 bg-black h-full relative group overflow-hidden rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Hill HX50</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Performance</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Cruise: 140 KTAS</li>
+                      <li>Range: 700 NM</li>
+                      <li>Fuel Burn: ~35 gal/hr (Jet-A)</li>
+                      <li>Base Price: £649,000</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-yellow-500 mb-2">Innovation</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                      <li>Carbon-fiber monocoque</li>
+                      <li>Hill Digital Cockpit</li>
+                      <li>Haptic feedback controls</li>
+                      <li>Cloud-based monitoring</li>
+                    </ul>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="p-6 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Mission Comparison: 700 NM Trip</h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Cirrus: ~3.5-4 hours, no stops needed
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  HX50: ~5 hours, may require refueling
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Cirrus offers 40% faster cruise speed
+                </li>
+              </ul>
+            </div>
+
+            <div className="p-6 bg-zinc-900/40 rounded-xl border border-yellow-500/10">
+              <h3 className="text-xl font-bold text-yellow-500 mb-4">Safety & Innovation</h3>
+              <ul className="space-y-3 text-white/80">
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Cirrus: Proven CAPS + Safe Return™
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  HX50: Advanced digital systems
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-500 mr-2">•</span>
+                  Both represent cutting-edge aviation
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+            className="text-center"
+          >
+            <a
+              href="https://www.livethelife.tv/hx50"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold text-black bg-yellow-500 rounded-lg hover:bg-yellow-400 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              Learn More About the HX50
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+          </motion.div>
+        </motion.section>
       </div>
     </div>
   );
