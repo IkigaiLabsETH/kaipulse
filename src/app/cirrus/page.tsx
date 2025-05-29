@@ -44,13 +44,15 @@ export default function CirrusPage() {
         >
           <div className="absolute inset-0 border-2 border-yellow-500 rounded-xl z-10 shadow-[0_0_20px_rgba(234,179,8,0.3)]"></div>
           <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 rounded-xl blur-xl group-hover:opacity-75 transition duration-500 z-0"></div>
-          <Image
-            src="/cirrus.jpg"
-            alt="Cirrus Vision Jet"
-            fill
-            className="object-cover rounded-lg z-0 transition duration-700 transform group-hover:scale-105"
-            priority
-          />
+          <div className="w-full h-full">
+            <iframe
+              src="https://www.youtube.com/embed/v2cPb5Dl_P8"
+              title="Cirrus Vision Jet"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-lg z-0"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-0"></div>
           <div className="absolute bottom-8 left-8 max-w-xl z-20">
             <motion.div
