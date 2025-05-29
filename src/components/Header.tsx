@@ -85,7 +85,7 @@ export function Header() {
         { name: 'NODE ETF', href: '/node' },
         { name: 'HOLDINGS', href: '/tbs' },
         { name: 'LEDGER', href: '/ledger' },
-        { name: 'BROKERS', href: '/platforms/msty/brokers' },
+        { name: 'LIQUIDITY', href: '/liquidity' },
       ]
     },
     { 
