@@ -43,7 +43,7 @@ export default function StrikeContent() {
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-12 sm:mb-16">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
           <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-4 sm:mb-6 font-epilogue uppercase tracking-wide">🎥 Featured: The Bitcoin Lifestyle</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-4 sm:mb-6 font-epilogue uppercase tracking-wide">🎥 The Bitcoin Lifestyle</h2>
             <div className="relative w-full aspect-video mb-3 sm:mb-4">
               <iframe
                 src="https://www.youtube.com/embed/JR9b-JJ6Uv0?start=21436"
@@ -75,7 +75,7 @@ export default function StrikeContent() {
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-8 sm:mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
           <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">🎯 Do not Sell the Asset That Frees You</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">🎯 The Asset That Frees You</h2>
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-satoshi mb-3 sm:mb-4">
               There are two kinds of entities in Web3:<br />
               1. Those selling their asset to fund growth.<br />
@@ -124,7 +124,7 @@ export default function StrikeContent() {
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-8 sm:mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
           <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">⚡ Our Bitcoin Treasury Engine</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">⚡ The Treasury Engine</h2>
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-satoshi mb-3 sm:mb-4">
               LiveTheLifeTV is poised to leverage Strike Business to transform its Bitcoin treasury into a dynamic tool for real estate development, cultural curation, and lifestyle sovereignty.<br /><br />
 
@@ -158,7 +158,7 @@ export default function StrikeContent() {
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-8 sm:mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
           <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">🧬 What We Actually Do (and Do not)</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">🧬 What We Actually Do</h2>
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-satoshi mb-3 sm:mb-4">
               We don&apos;t ship features.<br />
               We don&apos;t raise rounds.<br />
@@ -198,7 +198,7 @@ export default function StrikeContent() {
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-8 sm:mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
           <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">🌐 Bitcoin as the Creative Operating System</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">🌐 Creative Operating System</h2>
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-satoshi mb-3 sm:mb-4">
               Bitcoin isn&apos;t our hedge. It&apos;s our operating system.<br />
               • It governs our time preference.<br />
