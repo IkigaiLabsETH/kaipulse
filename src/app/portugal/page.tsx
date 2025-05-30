@@ -295,21 +295,56 @@ export default function PortugalPage() {
                 </div>
 
                 <div>
-                  <h4 className="text-yellow-400 font-epilogue text-xl mb-3">Days 4-6: Douro Valley</h4>
-                  <p className="text-white/80 font-satoshi mb-4">Journey to the Six Senses Douro Valley in Lamego, where you&apos;ll experience world-class wine tasting, spa treatments, and breathtaking views of the terraced vineyards.</p>
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/lamego/six-senses-douro-valley-1901" target="_blank">
-                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                      Six Senses Douro Valley
+                  <h4 className="text-yellow-400 font-epilogue text-xl mb-3">Days 4-5: Sublime Comporta</h4>
+                  <p className="text-white/80 font-satoshi mb-4">Experience the epitome of Portuguese coastal luxury at Sublime Comporta, often compared to Ibiza&apos;s José Ignacio for its sophisticated beach culture and laid-back elegance. This architectural masterpiece, inspired by Frank Lloyd Wright&apos;s design principles, offers a perfect blend of modern minimalism and natural beauty.</p>
+                  
+                  <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/20 mb-6">
+                    <h5 className="text-yellow-400 font-epilogue text-lg mb-4">Why Sublime Comporta?</h5>
+                    <ul className="text-white/80 font-satoshi space-y-3">
+                      <li>• 34 beautifully designed rooms and suites with private patios</li>
+                      <li>• Private pool villas with indoor and outdoor fireplaces</li>
+                      <li>• Sem Porta restaurant serving seasonal Portuguese cuisine</li>
+                      <li>• Beach club access and pristine Atlantic beaches</li>
+                      <li>• Solar-powered luxury with sustainable practices</li>
+                      <li>• Surrounded by rice fields and pine forests</li>
+                    </ul>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+                      <h5 className="text-yellow-400 font-epilogue text-lg mb-2">Unique Experiences</h5>
+                      <ul className="text-white/80 font-satoshi space-y-2">
+                        <li>• Beach yoga sessions</li>
+                        <li>• Wine tasting in the garden</li>
+                        <li>• Private beach dinners</li>
+                        <li>• Horseback riding on the beach</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+                      <h5 className="text-yellow-400 font-epilogue text-lg mb-2">Local Attractions</h5>
+                      <ul className="text-white/80 font-satoshi space-y-2">
+                        <li>• Comporta&apos;s chic boutiques</li>
+                        <li>• Rice field cycling tours</li>
+                        <li>• Sado Estuary boat trips</li>
+                        <li>• Local artisan markets</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/comporta/sublime-comporta-7703" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full">
+                      Experience Sublime Comporta
                     </Button>
                   </Link>
                 </div>
 
                 <div>
-                  <h4 className="text-yellow-400 font-epilogue text-xl mb-3">Days 7-8: Vidago</h4>
-                  <p className="text-white/80 font-satoshi mb-4">Visit the historic Vidago Palace Hotel, a Belle Époque gem surrounded by lush gardens and offering thermal spa treatments.</p>
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/vidago/vidago-palace-7618" target="_blank">
+                  <h4 className="text-yellow-400 font-epilogue text-xl mb-3">Days 6-8: Douro Valley</h4>
+                  <p className="text-white/80 font-satoshi mb-4">Journey to the Six Senses Douro Valley in Lamego, where you&apos;ll experience world-class wine tasting, spa treatments, and breathtaking views of the terraced vineyards.</p>
+                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/lamego/six-senses-douro-valley-1901" target="_blank">
                     <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                      Vidago Palace
+                      Six Senses Douro Valley
                     </Button>
                   </Link>
                 </div>
