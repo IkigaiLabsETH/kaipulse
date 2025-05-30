@@ -37,17 +37,20 @@ export default function Home() {
             className="relative z-10 flex flex-col items-center space-y-6 text-center"
           >
             <div className="flex items-center justify-center mt-0 mb-8">
-              <span className="inline-flex items-center gap-2 px-6 py-2 border-2 border-yellow-500 bg-black/60 shadow-[0_2px_16px_0_rgba(247,181,0,0.10)] backdrop-blur font-satoshi font-semibold text-yellow-400 text-lg tracking-wide">
+              <Link
+                href="/strike"
+                className="group inline-flex items-center gap-2 px-6 py-2 border-2 border-yellow-500 bg-black/60 shadow-[0_2px_16px_0_rgba(247,181,0,0.10)] backdrop-blur font-satoshi font-semibold text-yellow-400 text-lg tracking-wide hover:bg-yellow-500 hover:text-black transition-all duration-300"
+              >
                 <Image
                   src="/bitcoin/coin-bitcoin.svg"
                   alt="Bitcoin"
                   width={22}
                   height={22}
-                  className="w-5 h-5"
+                  className="w-5 h-5 group-hover:scale-110 transition-transform"
                   priority
                 />
                 Bitcoin-First Strategy
-              </span>
+              </Link>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-yellow-400 tracking-tight font-boska uppercase">

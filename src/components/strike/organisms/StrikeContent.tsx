@@ -122,18 +122,33 @@ export default function StrikeContent() {
             <p className="text-lg md:text-xl text-white/90 font-satoshi mb-4">
               We don&apos;t ship features.<br />
               We don&apos;t raise rounds.<br />
-              We don&apos;t make roadmaps.<br /><br />
-              What do we do?<br />
-              • Travel<br />
-              • Curate<br />
-              • Surf<br />
-              • Collect<br />
-              • Photograph<br />
-              • Host<br />
-              • Write<br />
-              • Hold<br /><br />
-              We build culture, not code.<br />
-              We fund lifestyle, not burn rate.
+              We don&apos;t follow roadmaps.<br /><br />
+              We curate spaces to Live The Life—and we&apos;ve been doing it for over two decades.<br />
+              Our core business has always been the same:<br />
+              Produce stories. Curate places. Capture culture.<br /><br />
+              Now, we&apos;re evolving the mission.<br /><br />
+              • We build smarthomes<br />
+              • We collect rare architecture<br />
+              • We document life inside it<br />
+              • We host, travel, photograph, and write<br />
+              • We borrow against BTC—not beliefs<br /><br />
+              Our real estate isn&apos;t a pivot.<br />
+              It&apos;s the physical embodiment of our ethos:<br />
+              high-conviction living, backed by hard money.<br /><br />
+              The LLC is our vessel.<br />
+              The homes are our headquarters.<br />
+              The Bitcoin is our treasury.<br /><br />
+              We don&apos;t sell the asset that sets us free.<br />
+              We use it to create sanctuaries where sovereignty becomes tangible.<br /><br />
+              We&apos;re not scaling a startup.<br />
+              We&apos;re scaling a lifestyle.<br /><br />
+              <a 
+                href="/smarthome" 
+                className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200"
+              >
+                → Explore our Smarthome vision
+                <ArrowRight className="h-5 w-5" />
+              </a>
             </p>
           </div>
         </Card>
