@@ -106,7 +106,13 @@ export default function StrikeContent() {
               • BTC held securely, not rehypothecated<br />
               • Fully managed in-app<br /><br />
               3. LLC Formation via Otonomos<br />
-              We&apos;ve set up our entity through Otonomos—a platform that allows us to create a legally compliant LLC with crypto-native DNA.<br /><br />
+              We&apos;ve set up our entity through <a 
+                href="/otonomos" 
+                className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200"
+              >
+                Otonomos
+                <ArrowRight className="h-5 w-5" />
+              </a>—a platform that allows us to create a legally compliant LLC with crypto-native DNA.<br /><br />
               4. Cap Table via Fairmint<br />
               We use Fairmint to tokenize and automate our equity—not because we&apos;re raising money, but because we want the option to reward contributors dynamically without losing control.
             </p>
