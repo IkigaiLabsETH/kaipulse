@@ -175,6 +175,14 @@ export default function CryptoPage() {
                 Hyperliquid (HYPE)
               </Button>
             </Link>
+            <Link href="https://app.assetdash.com/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto flex-1">
+              <Button
+                size="lg"
+                className="relative w-full gap-2 sm:gap-3 font-semibold text-sm sm:text-base py-3 sm:py-6 bg-gradient-to-r from-black via-zinc-900 to-black hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500] text-[#F7B500] hover:text-black transition-all duration-300 ease-out border border-[#F7B500] shadow-[3px_3px_0px_0px_#F7B500] sm:shadow-[5px_5px_0px_0px_#F7B500] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] disabled:opacity-70 disabled:cursor-not-allowed rounded-md text-xl sm:text-2xl font-epilogue tracking-tight"
+              >
+                AssetDash
+              </Button>
+            </Link>
           </div>
                     {/* Summary Card */}
                     <Card className="bg-[#18191c] border-[2px] sm:border-[3px] border-yellow-500 w-full max-w-[90rem] mx-auto shadow-[0_0_0_2px_rgba(247,181,0,0.7),0_4px_16px_0_rgba(247,181,0,0.18)] sm:shadow-[0_0_0_4px_rgba(247,181,0,0.7),0_8px_32px_0_rgba(247,181,0,0.18)]">
