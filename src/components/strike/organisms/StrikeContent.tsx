@@ -114,6 +114,40 @@ export default function StrikeContent() {
         </Card>
       </div>
 
+      {/* Strike Integration */}
+      <div className="max-w-4xl mx-auto px-4 mb-12">
+        <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
+          <div className="relative z-10 p-8 md:p-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-3 font-epilogue uppercase tracking-wide">⚡ Our Bitcoin Treasury Engine</h2>
+            <p className="text-lg md:text-xl text-white/90 font-satoshi mb-4">
+              LiveTheLifeTV is poised to leverage Strike Business to transform its Bitcoin treasury into a dynamic tool for real estate development, cultural curation, and lifestyle sovereignty.<br /><br />
+
+              <span className="text-yellow-500 font-semibold">🏛️ Structuring a Bitcoin-Native Real Estate Treasury</span><br />
+              By establishing a U.S.-based LLC, LiveTheLifeTV can utilize Strike Business to manage its Bitcoin holdings effectively. This structure allows for:<br />
+              • Bitcoin-backed loans: Access cash liquidity without selling BTC, enabling investment in real estate projects like smarthomes and cultural hubs.<br />
+              • Asset protection: Mitigate Bitcoin volatility by securing loans against BTC holdings, preserving long-term value.<br /><br />
+
+              <span className="text-yellow-500 font-semibold">🧾 Operational Benefits</span><br />
+              Strike Business offers features that align with LiveTheLifeTV&apos;s operational needs:<br />
+              • Unlimited Bitcoin transactions: Facilitate large-scale purchases and sales to support real estate acquisitions.<br />
+              • Fiat integration: Seamlessly convert between BTC and USD, simplifying vendor payments and operational expenses.<br />
+              • Enterprise-grade custody: Ensure secure storage of digital assets, reducing counterparty risks.<br /><br />
+
+              <span className="text-yellow-500 font-semibold">🌐 Enhancing Global Reach</span><br />
+              With Strike&apos;s API, LiveTheLifeTV can:<br />
+              • Integrate Bitcoin and Lightning payments: Enable fast, low-cost transactions for clients and partners worldwide.<br />
+              • Automate financial processes: Streamline operations through programmatic executions between fiat and Bitcoin.<br /><br />
+
+              <span className="text-yellow-500 font-semibold">🧭 Strategic Alignment</span><br />
+              This approach aligns with LiveTheLifeTV&apos;s mission to:<br />
+              • Curate and develop unique living spaces: Invest in properties that reflect cultural and lifestyle values.<br />
+              • Maintain financial sovereignty: Utilize Bitcoin as a core treasury asset, avoiding traditional financial system constraints.<br />
+              • Promote a Bitcoin-first lifestyle: Demonstrate practical applications of Bitcoin in real estate and lifestyle sectors.
+            </p>
+          </div>
+        </Card>
+      </div>
+
       {/* What We Actually Do */}
       <div className="max-w-4xl mx-auto px-4 mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
