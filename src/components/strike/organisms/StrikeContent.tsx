@@ -20,10 +20,10 @@ export default function StrikeContent() {
       </div>
 
       {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pt-12 pb-4 relative">
+      <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 pt-12 pb-4 relative">
         <div className="mb-12 text-center relative z-10">
-          <h1 className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi mb-4 uppercase">
-            🟧 LiveTheLifeTV: How to Run a Bitcoin-Centric Lifestyle LLC with No Promises and Full Conviction
+          <h1 className="text-4xl md:text-4xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi mb-4 uppercase">
+            How to Run a Bitcoin-Centric LLC with No Promises and Full Conviction
           </h1>
           <p className="text-lg md:text-xl text-white/90 font-satoshi max-w-2xl mx-auto mb-6">
             No seed round.<br />
@@ -54,7 +54,7 @@ export default function StrikeContent() {
               />
             </div>
             <p className="text-lg md:text-xl text-white/90 font-satoshi">
-              Watch how we live the Bitcoin lifestyle—no compromises, no selling, just pure conviction and freedom.
+              Live the Bitcoin lifestyle—no selling, just pure conviction and freedom.
             </p>
           </div>
         </Card>
@@ -75,7 +75,7 @@ export default function StrikeContent() {
       <div className="max-w-4xl mx-auto px-4 mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
           <div className="relative z-10 p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-3 font-epilogue uppercase tracking-wide">🎯 The Core Principle: Do not Sell the Asset That Frees You</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-3 font-epilogue uppercase tracking-wide">🎯 Do not Sell the Asset That Frees You</h2>
             <p className="text-lg md:text-xl text-white/90 font-satoshi mb-4">
               There are two kinds of entities in Web3:<br />
               1. Those selling their asset to fund growth.<br />
@@ -184,8 +184,7 @@ export default function StrikeContent() {
         >
           <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4 font-epilogue uppercase tracking-wide">🏁 Final Thought</h2>
           <p className="text-3xl md:text-4xl text-yellow-500 font-bold leading-relaxed font-epilogue mb-4">
-            If Saylor had a taste for wine, art, and five-star hotels on the Basque coast, he might have done this instead.<br />
-            We&apos;re not here to scale. We&apos;re here to show what happens when you use the best monetary asset on earth to fund a life with no external dependencies.
+            If Saylor had a taste for wine, art, and five-star hotels, he might have done this instead. We&apos;re not here to scale. We&apos;re here to show what happens when you use the best monetary asset on earth to fund a life with no external dependencies.
           </p>
           <p className="text-lg md:text-xl text-white/90 font-satoshi mb-4">
             No roadmap.<br />
@@ -197,9 +196,9 @@ export default function StrikeContent() {
           <div className="h-0.5 w-16 bg-yellow-500/50 mx-auto mt-8"></div>
           {/* CTA Card-style clickable frame */}
           <a
-            href="mailto:hello@livethelife.tv?subject=Let%27s%20Talk%20Bitcoin"
+            href="/fairmint"
             className="group block max-w-3xl mx-auto mt-8"
-            aria-label="Let's talk Bitcoin"
+            aria-label="Read More about Fairmint"
           >
             <div className="relative border-2 border-yellow-500 bg-[#181818] shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-none px-6 py-6 md:py-8 flex flex-col items-center transition-all duration-200 hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)]">
               <div className="text-2xl md:text-3xl font-bold text-yellow-500 font-epilogue uppercase tracking-wide text-center mb-2">
@@ -212,7 +211,7 @@ export default function StrikeContent() {
                 Step 4: Live the life.
               </div>
               <div className="flex items-center gap-2 mt-2 group-hover:underline group-hover:text-yellow-500 transition-all duration-200 text-xl font-semibold font-satoshi">
-                Let&apos;s talk Bitcoin.
+                Read More about Fairmint.
                 <ArrowRight className="h-7 w-7 text-yellow-500 group-hover:translate-x-1 transition-transform duration-200" />
               </div>
               {/* Yellow bar at the bottom */}
