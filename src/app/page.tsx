@@ -60,10 +60,24 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
               <button
                 onClick={() => openModal('bullpeak')}
-                className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200"
               >
-                Hold 90% in Bitcoin, use 10% for strategic lifestyle exits
-              </button>.
+                <Image
+                  src="/bitcoin/bitcoin-plus.svg"
+                  alt="Strategy"
+                  width={18}
+                  height={18}
+                  className="w-4 h-4"
+                />
+                Hold 90% in Bitcoin, use 10% for lifestyle chips
+                <Image
+                  src="/bitcoin/bitcoin-plus.svg"
+                  alt="Strategy"
+                  width={18}
+                  height={18}
+                  className="w-4 h-4"
+                />
+              </button>
               <button
                 onClick={() => openModal('mandominutes')}
                 className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200 ml-4"
@@ -77,19 +91,28 @@ export default function Home() {
                 />
                 Daily market updates by Mando Minutes
               </button>
-              <button
-                onClick={() => openModal('flows')}
+              <a
+                href="https://www.stackwisely.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200 ml-4"
               >
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
-                  alt="Flows"
+                  alt="StackWisely"
                   width={18}
                   height={18}
                   className="w-4 h-4"
                 />
-                Flows by Chain
-              </button>
+                StackWisely
+                <Image
+                  src="/bitcoin/bitcoin-plus.svg"
+                  alt="StackWisely"
+                  width={18}
+                  height={18}
+                  className="w-4 h-4"
+                />
+              </a>
             </p>
           </motion.div>
 
