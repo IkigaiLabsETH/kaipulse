@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function RealEstatePage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -96,6 +97,19 @@ export default function RealEstatePage() {
               <div className="h-px w-24 bg-yellow-500/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Building the Future While Navigating Market Cycles</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
+            
+            {/* Featured Visual */}
+            <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <Image
+                src="/2011.jpeg"
+                alt="Bitcoin and Real Estate Investment Strategy"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
           </div>
 
