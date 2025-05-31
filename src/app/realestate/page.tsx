@@ -464,6 +464,102 @@ export default function RealEstatePage() {
                 </div>
               </div>
 
+              <div className="mt-8">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Ownership Model Comparison</h4>
+                <p className="text-lg mb-6">
+                  What changes if we lean on <a href="https://oodhouse.com/partnership/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">ÖÖD&apos;s Partnership & Franchise track</a> instead of buying all the hardware ourselves?
+                </p>
+
+                <div className="overflow-x-auto mb-6">
+                  <table className="min-w-full border border-yellow-500/20">
+                    <thead>
+                      <tr className="bg-yellow-500/10">
+                        <th className="px-4 py-2 text-left">Item</th>
+                        <th className="px-4 py-2 text-left">&quot;Strike-backed ownership&quot;</th>
+                        <th className="px-4 py-2 text-left">&quot;ÖÖD Partner&quot; model</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Up-front cash per house</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">≈ €240k (module, shipping, piling)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">≈ €30k (utilities + landscaping only)</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">We own the cabins?</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Yes (depreciable asset)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">ÖÖD supplies & retains title</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Revenue split</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">100% → we keep NOI after OpEx</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Up to 70% of rent stays with us</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Typical net revenue / house / yr</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">~ €76k (ADR €320, 55% occ.)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€40k after ÖÖD&apos;s cut</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Booking engine & marketing</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">We build or outsource</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Included: ÖÖD Hötels platform drives 55-65% of bookings</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Brand leverage</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Our own</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Instant alignment with 350+ mirror cabins in 15 countries</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Exit asset value</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Full resort at 7% cap-rate</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Land + business goodwill (cabins are leased, not owned)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="space-y-6">
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">10-House &quot;Reflections @ Arrifana&quot; Partnership Model</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Equity outlay (Yr 0):
+                        <ul className="list-disc list-inside ml-6 mt-2">
+                          <li>Land €1.25m</li>
+                          <li>Infrastructure 10 × €30k = €0.30m</li>
+                          <li>Total: €1.55m</li>
+                        </ul>
+                      </li>
+                      <li>Year-1 NOI (post-OpEx):
+                        <ul className="list-disc list-inside ml-6 mt-2">
+                          <li>Gross 10 × €40k = €400k</li>
+                          <li>Less 35% OpEx ⇒ €292k</li>
+                          <li>Growth & exit: NOI +3% p.a.; sell Yr 10 at 7% cap</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">Trade-offs in Plain English</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li><strong className="text-yellow-400">Speed & simplicity:</strong> both routes deliver cabins in weeks, but the partnership skips import logistics, VAT reclamation, and Portuguese homologation</li>
+                      <li><strong className="text-yellow-400">Control & upside:</strong> full ownership captures 100% of ADR upside and keeps appreciation in-house, but it ties up 2× the capital and layers on crypto credit risk</li>
+                      <li><strong className="text-yellow-400">Brand pull:</strong> ÖÖD&apos;s booking engine has shown 47–82% occupancy in new UK & US sites within two months—that marketing flywheel would take us years to replicate solo</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-yellow-500/10 p-6 rounded-lg">
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-4">Recommendation</h5>
+                    <ol className="list-decimal list-inside space-y-2">
+                      <li>Open dual tracks: reserve cliff-top plots for ten partner cabins (low-capex, fast cash), but still pilot two owned Big Monolith suites as our flagship, financed via Strike</li>
+                      <li>Kick-off LOI with ÖÖD: clarify Portuguese franchise terms—minimum term, break-clauses, maintenance responsibility, and whether we retain option to purchase cabins at fair value later</li>
+                      <li>Refine numbers: model post-tax IRR for both tracks, include Portuguese IRC + municipal taxes, then run sensitivities on ADR creep and cap-rate expansion</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Master-plan: &quot;Reflections @ Arrifana&quot;</h4>
                 <ul className="list-disc list-inside space-y-2">
