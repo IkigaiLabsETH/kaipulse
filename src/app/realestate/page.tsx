@@ -364,6 +364,101 @@ export default function RealEstatePage() {
               </div>
 
               <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Liquidity Hack: Strike-Backed Surfview Credit</h4>
+                <p className="text-lg mb-4">
+                  Traditional bank debt tops out at 65% LTV but drags through six months of underwriting. Therefore we tap the bitcoin sitting on our treasury balance sheet and open a Strike Loan instead:
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>
+                    <strong className="text-yellow-400">Collateral-as-a-service</strong> – Pledge part of our BTC reserves to Strike; the platform locks coins with a qualified custodian and releases fiat at single-digit rates (recently 9–13% APR, tickets up to $2m)
+                  </li>
+                  <li>
+                    <strong className="text-yellow-400">Instant deployment window</strong> – Approval is algorithmic, no credit file required, so cash lands in days, not quarters; modules can be ordered the same week land closes
+                  </li>
+                  <li>
+                    <strong className="text-yellow-400">Self-closing loop</strong> – We service interest from operating cash flow and schedule lump-sum principal sweeps each low season. If BTC appreciates, our LTV falls automatically; if the price dips, we either top up collateral or roll a partial pay-down—cheaper and faster than refinancing bank paper
+                  </li>
+                </ul>
+                <p className="mt-4 text-lg">
+                  Upshot: we preserve upside in our bitcoin stack, avoid equity dilution, and still hit the ground running with eight-hour build cycles. Strike expects EU expansion later this year, keeping the structure MiFID-compliant by origination time.
+                </p>
+
+                <div className="mt-8">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">BTC-Collateral Sensitivity Analysis</h4>
+                  
+                  <div className="mb-6">
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">Assumptions</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Loan draw: $1.80m (≈ €1.66m) to cover first ten mirror villas + offices + saunas</li>
+                      <li>Strike terms: max 50% initial LTV, interest 12% APR, ticket size up to $2m</li>
+                      <li>Spot BTC: $103,779 (31 May 2025, 13:00 CET)</li>
+                      <li>Collateral posted: 34.7 BTC (sets LTV-0 = 50%)</li>
+                    </ul>
+                  </div>
+
+                  <div className="overflow-x-auto mb-6">
+                    <table className="min-w-full border border-yellow-500/20">
+                      <thead>
+                        <tr className="bg-yellow-500/10">
+                          <th className="px-4 py-2 text-left">BTC price band</th>
+                          <th className="px-4 py-2 text-left">Portfolio LTV</th>
+                          <th className="px-4 py-2 text-left">Strike status*</th>
+                          <th className="px-4 py-2 text-left">Action trigger</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">$120k (+16%)</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">43%</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Healthy</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">None—consider sweeping interest early</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">$103.8k (spot)</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">50%</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Healthy</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Keep watching</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">$85k (-18%)</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">61%</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Warning</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Add 6 BTC or pre-pay $300k</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">$70k (-32%)</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">74%</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Margin call</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Top up 8 BTC or repay $450k within 48h</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">$60k (-42%)</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">86%</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Liquidation</td>
+                          <td className="px-4 py-2 border-t border-yellow-500/20">Forced sale unless action taken</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p className="text-sm text-gray-400 mt-2">*Per Strike FAQ: &lt; 60% = healthy; 60–70% = warning; &gt; 70% = margin call; &gt; 85% triggers liquidation</p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <p className="text-lg">
+                      The project is safe down to ~$74k. But if BTC dives below $70k the platform will demand fresh collateral—therefore we can:
+                    </p>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Over-collateralise on day 1—post 40 BTC instead of 34.7 BTC; initial LTV = 43%, liquidation floor shifts to ≈$52k</li>
+                      <li>Hold a BTC buffer on-exchange equal to 15% of loan value (≈5 BTC); wire instantly if warning flashes</li>
+                      <li>Earmark low-season NOI (=€400k) for discretionary principal sweeps; each €100k paid down drops LTV six points</li>
+                    </ul>
+                    <p className="text-lg mt-4">
+                      Even at 12% APR the cost of carry (≈€200k/yr) is less than the equity we&apos;d surrender in a JV, and BTC upside remains ours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Master-plan: &quot;Reflections @ Arrifana&quot;</h4>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Ten Big Monolith villas staggered along a south-west cliff contour</li>
@@ -387,7 +482,7 @@ export default function RealEstatePage() {
               <div className="bg-yellow-500/10 p-6 rounded-lg">
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Verdict</h4>
                 <p className="text-lg">
-                  The €/m² premium is justified by the time-to-market advantage. For a €3-4m first phase, you capture a €10m+ valuation lift.
+                  The €/m² premium is justified by the time-to-market advantage. For a €3-4m first phase, you capture a €10m+ valuation lift. The project remains comfortably above a 25 % target IRR unless BTC dives 45 % and ADR slips below €285. That hedgeable dual-risk profile is hard to replicate with traditional bank leverage and gives us optionality to cycle equity into phase II as early as year 4.
                 </p>
               </div>
             </div>
