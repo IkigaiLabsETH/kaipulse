@@ -586,6 +586,25 @@ export default function BitcoinPage() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-16"
         >
+          {/* YouTube Video Section */}
+          <Card className="mb-16">
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-yellow-500">Bitcoin Explained</h2>
+                <span className="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-500 rounded-full">Updated April 2024</span>
+              </div>
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/reVebuAf_Cs"
+                  title="Bitcoin Explained"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </Card>
+
           <Card className="transform hover:scale-[1.01] transition-transform duration-200">
             <div className="p-8">
               <motion.div 
