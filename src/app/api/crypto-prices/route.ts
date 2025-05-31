@@ -65,7 +65,7 @@ export async function GET() {
       'bittensor',
       'render-token',
       'fartcoin',
-      'ai16z' 
+      'railgun' 
     ];
     const idsParam = ids.join(',');
     const response = await fetch(

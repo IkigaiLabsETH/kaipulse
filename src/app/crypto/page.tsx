@@ -116,7 +116,7 @@ export default function CryptoPage() {
             <AltcoinInfoCard id="injective-protocol" />
             <AltcoinInfoCard id="ethena" />
             <AltcoinInfoCard id="cookie" />
-            <AltcoinInfoCard id="ai16z" />
+            <AltcoinInfoCard id="railgun" />
             <AltcoinInfoCard id="rekt-4" />
             <AltcoinInfoCard id="mog-coin" />
             <AltcoinInfoCard id="fartcoin" />
