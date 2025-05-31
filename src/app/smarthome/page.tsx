@@ -864,6 +864,14 @@ export default function LuxurySuppliers() {
           <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
             Smart Home
           </span>
+          <div className="mt-4">
+            <StyledLink
+              href="/realestate"
+              className="text-lg sm:text-xl text-yellow-500/90 hover:text-yellow-500 transition-colors"
+            >
+              Real Estate Market Dynamics →
+            </StyledLink>
+          </div>
         </motion.h1>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

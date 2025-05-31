@@ -13,10 +13,10 @@ const StrikeContent = dynamic(() => import('@/components/strike/organisms/Strike
 // SEO metadata
 export const metadata: Metadata = {
   title: 'From Keynote to Code: Strike\'s Bitcoin-Backed Loans | LiveTheLifeTV',
-  description: 'Discover how Strike is revolutionizing Bitcoin-backed loans and the strategic alignment with LiveTheLifeTV\'s mission for sovereign finance.',
+  description: 'Discover how Strike is revolutionizing Bitcoin-backed loans and the strategic alignment with LiveTheLifeTV\'s mission for sovereign finance. Learn more about our Real Estate Market Dynamics.',
   openGraph: {
     title: 'From Keynote to Code: Strike\'s Bitcoin-Backed Loans',
-    description: 'Discover how Strike is revolutionizing Bitcoin-backed loans and the strategic alignment with LiveTheLifeTV\'s mission for sovereign finance.',
+    description: 'Discover how Strike is revolutionizing Bitcoin-backed loans and the strategic alignment with LiveTheLifeTV\'s mission for sovereign finance. Learn more about our Real Estate Market Dynamics.',
     images: [
       {
         url: '/hossegor.jpg',
@@ -40,6 +40,15 @@ export default function StrikePage() {
       <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <Suspense fallback={<div className="h-screen flex items-center justify-center bg-black text-white">Loading...</div>}>
           <StrikeHero />
+          <div className="text-center mb-8">
+            <a 
+              href="/realestate" 
+              className="inline-block px-6 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-400 transition-colors duration-200"
+              aria-label="Learn more about Real Estate Market Dynamics"
+            >
+              Explore Real Estate Market Dynamics
+            </a>
+          </div>
           <StrikeContent />
         </Suspense>
       </div>
