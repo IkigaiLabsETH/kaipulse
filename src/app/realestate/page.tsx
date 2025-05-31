@@ -587,6 +587,114 @@ export default function RealEstatePage() {
                   The €/m² premium is justified by the time-to-market advantage. For a €3-4m first phase, you capture a €10m+ valuation lift. The project remains comfortably above a 25 % target IRR unless BTC dives 45 % and ADR slips below €285. That hedgeable dual-risk profile is hard to replicate with traditional bank leverage and gives us optionality to cycle equity into phase II as early as year 4.
                 </p>
               </div>
+
+              <div className="mt-8">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Opportunity-Cost Check — Resort vs. Simply HODLing</h4>
+                <p className="text-lg mb-6">
+                  You fear 30 % CAGR on bitcoin might out-run the resorts economics. But when we break both strategies into the same 10-year, after-tax frame, we can see exactly where the cross-over sits. Therefore lets compare three piles of capital:
+                </p>
+
+                <div className="overflow-x-auto mb-6">
+                  <table className="min-w-full border border-yellow-500/20">
+                    <thead>
+                      <tr className="bg-yellow-500/10">
+                        <th className="px-4 py-2 text-left">Bucket</th>
+                        <th className="px-4 py-2 text-left">Starting Allocation</th>
+                        <th className="px-4 py-2 text-left">What Happens Over 10 Years</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">BTC Collateral (34.7 BTC)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€3.60 m locked at Strike</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">We still own it. At any CAGR the coins appreciate unless a margin-call forces a sale below $70 k.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Equity into Resort (€2.49 m)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Goes into land + infrastructure</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Generates cash ( ≈ €9 m cumulative) plus exit proceeds (≈ €19.9 m at 7 % cap-rate).</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Alt Scenario Equity (€2.49 m)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Buy more BTC instead</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Worth €2.49 m × (1 + CAGR)¹⁰ in 2035.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-yellow-400 mb-2">Break-even where BTC = Resort</h5>
+                  <p className="text-lg mb-4">
+                    Solving (Resort cash + exit) = (Extra-BTC value) shows:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>BTC CAGR ≈ 23 % is the tipping point.</li>
+                    <li>Below 23 %: owning and operating the resort beats simply stacking more coins.</li>
+                    <li>Above 23 %: the pure HODL wins on paper, but with zero diversification and no fiat cash flow.</li>
+                  </ul>
+                </div>
+
+                <div className="overflow-x-auto mb-6">
+                  <table className="min-w-full border border-yellow-500/20">
+                    <thead>
+                      <tr className="bg-yellow-500/10">
+                        <th className="px-4 py-2 text-left">BTC CAGR</th>
+                        <th className="px-4 py-2 text-left">Value of Extra 24 BTC</th>
+                        <th className="px-4 py-2 text-left">10-yr Resort Net to Equity</th>
+                        <th className="px-4 py-2 text-left">Winner</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">20 %</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€37 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€42 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Resort</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">23 %</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€48 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">≈ €48 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Tie</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">25 %</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€57 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€53 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">HODL</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">30 %</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€84 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€69 m</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">HODL</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p className="text-sm text-gray-400 mt-2">(Assumes BTC spot $103 779 on 31 May 2025; resort exit at 7 % cap; 3 % NOI growth; loan retired in year 6.)</p>
+                </div>
+
+                <div className="mb-6">
+                  <h5 className="text-lg font-semibold text-yellow-400 mb-2">Interpreting the math</h5>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li><strong className="text-yellow-400">Time value of BTC:</strong> Compounding above 23 % creates a steeper curve than a hospitality IRR in the high-30s.</li>
+                    <li><strong className="text-yellow-400">Cash-flow utility:</strong> The resort throws off €0.8 – 1.3 m per year once stabilised—handy for buying dips, paying principal, or funding phase II. Raw BTC can&apos;t do that without taxable sales or crypto loans.</li>
+                    <li><strong className="text-yellow-400">Correlation hedge:</strong> ADR & occupancy track tourism cycles, not crypto volatility. If BTC stalls or draws down 70 %, the resort still earns euros.</li>
+                    <li><strong className="text-yellow-400">Optionality:</strong> Once the loan is cleared (year 6) you can re-collateralise the unencumbered asset to buy more BTC at what could be cycle lows.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5 className="text-lg font-semibold text-yellow-400 mb-2">Mitigations if 30 % CAGR keeps you up at night</h5>
+                  <ol className="list-decimal list-inside space-y-2">
+                    <li><strong className="text-yellow-400">Shrink the equity slug:</strong> Use the ÖÖD partnership path for half the cabins—capex drops by €1 m+, leaving that cash free to stack coins.</li>
+                    <li><strong className="text-yellow-400">Set a BTC call-option budget:</strong> Reserve 10 % of annual resort NOI to buy long-dated, out-of-the-money BTC calls—captures upside without locking core collateral.</li>
+                    <li><strong className="text-yellow-400">Dynamic sweep rule:</strong> If BTC&apos;s 90-day moving average exceeds 25 % YoY, divert 30 % of resort free cash straight into additional BTC purchases.</li>
+                    <li><strong className="text-yellow-400">Exit valve:</strong> Build phase I, stabilise, then sell the resort at year 5 for the €14 m valuation and pour the proceeds back into BTC if you believe the next parabolic run is due.</li>
+                  </ol>
+                </div>
+              </div>
             </div>
           </div>
 
