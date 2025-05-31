@@ -226,6 +226,92 @@ export default function RealEstatePage() {
             </div>
           </div>
 
+          {/* Bitcoin vs Real Estate Analysis Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Bitcoin vs Real Estate: A Generational Wealth Analysis
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Historical Performance Comparison</h4>
+                <p className="text-lg">
+                  Over the past 15 years, U.S. housing and Bitcoin have shown dramatically different growth trajectories:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mt-4">
+                  <li>U.S. home values doubled from 2010 to 2024 (≈4.7% nominal CAGR)</li>
+                  <li>Case-Shiller Index: ~145 (2010) to ~323 (2024)</li>
+                  <li>Bitcoin: From pennies to $93,429 by end-2024</li>
+                  <li>After inflation (US CPI +46% since 2010), real gains are modest for housing (~1.5×) vs Bitcoin&apos;s astronomical growth</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Leverage and Wealth Amplification</h4>
+                <p className="text-lg">
+                  Key differences in wealth building mechanisms:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mt-4">
+                  <li>Real Estate: 5:1 leverage typical (20% down payment)</li>
+                  <li>Bitcoin: No built-in leverage, pure price appreciation</li>
+                  <li>Housing returns amplified by debt and monetary policy</li>
+                  <li>Bitcoin returns driven by network adoption and scarcity</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Long-Term Projections</h4>
+                <p className="text-lg">
+                  $50,000 investment comparison over 30 years:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mt-4">
+                  <li>Real Estate (5% annual growth): ~$1.08M after 30 years</li>
+                  <li>Bitcoin (20% CAGR): ~$11.8M after 30 years</li>
+                  <li>Bitcoin (40% CAGR): ~$1.2B after 30 years</li>
+                  <li>Bitcoin (50% CAGR): ~$9.6B after 30 years</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Ongoing Costs</h4>
+                <p className="text-lg">
+                  Annual carrying costs comparison:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mt-4">
+                  <li>Real Estate: 2-4% of value annually (taxes, insurance, maintenance)</li>
+                  <li>Bitcoin: Virtually zero holding costs</li>
+                  <li>No property taxes or insurance required for Bitcoin</li>
+                  <li>Optional custodial fees only if desired</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Generational Wealth Divide</h4>
+                <p className="text-lg">
+                  Impact on wealth inequality:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mt-4">
+                  <li>Housing: $390,000 median wealth gap between owners and renters</li>
+                  <li>Bitcoin: Early holders (2011-2016) saw ~893,000× returns</li>
+                  <li>Both markets favor early adopters</li>
+                  <li>Latecomers face higher barriers to entry</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Future Outlook</h4>
+                <p className="text-lg">
+                  Long-term projections and considerations:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mt-4">
+                  <li>Bitcoin power-law models predict $100K+ by 2028</li>
+                  <li>Some forecasts suggest $1M+ per BTC by 2037</li>
+                  <li>Fixed 21M supply vs inflationary housing market</li>
+                  <li>Network adoption as key growth driver</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* Key Signals Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
