@@ -312,6 +312,87 @@ export default function RealEstatePage() {
             </div>
           </div>
 
+          {/* Case Study: ÖÖD Mirror Modules Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Case Study: ÖÖD Mirror-Clad Modules in Portugal
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <p className="text-lg">
+                Portugals Atlantic light is unforgiving, but ÖÖDs mirror-clad modules bend that glare into an asset, dissolving their outline and doubling the view. We benchmarked three of their blocks—the 9 m² Medium Office, the 40.9 m² Big Monolith two-bed villa, and the 9.5 m² Medium Sauna—against conventional building costs and against the new financing rails of Web3.
+              </p>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Price-per-square-metre Analysis</h4>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full border border-yellow-500/20">
+                    <thead>
+                      <tr className="bg-yellow-500/10">
+                        <th className="px-4 py-2 text-left">Module</th>
+                        <th className="px-4 py-2 text-left">Turn-key List Price*</th>
+                        <th className="px-4 py-2 text-left">Internal Area</th>
+                        <th className="px-4 py-2 text-left">€/m²</th>
+                        <th className="px-4 py-2 text-left">Assembly Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Medium Office</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€23,900</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">9.36 m²</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€2,553</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">&lt; 1 day</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Big Monolith (2-bed)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€149,900</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">40.9 m²</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€3,665</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">1 day</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Medium Sauna</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€29,800</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">9.5 m²</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">€3,137</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">1 day</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-sm text-gray-400 mt-2">*Prices exclude VAT, shipping, foundations, and Portuguese import duty.</p>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Master-plan: &quot;Reflections @ Arrifana&quot;</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Ten Big Monolith villas staggered along a south-west cliff contour</li>
+                  <li>Four Medium Offices re-skinned as co-working ateliers</li>
+                  <li>Three Medium Saunas nested in a cork-oak hollow</li>
+                </ul>
+                <p className="mt-4">
+                  Total hard cost ≈ €2.4m. At blended ADR €320 and 55% annual occupancy, topline ≈ €1.7m. Even after 35% OpEx plus 6% management, NOI pencils to ~€1m—and at a conservative 7% cap-rate the project values out near €14m.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Risk Considerations</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Mirror façade bird collision mitigation required</li>
+                  <li>Baltic fabrication lead times (30% deposit recommended)</li>
+                  <li>ADR positioning vs. luxury resort competition</li>
+                </ul>
+              </div>
+
+              <div className="bg-yellow-500/10 p-6 rounded-lg">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Verdict</h4>
+                <p className="text-lg">
+                  The €/m² premium is justified by the time-to-market advantage. For a €3-4m first phase, you capture a €10m+ valuation lift.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Key Signals Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
