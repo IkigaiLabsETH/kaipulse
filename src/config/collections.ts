@@ -46,6 +46,7 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'trichro-matic-by-mountvitruvius',
   'sam-spratt-masks-of-luci',
   'pink-such-a-useless-color-by-simon-raion',
+  'sketchbook-a-by-william-mapan-1',
   'life-and-love-and-nothing-by-nat-sarkissian',
   'highrises',
   'lifeguard-towers-miami',
