@@ -319,7 +319,7 @@ export default function RealEstatePage() {
             </h3>
             <div className="space-y-6 text-gray-300">
               <p className="text-lg">
-                Portugals Atlantic light is unforgiving, but ÖÖDs mirror-clad modules bend that glare into an asset, dissolving their outline and doubling the view. We benchmarked three of their blocks—the 9 m² Medium Office, the 40.9 m² Big Monolith two-bed villa, and the 9.5 m² Medium Sauna—against conventional building costs and against the new financing rails of Web3.
+                Portugals Atlantic light is unforgiving, but ÖÖDs mirror-clad modules bend that glare into an asset, dissolving their outline and doubling the view. We benchmarked three of their blocks—the <a href="https://oodhouse.com/prefab/offices/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">9 m² Medium Office</a>, the <a href="https://oodhouse.com/prefab/houses/the-big-monolith/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">40.9 m² Big Monolith two-bed villa</a>, and the <a href="https://oodhouse.com/prefab/saunas/medium-sauna/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">9.5 m² Medium Sauna</a>—against conventional building costs and against the new financing rails of Web3.
               </p>
 
               <div>
@@ -337,21 +337,27 @@ export default function RealEstatePage() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="px-4 py-2 border-t border-yellow-500/20">Medium Office</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">
+                          <a href="https://oodhouse.com/prefab/offices/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">Medium Office</a>
+                        </td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">€23,900</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">9.36 m²</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">€2,553</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">&lt; 1 day</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-2 border-t border-yellow-500/20">Big Monolith (2-bed)</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">
+                          <a href="https://oodhouse.com/prefab/houses/the-big-monolith/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">Big Monolith (2-bed)</a>
+                        </td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">€149,900</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">40.9 m²</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">€3,665</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">1 day</td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-2 border-t border-yellow-500/20">Medium Sauna</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">
+                          <a href="https://oodhouse.com/prefab/saunas/medium-sauna/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:text-yellow-300 underline">Medium Sauna</a>
+                        </td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">€29,800</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">9.5 m²</td>
                         <td className="px-4 py-2 border-t border-yellow-500/20">€3,137</td>
