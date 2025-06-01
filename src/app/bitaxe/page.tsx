@@ -84,6 +84,62 @@ export default function BitaxePage() {
         </span>
       ),
     },
+    {
+      q: "How can Bitaxe be used for heat reuse?",
+      a: (
+        <span>
+          Bitaxe&apos;s low-wattage design (~15W) and silent operation make it perfect for residential heat reuse:
+          <br /><br />
+          • Space Heaters: Embed Bitaxe units in custom heater casings to replace traditional resistive heating
+          <br />
+          • Greenhouse Warmers: Use Bitaxe heat for growing herbs and vegetables through winter
+          <br />
+          • Hot Water Preheaters: Route Bitaxe exhaust into thermosiphon water tanks
+          <br />
+          • Vent Warmers: Integrate into ventilation ducts to pre-warm incoming air
+          <br /><br />
+          The open-source AxeOS firmware allows fine-tuning performance and thermals for optimal heat output.
+        </span>
+      ),
+    },
+    {
+      q: "Can Bitaxe be used to heat a swimming pool?",
+      a: (
+        <span>
+          Yes, but it requires a cluster approach:
+          <br /><br />
+          • Each Bitaxe (~15W) emits roughly 15 watts of continuous heat
+          <br />
+          • A cluster of 10-50 units can contribute significantly to pool heating
+          <br />
+          • Two main approaches:
+          <br />
+          &nbsp;&nbsp;1. Water Loop: Connect units to a heat exchanger via liquid cooling
+          <br />
+          &nbsp;&nbsp;2. Air Flow: Channel hot exhaust through a heat exchanger coil
+          <br /><br />
+          Best used during off-peak hours or paired with solar/battery storage for optimal efficiency.
+        </span>
+      ),
+    },
+    {
+      q: "What makes Bitaxe ideal for home heat reuse?",
+      a: (
+        <span>
+          Unlike industrial ASICs (3kW+), Bitaxe is designed for home environments:
+          <br /><br />
+          • Low Power Draw: Only ~15W, safe for residential power
+          <br />
+          • Silent Operation: No jet-engine fan noise
+          <br />
+          • Compact Size: Perfect for custom builds and furniture integration
+          <br />
+          • Open Firmware: Customizable performance and thermal settings
+          <br /><br />
+          This makes it perfect for functional art, educational displays, and practical heating solutions.
+        </span>
+      ),
+    },
   ];
 
   return (
