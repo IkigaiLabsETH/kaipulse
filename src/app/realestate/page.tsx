@@ -246,6 +246,12 @@ export default function RealEstatePage() {
               Bitcoin vs Real Estate: A Generational Wealth Analysis
             </h3>
             <div className="space-y-6 text-gray-300">
+              <div className="bg-yellow-500/10 p-6 rounded-lg mb-8">
+                <p className="text-xl font-semibold text-yellow-400 italic">
+                  &ldquo;The biggest problem with buying a rental property to generate cash flow is that you could buy bitcoin instead.&rdquo;
+                </p>
+              </div>
+
               <div>
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Historical Performance Comparison</h4>
                 <p className="text-lg">
