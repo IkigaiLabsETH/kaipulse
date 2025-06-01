@@ -90,6 +90,18 @@ function AccordionSection({ title, children, defaultOpen = false }: { title: str
   );
 }
 
+type MoonpigData = {
+  name: string;
+  symbol: string;
+  address: string;
+  price: { usd: number; change24h: number };
+  liquidity: { usd: number };
+  volume: { h24: number };
+  dex: string;
+  pair: { base: string; quote: string };
+  timestamp: string;
+};
+
 export default function LiquidityPage() {
   const [tokens, setTokens] = useState<TokenData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -108,6 +120,9 @@ export default function LiquidityPage() {
   const [trendingTokens, setTrendingTokens] = useState<DexscreenerToken[]>([]);
   const [trendingLoading, setTrendingLoading] = useState(false);
   const [trendingError, setTrendingError] = useState<string | null>(null);
+  const [moonpigData, setMoonpigData] = useState<MoonpigData | null>(null);
+  const [moonpigLoading, setMoonpigLoading] = useState(false);
+  const [moonpigError, setMoonpigError] = useState<string | null>(null);
 
   const fetchData = useCallback(async (pageNum: number) => {
     setLoading(true);
@@ -156,6 +171,32 @@ export default function LiquidityPage() {
         setTrendingError('Failed to fetch trending tokens');
         setTrendingLoading(false);
       });
+  }, [useDexscreener]);
+
+  // Fetch Moonpig data
+  useEffect(() => {
+    if (!useDexscreener) return;
+    
+    const fetchMoonpigData = async () => {
+      setMoonpigLoading(true);
+      setMoonpigError(null);
+      try {
+        const response = await fetch('/api/dexscreener/moonpig');
+        if (!response.ok) throw new Error('Failed to fetch Moonpig data');
+        const data = await response.json();
+        setMoonpigData(data);
+      } catch {
+        setMoonpigError('Failed to fetch Moonpig data');
+        // Optionally log error to a logging service
+      } finally {
+        setMoonpigLoading(false);
+      }
+    };
+
+    fetchMoonpigData();
+    // Refresh data every 30 seconds
+    const interval = setInterval(fetchMoonpigData, 30000);
+    return () => clearInterval(interval);
   }, [useDexscreener]);
 
   const handleLoadMore = () => {
@@ -526,6 +567,100 @@ export default function LiquidityPage() {
 
           {/* Cards */}
           {!useDexscreener && renderCards(tokens)}
+
+          {/* Featured Meme Coin Section */}
+          {useDexscreener && (
+            <div className="mt-20 mb-20">
+              <h2 className="text-3xl font-bold text-yellow-400 mb-4">Featured Meme Coin</h2>
+              <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-8 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <div className="flex items-center gap-6 mb-6">
+                  <Image
+                    src="/moonpig.jpg"
+                    alt="Moonpig"
+                    width={80}
+                    height={80}
+                    className="rounded-full border-2 border-yellow-500"
+                  />
+                  <div>
+                    <h3 className="text-2xl font-bold text-yellow-500 flex items-center gap-3">
+                      Moonpig
+                      <button
+                        onClick={() => handleCopyAddress('Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump')}
+                        className="px-3 py-1 text-sm bg-yellow-500 text-black rounded hover:bg-yellow-400 focus:outline-none border border-yellow-700"
+                        title="Copy address"
+                      >
+                        {copiedAddress === 'Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump' ? 'Copied!' : 'Copy Address'}
+                      </button>
+                      <span className="flex gap-2">
+                        <a
+                          href="https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Swap on Raydium"
+                          className="hover:scale-110 transition-transform"
+                        >
+                          <RaydiumIcon />
+                        </a>
+                        <a
+                          href="https://jup.ag/swap/SOL-Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Swap on Jupiter"
+                          className="hover:scale-110 transition-transform"
+                        >
+                          <JupiterIcon />
+                        </a>
+                      </span>
+                    </h3>
+                    <p className="text-gray-400 mt-1">The most oinktastic meme coin on Solana</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                    <h4 className="text-yellow-400 font-semibold mb-2">Live Price Data</h4>
+                    {moonpigLoading ? (
+                      <p className="text-gray-400">Loading...</p>
+                    ) : moonpigError ? (
+                      <p className="text-red-500">{moonpigError}</p>
+                    ) : moonpigData ? (
+                      <div className="space-y-2">
+                        <p className="text-white">
+                          Price: <span className="text-yellow-500 font-bold">{formatNumber(moonpigData.price.usd)}</span>
+                        </p>
+                        <p className="text-white">
+                          24h Change: <span className={`font-bold ${moonpigData.price.change24h >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                            {moonpigData.price.change24h >= 0 ? '+' : ''}{moonpigData.price.change24h?.toFixed(2)}%
+                          </span>
+                        </p>
+                        <p className="text-white">
+                          24h Volume: <span className="text-yellow-500 font-bold">{formatNumber(moonpigData.volume.h24)}</span>
+                        </p>
+                        <p className="text-white">
+                          Liquidity: <span className="text-yellow-500 font-bold">{formatNumber(moonpigData.liquidity.usd)}</span>
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="text-gray-400">No data available</p>
+                    )}
+                  </div>
+                  <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                    <h4 className="text-yellow-400 font-semibold mb-2">Quick Links</h4>
+                    <div className="flex flex-col gap-2">
+                      <a href="https://dexscreener.com/solana/Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">View on DEXScreener</a>
+                      <a href="https://solscan.io/token/Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">View on Solscan</a>
+                    </div>
+                  </div>
+                  <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                    <h4 className="text-yellow-400 font-semibold mb-2">Trading Pairs</h4>
+                    <div className="flex flex-col gap-2">
+                      <a href="https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">SOL/MOONPIG on Raydium</a>
+                      <a href="https://jup.ag/swap/SOL-Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">SOL/MOONPIG on Jupiter</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Trending Section (DEXScreener only) */}
           {useDexscreener && (
