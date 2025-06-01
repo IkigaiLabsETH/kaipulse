@@ -514,6 +514,52 @@ export default function S9ProPage() {
               </div>
             ))}
           </div>
+
+          {/* Call to Action Section */}
+          <div className="bg-[#1c1f26] p-12 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mt-16">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-yellow-500 tracking-tight">
+                Mine. Heat. Profit. Repeat.
+              </h2>
+              
+              <div className="grid md:grid-cols-3 gap-8 text-left">
+                <div className="space-y-4">
+                  <div className="text-3xl">🔥</div>
+                  <h3 className="text-xl font-bold text-yellow-500">Mine to Heat Your Home</h3>
+                  <p className="text-gray-300">
+                    Host up to 3 M56/66 Whatsminers or 2 S21XP IMM Antminers while pumping out 20 kW of heat - enough to warm your house or even your pool.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="text-3xl">💸</div>
+                  <h3 className="text-xl font-bold text-yellow-500">Earn Cash, Ditch the Bill</h3>
+                  <p className="text-gray-300">
+                    Turn your heating system into an income stream. Say goodbye to sky-high heating bills and hello to passive income.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="text-3xl">🎨</div>
+                  <h3 className="text-xl font-bold text-yellow-500">Stylish as Hell</h3>
+                  <p className="text-gray-300">
+                    Available in 7 unique styles, Bitpod 2 isn&apos;t just a mining system - it&apos;s a statement piece. Who says tech can&apos;t look good?
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-8">
+                <a 
+                  href="http://cryptocooling.eu/#ordernow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-4 bg-yellow-500 text-black font-bold text-xl rounded-none hover:bg-yellow-400 transition-colors duration-200 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+                >
+                  Order Your Bitpod 2 Today
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
