@@ -92,7 +92,7 @@ export default function MaraPage() {
             {/* Featured Visual */}
             <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <Image
-                src="/mara-mining.jpg"
+                src="/mara_.jpg"
                 alt="MARA Bitcoin Mining Operations"
                 fill
                 priority
