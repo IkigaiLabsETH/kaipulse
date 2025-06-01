@@ -259,12 +259,12 @@ export default function BitaxePage() {
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Premium Home Miners
             </h3>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {/* NerdQaxe+ Hydro */}
               <div className="space-y-4">
                 <h4 className="text-xl font-bold text-yellow-500">NerdQaxe+ Hydro</h4>
                 <div className="space-y-2">
-                  <p className="text-lg font-semibold">High-Performance Hydro-Cooled Miner</p>
+                  <p className="text-lg font-semibold">Hydro-Cooled Miner</p>
                   <ul className="list-disc list-inside space-y-2 text-gray-300">
                     <li>2.5 TH/s hashrate</li>
                     <li>60W power consumption</li>
@@ -307,19 +307,46 @@ export default function BitaxePage() {
                   </a>
                 </div>
               </div>
+
+              {/* NerdQaxe++ */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">NerdQaxe++</h4>
+                <div className="space-y-2">
+                  <p className="text-lg font-semibold">Ultimate Performance Miner</p>
+                  <ul className="list-disc list-inside space-y-2 text-gray-300">
+                    <li>4.8 TH/s hashrate</li>
+                    <li>76W power consumption</li>
+                    <li>~15.8 J/TH efficiency</li>
+                    <li>LILYGO T-Display S3</li>
+                    <li>Advanced cooling system</li>
+                    <li>ESP32-S3 Wi-Fi Module</li>
+                  </ul>
+                  <a 
+                    href="https://www.solosatoshi.com/product/nerdqaxe-plus-plus/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block mt-4 px-6 py-3 bg-yellow-500 text-black font-bold hover:bg-yellow-400 transition-colors"
+                  >
+                    View NerdQaxe++
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8 p-6 bg-black/30 rounded-none border border-yellow-500/20">
               <h4 className="text-xl font-bold text-yellow-500 mb-4">Which One Should You Choose?</h4>
               <div className="space-y-4 text-gray-300">
                 <p className="text-lg">
-                  The NerdQaxe+ Hydro is perfect for miners seeking maximum performance with advanced cooling technology. Its hydro-cooled system and higher hashrate make it ideal for dedicated mining setups.
+                  The NerdQaxe++ is our flagship miner, offering the highest performance at 4.8 TH/s with whisper-quiet operation. Perfect for serious miners who want maximum hashrate while maintaining home-friendly noise levels.
                 </p>
                 <p className="text-lg">
-                  The Bitaxe Touch offers a more user-friendly experience with its touchscreen interface and lower power consumption. It&apos;s perfect for beginners or those who want to display mining stats while serving as a functional desk accessory.
+                  The NerdQaxe+ Hydro combines advanced hydro-cooling with solid performance (2.5 TH/s), making it ideal for those who want premium cooling technology and RGB customization.
                 </p>
                 <p className="text-lg">
-                  Both miners are part of the open-source movement, allowing you to contribute to Bitcoin&apos;s decentralization while mining from home.
+                  The Bitaxe Touch offers the most user-friendly experience with its touchscreen interface and lowest power consumption. It&apos;s perfect for beginners or those who want to display mining stats while serving as a functional desk accessory.
+                </p>
+                <p className="text-lg">
+                  All three miners are part of the open-source movement, allowing you to contribute to Bitcoin&apos;s decentralization while mining from home.
                 </p>
               </div>
             </div>
