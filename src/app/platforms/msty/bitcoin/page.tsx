@@ -219,7 +219,7 @@ export default function BitcoinPage() {
           transition={{ duration: 0.5 }}
           className="text-center space-y-8"
         >
-          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Gold • Store of Value • Global Reserve Asset</p>
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Monetary Rebellion • Digital Gold • Freedom Money</p>
           <h1 className="text-center">
             <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
               Bitcoin
@@ -227,7 +227,7 @@ export default function BitcoinPage() {
           </h1>
           <div className="flex items-center justify-center mt-6">
             <div className="h-px w-24 bg-yellow-500/30"></div>
-            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Future of Money</p>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Final Protest Vote</p>
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </motion.div>
@@ -284,17 +284,35 @@ export default function BitcoinPage() {
         >
           <Card>
             <div className="p-8">
-              <h2 className="text-2xl font-bold text-yellow-500">Bitcoin, But as a Museum</h2>
+              <h2 className="text-2xl font-bold text-yellow-500">The Bitcoin Manifesto</h2>
               <div className="mt-8 space-y-8">
                 <div className="prose prose-invert max-w-none">
                   <p className="text-lg text-white/80 leading-relaxed">
-                    Imagine if, instead of trying to understand Bitcoin through charts, jargon, and maximalist memes, you stepped into a museum.
+                    The American middle class is dead. Buried. Cremated. Ashes sold to Fidelity for collateral.
                   </p>
                   <p className="text-lg text-white/80 leading-relaxed mt-4">
-                    No blinking tickers. No candlestick patterns. No talk of &quot;halvings&quot; or &quot;hash rates.&quot;
+                    The boomers bought homes for 2x income. The zoomers buy iced coffee for 2x minimum wage.
                   </p>
                   <p className="text-lg text-white/80 leading-relaxed mt-4">
-                    Just a quiet room. A timeline on the wall. A flicker of 2008 — a shadowy whitepaper released in the aftermath of a global financial collapse. A digital artifact from someone called Satoshi Nakamoto. Unbranded. Unshilled. Just… there.
+                    You work 60 hours a week, pay half to taxes, half to debt, and beg for 3% raises while inflation eats 8%.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    The food is fake. The money is fake. The jobs are fake. The politics are fake. The news is fake. The culture is fake. The friends are fake. The optimism is fake.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    But the CRISIS is REAL.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    You are renting your existence from the Federal Reserve. The system is functioning exactly as designed - to extract every ounce of your productive energy and convert it into corporate share buybacks and banker bonuses.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    Bitcoin is your life raft. The monetary rebellion against the American debt cartel. The final protest vote against a parasitic system that turned your labor into clown coupons.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    You will not &quot;buy Bitcoin someday.&quot; You will buy Bitcoin or you will own nothing.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    Fiat dies. Bitcoin lives. Choose.
                   </p>
                 </div>
 
