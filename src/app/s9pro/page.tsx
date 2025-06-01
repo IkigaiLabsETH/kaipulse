@@ -124,7 +124,7 @@ export default function S9ProPage() {
             {/* Featured Visual */}
             <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <Image
-                src="/s9pro.jpeg"
+                src="/PRO9.jpg"
                 alt="S9 Pro Immersion Cooling System"
                 fill
                 priority
@@ -321,6 +321,169 @@ export default function S9ProPage() {
               <p className="text-lg">
                 You&apos;re not just mining Bitcoin — you&apos;re reclaiming thermal sovereignty, aligning with renewable independence, and hacking the grid for joy, warmth, and autonomy.
               </p>
+            </div>
+          </div>
+
+          {/* Hardware & Investment Guide Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Hardware & Investment Guide
+            </h3>
+            <div className="space-y-8 text-gray-300">
+              {/* DCX Bitpod 2 Section */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🧊 DCX Bitpod 2 – Home Immersion Mining System</h4>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Price: $1,975</li>
+                      <li>Capacity: Up to 3 MicroBT M56/66 Whatsminers or 2 Bitmain S21XP IMM Antminers</li>
+                      <li>Heat Transfer: Up to 20 kW</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Key Features:</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Built-in pool heat exchanger</li>
+                      <li>Industrial-grade pump and hydraulics</li>
+                      <li>Monitoring sensors with high-resolution LCD</li>
+                      <li>Remote temperature and status control</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Upgrade Packs Section */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🔹 Upgrade Packs</h4>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Home Heating Pack ($383)</h5>
+                    <p>Connects directly to boiler or floor heating system for steady hot water delivery.</p>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Pool Heating Pack ($370)</h5>
+                    <p>Direct connection to swimming pool or hot tub water system.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Dielectric Fluids Section */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">💧 ThermaSafe R™ – Dielectric Fluid</h4>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Price: $263 (22L container)</li>
+                      <li>Fully synthetic and biodegradable</li>
+                      <li>High dielectric strength ({'>'}60 kV)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Technical Specs:</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Low viscosity (5 cSt)</li>
+                      <li>High flash point (160°C)</li>
+                      <li>Non-toxic and odorless</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cooling System Section */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🌬️ ICP15 Adaptive Cooling System</h4>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Price: $1,773</li>
+                      <li>15.87 kW at 35°C ambient</li>
+                      <li>21 kW at 25°C ambient</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Features:</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Integrated pump and adaptive fan control</li>
+                      <li>Energy-efficient operation</li>
+                      <li>Compact design for home use</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Investment Summary */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">📊 Total Investment Breakdown</h4>
+                <div className="bg-black/30 p-6 rounded-lg">
+                  <ul className="space-y-2">
+                    <li className="flex justify-between">
+                      <span>DCX Bitpod 2</span>
+                      <span>$1,975</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>Home Heating Upgrade Pack</span>
+                      <span>$383</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>Pool Heating Upgrade Pack</span>
+                      <span>$370</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>ThermaSafe R™ (22L)</span>
+                      <span>$263</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>ICP15 Cooling System</span>
+                      <span>$1,773</span>
+                    </li>
+                    <li className="flex justify-between border-t border-yellow-500/30 pt-2 mt-2">
+                      <span className="font-bold">Total Estimated Cost</span>
+                      <span className="font-bold">$4,764</span>
+                    </li>
+                  </ul>
+                  <p className="text-sm text-gray-400 mt-4">*Excludes mining hardware and installation costs</p>
+                </div>
+              </div>
+
+              {/* Smart Home Integration */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🏡 Smart Home Integration</h4>
+                <p className="text-lg">
+                  The DCX Bitpod 2 system features comprehensive smart home integration capabilities, allowing for remote monitoring and control. Connect to your home automation platform to optimize heating schedules, monitor energy consumption, and integrate with renewable energy sources like solar panels.
+                </p>
+              </div>
+
+              {/* Installation & Maintenance */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🔧 Installation & Maintenance</h4>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Installation</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Straightforward assembly process</li>
+                      <li>Professional installation recommended</li>
+                      <li>Easy integration with existing systems</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-yellow-500/90 mb-2">Maintenance</h5>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>Regular fluid level checks</li>
+                      <li>System integrity monitoring</li>
+                      <li>Minimal maintenance with ThermaSafe R™</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Climate Suitability */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🌞 Southern European Climate Suitability</h4>
+                <p className="text-lg">
+                  Perfectly suited for southern France and Portugal, these systems excel in moderate to warm climates. Their efficient heat transfer capabilities and solar compatibility make them ideal for sun-rich regions, maximizing both mining efficiency and thermal utility.
+                </p>
+              </div>
             </div>
           </div>
 
