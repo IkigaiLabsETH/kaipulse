@@ -481,6 +481,18 @@ export default function AltcoinsPage() {
           </div>
 
           {/* Market Analysis Section */}
+          <div className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="relative w-full aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/Giuzcd4oxIk"
+                title="The $1M Bitcoin Thesis"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Outperform BTC with a Small-Stack Rotation — 2025-Q1 2026 Playbook
