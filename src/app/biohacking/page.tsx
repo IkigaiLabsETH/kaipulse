@@ -182,6 +182,34 @@ export default function BiohackingPage() {
           </p>
         </motion.div>
 
+        {/* Video Feature Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="relative mx-auto max-w-4xl mb-16 overflow-hidden"
+        >
+          <div className="relative w-full aspect-video border-2 border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.3)]">
+            <iframe
+              src="https://www.youtube.com/embed/avPEKrRCvZg"
+              title="Biohacking Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
+          <div className="absolute bottom-8 left-8">
+            <div className="bg-black/90 p-6">
+              <h2 className="text-4xl font-bold text-yellow-500">
+                Biohacking Masterclass
+              </h2>
+              <p className="text-white/90 text-lg">
+                Learn Advanced Optimization Techniques
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Feature Image Section - Tesla Style */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
