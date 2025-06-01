@@ -328,6 +328,52 @@ export default function AltcoinsPage() {
                   <p className="text-lg leading-relaxed">
                     The current market sentiment reflects growing skepticism about a broad altcoin season like those in 2017 and 2021. While previous cycles saw Bitcoin strength leading to altcoin rallies as crypto-native buyers rotated profits, this cycle differs due to institutional Bitcoin accumulation potentially limiting capital flow to altcoins. The 2021-style altcoin season may not repeat due to unique market conditions and increased altcoin dilution from new launches. However, select altcoins could still shine significantly, with their performance driven by individual merits rather than Bitcoin&apos;s influence. Historical trends show altcoins typically rally during bull cycles, but the current market is still testing this pattern with Bitcoin dominance holding strong.
                   </p>
+
+                  <div className="mt-8">
+                    <h5 className="text-xl font-bold text-yellow-500 mb-4">The $1M Bitcoin Thesis: Supply Mechanics & Macro Reality</h5>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h6 className="text-lg font-bold text-yellow-500/90 mb-2">Supply Reality Check</h6>
+                        <ul className="space-y-2 list-disc list-inside">
+                          <li>19.87M BTC exist in total</li>
+                          <li>3-4M BTC lost forever (death, accidents, lost keys)</li>
+                          <li>~16M BTC theoretically available</li>
+                          <li>70%+ hasn&apos;t moved in over a year</li>
+                          <li>ETFs, corporates, sovereigns accumulating aggressively</li>
+                          <li>Real float: Potentially as low as 2M BTC</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h6 className="text-lg font-bold text-yellow-500/90 mb-2">Global Macro Powder Keg</h6>
+                        <ul className="space-y-2 list-disc list-inside">
+                          <li>US printing $1T every 100 days</li>
+                          <li>BOJ trading bonds like poker chips</li>
+                          <li>China&apos;s property market crisis</li>
+                          <li>Europe&apos;s political instability</li>
+                          <li>$500T global capital seeking safe haven</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h6 className="text-lg font-bold text-yellow-500/90 mb-2">The Math of Panic</h6>
+                        <p className="mb-4">
+                          You don&apos;t need mass adoption. You need 2-3% of global capital to panic. That&apos;s enough to send $10T trying to squeeze into 1-2M available coins. That&apos;s $5M per coin math. Conservatively.
+                        </p>
+                        <p>
+                          Even with sloppy execution, even if half the capital gets distracted by other assets - you still overshoot $1M BTC on basic supply mechanics alone.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h6 className="text-lg font-bold text-yellow-500/90 mb-2">The Final Collateral Layer</h6>
+                        <p>
+                          Bitcoin is becoming the monetary triage - the blood transfusion for a dying fiat system clogged with IOUs, zombie debt, and fraudulent accounting. When the bid hits, there will be no ask. Because the people who own it - aren&apos;t selling it. They&apos;ll be the only ones with actual capital left.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
