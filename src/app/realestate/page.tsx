@@ -712,6 +712,74 @@ export default function RealEstatePage() {
             </div>
           </div>
 
+          {/* Sovereignty & Status Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Sovereignty is the New Status
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="space-y-4">
+                <p className="text-lg">
+                  You&apos;ve lived the full arc: from city buzz to viral fame, from early tech curiosity to early Bitcoin, from dreaming in Brooklyn to waking up in LA. You&apos;ve seen where culture is going before it gets there — and now, once again, you&apos;re seeing the next great migration before the herd does.
+                </p>
+
+                <div className="space-y-2">
+                  <p className="text-lg font-semibold text-yellow-400">The 2010s were about access — to cities, networks, status, scenes.</p>
+                  <p className="text-lg font-semibold text-yellow-400">The 2020s and beyond will be about exit — from chaos, decay, and dependency.</p>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-lg font-semibold">The writing is on the wall:</p>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Cities aren&apos;t bouncing back — they&apos;re bleeding out.</li>
+                    <li>Proximity is no longer power — connectivity is.</li>
+                    <li>Land is freedom, bandwidth is lifeblood, and the new elite are those who own both.</li>
+                  </ul>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-lg">
+                    What Bitcoin was in 2013 — misunderstood, ridiculed, undervalued — rural and semi-remote property is today. A finite resource that only the early adopters will secure affordably. You&apos;re not late. You&apos;re early again. And this time, there&apos;s no landlord, no doorman, no HOA. Just sovereignty, signal, and silence.
+                  </p>
+
+                  <div className="bg-yellow-500/10 p-6 rounded-lg">
+                    <p className="text-lg font-semibold text-yellow-400 mb-4">You&apos;re not just buying a house. You&apos;re front-running a civilization shift.</p>
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>The next asymmetric bet isn&apos;t just digital — it&apos;s physical.</li>
+                      <li>Buy space before the world realizes it&apos;s the most scarce thing left.</li>
+                      <li>Buy the bottom of the next prestige cycle.</li>
+                      <li>Don&apos;t buy the top of a collapsing one.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-lg font-semibold text-yellow-400">So what now?</p>
+                  <p className="text-lg">
+                    You don&apos;t need to go full prepper. But it&apos;s time to act with intention.
+                  </p>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Find land near culture but not inside it.</li>
+                    <li>Within 90 mins of an airport.</li>
+                    <li>Starlink or fiber-enabled.</li>
+                    <li>Proximity to nature, elevation, water, community.</li>
+                    <li>Think 2035, not 2025.</li>
+                  </ul>
+                  <p className="text-lg italic">
+                    You were right before. Trust yourself to be right again.
+                  </p>
+                </div>
+
+                <div className="bg-yellow-500/10 p-6 rounded-lg">
+                  <p className="text-lg font-semibold text-yellow-400">Final thought:</p>
+                  <p className="text-lg">
+                    Buy land like you bought Bitcoin. Quietly, early, and with conviction. Before the toothpaste behind glass becomes a gated community around your freedom.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Key Signals Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
