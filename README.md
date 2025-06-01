@@ -122,14 +122,95 @@ Our platform represents a comprehensive ecosystem for Bitcoin-native living, bui
 ```
 src/
 ├── app/                # Next.js 14 app directory
-│   ├── smarthome/     # Smart home features
-│   ├── content/       # Content production
-│   ├── treasury/      # Bitcoin treasury management
-│   ├── operations/    # Operational tools
-│   ├── api/           # API routes
-│   ├── data/          # Data visualization
-│   ├── legal/         # Legal documentation
+│   ├── 1on1/          # One-on-one sessions
+│   ├── 21/            # 21-related content
+│   ├── 8020/          # 80/20 principle content
 │   ├── about/         # About pages
+│   ├── abra/          # Abra integration
+│   ├── aave/          # Aave protocol integration
+│   ├── ai/            # AI-related features
+│   ├── altbg/         # Alternative background
+│   ├── altcoins/      # Altcoin information
+│   ├── api/           # API routes
+│   ├── art/           # Art-related content
+│   ├── bera/          # Bera protocol
+│   ├── bio/           # Biography pages
+│   ├── biohacking/    # Biohacking content
+│   ├── biarritz/      # Biarritz location
+│   ├── bitaxe/        # Bitaxe integration
+│   ├── bitbonds/      # Bitbonds platform
+│   ├── btcab/         # Bitcoin ATM
+│   ├── calculator/    # Calculator tools
+│   ├── cirrus/        # Cirrus features
+│   ├── club/          # Club features
+│   ├── collections/   # NFT collections
+│   ├── crypto/        # Crypto features
+│   ├── cursor/        # Cursor integration
+│   ├── data/          # Data visualization
+│   ├── defi/          # DeFi features
+│   ├── dgx/           # DGX integration
+│   ├── docu/          # Documentation
+│   ├── doge/          # Dogecoin features
+│   ├── dubai/         # Dubai location
+│   ├── ecoflow/       # Ecoflow integration
+│   ├── eth/           # Ethereum features
+│   ├── etherfi/       # EtherFi integration
+│   ├── fairmint/      # Fairmint integration
+│   ├── fire/          # Fire features
+│   ├── france/        # France location
+│   ├── gallery/       # Gallery features
+│   ├── gdculture/     # GD Culture
+│   ├── grind/         # Grind features
+│   ├── holyheld/      # Holyheld integration
+│   ├── hx50/          # HX50 features
+│   ├── hype/          # Hype features
+│   ├── hume/          # Hume integration
+│   ├── italy/         # Italy location
+│   ├── ledger/        # Ledger integration
+│   ├── legal/         # Legal documentation
+│   ├── liquidity/     # Liquidity features
+│   ├── ln/            # Lightning Network
+│   ├── ltl/           # LTL features
+│   ├── maldives/      # Maldives location
+│   ├── mara/          # Mara features
+│   ├── metaplanet/    # Metaplanet features
+│   ├── mint/          # Mint features
+│   ├── monaco/        # Monaco location
+│   ├── nakamoto/      # Nakamoto features
+│   ├── naval/         # Naval features
+│   ├── news/          # News features
+│   ├── node/          # Node features
+│   ├── notebook/      # Notebook features
+│   ├── olympus/       # Olympus features
+│   ├── otonomos/      # Otonomos integration
+│   ├── pfp/           # Profile picture features
+│   ├── platforms/     # Platform features
+│   ├── portugal/      # Portugal location
+│   ├── realestate/    # Real estate features
+│   ├── rlt/           # RLT features
+│   ├── s9pro/         # S9 Pro features
+│   ├── sharplink/     # Sharplink features
+│   ├── smarthome/     # Smart home features
+│   ├── sol/           # Solana features
+│   ├── sonar/         # Sonar features
+│   ├── sparrow/       # Sparrow features
+│   ├── stacks/        # Stacks features
+│   ├── strike/        # Strike integration
+│   ├── sui/           # Sui features
+│   ├── swiss/         # Swiss location
+│   ├── tbs/           # TBS features
+│   ├── tax/           # Tax features
+│   ├── tesla/         # Tesla features
+│   ├── test-nfts/     # NFT testing
+│   ├── time/          # Time features
+│   ├── treasury/      # Bitcoin treasury management
+│   ├── twentyone/     # Twenty-one features
+│   ├── voice/         # Voice features
+│   ├── visuals/       # Visual features
+│   ├── weather/       # Weather features
+│   ├── whitepaper/    # Whitepaper content
+│   ├── wine/          # Wine features
+│   ├── zero/          # Zero features
 │   └── ...            # Additional feature routes
 ├── components/        # Modular React components
 │   ├── strike/        # Strike integration
