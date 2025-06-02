@@ -287,6 +287,23 @@ export default function BerachainHonestTake() {
         </h2>
         <div className="space-y-20">
           <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
+            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">TVL vs. Real Usage</div>
+            <div className="font-satoshi text-white/80 text-lg mb-4">
+              While TVL remains near $1B, stablecoin reserves have dropped another 12% to $176M, and KodiakFi (the main DEX) has fallen to $338M with a 75% monthly decline. This reveals a concerning pattern of minimal actual usage despite high TVL numbers.
+            </div>
+            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Volume-to-TVL Ratios</div>
+            <div className="font-satoshi text-white/90 text-lg">
+              The real issue becomes clear when comparing trading volume to TVL ratios:
+              <ul className="list-disc list-inside mt-2 space-y-2">
+                <li>Orca: $3.5B weekly volume on $321M TVL (Solana)</li>
+                <li>Quickswap: $233M volume on similar TVL</li>
+                <li>Shadow Swap: $341M volume from just $53M TVL</li>
+                <li>Berachain DEXs (BurrBear & BEX): Minimal trading activity relative to locked value</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
             <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">The Airdrop Hedging Effect</div>
             <div className="font-satoshi text-white/80 text-lg mb-4">
               When sophisticated actors receive large airdrops they can&apos;t touch for N days, they often hedge their positions through shorting, especially when the project launches directly onto CEXs with perpetual futures. This creates significant sell pressure as participants try to guarantee their airdrop value at predetermined price points.
@@ -304,18 +321,7 @@ export default function BerachainHonestTake() {
             </div>
             <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">The Reality Check</div>
             <div className="font-satoshi text-white/90 text-lg">
-              Transaction rates have dropped to about 4% of launch levels, with address creation slowing. The project must now prove its value beyond community engagement and marketing.
-            </div>
-          </div>
-
-          <div className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-            <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">The Path Forward</div>
-            <div className="font-satoshi text-white/80 text-lg mb-4">
-              Despite these challenges, Berachain&apos;s 10-figure FDV and presence on major exchanges ensures its place in the conversation. The project has sufficient resources to sustain development and maintain momentum, even if initial hype fades.
-            </div>
-            <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">The Competitive Landscape</div>
-            <div className="font-satoshi text-white/90 text-lg">
-              With Abstract&apos;s failure, Monad&apos;s uncertain future, and megaETH&apos;s questionable release, the timing of these competing L1 launches creates an interesting market dynamic. Berachain&apos;s focus on liquidity provision rather than trading may limit its appeal to the degen community, but its substantial war chest provides runway for long-term development.
+              When projects claim &quot;this is innovation, you don&apos;t understand&quot; but the market doesn&apos;t engage, the problem usually lies with the design, not user comprehension. Markets vote with their wallets, and Berachain&apos;s volume-to-TVL ratio tells a clear story about real adoption versus manufactured metrics.
             </div>
           </div>
         </div>
