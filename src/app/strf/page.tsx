@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function STRFPage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -117,6 +118,21 @@ export default function STRFPage() {
               <div className="h-px w-24 bg-yellow-500/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">MicroStrategy&apos;s 10% Series A Perpetual Strife Preferred Stock</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
+            
+            {/* Official Link */}
+            <div className="mt-4">
+              <Link 
+                href="https://www.strategy.com/strf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 text-base font-medium text-black bg-yellow-500 hover:bg-yellow-400 transition-colors duration-200 rounded-none border-2 border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,1)] hover:shadow-[2px_2px_0px_0px_rgba(234,179,8,1)] hover:translate-x-[1px] hover:translate-y-[1px]"
+              >
+                View Official STRF Page
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </Link>
             </div>
             
             {/* Featured Visual */}
