@@ -459,6 +459,25 @@ export default function MaxPainPage() {
             </div>
           </div>
 
+          {/* Cycles Image Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              📈 Bitcoin Market Cycles Visualization
+            </h3>
+            <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg">
+              <img
+                src="/cycles.jpeg"
+                alt="Bitcoin market cycles visualization showing historical price patterns and future projections"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p className="mt-4 text-sm text-gray-400 text-center">
+              Historical Bitcoin cycles and projected future patterns based on halving events and market adoption
+            </p>
+          </div>
+
           {/* FAQ Section */}
           <div className="space-y-4">
             {faqs.map((faq, index) => (
