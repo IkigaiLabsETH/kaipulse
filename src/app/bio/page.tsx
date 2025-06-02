@@ -363,6 +363,70 @@ export default function BioPage() {
                   What we saw in &apos;99 wasn&apos;t a missed opportunity. It was a beacon — a glimpse of the decentralized, creator-first world we now call Web3. Today, LiveTheLife.TV returns not as a relic of what could&apos;ve been — but as a renaissance of what always should&apos;ve been.
                 </p>
 
+                <p>
+                  Apple took notice. They featured us on their homepage as pioneers of webTV. But being early is a curse if the world isn&apos;t ready. Our burn rate was brutal. And our vision — to offer the product for free, only monetizing after mass adoption — was an alien concept in Europe, where risk capital feared anything that didn&apos;t print revenue from day one.
+                </p>
+
+                <p>
+                  When our billionaire backer lost a national election, the funding dried up. The dream flickered out.
+                </p>
+
+                <p>
+                  But we weren&apos;t done.
+                </p>
+
+                <p>
+                  We pivoted. New thesis: people would one day open their homes to total strangers just to cover the mortgage. A radical idea back then. We flew to Palo Alto, pitched it to top-tier VCs. They looked at us like we&apos;d lost our minds.
+                </p>
+
+                <p>
+                  Years later, they funded Airbnb.
+                </p>
+
+                <p>
+                  Call it bad timing. Call it visionary tragedy. We call it pattern recognition.
+                </p>
+
+                <p>
+                  We&apos;ve been early to a lot of things. But Bitcoin wasn&apos;t one of them.
+                </p>
+
+                <p>
+                  We got it in 2013. The idea was pure signal: incorruptible money, math over trust, no second best. But by the time we figured out how to buy it, the price had jumped from $10 to $100. It felt expensive. We bought anyway.
+                </p>
+
+                <p>
+                  Then life happened — an insurance bill hit, and we sold at $200. Watching it crash from $1,000 made it sting less. But when it hit $20K in 2017?
+                </p>
+
+                <p>
+                  That was MAX PAIN.
+                </p>
+
+                <p>
+                  We got our second chance when it collapsed to $3K. That&apos;s when everything clicked. This wasn&apos;t just a trade — this was a way of life.
+                </p>
+
+                <p>
+                  Bitcoin became the lens through which we saw the world:<br />
+                  A tool for sovereignty.<br />
+                  A protest against fiat decay.<br />
+                  A lifestyle.<br />
+                  A mindset.<br />
+                  A protocol for freedom.
+                </p>
+
+                <p>
+                  Since then, everything we build aligns with that truth.<br />
+                  No VCs. No permission. No exit plans. Just conviction.
+                </p>
+
+                <p>
+                  LiveTheLife.TV isn&apos;t chasing trends.<br />
+                  We&apos;re aligned with time.<br />
+                  And time favors Bitcoin.
+                </p>
+
                 <p className="text-2xl font-bold text-yellow-500 mt-12">
                   We don&apos;t stream the future.
                 </p>
