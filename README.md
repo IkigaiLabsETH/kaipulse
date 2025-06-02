@@ -173,6 +173,7 @@ src/
 │   ├── ltl/           # LTL features
 │   ├── maldives/      # Maldives location
 │   ├── mara/          # Mara features
+│   ├── maxpain/       # Maxpain features
 │   ├── metaplanet/    # Metaplanet features
 │   ├── mint/          # Mint features
 │   ├── monaco/        # Monaco location
@@ -193,8 +194,10 @@ src/
 │   ├── smarthome/     # Smart home features
 │   ├── sol/           # Solana features
 │   ├── sonar/         # Sonar features
+│   ├── spain/         # Spain location
 │   ├── sparrow/       # Sparrow features
 │   ├── stacks/        # Stacks features
+│   ├── strf/          # STRF features
 │   ├── strike/        # Strike integration
 │   ├── sui/           # Sui features
 │   ├── swiss/         # Swiss location
@@ -205,6 +208,7 @@ src/
 │   ├── time/          # Time features
 │   ├── treasury/      # Bitcoin treasury management
 │   ├── twentyone/     # Twenty-one features
+│   ├── vibecode/      # Vibecode features
 │   ├── voice/         # Voice features
 │   ├── visuals/       # Visual features
 │   ├── weather/       # Weather features
