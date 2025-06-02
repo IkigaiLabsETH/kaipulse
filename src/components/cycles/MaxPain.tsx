@@ -103,10 +103,10 @@ export default function MaxPain() {
     1000000, // 2040 (top)
   ];
 
-  // HODL strategy (36% CAGR from current price)
-  const hodlStrategy = futureLabels.map((_, index) => {
-    return currentPrice * Math.pow(1.36, index);
-  });
+  // HODL strategies (8.1%, 14.5%, 36% CAGR from current price)
+  const hodlStrategy81 = futureLabels.map((_, index) => currentPrice * Math.pow(1.081, index));
+  const hodlStrategy145 = futureLabels.map((_, index) => currentPrice * Math.pow(1.145, index));
+  const hodlStrategy36 = futureLabels.map((_, index) => currentPrice * Math.pow(1.36, index));
 
   const data = {
     labels: futureLabels,
@@ -135,15 +135,35 @@ export default function MaxPain() {
         pointRadius: 4,
         tension: 0.3,
       },
-      ...(showHodl ? [{
-        label: 'HODL (36% annualized)',
-        data: hodlStrategy,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        pointRadius: 4,
-        tension: 0.3,
-        borderDash: [5, 5],
-      }] : []),
+      ...(showHodl ? [
+        {
+          label: 'HODL (8.1% annualized)',
+          data: hodlStrategy81,
+          borderColor: 'rgba(0, 255, 255, 0.8)',
+          backgroundColor: 'rgba(0, 255, 255, 0.1)',
+          pointRadius: 0,
+          tension: 0.3,
+          borderDash: [2, 4],
+        },
+        {
+          label: 'HODL (14.5% annualized)',
+          data: hodlStrategy145,
+          borderColor: 'rgba(255, 0, 255, 0.8)',
+          backgroundColor: 'rgba(255, 0, 255, 0.1)',
+          pointRadius: 0,
+          tension: 0.3,
+          borderDash: [6, 6],
+        },
+        {
+          label: 'HODL (36% annualized)',
+          data: hodlStrategy36,
+          borderColor: 'rgba(255, 255, 255, 0.8)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          pointRadius: 0,
+          tension: 0.3,
+          borderDash: [5, 5],
+        },
+      ] : []),
     ],
   };
 
@@ -231,7 +251,11 @@ export default function MaxPain() {
           <Line options={options} data={data} />
         </div>
         <p className="mt-2 text-xs text-gray-400 text-center">
-          <span className="font-semibold text-white">HODL (36% annualized):</span> This line shows the value if you simply held BTC since 2014, compounding at 36% per year.
+          <span className="font-semibold text-cyan-300">HODL (8.1% annualized):</span> Compounding at 8.1% per year (20-Year S&amp;P 500 CAGR).
+          <br />
+          <span className="font-semibold text-pink-400">HODL (14.5% annualized):</span> Compounding at 14.5% per year (Current BTC CAGR).
+          <br />
+          <span className="font-semibold text-white">HODL (36% annualized):</span> Compounding at 36% per year (Historical BTC Growth).
         </p>
       </div>
     </div>
