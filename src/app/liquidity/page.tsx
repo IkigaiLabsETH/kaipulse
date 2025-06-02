@@ -813,6 +813,16 @@ export default function LiquidityPage() {
                         </p>
                       </div>
 
+                      <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                        <h5 className="text-yellow-400 font-semibold mb-2">The $20 Miracle</h5>
+                        <p>
+                          On June 2, 2025, Wynn faced his most dramatic moment yet. His Bitcoin position was just $20 away from liquidation—a razor-thin margin in the high-stakes world of leveraged trading. The market dipped to $106,614, dangerously close to his $106,594 liquidation level. In a now-famous X post, he credited his survival to &quot;the people&quot; and &quot;the good guys,&quot; suggesting his community rallied to support him.
+                        </p>
+                        <p className="mt-2">
+                          This wasn&apos;t Wynn&apos;s first brush with liquidation. In May 2025, he had already experienced a $60 million loss over seven days, cycling through positions in PEPE, ETH, SUI, TRUMP, and even FARTCOIN. Yet, his response to these setbacks remained characteristically defiant: &quot;I&apos;ll run it back, I always do. And I&apos;ll enjoy doing it.&quot;
+                        </p>
+                      </div>
+
                       <p>
                         Despite losing his leveraged position in a market crash triggered by a fake security breach announcement, Wynn&apos;s story didn&apos;t end there. He still held 100 million Moonpig tokens and used his influence to expose the whale&apos;s wallet, rallying the community to &quot;punish the paper hands.&quot;
                       </p>
