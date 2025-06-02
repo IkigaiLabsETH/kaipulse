@@ -286,6 +286,103 @@ export default function BioPage() {
         </div>
       </div>
 
+      {/* Brand DNA Section */}
+      <div className="py-24 relative overflow-hidden">
+        {/* Artistic background elements */}
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-yellow-950/5 to-black"></div>
+        
+        {/* Bitcoin pattern background */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ 
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35.6c-3 0-5.6-2.6-5.6-5.6s2.6-5.6 5.6-5.6 5.6 2.6 5.6 5.6-2.5 5.6-5.6 5.6zm-.7-9.8v1.5c-1 0-1.7.3-1.9.6-.3.4-.1 1 .3 1.9l1.3-.5c-.2-.4-.2-.8-.1-.9 0 0 .2-.1.5-.1v2.1l-.4.1c-.7.2-1.3.5-1.6.9-.3.4-.4.9-.3 1.4.1.5.4.9.8 1.1.4.3.9.4 1.5.4v.9h.9v-.9c1.2-.1 2-1 2.4-1.9l-1.4-.6c-.2.5-.5.8-.9.9v-1.9c.7-.2 1.2-.4 1.6-.7.3-.2.6-.5.7-.9.1-.3.1-.7 0-1.1-.1-.4-.4-.7-.7-.9-.3-.2-.8-.3-1.3-.4v-1.5h-.9zm0 6.5c-.4 0-.6-.3-.6-.5 0-.2.1-.3.2-.4.1-.1.2-.1.5-.2v1.1h-.1zm.9-3.1v-1c.2 0 .4.1.5.2.1.1.2.2.2.4 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2-.2-.1-.3 0-.4-.1z' fill='%23F7B500' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: "60px 60px"
+        }}></div>
+
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Premium gold border with enhanced glow gradient */}
+            <motion.div 
+              className="absolute -inset-0.5 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute inset-0.5 bg-black/95 backdrop-blur-sm rounded-sm"></div>
+            </motion.div>
+
+            <div className="relative z-10 p-12">
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold text-yellow-500 mb-12 tracking-tight font-satoshi"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                LiveTheLife.TV | Avant la Lettre
+              </motion.h2>
+
+              <motion.div 
+                className="space-y-8 text-lg text-white/90 leading-relaxed font-satoshi"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <p>
+                  In 1999, before broadband was standard and before &ldquo;streaming&rdquo; meant anything more than buffering frustration, we saw the future.
+                </p>
+
+                <p>
+                  We didn&apos;t just register a domain — we claimed a vision. LiveTheLife.TV wasn&apos;t just a URL, it was a manifesto: that the world would one day live in real time, together, through high-quality video. At a time when the internet groaned under the weight of pixelated RealPlayer clips, our tech delivered 10x the quality. No gimmicks. Just raw innovation.
+                </p>
+
+                <p>
+                  Backed by a billionaire with a vision to reshape media and politics, we weren&apos;t building a webTV platform — we were architecting the future of storytelling.
+                </p>
+
+                <p>
+                  But fate, as it often does, pivoted. Our backer lost a national election and with it, his appetite for changing the world through pixels and protocol. The project was shelved. The moment passed. Or so it seemed.
+                </p>
+
+                <p>
+                  Years later, on national TV, he admitted the truth: &ldquo;Not betting on that platform… that was the biggest mistake of my life.&rdquo; He called it YouTube avant la lettre. Because that&apos;s exactly what it was.
+                </p>
+
+                <p>
+                  And yet, we never stopped believing.
+                </p>
+
+                <p>
+                  What we saw in &apos;99 wasn&apos;t a missed opportunity. It was a beacon — a glimpse of the decentralized, creator-first world we now call Web3. Today, LiveTheLife.TV returns not as a relic of what could&apos;ve been — but as a renaissance of what always should&apos;ve been.
+                </p>
+
+                <p className="text-2xl font-bold text-yellow-500 mt-12">
+                  We don&apos;t stream the future.
+                </p>
+
+                <p className="text-2xl font-bold text-yellow-500">
+                  We summon it.
+                </p>
+
+                {/* Decorative separator */}
+                <div className="mt-16 flex items-center justify-center">
+                  <div className="h-px w-24 bg-yellow-500/30"></div>
+                  <div className="mx-4 text-yellow-500/50 text-2xl">⸻</div>
+                  <div className="h-px w-24 bg-yellow-500/30"></div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Bitcoin Museum Section */}
       <div className="py-24 relative overflow-hidden">
         {/* Artistic background elements */}
