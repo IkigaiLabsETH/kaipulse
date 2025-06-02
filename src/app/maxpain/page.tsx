@@ -16,6 +16,7 @@ import {
   LogarithmicScale,
 } from 'chart.js';
 import Image from 'next/image';
+import MaxPain from '@/components/cycles/MaxPain';
 
 ChartJS.register(
   CategoryScale,
@@ -477,6 +478,95 @@ export default function MaxPainPage() {
             <p className="mt-4 text-sm text-gray-400 text-center">
               Historical Bitcoin cycles and projected future patterns based on halving events and market adoption
             </p>
+          </div>
+
+          {/* DCA Strategy Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              🐻 DCA OUT / DCA BACK IN Strategy
+            </h3>
+            <div className="space-y-8 text-gray-300">
+              <p className="text-lg">
+                Here&apos;s a strategic action plan for when BTC crosses $145K, assuming we want to exit near the top and avoid a 60–70% drawdown (like prior cycles). This plan blends on-chain signals, macro indicators, and execution discipline.
+              </p>
+
+              <div className="border-l-4 border-yellow-500 pl-4">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">🎯 Goal</h4>
+                <p>Exit most or all of our BTC exposure between $145K–$220K, ahead of a potential reversion to $45K–$75K.</p>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">✅ Action Plan: BTC {'>'} $145K</h4>
+                
+                <div className="space-y-6">
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">1. Exit in Tranches</h5>
+                    <p className="mb-2">🧠 Avoid single-point exits. Use volatility to your advantage.</p>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>$145K–160K: Start trimming 10–20%</li>
+                      <li>$160K–180K: Sell 20–30%</li>
+                      <li>$180K–200K: Sell 30–40%</li>
+                      <li>&gt; $200K: Final 10–20% if blow-off top confirmed</li>
+                    </ul>
+                    <p className="mt-2 text-sm text-gray-400">Use TWAP/limit orders to scale out with less slippage.</p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">2. Watch On-Chain Top Signals</h5>
+                    <p className="mb-2">High conviction indicators of overheated markets:</p>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>📈 MVRV Z-Score &gt; 7</li>
+                      <li>🔥 Realized Profit Spikes</li>
+                      <li>📊 Exchange inflows surge</li>
+                      <li>🟧 Dormant BTC waking up (HODL waves thinning)</li>
+                      <li>💸 Funding rates spike (perpetual swaps)</li>
+                    </ul>
+                    <p className="mt-2 text-sm text-gray-400">Set alerts using Glassnode, CryptoQuant, or Arkham.</p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">3. Monitor Macro Catalysts</h5>
+                    <p className="mb-2">Fed pivot or liquidity reversal can be the kill switch.</p>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>🏦 Fed restarting hikes or QT = bad</li>
+                      <li>🛢️ Inflation re-accelerating = bearish</li>
+                      <li>💳 Credit markets tightening = risk-off</li>
+                      <li>📉 DXY + yields up = BTC down</li>
+                    </ul>
+                    <p className="mt-2 text-sm text-gray-400">Use macro dashboards (e.g. TradingView, FRED, ZeroHedge AI feeds).</p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">4. Rotate Capital Into Bear-Resistant Buckets</h5>
+                    <p className="mb-2">If conviction in long-term BTC remains, protect capital:</p>
+                    <div className="bg-yellow-500/10 p-4 rounded-lg">
+                      <h6 className="font-semibold text-yellow-400 mb-2">Options:</h6>
+                      <ul className="list-disc list-inside space-y-2 ml-4">
+                        <li>🧊 Stables with yield: USDC, T-bill backed on-chain</li>
+                        <li>🔄 Rotate into ETH/AI/infra plays with lower blow-off top risk</li>
+                        <li>🏡 Off-ramp into real-world assets: Property, BTC-funded businesses</li>
+                        <li>🧱 Cold storage BTC: Wait for next bottom to reaccumulate</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">5. Leave Dry Powder for Re-entry</h5>
+                    <p className="mb-2">Historically, best entries come 9–15 months post-top.</p>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>Target rebuy zone: $45K–$75K</li>
+                      <li>Set automated limit orders and notifications</li>
+                      <li>Use DCA for re-entry once macro + on-chain align</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* MaxPain Interactive Strategy Section */}
+          <div className="mt-12">
+            <MaxPain />
           </div>
 
           {/* FAQ Section */}
