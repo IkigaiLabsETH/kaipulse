@@ -889,7 +889,7 @@ export default function RealEstatePage() {
               <div className="bg-yellow-500/10 p-6 rounded-lg">
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Market Outlook</h4>
                 <p className="text-lg">
-                  Overall, the U.S. has shifted toward a mild buyers' market. Lawrence Yun of NAR notes inventory at 4½-months' supply – the highest in 5 years – giving buyers leverage. Nearly half of listings have lingered ≥60 days, evidence of stale inventory. As Redfin economists observe, the dollar value of homes for sale is at an all-time high (≈$700B) even while sales and new-listing growth have slowed. In short, prices are still inching up, but more slowly, while ample supply and higher rates keep buyers cautious.
+                  Overall, the U.S. has shifted toward a mild buyers market. Lawrence Yun of NAR notes inventory at 4½-months supply – the highest in 5 years – giving buyers leverage. Nearly half of listings have lingered ≥60 days, evidence of stale inventory. As Redfin economists observe, the dollar value of homes for sale is at an all-time high (≈$700B) even while sales and new-listing growth have slowed. In short, prices are still inching up, but more slowly, while ample supply and higher rates keep buyers cautious.
                 </p>
               </div>
             </div>
