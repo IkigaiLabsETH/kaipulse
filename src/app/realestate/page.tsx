@@ -812,6 +812,89 @@ export default function RealEstatePage() {
             </div>
           </div>
 
+          {/* U.S. Housing Market Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              U.S. Housing Market: Mid-2025 Trends and Outlook
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <p className="text-lg">
+                The national housing market in mid-2025 is characterized by rising supply and moderating price growth. Active inventory has surged to multi-year highs (≈1.97 million homes in April, +16–20% year-over-year), driven by a burst of new listings and reluctant sellers. Modest price gains (median sales price up ~1–2% YoY in spring 2025) and fading bidding wars signal weaker demand. Mortgage rates remain elevated (~6.7% for a 30-year fixed), dampening affordability. Home sales and pending contracts are down: existing-home sales ran at ~4.0M annualized in April, –2% YoY, while NAR reports contract signings fell 6.3% in April.
+              </p>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Market Indicators</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li><strong className="text-yellow-400">Inventory (Supply):</strong> Nearly 2.0 million homes were for sale (April 2025), up ≈16–30% YoY. This is a 5-year high, leaving buyers with more choices.</li>
+                  <li><strong className="text-yellow-400">Prices:</strong> National median prices are roughly flat-to-up, +1–2% YoY (e.g. ~$438K April median). Case-Shiller data through Feb &apos;25 similarly show only ~4% annual gains.</li>
+                  <li><strong className="text-yellow-400">Time on Market:</strong> Homes are selling slower. Redfin reports median Days on Market ~40 days (+5 days vs prior year); Realtor.com finds median 50 days (+4).</li>
+                  <li><strong className="text-yellow-400">Seller Behavior:</strong> More price concessions: ~20% of homes have seen price cuts (vs 15% a year ago). Sale-to-list ratios are barely ~99%. Sellers are &quot;facing reality&quot; – Redfin notes they&apos;re increasingly willing to negotiate.</li>
+                  <li><strong className="text-yellow-400">Buyer Behavior:</strong> Demand has cooled. Fewer multiple-offer situations (only ~30% of sales above list, vs ~33% a year ago) and rising contract withdrawals are reported. NAR highlights a 6.3% drop in pending sales in April. High costs and uncertainty (student debt, interest rates) are sidelining many first-time buyers.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Demographic and Macroeconomic Context</h4>
+                <p className="text-lg mb-4">
+                  Key demographic and macro factors underpin these trends. Homebuying age is climbing: the median buyer age has hit record highs – ~56 years old, up from 49 last year. First-time buyers are now typically ~38 years old (vs 35 before), and their share of buyers has collapsed to 24%, the lowest on record.
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Millennials (late 20s–40s) and Gen Z (teens–20s) make up only a small slice of today&apos;s buyers</li>
+                  <li>Many cite affordability barriers: mortgage rates above 6% and 30-year loan payments near record highs</li>
+                  <li>Surveys show only ~20% of millennials/Gen Z own real estate (similar to the ~21% who own crypto)</li>
+                  <li>Elevated student debt exacerbates this: every $1,000 in student loans cuts homeownership odds by ~1.8%</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Major Metro Housing Markets</h4>
+                <div className="space-y-6">
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">San Francisco, CA</h5>
+                    <p className="text-lg">
+                      The Bay Area remains expensive but competitive. SF homes sold at a median ~$1.45M in April 2025 (up +3.6% YoY). Inventory is still tight, and bidding wars persist (SF homes average 4 offers and 20 days on market), though this is easing vs. last year.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">Austin, TX</h5>
+                    <p className="text-lg">
+                      Once red-hot, Austin&apos;s market is slowing. In April 2025, Austin&apos;s median price was ~$575K, only +2.2% YoY – well below last year&apos;s double-digit gains. Sales have plunged (–16% YoY) as supply floods the market.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">Miami, FL</h5>
+                    <p className="text-lg">
+                      South Florida remains popular but has cooled. The Miami metro&apos;s median home price was ~$670K in April 2025 (+3.9% YoY). However, sales volume is down (~14%) and time on market has jumped: ~91 days in April (vs 73 days a year prior).
+                    </p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">New York City, NY</h5>
+                    <p className="text-lg">
+                      NYC is rebounding slowly. Citywide, median sales were about $850K in April 2025, up +1.4% YoY. Manhattan and other boroughs see richer micro-trends, but broadly New York remains cheaper than the peak 2022 levels.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">Phoenix, AZ</h5>
+                    <p className="text-lg">
+                      Phoenix typifies a post-boom market. The valley&apos;s median sale price was ~$450K in April 2025, essentially flat (–0.7%) from last year. Home sales are up slightly (reflecting population growth) and homes now take ~55 days to sell (vs 45 last year).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-yellow-500/10 p-6 rounded-lg">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Market Outlook</h4>
+                <p className="text-lg">
+                  Overall, the U.S. has shifted toward a mild buyers' market. Lawrence Yun of NAR notes inventory at 4½-months' supply – the highest in 5 years – giving buyers leverage. Nearly half of listings have lingered ≥60 days, evidence of stale inventory. As Redfin economists observe, the dollar value of homes for sale is at an all-time high (≈$700B) even while sales and new-listing growth have slowed. In short, prices are still inching up, but more slowly, while ample supply and higher rates keep buyers cautious.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Bitcoin Strategy Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
