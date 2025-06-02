@@ -165,6 +165,55 @@ export default function MaxPainPage() {
             </div>
           </div>
 
+          {/* Historical Context Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              📜 Crypto&apos;s Wildest Whiplash Years
+            </h3>
+            <div className="space-y-8 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                Crypto history reads like a storyboard where every frame begins with euphoria but ends with a plot-twist that re-writes the rules of the game. Each cycle we survive forges a harder, savvier industry. Below is a whirlwind tour of the loudest boom-and-bust chapters.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-yellow-500/10 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">2012-2014 | The Prototype Roller-Coaster</h4>
+                  <p className="text-sm leading-relaxed">
+                    Bitcoin&apos;s first halving on 28 Nov 2012 slashed block rewards from 50 to 25 BTC. When new money arrived in spring 2013, price discovery was violent: $13 → $266 in April, followed by a sprint to ~$1,150 by November. Mt. Gox&apos;s February 2014 collapse vaporized ~850,000 BTC, teaching two enduring lessons: &quot;Not your keys, not your coins&quot; and &quot;Liquidity vanishes when you need it most.&quot;
+                  </p>
+                </div>
+
+                <div className="bg-yellow-500/10 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">Q4 2017 | ICO Fever Dream</h4>
+                  <p className="text-sm leading-relaxed">
+                    Bitcoin blasted through prior ATHs as token sales raised billions on white-papers and Telegram rooms. When BTC kissed $20k on 17 Dec 2017, retail investors FOMO-ed into every ticker ending in &quot;-coin.&quot; Two months later, the market erased ~70% and taught everyone the meaning of &quot;vaporware.&quot;
+                  </p>
+                </div>
+
+                <div className="bg-yellow-500/10 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">DeFi Summer (Aug 2020)</h4>
+                  <p className="text-sm leading-relaxed">
+                    COVID-era stimulus cash chased yield. Compound turned &quot;liquidity mining&quot; from esoteric hack to mainstream motif. TVL rocketed from $1B → $10B in 90 days, but gas fees spiked and rugs multiplied, pushing Layer-2 roadmaps to the front.
+                  </p>
+                </div>
+
+                <div className="bg-yellow-500/10 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">2021 | The NFT Revolution</h4>
+                  <p className="text-sm leading-relaxed">
+                    From NBA Top Shot&apos;s $40M weekend to CryptoPunks&apos; seven-figure bids, NFTs went from fringe to front-page. Art Blocks and Sotheby&apos;s hammer prices forced even skeptics to admit culture had merged with code.
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-l-4 border-yellow-500 pl-4">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">The Meta-Takeaway</h4>
+                <p className="text-lg">
+                  Every surge begins with scarcity or storytelling, but unsustainable leverage, product-market fiction, or regulatory whiplash always crash the party. The only constant is cyclicality itself: HODLers survive, infrastructure hardens, and the next wave rides on the ashes of the last.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Chart Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
