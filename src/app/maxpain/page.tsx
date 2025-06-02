@@ -329,6 +329,136 @@ export default function MaxPainPage() {
             </div>
           </div>
 
+          {/* Summary Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              📊 Bitcoin Market Cycle Summary
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="bg-yellow-500/10 p-6 rounded-lg">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">Key Points</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Bitcoin&apos;s price may reach $150,000–$200,000 by end of 2025</li>
+                  <li>Long-term growth could see prices in hundreds of thousands to millions by 2030</li>
+                  <li>Diminishing volatility in cycles suggests milder drawdowns as Bitcoin matures</li>
+                  <li>Recent drawdown of ~76.9% (2021-24) vs historical 86-93% shows market maturity</li>
+                </ul>
+              </div>
+
+              <div className="border-l-4 border-yellow-500 pl-4">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">Current Context (June 2025)</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Trading at ~$104,319, near ATH of $111,814</li>
+                  <li>Strong momentum post-April 2024 halving</li>
+                  <li>Historically, bull runs peak 12–18 months after halving</li>
+                  <li>Expected peak: late 2025 or early 2026</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">Historical Cycles</h4>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-yellow-500/5 p-4 rounded">
+                      <h5 className="font-semibold text-yellow-400 mb-2">2012-13 Cycle</h5>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>Peak: $1,152 (Nov 2013)</li>
+                        <li>Bottom: $150 (Jan 2015)</li>
+                        <li>~12 months post-halving</li>
+                      </ul>
+                    </div>
+                    <div className="bg-yellow-500/5 p-4 rounded">
+                      <h5 className="font-semibold text-yellow-400 mb-2">2016-17 Cycle</h5>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>Peak: $19,188 (Dec 2017)</li>
+                        <li>Bottom: $3,236 (Dec 2018)</li>
+                        <li>~17 months post-halving</li>
+                      </ul>
+                    </div>
+                    <div className="bg-yellow-500/5 p-4 rounded">
+                      <h5 className="font-semibold text-yellow-400 mb-2">2020-21 Cycle</h5>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>Peak: $69,000 (Nov 2021)</li>
+                        <li>Bottom: $15,787 (Nov 2022)</li>
+                        <li>Milder drawdown: ~77%</li>
+                      </ul>
+                    </div>
+                    <div className="bg-yellow-500/5 p-4 rounded">
+                      <h5 className="font-semibold text-yellow-400 mb-2">2024-25 Cycle</h5>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>Current: $104,319</li>
+                        <li>Expected peak: Late 2025</li>
+                        <li>Projected: $150k-$200k</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-yellow-500/10 p-6 rounded-lg">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">Institutional Adoption</h4>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="font-semibold text-yellow-400 mb-2">ETF Growth</h5>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>$27.4B in U.S. Bitcoin ETFs (Q4 2024)</li>
+                        <li>114% QoQ growth</li>
+                        <li>26.3% of ETF market share</li>
+                        <li>Projected: 7-15% of BTC supply by 2033</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-yellow-400 mb-2">Sovereign Adoption</h5>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>El Salvador (2021)</li>
+                        <li>Central African Republic (2022)</li>
+                        <li>U.S. Strategic Bitcoin Reserve (2025)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">Price Forecast Models</h4>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-yellow-500/5 p-4 rounded">
+                      <h5 className="font-semibold text-yellow-400 mb-2">2025 Forecasts</h5>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>Bernstein: $200k (ETF flows)</li>
+                        <li>PlanB: $160k (doubling trend)</li>
+                        <li>Changelly: $210k-$230k</li>
+                        <li>Consensus: $150k-$200k</li>
+                      </ul>
+                    </div>
+                    <div className="bg-yellow-500/5 p-4 rounded">
+                      <h5 className="font-semibold text-yellow-400 mb-2">2030+ Forecasts</h5>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>ARK Invest: $300k-$1.5M</li>
+                        <li>Fidelity: $1B by 2040</li>
+                        <li>Willy Woo: Mid-6-figures (8% CAGR)</li>
+                        <li>Cane Island: $1-10M by 2050</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-l-4 border-yellow-500 pl-4">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">Macroeconomic Context</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Cycles align with global liquidity and inflation trends</li>
+                  <li>2020–21 rally coincided with stimulus and 5–7% inflation</li>
+                  <li>2022 drawdown overlapped with Fed rate hikes</li>
+                  <li>Expected easing by 2025–2026 could catalyze next bull run</li>
+                  <li>Geopolitical factors may impact short-term volatility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* FAQ Section */}
           <div className="space-y-4">
             {faqs.map((faq, index) => (
