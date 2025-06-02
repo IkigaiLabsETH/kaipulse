@@ -82,7 +82,7 @@ export function Header() {
         { name: 'BTC DASHBOARD', href: '/data' },
         { name: 'THE 4% RULE', href: '/21' },
         { name: 'CALCULATOR', href: '/calculator' },
-        { name: 'NODE ETF', href: '/node' },
+        { name: 'ALT COINS', href: '/altcoins' },
         { name: 'MAX PAIN', href: '/maxpain' },
         { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
