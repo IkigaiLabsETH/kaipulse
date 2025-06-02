@@ -83,7 +83,7 @@ export function Header() {
         { name: 'THE 4% RULE', href: '/21' },
         { name: 'CALCULATOR', href: '/calculator' },
         { name: 'NODE ETF', href: '/node' },
-        { name: 'HOLDINGS', href: '/tbs' },
+        { name: 'MAX PAIN', href: '/maxpain' },
         { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
       ]
