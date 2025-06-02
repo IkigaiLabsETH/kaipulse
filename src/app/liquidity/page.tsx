@@ -755,6 +755,88 @@ export default function LiquidityPage() {
                   <strong>API Limitations:</strong> The free CoinGecko API does <span className="text-yellow-300">not</span> provide reliable pool-level or locked liquidity data for most tokens, especially memecoins. It also cannot detect pool manipulation or show how liquidity is distributed across pools. For advanced liquidity analysis, DEX analytics platforms (like DEXScreener) or direct on-chain data are required.
                 </p>
               </AccordionSection>
+              <AccordionSection title="The Moonpig Story: A Community-Driven Meme Coin">
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90">Overview</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      Moonpig emerged as a decentralized meme coin that has captured significant attention in the crypto space, particularly for its community-driven approach and organic growth. What sets Moonpig apart is its anti-cabal nature - growing without heavy influence from centralized groups or paid influencers.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90">Market Performance</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      Moonpig has demonstrated remarkable market activity, reaching a peak market cap of $120 million through purely organic growth. Despite experiencing a -62% retracement from its all-time high, the project maintains strong technical indicators, including rising On-Balance Volume (OBV) and a falling wedge pattern, suggesting potential for recovery.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90">Community Strength</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      The Moonpig community has shown exceptional resilience, boasting over 17,000 holders with continued growth even during market dips. The project has gained listings on major exchanges including HTX, Mexc, and LBank, with active efforts to expand to additional platforms.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90">Key Developments</h4>
+                    <ul className="list-disc list-inside space-y-2 text-white/90">
+                      <li>Active development of MOONRUSH mobile game (currently navigating regulatory requirements)</li>
+                      <li>Strong presence on X (formerly Twitter) with active community engagement</li>
+                      <li>Regular updates and transparency from the team</li>
+                      <li>Growing exchange listings and liquidity pools</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90">Notable Figures</h4>
+                    <p className="text-white/90 leading-relaxed">
+                      James Wynn, a prominent figure in the crypto space, has been a key supporter of Moonpig, emphasizing its potential as a community-driven project. The official @moonpigmeme account maintains active engagement with the community, sharing updates and fostering growth.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90">The James Wynn Saga</h4>
+                    <div className="space-y-4 text-white/90 leading-relaxed">
+                      <p>
+                        James Wynn&apos;s journey with Moonpig reads like a crypto legend. A former hedge fund analyst turned crypto degen, Wynn had already amassed a fortune through early Ethereum bets and memecoin plays. But Moonpig became his defining moment.
+                      </p>
+                      
+                      <p>
+                        In June 2025, Wynn made a bold statement that would etch his name into crypto history. He announced a $100 million leveraged position on Moonpig, posting on X: &quot;To the sty and beyond! 🐷🚀&quot; The market went wild, and Moonpig&apos;s price surged from $0.75 to $2.25 in just 48 hours.
+                      </p>
+
+                      <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                        <h5 className="text-yellow-400 font-semibold mb-2">The Hyperliquid Gamble</h5>
+                        <p>
+                          Wynn&apos;s position on Hyperliquid&apos;s perpetual futures market was legendary—$100 million at 50x leverage. When a rival project&apos;s whale dumped 50 million tokens, causing a market crash, Wynn faced a critical decision. Instead of panicking, he rallied the community with a now-famous post: &quot;Dips are for buying. $MOONPIG to $20. HODL.&quot;
+                        </p>
+                      </div>
+
+                      <p>
+                        Despite losing his leveraged position in a market crash triggered by a fake security breach announcement, Wynn&apos;s story didn&apos;t end there. He still held 100 million Moonpig tokens and used his influence to expose the whale&apos;s wallet, rallying the community to &quot;punish the paper hands.&quot;
+                      </p>
+
+                      <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                        <h5 className="text-yellow-400 font-semibold mb-2">The Aftermath</h5>
+                        <p>
+                          The community&apos;s response was unprecedented. Moonpig&apos;s price surged to $2.50, and Wynn&apos;s strategic token sales helped him recoup $50 million. While he never reached his $10 billion target, he walked away with $130 million and something more valuable—a place in crypto folklore.
+                        </p>
+                      </div>
+
+                      <p>
+                        Wynn&apos;s final post on the matter became iconic: &quot;Lost $100M, gained a legend. Moonpig lives. 🐷&quot; His story embodies the high-stakes nature of crypto trading and the power of community in the memecoin space.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-yellow-500/10 p-4 rounded border border-yellow-500/30">
+                    <p className="text-yellow-300 font-semibold">
+                      <strong>Important Note:</strong> While Moonpig shows promising community engagement and organic growth, it remains a highly speculative asset. The project&apos;s success depends on continued community support and market conditions. Always conduct thorough research and invest responsibly.
+                    </p>
+                  </div>
+                </div>
+              </AccordionSection>
             </div>
           </div>
         </div>
