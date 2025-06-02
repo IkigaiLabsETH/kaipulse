@@ -69,7 +69,7 @@ export function Header() {
         { name: 'PUNK', href: '/pfp' },
         { name: 'MINT', href: '/mint' },
         { name: 'DOCU', href: '/docu' },
-        { name: 'MEMETIC', href: '/visuals' },
+        { name: 'GALLERY', href: '/gallery' },
         { name: '1 ON 1', href: '/1on1' },
         { name: 'COLLECT', href: '/collections' },
       ]
