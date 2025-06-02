@@ -15,6 +15,7 @@ import {
   Legend,
   LogarithmicScale,
 } from 'chart.js';
+import Image from 'next/image';
 
 ChartJS.register(
   CategoryScale,
@@ -465,12 +466,12 @@ export default function MaxPainPage() {
               📈 Bitcoin Market Cycles Visualization
             </h3>
             <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg">
-              <img
+              <Image
                 src="/cycles.jpeg"
                 alt="Bitcoin market cycles visualization showing historical price patterns and future projections"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
+                fill
+                className="object-cover"
+                priority
               />
             </div>
             <p className="mt-4 text-sm text-gray-400 text-center">
