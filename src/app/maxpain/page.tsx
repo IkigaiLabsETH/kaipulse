@@ -608,6 +608,100 @@ export default function MaxPainPage() {
                       <li>Use DCA for re-entry once macro + on-chain align</li>
                     </ul>
                   </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">6. Hedge Against Downside Risk</h5>
+                    <p className="mb-2">Protect your portfolio with strategic hedging across on-chain and TradFi:</p>
+                    
+                    <div className="space-y-4">
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">On-Chain Hedging:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>Platforms: Lyra, Dopex, Premia, Ribbon Finance</li>
+                          <li>Buy Put Options when BTC is above $130K</li>
+                          <li>Example: 1-month $150K put ≈ $2.5K premium</li>
+                          <li>Max 1-2% of portfolio in monthly premiums</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">TradFi Hedging:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>BITI: ProShares Inverse BTC ETF</li>
+                          <li>Put options on BITO/GBTC/IBIT</li>
+                          <li>Target 1x exposure when BTC is above $145K</li>
+                          <li>Ladder 30-60-90D puts at various strikes</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">Hedging Triggers:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>$130K: Start hedging with laddered puts</li>
+                          <li>$145K-$160K: Add BITI + deeper OTM puts</li>
+                          <li>&gt;$180K: Maximum downside protection</li>
+                          <li>Watch IV &lt; 60% for optimal entry</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">Advanced Strategies:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>Put Spreads: Long $160K put / Short $120K put</li>
+                          <li>Straddles for volatility plays</li>
+                          <li>Auto-rolling vaults on Ribbon</li>
+                          <li>Monitor Greeks.Live, Laevitas for IV</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h5 className="text-lg font-semibold text-yellow-400 mb-2">7. Key Metrics & Risk Management</h5>
+                    <p className="mb-2">Monitor these critical indicators to optimize your hedging strategy:</p>
+                    
+                    <div className="space-y-4">
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">Market Health Indicators:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>SOPR: Spent Output Profit Ratio (peaking = profit-taking)</li>
+                          <li>MVRV: Above 2.5 indicates overvaluation</li>
+                          <li>Funding Rates: High rates = over-leveraged markets</li>
+                          <li>Implied Volatility: Target &lt; 60% for optimal entry</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">Risk Management Rules:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>Limit premium costs to 1-2% of portfolio monthly</li>
+                          <li>Set stop-losses on all hedging positions</li>
+                          <li>Diversify across multiple strike prices</li>
+                          <li>Maintain dry powder for adjustments</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">Macro Triggers:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>Fed policy shifts (tightening = maintain hedges)</li>
+                          <li>Inflation acceleration signals</li>
+                          <li>Credit market stress indicators</li>
+                          <li>DXY and yield movements</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-yellow-500/10 p-4 rounded-lg">
+                        <h6 className="font-semibold text-yellow-400 mb-2">Portfolio Protection Checklist:</h6>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                          <li>Regular IV monitoring (Greeks.Live, Laevitas)</li>
+                          <li>Monthly strategy reassessment</li>
+                          <li>Position size adjustments based on market conditions</li>
+                          <li>Documentation of all hedging decisions</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
