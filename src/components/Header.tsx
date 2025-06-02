@@ -84,7 +84,7 @@ export function Header() {
         { name: 'CALCULATOR', href: '/calculator' },
         { name: 'NODE ETF', href: '/node' },
         { name: 'HOLDINGS', href: '/tbs' },
-        { name: 'LEDGER', href: '/ledger' },
+        { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
       ]
     },
