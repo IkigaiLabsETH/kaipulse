@@ -1,236 +1,237 @@
 "use client";
 
 import { Header } from '@/components/Header';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-
-const platformComparison = [
-  { feature: 'Primary Asset', eth: 'ETH' },
-  { feature: 'Consensus', eth: 'Proof of Stake (PoS)' },
-  { feature: 'Smart Contract Language', eth: 'Solidity' },
-  { feature: 'Execution Model', eth: 'Sequential, account-based' },
-  { feature: 'Transaction Fees', eth: 'Variable, based on demand' },
-  { feature: 'Ecosystem Maturity', eth: 'Most mature in crypto' },
-  { feature: 'NFT/DeFi Support', eth: 'Industry standard' },
-];
-
-const strengths = [
-  {
-    title: 'Settlement Layer',
-    highlight: 'The foundation for global financial infrastructure.',
-    description: `Ethereum isn't just another Layer 1—it's becoming the settlement layer for the entire internet. With Pectra upgrade bringing 60M gas limits, it's cementing its role as productive digital infrastructure.`,
-    note: `Builder's Note: The upgrade cycle is real—each one makes ETH more valuable.`
-  },
-  {
-    title: 'Yield-Bearing Digital Bond',
-    highlight: 'Native yield + deflationary mechanics.',
-    description: `With $100B+ staked, ETH is already one of the largest distributed "fixed income" instruments. It offers native yield via staking (3-5%) while being deflationary, making it attractive to institutions.`,
-    note: `Builder's Note: Staked ETH ETFs are coming—BlackRock knows what's up.`
-  },
-  {
-    title: 'Tokenization Base Layer',
-    highlight: 'Everything gets tokenized, everything settles on ETH.',
-    description: `From RWAs to DAOs, stablecoins to L2s, everything routes back to Ethereum. The L2 ecosystem explosion only strengthens ETH's position as the settlement layer.`,
-    note: `Builder's Note: The more L2s we get, the more ETH we need.`
-  },
-  {
-    title: "Vitalik's Vision",
-    highlight: 'The roadmap is clear and on track.',
-    description: `From the Merge to Danksharding, Purge, and Scourge—Ethereum's evolution is methodical. The endgame? A fully verifiable, ZK-proven chain with 10,000+ TPS on L1.`,
-    note: `Builder's Note: The technical roadmap is the most credible in crypto.`
-  }
-];
-
-const flaws = [
-  {
-    title: 'L1 Scaling Challenges',
-    pain: `Despite L2s, base layer congestion and fees can still be high during peak usage.`,
-    solution: `Pectra upgrade and Danksharding will significantly improve this, but L2 adoption remains crucial.`
-  },
-  {
-    title: 'Complexity for New Users',
-    pain: `The ecosystem can be overwhelming for newcomers, with many technical concepts to grasp.`,
-    solution: `Better UX, more intuitive wallets, and gas abstraction layers are making it easier.`
-  },
-  {
-    title: 'Regulatory Uncertainty',
-    pain: `The regulatory landscape for ETH and DeFi remains unclear in many jurisdictions.`,
-    solution: `Clear guidance is emerging, and institutional adoption is helping establish precedents.`
-  },
-  {
-    title: 'Competition from Alt-L1s',
-    pain: `New chains often promise better performance or lower fees.`,
-    solution: `ETH's network effects, security, and upgrade path make it hard to displace.`
-  }
-];
-
-const pillars = [
-  {
-    title: "Institutional Adoption",
-    description: "ETH's combination of yield, deflation, and programmability makes it the perfect institutional asset. ETFs are just the beginning."
-  },
-  {
-    title: "Tokenization Infrastructure",
-    description: "As everything gets tokenized, ETH becomes the settlement layer for RWAs, stablecoins, and digital assets of all kinds."
-  },
-  {
-    title: "L2 Ecosystem Growth",
-    description: "The explosion of L2s doesn't compete with ETH—it makes it more valuable as the settlement and security layer."
-  }
-];
+import PriceTicker from '@/components/AltCoinsBeta';
 
 export default function EthHonestTake() {
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Subtle background gradient and pattern overlay */}
-      <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#18191c] via-black to-[#0a0a0a] opacity-90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-yellow-900/10 via-transparent to-black opacity-60" />
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
-      </div>
+    <div className="min-h-screen bg-black text-white font-satoshi">
+      {/* Premium header accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      
       <Header />
-      <section className="max-w-screen-lg mx-auto pt-32 pb-14 px-4 text-center relative z-10">
-        <Badge className="bg-yellow-500 text-black text-sm mb-6 font-satoshi tracking-wide shadow-md">Builder&apos;s Honest Take</Badge>
-        <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 mb-8 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          The Settlement Layer
-        </h1>
-        <div className="max-w-2xl mx-auto">
-          <p className="text-xl md:text-2xl font-epilogue text-yellow-400 italic mb-6 drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-            &quot;Ethereum isn&apos;t just another Layer 1—it&apos;s the settlement layer of the internet, and it&apos;s been hiding in plain sight.&quot;
-          </p>
-          <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-            While the market&apos;s been distracted by memecoins and modular hype cycles, ETH is quietly laying the rails for the global financial and data infrastructure of the 21st century. This isn&apos;t speculation—it&apos;s infrastructure.
-          </p>
-        </div>
-      </section>
-
-      {/* Custom section divider */}
-      <div className="w-full flex justify-center mb-20">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* What Makes ETH Special */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-14 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Why ETH Is Different
-        </h2>
-        <div className="grid md:grid-cols-2 gap-16">
-          {strengths.map((item) => (
-            <div key={item.title} className="flex flex-col gap-4 bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20">
-              <div className="font-epilogue text-2xl md:text-3xl text-yellow-400 font-bold leading-tight drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
-                {item.title}
-              </div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-1 border-l-4 border-yellow-500/60 pl-4">
-                {item.highlight}
-              </div>
-              <div className="font-satoshi text-white/90 text-lg md:text-xl leading-relaxed">
-                {item.description}
-              </div>
-              <div className="font-satoshi text-yellow-500/80 text-base italic mt-2">{item.note}</div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div className="space-y-16">
+          {/* Hero Section */}
+          <div className="text-center space-y-8">
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Trust Commodity • Digital Oil • Settlement Layer</p>
+            <h1 className="text-center">
+              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+                Ethereum
+              </span>
+            </h1>
+            <div className="flex items-center justify-center mt-6">
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Foundation of Web3 Infrastructure</p>
+              <div className="h-px w-24 bg-yellow-500/30"></div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
+          {/* Live Market Data */}
+          <PriceTicker />
 
-      {/* Platform Comparison */}
-      <section className="max-w-screen-md mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-10 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          ETH at a Glance
-        </h2>
-        <p className="text-lg font-satoshi text-white/80 mb-8 text-center">
-          ETH&apos;s features and upgrades are building something unprecedented. The challenge is understanding the full picture.
-        </p>
-        <div className="overflow-x-auto rounded-2xl bg-[#18191c]/80 p-10 mb-4 shadow-xl border border-yellow-500/20">
-          <table className="w-full font-epilogue text-white/90 text-lg">
-            <thead>
-              <tr className="border-b border-yellow-500/40">
-                <th className="text-left py-3 text-yellow-500 font-bold text-xl">Feature</th>
-                <th className="text-left py-3 text-yellow-500 font-bold text-xl">ETH</th>
-              </tr>
-            </thead>
-            <tbody>
-              {platformComparison.map((row) => (
-                <tr key={row.feature} className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors">
-                  <td className="py-3 font-epilogue font-semibold text-lg">{row.feature}</td>
-                  <td className="py-3 font-satoshi text-white/80 text-lg">{row.eth}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* Who is ETH For Now? */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Who Is ETH For Now?
-        </h2>
-        <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
-          ETH&apos;s next chapter is about:
-        </p>
-        <div className="grid md:grid-cols-3 gap-10">
-          {pillars.map((pillar) => (
-            <div key={pillar.title} className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20 flex flex-col gap-3">
-              <div className="font-epilogue text-2xl text-yellow-400 font-bold">{pillar.title}</div>
-              <div className="font-satoshi text-white/90 text-lg">{pillar.description}</div>
+          {/* Market Overview Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Market Overview
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Ethereum today sits at the crossroads of decentralized trust and digital infrastructure. As the leading smart-contract platform, Ether serves as a &quot;base layer of computing&quot; underpinning vast DeFi, NFT and Web3 applications. Regulators explicitly treat ETH as a commodity (the CFTC has affirmed Ether is a commodity under US law), reinforcing its role as neutral &quot;trust engine&quot; money.
+              </p>
+              <p className="text-lg">
+                Investors and builders often call ETH &quot;digital oil&quot;, since every transaction and smart contract execution is paid for with gas fees in Ether – analogous to how oil fuels an economy. These metaphors capture Ethereum&apos;s evolving identity: a global trust network and computational backplane whose security and utility give Ether intrinsic value.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* Honest Flaws & Solutions */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          What&apos;s Broken &amp; How We Fix It
-        </h2>
-        <div className="space-y-20">
-          {flaws.map((item) => (
-            <div key={item.title} className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-              <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{item.title}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-              <div className="font-satoshi text-white/90 text-lg">{item.solution}</div>
+          {/* Market Cycles Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Market Cycles: ETH vs. Bitcoin Dynamics
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Ethereum has historically lagged Bitcoin in bull markets, setting up a catch-up narrative today. After Bitcoin&apos;s recent run, ETH/BTC hit multi-year lows. A weekly chart shows the ETH/BTC ratio in a clear downtrend since late 2021. For example, from Sept 2022 to now BTC/USD climbed ~470% vs. ETH/USD ~170%, dragging ETH/BTC from ~0.06 to ~0.026.
+              </p>
+              <p className="text-lg">
+                This prolonged underperformance reflects capital flowing first into Bitcoin (e.g. via the new spot BTC ETFs) and only later into altcoins. Indeed, on-chain analytics show Bitcoin investors reached &quot;euphoria&quot; metrics long before Ethereum traders did, and recent inflows into crypto ETFs have favored BTC so far.
+              </p>
+              <p className="text-lg">
+                Institutional rotation is now turning. Market analysts note a breakout in ETH/BTC: Ethereum has &quot;decisively outperformed Bitcoin after lagging throughout the whole cycle&quot;. The recent Pectra upgrade (proto-danksharding) and ETH&apos;s rebound above key levels have renewed interest.
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Trust Foundation Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Trust Foundation
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Ethereum secures a massive on-chain economy (over ~$400 billion in assets) as a neutral settlement layer. Its Proof-of-Stake consensus now leverages ~800K validators, making Ethereum one of crypto&apos;s most secure and decentralized platforms.
+              </p>
+              <div className="grid md:grid-cols-2 gap-8 mt-6">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Security Metrics</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>~800K active validators</li>
+                    <li>~$400B secured value</li>
+                    <li>90% reduced issuance post-Merge</li>
+                    <li>CFTC-regulated commodity status</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Initiatives</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Trillion Dollar Security initiative</li>
+                    <li>Global financial infrastructure</li>
+                    <li>Institutional-grade security</li>
+                    <li>Regulatory clarity</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tokenomics Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Post-Merge Tokenomics
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Ethereum&apos;s supply dynamics flipped after The Merge (Sep 2022) and EIP-1559. Issuance plunged by ~90% – from ~15,000 ETH/day to ~1,500 ETH/day – an event dubbed the &quot;triple halvening&quot;. At the same time, the London hard fork (Aug 2021) introduced fee-burning. Today ~85% of all transaction fees are burned, effectively acting as a network-wide &quot;buyback&quot; for ETH holders.
+              </p>
+              <p className="text-lg">
+                Dune/ultrasound data confirm the impact: since the Merge the network has issued ~6.5M new ETH and burned ~3.5M. That implies annualized issuance ~580K ETH vs. burn 1.75M ETH (today&apos;s gas levels). In other words, at recent activity levels Ethereum&apos;s net supply growth is slightly negative (–1.0% per year).
+              </p>
+              <div className="grid md:grid-cols-3 gap-8 mt-6">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Issuance</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>~580K ETH/year</li>
+                    <li>~0.5% inflation</li>
+                    <li>90% reduction post-Merge</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Burn</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>~1.7M ETH/year</li>
+                    <li>~0.98% of supply</li>
+                    <li>Usage-driven deflation</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Net Effect</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Mildly deflationary</li>
+                    <li>Supply shrunk ~350K ETH</li>
+                    <li>Dynamic supply curve</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Usage & Growth Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Usage & Growth
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                The base-fee burn depends on how people use Ethereum. Notably, DeFi dominates Ethereum activity – over 90% of all decentralized finance volume occurs on Ethereum and its Layer-2s. Major DeFi apps (AMMs, lending, etc.) drive significant gas usage and fees.
+              </p>
+              <div className="grid md:grid-cols-2 gap-8 mt-6">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Primary Drivers</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>DeFi TVL peaking ~$150B</li>
+                    <li>NFT trading and minting</li>
+                    <li>Layer-2 rollup growth</li>
+                    <li>Stablecoin transfers</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Future Growth</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Pectra/Blobs upgrade</li>
+                    <li>L2 fee optimization</li>
+                    <li>RWA tokenization</li>
+                    <li>Gaming/metaverse</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 2024-25 Catalysts Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              2024-25 Catalysts
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Looking ahead, several macro and structural factors could catalyze Ethereum:
+              </p>
+              <div className="grid md:grid-cols-2 gap-8 mt-6">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Market Catalysts</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Bitcoin Halving (Apr 2024)</li>
+                    <li>ETH ETFs & Institutional Flows</li>
+                    <li>3-5% Staking Yields</li>
+                    <li>RWA Tokenization Growth</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Technical Catalysts</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Pectra Upgrade</li>
+                    <li>EIP-4844 (Blobs)</li>
+                    <li>L2 Ecosystem Expansion</li>
+                    <li>Enterprise Adoption</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Conclusion Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Investment Perspective
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                In summary, Ethereum combines robust fundamentals with timely catalysts. It is both a base-layer trust asset and a usage-driven monetary asset. The post-Merge economics have tilted ETH toward deflation when the network is busy, a feature unique among blockchains.
+              </p>
+              <p className="text-lg">
+                After years of trailing Bitcoin, ETH now sits undervalued by some measures. The ETH/BTC ratio bottom and renewed ETH-specific narratives suggest we may be entering a &quot;late-cycle&quot; run for altcoins. Institutional flows (including ETF capital) are beginning to rotate into Ethereum, and upcoming demand drivers (crypto adoption, innovation) could push ETH higher.
+              </p>
+              <p className="text-lg">
+                From a research standpoint, Ethereum&apos;s thesis rests on its evolving identity: a &quot;digital oil&quot; powering a world-computer, and a trust layer securing trillions in value. This dual narrative — coupled with negative net issuance under heavy use — provides a strong case for Ethereum as a long-term store of value and growth asset.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center space-y-8">
+            <Link href="https://ethereum.org/en/" target="_blank">
+              <Button className="bg-yellow-500 text-black font-bold px-12 py-6 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:bg-yellow-400 transition-all duration-300 font-satoshi tracking-tight text-2xl">
+                ETH Docs <ArrowRight className="ml-4 w-7 h-7" />
+              </Button>
+            </Link>
+          </div>
         </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-28">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
       </div>
-
-      {/* CTA */}
-      <section className="max-w-screen-md mx-auto px-4 mb-40 text-center relative z-10">
-        <h2 className="font-epilogue text-5xl md:text-8xl font-bold text-yellow-400 mb-10 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          The Path Forward
-        </h2>
-        <p className="font-epilogue text-2xl text-yellow-400 italic mb-8 max-w-2xl mx-auto drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-          &quot;ETH today is like buying AWS at launch, or owning TCP/IP.&quot;
-        </p>
-        <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          The story is just getting started. With Pectra, Danksharding, and institutional adoption on the horizon, ETH is building the infrastructure for the next century. If you&apos;re here, you&apos;re early. Let&apos;s build the future together.
-        </p>
-        <Link href="https://ethereum.org/en/" target="_blank">
-          <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
-            ETH Docs <ArrowRight className="ml-4 w-7 h-7" />
-          </Button>
-        </Link>
-      </section>
     </div>
   );
 }
