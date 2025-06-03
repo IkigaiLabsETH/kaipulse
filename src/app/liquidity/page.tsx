@@ -105,10 +105,7 @@ type MoonpigData = {
 export default function LiquidityPage() {
   const [tokens, setTokens] = useState<TokenData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
   const [useDexscreener, setUseDexscreener] = useState(true);
   const [showPools, setShowPools] = useState(false);
   const [poolAddress, setPoolAddress] = useState('');
@@ -123,6 +120,9 @@ export default function LiquidityPage() {
   const [moonpigData, setMoonpigData] = useState<MoonpigData | null>(null);
   const [moonpigLoading, setMoonpigLoading] = useState(false);
   const [moonpigError, setMoonpigError] = useState<string | null>(null);
+  const [lowFloatTokens, setLowFloatTokens] = useState<DexscreenerToken[]>([]);
+  const [lowFloatLoading, setLowFloatLoading] = useState(false);
+  const [lowFloatError, setLowFloatError] = useState<string | null>(null);
 
   const fetchData = useCallback(async (pageNum: number) => {
     setLoading(true);
@@ -137,12 +137,10 @@ export default function LiquidityPage() {
       } else {
         setTokens(prev => [...prev, ...data.tokens]);
       }
-      setHasMore(data.hasMore);
     } catch {
       setError('An error occurred');
     } finally {
       setLoading(false);
-      setLoadingMore(false);
     }
   }, []);
 
@@ -199,12 +197,26 @@ export default function LiquidityPage() {
     return () => clearInterval(interval);
   }, [useDexscreener]);
 
-  const handleLoadMore = () => {
-    setLoadingMore(true);
-    const nextPage = page + 1;
-    setPage(nextPage);
-    fetchData(nextPage);
-  };
+  // Fetch low-float meme coins
+  useEffect(() => {
+    setLowFloatLoading(true);
+    setLowFloatError(null);
+    fetch('/api/dexscreener/low-float')
+      .then(res => res.json())
+      .then((tokens) => {
+        if (!Array.isArray(tokens)) {
+          setLowFloatTokens([]);
+          setLowFloatLoading(false);
+          return;
+        }
+        setLowFloatTokens(tokens as DexscreenerToken[]);
+        setLowFloatLoading(false);
+      })
+      .catch(() => {
+        setLowFloatError('Failed to fetch low-float meme coins');
+        setLowFloatLoading(false);
+      });
+  }, []);
 
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -681,16 +693,25 @@ export default function LiquidityPage() {
             </div>
           )}
 
-          {/* Load More Button (CoinGecko only) */}
-          {!useDexscreener && hasMore && (
-            <div className="flex justify-center mt-8">
-              <button
-                onClick={handleLoadMore}
-                disabled={loadingMore}
-                className="px-8 py-3 bg-yellow-500 text-black font-bold border-2 border-yellow-500 rounded-none transition-all duration-200 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-[8px_8px_0px_0px_rgba(234,179,8,1)] hover:-translate-x-[3px] hover:-translate-y-[3px] disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loadingMore ? 'Loading...' : 'Load More Tokens'}
-              </button>
+          {/* Low-Float Meme Coins Section */}
+          {useDexscreener && (
+            <div className="mt-20">
+              <h2 className="text-3xl font-bold text-yellow-400 mb-4">Low-Float Meme Coins</h2>
+              <div className="mb-4 text-yellow-300 text-base font-semibold">
+                These are fresh, low-float meme coins with $100k–$2M market cap and $10k–$100k liquidity. Always DYOR and manage risk.
+              </div>
+              {lowFloatLoading ? (
+                <div className="text-yellow-400">Loading low-float coins...</div>
+              ) : lowFloatError ? (
+                <div className="text-red-500">{lowFloatError}</div>
+              ) : lowFloatTokens.length === 0 ? (
+                <div className="text-yellow-400">No low-float meme coins found right now.</div>
+              ) : (
+                renderCards(lowFloatTokens)
+              )}
+              <div className="mt-4 text-yellow-200 text-xs">
+                <a href="https://dexscreener.com/solana" target="_blank" rel="noopener noreferrer" className="underline text-yellow-400">See more on Dexscreener</a>
+              </div>
             </div>
           )}
 
@@ -747,6 +768,112 @@ export default function LiquidityPage() {
                   <li>Check for liquidity concentration in specific price ranges</li>
                 </ul>
               </AccordionSection>
+              <AccordionSection title="Turn an LP into a Self-Driving DCA Exit">
+                <div className="space-y-6">
+                  <p className="text-white/90 leading-relaxed">
+                    Low-float memes moon hard but their order books are razor-thin—one market-sell nukes the chart, therefore you need a way to drip out inventory while hype does the heavy lifting. Meteora&apos;s Dynamic AMM v2 (DAMM v2) was built for exactly this moment.
+                  </p>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90 mb-4">1. Why DAMM v2 is a meme-coin exit machine</h4>
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full text-sm text-white/90 border border-yellow-500/30">
+                        <thead>
+                          <tr className="bg-black/30">
+                            <th className="px-4 py-2 text-yellow-400">DAMM v2 feature</th>
+                            <th className="px-4 py-2 text-yellow-400">What it does</th>
+                            <th className="px-4 py-2 text-yellow-400">Why memes benefit</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">Single-sided deposits</td>
+                            <td className="px-4 py-2">Launch a pool with only your token—no USDC/SOL up-front.</td>
+                            <td className="px-4 py-2">You start 100% long; the pool auto-sells as buyers FOMO in.</td>
+                          </tr>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">Custom min-max price band</td>
+                            <td className="px-4 py-2">Pin liquidity, e.g. +10% above spot ➜ 3× spot.</td>
+                            <td className="px-4 py-2">Acts like a stack of limit-sells that fill from $1.10 to $3 without manual orders.</td>
+                          </tr>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">Dynamic / decaying fees + anti-sniper schedule</td>
+                            <td className="px-4 py-2">Open with high fees that taper or spike on volatility.</td>
+                            <td className="px-4 py-2">Early bots pay you extra; later, lower fees keep retail flow humming.</td>
+                          </tr>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">Built-in farming module</td>
+                            <td className="px-4 py-2">Stake the LP-NFT for bonus rewards.</td>
+                            <td className="px-4 py-2">Incentives offset impermanent loss (IL) if price chops.</td>
+                          </tr>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">SPL & Token-2022 support</td>
+                            <td className="px-4 py-2">Handles transfer-fee or metadata memes out-of-the-box.</td>
+                            <td className="px-4 py-2">Future-proof for spicy new standards.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90 mb-4">2. Step-by-step: auto-selling 1M $FART into USDC</h4>
+                    <ol className="list-decimal list-inside space-y-2 text-white/90">
+                      <li>Spin up a FART/USDC DAMM v2 pool.</li>
+                      <li>Deposit 1M $FART only—no USDC needed.</li>
+                      <li>Price band: FART trades at $0.001 → place liquidity from $0.0011 to $0.003.</li>
+                      <li>Fee curve: start 1% ➜ linearly decay to 0.25% over seven days.</li>
+                      <li>Stake LP-NFT in the farming tab to capture incentives.</li>
+                      <li>Monitor: when ≥80% of your liquidity sits in USDC, withdraw or widen the band.</li>
+                    </ol>
+                    <p className="mt-4 text-white/90">
+                      Outcome: the community buys FART between $0.0011–$0.003, you bank swap fees + farming rewards, and never wreck the chart.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90 mb-4">3. Risk toggles & pro tips</h4>
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full text-sm text-white/90 border border-yellow-500/30">
+                        <thead>
+                          <tr className="bg-black/30">
+                            <th className="px-4 py-2 text-yellow-400">Risk</th>
+                            <th className="px-4 py-2 text-yellow-400">Mitigation</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">Big early dip</td>
+                            <td className="px-4 py-2">Keep lower band close to spot; pool holds mostly FART until price recovers.</td>
+                          </tr>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">Price leaves range</td>
+                            <td className="px-4 py-2">Add a tiny [0, ∞) fallback pool so liquidity never goes idle.</td>
+                          </tr>
+                          <tr className="border-t border-yellow-500/30">
+                            <td className="px-4 py-2">MEV snipers</td>
+                            <td className="px-4 py-2">High opening fee + Meteora&apos;s anti-sniper lock defend the first blocks.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90 mb-4">4. Launch-day checklist</h4>
+                    <ul className="list-disc list-inside space-y-2 text-white/90">
+                      <li>Pool created from team multisig.</li>
+                      <li>Price band sized to expected hype window.</li>
+                      <li>Fee schedule uploaded.</li>
+                      <li>Farming incentives funded for ≥14 days.</li>
+                      <li>Alerts set for price exiting band or utilisation &gt;90%.</li>
+                    </ul>
+                    <p className="mt-4 text-white/90">
+                      Deploy once, let FART auto-convert into USDC while buyers chase candles—and collect a steady fee stream the whole way. That&apos;s a self-driving DCA exit, meme-coin edition.
+                    </p>
+                  </div>
+                </div>
+              </AccordionSection>
               <AccordionSection title="Important Disclaimers & API Limitations">
                 <p className="text-yellow-300 font-semibold">
                   <strong>Note:</strong> While our core philosophy is Bitcoin-centric, we remain fascinated by the creativity and cultural impact of memetic tokens. However, it&apos;s important to recognize that these assets are highly speculative and carry significant risk—many will ultimately go to zero. If you choose to trade them, consider limiting your exposure to a small, single-digit percentage of your overall portfolio. Always conduct your own research and never invest more than you can afford to lose.
@@ -755,7 +882,7 @@ export default function LiquidityPage() {
                   <strong>API Limitations:</strong> The free CoinGecko API does <span className="text-yellow-300">not</span> provide reliable pool-level or locked liquidity data for most tokens, especially memecoins. It also cannot detect pool manipulation or show how liquidity is distributed across pools. For advanced liquidity analysis, DEX analytics platforms (like DEXScreener) or direct on-chain data are required.
                 </p>
               </AccordionSection>
-              <AccordionSection title="The Moonpig Story: A Community-Driven Meme Coin">
+              <AccordionSection title="The Moonpig Story: Meme Coin by J. Wynn">
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-lg font-bold text-yellow-500/90">Overview</h4>
