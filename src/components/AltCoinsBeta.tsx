@@ -18,6 +18,10 @@ const DEFAULT_TICKERS: Price[] = [
   { symbol: 'AAVE', tradingViewSymbol: 'COINBASE:AAVEUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'LINK', tradingViewSymbol: 'COINBASE:LINKUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
   { symbol: 'PENDLE', tradingViewSymbol: 'COINBASE:PENDLEUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'LQTY', tradingViewSymbol: 'COINBASE:LQTYUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'UNI', tradingViewSymbol: 'COINBASE:UNIUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'SYRUP', tradingViewSymbol: 'COINBASE:SYRUPUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
+  { symbol: 'EIGEN', tradingViewSymbol: 'COINBASE:EIGENUSD', exchange: 'COINBASE', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
