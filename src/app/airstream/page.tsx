@@ -436,7 +436,7 @@ export default function AirstreamPage() {
                 </div>
                 <div className="mt-6 text-center">
                   <a 
-                    href="https://www.meretdemeures.com/en/property/europe/seaside-plot+of+land-for+sale-portugal/?property_types=feet_in_water&property_types=sea_view&property_types=less_500&order_by=default_price"
+                    href="https://www.meretdemeures.com/en/property/europe/sea+view-plot+of+land-for+sale-portugal/?order_by=default_price"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block px-6 py-3 bg-yellow-500 text-black font-semibold hover:bg-yellow-400 transition-colors duration-200"
