@@ -447,6 +447,30 @@ export default function BitcoinPage() {
                       <li>10-minute block time with 7 transactions per second</li>
                       <li>Layer 2 scaling solutions enabling millions of transactions</li>
                     </ul>
+
+                    <div className="mt-8 p-6 bg-black/20 rounded-lg border border-yellow-500/20">
+                      <h4 className="text-xl font-bold text-yellow-500 mb-4">Historical Performance</h4>
+                      <div className="space-y-4 text-white/80">
+                        <p>
+                          Since September 2014, Bitcoin has outperformed every major company stock in the world, falling behind only NVIDIA, which delivered an incredible +28,700%, compared to Bitcoin&apos;s +23,500% over the same period.
+                        </p>
+                        <p>
+                          But when we zoom out to the beginning — back to 2009, the story changes completely. Back then, on forums like Bitcointalk, BTC was traded for pennies, with prices ranging between $0.0008 and $0.001 in peer-to-peer transactions.
+                        </p>
+                        <div className="bg-yellow-500/10 p-4 rounded-lg">
+                          <p className="font-medium text-yellow-500">🔍 Fun Fact</p>
+                          <p className="mt-2">
+                            The lowest recorded price ever for Bitcoin was $0.00061337, on December 17, 2009. Interestingly, exactly 7 years later, on December 17, 2017, Bitcoin hit the peak of that bull cycle — a moment that truly put Bitcoin on the world&apos;s radar.
+                          </p>
+                        </div>
+                        <div className="bg-yellow-500/10 p-4 rounded-lg">
+                          <p className="font-medium text-yellow-500">🔥 Mind-Blowing Performance</p>
+                          <p className="mt-2">
+                            From that all-time low to today, Bitcoin has gained an astronomical +17,217,824,377.88% — that&apos;s 17.2 billion percent! The greatest return in financial market history.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </AccordionItem>
                   
                   <AccordionItem title="Bitcoin&apos;s Role in MSTY">
