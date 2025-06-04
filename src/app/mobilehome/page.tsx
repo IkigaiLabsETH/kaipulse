@@ -296,6 +296,18 @@ export default function MobileHomePage() {
             </div>
           </div>
 
+          {/* Secondary Featured Image */}
+          <div className="relative w-full h-[40vh] min-h-[400px] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
+            <Image
+              src="/globebus.jpg"
+              alt="Dethleffs Globebus Performance 4x4 showcasing its off-road capabilities"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              quality={90}
+            />
+          </div>
+
           {/* Price Comparison Section */}
           <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Price Comparison and Market Positioning</h3>
