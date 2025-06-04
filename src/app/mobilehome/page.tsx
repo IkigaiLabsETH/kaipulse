@@ -9,7 +9,15 @@ export default function MobileHomePage() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
     {
-      q: "What makes the Dethleffs Globebus Performance 4x4 unique?",
+      q: "What makes the HYMER Grand Canyon S unique?",
+      a: (
+        <span>
+          The Grand Canyon S is HYMER&apos;s flagship model, built on the Mercedes-Benz Sprinter chassis. It features a 190 hp engine, 9G-Tronic automatic transmission, optional 4x4 all-wheel drive, and raised suspension. The premium interior with Ivy Green or Pearl Grey design, HYMER Connect system, and 10-day off-grid capability make it the ultimate adventure machine.
+        </span>
+      ),
+    },
+    {
+      q: "What makes the Dethleffs Globebus Performance 4x4 special?",
       a: (
         <span>
           The Globebus Performance 4x4 is Dethleffs&apos; first all-wheel-drive motorhome, built on a VW Crafter chassis. It features a 163 hp engine, 8-speed automatic transmission, differential lock, raised suspension, and a reinforced 2,100 kg front axle. The 18-inch off-road tires, LED light bar, and striking red Dethleffs accents give it a commanding presence.
@@ -17,10 +25,42 @@ export default function MobileHomePage() {
       ),
     },
     {
-      q: "What are the key interior features?",
+      q: "What are the key features of the Marco Polo 2025?",
       a: (
         <span>
-          Key interior features include:
+          The Marco Polo 2025 sets new standards for urban adventure with:
+          <br /><br />
+          • New MBUX infotainment system with augmented reality
+          <br />
+          • Advanced driver assistance systems
+          <br />
+          • Modular interior with multiple layout options
+          <br />
+          • Integrated kitchen with induction cooking
+          <br />
+          • Pop-up roof with panoramic windows
+          <br />
+          • Ambient lighting system with 64 colors
+        </span>
+      ),
+    },
+    {
+      q: "What are the key interior features of each model?",
+      a: (
+        <span>
+          HYMER Grand Canyon S:
+          <br /><br />
+          • Premium Ivy Green or Pearl Grey design
+          <br />
+          • Extendable work surface and innovative cooker/sink combination
+          <br />
+          • 90-liter compressor refrigerator
+          <br />
+          • Spacious shower with foldable washbasin
+          <br />
+          • HYMER Connect system for smart control
+          <br /><br />
+          Dethleffs Globebus:
           <br /><br />
           • Front half-dinette for comfortable dining
           <br />
@@ -30,43 +70,91 @@ export default function MobileHomePage() {
           <br />
           • Two single beds in the rear
           <br />
-          • Camper Net G5 internet solution (up to 20 Gbps)
-          <br />
-          • 263 Ah battery system (AGM + lithium-ion)
-        </span>
-      ),
-    },
-    {
-      q: "What is the price and availability?",
-      a: (
-        <span>
-          The Globebus Performance 4x4 First Edition is priced at €119,999. It will be available starting summer 2025. The price is competitive for its class, offering a compelling blend of rugged capability and premium comfort.
-        </span>
-      ),
-    },
-    {
-      q: "How does it compare to other off-road campers?",
-      a: (
-        <span>
-          The Globebus Performance 4x4 stands out with:
+          • Camper Net G5 internet solution
           <br /><br />
-          • First all-wheel-drive model from Dethleffs
+          Marco Polo 2025:
+          <br /><br />
+          • Modular seating system
           <br />
-          • Advanced connectivity with Camper Net G5
+          • Integrated kitchen unit
           <br />
-          • Premium interior finishes and materials
+          • Pop-up roof with panoramic windows
           <br />
-          • Award-winning design (iF DESIGN AWARD 2025)
+          • Ambient lighting system
           <br />
-          • Competitive pricing for its class
+          • Wireless charging and connectivity suite
         </span>
       ),
     },
     {
-      q: "What are the environmental features?",
+      q: "What are the prices and availability?",
       a: (
         <span>
-          Environmental features include:
+          Current pricing and availability:
+          <br /><br />
+          HYMER Grand Canyon S:
+          <br />
+          • Price: €128,705-€140,000
+          <br />
+          • Available through authorized dealers
+          <br /><br />
+          Dethleffs Globebus:
+          <br />
+          • Price: €119,999-€123,000
+          <br />
+          • Available summer 2025
+          <br /><br />
+          Marco Polo 2025:
+          <br />
+          • Price: €69,500-€100,000
+          <br />
+          • Available now
+        </span>
+      ),
+    },
+    {
+      q: "How do they compare in terms of awards and recognition?",
+      a: (
+        <span>
+          HYMER Grand Canyon S:
+          <br /><br />
+          • Golden Motorhome 2024
+          <br />
+          • iF Design Award 2024
+          <br />
+          • German Design Award 2024
+          <br /><br />
+          Dethleffs Globebus:
+          <br /><br />
+          • iF DESIGN AWARD 2025
+          <br />
+          • First all-wheel-drive model from Dethleffs
+          <br /><br />
+          Marco Polo 2025:
+          <br /><br />
+          • Premium Mercedes-Benz engineering
+          <br />
+          • Industry-leading safety features
+          <br />
+          • Advanced technology integration
+        </span>
+      ),
+    },
+    {
+      q: "What are the environmental features of each model?",
+      a: (
+        <span>
+          HYMER Grand Canyon S:
+          <br /><br />
+          • Efficient diesel engine
+          <br />
+          • Smart battery management system
+          <br />
+          • LED lighting throughout
+          <br />
+          • 10-day off-grid capability
+          <br /><br />
+          Dethleffs Globebus:
           <br /><br />
           • Clesana dry toilet system
           <br />
@@ -75,102 +163,78 @@ export default function MobileHomePage() {
           • Efficient diesel heater
           <br />
           • Grünbeck water filter system
+          <br /><br />
+          Marco Polo 2025:
+          <br /><br />
+          • Efficient Mercedes-Benz engine
           <br />
-          • Extended off-grid capabilities
+          • Advanced climate control
+          <br />
+          • LED lighting system
+          <br />
+          • Eco-friendly materials
         </span>
       ),
     },
     {
-      q: "What are the key differences between the Globebus and Marco Polo 2025?",
+      q: "What are the rental rates for each model?",
       a: (
         <span>
-          Key differences include:
+          Daily rental rates:
           <br /><br />
-          • Size and layout (Globebus is larger, Marco Polo more compact)
+          HYMER Grand Canyon S:
           <br />
-          • Price point (Marco Polo starts at €69,500)
+          • €300-€450/day
           <br />
-          • Target audience (Globebus for off-road, Marco Polo for urban adventures)
+          • Premium positioning
+          <br /><br />
+          Dethleffs Globebus:
           <br />
-          • Interior configuration options
+          • €250-€400/day
           <br />
-          • Technology package variations
+          • Off-road capability
+          <br /><br />
+          Marco Polo 2025:
+          <br />
+          • €150-€250/day
+          <br />
+          • Urban adventure focus
         </span>
       ),
     },
     {
-      q: "What are the rental business opportunities?",
+      q: "What are the key differences between the models?",
       a: (
         <span>
-          Rental business opportunities include:
+          HYMER Grand Canyon S:
           <br /><br />
-          • Daily rates: Globebus €250-€400, Marco Polo €150-€250
+          • Premium positioning
           <br />
-          • Weekly rates with discounts
+          • 10-day off-grid capability
           <br />
-          • Seasonal pricing adjustments
+          • Mercedes-Benz engineering
           <br />
-          • Additional services (delivery, equipment rental)
-          <br />
-          • Corporate packages for remote work
-        </span>
-      ),
-    },
-    {
-      q: "How does the camper van rental model compare to Airbnb in Bordeaux?",
-      a: (
-        <span>
-          The camper van model offers significant advantages:
+          • Advanced HYMER Connect system
           <br /><br />
-          • Higher ROI: 32-65% vs. Airbnb&apos;s 7-10.4%
-          <br />
-          • Faster break-even: 1.5-3 years vs. 9-14 years
-          <br />
-          • Lower per-unit cost: €80,000-€120,000 vs. €367,500/apartment
-          <br />
-          • Higher daily rates: €150-€400 vs. €150-€300
-          <br />
-          • More flexibility in targeting diverse markets
-          <br />
-          • No regulatory caps on rental days
-        </span>
-      ),
-    },
-    {
-      q: "What are the real estate prices in prime Bordeaux locations?",
-      a: (
-        <span>
-          Current 2025 prices in prime locations:
+          Dethleffs Globebus:
           <br /><br />
-          • Apartments: €4,523-€5,500/m²
+          • First 4x4 model
           <br />
-          • Houses: €5,166-€6,000/m²
+          • VW Crafter chassis
           <br />
-          • Example: 70m² apartment in Saint-Pierre: €350,000-€385,000
+          • Competitive pricing
           <br />
-          • Arcachon apartments: €6,855-€7,500/m²
-          <br />
-          • Market trend: 1.7% monthly increase
-        </span>
-      ),
-    },
-    {
-      q: "What is the profitability comparison between camper vans and Airbnb?",
-      a: (
-        <span>
-          Short-term (1-5 years):
+          • Camper Net G5 connectivity
           <br /><br />
-          • Camper vans: €262,500-€528,750/year profit
-          <br />
-          • Airbnb: €56,800-€84,050/year profit
+          Marco Polo 2025:
           <br /><br />
-          Long-term (5+ years):
-          <br /><br />
-          • Camper vans: Depreciation to €500,000-€600,000
+          • Urban-focused design
           <br />
-          • Airbnb: Appreciation to €900,000-€1,000,000
+          • Compact size
           <br />
-          • Potential for hybrid approach
+          • Family-friendly layout
+          <br />
+          • Advanced MBUX system
         </span>
       ),
     },
@@ -178,51 +242,59 @@ export default function MobileHomePage() {
       q: "What are the operational considerations for each model?",
       a: (
         <span>
-          Camper Van Model:
+          HYMER Grand Canyon S:
           <br /><br />
-          • Higher maintenance costs
+          • Premium maintenance schedule
           <br />
-          • Airport logistics
+          • Advanced technology support
           <br />
-          • Seasonal flexibility
-          <br />
-          • Market diversification
+          • Higher rental rates
           <br /><br />
-          Airbnb Model:
+          Dethleffs Globebus:
           <br /><br />
-          • 120-day rental cap
+          • Off-road maintenance
           <br />
-          • Permit requirements
+          • Specialized service
           <br />
-          • Guest management
+          • Adventure-focused support
+          <br /><br />
+          Marco Polo 2025:
+          <br /><br />
+          • Urban service network
           <br />
-          • Higher regulatory risks
+          • Standard maintenance
+          <br />
+          • Family-oriented support
         </span>
       ),
     },
     {
-      q: "What is the market demand in Southwest France?",
+      q: "What is the market demand for each model?",
       a: (
         <span>
-          Camper Van Market:
+          HYMER Grand Canyon S:
           <br /><br />
-          • Growing #VanLife trend
+          • Premium adventure market
           <br />
-          • Diverse attractions
+          • Long-term travelers
           <br />
-          • International airport access
-          <br />
-          • Niche off-road opportunities
+          • Off-grid enthusiasts
           <br /><br />
-          Airbnb Market:
+          Dethleffs Globebus:
           <br /><br />
-          • 3 million annual visitors
+          • Off-road adventurers
           <br />
-          • 4,000+ existing listings
+          • Rugged terrain explorers
           <br />
-          • High competition
+          • Remote destination seekers
+          <br /><br />
+          Marco Polo 2025:
+          <br /><br />
+          • Urban adventurers
           <br />
-          • Regulatory constraints
+          • Weekend getaways
+          <br />
+          • Family travelers
         </span>
       ),
     },
@@ -230,19 +302,25 @@ export default function MobileHomePage() {
       q: "What is the recommended investment strategy?",
       a: (
         <span>
-          Recommended approach:
+          Recommended fleet composition:
           <br /><br />
-          • Primary focus on camper vans for immediate returns
+          • 3 HYMER Grand Canyon S 4x4 (€390,000)
           <br />
-          • Initial investment: €760,000 in fleet
+          • 3 Marco Polo (€240,000)
           <br />
-          • €50,000 for setup and operations
+          • 2 Dethleffs Globebus (€240,000)
           <br />
-          • Consider hybrid model with one property
+          • Total Investment: €870,000
+          <br /><br />
+          Revenue Potential:
+          <br /><br />
+          • HYMER: €229,500-€344,250/year
           <br />
-          • Reinvest profits in fleet expansion
+          • Dethleffs: €127,500-€204,000/year
           <br />
-          • Plan for electric vehicle transition
+          • Marco Polo: €114,750-€191,250/year
+          <br />
+          • Total: €471,750-€739,500/year
         </span>
       ),
     },
