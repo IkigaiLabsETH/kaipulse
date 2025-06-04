@@ -280,6 +280,19 @@ export default function AirstreamPage() {
 
           {/* Portugal Strategy Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            {/* Featured Visual */}
+            <div className="relative w-full mx-auto mb-8 aspect-[16/9] overflow-hidden">
+              <Image
+                src="/madeira_plot.jpg"
+                alt="Oceanview plot in Madeira, Portugal"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Portugal Winter Escape Strategy
             </h3>
@@ -341,12 +354,35 @@ export default function AirstreamPage() {
                   <li>Revenue loss offset by full estate bookings</li>
                   <li>Maintains 70% occupancy rate in Bordeaux</li>
                 </ul>
+                <div className="mt-6 text-center">
+                  <a 
+                    href="https://www.airstream.com/travel-trailers/pottery-barn-special-edition/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-yellow-500 text-black font-semibold hover:bg-yellow-400 transition-colors duration-200"
+                  >
+                    View Pottery Barn Special Edition Details
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Portugal Market Analysis */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            {/* Featured Visual */}
+            <div className="relative w-full mx-auto mb-8 aspect-[16/9] overflow-hidden">
+              <Image
+                src="/algarve_.jpeg"
+                alt="Oceanview plot in Algarve, Portugal"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Portugal Market Analysis
             </h3>
@@ -397,6 +433,16 @@ export default function AirstreamPage() {
                       <li>Total Cost: €161,250</li>
                     </ul>
                   </div>
+                </div>
+                <div className="mt-6 text-center">
+                  <a 
+                    href="https://www.meretdemeures.com/en/property/europe/seaside-plot+of+land-for+sale-portugal/?property_types=feet_in_water&property_types=sea_view&property_types=less_500&order_by=default_price"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-yellow-500 text-black font-semibold hover:bg-yellow-400 transition-colors duration-200"
+                  >
+                    Search Available Plots
+                  </a>
                 </div>
               </div>
             </div>
