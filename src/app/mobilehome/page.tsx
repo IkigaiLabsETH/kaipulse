@@ -259,12 +259,12 @@ export default function MobileHomePage() {
           <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Adventure • Luxury • Innovation</p>
           <h1 className="text-center">
             <span className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-              Motorhome UX
+              Adventure Machine
             </span>
           </h1>
           <div className="flex items-center justify-center mt-6">
             <div className="h-px w-24 bg-yellow-500/30"></div>
-            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Dethleffs Globebus & Marco Polo</p>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">HYMER Grand Canyon S</p>
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function MobileHomePage() {
         <div className="relative w-full h-[60vh] min-h-[500px] mb-16 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
           <Image
             src="/mobilehome.jpg"
-            alt="Dethleffs Globebus Performance 4x4 in scenic landscape"
+            alt="HYMER Grand Canyon S showcasing its premium features and off-road capabilities"
             fill
             priority
             className="object-cover"
@@ -285,14 +285,63 @@ export default function MobileHomePage() {
         <div className="space-y-16">
           {/* Main Content Section */}
           <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Embracing the Open Road</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">The Pinnacle of Adventure and Luxury</h3>
             <div className="space-y-6 text-gray-300">
               <p className="text-lg">
-                The call of the wild has never been louder, and for adventure-seekers yearning to explore beyond the beaten path, the Dethleffs Globebus Performance 4x4 emerges as a game-changer in the world of motorhomes. Unveiled as a near-production prototype at the Caravan Salon 2024 in Düsseldorf, this all-wheel-drive marvel from German leisure vehicle specialist Dethleffs redefines what it means to travel with freedom, comfort, and rugged capability.
+                The HYMER Grand Canyon S represents the pinnacle of adventure, luxury, and self-sufficiency in the world of van life. Built on the Mercedes-Benz Sprinter chassis, this premium Class B camper van combines rugged off-road performance with cutting-edge connectivity and home-like comfort, making it the ideal choice for exploring Southwest France&apos;s diverse landscapes.
               </p>
               <p className="text-lg">
-                Paired with the ethos of modern camping highlighted in Mercedes-Benz&apos;s Camper&apos;s Paradise feature, the Globebus Performance 4x4 embodies a growing movement: the fusion of luxury, technology, and off-road exploration that caters to a new generation of nomads.
+                With its award-winning design, 10-day off-grid capability, and Mercedes-Benz engineering, the Grand Canyon S sets new standards in the camper van market. Whether navigating the Pyrenees&apos; rugged trails or cruising through Bordeaux&apos;s wine country, this vehicle delivers an unmatched combination of performance, comfort, and autonomy.
               </p>
+            </div>
+          </div>
+
+          {/* Key Features Section */}
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Unmatched Features and Capabilities</h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Performance & Capability</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>190 hp 2.0L diesel engine</li>
+                    <li>9G-Tronic automatic transmission</li>
+                    <li>Optional 4x4 all-wheel drive</li>
+                    <li>Raised suspension & off-road tires</li>
+                    <li>Engine protection plate</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Interior & Comfort</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Premium &quot;Ivy Green&quot; or &quot;Pearl Grey&quot; interiors</li>
+                    <li>Convertible dinette & transverse bed</li>
+                    <li>90-liter compressor refrigerator</li>
+                    <li>Spacious shower & foldable washbasin</li>
+                    <li>6 kW diesel heater with hot water</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Self-Sufficiency</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>10-day off-grid capability</li>
+                    <li>HYMER Smart Battery System</li>
+                    <li>110-liter fresh water tank</li>
+                    <li>5G WLAN router & roof antenna</li>
+                    <li>HYMER Connect app control</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Awards & Recognition</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>iF Design Award 2024</li>
+                    <li>Golden Motorhome 2024</li>
+                    <li>Camping Life Trophy 2022</li>
+                    <li>Premium Mercedes engineering</li>
+                    <li>Industry-leading innovation</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -300,7 +349,7 @@ export default function MobileHomePage() {
           <div className="relative w-full h-[40vh] min-h-[400px] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
             <Image
               src="/globebus.jpg"
-              alt="Dethleffs Globebus Performance 4x4 showcasing its off-road capabilities"
+              alt="HYMER Grand Canyon S interior showcasing premium features and comfort"
               fill
               className="object-cover"
               sizes="100vw"
@@ -310,56 +359,168 @@ export default function MobileHomePage() {
 
           {/* Price Comparison Section */}
           <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Price Comparison and Market Positioning</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Premium Positioning</h3>
             <div className="space-y-6 text-gray-300">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="bg-yellow-500/10 p-4 rounded-lg">
-                  <h4 className="font-bold text-yellow-400 mb-2">Dethleffs Globebus Performance 4x4</h4>
+                  <h4 className="font-bold text-yellow-400 mb-2">HYMER Grand Canyon S</h4>
                   <ul className="list-disc list-inside space-y-1">
-                    <li>Base Price: €119,999 (First Edition)</li>
-                    <li>Fully Equipped: Up to €123,000</li>
-                    <li>Target Market: Off-road enthusiasts</li>
-                    <li>Key Features: All-wheel drive, off-road capability</li>
-                    <li>Rental Potential: €250-€400 per day</li>
+                    <li>Price: €128,705-€140,000</li>
+                    <li>Premium 4x4 capability</li>
+                    <li>10-day off-grid autonomy</li>
+                    <li>Mercedes engineering</li>
+                    <li>Rental: €300-€450/day</li>
                   </ul>
                 </div>
                 <div className="bg-yellow-500/10 p-4 rounded-lg">
-                  <h4 className="font-bold text-yellow-400 mb-2">Mercedes-Benz V-Class Marco Polo 2025</h4>
+                  <h4 className="font-bold text-yellow-400 mb-2">Dethleffs Globebus</h4>
                   <ul className="list-disc list-inside space-y-1">
-                    <li>Base Price: €69,500</li>
-                    <li>Premium Models: €80,000-€100,000</li>
-                    <li>Target Market: Urban adventurers</li>
-                    <li>Key Features: Luxury interior, technology</li>
-                    <li>Rental Potential: €150-€250 per day</li>
+                    <li>Price: €119,999-€123,000</li>
+                    <li>Standard 4x4 system</li>
+                    <li>163 hp engine</li>
+                    <li>VW Crafter chassis</li>
+                    <li>Rental: €250-€400/day</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Marco Polo 2025</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Price: €69,500-€100,000</li>
+                    <li>Urban-focused design</li>
+                    <li>Family-friendly layout</li>
+                    <li>Premium technology</li>
+                    <li>Rental: €150-€250/day</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Business Opportunity Section */}
+          {/* Business Model Section */}
           <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Rental Business Opportunity</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Premium Rental Business Model</h3>
             <div className="space-y-6 text-gray-300">
               <p className="text-lg">
-                The combination of the Globebus Performance 4x4 and Marco Polo 2025 presents a compelling business opportunity in the luxury camper van rental market. A mixed fleet strategy can maximize profitability while serving different customer segments.
+                The HYMER Grand Canyon S leads our premium rental fleet, offering unmatched returns and customer satisfaction. With its superior features and Mercedes-Benz engineering, it commands the highest rental rates while delivering exceptional value to adventure-seeking customers.
               </p>
               <div className="bg-yellow-500/10 p-4 rounded-lg">
                 <h4 className="font-bold text-yellow-400 mb-2">Fleet Strategy:</h4>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Initial Investment: €760,000 (3 Globebus + 5 Marco Polo)</li>
-                  <li>Annual Revenue Potential: €382,500-€624,750</li>
-                  <li>Break-Even Point: 1.5-3 years</li>
-                  <li>Target Utilization: 70% (255 days/year)</li>
+                  <li>3 HYMER Grand Canyon S 4x4 (€390,000)</li>
+                  <li>3 Marco Polo (€240,000)</li>
+                  <li>2 Dethleffs Globebus (€240,000)</li>
+                  <li>Total Investment: €870,000</li>
                 </ul>
               </div>
               <div className="bg-yellow-500/10 p-4 rounded-lg">
-                <h4 className="font-bold text-yellow-400 mb-2">Operational Costs:</h4>
+                <h4 className="font-bold text-yellow-400 mb-2">Revenue Potential:</h4>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Maintenance: €40,000-€56,000 annually</li>
-                  <li>Insurance: €16,000-€24,000 annually</li>
-                  <li>Marketing: €20,000 annually</li>
-                  <li>Staff & Admin: €20,000 annually</li>
+                  <li>HYMER: €229,500-€344,250/year</li>
+                  <li>Dethleffs: €127,500-€204,000/year</li>
+                  <li>Marco Polo: €114,750-€191,250/year</li>
+                  <li>Total: €471,750-€739,500/year</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* HYMER Featured Visual */}
+          <div className="relative w-full h-[40vh] min-h-[400px] mb-16 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
+            <Image
+              src="/Hymer_.jpg"
+              alt="HYMER Grand Canyon S showcasing its premium design and features"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              quality={90}
+            />
+          </div>
+
+          {/* HYMER Grand Canyon S Features Section */}
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">The HYMER Grand Canyon S: Redefining Self-Sufficiency</h3>
+            <div className="space-y-6 text-gray-300">
+              <p className="text-lg">
+                The HYMER Grand Canyon S sets new standards in self-sufficiency and luxury, built on the powerful Mercedes-Benz Sprinter platform. With its award-winning design and innovative features, it offers unmatched freedom and comfort for the modern adventurer.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Dimensions & Specifications</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Length: 593 cm</li>
+                    <li>Width: 206 cm</li>
+                    <li>Height: 276 cm</li>
+                    <li>Maximum laden mass: 3,500 kg</li>
+                    <li>Berths: 2-4 people</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Premium Interior Options</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Ivy Green design with bamboo accents</li>
+                    <li>Pearl Grey design with premium finishes</li>
+                    <li>Clad window frames</li>
+                    <li>Non-woven fabric linings</li>
+                    <li>Push-lock mechanisms with leather loops</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Smart Living Features</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Extendable work surface</li>
+                    <li>Innovative cooker/sink combination</li>
+                    <li>90-litre compressor refrigerator</li>
+                    <li>Spacious cabinets and drawers</li>
+                    <li>Ambient lighting system</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Bathroom & Sleeping</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Slate-look surface finish</li>
+                    <li>Foldable washbasin</li>
+                    <li>Spacious shower area</li>
+                    <li>Disc-spring mattress system</li>
+                    <li>Pull-out step for rear storage</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">HYMER Connect System</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Smart control of all living area features</li>
+                    <li>Heating and hot water control</li>
+                    <li>Lighting and temperature management</li>
+                    <li>Real-time vehicle information</li>
+                    <li>Customizable comfort scenarios</li>
+                  </ul>
+                </div>
+                <div className="bg-yellow-500/10 p-4 rounded-lg">
+                  <h4 className="font-bold text-yellow-400 mb-2">Awards & Recognition</h4>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Golden Motorhome 2024</li>
+                    <li>iF Design Award 2024</li>
+                    <li>German Design Award 2024</li>
+                    <li>Camping Life Trophy 2022</li>
+                    <li>Industry-leading innovation</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-yellow-500/10 p-4 rounded-lg">
+                <h4 className="font-bold text-yellow-400 mb-2">CrossOver Edition Features</h4>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Raised suspension and four-wheel drive</li>
+                  <li>Up to 10 days of self-sufficiency</li>
+                  <li>16-inch off-road tires</li>
+                  <li>190 hp engine</li>
+                  <li>Enhanced traction and handling</li>
                 </ul>
               </div>
             </div>
