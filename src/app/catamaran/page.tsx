@@ -120,7 +120,7 @@ export default function CatamaranPage() {
           </div>
 
           {/* YouTube Video Feature */}
-          <div className="w-full max-w-4xl mx-auto mt-12 mb-16">
+          <div className="w-full mt-12 mb-16">
             <div className="relative aspect-[16/9] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
               <iframe
                 src="https://www.youtube.com/embed/2TnHwLvrD-4"
@@ -311,7 +311,7 @@ export default function CatamaranPage() {
               </div>
               {/* Sunpower Acquisition Note */}
               <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-4 mb-4">
-                <p className="text-yellow-900 font-semibold">
+                <p className="text-yellow-500 font-bold">
                   <span className="font-bold">Update:</span> <span className="font-bold">Sunpower Yachts International</span> (Australia) has acquired <span className="font-bold">Alva Yachts</span> (Germany). Sunpower now leads the solar-electric catamaran market, offering both its own models and the former Alva lineup (such as the Ocean Eco 90 and 78) under the Sunpower brand. Their focus is on advanced battery technology, hydrodynamic hulls, and a range from mid-sized to ultra-luxurious solar-electric megayachts. Alva-branded models are now part of Sunpower&apos;s portfolio, and pricing is available for Sunpower models only.
                 </p>
               </div>
@@ -376,7 +376,7 @@ export default function CatamaranPage() {
                 </ul>
               </div>
               <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-4">
-                <p className="text-yellow-900 font-semibold">
+                <p className="text-yellow-500 font-bold">
                   <span className="font-bold">Conclusion:</span> With a well-structured business plan, a $500,000 catamaran like the Lagoon 40 can break even with 6–12 weeks of charters per year, generating $63,000–$70,000 in net revenue (or $45,000 guaranteed) to cover $37,250 in operating costs and $30,000 in financing. Consult a tax attorney and reputable charter company for setup and ongoing management.
                 </p>
               </div>
@@ -432,7 +432,7 @@ export default function CatamaranPage() {
                 </ul>
               </div>
               <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-4">
-                <p className="text-yellow-900 font-semibold">
+                <p className="text-yellow-500 font-bold">
                   <span className="font-bold">Conclusion:</span> With a well-structured business plan, a $3,500,000 Sunreef 60 ECO can break even with 7–14 weeks of charters per year, generating $262,500–$350,000 in net revenue (or $315,000 guaranteed) to cover $231,250 in operating costs and $225,000 in financing. Consult a tax attorney and reputable charter company for setup and ongoing management. The ECO&apos;s eco-friendly features attract premium clients and enhance revenue potential.
                 </p>
               </div>
