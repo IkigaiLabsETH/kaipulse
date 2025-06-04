@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export default function MobileHomePage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -253,22 +254,35 @@ export default function MobileHomePage() {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="space-y-16">
-          {/* Hero Section */}
-          <div className="text-center space-y-8">
-            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Adventure • Luxury • Innovation</p>
-            <h1 className="text-center">
-              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-                Dethleffs Globebus
-              </span>
-            </h1>
-            <div className="flex items-center justify-center mt-6">
-              <div className="h-px w-24 bg-yellow-500/30"></div>
-              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Redefining Modern Camping</p>
-              <div className="h-px w-24 bg-yellow-500/30"></div>
-            </div>
+        {/* Title Section */}
+        <div className="text-center space-y-8 mb-16">
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Adventure • Luxury • Innovation</p>
+          <h1 className="text-center">
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+              Motorhome UX
+            </span>
+          </h1>
+          <div className="flex items-center justify-center mt-6">
+            <div className="h-px w-24 bg-yellow-500/30"></div>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Dethleffs Globebus & Marco Polo</p>
+            <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
+        </div>
 
+        {/* Featured Image Section */}
+        <div className="relative w-full h-[60vh] min-h-[500px] mb-16 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
+          <Image
+            src="/mobilehome.jpg"
+            alt="Dethleffs Globebus Performance 4x4 in scenic landscape"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+            quality={90}
+          />
+        </div>
+        
+        <div className="space-y-16">
           {/* Main Content Section */}
           <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Embracing the Open Road</h3>
