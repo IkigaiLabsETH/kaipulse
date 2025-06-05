@@ -162,29 +162,74 @@ export default function TrainPage() {
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Exercise & Movement Strategy
             </h3>
-            <div className="space-y-4 text-gray-300">
-              <p className="text-lg">
-                Our approach combines structured workouts with daily movement:
-              </p>
-              <div className="grid md:grid-cols-2 gap-8 mt-6">
+            <div className="space-y-6 text-gray-300">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Structured Workouts</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Nature-Based Training</h4>
                   <ul className="list-disc list-inside space-y-2">
-                    <li>Low-impact strength training</li>
-                    <li>Bodyweight exercises</li>
-                    <li>Resistance band workouts</li>
-                    <li>Outdoor activities</li>
+                    <li>Hill runs and beach dashes</li>
+                    <li>Barefoot training for stronger arches</li>
+                    <li>Outdoor sprint protocols</li>
+                    <li>Natural terrain variation</li>
+                    <li>Sunlight exposure during training</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Daily Movement</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Sprint Protocol</h4>
                   <ul className="list-disc list-inside space-y-2">
-                    <li>Walking and stairs</li>
-                    <li>Active breaks</li>
-                    <li>Standing desk time</li>
-                    <li>Movement snacks</li>
+                    <li>6-8 × 10-15 sec all-out efforts</li>
+                    <li>90 sec rest between sprints</li>
+                    <li>2-3 sessions per week</li>
+                    <li>Boosts testosterone and BDNF</li>
+                    <li>More efficient than steady-state cardio</li>
                   </ul>
                 </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Training Techniques</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">High-Intensity Training</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Heavy-bag workouts</li>
+                      <li>Hill sprints</li>
+                      <li>Resistance band circuits</li>
+                      <li>Bodyweight complexes</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Recovery Integration</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Cold water immersion post-workout</li>
+                      <li>Red light therapy for recovery</li>
+                      <li>Nature walks for active recovery</li>
+                      <li>Grounding exercises</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Training Environment Optimization</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Train outdoors when possible for natural light</li>
+                  <li>Use varied terrain for proprioception</li>
+                  <li>Incorporate natural elements (water, hills)</li>
+                  <li>Time training with circadian rhythm</li>
+                  <li>Combine movement with nature exposure</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Performance Enhancement</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Strategic fasting for metabolic flexibility</li>
+                  <li>Cold exposure for dopamine optimization</li>
+                  <li>Heat therapy for growth hormone</li>
+                  <li>Nature immersion for stress reduction</li>
+                  <li>Red light therapy for ATP production</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -194,18 +239,213 @@ export default function TrainPage() {
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Nutrition & Recovery
             </h3>
-            <div className="space-y-4 text-gray-300">
-              <p className="text-lg">
-                Proper nutrition and recovery are essential for sustainable fitness:
-              </p>
-              <div className="mt-6">
-                <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Components:</h4>
+            <div className="space-y-6 text-gray-300">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Core Nutrition Principles</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Ruminant-first approach (beef, bison, lamb)</li>
+                    <li>High-quality protein sources</li>
+                    <li>Healthy fats and complex carbs</li>
+                    <li>Diverse plant foods (30+ types weekly)</li>
+                    <li>Fermented foods for gut health</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Nutrient Synergies</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Vitamin C + Iron for better absorption</li>
+                    <li>Turmeric + Black Pepper (2000% better absorption)</li>
+                    <li>Healthy Fats + Fat-soluble nutrients</li>
+                    <li>Allium timing (10 min before cooking)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Recovery Stack</h4>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>High-quality protein sources</li>
-                  <li>Healthy fats and complex carbs</li>
-                  <li>7-9 hours of quality sleep</li>
-                  <li>Proper hydration</li>
-                  <li>Recovery days and active rest</li>
+                  <li>Creatine (5g/day) - Buffers ATP, lifts depression, sharpens memory</li>
+                  <li>Collagen Ice Pops - Cherry juice + collagen powder for ligament health</li>
+                  <li>Vitamin D3 - Essential for recovery and immune function</li>
+                  <li>Raw Honey (1-2 tbsp) - Antioxidants and antimicrobial properties</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Gut Health Optimization</h4>
+                <p className="text-white/90 mb-2">
+                  A healthy gut is crucial for recovery and performance:
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>30+ different plant foods weekly</li>
+                  <li>Fiber-rich foods for microbiome diversity</li>
+                  <li>Fermented foods for probiotic benefits</li>
+                  <li>Prebiotic foods to feed good bacteria</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Energy & Performance</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Low glycemic, high fiber meals</li>
+                  <li>Balanced meals with protein and healthy fats</li>
+                  <li>Strategic caffeine timing</li>
+                  <li>Proper hydration and electrolytes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Mindset & Recovery Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Mindset & Recovery Optimization
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Mindset Protocol</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Focus energy on deep-work blocks</li>
+                    <li>Guard time and energy boundaries</li>
+                    <li>Train mind & body daily</li>
+                    <li>Curate environment for success</li>
+                    <li>Keep promises to self first</li>
+                    <li>Stay positive and constructive</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Recovery Optimization</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Cold exposure for dopamine spikes</li>
+                    <li>Heat therapy for growth hormone</li>
+                    <li>Red light therapy for ATP production</li>
+                    <li>Nature immersion for stress reduction</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Recovery Stack</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Sauna: 15-20 min at 80-100°C, 2-3 rounds</li>
+                  <li>Cold plunge: Post-sauna for vagus nerve activation</li>
+                  <li>Red light therapy: 10 min/day for joints and brain</li>
+                  <li>Nature exposure: 10-30 min unfiltered sunlight</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Sleep Optimization Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Sleep Optimization
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <p className="text-lg">
+                Sleep is the most powerful lever for health, recovery, and performance. Here&apos;s a proven protocol for optimal sleep:
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Environment Setup</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Cold bedroom: 18–20°C (64–68°F)</li>
+                    <li>Weighted blanket (9kg, adjust to bodyweight)</li>
+                    <li>Separate duvet from partner</li>
+                    <li>3M ear plugs and eye mask</li>
+                    <li>Red LED lights before sleep</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Evening Routine</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>0.2mg melatonin 45 min before bed</li>
+                    <li>Screen hacks: Smart Invert + extra dim</li>
+                    <li>No eating after 10pm</li>
+                    <li>Sleep around midnight–1am</li>
+                    <li>No fluids 2–3 hours before bed</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Key Insights</h4>
+                <p className="text-white/90">
+                  Temperature is the biggest factor—too hot and you&apos;ll wake up. A cold room and proper bedding can help anyone sleep better. Prioritizing sleep improves all health markers, boosts immunity, and helps your brain clear plaque to prevent dementia. As Bryan Johnson says: sleep is the #1 health hack.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Recovery Protocols Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Advanced Recovery Protocols
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Heat Therapy</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Sauna / Hammam / Hot-Tub</li>
+                    <li>15–20 min at 80–100°C</li>
+                    <li>2–3 rounds with cold contrast</li>
+                    <li>Increases growth hormone ~16×</li>
+                    <li>Reduces cardiovascular risk by 40%</li>
+                    <li>Heat-shock proteins for recovery</li>
+                    <li>Contrast with cold plunge for vagus-nerve activation</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Cold Therapy</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Cold rivers, lakes, or surf</li>
+                    <li>Spikes dopamine post-dip</li>
+                    <li>Activates vagus nerve</li>
+                    <li>Reduces inflammation</li>
+                    <li>Improves recovery</li>
+                    <li>Even ankle-deep exposure helps</li>
+                    <li>Best after heat therapy</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Recovery Stack</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Creatine (5g/day) - Buffers ATP, lifts depression, sharpens memory</li>
+                  <li>Collagen - Supports joint and ligament health</li>
+                  <li>Vitamin D3 - Essential for recovery and immune function</li>
+                  <li>Raw Honey - Antioxidants and antimicrobial properties</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Red Light Therapy</h4>
+                <p className="text-white/90 mb-2">
+                  NASA-tested panels can increase mitochondrial ATP up to 200%. Target joints, brain, and thyroid for 10 min/day to enhance:
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Recovery and muscle repair</li>
+                  <li>Cognitive function</li>
+                  <li>Hormonal balance</li>
+                  <li>Joint health</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Nature Immersion</h4>
+                <p className="text-white/90 mb-2">
+                  Combine recovery with natural elements for enhanced benefits:
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>10-30 min of unfiltered sunlight exposure</li>
+                  <li>Cold water immersion in natural settings</li>
+                  <li>Grounding exercises outdoors</li>
+                  <li>Fresh air and natural environments</li>
                 </ul>
               </div>
             </div>

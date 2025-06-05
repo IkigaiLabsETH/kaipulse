@@ -108,7 +108,7 @@ export function Header() {
       dropdown: true,
       items: [
         { name: 'WINE', href: '/wine' },
-        { name: 'PLAY', href: '/biohacking' },
+        { name: 'PLAY', href: '/train' },
         { name: 'CLUB', href: '/club' },
         { name: 'DRIVE', href: '/tesla' },
         { name: 'SOLAR', href: '/ecoflow' },
