@@ -121,6 +121,21 @@ export default function TrainPage() {
             </div>
           </div>
 
+          {/* Introduction Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Introduction
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                Wesley Okerson&apos;s training protocol, renowned for transforming high-profile clients like Jeff Bezos and Tom Cruise, offers a sustainable, holistic approach to fitness that prioritizes consistent daily movement, low-impact high-resistance exercises, outdoor activities, nutrition, and sleep. Unlike fad diets or grueling workout regimens, Okerson&apos;s method integrates seamlessly into busy lifestyles, making it accessible for anyone seeking long-term health and strength.
+              </p>
+              <p className="text-lg leading-relaxed">
+                To effectively implement and track this protocol, leveraging advanced tech tools like the Apple Watch, Oura Ring, and AURA Strap 2 is essential, providing precise metrics to monitor progress in exercise, recovery, and body composition. This guide synthesizes Okerson&apos;s principles with a detailed weekly training plan and device-specific tracking strategies, empowering you to apply his approach day-to-day with actionable steps and data-driven insights.
+              </p>
+            </div>
+          </div>
+
           {/* Core Principles Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
@@ -298,6 +313,101 @@ export default function TrainPage() {
             </div>
           </div>
 
+          {/* KPI Tracking Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Performance Tracking & KPIs
+            </h3>
+            <div className="space-y-8">
+              {/* Device Integration */}
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">⌚️</span>
+                    <h4 className="text-xl font-bold text-yellow-500">Apple Watch Ultra 2</h4>
+                  </div>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• Daily movement tracking</li>
+                    <li>• Heart rate & VO₂ Max</li>
+                    <li>• Sleep stages & HRV</li>
+                    <li>• GPS for outdoor activities</li>
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">💍</span>
+                    <h4 className="text-xl font-bold text-yellow-500">Oura Ring 4</h4>
+                  </div>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• Advanced sleep tracking</li>
+                    <li>• Recovery metrics</li>
+                    <li>• Body temperature</li>
+                    <li>• Readiness score</li>
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">📊</span>
+                    <h4 className="text-xl font-bold text-yellow-500">AURA Strap 2</h4>
+                  </div>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• Body composition</li>
+                    <li>• Muscle mass tracking</li>
+                    <li>• Water level analysis</li>
+                    <li>• 95%+ DEXA accuracy</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Key Metrics */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Daily Movement KPIs</h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-300">
+                    <li>Steps: 8,000-10,000 daily</li>
+                    <li>Active calories: Track via Apple Watch</li>
+                    <li>Stand hours: 12+ hours daily</li>
+                    <li>Exercise minutes: 30-60 min</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Recovery Metrics</h4>
+                  <ul className="list-disc list-inside space-y-2 text-gray-300">
+                    <li>Sleep score: 85+ (Oura)</li>
+                    <li>HRV: Track trends</li>
+                    <li>Resting heart rate</li>
+                    <li>Body battery/readiness</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Integration Tips */}
+              <div className="bg-yellow-500/10 p-6 rounded-lg">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Integration Tips</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-lg font-bold text-yellow-500 mb-2">Device Syncing</h5>
+                    <ul className="list-disc list-inside space-y-2 text-gray-300">
+                      <li>Sync all devices with Apple Health</li>
+                      <li>Review weekly trends</li>
+                      <li>Track 3-5 key metrics</li>
+                      <li>Regular progress checks</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-lg font-bold text-yellow-500 mb-2">Battery Management</h5>
+                    <ul className="list-disc list-inside space-y-2 text-gray-300">
+                      <li>Charge Apple Watch post-workout</li>
+                      <li>Oura Ring: 8-day battery</li>
+                      <li>Sync AURA during workouts</li>
+                      <li>Maintain continuous tracking</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Weekly Schedule Section */}
           <div className="space-y-8">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 text-center">
@@ -358,12 +468,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Breakfast: High-protein (eggs with avocado)</li>
-                    <li>Sleep: No screens 30 min before bed</li>
-                    <li>Hydration: 2-3L water throughout day</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Apple Watch: Heart rate Zone 2 (60-70% max)</li>
+                        <li>Oura Ring: Readiness score & sleep stages</li>
+                        <li>AURA Strap: Muscle mass baseline scan</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Steps: 8,000-10,000</li>
+                        <li>Sleep: 7-9 hours (85+ score)</li>
+                        <li>Deep sleep: 20-25%</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -397,12 +520,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Lunch: High-fat, moderate-protein</li>
-                    <li>Sleep: Consistent schedule</li>
-                    <li>Pre-bed: Reading or meditation</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Apple Watch: GPS tracking & Zone 2-3</li>
+                        <li>Oura Ring: HRV (30-50ms) & RHR</li>
+                        <li>AURA Strap: Hydration levels</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Distance: 5-7km</li>
+                        <li>HRV: Above baseline</li>
+                        <li>RHR: 50-70 bpm</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -437,12 +573,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Snacks: Nuts and seeds</li>
-                    <li>Dinner: Lean protein with veggies</li>
-                    <li>Sleep: Cool, dark bedroom</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>AURA Strap: Muscle mass</li>
+                        <li>Apple Watch: Workout zones 2-3</li>
+                        <li>Oura Ring: Recovery metrics</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Exercise: 20-30 min</li>
+                        <li>HRV: Stable/rising</li>
+                        <li>Muscle gain: 0.5-1 lb/month</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -476,12 +625,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Hydration: Extra focus</li>
-                    <li>Nutrition: Protein smoothie</li>
-                    <li>Sleep: No caffeine after 2 PM</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Oura Ring: Sleep quality focus</li>
+                        <li>Apple Watch: HRV</li>
+                        <li>AURA Strap: Recovery impact</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Steps: 6,000-8,000</li>
+                        <li>Sleep score: 90+</li>
+                        <li>Body temp: ±0.5°C</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -516,12 +678,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Dinner: Protein-rich meal</li>
-                    <li>Sleep: Consistent bedtime</li>
-                    <li>Wind down: Meditation</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Apple Watch: Heart rate</li>
+                        <li>AURA Strap: Body comp</li>
+                        <li>Oura Ring: Training impact</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Heart rate: Zone 2-4</li>
+                        <li>Body fat: Track trend</li>
+                        <li>Recovery: 24h</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -555,12 +730,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Pre-activity: Balanced meal</li>
-                    <li>Post-activity: Protein + fats</li>
-                    <li>Sleep: Full 7-9 hours</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Apple Watch: GPS & Zone 3</li>
+                        <li>Oura Ring: Recovery status</li>
+                        <li>AURA Strap: Activity impact</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Distance: 5-10km</li>
+                        <li>Calories: 500+</li>
+                        <li>Body temp: Monitor</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -593,12 +781,25 @@ export default function TrainPage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">Daily Tips</h5>
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Meals: Nutrient-dense focus</li>
-                    <li>Hydration: Extra emphasis</li>
-                    <li>Sleep: Review and adjust routine</li>
-                  </ul>
+                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Apple Watch: Weekly review</li>
+                        <li>Oura Ring: Sleep analysis</li>
+                        <li>AURA Strap: Weekly scan</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
+                      <ul className="list-disc list-inside space-y-1">
+                        <li>Weekly exercise: 150-300 min</li>
+                        <li>Sleep: 7-9 hours</li>
+                        <li>Body comp: Weekly trend</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -626,6 +827,21 @@ export default function TrainPage() {
                   </ul>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Outro Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Conclusion
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                Implementing Wesley Okerson&apos;s training protocol offers a balanced, sustainable path to fitness, blending daily movement, low-impact strength training, outdoor adventures, and mindful nutrition and sleep practices. By integrating cutting-edge tools like the Apple Watch for real-time exercise tracking, the Oura Ring for sleep and recovery insights, and the AURA Strap 2 for body composition analysis, you can monitor progress with precision, ensuring alignment with Okerson&apos;s holistic philosophy.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Whether you&apos;re a beginner or a seasoned fitness enthusiast, this structured weekly plan and tech-driven approach provide the roadmap to achieve lasting results. Start small, stay consistent, and let data guide your journey to a healthier, stronger you.
+              </p>
             </div>
           </div>
 
