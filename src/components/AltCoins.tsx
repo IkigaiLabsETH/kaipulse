@@ -33,6 +33,7 @@ const DEFAULT_TICKERS: Price[] = [
   { symbol: 'AAVE', tradingViewSymbol: 'BINANCE:AAVEBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
   { symbol: 'STX', tradingViewSymbol: 'BINANCE:STXBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
   { symbol: 'DOGE', tradingViewSymbol: 'BINANCE:DOGEBTC', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'FARTCOIN', tradingViewSymbol: 'KRAKEN:FARTCOINUSD', exchange: 'KRAKEN', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
