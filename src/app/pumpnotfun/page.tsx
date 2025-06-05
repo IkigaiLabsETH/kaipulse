@@ -3,6 +3,18 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function PumpNotFunPage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -192,6 +204,82 @@ export default function PumpNotFunPage() {
               <p className="text-lg">
                 A detailed analysis of user outcomes reveals the platform&apos;s extractive nature:
               </p>
+              {/* PnL Bar Chart */}
+              <div className="my-8">
+                <Bar
+                  data={{
+                    labels: [
+                      '50K - 100K',
+                      '10K - 50K',
+                      '1K - 10K',
+                      '500 - 1K',
+                      '<500 - 0',
+                      'Loss <500',
+                      'Loss 500 - 1K',
+                      'Loss 1K - 10K',
+                      'Loss 10K - 50K',
+                      'Loss 100K - 200K',
+                      'Loss >1M',
+                    ],
+                    datasets: [
+                      {
+                        label: 'No. of Wallets',
+                        data: [5, 283, 5459, 4523, 142951, 166550, 3708, 2642, 47, 1, 1],
+                        backgroundColor: [
+                          '#F7B500', '#F7B500', '#F7B500', '#F7B500', '#F7B500',
+                          '#F87171', '#F87171', '#F87171', '#F87171', '#F87171', '#F87171'
+                        ],
+                        borderColor: '#000',
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    plugins: {
+                      legend: { display: false },
+                      title: {
+                        display: true,
+                        text: "Pump.fun Traders' PnL Distribution (No. of Wallets)",
+                        color: '#F7B500',
+                        font: { size: 18, weight: 'bold' },
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: function(context) {
+                            return `Wallets: ${context.parsed.y.toLocaleString()}`;
+                          },
+                        },
+                      },
+                    },
+                    scales: {
+                      x: {
+                        title: {
+                          display: true,
+                          text: 'Realized PnL',
+                          color: '#F7B500',
+                        },
+                        ticks: { color: '#fff' },
+                        grid: { color: '#333' },
+                      },
+                      y: {
+                        title: {
+                          display: true,
+                          text: 'No. of Wallets',
+                          color: '#F7B500',
+                        },
+                        ticks: {
+                          color: '#fff',
+                          callback: function(value) {
+                            return value.toLocaleString();
+                          },
+                        },
+                        grid: { color: '#333' },
+                      },
+                    },
+                  }}
+                />
+              </div>
               <div className="mt-6">
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Profit Distribution:</h4>
                 <ul className="list-disc list-inside space-y-2">
