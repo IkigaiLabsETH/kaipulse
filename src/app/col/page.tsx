@@ -47,6 +47,16 @@ const realEstatePerM2 = {
   NYC: 16000,
 };
 
+// Responsive font/rotation for ChartJS
+function getResponsiveFontSize() {
+  if (typeof window !== 'undefined' && window.innerWidth < 640) return 8;
+  return 10;
+}
+function getResponsiveRotation() {
+  if (typeof window !== 'undefined' && window.innerWidth < 640) return 15;
+  return 30;
+}
+
 export default function CostOfLivingPage() {
   const [open, setOpen] = useState<number | null>(null);
   const [btcPrice, setBtcPrice] = useState<number | null>(null);
@@ -102,6 +112,7 @@ export default function CostOfLivingPage() {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top' as const,
@@ -109,6 +120,7 @@ export default function CostOfLivingPage() {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
             family: 'Satoshi',
+            size: getResponsiveFontSize(),
           },
         },
       },
@@ -124,7 +136,7 @@ export default function CostOfLivingPage() {
       tooltip: {
         callbacks: {
           label: function(tooltipItem: TooltipItem<'bar'>) {
-            const value = Number(tooltipItem.raw);
+            const value = tooltipItem.raw as number;
             const label = tooltipItem.label as keyof typeof costData;
             return `${value.toLocaleString()} sats (≈ $${costData[label].toLocaleString()})`;
           }
@@ -137,6 +149,7 @@ export default function CostOfLivingPage() {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
             family: 'Satoshi',
+            size: getResponsiveFontSize(),
           },
           callback: function(value: string | number) {
             return Number(value).toLocaleString() + ' sats';
@@ -151,7 +164,10 @@ export default function CostOfLivingPage() {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
             family: 'Satoshi',
+            size: getResponsiveFontSize(),
           },
+          maxRotation: getResponsiveRotation(),
+          minRotation: 0,
         },
         grid: {
           color: 'rgba(255, 255, 255, 0.1)',
@@ -175,6 +191,7 @@ export default function CostOfLivingPage() {
 
   const apartmentChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top' as const,
@@ -182,6 +199,7 @@ export default function CostOfLivingPage() {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
             family: 'Satoshi',
+            size: getResponsiveFontSize(),
           },
         },
       },
@@ -211,6 +229,7 @@ export default function CostOfLivingPage() {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
             family: 'Satoshi',
+            size: getResponsiveFontSize(),
           },
           callback: function(value: string | number) {
             return Number(value).toLocaleString() + ' BTC';
@@ -225,7 +244,10 @@ export default function CostOfLivingPage() {
           color: 'rgba(255, 255, 255, 0.8)',
           font: {
             family: 'Satoshi',
+            size: getResponsiveFontSize(),
           },
+          maxRotation: getResponsiveRotation(),
+          minRotation: 0,
         },
         grid: {
           color: 'rgba(255, 255, 255, 0.1)',
@@ -310,80 +332,76 @@ export default function CostOfLivingPage() {
       {/* Premium header accent */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="space-y-16">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 pt-20 sm:pt-24 pb-10 sm:pb-16">
+        <div className="space-y-10 sm:space-y-16">
           {/* Hero Section */}
-          <div className="text-center space-y-8">
-            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Cost Comparison • Lifestyle Analysis • Financial Planning</p>
+          <div className="text-center space-y-6 sm:space-y-8">
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-xs sm:text-sm mb-2 sm:mb-4 font-light font-satoshi">Cost Comparison • Lifestyle Analysis • Financial Planning</p>
             <h1 className="text-center">
-              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+              <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
                 Cost of Living
               </span>
             </h1>
-            <div className="flex items-center justify-center mt-6">
-              <div className="h-px w-24 bg-yellow-500/30"></div>
-              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">NYC vs Europe: A Comprehensive Comparison</p>
-              <div className="h-px w-24 bg-yellow-500/30"></div>
+            <div className="flex flex-col sm:flex-row items-center justify-center mt-4 sm:mt-6 gap-2 sm:gap-0">
+              <div className="h-px w-16 sm:w-24 bg-yellow-500/30"></div>
+              <p className="mx-0 sm:mx-6 text-base sm:text-lg text-white/70 font-light italic font-satoshi">NYC vs Europe: A Comprehensive Comparison</p>
+              <div className="h-px w-16 sm:w-24 bg-yellow-500/30"></div>
             </div>
           </div>
 
           {/* Satoshis Chart */}
-          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <div className="mb-4">
-              <p className="text-lg text-gray-300">
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="mb-2 sm:mb-4">
+              <p className="text-base sm:text-lg text-gray-300">
                 Current Bitcoin Price: {btcPrice ? `$${btcPrice.toLocaleString()}` : 'Loading...'}
               </p>
             </div>
-            <div className="h-[400px]">
-              {satoshisData.length > 0 ? (
-                <Bar data={chartData} options={chartOptions} />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <p className="text-gray-300">Loading chart data...</p>
-                </div>
-              )}
+            <div className="relative w-full" style={{ minHeight: 220, height: '40vw', maxHeight: 400 }}>
+              <Bar
+                data={chartData}
+                options={chartOptions}
+                className="absolute top-0 left-0 w-full h-full"
+              />
             </div>
           </div>
 
           {/* Apartment BTC Chart */}
-          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mt-8">
-            <div className="mb-4">
-              <p className="text-lg text-gray-300">
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] mt-6 sm:mt-8">
+            <div className="mb-2 sm:mb-4">
+              <p className="text-base sm:text-lg text-gray-300">
                 100 m² Apartment Cost in Bitcoin (real-time)
               </p>
             </div>
-            <div className="h-[400px]">
-              {btcApartmentData.length > 0 ? (
-                <Bar data={apartmentChartData} options={apartmentChartOptions} />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <p className="text-gray-300">Loading chart data...</p>
-                </div>
-              )}
+            <div className="relative w-full" style={{ minHeight: 220, height: '40vw', maxHeight: 400 }}>
+              <Bar
+                data={apartmentChartData}
+                options={apartmentChartOptions}
+                className="absolute top-0 left-0 w-full h-full"
+              />
             </div>
           </div>
 
           {/* NYC Cost Breakdown */}
-          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-4 sm:mb-6">
               NYC Cost of Living Breakdown (2025)
             </h3>
-            <div className="space-y-4 text-gray-300">
-              <p className="text-lg">
+            <div className="space-y-2 sm:space-y-4 text-gray-300">
+              <p className="text-base sm:text-lg">
                 Monthly expenses for a couple in NYC average $6,000–$8,000, with key components including:
               </p>
-              <div className="grid md:grid-cols-2 gap-8 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mt-4 sm:mt-6">
                 <div>
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Housing & Utilities</h4>
-                  <ul className="list-disc list-inside space-y-2">
+                  <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Housing & Utilities</h4>
+                  <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                     <li>Rent: $3,500–$5,000/month</li>
                     <li>Utilities: $150–$250/month</li>
                     <li>Internet & Phone: $200–$300/month</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Daily Expenses</h4>
-                  <ul className="list-disc list-inside space-y-2">
+                  <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Daily Expenses</h4>
+                  <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                     <li>Groceries: $400–$600/month</li>
                     <li>Transportation: $264/month (MetroCard)</li>
                     <li>Healthcare: $700–$1,500/month</li>
@@ -395,13 +413,13 @@ export default function CostOfLivingPage() {
           </div>
 
           {/* European Cities Comparison */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
             {/* Monaco */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-6">Monaco</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Monthly Cost: $8,000–$12,000 (20-50% more expensive than NYC)</p>
-                <ul className="list-disc list-inside space-y-2">
+            <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h3 className="text-lg sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6">Monaco</h3>
+              <div className="space-y-2 sm:space-y-4 text-gray-300">
+                <p className="text-base sm:text-lg">Monthly Cost: $8,000–$12,000 (20-50% more expensive than NYC)</p>
+                <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                   <li>Housing: $4,000–$6,000/month</li>
                   <li>Utilities: $200–$400/month</li>
                   <li>Groceries: $500–$800/month</li>
@@ -411,13 +429,12 @@ export default function CostOfLivingPage() {
                 </ul>
               </div>
             </div>
-
             {/* Zug */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-6">Zug, Switzerland</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Monthly Cost: $6,000–$8,000 (comparable to NYC)</p>
-                <ul className="list-disc list-inside space-y-2">
+            <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h3 className="text-lg sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6">Zug, Switzerland</h3>
+              <div className="space-y-2 sm:space-y-4 text-gray-300">
+                <p className="text-base sm:text-lg">Monthly Cost: $6,000–$8,000 (comparable to NYC)</p>
+                <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                   <li>Housing: $2,500–$3,500/month</li>
                   <li>Utilities: $200–$350/month</li>
                   <li>Groceries: $600–$900/month</li>
@@ -427,13 +444,12 @@ export default function CostOfLivingPage() {
                 </ul>
               </div>
             </div>
-
             {/* Amsterdam */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-6">Amsterdam</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Monthly Cost: $3,500–$5,000 (30-50% cheaper than NYC)</p>
-                <ul className="list-disc list-inside space-y-2">
+            <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h3 className="text-lg sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6">Amsterdam</h3>
+              <div className="space-y-2 sm:space-y-4 text-gray-300">
+                <p className="text-base sm:text-lg">Monthly Cost: $3,500–$5,000 (30-50% cheaper than NYC)</p>
+                <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                   <li>Housing: $1,500–$2,200/month</li>
                   <li>Utilities: $150–$300/month</li>
                   <li>Groceries: $350–$550/month</li>
@@ -443,13 +459,12 @@ export default function CostOfLivingPage() {
                 </ul>
               </div>
             </div>
-
             {/* Bordeaux */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-6">Bordeaux</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Monthly Cost: $3,000–$4,500 (40-60% cheaper than NYC)</p>
-                <ul className="list-disc list-inside space-y-2">
+            <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h3 className="text-lg sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6">Bordeaux</h3>
+              <div className="space-y-2 sm:space-y-4 text-gray-300">
+                <p className="text-base sm:text-lg">Monthly Cost: $3,000–$4,500 (40-60% cheaper than NYC)</p>
+                <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                   <li>Housing: $700–$1,200/month</li>
                   <li>Utilities: $150–$250/month</li>
                   <li>Groceries: $350–$500/month</li>
@@ -459,13 +474,12 @@ export default function CostOfLivingPage() {
                 </ul>
               </div>
             </div>
-
             {/* Marbella */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-6">Marbella</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Monthly Cost: $2,600–$3,600 (50-60% cheaper than NYC)</p>
-                <ul className="list-disc list-inside space-y-2">
+            <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h3 className="text-lg sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6">Marbella</h3>
+              <div className="space-y-2 sm:space-y-4 text-gray-300">
+                <p className="text-base sm:text-lg">Monthly Cost: $2,600–$3,600 (50-60% cheaper than NYC)</p>
+                <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                   <li>Housing: $1,000–$1,400/month</li>
                   <li>Utilities: $120–$200/month</li>
                   <li>Groceries: $300–$450/month</li>
@@ -475,13 +489,12 @@ export default function CostOfLivingPage() {
                 </ul>
               </div>
             </div>
-
             {/* Lisbon */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h3 className="text-2xl font-bold text-yellow-500 mb-6">Lisbon</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Monthly Cost: $2,500–$3,500 (50-65% cheaper than NYC)</p>
-                <ul className="list-disc list-inside space-y-2">
+            <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h3 className="text-lg sm:text-2xl font-bold text-yellow-500 mb-4 sm:mb-6">Lisbon</h3>
+              <div className="space-y-2 sm:space-y-4 text-gray-300">
+                <p className="text-base sm:text-lg">Monthly Cost: $2,500–$3,500 (50-65% cheaper than NYC)</p>
+                <ul className="list-disc list-inside space-y-1 sm:space-y-2">
                   <li>Housing: $800–$1,500/month</li>
                   <li>Utilities: $130–$300/month</li>
                   <li>Groceries: $300–$450/month</li>
@@ -494,99 +507,99 @@ export default function CostOfLivingPage() {
           </div>
 
           {/* Key Insights */}
-          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-4 sm:mb-6">
               Key Insights
             </h3>
-            <div className="space-y-4 text-gray-300">
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="bg-yellow-500/10 p-6 rounded-lg">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Most Affordable</h4>
-                  <p>Lisbon and Marbella offer the lowest costs ($2,500-3,600/month), with excellent public healthcare and affordable housing.</p>
+            <div className="space-y-2 sm:space-y-4 text-gray-300">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+                <div className="bg-yellow-500/10 p-4 sm:p-6 rounded-lg">
+                  <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Most Affordable</h4>
+                  <p className="text-base sm:text-lg">Lisbon and Marbella offer the lowest costs ($2,500-3,600/month), with excellent public healthcare and affordable housing.</p>
                 </div>
-                <div className="bg-yellow-500/10 p-6 rounded-lg">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Mid-Range Options</h4>
-                  <p>Bordeaux and Amsterdam ($3,000-5,000/month) provide a balance of affordability and quality of life with robust public services.</p>
+                <div className="bg-yellow-500/10 p-4 sm:p-6 rounded-lg">
+                  <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Mid-Range Options</h4>
+                  <p className="text-base sm:text-lg">Bordeaux and Amsterdam ($3,000-5,000/month) provide a balance of affordability and quality of life with robust public services.</p>
                 </div>
-                <div className="bg-yellow-500/10 p-6 rounded-lg">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Premium Destinations</h4>
-                  <p>Monaco ($8,000-12,000/month) and Zug ($6,000-8,000/month) offer luxury living with high costs offset by tax benefits and high salaries.</p>
+                <div className="bg-yellow-500/10 p-4 sm:p-6 rounded-lg">
+                  <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Premium Destinations</h4>
+                  <p className="text-base sm:text-lg">Monaco ($8,000-12,000/month) and Zug ($6,000-8,000/month) offer luxury living with high costs offset by tax benefits and high salaries.</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Real Estate Cost Comparison */}
-          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+          <div className="bg-[#1c1f26] p-4 sm:p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-x-auto">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-4 sm:mb-6">
               Real Estate Cost Comparison (2025)
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-gray-300 mb-4 sm:mb-6 text-base sm:text-lg">
               Average cost of an apartment per square meter (m²) in USD, city center, 2025. Data: Numbeo, Expatistan, Global Property Guide, and others.
             </p>
             <div className="overflow-x-auto">
-              <table className="min-w-full text-left text-white border border-yellow-500 rounded-lg">
+              <table className="min-w-full text-left text-white border border-yellow-500 rounded-lg text-xs sm:text-base">
                 <thead className="bg-yellow-500/10">
                   <tr>
-                    <th className="px-4 py-2 font-bold">City</th>
-                    <th className="px-4 py-2 font-bold">Cost per m² (USD)</th>
-                    <th className="px-4 py-2 font-bold">Notes</th>
+                    <th className="px-2 sm:px-4 py-2 font-bold">City</th>
+                    <th className="px-2 sm:px-4 py-2 font-bold">Cost per m² (USD)</th>
+                    <th className="px-2 sm:px-4 py-2 font-bold">Notes</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-yellow-500/20">
                   <tr>
-                    <td className="px-4 py-2">Bordeaux</td>
-                    <td className="px-4 py-2">$5,000–$6,000</td>
-                    <td className="px-4 py-2">Suburbs ~20–30% cheaper</td>
+                    <td className="px-2 sm:px-4 py-2">Bordeaux</td>
+                    <td className="px-2 sm:px-4 py-2">$5,000–$6,000</td>
+                    <td className="px-2 sm:px-4 py-2">Suburbs ~20–30% cheaper</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">Lisbon</td>
-                    <td className="px-4 py-2">$4,500–$5,500</td>
-                    <td className="px-4 py-2">Suburbs ~$2,500–$3,500; rising demand</td>
+                    <td className="px-2 sm:px-4 py-2">Lisbon</td>
+                    <td className="px-2 sm:px-4 py-2">$4,500–$5,500</td>
+                    <td className="px-2 sm:px-4 py-2">Suburbs ~$2,500–$3,500; rising demand</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">Marbella</td>
-                    <td className="px-4 py-2">$3,500–$4,500</td>
-                    <td className="px-4 py-2">Golden Mile ~$5,000; suburbs ~$3,000</td>
+                    <td className="px-2 sm:px-4 py-2">Marbella</td>
+                    <td className="px-2 sm:px-4 py-2">$3,500–$4,500</td>
+                    <td className="px-2 sm:px-4 py-2">Golden Mile ~$5,000; suburbs ~$3,000</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">Zug</td>
-                    <td className="px-4 py-2">$10,000–$12,000</td>
-                    <td className="px-4 py-2">High due to corporate hub; suburbs ~$8,000</td>
+                    <td className="px-2 sm:px-4 py-2">Zug</td>
+                    <td className="px-2 sm:px-4 py-2">$10,000–$12,000</td>
+                    <td className="px-2 sm:px-4 py-2">High due to corporate hub; suburbs ~$8,000</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">Monaco</td>
-                    <td className="px-4 py-2">$45,000–$55,000</td>
-                    <td className="px-4 py-2">World&apos;s priciest; luxury-focused market</td>
+                    <td className="px-2 sm:px-4 py-2">Monaco</td>
+                    <td className="px-2 sm:px-4 py-2">$45,000–$55,000</td>
+                    <td className="px-2 sm:px-4 py-2">World&apos;s priciest; luxury-focused market</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">Amsterdam</td>
-                    <td className="px-4 py-2">$6,000–$8,000</td>
-                    <td className="px-4 py-2">Canal belt ~$9,000; Noord ~$5,000</td>
+                    <td className="px-2 sm:px-4 py-2">Amsterdam</td>
+                    <td className="px-2 sm:px-4 py-2">$6,000–$8,000</td>
+                    <td className="px-2 sm:px-4 py-2">Canal belt ~$9,000; Noord ~$5,000</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2">NYC</td>
-                    <td className="px-4 py-2">$14,000–$18,000</td>
-                    <td className="px-4 py-2">Manhattan ~$20,000; Brooklyn ~$10,000</td>
+                    <td className="px-2 sm:px-4 py-2">NYC</td>
+                    <td className="px-2 sm:px-4 py-2">$14,000–$18,000</td>
+                    <td className="px-2 sm:px-4 py-2">Manhattan ~$20,000; Brooklyn ~$10,000</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div className="mt-8 grid md:grid-cols-3 gap-8">
-              <div className="bg-yellow-500/10 p-6 rounded-lg">
-                <h4 className="text-xl font-bold text-yellow-500 mb-2">Cheapest</h4>
-                <p>Marbella ($3,500–$4,500/m²) and Lisbon ($4,500–$5,500/m²) are the most affordable, reflecting Southern Europe&apos;s lower property costs.</p>
+            <div className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+              <div className="bg-yellow-500/10 p-4 sm:p-6 rounded-lg">
+                <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Cheapest</h4>
+                <p className="text-base sm:text-lg">Marbella ($3,500–$4,500/m²) and Lisbon ($4,500–$5,500/m²) are the most affordable, reflecting Southern Europe&apos;s lower property costs.</p>
               </div>
-              <div className="bg-yellow-500/10 p-6 rounded-lg">
-                <h4 className="text-xl font-bold text-yellow-500 mb-2">Most Expensive</h4>
-                <p>Monaco ($45,000–$55,000/m²) dwarfs all others, followed by NYC ($14,000–$18,000/m²) and Zug ($10,000–$12,000/m²).</p>
+              <div className="bg-yellow-500/10 p-4 sm:p-6 rounded-lg">
+                <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Most Expensive</h4>
+                <p className="text-base sm:text-lg">Monaco ($45,000–$55,000/m²) dwarfs all others, followed by NYC ($14,000–$18,000/m²) and Zug ($10,000–$12,000/m²).</p>
               </div>
-              <div className="bg-yellow-500/10 p-6 rounded-lg">
-                <h4 className="text-xl font-bold text-yellow-500 mb-2">Mid-Range</h4>
-                <p>Bordeaux ($5,000–$6,000/m²) and Amsterdam ($6,000–$8,000/m²) are moderately priced but face upward pressure from demand.</p>
+              <div className="bg-yellow-500/10 p-4 sm:p-6 rounded-lg">
+                <h4 className="text-lg sm:text-xl font-bold text-yellow-500 mb-2 sm:mb-4">Mid-Range</h4>
+                <p className="text-base sm:text-lg">Bordeaux ($5,000–$6,000/m²) and Amsterdam ($6,000–$8,000/m²) are moderately priced but face upward pressure from demand.</p>
               </div>
             </div>
-            <div className="mt-6 text-gray-400 text-sm">
+            <div className="mt-4 sm:mt-6 text-gray-400 text-xs sm:text-sm">
               <ul className="list-disc list-inside space-y-1">
                 <li>NYC is 2–4x pricier than Bordeaux, Lisbon, Marbella, and Amsterdam but ~3–4x cheaper than Monaco. Zug is closer to NYC&apos;s lower end.</li>
                 <li>Lisbon and Amsterdam see rising prices due to housing shortages and expat demand.</li>
