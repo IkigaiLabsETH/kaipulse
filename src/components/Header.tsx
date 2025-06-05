@@ -79,7 +79,7 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'BTC DASHBOARD', href: '/data' },
+        { name: 'COST OF LIVING', href: '/col' },
         { name: 'THE 4% RULE', href: '/21' },
         { name: 'CALCULATOR', href: '/calculator' },
         { name: 'ALT COINS', href: '/altcoins' },
