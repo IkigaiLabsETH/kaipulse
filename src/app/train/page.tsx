@@ -131,7 +131,7 @@ export default function TrainPage() {
                 Wesley Okerson&apos;s training protocol, renowned for transforming high-profile clients like Jeff Bezos and Tom Cruise, offers a sustainable, holistic approach to fitness that prioritizes consistent daily movement, low-impact high-resistance exercises, outdoor activities, nutrition, and sleep. Unlike fad diets or grueling workout regimens, Okerson&apos;s method integrates seamlessly into busy lifestyles, making it accessible for anyone seeking long-term health and strength.
               </p>
               <p className="text-lg leading-relaxed">
-                To effectively implement and track this protocol, leveraging advanced tech tools like the Apple Watch, Oura Ring, and AURA Strap 2 is essential, providing precise metrics to monitor progress in exercise, recovery, and body composition. This guide synthesizes Okerson&apos;s principles with a detailed weekly training plan and device-specific tracking strategies, empowering you to apply his approach day-to-day with actionable steps and data-driven insights.
+                To effectively implement and track this protocol, leveraging advanced tech tools like the Apple Watch and Oura Ring is essential, providing precise metrics to monitor progress in exercise, recovery, and sleep quality. This guide synthesizes Okerson&apos;s principles with a detailed weekly training plan and device-specific tracking strategies, empowering you to apply his approach day-to-day with actionable steps and data-driven insights.
               </p>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function TrainPage() {
             </h3>
             <div className="space-y-8">
               {/* Device Integration */}
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/30">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-3xl">⌚️</span>
@@ -331,6 +331,7 @@ export default function TrainPage() {
                     <li>• Heart rate & VO₂ Max</li>
                     <li>• Sleep stages & HRV</li>
                     <li>• GPS for outdoor activities</li>
+                    <li>• Workout zones & intensity</li>
                   </ul>
                 </div>
                 <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/30">
@@ -343,18 +344,7 @@ export default function TrainPage() {
                     <li>• Recovery metrics</li>
                     <li>• Body temperature</li>
                     <li>• Readiness score</li>
-                  </ul>
-                </div>
-                <div className="bg-black/30 p-6 rounded-lg border border-yellow-500/30">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">📊</span>
-                    <h4 className="text-xl font-bold text-yellow-500">AURA Strap 2</h4>
-                  </div>
-                  <ul className="space-y-2 text-gray-300">
-                    <li>• Body composition</li>
-                    <li>• Muscle mass tracking</li>
-                    <li>• Water level analysis</li>
-                    <li>• 95%+ DEXA accuracy</li>
+                    <li>• HRV & RHR trends</li>
                   </ul>
                 </div>
               </div>
@@ -399,7 +389,6 @@ export default function TrainPage() {
                     <ul className="list-disc list-inside space-y-2 text-gray-300">
                       <li>Charge Apple Watch post-workout</li>
                       <li>Oura Ring: 8-day battery</li>
-                      <li>Sync AURA during workouts</li>
                       <li>Maintain continuous tracking</li>
                     </ul>
                   </div>
@@ -475,7 +464,6 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: Heart rate Zone 2 (60-70% max)</li>
                         <li>Oura Ring: Readiness score & sleep stages</li>
-                        <li>AURA Strap: Muscle mass baseline scan</li>
                       </ul>
                     </div>
                     <div>
@@ -527,7 +515,6 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: GPS tracking & Zone 2-3</li>
                         <li>Oura Ring: HRV (30-50ms) & RHR</li>
-                        <li>AURA Strap: Hydration levels</li>
                       </ul>
                     </div>
                     <div>
@@ -578,7 +565,6 @@ export default function TrainPage() {
                     <div>
                       <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
                       <ul className="list-disc list-inside space-y-1">
-                        <li>AURA Strap: Muscle mass</li>
                         <li>Apple Watch: Workout zones 2-3</li>
                         <li>Oura Ring: Recovery metrics</li>
                       </ul>
@@ -632,7 +618,6 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Oura Ring: Sleep quality focus</li>
                         <li>Apple Watch: HRV</li>
-                        <li>AURA Strap: Recovery impact</li>
                       </ul>
                     </div>
                     <div>
@@ -684,7 +669,6 @@ export default function TrainPage() {
                       <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: Heart rate</li>
-                        <li>AURA Strap: Body comp</li>
                         <li>Oura Ring: Training impact</li>
                       </ul>
                     </div>
@@ -737,7 +721,6 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: GPS & Zone 3</li>
                         <li>Oura Ring: Recovery status</li>
-                        <li>AURA Strap: Activity impact</li>
                       </ul>
                     </div>
                     <div>
@@ -788,7 +771,6 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: Weekly review</li>
                         <li>Oura Ring: Sleep analysis</li>
-                        <li>AURA Strap: Weekly scan</li>
                       </ul>
                     </div>
                     <div>
@@ -837,7 +819,7 @@ export default function TrainPage() {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p className="text-lg leading-relaxed">
-                Implementing Wesley Okerson&apos;s training protocol offers a balanced, sustainable path to fitness, blending daily movement, low-impact strength training, outdoor adventures, and mindful nutrition and sleep practices. By integrating cutting-edge tools like the Apple Watch for real-time exercise tracking, the Oura Ring for sleep and recovery insights, and the AURA Strap 2 for body composition analysis, you can monitor progress with precision, ensuring alignment with Okerson&apos;s holistic philosophy.
+                Implementing Wesley Okerson&apos;s training protocol offers a balanced, sustainable path to fitness, blending daily movement, low-impact strength training, outdoor adventures, and mindful nutrition and sleep practices. By integrating cutting-edge tools like the Apple Watch for real-time exercise tracking and the Oura Ring for sleep and recovery insights, you can monitor progress with precision, ensuring alignment with Okerson&apos;s holistic philosophy.
               </p>
               <p className="text-lg leading-relaxed">
                 Whether you&apos;re a beginner or a seasoned fitness enthusiast, this structured weekly plan and tech-driven approach provide the roadmap to achieve lasting results. Start small, stay consistent, and let data guide your journey to a healthier, stronger you.
