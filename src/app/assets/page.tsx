@@ -115,6 +115,37 @@ export default function AssetsPage() {
             </div>
           </div>
 
+          {/* Introduction Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="space-y-6 text-gray-300">
+              <p className="text-2xl font-bold text-yellow-500 mb-4">The Great Generational Shift</p>
+              <p className="text-lg font-semibold text-yellow-500/90">
+                Unlike their parents in their 30&apos;s, they didn&apos;t get gifted equities with a P/E of 7, bond yields at 13% or real estate at the lows versus income. They got the opposite. Their opportunity set was an expected negative future returns. They didn&apos;t want any part of our financial system.
+              </p>
+              <p className="text-lg">
+                Then the pandemic hit and everything changed. We gave them free money and they collectively said &quot;fuck it&quot; - let&apos;s take risk because their stake was free. If we were given a free stake at the casino, we would do the same. But they didn&apos;t buy our precious gold miners, or our discounted value businesses. Why? Because they don&apos;t care about 10% returns. The only way to level the playing field was to take MASSIVE risk.
+              </p>
+              <p className="text-lg font-semibold text-yellow-500/90">
+                If you can&apos;t win the game, change it.
+              </p>
+              <p className="text-lg">
+                Risk taking met Robin Hood options in 2020 and magic happened... These younger investors changed the entire game. They armed themselves with the skills of Reddit, TikTok and Instagram - communities, virality and memes and stuff that they were told was stupid, like Hertz and Gamestop - and stuck up their middle finger to the rules and broke them. It was MAGNIFICENT.
+              </p>
+              <p className="text-lg">
+                These young people had been let down by us all. Why should they play by our rules when they could make their own? Screw active management, screw hedge funds. They wanted to just stick money in the markets as they were told (Hello passive!) and punt the rest. Crypto resonated. Huge upside, downside of zero. It was a giant options market. Limited losses, exponential upside. They are right.
+              </p>
+              <p className="text-lg">
+                They are blessed with The Exponential Age where growth stocks keep going parabolic over time and trade off Metcalfe&apos;s Law, thus don&apos;t give a shit about our old Boomer mean-reverting valuation models. These new investors aren&apos;t interested in your love of oil or commodities or 1950&apos;s V8&apos;s or your Contemporary art of the 1990&apos;s and 2000&apos;s. Your Jeff Koons is just a stupid balloon sculpture. It is not their cultural reference. JPEGS are and memes.
+              </p>
+              <p className="text-lg">
+                This is ALL about culture. They value different things and there are more of them than you or I. It gets more extreme when you get to India or the Middle East, when everyone is under 30! Those societies are going to see seismic shifts. The next 10 years is going to have the fastest, greatest technology change in all human history. The Exponential Age. We will all feel left behind, but we have to trust in this younger generation of people under 40 to lead the way and show us new ways. We need to be led.
+              </p>
+              <p className="text-lg font-semibold text-yellow-500/90">
+                Change is upon us. Embrace change. Don&apos;t fight it. In change lies all our future.
+              </p>
+            </div>
+          </div>
+
           {/* Historical Performance Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
