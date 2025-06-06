@@ -36,16 +36,19 @@ export default function IntroPage() {
                 If you&apos;re new here, start with our <Link href="/docu" className="text-yellow-500 hover:text-yellow-400 transition-colors">featured Bitcoin documentary</Link> and the <Link href="/platforms/msty/bitcoin" className="text-yellow-500 hover:text-yellow-400 transition-colors">Bitcoin page</Link>. Our core focus is Bitcoin, and everything else is research to help you live the life you want. We&apos;re leveraging AI through vibe coding to create content that will help fine-tune our bespoke model.
               </p>
               <p className="text-lg">
-                Yes, this app might feel like a hot mess - because it is! We&apos;re exploring the intersection of Bitcoin, AI, and lifestyle. For crypto veterans: while most altcoins are going to zero, we dive deep into the few dozen projects actually shipping innovative solutions. We trade them hoping for short-term outperformance against Bitcoin, but always swap back to our core Bitcoin stack.
+                Yes, this app might feel like a hot mess - because it is! We&apos;re exploring the intersection of Bitcoin, AI, and lifestyle. For crypto veterans: while most altcoins are going to zero, we dive deep into the few dozen projects actually shipping innovative solutions. We trade them hoping for short-term outperformance against Bitcoin, but always swap back to our core Bitcoin stack. Check out our <Link href="https://www.livethelife.tv/col" className="text-yellow-500 hover:text-yellow-400 transition-colors">cost of living analysis</Link> to see how we measure everything in Bitcoin and satoshis.
               </p>
               <p className="text-lg">
-                Our daily routine? Check Mando Minutes for news, monitor Bitcoin price, and review our <Link href="https://www.livethelife.tv/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">watchlist</Link> for potential <Link href="https://www.livethelife.tv/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">outperformers</Link>. We write deep dives on projects that could impact our industry - from HyperLiquid and Sui to Solana, Ethereum, and OG memes like DOGE. We track traditional finance&apos;s embrace of Bitcoin after a decade of resistance, focusing on major players like MicroStrategy by Saylor and 21 by Jack, plus innovative products like MSTY, Stride, and Strike.
+                Our daily routine? Check Mando Minutes for news, monitor Bitcoin price, and review our <Link href="https://www.livethelife.tv/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">watchlist</Link> for potential <Link href="https://www.livethelife.tv/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">outperformers</Link>. We write deep dives on projects that could impact our industry - from <Link href="https://www.livethelife.tv/altcoins" className="text-yellow-500 hover:text-yellow-400 transition-colors">HyperLiquid and Sui to Solana, Ethereum, and OG memes like DOGE</Link>. We track traditional finance&apos;s embrace of Bitcoin after a decade of resistance, focusing on major players like MicroStrategy by Saylor and 21 by Jack, plus innovative products like MSTY, Stride, and Strike.
               </p>
               <p className="text-lg">
                 Beyond trading, we&apos;re passionate about digital art - creating, curating, and collecting. Our lifestyle thesis in the About section shares insights from our 20+ years in travel and real estate, documenting our journey through the past, present, and future of this space.
               </p>
               <p className="text-lg">
                 Above all, <Link href="/assets" className="text-yellow-500 hover:text-yellow-400 transition-colors">stay hungry, stay curious</Link>. Use our <Link href="/voice" className="text-yellow-500 hover:text-yellow-400 transition-colors">voice AI</Link> to ask questions and explore. Our platform is your gateway to understanding Bitcoin, leveraging AI, and living life on your own terms.
+              </p>
+              <p className="text-lg">
+                If Bitcoin seems too good to be true, that&apos;s because it is - but not in the way you might think. It&apos;s not a <Link href="https://www.livethelife.tv/zero" className="text-yellow-500 hover:text-yellow-400 transition-colors">get-rich-quick scheme or a magical solution</Link>. It&apos;s a fundamental shift in how we think about money, value, and freedom. The system isn&apos;t broken - it&apos;s working exactly as designed to extract value from your labor. Bitcoin isn&apos;t trying to sell you something or pump your bags. It just... is. A mathematical truth, a monetary rebellion, and your final protest vote against a system that turned your hard work into &quot;clown coupons.&quot; You won&apos;t &quot;buy Bitcoin someday&quot; - you&apos;ll buy Bitcoin, or you&apos;ll own nothing. The choice is yours. <Link href="https://www.livethelife.tv/downbad" className="text-yellow-500 hover:text-yellow-400 transition-colors">Learn more about why we&apos;re down bad</Link> and <Link href="https://www.livethelife.tv/maxpain" className="text-yellow-500 hover:text-yellow-400 transition-colors">understand Bitcoin&apos;s market cycles</Link>.
               </p>
             </div>
           </div>
@@ -195,7 +198,7 @@ export default function IntroPage() {
                   <li><Link href="/maldives" className="hover:text-yellow-500 transition-colors">Maldives</Link></li>
                   <li><Link href="/biarritz" className="hover:text-yellow-500 transition-colors">Biarritz</Link></li>
                   <li><Link href="/cirrus" className="hover:text-yellow-500 transition-colors">Private Jet</Link></li>
-                  <li><Link href="/hx50" className="hover:text-yellow-500 transition-colors">Helicoper</Link></li>
+                  <li><Link href="/hx50" className="hover:text-yellow-500 transition-colors">Helicopter</Link></li>
                 </ul>
               </div>
             </div>
