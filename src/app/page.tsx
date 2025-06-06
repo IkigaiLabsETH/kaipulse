@@ -69,7 +69,7 @@ export default function Home() {
                   height={18}
                   className="w-4 h-4"
                 />
-                Hold 90% in Bitcoin, use 10% for lifestyle chips
+                Bull Market Peak Indicators - Sell At The Top
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
                   alt="Strategy"
@@ -89,7 +89,7 @@ export default function Home() {
                   height={18}
                   className="w-4 h-4"
                 />
-                Daily market updates by Mando Minutes
+                Market updates by Mando Minutes
               </button>
               <a
                 href="https://www.stackwisely.com/"
