@@ -120,6 +120,37 @@ export default function StrikeContent() {
         </Card>
       </div>
 
+      {/* Re-hypothecation Risks */}
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-8 sm:mb-12">
+        <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
+          <div className="relative z-10 p-4 sm:p-6 md:p-8 lg:p-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500 mb-2 sm:mb-3 font-epilogue uppercase tracking-wide">⚠️ Understanding Re-hypothecation Risks</h2>
+            <p className="text-base sm:text-lg md:text-xl text-white/90 font-satoshi mb-3 sm:mb-4">
+              <span className="text-yellow-500 font-semibold">What is Re-hypothecation?</span><br />
+              Re-hypothecation occurs when a platform sends customer collateral to another party to generate additional revenue. Each re-hypothecation layer increases risk exposure.<br /><br />
+
+              <span className="text-yellow-500 font-semibold">Strike&apos;s Current Terms</span><br />
+              • Single re-hypothecation is permitted to capital providers (e.g., NYDIG)<br />
+              • Capital providers cannot further re-hypothecate the collateral<br />
+              • No mandatory disclosure to borrowers about collateral placement<br /><br />
+
+              <span className="text-yellow-500 font-semibold">Risk Assessment</span><br />
+              • Higher risk due to lack of transparency in collateral handling<br />
+              • No ability for users to assess counterparty risk<br />
+              • Potential exposure to capital provider&apos;s financial health<br /><br />
+
+              <span className="text-yellow-500 font-semibold">Recommended Solutions</span><br />
+              • Implement tri-party custody arrangements<br />
+              • Use Bitcoin-native multi-sig contracts between borrower, platform, and capital provider<br />
+              • Require transparent disclosure of collateral placement<br /><br />
+
+              <span className="text-yellow-500 font-semibold">Current Status</span><br />
+              While Strike has promised to not re-hypothecate, the terms of service allow for single-level re-hypothecation. Users should be aware of these risks and consider implementing additional security measures for their collateral.
+            </p>
+          </div>
+        </Card>
+      </div>
+
       {/* Strike Integration */}
       <div className="max-w-4xl mx-auto px-3 sm:px-4 mb-8 sm:mb-12">
         <Card className="border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] bg-[#1c1f26] rounded-none relative overflow-hidden p-0">
