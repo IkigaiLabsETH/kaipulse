@@ -677,9 +677,10 @@ export default function TrainPage() {
               <div className="space-y-4 text-gray-300">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (10-15 min)</h5>
+                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (20-25 min)</h5>
                     <ul className="list-disc list-inside space-y-2">
                       <li>3 min dynamic stretches</li>
+                      <li>Rowing: 5 min warm-up (Zone 2)</li>
                       <li>Bodyweight Circuit (3 rounds):</li>
                       <li>• Squats: 12-15 reps</li>
                       <li>• Push-ups: 10-12 reps</li>
@@ -693,6 +694,7 @@ export default function TrainPage() {
                       <li>Take stairs instead of elevator</li>
                       <li>1 min standing stretches during breaks</li>
                       <li>Evening: Optional 20-30 min workout</li>
+                      <li>Rowing: 10 min steady state (optional)</li>
                     </ul>
                   </div>
                 </div>
@@ -704,6 +706,7 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: Heart rate Zone 2 (60-70% max)</li>
                         <li>Oura Ring: Readiness score & sleep stages</li>
+                        <li>Rowing: Split time & stroke rate</li>
                       </ul>
                     </div>
                     <div>
@@ -712,6 +715,7 @@ export default function TrainPage() {
                         <li>Steps: 8,000-10,000</li>
                         <li>Sleep: 7-9 hours (85+ score)</li>
                         <li>Deep sleep: 20-25%</li>
+                        <li>Rowing: 2,000m benchmark</li>
                       </ul>
                     </div>
                   </div>
@@ -779,9 +783,10 @@ export default function TrainPage() {
               <div className="space-y-4 text-gray-300">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (15-20 min)</h5>
+                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (20-25 min)</h5>
                     <ul className="list-disc list-inside space-y-2">
                       <li>3 min jumping jacks/high knees</li>
+                      <li>Rowing: 5 min warm-up</li>
                       <li>Strength Circuit (3 rounds):</li>
                       <li>• Lunges: 10-12 reps/leg</li>
                       <li>• Push-ups: 10-12 reps</li>
@@ -792,7 +797,7 @@ export default function TrainPage() {
                   <div>
                     <h5 className="text-xl font-bold text-yellow-500 mb-3">Evening (Optional)</h5>
                     <ul className="list-disc list-inside space-y-2">
-                      <li>Rowing: 10 min</li>
+                      <li>Rowing: 10 min intervals</li>
                       <li>Kettlebell swings: 3x10-12</li>
                       <li>Core workout: 3x12-15</li>
                       <li>15 min cool-down stretch</li>
@@ -807,6 +812,7 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: Workout zones 2-3</li>
                         <li>Oura Ring: Recovery metrics</li>
+                        <li>Rowing: Power output & efficiency</li>
                       </ul>
                     </div>
                     <div>
@@ -815,6 +821,7 @@ export default function TrainPage() {
                         <li>Exercise: 20-30 min</li>
                         <li>HRV: Stable/rising</li>
                         <li>Muscle gain: 0.5-1 lb/month</li>
+                        <li>Rowing: 500m split time</li>
                       </ul>
                     </div>
                   </div>
@@ -882,9 +889,10 @@ export default function TrainPage() {
               <div className="space-y-4 text-gray-300">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (15-20 min)</h5>
+                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (20-25 min)</h5>
                     <ul className="list-disc list-inside space-y-2">
                       <li>3 min dynamic stretches</li>
+                      <li>Rowing: 5 min warm-up</li>
                       <li>Full-Body Circuit (3 rounds):</li>
                       <li>• Squats: 12-15 reps</li>
                       <li>• Push-ups: 10-12 reps</li>
@@ -895,7 +903,7 @@ export default function TrainPage() {
                   <div>
                     <h5 className="text-xl font-bold text-yellow-500 mb-3">Evening (Optional)</h5>
                     <ul className="list-disc list-inside space-y-2">
-                      <li>Rowing: 10 min</li>
+                      <li>Rowing: 15 min steady state</li>
                       <li>Compound lifts: 3x10-12</li>
                       <li>Resistance band circuit</li>
                       <li>15 min cool-down</li>
@@ -910,6 +918,7 @@ export default function TrainPage() {
                       <ul className="list-disc list-inside space-y-1">
                         <li>Apple Watch: Heart rate</li>
                         <li>Oura Ring: Training impact</li>
+                        <li>Rowing: 2,000m time & pace</li>
                       </ul>
                     </div>
                     <div>
@@ -918,6 +927,7 @@ export default function TrainPage() {
                         <li>Heart rate: Zone 2-4</li>
                         <li>Body fat: Track trend</li>
                         <li>Recovery: 24h</li>
+                        <li>Rowing: Weekly distance goal</li>
                       </ul>
                     </div>
                   </div>
@@ -1037,15 +1047,17 @@ export default function TrainPage() {
                     <li>Increase reps/weight gradually</li>
                     <li>Add sets as strength improves</li>
                     <li>Track progress in journal</li>
+                    <li>Build rowing duration gradually</li>
                   </ul>
                 </div>
                 <div>
-                  <h5 className="text-xl font-bold text-yellow-500 mb-3">Adaptability</h5>
+                  <h5 className="text-xl font-bold text-yellow-500 mb-3">Rowing Integration</h5>
                   <ul className="list-disc list-inside space-y-2 text-gray-300">
-                    <li>Substitute outdoor activities as needed</li>
-                    <li>Listen to your body</li>
-                    <li>Adjust intensity based on recovery</li>
-                    <li>Maintain consistency over perfection</li>
+                    <li>Use as warm-up before strength work</li>
+                    <li>Add intervals for cardio variety</li>
+                    <li>Focus on form and technique</li>
+                    <li>Track split times and stroke rate</li>
+                    <li>Set weekly distance goals</li>
                   </ul>
                 </div>
               </div>
