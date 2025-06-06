@@ -54,6 +54,7 @@ export const CURATED_COLLECTION_SLUGS_OR_ADDRESSES = [
   'dataland-biomelumina',
   'pop-wonder-superrare',
   'cryptodickbutts',
+  'proof-moonbirds',
   'izanami-islands-by-richard-nadler',
   'yamabushi-s-horizons-by-richard-nadler',
   'kinoko-dreams-by-richard-nadler'
