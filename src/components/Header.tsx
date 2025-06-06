@@ -60,6 +60,7 @@ export function Header() {
 
   const navigation: NavigationItem[] = [
     { name: 'HOME', href: '/', dropdown: false },
+    { name: 'INTRO', href: '/', dropdown: false },
     { 
       name: 'MEDIA', 
       href: '#', 
@@ -75,7 +76,7 @@ export function Header() {
       ]
     },
     { 
-      name: 'FREEDOM TOOLS', 
+      name: 'TOOLS', 
       href: '#', 
       dropdown: true,
       items: [

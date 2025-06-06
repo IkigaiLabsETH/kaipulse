@@ -13,7 +13,7 @@ export default function IntroPage() {
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Bitcoin Education • Life Balance • Financial Freedom</p>
             <h1 className="text-center">
               <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-                Welcome to LiveTheLifeTV
+                LiveTheLifeTV
               </span>
             </h1>
             <div className="flex items-center justify-center mt-6">
@@ -33,7 +33,19 @@ export default function IntroPage() {
                 We believe in &quot;Fix Money, Fix The World.&quot; Life isn&apos;t about accumulating the biggest stack - it&apos;s about living your best life with Bitcoin. Our platform provides educational resources and tools to help you achieve financial freedom while embracing life&apos;s true value.
               </p>
               <p className="text-lg">
-                Our comprehensive platform combines Bitcoin education, lifestyle optimization, and community building to help you navigate the digital age with confidence and purpose. Whether you&apos;re new to Bitcoin or a seasoned hodler, we provide the tools and knowledge to help you thrive in the new financial paradigm.
+                If you&apos;re new here, start with our <Link href="/docu" className="text-yellow-500 hover:text-yellow-400 transition-colors">featured Bitcoin documentary</Link> and the <Link href="/platforms/msty/bitcoin" className="text-yellow-500 hover:text-yellow-400 transition-colors">Bitcoin page</Link>. Our core focus is Bitcoin, and everything else is research to help you live the life you want. We&apos;re leveraging AI through vibe coding to create content that will help fine-tune our bespoke model.
+              </p>
+              <p className="text-lg">
+                Yes, this app might feel like a hot mess - because it is! We&apos;re exploring the intersection of Bitcoin, AI, and lifestyle. For crypto veterans: while most altcoins are going to zero, we dive deep into the few dozen projects actually shipping innovative solutions. We trade them hoping for short-term outperformance against Bitcoin, but always swap back to our core Bitcoin stack.
+              </p>
+              <p className="text-lg">
+                Our daily routine? Check Mando Minutes for news, monitor Bitcoin price, and review our <Link href="https://www.livethelife.tv/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">watchlist</Link> for potential <Link href="https://www.livethelife.tv/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">outperformers</Link>. We write deep dives on projects that could impact our industry - from HyperLiquid and Sui to Solana, Ethereum, and OG memes like DOGE. We track traditional finance&apos;s embrace of Bitcoin after a decade of resistance, focusing on major players like MicroStrategy by Saylor and 21 by Jack, plus innovative products like MSTY, Stride, and Strike.
+              </p>
+              <p className="text-lg">
+                Beyond trading, we&apos;re passionate about digital art - creating, curating, and collecting. Our lifestyle thesis in the About section shares insights from our 20+ years in travel and real estate, documenting our journey through the past, present, and future of this space.
+              </p>
+              <p className="text-lg">
+                Above all, <Link href="/assets" className="text-yellow-500 hover:text-yellow-400 transition-colors">stay hungry, stay curious</Link>. Use our <Link href="/voice" className="text-yellow-500 hover:text-yellow-400 transition-colors">voice AI</Link> to ask questions and explore. Our platform is your gateway to understanding Bitcoin, leveraging AI, and living life on your own terms.
               </p>
             </div>
           </div>
