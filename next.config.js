@@ -131,7 +131,7 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: ['lucide-react', 'framer-motion', 'thirdweb'],
+  transpilePackages: ['lucide-react', 'framer-motion'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
