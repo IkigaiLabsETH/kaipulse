@@ -15,6 +15,10 @@ interface ModernAlternative {
   priceRange: string;
   closestToHastens: boolean;
   keyFeatures: string[];
+  certifications: string[];
+  trialPeriod: string;
+  warranty: string;
+  specialFocus?: string;
 }
 
 const sleepSystems: SleepSystem[] = [
@@ -72,59 +76,151 @@ const sleepSystems: SleepSystem[] = [
 const modernAlternatives: ModernAlternative[] = [
   {
     name: "Avocado Green",
-    materials: "Organic (latex, wool, cotton)",
-    construction: "Hybrid (latex, coils)",
-    feel: "Natural, organic",
-    priceRange: "$1,500–$2,000",
+    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex",
+    construction: "Hybrid (latex foam and coils) or all-latex",
+    feel: "Natural, organic, and supportive with plush yet responsive feel",
+    priceRange: "$1,299 (queen)",
     closestToHastens: true,
     keyFeatures: [
-      "GOLS-certified latex",
-      "GOTS-certified wool and cotton",
+      "Handmade in California with needle-tufting",
+      "PETA-approved vegan option available",
       "Upcycled steel coils",
-      "Most natural alternative to Hästens"
-    ]
+      "Avoids chemical adhesives"
+    ],
+    certifications: [
+      "GOTS",
+      "GOLS",
+      "GREENGUARD Gold",
+      "MADE SAFE",
+      "EWG Verified",
+      "OEKO-TEX Standard 100",
+      "Climate Neutral",
+      "B Corp",
+      "1% for the Planet"
+    ],
+    trialPeriod: "1 year",
+    warranty: "25 years",
+    specialFocus: "Most natural alternative to Hästens"
+  },
+  {
+    name: "Naturepedic",
+    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex",
+    construction: "Organic hybrid or all-latex",
+    feel: "Customizable firmness, hypoallergenic, supportive",
+    priceRange: "$1,999 (queen)",
+    closestToHastens: true,
+    keyFeatures: [
+      "Adjustable firmness",
+      "PETA-approved vegan options",
+      "Formaldehyde-free",
+      "Handcrafted in USA"
+    ],
+    certifications: [
+      "GOTS",
+      "GOLS",
+      "MADE SAFE",
+      "GREENGUARD Gold",
+      "EWG Verified",
+      "UL formaldehyde-free",
+      "OEKO-TEX"
+    ],
+    trialPeriod: "100 nights",
+    warranty: "25 years",
+    specialFocus: "Best for allergy-sensitive sleepers"
   },
   {
     name: "Saatva",
-    materials: "Synthetic + natural cover",
-    construction: "Hybrid (coils, foam)",
-    feel: "Luxury, supportive",
-    priceRange: "$1,000–$2,500",
+    materials: "GOLS-certified organic latex, natural New Zealand wool, organic cotton cover",
+    construction: "Organic innerspring or hybrid with dual-coil design",
+    feel: "Luxury-firm, highly supportive",
+    priceRange: "$2,099 (queen)",
     closestToHastens: false,
     keyFeatures: [
-      "Dual-coil system",
-      "Organic cotton cover",
-      "White glove delivery",
-      "Modern luxury option"
-    ]
+      "Lumbar Zone® Technology",
+      "Eco-friendly production",
+      "Charity donations",
+      "White glove delivery"
+    ],
+    certifications: [
+      "GOLS",
+      "GREENGUARD Gold",
+      "CertiPUR-US (for foam models)"
+    ],
+    trialPeriod: "180 days",
+    warranty: "Lifetime",
+    specialFocus: "Modern luxury with strong support"
   },
   {
-    name: "Stearns & Foster",
-    materials: "Synthetic + natural elements",
-    construction: "Hybrid (coils, foam)",
-    feel: "Luxury, crafted",
-    priceRange: "$2,000–$5,000",
+    name: "Brentwood Home",
+    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex",
+    construction: "Organic hybrid or all-latex",
+    feel: "Medium-soft to medium-firm, cozy with strong edge support",
+    priceRange: "$764 (queen)",
     closestToHastens: false,
     keyFeatures: [
-      "Advanced coil systems",
-      "Memory foam layers",
-      "Premium craftsmanship",
-      "High-end department store quality"
-    ]
+      "Handcrafted in Los Angeles since 1987",
+      "Fair Trade-certified materials",
+      "In-home delivery",
+      "Carbonfund offset"
+    ],
+    certifications: [
+      "GOTS",
+      "GOLS",
+      "GREENGUARD Gold",
+      "OEKO-TEX",
+      "Fair Trade"
+    ],
+    trialPeriod: "1 year",
+    warranty: "25 years",
+    specialFocus: "Best value for organic luxury"
   },
   {
-    name: "EightSleep",
-    materials: "Synthetic, smart technology",
-    construction: "Smart cover system",
-    feel: "High-tech, smart",
-    priceRange: "$2,000–$3,000+",
+    name: "Awara",
+    materials: "GOLS-certified organic latex, GOTS-certified wool",
+    construction: "Organic hybrid with latex and coils",
+    feel: "Medium-firm, firm yet plush",
+    priceRange: "$849 (queen)",
     closestToHastens: false,
     keyFeatures: [
-      "Temperature control",
-      "Sleep tracking",
-      "Biometric monitoring",
-      "Smart technology integration"
-    ]
+      "Designed for breathability",
+      "Repreve-certified recycled materials",
+      "Excellent for hot sleepers",
+      "Temperature regulation"
+    ],
+    certifications: [
+      "GOLS",
+      "GOTS",
+      "OEKO-TEX",
+      "GREENGUARD Gold",
+      "Repreve"
+    ],
+    trialPeriod: "365 nights",
+    warranty: "Lifetime",
+    specialFocus: "Best for hot sleepers"
+  },
+  {
+    name: "My Green Mattress",
+    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex and coconut coir",
+    construction: "Organic hybrid with 7-zone innerspring",
+    feel: "Medium-firm, plush yet supportive",
+    priceRange: "$1,124 (queen)",
+    closestToHastens: false,
+    keyFeatures: [
+      "1,140 pocketed coils",
+      "Hand-tufted construction",
+      "Supports up to 400 lbs",
+      "Kid-focused designs"
+    ],
+    certifications: [
+      "GOTS",
+      "GOLS",
+      "GREENGUARD Gold",
+      "MADE SAFE",
+      "OEKO-TEX"
+    ],
+    trialPeriod: "365 nights",
+    warranty: "20 years",
+    specialFocus: "Best for kids and cribs"
   }
 ];
 
@@ -187,10 +283,6 @@ export default function LuxurySleepSystems() {
         ))}
       </div>
 
-      <p className="mt-6 text-gray-300">
-        Each of these sleep systems represents the pinnacle of mattress craftsmanship, offering a perfect balance of cloud-like softness and supportive structure. The selection process prioritized natural materials, breathability, and the signature floating sensation that defines luxury sleep experiences. All options are available in France through authorized dealers or direct shipping.
-      </p>
-
       <div className="mt-8 bg-black/40 p-6 rounded-lg border border-yellow-500/30">
         <h4 className="text-yellow-500 font-semibold mb-4">Understanding True Hästens-Level Quality</h4>
         <p className="mb-4 text-gray-300">
@@ -223,15 +315,6 @@ export default function LuxurySleepSystems() {
             </tbody>
           </table>
         </div>
-
-        <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-          <h5 className="text-yellow-500 font-semibold mb-2">🔥 TL;DR</h5>
-          <ul className="list-disc list-inside space-y-2 text-gray-300">
-            <li>André Renault / Simmons = decent, accessible comfort</li>
-            <li>None in your list = true artisan builds with horsehair core</li>
-            <li>Want Hästens softness? → Go for Vispring, Winstons, or Savoir. Accept no substitutes</li>
-          </ul>
-        </div>
       </div>
 
       <div className="mt-8 bg-black/40 p-6 rounded-lg border border-yellow-500/30">
@@ -244,57 +327,72 @@ export default function LuxurySleepSystems() {
           {modernAlternatives.map((alt) => (
             <div key={alt.name} className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
               <div className="flex justify-between items-start mb-4">
-                <h5 className="text-yellow-500 font-semibold">{alt.name}</h5>
+                <div>
+                  <h5 className="text-yellow-500 font-semibold">{alt.name}</h5>
+                  <p className="text-gray-400 text-sm">{alt.priceRange}</p>
+                </div>
                 {alt.closestToHastens && (
                   <span className="bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded-full text-sm">
                     Closest Natural Alternative
                   </span>
                 )}
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <p className="text-gray-400 text-sm">Materials</p>
-                  <p className="text-gray-300">{alt.materials}</p>
+                  <h6 className="text-yellow-500/80 font-medium mb-2">Materials & Construction</h6>
+                  <p className="text-gray-300 text-sm mb-2">{alt.materials}</p>
+                  <p className="text-gray-300 text-sm">{alt.construction}</p>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">Construction</p>
-                  <p className="text-gray-300">{alt.construction}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Feel</p>
-                  <p className="text-gray-300">{alt.feel}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Price Range</p>
-                  <p className="text-gray-300">{alt.priceRange}</p>
+                  <h6 className="text-yellow-500/80 font-medium mb-2">Feel & Focus</h6>
+                  <p className="text-gray-300 text-sm mb-2">{alt.feel}</p>
+                  {alt.specialFocus && (
+                    <p className="text-gray-300 text-sm italic">{alt.specialFocus}</p>
+                  )}
                 </div>
               </div>
-              <div>
-                <p className="text-gray-400 text-sm mb-2">Key Features</p>
-                <ul className="list-disc list-inside space-y-1 text-gray-300">
-                  {alt.keyFeatures.map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
-                </ul>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <h6 className="text-yellow-500/80 font-medium mb-2">Key Features</h6>
+                  <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+                    {alt.keyFeatures.map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h6 className="text-yellow-500/80 font-medium mb-2">Certifications</h6>
+                  <div className="flex flex-wrap gap-2">
+                    {alt.certifications.map((cert, i) => (
+                      <span key={i} className="bg-yellow-500/10 text-yellow-500/80 px-2 py-1 rounded text-xs">
+                        {cert}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center text-sm text-gray-400 border-t border-yellow-500/10 pt-4">
+                <span>Trial: {alt.trialPeriod}</span>
+                <span>Warranty: {alt.warranty}</span>
               </div>
             </div>
           ))}
         </div>
 
         <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-          <h5 className="text-yellow-500 font-semibold mb-2">Key Takeaways</h5>
+          <h5 className="text-yellow-500 font-semibold mb-2">🔥 Quick Recommendations</h5>
           <ul className="list-disc list-inside space-y-2 text-gray-300">
-            <li>Avocado Green is the closest match to Hästens&apos; natural materials approach</li>
-            <li>Modern alternatives offer significant price advantages ($1,000–$5,000 vs. $10,000–$50,000+)</li>
-            <li>Consider your priorities: natural materials (Avocado Green) vs. modern luxury (Saatva/Stearns & Foster) vs. smart features (EightSleep)</li>
-            <li>All alternatives offer white-glove delivery and premium customer service</li>
+            <li>Best Natural Alternative: Avocado Green ($1,299) - Most similar to Hästens in materials and craftsmanship</li>
+            <li>Best for Allergies: Naturepedic ($1,999) - Premium organic materials with customizable firmness</li>
+            <li>Best Value: Brentwood Home ($764) - Excellent organic luxury at an accessible price point</li>
+            <li>Best for Hot Sleepers: Awara ($849) - Superior temperature regulation with organic materials</li>
+            <li>Best for Kids: My Green Mattress ($1,124) - Certified organic materials with kid-focused designs</li>
           </ul>
         </div>
       </div>
-
-      <p className="mt-6 text-gray-300">
-        Each of these sleep systems represents the pinnacle of mattress craftsmanship, offering a perfect balance of cloud-like softness and supportive structure. The selection process prioritized natural materials, breathability, and the signature floating sensation that defines luxury sleep experiences. All options are available in France through authorized dealers or direct shipping.
-      </p>
     </div>
   );
 } 
