@@ -131,7 +131,7 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
-  transpilePackages: ['lucide-react', 'framer-motion'],
+  transpilePackages: ['lucide-react', 'framer-motion', 'thirdweb'],
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
@@ -225,6 +225,7 @@ const nextConfig = {
       },
     ];
   },
+  staticPageGenerationTimeout: 120,
 }
 
 module.exports = nextConfig 
