@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 // Client component
-function TrainPageContent() {
+export default function TrainPage() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
     {
@@ -1491,5 +1491,4 @@ function TrainPageContent() {
   );
 }
 
-export default TrainPageContent;
 
