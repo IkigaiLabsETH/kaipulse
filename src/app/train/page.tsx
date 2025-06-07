@@ -5,6 +5,8 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
+export const dynamic = "force-dynamic";
+
 // Client component
 export default function TrainPage() {
   const [open, setOpen] = useState<number | null>(null);
