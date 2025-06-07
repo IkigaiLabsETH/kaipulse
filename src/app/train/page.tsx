@@ -486,6 +486,125 @@ export default function TrainPage() {
             </div>
           </div>
 
+          {/* Advanced Biohacking Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Advanced Biohacking Protocols
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              {/* Temperature Manipulation */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Temperature Manipulation</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Cold exposure (2-3 min, 10-15°C)</li>
+                    <li>Heat therapy (15-20 min, 80-100°C)</li>
+                    <li>Temperature cycling protocols</li>
+                    <li>Contrast therapy timing</li>
+                    <li>Circadian alignment</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Light Therapy</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Red light (10 min, 660nm/850nm)</li>
+                    <li>Blue light blocking (after 6pm)</li>
+                    <li>Morning sunlight (10-30 min)</li>
+                    <li>UVB exposure timing</li>
+                    <li>Infrared sauna integration</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Advanced Supplementation */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation Stack</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Cognitive Enhancement</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Alpha-GPC (300-600mg)</li>
+                      <li>Lions Mane (1000-2000mg)</li>
+                      <li>Bacopa Monnieri (300mg)</li>
+                      <li>Rhodiola Rosea (500mg)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Performance Stack</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Creatine (5g daily)</li>
+                      <li>Beta-Alanine (3-5g)</li>
+                      <li>Citrulline Malate (6-8g)</li>
+                      <li>Electrolyte complex</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Breathwork & Oxygen */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Breathwork & Oxygen Optimization</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Daily Protocol</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Wim Hof breathing (3 rounds)</li>
+                      <li>Box breathing (4-4-4-4)</li>
+                      <li>CO2 tolerance training</li>
+                      <li>Breath-hold progression</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Advanced Techniques</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Oxygen saturation training</li>
+                      <li>Hypoxic training</li>
+                      <li>Breath stacking</li>
+                      <li>Vagus nerve activation</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Advanced Recovery */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Recovery Techniques</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Therapy Tools</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>PEMF therapy (10-20 min)</li>
+                      <li>Infrared sauna (15-20 min)</li>
+                      <li>Compression therapy</li>
+                      <li>Vibration therapy</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Natural Methods</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Grounding/earthing (30 min)</li>
+                      <li>Forest bathing</li>
+                      <li>Cold water immersion</li>
+                      <li>Sun gazing (dawn/dusk)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Monitoring & Optimization */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Monitoring & Optimization</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Track HRV daily (morning)</li>
+                  <li>Monitor sleep quality (Oura Ring)</li>
+                  <li>Blood work every 3 months</li>
+                  <li>Track subjective metrics</li>
+                  <li>Adjust protocols based on data</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* Recovery Protocols Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
