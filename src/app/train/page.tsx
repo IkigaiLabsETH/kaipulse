@@ -1,91 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
-export default function TrainPage() {
-  const [open, setOpen] = useState<number | null>(null);
-  const faqs = [
-    {
-      q: "What is the core philosophy of this training approach?",
-      a: (
-        <span>
-          The approach emphasizes consistent daily movement and low-impact, high-resistance exercises. It focuses on integrating fitness into daily life through practical activities like walking, taking stairs, and outdoor exercises. The goal is to make fitness sustainable and enjoyable rather than a chore.
-        </span>
-      ),
-    },
-    {
-      q: "What types of exercises are recommended?",
-      a: (
-        <span>
-          The program includes:
-          <br /><br />
-          • Low-impact, high-resistance exercises (rowing, weight lifting)
-          <br />
-          • Bodyweight exercises (squats, planks, push-ups)
-          <br />
-          • Outdoor activities (hiking, kayaking, cycling)
-          <br />
-          • Daily movement integration (walking, stairs, active breaks)
-        </span>
-      ),
-    },
-    {
-      q: "How should I structure my nutrition?",
-      a: (
-        <span>
-          Focus on a balanced diet rich in:
-          <br /><br />
-          • High-quality proteins (lean meats, fish, eggs)
-          <br />
-          • Healthy fats (avocados, nuts, olive oil)
-          <br />
-          • Whole foods and minimal processed items
-          <br />
-          • Proper hydration throughout the day
-        </span>
-      ),
-    },
-    {
-      q: "What's the importance of sleep in this program?",
-      a: (
-        <span>
-          Sleep is crucial for:
-          <br /><br />
-          • Recovery and muscle repair
-          <br />
-          • Hormone regulation
-          <br />
-          • Cognitive function
-          <br />
-          • Overall performance
-          <br /><br />
-          Aim for 7-9 hours of quality sleep per night.
-        </span>
-      ),
-    },
-    {
-      q: "How can I integrate this into a busy schedule?",
-      a: (
-        <span>
-          The program is designed for busy lifestyles:
-          <br /><br />
-          • Start with 10-minute morning workouts
-          <br />
-          • Take active breaks during work
-          <br />
-          • Use weekends for longer activities
-          <br />
-          • Make movement part of daily routines
-          <br />
-          • Focus on consistency over intensity
-        </span>
-      ),
-    },
-  ];
+export const dynamic = "force-dynamic";
 
+// Client component
+export default function TrainPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
       {/* Premium header accent */}
@@ -492,16 +412,25 @@ export default function TrainPage() {
               Advanced Biohacking Protocols
             </h3>
             <div className="space-y-6 text-gray-300">
+
               {/* Temperature Manipulation */}
+
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="text-xl font-bold text-yellow-500 mb-4">Temperature Manipulation</h4>
                   <ul className="list-disc list-inside space-y-2">
+
+                    <li>Cold exposure (ice baths, cold showers)</li>
+                    <li>Heat therapy (saunas, infrared)</li>
+                    <li>Cold/hot contrast therapy</li>
+                    <li>Thermal cycling for performance</li>
+
                     <li>Cold exposure (2-3 min, 10-15°C)</li>
                     <li>Heat therapy (15-20 min, 80-100°C)</li>
                     <li>Temperature cycling protocols</li>
                     <li>Contrast therapy timing</li>
                     <li>Circadian alignment</li>
+
                   </ul>
                 </div>
                 <div>
@@ -567,6 +496,10 @@ export default function TrainPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Advanced Supplementation */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation</h4>
 
               {/* Marine & Forest Biohacking */}
               <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
@@ -636,73 +569,126 @@ export default function TrainPage() {
               {/* Advanced Supplementation */}
               <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
                 <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation Stack</h4>
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <h5 className="text-yellow-500/90 mb-2">Cognitive Enhancement</h5>
                     <ul className="list-disc list-inside space-y-1">
+
+                      <li>L-Theanine (200mg)</li>
+                      <li>Phosphatidylserine (100mg)</li>
+                      <li>Bacopa Monnieri (300mg)</li>
+                      <li>Rhodiola Rosea (200mg)</li>
+
                       <li>Alpha-GPC (300-600mg)</li>
                       <li>Lions Mane (1000-2000mg)</li>
                       <li>Bacopa Monnieri (300mg)</li>
                       <li>Rhodiola Rosea (500mg)</li>
+
                     </ul>
                   </div>
                   <div>
                     <h5 className="text-yellow-500/90 mb-2">Performance Stack</h5>
                     <ul className="list-disc list-inside space-y-1">
+
+                      <li>Creatine (5g)</li>
+                      <li>Beta-Alanine (2.8g)</li>
+                      <li>Citrulline Malate (6g)</li>
+                      <li>L-Citrulline (2g)</li>
+
                       <li>Creatine (5g daily)</li>
                       <li>Beta-Alanine (3-5g)</li>
                       <li>Citrulline Malate (6-8g)</li>
                       <li>Electrolyte complex</li>
+
                     </ul>
                   </div>
                 </div>
               </div>
 
+
+              {/* Breathwork & Oxygen Optimization */}
+
               {/* Breathwork & Oxygen */}
+
               <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
                 <h4 className="text-lg font-bold text-yellow-500 mb-2">Breathwork & Oxygen Optimization</h4>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <h5 className="text-yellow-500/90 mb-2">Daily Protocol</h5>
                     <ul className="list-disc list-inside space-y-1">
+
+                      <li>Wim Hof method (30 breaths)</li>
+                      <li>Box breathing (4-7-8-4)</li>
+                      <li>Alternate nostril breathing</li>
+                      <li>Breathwork sessions (10 min)</li>
+
                       <li>Wim Hof breathing (3 rounds)</li>
                       <li>Box breathing (4-4-4-4)</li>
                       <li>CO2 tolerance training</li>
                       <li>Breath-hold progression</li>
+
                     </ul>
                   </div>
                   <div>
                     <h5 className="text-yellow-500/90 mb-2">Advanced Techniques</h5>
                     <ul className="list-disc list-inside space-y-1">
+
+                      <li>Oxygen therapy (hyperbaric chamber)</li>
+                      <li>Rebreather training</li>
+                      <li>CO2 tolerance training</li>
+                      <li>Altitude training</li>
+
                       <li>Oxygen saturation training</li>
                       <li>Hypoxic training</li>
                       <li>Breath stacking</li>
                       <li>Vagus nerve activation</li>
+
                     </ul>
                   </div>
                 </div>
               </div>
 
+
+              {/* Advanced Recovery Techniques */}
+
               {/* Advanced Recovery */}
+
               <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
                 <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Recovery Techniques</h4>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
+
+                    <h5 className="text-yellow-500/90 mb-2">Modern Therapy Tools</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>PEMF therapy (15-20 min)</li>
+                      <li>Infrared sauna (15-20 min)</li>
+                      <li>Cryotherapy (3-5 min)</li>
+                      <li>Float tank sessions</li>
+
                     <h5 className="text-yellow-500/90 mb-2">Therapy Tools</h5>
                     <ul className="list-disc list-inside space-y-1">
                       <li>PEMF therapy (10-20 min)</li>
                       <li>Infrared sauna (15-20 min)</li>
                       <li>Compression therapy</li>
                       <li>Vibration therapy</li>
+
                     </ul>
                   </div>
                   <div>
                     <h5 className="text-yellow-500/90 mb-2">Natural Methods</h5>
                     <ul className="list-disc list-inside space-y-1">
+
+                      <li>Grounding exercises (10 min)</li>
+                      <li>Forest bathing (2-3 hours)</li>
+                      <li>Epsom salt baths</li>
+                      <li>Nature immersion</li>
+
                       <li>Grounding/earthing (30 min)</li>
                       <li>Forest bathing</li>
                       <li>Cold water immersion</li>
                       <li>Sun gazing (dawn/dusk)</li>
+
                     </ul>
                   </div>
                 </div>
@@ -711,6 +697,28 @@ export default function TrainPage() {
               {/* Monitoring & Optimization */}
               <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
                 <h4 className="text-lg font-bold text-yellow-500 mb-2">Monitoring & Optimization</h4>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Data Tracking</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Apple Watch (heart rate, sleep)</li>
+                      <li>Oura Ring (sleep, recovery)</li>
+                      <li>Fitbit (activity, sleep)</li>
+                      <li>Garmin (activity, sleep)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Regular Check-ups</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Annual physical exam</li>
+                      <li>Blood tests (CBC, lipids, glucose)</li>
+                      <li>Thyroid function tests</li>
+                      <li>Hormone panel</li>
+                    </ul>
+                  </div>
+                </div>
+
                 <ul className="list-disc list-inside space-y-2">
                   <li>Track HRV daily (morning)</li>
                   <li>Monitor sleep quality (Oura Ring)</li>
@@ -718,6 +726,7 @@ export default function TrainPage() {
                   <li>Track subjective metrics</li>
                   <li>Adjust protocols based on data</li>
                 </ul>
+
               </div>
             </div>
           </div>
@@ -789,6 +798,96 @@ export default function TrainPage() {
                   <li>Grounding exercises outdoors</li>
                   <li>Fresh air and natural environments</li>
                 </ul>
+              </div>
+
+              {/* Marine & Forest Biohacking */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Marine & Forest Biohacking</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Ocean Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Negative ion exposure</li>
+                      <li>Natural salt therapy</li>
+                      <li>Marine air (rich in iodine)</li>
+                      <li>Cold water immersion</li>
+                      <li>Grounding on wet sand</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Pine Forest Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Phytoncides (natural antibiotics)</li>
+                      <li>Enhanced immune function</li>
+                      <li>Reduced stress hormones</li>
+                      <li>Improved sleep quality</li>
+                      <li>Natural aromatherapy</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Early Morning Protocol */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">30-Minute Morning Protocol</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Sequence</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>5 min: Forest walk (pine area)</li>
+                      <li>10 min: Ocean exposure</li>
+                      <li>10 min: Sunlight (dawn)</li>
+                      <li>5 min: Cold water (ankles)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Circadian rhythm alignment</li>
+                      <li>Enhanced vitamin D synthesis</li>
+                      <li>Improved immune function</li>
+                      <li>Natural stress reduction</li>
+                      <li>Better sleep quality</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Integration Tips */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Integration Tips</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Time with sunrise for optimal benefits</li>
+                  <li>Combine with breathwork (deep breathing)</li>
+                  <li>Practice barefoot when possible</li>
+                  <li>Stay hydrated during sessions</li>
+                  <li>Track subjective well-being</li>
+                </ul>
+              </div>
+
+              {/* Advanced Supplementation */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Key Supplements</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Creatine (5g/day)</li>
+                      <li>Collagen (10g/day)</li>
+                      <li>Vitamin D3 (5,000 IU/day)</li>
+                      <li>Raw Honey (1-2 tbsp/day)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Additional Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Improved muscle recovery</li>
+                      <li>Joint health support</li>
+                      <li>Enhanced immune function</li>
+                      <li>Antioxidant properties</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -979,430 +1078,21 @@ export default function TrainPage() {
             </div>
           </div>
 
-          {/* Weekly Schedule Section */}
-          <div className="space-y-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 text-center">
-              Weekly Training Schedule
-            </h3>
-
-            {/* General Guidelines */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h4 className="text-2xl font-bold text-yellow-500 mb-6">General Guidelines</h4>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h5 className="text-xl font-bold text-yellow-500 mb-3">Exercise Focus</h5>
-                  <ul className="list-disc list-inside space-y-2 text-gray-300">
-                    <li>Low-impact, high-resistance exercises</li>
-                    <li>Daily movement integration</li>
-                    <li>Outdoor activities when possible</li>
-                    <li>Progressive overload</li>
-                  </ul>
-                </div>
-                <div>
-                  <h5 className="text-xl font-bold text-yellow-500 mb-3">Lifestyle</h5>
-                  <ul className="list-disc list-inside space-y-2 text-gray-300">
-                    <li>7-9 hours of quality sleep</li>
-                    <li>High-protein, high-fat nutrition</li>
-                    <li>Consistent daily movement</li>
-                    <li>Proper hydration</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            {/* Monday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">🌅</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Monday - Strength & Daily Movement</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (20-25 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>3 min dynamic stretches</li>
-                      <li>Rowing: 5 min warm-up (Zone 2)</li>
-                      <li>Bodyweight Circuit (3 rounds):</li>
-                      <li>• Squats: 12-15 reps</li>
-                      <li>• Push-ups: 10-12 reps</li>
-                      <li>• Plank: 20-30 sec</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Throughout Day</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Walk/cycle to work (15-20 min)</li>
-                      <li>Take stairs instead of elevator</li>
-                      <li>1 min standing stretches during breaks</li>
-                      <li>Evening: Optional 20-30 min workout</li>
-                      <li>Rowing: 10 min steady state (optional)</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Apple Watch: Heart rate Zone 2 (60-70% max)</li>
-                        <li>Oura Ring: Readiness score & sleep stages</li>
-                        <li>Rowing: Split time & stroke rate</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Steps: 8,000-10,000</li>
-                        <li>Sleep: 7-9 hours (85+ score)</li>
-                        <li>Deep sleep: 20-25%</li>
-                        <li>Rowing: 2,000m benchmark</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Tuesday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">🚶</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Tuesday - Outdoor Activity & Mobility</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning/Evening (30-45 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Choose one activity:</li>
-                      <li>• Brisk walk (20-30 min)</li>
-                      <li>• Hill walking (15-20 min)</li>
-                      <li>• Cycling (20-30 min)</li>
-                      <li>Mobility work (5-10 min)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Throughout Day</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Park farther from destinations</li>
-                      <li>Stand and stretch every hour</li>
-                      <li>Shoulder rolls and side bends</li>
-                      <li>Active breaks during work</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Apple Watch: GPS tracking & Zone 2-3</li>
-                        <li>Oura Ring: HRV (30-50ms) & RHR</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Distance: 5-7km</li>
-                        <li>HRV: Above baseline</li>
-                        <li>RHR: 50-70 bpm</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Wednesday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">💪</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Wednesday - Strength & Core</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (20-25 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>3 min jumping jacks/high knees</li>
-                      <li>Rowing: 5 min warm-up</li>
-                      <li>Strength Circuit (3 rounds):</li>
-                      <li>• Lunges: 10-12 reps/leg</li>
-                      <li>• Push-ups: 10-12 reps</li>
-                      <li>• Russian twists: 20 reps</li>
-                      <li>• Plank taps: 20-30 sec</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Evening (Optional)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Rowing: 10 min intervals</li>
-                      <li>Kettlebell swings: 3x10-12</li>
-                      <li>Core workout: 3x12-15</li>
-                      <li>15 min cool-down stretch</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Apple Watch: Workout zones 2-3</li>
-                        <li>Oura Ring: Recovery metrics</li>
-                        <li>Rowing: Power output & efficiency</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Exercise: 20-30 min</li>
-                        <li>HRV: Stable/rising</li>
-                        <li>Muscle gain: 0.5-1 lb/month</li>
-                        <li>Rowing: 500m split time</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Thursday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">🧘</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Thursday - Active Recovery & Outdoor Fun</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning/Evening (30-45 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Choose one activity:</li>
-                      <li>• Yoga/stretching (15-20 min)</li>
-                      <li>• Paddleboarding/kayaking</li>
-                      <li>• Leisurely walk/bike ride</li>
-                      <li>Focus: Hips, back, shoulders</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Throughout Day</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Stand and move every 30-60 min</li>
-                      <li>Walk to nearby errands</li>
-                      <li>Light stretching breaks</li>
-                      <li>Active recovery focus</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Oura Ring: Sleep quality focus</li>
-                        <li>Apple Watch: HRV</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Steps: 6,000-8,000</li>
-                        <li>Sleep score: 90+</li>
-                        <li>Body temp: ±0.5°C</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Friday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">🏋️</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Friday - Full-Body Strength</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (20-25 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>3 min dynamic stretches</li>
-                      <li>Rowing: 5 min warm-up</li>
-                      <li>Full-Body Circuit (3 rounds):</li>
-                      <li>• Squats: 12-15 reps</li>
-                      <li>• Push-ups: 10-12 reps</li>
-                      <li>• Rows: 10-12 reps</li>
-                      <li>• Plank: 30-45 sec</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Evening (Optional)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Rowing: 15 min steady state</li>
-                      <li>Compound lifts: 3x10-12</li>
-                      <li>Resistance band circuit</li>
-                      <li>15 min cool-down</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Apple Watch: Heart rate</li>
-                        <li>Oura Ring: Training impact</li>
-                        <li>Rowing: 2,000m time & pace</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Heart rate: Zone 2-4</li>
-                        <li>Body fat: Track trend</li>
-                        <li>Recovery: 24h</li>
-                        <li>Rowing: Weekly distance goal</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Saturday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">🏃</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Saturday - Outdoor Adventure</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning/Afternoon (45-60 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Choose one activity:</li>
-                      <li>• Hiking (45-60 min)</li>
-                      <li>• Kayaking (45 min)</li>
-                      <li>• Cycling (30-45 min)</li>
-                      <li>Post-activity stretch (5-10 min)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Throughout Day</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Stay active with light tasks</li>
-                      <li>Stand or move every hour</li>
-                      <li>Light stretching as needed</li>
-                      <li>Focus on recovery</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Apple Watch: GPS & Zone 3</li>
-                        <li>Oura Ring: Recovery status</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Distance: 5-10km</li>
-                        <li>Calories: 500+</li>
-                        <li>Body temp: Monitor</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Sunday */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">🌙</span>
-                <h4 className="text-2xl font-bold text-yellow-500">Sunday - Recovery & Preparation</h4>
-              </div>
-              <div className="space-y-4 text-gray-300">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Morning (15-20 min)</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Light yoga/stretching</li>
-                      <li>Focus on full-body mobility</li>
-                      <li>Optional short walk</li>
-                      <li>Deep breathing exercises</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-xl font-bold text-yellow-500 mb-3">Day Focus</h5>
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>Minimal but consistent movement</li>
-                      <li>Foam rolling (10-15 min)</li>
-                      <li>Meal prep for week</li>
-                      <li>Early bedtime routine</li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-                  <h5 className="text-lg font-bold text-yellow-500 mb-2">KPI Tracking</h5>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Devices & Metrics</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Apple Watch: Weekly review</li>
-                        <li>Oura Ring: Sleep analysis</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-yellow-500/90 mb-2">Targets</h6>
-                      <ul className="list-disc list-inside space-y-1">
-                        <li>Weekly exercise: 150-300 min</li>
-                        <li>Sleep: 7-9 hours</li>
-                        <li>Body comp: Weekly trend</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Additional Notes */}
-            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h4 className="text-2xl font-bold text-yellow-500 mb-6">Additional Notes</h4>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h5 className="text-xl font-bold text-yellow-500 mb-3">Progression</h5>
-                  <ul className="list-disc list-inside space-y-2 text-gray-300">
-                    <li>Start with 2-3 rounds of circuits</li>
-                    <li>Increase reps/weight gradually</li>
-                    <li>Add sets as strength improves</li>
-                    <li>Track progress in journal</li>
-                    <li>Build rowing duration gradually</li>
-                  </ul>
-                </div>
-                <div>
-                  <h5 className="text-xl font-bold text-yellow-500 mb-3">Rowing Integration</h5>
-                  <ul className="list-disc list-inside space-y-2 text-gray-300">
-                    <li>Use as warm-up before strength work</li>
-                    <li>Add intervals for cardio variety</li>
-                    <li>Focus on form and technique</li>
-                    <li>Track split times and stroke rate</li>
-                    <li>Set weekly distance goals</li>
-                  </ul>
-                </div>
-              </div>
+          {/* Weekly Schedule Link */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="text-center space-y-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                Weekly Training Schedule
+              </h3>
+              <p className="text-lg text-gray-300">
+                View our detailed weekly training schedule with daily workouts, recovery protocols, and KPI tracking.
+              </p>
+              <a 
+                href="/train/schedule" 
+                className="inline-block px-8 py-4 bg-yellow-500 text-black font-bold rounded-none hover:bg-yellow-400 transition-colors duration-200"
+              >
+                View Weekly Schedule
+              </a>
             </div>
           </div>
 
@@ -1420,36 +1110,10 @@ export default function TrainPage() {
               </p>
             </div>
           </div>
-
-          {/* FAQ Section */}
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
-              >
-                <button
-                  className="w-full px-8 py-6 text-left flex justify-between items-center"
-                  onClick={() => setOpen(open === index ? null : index)}
-                >
-                  <span className="text-xl font-bold text-yellow-500">{faq.q}</span>
-                  <ChevronDown
-                    className={cn(
-                      "h-6 w-6 text-yellow-500 transition-transform duration-200",
-                      open === index ? "transform rotate-180" : ""
-                    )}
-                  />
-                </button>
-                {open === index && (
-                  <div className="px-8 pb-6 text-gray-300">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
   );
 }
+
+
