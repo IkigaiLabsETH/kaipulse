@@ -5,7 +5,8 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
-export default function TrainPage() {
+// Client component
+function TrainPageContent() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
     {
@@ -1452,4 +1453,9 @@ export default function TrainPage() {
       </div>
     </div>
   );
+}
+
+// Page component
+export default function TrainPage() {
+  return <TrainPageContent />;
 }
