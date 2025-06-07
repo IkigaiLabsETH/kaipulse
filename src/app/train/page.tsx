@@ -507,12 +507,64 @@ export default function TrainPage() {
                 <div>
                   <h4 className="text-xl font-bold text-yellow-500 mb-4">Light Therapy</h4>
                   <ul className="list-disc list-inside space-y-2">
-                    <li>Red light (10 min, 660nm/850nm)</li>
-                    <li>Blue light blocking (after 6pm)</li>
-                    <li>Morning sunlight (10-30 min)</li>
-                    <li>UVB exposure timing</li>
-                    <li>Infrared sauna integration</li>
+                    <li>Red light therapy (660nm/850nm)</li>
+                    <li>Non-thermal cellular intervention</li>
+                    <li>Targeted mitochondrial support</li>
+                    <li>Enhanced cellular repair</li>
+                    <li>Improved skin health</li>
                   </ul>
+                </div>
+              </div>
+
+              {/* Light Therapy Details */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Red Light Therapy Protocol</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Cellular repair & optimization</li>
+                      <li>Collagen production</li>
+                      <li>Improved blood flow</li>
+                      <li>Reduced oxidative stress</li>
+                      <li>Pain relief & recovery</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Usage Guidelines</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>10-15 min daily sessions</li>
+                      <li>Use after sauna (not during)</li>
+                      <li>Focus on target areas</li>
+                      <li>Maintain proper distance</li>
+                      <li>Track progress & results</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Light vs Heat Therapy */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Light vs Heat Therapy</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Red Light Therapy</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Non-thermal intervention</li>
+                      <li>Precise wavelength delivery</li>
+                      <li>Mitochondrial optimization</li>
+                      <li>Cellular-level benefits</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Infrared Sauna</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Whole-body thermal stress</li>
+                      <li>Systemic heat adaptation</li>
+                      <li>Enhanced detoxification</li>
+                      <li>Heat shock protein activation</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
