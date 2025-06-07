@@ -487,6 +487,188 @@ function TrainPageContent() {
             </div>
           </div>
 
+          {/* Advanced Biohacking Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Advanced Biohacking Protocols
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Temperature Manipulation</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Cold exposure (ice baths, cold showers)</li>
+                    <li>Heat therapy (saunas, infrared)</li>
+                    <li>Cold/hot contrast therapy</li>
+                    <li>Thermal cycling for performance</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Light Therapy</h4>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Red light therapy (660nm/850nm)</li>
+                    <li>Non-thermal cellular intervention</li>
+                    <li>Targeted mitochondrial support</li>
+                    <li>Enhanced cellular repair</li>
+                    <li>Improved skin health</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Light Therapy Details */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Red Light Therapy Protocol</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Cellular repair & optimization</li>
+                      <li>Collagen production</li>
+                      <li>Improved blood flow</li>
+                      <li>Reduced oxidative stress</li>
+                      <li>Pain relief & recovery</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Usage Guidelines</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>10-15 min daily sessions</li>
+                      <li>Use after sauna (not during)</li>
+                      <li>Focus on target areas</li>
+                      <li>Maintain proper distance</li>
+                      <li>Track progress & results</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Light vs Heat Therapy */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Light vs Heat Therapy</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Red Light Therapy</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Non-thermal intervention</li>
+                      <li>Precise wavelength delivery</li>
+                      <li>Mitochondrial optimization</li>
+                      <li>Cellular-level benefits</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Infrared Sauna</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Whole-body thermal stress</li>
+                      <li>Systemic heat adaptation</li>
+                      <li>Enhanced detoxification</li>
+                      <li>Heat shock protein activation</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Advanced Supplementation */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Cognitive Enhancement</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>L-Theanine (200mg)</li>
+                      <li>Phosphatidylserine (100mg)</li>
+                      <li>Bacopa Monnieri (300mg)</li>
+                      <li>Rhodiola Rosea (200mg)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Performance Stack</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Creatine (5g)</li>
+                      <li>Beta-Alanine (2.8g)</li>
+                      <li>Citrulline Malate (6g)</li>
+                      <li>L-Citrulline (2g)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Breathwork & Oxygen Optimization */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Breathwork & Oxygen Optimization</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Daily Protocol</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Wim Hof method (30 breaths)</li>
+                      <li>Box breathing (4-7-8-4)</li>
+                      <li>Alternate nostril breathing</li>
+                      <li>Breathwork sessions (10 min)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Advanced Techniques</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Oxygen therapy (hyperbaric chamber)</li>
+                      <li>Rebreather training</li>
+                      <li>CO2 tolerance training</li>
+                      <li>Altitude training</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Advanced Recovery Techniques */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Recovery Techniques</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Modern Therapy Tools</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>PEMF therapy (15-20 min)</li>
+                      <li>Infrared sauna (15-20 min)</li>
+                      <li>Cryotherapy (3-5 min)</li>
+                      <li>Float tank sessions</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Natural Methods</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Grounding exercises (10 min)</li>
+                      <li>Forest bathing (2-3 hours)</li>
+                      <li>Epsom salt baths</li>
+                      <li>Nature immersion</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Monitoring & Optimization */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Monitoring & Optimization</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Data Tracking</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Apple Watch (heart rate, sleep)</li>
+                      <li>Oura Ring (sleep, recovery)</li>
+                      <li>Fitbit (activity, sleep)</li>
+                      <li>Garmin (activity, sleep)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Regular Check-ups</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Annual physical exam</li>
+                      <li>Blood tests (CBC, lipids, glucose)</li>
+                      <li>Thyroid function tests</li>
+                      <li>Hormone panel</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Recovery Protocols Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
@@ -554,6 +736,96 @@ function TrainPageContent() {
                   <li>Grounding exercises outdoors</li>
                   <li>Fresh air and natural environments</li>
                 </ul>
+              </div>
+
+              {/* Marine & Forest Biohacking */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Marine & Forest Biohacking</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Ocean Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Negative ion exposure</li>
+                      <li>Natural salt therapy</li>
+                      <li>Marine air (rich in iodine)</li>
+                      <li>Cold water immersion</li>
+                      <li>Grounding on wet sand</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Pine Forest Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Phytoncides (natural antibiotics)</li>
+                      <li>Enhanced immune function</li>
+                      <li>Reduced stress hormones</li>
+                      <li>Improved sleep quality</li>
+                      <li>Natural aromatherapy</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Early Morning Protocol */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">30-Minute Morning Protocol</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Sequence</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>5 min: Forest walk (pine area)</li>
+                      <li>10 min: Ocean exposure</li>
+                      <li>10 min: Sunlight (dawn)</li>
+                      <li>5 min: Cold water (ankles)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Circadian rhythm alignment</li>
+                      <li>Enhanced vitamin D synthesis</li>
+                      <li>Improved immune function</li>
+                      <li>Natural stress reduction</li>
+                      <li>Better sleep quality</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Integration Tips */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Integration Tips</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Time with sunrise for optimal benefits</li>
+                  <li>Combine with breathwork (deep breathing)</li>
+                  <li>Practice barefoot when possible</li>
+                  <li>Stay hydrated during sessions</li>
+                  <li>Track subjective well-being</li>
+                </ul>
+              </div>
+
+              {/* Advanced Supplementation */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Key Supplements</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Creatine (5g/day)</li>
+                      <li>Collagen (10g/day)</li>
+                      <li>Vitamin D3 (5,000 IU/day)</li>
+                      <li>Raw Honey (1-2 tbsp/day)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Additional Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Improved muscle recovery</li>
+                      <li>Joint health support</li>
+                      <li>Enhanced immune function</li>
+                      <li>Antioxidant properties</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
