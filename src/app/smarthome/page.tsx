@@ -3,7 +3,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import React from 'react';
-import LuxurySleepSystems from '@/components/organisms/LuxurySleepSystems';
 
 interface Supplier {
   name: string;
@@ -1624,27 +1623,9 @@ export default function LuxurySuppliers() {
         </SupplierGrid>
       </CategorySection>
 
-      <BudgetSection className="!px-4 !py-6 sm:!px-8 sm:!py-12">
-        <LuxurySleepSystems />
-      </BudgetSection>
-
       {/* Final Architectural Brief Section */}
       <BudgetSection className="!px-4 !py-6 sm:!px-8 sm:!py-12">
-        <div className="text-left space-y-12 pt-40 pb-24 px-4 relative z-10">
-          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light text-left w-full">
-            Project Overview
-          </p>
-          <h1 className="text-left">
-            <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
-              🏛️ ARCHITECTURAL BRIEF — LTL SMART VILLA
-            </span>
-          </h1>
-          <div className="flex flex-col sm:flex-row items-start justify-start mt-8 gap-4 sm:gap-0">
-            <div className="h-px w-32 bg-yellow-500/30"></div>
-            <p className="mx-8 text-base sm:text-lg text-white/70 font-light italic text-left">A reference showcase for Malibu Minimalism × Passive Performance × Mediterranean Warmth</p>
-            <div className="h-px w-32 bg-yellow-500/30"></div>
-          </div>
-        </div>
+        <BudgetTitle className="text-2xl sm:text-3xl md:text-4xl">🏛️ ARCHITECTURAL BRIEF — LTL SMART VILLA</BudgetTitle>
         <div className="space-y-6 text-sm sm:text-base md:text-lg leading-relaxed">
           <div>
             <strong>Project Name:</strong> LTL Passive Villa<br />
@@ -1774,6 +1755,141 @@ export default function LuxurySuppliers() {
             </p>
           </div>
           <hr className="border-yellow-500/30 my-4" />
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🛏️ Luxury Sleep Systems</h3>
+            <p className="mb-4">
+              The master suite features a curated selection of the worlds finest sleep systems, each offering unparalleled comfort through natural materials and expert craftsmanship. Our recommendations focus on mattresses that deliver the signature Hästens-like experience of floating on a cloud, while maintaining exceptional breathability and support.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+                <h4 className="text-yellow-500 font-semibold mb-2">🥇 Vispring Regal Superb</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li>Exceptionally soft top layer with floating sensation</li>
+                  <li>Premium materials: Horsehair, Shetland wool, cotton</li>
+                  <li>Hand-nested calico pocket springs for optimal support</li>
+                  <li>Investment: €6,000–€9,000 (size-dependent)</li>
+                </ul>
+              </div>
+
+              <div className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+                <h4 className="text-yellow-500 font-semibold mb-2">🥈 Savoir Beds No. 2/4</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li>Pillow-soft comfort with subtle rebound</li>
+                  <li>Luxury materials: Horsehair, cashmere, cotton, wool</li>
+                  <li>Fully customizable construction</li>
+                  <li>Showroom: Rue du Bac, Paris</li>
+                  <li>Investment: €10,000+ (customizable)</li>
+                </ul>
+              </div>
+
+              <div className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+                <h4 className="text-yellow-500 font-semibold mb-2">🥉 Winstons Beds Heritage Collection</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li>Deep softness with natural body contouring</li>
+                  <li>100% organic fillings including horsetail and cashmere</li>
+                  <li>Handcrafted construction with horsehair core</li>
+                  <li>Available through WinstonsBeds.com</li>
+                  <li>Investment: €4,000–€6,500 (king-size)</li>
+                </ul>
+              </div>
+
+              <div className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+                <h4 className="text-yellow-500 font-semibold mb-2">🥇 André Renault</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li>Hybrid or latex-core with memory foam construction</li>
+                  <li>Premium &ldquo;Millésime&rdquo; and &ldquo;Héritage&rdquo; collections</li>
+                  <li>French-made luxury craftsmanship</li>
+                  <li>Excellent softness with slightly less breathability than Hästens</li>
+                  <li>Available through authorized French retailers</li>
+                </ul>
+              </div>
+
+              <div className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+                <h4 className="text-yellow-500 font-semibold mb-2">🥈 Simmons (France)</h4>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li>Pocket-spring base with foam/latex top</li>
+                  <li>Beautyrest Elite / Black series for premium softness</li>
+                  <li>Plush comfort with structured support</li>
+                  <li>Ideal for those preferring slightly firmer base than Hästens</li>
+                  <li>Widely available through French retailers</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-6 text-gray-300">
+              Each of these sleep systems represents the pinnacle of mattress craftsmanship, offering a perfect balance of cloud-like softness and supportive structure. The selection process prioritized natural materials, breathability, and the signature floating sensation that defines luxury sleep experiences. All options are available in France through authorized dealers or direct shipping.
+            </p>
+
+            <div className="mt-8 bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+              <h4 className="text-yellow-500 font-semibold mb-4">Understanding True Hästens-Level Quality</h4>
+              <p className="mb-4 text-gray-300">
+                While all listed options offer premium comfort, it&apos;s important to understand what makes Hästens truly unique: artisanal, horsehair-filled construction built layer-by-layer by hand, delivering unmatched breathability and that signature floating sensation.
+              </p>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-gray-300">
+                  <thead>
+                    <tr className="border-b border-yellow-500/30">
+                      <th className="text-left py-2">Brand</th>
+                      <th className="text-left py-2">Core Fill</th>
+                      <th className="text-left py-2">Spring Feel</th>
+                      <th className="text-left py-2">Breathability</th>
+                      <th className="text-left py-2">Country</th>
+                      <th className="text-left py-2">Verdict</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-yellow-500/10">
+                      <td className="py-2">Hästens</td>
+                      <td>Horsehair</td>
+                      <td>Floating-soft</td>
+                      <td>🌬️🌬️🌬️</td>
+                      <td>Sweden</td>
+                      <td>Gold standard</td>
+                    </tr>
+                    <tr className="border-b border-yellow-500/10">
+                      <td>Vispring</td>
+                      <td>Horsehair/Wool</td>
+                      <td>Firmer-buoyant</td>
+                      <td>🌬️🌬️</td>
+                      <td>UK</td>
+                      <td>Best true alternative</td>
+                    </tr>
+                    <tr className="border-b border-yellow-500/10">
+                      <td>Savoir Beds</td>
+                      <td>Cashmere/Hair</td>
+                      <td>Tailored bounce</td>
+                      <td>🌬️🌬️🌬️</td>
+                      <td>UK</td>
+                      <td>Ultra-custom but pricey</td>
+                    </tr>
+                    <tr className="border-b border-yellow-500/10">
+                      <td>Winstons Beds</td>
+                      <td>Horsehair/Wool</td>
+                      <td>Plush + rebound</td>
+                      <td>🌬️🌬️</td>
+                      <td>UK (ships FR)</td>
+                      <td>Hidden gem – real Hästens rival</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h5 className="text-yellow-500 font-semibold mb-2">🔥 TL;DR</h5>
+                <ul className="list-disc list-inside space-y-2 text-gray-300">
+                  <li>André Renault / Simmons = decent, accessible comfort</li>
+                  <li>None in your list = true artisan builds with horsehair core</li>
+                  <li>Want Hästens softness? → Go for Vispring, Winstons, or Savoir. Accept no substitutes</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-6 text-gray-300">
+              Each of these sleep systems represents the pinnacle of mattress craftsmanship, offering a perfect balance of cloud-like softness and supportive structure. The selection process prioritized natural materials, breathability, and the signature floating sensation that defines luxury sleep experiences. All options are available in France through authorized dealers or direct shipping.
+            </p>
+          </div>
         </div>
       </BudgetSection>
     </Container>
