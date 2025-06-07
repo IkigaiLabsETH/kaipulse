@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 import { Toaster } from "@/components/ui/toaster";
-import { ThirdwebProvider } from "thirdweb/react";
+import { ThirdwebWrapper } from "@/components/ThirdwebWrapper";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
@@ -125,7 +125,7 @@ export default function RootLayout({
         "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30"
       )} style={{ fontFamily: 'Satoshi, Epilogue, Boska, system-ui, sans-serif' }}>
         <a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>
-        <ThirdwebProvider>
+        <ThirdwebWrapper>
           <PipelineErrorHandler>
             <div className="relative flex min-h-screen flex-col">
               <Header />
@@ -141,7 +141,7 @@ export default function RootLayout({
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe>
           </noscript>
           <Toaster />
-        </ThirdwebProvider>
+        </ThirdwebWrapper>
       </body>
     </html>
   )
