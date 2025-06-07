@@ -568,6 +568,71 @@ export default function TrainPage() {
                 </div>
               </div>
 
+              {/* Marine & Forest Biohacking */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Marine & Forest Biohacking</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Ocean Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Negative ion exposure</li>
+                      <li>Natural salt therapy</li>
+                      <li>Marine air (rich in iodine)</li>
+                      <li>Cold water immersion</li>
+                      <li>Grounding on wet sand</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Pine Forest Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Phytoncides (natural antibiotics)</li>
+                      <li>Enhanced immune function</li>
+                      <li>Reduced stress hormones</li>
+                      <li>Improved sleep quality</li>
+                      <li>Natural aromatherapy</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Early Morning Protocol */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">30-Minute Morning Protocol</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Sequence</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>5 min: Forest walk (pine area)</li>
+                      <li>10 min: Ocean exposure</li>
+                      <li>10 min: Sunlight (dawn)</li>
+                      <li>5 min: Cold water (ankles)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-500/90 mb-2">Benefits</h5>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Circadian rhythm alignment</li>
+                      <li>Enhanced vitamin D synthesis</li>
+                      <li>Improved immune function</li>
+                      <li>Natural stress reduction</li>
+                      <li>Better sleep quality</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Integration Tips */}
+              <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
+                <h4 className="text-lg font-bold text-yellow-500 mb-2">Integration Tips</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Time with sunrise for optimal benefits</li>
+                  <li>Combine with breathwork (deep breathing)</li>
+                  <li>Practice barefoot when possible</li>
+                  <li>Stay hydrated during sessions</li>
+                  <li>Track subjective well-being</li>
+                </ul>
+              </div>
+
               {/* Advanced Supplementation */}
               <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
                 <h4 className="text-lg font-bold text-yellow-500 mb-2">Advanced Supplementation Stack</h4>
