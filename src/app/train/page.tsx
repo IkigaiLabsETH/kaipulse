@@ -1219,7 +1219,5 @@ function TrainPageContent() {
   );
 }
 
-// Page component
-export default function TrainPage() {
-  return <TrainPageContent />;
-}
+export default TrainPageContent;
+
