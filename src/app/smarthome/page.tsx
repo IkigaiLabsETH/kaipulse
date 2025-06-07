@@ -1625,13 +1625,26 @@ export default function LuxurySuppliers() {
       </CategorySection>
 
       <BudgetSection className="!px-4 !py-6 sm:!px-8 sm:!py-12">
-        <BudgetTitle className="text-2xl sm:text-3xl md:text-4xl">🛏️ Luxury Sleep Systems</BudgetTitle>
         <LuxurySleepSystems />
       </BudgetSection>
 
       {/* Final Architectural Brief Section */}
       <BudgetSection className="!px-4 !py-6 sm:!px-8 sm:!py-12">
-        <BudgetTitle className="text-2xl sm:text-3xl md:text-4xl">🏛️ ARCHITECTURAL BRIEF — LTL SMART VILLA</BudgetTitle>
+        <div className="text-left space-y-12 pt-40 pb-24 px-4 relative z-10">
+          <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light text-left w-full">
+            Project Overview
+          </p>
+          <h1 className="text-left">
+            <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
+              🏛️ ARCHITECTURAL BRIEF — LTL SMART VILLA
+            </span>
+          </h1>
+          <div className="flex flex-col sm:flex-row items-start justify-start mt-8 gap-4 sm:gap-0">
+            <div className="h-px w-32 bg-yellow-500/30"></div>
+            <p className="mx-8 text-base sm:text-lg text-white/70 font-light italic text-left">A reference showcase for Malibu Minimalism × Passive Performance × Mediterranean Warmth</p>
+            <div className="h-px w-32 bg-yellow-500/30"></div>
+          </div>
+        </div>
         <div className="space-y-6 text-sm sm:text-base md:text-lg leading-relaxed">
           <div>
             <strong>Project Name:</strong> LTL Passive Villa<br />

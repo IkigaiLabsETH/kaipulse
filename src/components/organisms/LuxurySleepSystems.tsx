@@ -23,246 +23,100 @@ interface ModernAlternative {
 
 const sleepSystems: SleepSystem[] = [
   {
-    name: "Vispring Regal Superb",
+    name: "Hästens Vividus",
     features: [
-      "Exceptionally soft top layer with floating sensation",
-      "Premium materials: Horsehair, Shetland wool, cotton",
-      "Hand-nested calico pocket springs for optimal support",
+      "Handcrafted in Sweden since 1852",
+      "Natural materials: horsehair, cotton, wool, flax",
+      "No synthetic materials or memory foam",
+      "Layered construction for optimal support",
+      "Superior temperature regulation",
+      "Customizable firmness levels"
     ],
-    investment: "€6,000–€9,000 (size-dependent)"
+    investment: "$10,000–$50,000+ (most models; special editions higher)",
+    showroom: "Available at select Hästens showrooms"
   },
   {
-    name: "Savoir Beds No. 2/4",
+    name: "Hästens Grand Vividus",
     features: [
-      "Pillow-soft comfort with subtle rebound",
-      "Luxury materials: Horsehair, cashmere, cotton, wool",
-      "Fully customizable construction",
-      "Showroom: Rue du Bac, Paris",
+      "Flagship model with enhanced comfort layers",
+      "Extra-deep construction for maximum support",
+      "Premium natural materials throughout",
+      "Hand-tufted for durability",
+      "Customizable size and firmness",
+      "Lifetime warranty"
     ],
-    investment: "€10,000+ (customizable)"
+    investment: "$400,000+ (special edition)",
+    showroom: "Available at select Hästens showrooms"
   },
   {
-    name: "Winstons Beds Heritage Collection",
+    name: "Hästens 2000T",
     features: [
-      "Deep softness with natural body contouring",
-      "100% organic fillings including horsetail and cashmere",
-      "Handcrafted construction with horsehair core",
-      "Available through WinstonsBeds.com",
+      "Classic Hästens construction",
+      "Natural materials and horsehair",
+      "Excellent value in the Hästens range",
+      "Proven comfort and durability",
+      "Available in multiple sizes",
+      "25-year warranty"
     ],
-    investment: "€4,000–€6,500 (king-size)"
-  },
-  {
-    name: "André Renault",
-    features: [
-      "Hybrid or latex-core with memory foam construction",
-      "Premium \"Millésime\" and \"Héritage\" collections",
-      "French-made luxury craftsmanship",
-      "Excellent softness with slightly less breathability than Hästens",
-      "Available through authorized French retailers",
-    ]
-  },
-  {
-    name: "Simmons (France)",
-    features: [
-      "Pocket-spring base with foam/latex top",
-      "Beautyrest Elite / Black series for premium softness",
-      "Plush comfort with structured support",
-      "Ideal for those preferring slightly firmer base than Hästens",
-      "Widely available through French retailers",
-    ]
+    investment: "$10,000–$30,000 (depending on size)",
+    showroom: "Available at select Hästens showrooms"
   }
 ];
 
-const modernAlternatives: ModernAlternative[] = [
-  {
-    name: "Avocado Green",
-    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex",
-    construction: "Hybrid (latex foam and coils) or all-latex",
-    feel: "Natural, organic, and supportive with plush yet responsive feel",
-    priceRange: "$1,299 (queen)",
-    closestToHastens: true,
-    keyFeatures: [
-      "Handmade in California with needle-tufting",
-      "PETA-approved vegan option available",
-      "Upcycled steel coils",
-      "Avoids chemical adhesives"
-    ],
-    certifications: [
-      "GOTS",
-      "GOLS",
-      "GREENGUARD Gold",
-      "MADE SAFE",
-      "EWG Verified",
-      "OEKO-TEX Standard 100",
-      "Climate Neutral",
-      "B Corp",
-      "1% for the Planet"
-    ],
-    trialPeriod: "1 year",
-    warranty: "25 years",
-    specialFocus: "Most natural alternative to Hästens"
-  },
-  {
-    name: "Naturepedic",
-    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex",
-    construction: "Organic hybrid or all-latex",
-    feel: "Customizable firmness, hypoallergenic, supportive",
-    priceRange: "$1,999 (queen)",
-    closestToHastens: true,
-    keyFeatures: [
-      "Adjustable firmness",
-      "PETA-approved vegan options",
-      "Formaldehyde-free",
-      "Handcrafted in USA"
-    ],
-    certifications: [
-      "GOTS",
-      "GOLS",
-      "MADE SAFE",
-      "GREENGUARD Gold",
-      "EWG Verified",
-      "UL formaldehyde-free",
-      "OEKO-TEX"
-    ],
-    trialPeriod: "100 nights",
-    warranty: "25 years",
-    specialFocus: "Best for allergy-sensitive sleepers"
-  },
-  {
-    name: "Saatva",
-    materials: "GOLS-certified organic latex, natural New Zealand wool, organic cotton cover",
-    construction: "Organic innerspring or hybrid with dual-coil design",
-    feel: "Luxury-firm, highly supportive",
-    priceRange: "$2,099 (queen)",
-    closestToHastens: false,
-    keyFeatures: [
-      "Lumbar Zone® Technology",
-      "Eco-friendly production",
-      "Charity donations",
-      "White glove delivery"
-    ],
-    certifications: [
-      "GOLS",
-      "GREENGUARD Gold",
-      "CertiPUR-US (for foam models)"
-    ],
-    trialPeriod: "180 days",
-    warranty: "Lifetime",
-    specialFocus: "Modern luxury with strong support"
-  },
-  {
-    name: "Brentwood Home",
-    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex",
-    construction: "Organic hybrid or all-latex",
-    feel: "Medium-soft to medium-firm, cozy with strong edge support",
-    priceRange: "$764 (queen)",
-    closestToHastens: false,
-    keyFeatures: [
-      "Handcrafted in Los Angeles since 1987",
-      "Fair Trade-certified materials",
-      "In-home delivery",
-      "Carbonfund offset"
-    ],
-    certifications: [
-      "GOTS",
-      "GOLS",
-      "GREENGUARD Gold",
-      "OEKO-TEX",
-      "Fair Trade"
-    ],
-    trialPeriod: "1 year",
-    warranty: "25 years",
-    specialFocus: "Best value for organic luxury"
-  },
-  {
-    name: "Awara",
-    materials: "GOLS-certified organic latex, GOTS-certified wool",
-    construction: "Organic hybrid with latex and coils",
-    feel: "Medium-firm, firm yet plush",
-    priceRange: "$849 (queen)",
-    closestToHastens: false,
-    keyFeatures: [
-      "Designed for breathability",
-      "Repreve-certified recycled materials",
-      "Excellent for hot sleepers",
-      "Temperature regulation"
-    ],
-    certifications: [
-      "GOLS",
-      "GOTS",
-      "OEKO-TEX",
-      "GREENGUARD Gold",
-      "Repreve"
-    ],
-    trialPeriod: "365 nights",
-    warranty: "Lifetime",
-    specialFocus: "Best for hot sleepers"
-  },
-  {
-    name: "My Green Mattress",
-    materials: "GOTS-certified organic cotton and wool, GOLS-certified organic latex and coconut coir",
-    construction: "Organic hybrid with 7-zone innerspring",
-    feel: "Medium-firm, plush yet supportive",
-    priceRange: "$1,124 (queen)",
-    closestToHastens: false,
-    keyFeatures: [
-      "1,140 pocketed coils",
-      "Hand-tufted construction",
-      "Supports up to 400 lbs",
-      "Kid-focused designs"
-    ],
-    certifications: [
-      "GOTS",
-      "GOLS",
-      "GREENGUARD Gold",
-      "MADE SAFE",
-      "OEKO-TEX"
-    ],
-    trialPeriod: "365 nights",
-    warranty: "20 years",
-    specialFocus: "Best for kids and cribs"
-  }
-];
-
-const comparisonData = [
-  {
-    brand: "Hästens",
-    coreFill: "Horsehair",
-    springFeel: "Floating-soft",
-    breathability: "🌬️🌬️🌬️",
-    country: "Sweden",
-    verdict: "Gold standard"
-  },
-  {
-    brand: "Vispring",
-    coreFill: "Horsehair/Wool",
-    springFeel: "Firmer-buoyant",
-    breathability: "🌬️🌬️",
-    country: "UK",
-    verdict: "Best true alternative"
-  },
-  {
-    brand: "Savoir Beds",
-    coreFill: "Cashmere/Hair",
-    springFeel: "Tailored bounce",
-    breathability: "🌬️🌬️🌬️",
-    country: "UK",
-    verdict: "Ultra-custom but pricey"
-  },
-  {
-    brand: "Winstons Beds",
-    coreFill: "Horsehair/Wool",
-    springFeel: "Plush + rebound",
-    breathability: "🌬️🌬️",
-    country: "UK (ships FR)",
-    verdict: "Hidden gem – real Hästens rival"
-  }
-];
+const eightSleep: ModernAlternative = {
+  name: "Eight Sleep",
+  materials: "Smart technology, premium foam, cooling system",
+  construction: "Smart mattress with Pod Pro cover",
+  feel: "Temperature-regulated, adaptive support",
+  priceRange: "$2,495 (queen)",
+  closestToHastens: false,
+  keyFeatures: [
+    "Dual-zone temperature control",
+    "Sleep tracking and analytics",
+    "Automatic temperature adjustment",
+    "Smart home integration",
+    "Biometric monitoring",
+    "Recovery metrics"
+  ],
+  certifications: [
+    "CertiPUR-US",
+    "GREENGUARD Gold",
+    "OEKO-TEX"
+  ],
+  trialPeriod: "100 nights",
+  warranty: "10 years",
+  specialFocus: "Best for tech-forward sleep optimization"
+};
 
 export default function LuxurySleepSystems() {
   return (
     <div>
-      <h3 className="text-lg sm:text-xl font-semibold text-yellow-500 mb-2">🛏️ Luxury Sleep Systems</h3>
+      <div className="w-full my-12 p-10 relative z-10 flex justify-center bg-transparent border-3 border-yellow-500 rounded-3xl shadow-[5px_5px_0px_0px_rgba(234,179,8,1),0_4px_20px_rgba(234,179,8,0.15)] overflow-hidden items-center">
+        <iframe
+          src="https://www.youtube.com/embed/kqGpjTdbrBo"
+          title="Luxury Sleep Systems Showcase"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-[56vw] max-h-[600px] min-h-[300px] border-none rounded-none bg-[#181818] block lg:h-[600px]"
+        />
+      </div>
+
+      <div className="text-left space-y-12 pt-40 pb-24 px-4 relative z-10">
+        <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-6 font-light text-left w-full">
+          Premium Sleep Technology
+        </p>
+        <h1 className="text-left">
+          <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
+            🛏️ Luxury Sleep Systems
+          </span>
+        </h1>
+        <div className="flex flex-col sm:flex-row items-start justify-start mt-8 gap-4 sm:gap-0">
+          <div className="h-px w-32 bg-yellow-500/30"></div>
+          <p className="mx-8 text-base sm:text-lg text-white/70 font-light italic text-left">Curated selection of premium sleep systems for your dream home</p>
+          <div className="h-px w-32 bg-yellow-500/30"></div>
+        </div>
+      </div>
+
       <p className="mb-4">
         The master suite features a curated selection of the worlds finest sleep systems, each offering unparalleled comfort through natural materials and expert craftsmanship. Our recommendations focus on mattresses that deliver the signature Hästens-like experience of floating on a cloud, while maintaining exceptional breathability and support.
       </p>
@@ -283,12 +137,11 @@ export default function LuxurySleepSystems() {
         ))}
       </div>
 
-      <div className="mt-8 bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+      <div className="mt-8">
         <h4 className="text-yellow-500 font-semibold mb-4">Understanding True Hästens-Level Quality</h4>
         <p className="mb-4 text-gray-300">
-          While all listed options offer premium comfort, it&apos;s important to understand what makes Hästens truly unique: artisanal, horsehair-filled construction built layer-by-layer by hand, delivering unmatched breathability and that signature floating sensation.
+          While all listed options offer premium comfort, it is important to understand what makes Hästens truly unique: artisanal, horsehair-filled construction built layer-by-layer by hand, delivering unmatched breathability and that signature floating sensation.
         </p>
-
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-gray-300">
             <thead>
@@ -302,95 +155,257 @@ export default function LuxurySleepSystems() {
               </tr>
             </thead>
             <tbody>
-              {comparisonData.map((row) => (
-                <tr key={row.brand} className="border-b border-yellow-500/10">
-                  <td className="py-2">{row.brand}</td>
-                  <td>{row.coreFill}</td>
-                  <td>{row.springFeel}</td>
-                  <td>{row.breathability}</td>
-                  <td>{row.country}</td>
-                  <td>{row.verdict}</td>
-                </tr>
-              ))}
+              <tr className="border-b border-yellow-500/10">
+                <td>Hästens</td>
+                <td>Horsehair</td>
+                <td>Floating-soft</td>
+                <td>🌬️🌬️🌬️</td>
+                <td>Sweden</td>
+                <td>Gold standard</td>
+              </tr>
+              <tr className="border-b border-yellow-500/10">
+                <td>Vispring</td>
+                <td>Horsehair/Wool</td>
+                <td>Firmer-buoyant</td>
+                <td>🌬️🌬️</td>
+                <td>UK</td>
+                <td>Best true alternative</td>
+              </tr>
+              <tr className="border-b border-yellow-500/10">
+                <td>Savoir Beds</td>
+                <td>Cashmere/Hair</td>
+                <td>Tailored bounce</td>
+                <td>🌬️🌬️🌬️</td>
+                <td>UK</td>
+                <td>Ultra-custom but pricey</td>
+              </tr>
+              <tr className="border-b border-yellow-500/10">
+                <td>Winstons Beds</td>
+                <td>Horsehair/Wool</td>
+                <td>Plush + rebound</td>
+                <td>🌬️🌬️</td>
+                <td>UK (ships FR)</td>
+                <td>Hidden gem – real Hästens rival</td>
+              </tr>
+              <tr className="border-b border-yellow-500/10">
+                <td>André Renault</td>
+                <td>Latex/Memory Foam</td>
+                <td>Soft-supportive</td>
+                <td>🌬️🌬️</td>
+                <td>France</td>
+                <td>French luxury, less breathability</td>
+              </tr>
+              <tr>
+                <td>Simmons (France)</td>
+                <td>Pocket springs/Foam</td>
+                <td>Plush/Structured</td>
+                <td>🌬️🌬️</td>
+                <td>France</td>
+                <td>Widely available, firmer</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
 
       <div className="mt-8 bg-black/40 p-6 rounded-lg border border-yellow-500/30">
-        <h4 className="text-yellow-500 font-semibold mb-4">Modern Luxury Alternatives</h4>
+        <h4 className="text-yellow-500 font-semibold mb-4">Modern Luxury: Smart Sleep Technology</h4>
         <p className="mb-4 text-gray-300">
-          While traditional luxury brands like Hästens set the standard for natural materials and craftsmanship, several modern alternatives offer compelling features at more accessible price points. Here is a detailed comparison of the top contenders:
+          While traditional luxury brands like Hästens set the standard for natural materials and craftsmanship, modern technology offers a different kind of luxury through personalized sleep optimization. Here&apos;s our featured smart sleep system:
         </p>
 
-        <div className="space-y-6">
-          {modernAlternatives.map((alt) => (
-            <div key={alt.name} className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h5 className="text-yellow-500 font-semibold">{alt.name}</h5>
-                  <p className="text-gray-400 text-sm">{alt.priceRange}</p>
-                </div>
-                {alt.closestToHastens && (
-                  <span className="bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded-full text-sm">
-                    Closest Natural Alternative
+        <div className="bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <h5 className="text-yellow-500 font-semibold">{eightSleep.name}</h5>
+              <p className="text-gray-400 text-sm">{eightSleep.priceRange}</p>
+            </div>
+            <span className="bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded-full text-sm">
+              Smart Sleep Technology
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <h6 className="text-yellow-500/80 font-medium mb-2">Materials & Construction</h6>
+              <p className="text-gray-300 text-sm mb-2">{eightSleep.materials}</p>
+              <p className="text-gray-300 text-sm">{eightSleep.construction}</p>
+            </div>
+            <div>
+              <h6 className="text-yellow-500/80 font-medium mb-2">Feel & Focus</h6>
+              <p className="text-gray-300 text-sm mb-2">{eightSleep.feel}</p>
+              {eightSleep.specialFocus && (
+                <p className="text-gray-300 text-sm italic">{eightSleep.specialFocus}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <h6 className="text-yellow-500/80 font-medium mb-2">Key Features</h6>
+              <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+                {eightSleep.keyFeatures.map((feature, i) => (
+                  <li key={i}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h6 className="text-yellow-500/80 font-medium mb-2">Certifications</h6>
+              <div className="flex flex-wrap gap-2">
+                {eightSleep.certifications.map((cert, i) => (
+                  <span key={i} className="bg-yellow-500/10 text-yellow-500/80 px-2 py-1 rounded text-xs">
+                    {cert}
                   </span>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <h6 className="text-yellow-500/80 font-medium mb-2">Materials & Construction</h6>
-                  <p className="text-gray-300 text-sm mb-2">{alt.materials}</p>
-                  <p className="text-gray-300 text-sm">{alt.construction}</p>
-                </div>
-                <div>
-                  <h6 className="text-yellow-500/80 font-medium mb-2">Feel & Focus</h6>
-                  <p className="text-gray-300 text-sm mb-2">{alt.feel}</p>
-                  {alt.specialFocus && (
-                    <p className="text-gray-300 text-sm italic">{alt.specialFocus}</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <h6 className="text-yellow-500/80 font-medium mb-2">Key Features</h6>
-                  <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
-                    {alt.keyFeatures.map((feature, i) => (
-                      <li key={i}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h6 className="text-yellow-500/80 font-medium mb-2">Certifications</h6>
-                  <div className="flex flex-wrap gap-2">
-                    {alt.certifications.map((cert, i) => (
-                      <span key={i} className="bg-yellow-500/10 text-yellow-500/80 px-2 py-1 rounded text-xs">
-                        {cert}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center text-sm text-gray-400 border-t border-yellow-500/10 pt-4">
-                <span>Trial: {alt.trialPeriod}</span>
-                <span>Warranty: {alt.warranty}</span>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
+
+          <div className="flex justify-between items-center text-sm text-gray-400 border-t border-yellow-500/10 pt-4">
+            <span>Trial: {eightSleep.trialPeriod}</span>
+            <span>Warranty: {eightSleep.warranty}</span>
+          </div>
         </div>
 
         <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg">
-          <h5 className="text-yellow-500 font-semibold mb-2">🔥 Quick Recommendations</h5>
+          <h5 className="text-yellow-500 font-semibold mb-2">🔥 Why Choose Eight Sleep?</h5>
           <ul className="list-disc list-inside space-y-2 text-gray-300">
-            <li>Best Natural Alternative: Avocado Green ($1,299) - Most similar to Hästens in materials and craftsmanship</li>
-            <li>Best for Allergies: Naturepedic ($1,999) - Premium organic materials with customizable firmness</li>
-            <li>Best Value: Brentwood Home ($764) - Excellent organic luxury at an accessible price point</li>
-            <li>Best for Hot Sleepers: Awara ($849) - Superior temperature regulation with organic materials</li>
-            <li>Best for Kids: My Green Mattress ($1,124) - Certified organic materials with kid-focused designs</li>
+            <li>Advanced temperature control with dual-zone technology</li>
+            <li>Comprehensive sleep tracking and analytics</li>
+            <li>Smart home integration for automated comfort</li>
+            <li>Premium materials with multiple certifications</li>
+            <li>100-night trial period for risk-free testing</li>
+            <li>10-year warranty for long-term peace of mind</li>
           </ul>
+        </div>
+      </div>
+
+      <div className="mt-4 mb-8 text-yellow-500/80 text-sm italic">
+        *Hästens prices vary by region, size, and customization. Most models range from $10,000–$50,000+, with special editions like Grand Vividus exceeding $400,000. Contact Hästens for a precise quote.*
+      </div>
+
+      <div className="mt-8 bg-black/40 p-6 rounded-lg border border-yellow-500/30">
+        <h4 className="text-yellow-500 font-semibold mb-4">Top Hästens Alternatives: European Luxury Sleep Systems</h4>
+        <div className="space-y-6">
+          <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+            <h5 className="text-yellow-500 font-semibold mb-2">🥇 Vispring Regal Superb</h5>
+            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+              <li>Exceptionally soft top layer with floating sensation</li>
+              <li>Premium materials: Horsehair, Shetland wool, cotton</li>
+              <li>Hand-nested calico pocket springs for optimal support</li>
+              <li>Investment: €6,000–€9,000 (size-dependent)</li>
+            </ul>
+          </div>
+          <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+            <h5 className="text-yellow-500 font-semibold mb-2">🥈 Savoir Beds No. 2/4</h5>
+            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+              <li>Pillow-soft comfort with subtle rebound</li>
+              <li>Luxury materials: Horsehair, cashmere, cotton, wool</li>
+              <li>Fully customizable construction</li>
+              <li>Showroom: Rue du Bac, Paris</li>
+              <li>Investment: €10,000+ (customizable)</li>
+            </ul>
+          </div>
+          <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+            <h5 className="text-yellow-500 font-semibold mb-2">🥉 Winstons Beds Heritage Collection</h5>
+            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+              <li>Deep softness with natural body contouring</li>
+              <li>100% organic fillings including horsetail and cashmere</li>
+              <li>Handcrafted construction with horsehair core</li>
+              <li>Available through WinstonsBeds.com</li>
+              <li>Investment: €4,000–€6,500 (king-size)</li>
+            </ul>
+          </div>
+          <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+            <h5 className="text-yellow-500 font-semibold mb-2">André Renault</h5>
+            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+              <li>Hybrid or latex-core with memory foam construction</li>
+              <li>Premium &quot;Millésime&quot; and &quot;Héritage&quot; collections</li>
+              <li>French-made luxury craftsmanship</li>
+              <li>Excellent softness, slightly less breathability than Hästens</li>
+              <li>Available through authorized French retailers</li>
+            </ul>
+          </div>
+          <div className="bg-black/30 p-4 rounded-lg border border-yellow-500/20">
+            <h5 className="text-yellow-500 font-semibold mb-2">Simmons (France)</h5>
+            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+              <li>Pocket-spring base with foam/latex top</li>
+              <li>Beautyrest Elite / Black series for premium softness</li>
+              <li>Plush comfort with structured support</li>
+              <li>Ideal for those preferring slightly firmer base than Hästens</li>
+              <li>Widely available through French retailers</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-8">
+          <h4 className="text-yellow-500 font-semibold mb-4">Comparison Table</h4>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-gray-300">
+              <thead>
+                <tr className="border-b border-yellow-500/30">
+                  <th className="text-left py-2">Brand</th>
+                  <th className="text-left py-2">Core Fill</th>
+                  <th className="text-left py-2">Spring Feel</th>
+                  <th className="text-left py-2">Breathability</th>
+                  <th className="text-left py-2">Country</th>
+                  <th className="text-left py-2">Verdict</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-yellow-500/10">
+                  <td>Hästens</td>
+                  <td>Horsehair</td>
+                  <td>Floating-soft</td>
+                  <td>🌬️🌬️🌬️</td>
+                  <td>Sweden</td>
+                  <td>Gold standard</td>
+                </tr>
+                <tr className="border-b border-yellow-500/10">
+                  <td>Vispring</td>
+                  <td>Horsehair/Wool</td>
+                  <td>Firmer-buoyant</td>
+                  <td>🌬️🌬️</td>
+                  <td>UK</td>
+                  <td>Best true alternative</td>
+                </tr>
+                <tr className="border-b border-yellow-500/10">
+                  <td>Savoir Beds</td>
+                  <td>Cashmere/Hair</td>
+                  <td>Tailored bounce</td>
+                  <td>🌬️🌬️🌬️</td>
+                  <td>UK</td>
+                  <td>Ultra-custom but pricey</td>
+                </tr>
+                <tr className="border-b border-yellow-500/10">
+                  <td>Winstons Beds</td>
+                  <td>Horsehair/Wool</td>
+                  <td>Plush + rebound</td>
+                  <td>🌬️🌬️</td>
+                  <td>UK (ships FR)</td>
+                  <td>Hidden gem – real Hästens rival</td>
+                </tr>
+                <tr className="border-b border-yellow-500/10">
+                  <td>André Renault</td>
+                  <td>Latex/Memory Foam</td>
+                  <td>Soft-supportive</td>
+                  <td>🌬️🌬️</td>
+                  <td>France</td>
+                  <td>French luxury, less breathability</td>
+                </tr>
+                <tr>
+                  <td>Simmons (France)</td>
+                  <td>Pocket springs/Foam</td>
+                  <td>Plush/Structured</td>
+                  <td>🌬️🌬️</td>
+                  <td>France</td>
+                  <td>Widely available, firmer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="mt-4 text-yellow-500/80 text-xs italic">
+          *All prices and features as of 2024. These brands represent the best European alternatives for those seeking Hästens-level comfort and craftsmanship.*
         </div>
       </div>
     </div>
