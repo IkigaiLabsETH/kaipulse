@@ -228,9 +228,6 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
-  experimental: {
-    serverActions: true,
-  },
   // Increase the static page generation timeout
   staticPageGenerationTimeout: 120,
 }
