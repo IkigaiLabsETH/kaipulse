@@ -222,6 +222,7 @@ export default function IntroPage() {
                   <h4 className="text-xl font-bold text-yellow-500">Luxury Destinations</h4>
                   <ul className="list-disc list-inside space-y-2 text-gray-300">
                     <li><Link href="/dubai" className="hover:text-yellow-500 transition-colors">Dubai</Link></li>
+                    <li><Link href="/costarica" className="hover:text-yellow-500 transition-colors">Costa Rica</Link></li>
                     <li><Link href="/maldives" className="hover:text-yellow-500 transition-colors">Maldives</Link></li>
                     <li><Link href="/biarritz" className="hover:text-yellow-500 transition-colors">Biarritz</Link></li>
                     <li><Link href="/cirrus" className="hover:text-yellow-500 transition-colors">Private Jet</Link></li>
