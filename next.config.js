@@ -226,11 +226,6 @@ const nextConfig = {
       },
     ];
   },
-  images: {
-    domains: ['localhost'],
-  },
-  // Increase the static page generation timeout
-  staticPageGenerationTimeout: 120,
 }
 
 module.exports = nextConfig 
