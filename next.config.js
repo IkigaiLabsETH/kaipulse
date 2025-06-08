@@ -120,6 +120,7 @@ const nextConfig = {
       'highlight-creator-assets.highlight.xyz',
       'assets.coingecko.com',
       'dd.dexscreener.com',
+      'coin-images.coingecko.com',
       // add other domains as needed
     ],
   },
