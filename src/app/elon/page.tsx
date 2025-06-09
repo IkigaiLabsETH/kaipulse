@@ -969,6 +969,95 @@ export default function ElonPage() {
               </div>
             </div>
           </div>
+
+          {/* Outro Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Outro: The Type II Leap
+            </h3>
+            <div className="space-y-8">
+              {/* Introduction */}
+              <div className="space-y-4">
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <p className="text-white/80 font-satoshi mb-4">
+                    A Type II leap isn&apos;t about bigger batteries.
+                    It&apos;s about total redesign of how a civilization metabolizes starlight—about 10²⁶ W, the Sun&apos;s full output.
+                  </p>
+                  <p className="text-white/80 font-satoshi">
+                    Here&apos;s how we get there.
+                  </p>
+                </div>
+              </div>
+
+              {/* Key Moves */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">🔑 Key Moves</h4>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <div className="space-y-6">
+                    <div>
+                      <h5 className="text-lg font-bold text-yellow-500 mb-2">1. Swarm, Not Shell</h5>
+                      <p className="text-white/80 font-satoshi">
+                        A rigid Dyson sphere is fantasy-fragile, but a Dyson swarm—trillions of independent, self-balancing collectors—scales organically. But you need autonomous factories that mine, print, and redeploy hardware faster than orbital drift tears formations apart.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="text-lg font-bold text-yellow-500 mb-2">2. Self-Replicating Industry</h5>
+                      <p className="text-white/80 font-satoshi">
+                        Launching a few &ldquo;seed&rdquo; fabs from Earth is feasible; they bootstrap more units from asteroid regolith. Therefore exponential growth turns grams into gigatonnes without bankrupting every GDP on Earth.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="text-lg font-bold text-yellow-500 mb-2">3. AI + Light-Speed Governance</h5>
+                      <p className="text-white/80 font-satoshi">
+                        Coordinating swarm elements across AU distances requires near-perfect forecasting and local autonomy—think distributed LLMs running real-time orbital negotiation protocols. But mis-synced swarms become high-velocity shrapnel, so fault-tolerance is mission-critical.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="text-lg font-bold text-yellow-500 mb-2">4. Star-System Colonization as By-Product</h5>
+                      <p className="text-white/80 font-satoshi">
+                        Once energy is virtually free, everything else—mass drivers, terraforming lasers, interplanetary data links—rides on surplus power. Therefore habitats bloom around Mercury, Jovian floaters harvest helium-3, Oort-cloud nodes pipe raw volatiles inward.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="text-lg font-bold text-yellow-500 mb-2">5. Cultural Shift: From Scarcity to Feedback-Loops</h5>
+                      <p className="text-white/80 font-satoshi">
+                        Energy-poverty politics evaporate; status competition pivots to information, aesthetics, and time. But new fractures appear: who stewards the swarm, and how do you throttle a star if something goes wrong?
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Early Signals */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">📡 Early Signals</h4>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <p className="text-white/80 font-satoshi mb-4">
+                    We&apos;re already seeing the first signs:
+                  </p>
+                  <ul className="text-white/80 font-satoshi list-disc list-inside ml-4 space-y-2">
+                    <li>Large-scale solar baseload</li>
+                    <li>Reusable rocketry</li>
+                    <li>Autonomous robotics</li>
+                    <li>In-situ resource utilisation demos</li>
+                    <li>Mega-constellations like Starlink acting as practice rounds in orbital logistics</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Conclusion */}
+              <div className="space-y-4">
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <p className="text-white/80 font-satoshi mb-4">
+                    Bottom line: a Type II future isn&apos;t one grand construction project—it&apos;s a self-propagating ecosystem of machines, humans, and memes that treat the star as an API endpoint.
+                  </p>
+                  <p className="text-white/80 font-satoshi mt-6 pt-6 border-t border-yellow-500/20 italic">
+                    And somewhere in the void between Earth and Mars, a single tweet echoes through time, becoming the first line of code in a civilization&apos;s new operating system.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
