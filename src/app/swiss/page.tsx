@@ -39,6 +39,65 @@ export default function SwissPage() {
             </div>
           </div>
 
+          {/* Journey Overview Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Your Dream Swiss Journey
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                Experience Switzerland&apos;s finest luxury accommodations, from historic palaces to modern mountain retreats. This carefully curated journey takes you through the country&apos;s most iconic destinations, combining world-class hospitality with breathtaking natural beauty.
+              </p>
+              <div className="mt-6">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Journey Highlights:</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Luxury accommodations at Switzerland&apos;s finest hotels</li>
+                  <li>World-class spa and wellness experiences</li>
+                  <li>Michelin-starred dining throughout</li>
+                  <li>Exclusive access to private tours</li>
+                  <li>Personalized concierge service</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Features */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-4xl">🏔️</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                  Alpine Luxury
+                </h3>
+              </div>
+              <p className="text-center text-lg md:text-xl">
+                Mountain Retreats
+              </p>
+            </div>
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-4xl">💆‍♀️</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                  Wellness
+                </h3>
+              </div>
+              <p className="text-center text-lg md:text-xl">
+                Spa & Relaxation
+              </p>
+            </div>
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-4xl">🍽️</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                  Fine Dining
+                </h3>
+              </div>
+              <p className="text-center text-lg md:text-xl">
+                Michelin Stars
+              </p>
+            </div>
+          </div>
+
           {/* Featured Luxury Hotels Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
