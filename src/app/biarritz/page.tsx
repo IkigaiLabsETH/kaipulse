@@ -278,18 +278,78 @@ export default function BiarritzPage() {
                 <p className="text-white/80 font-satoshi">
                   Three-Michelin-starred restaurant by Chef Eneko Atxa, known for innovative Basque cuisine and sustainable practices.
                 </p>
+                <div className="mt-4">
+                  <Link href="https://guide.michelin.com/en/bizkaia/larrabetzu/restaurant/azurmendi" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full sm:w-auto">
+                      View on Michelin Guide
+                    </Button>
+                  </Link>
+                </div>
               </div>
               <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Arzak</h4>
                 <p className="text-white/80 font-satoshi">
                   Juan Mari and Elena Arzak&apos;s three-Michelin-star restaurant combines Basque tradition with innovative techniques.
                 </p>
+                <div className="mt-4">
+                  <Link href="https://guide.michelin.com/en/pais-vasco/san-sebastian/restaurant/arzak" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full sm:w-auto">
+                      View on Michelin Guide
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Akelarre</h4>
+                <p className="text-white/80 font-satoshi">
+                  Pedro Subijana&apos;s three-Michelin-star restaurant offers stunning ocean views and innovative Basque cuisine.
+                </p>
+                <div className="mt-4">
+                  <Link href="https://guide.michelin.com/en/pais-vasco/san-sebastian/restaurant/akelarre" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full sm:w-auto">
+                      View on Michelin Guide
+                    </Button>
+                  </Link>
+                </div>
               </div>
               <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">L&apos;Impertinent</h4>
                 <p className="text-white/80 font-satoshi">
                   Chef Fabian Feldmann&apos;s Michelin-starred restaurant offers inventive contemporary French cuisine in an elegant setting.
                 </p>
+                <div className="mt-4">
+                  <Link href="https://guide.michelin.com/en/nouvelle-aquitaine/biarritz/restaurant/l-impertinent" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full sm:w-auto">
+                      View on Michelin Guide
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Etxebarri</h4>
+                <p className="text-white/80 font-satoshi">
+                  Victor Arguinzoniz&apos;s Michelin-starred restaurant in Axpe is famous for its wood-fired cooking techniques.
+                </p>
+                <div className="mt-4">
+                  <Link href="https://guide.michelin.com/en/pais-vasco/axpe/restaurant/asadero-extebarri" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full sm:w-auto">
+                      View on Michelin Guide
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Mugaritz</h4>
+                <p className="text-white/80 font-satoshi">
+                  Andoni Luis Aduriz&apos;s two-Michelin-star restaurant pushes the boundaries of culinary innovation.
+                </p>
+                <div className="mt-4">
+                  <Link href="https://guide.michelin.com/en/pais-vasco/errenteria/restaurant/mugaritz" target="_blank">
+                    <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300 w-full sm:w-auto">
+                      View on Michelin Guide
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
