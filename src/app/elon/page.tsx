@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function ElonPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
@@ -20,6 +22,20 @@ export default function ElonPage() {
               <div className="h-px w-24 bg-yellow-500/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">When One User Brokered Peace Between Elon & Trump</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
+            
+            {/* Featured Image */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="relative w-full aspect-[16/9]">
+                <Image
+                  src="/Tesla-Roboban.jpg"
+                  alt="Tesla Roboban - A glimpse into the future of AI and robotics"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                />
+              </div>
             </div>
           </div>
 
