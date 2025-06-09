@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function GenArtPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
@@ -24,6 +26,14 @@ export default function GenArtPage() {
             
             {/* Featured Visual */}
             <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <Image
+                src="/materialistic.png"
+                alt="Materialistic Generative Art Piece"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
             </div>
           </div>
