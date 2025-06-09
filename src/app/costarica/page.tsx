@@ -236,6 +236,122 @@ export default function CostaRicaPage() {
               </div>
             </div>
           </div>
+
+          {/* Alternative Pura Vida Experiences */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Alternative Pura Vida Experiences
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Mother Earth Vegan Hotel */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Mother Earth Vegan Hotel</h4>
+                <p className="text-white/80 font-satoshi mb-4">Tamarindo, Guanacaste</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• First vegan hotel in Costa Rica</li>
+                  <li>• Solar-powered sustainability</li>
+                  <li>• Saltwater natural pool</li>
+                  <li>• Plant-based fine dining</li>
+                </ul>
+              </div>
+
+              {/* SENDERO HOTEL */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">SENDERO HOTEL</h4>
+                <p className="text-white/80 font-satoshi mb-4">Nosara, Guanacaste</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Steps from Playa Guiones</li>
+                  <li>• Surf concierge service</li>
+                  <li>• Eco-friendly design</li>
+                  <li>• Wellness & spa facilities</li>
+                </ul>
+              </div>
+
+              {/* Hotel Aguas Claras */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Hotel Aguas Claras</h4>
+                <p className="text-white/80 font-satoshi mb-4">Puerto Viejo, Caribbean</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Adults-only luxury retreat</li>
+                  <li>• Artistic Victorian design</li>
+                  <li>• Beachfront location</li>
+                  <li>• Holistic spa treatments</li>
+                </ul>
+              </div>
+
+              {/* Origins Luxury Lodge */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Origins Luxury Lodge</h4>
+                <p className="text-white/80 font-satoshi mb-4">Upala, Alajuela</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Michelin-starred dining</li>
+                  <li>• Treetop villa suites</li>
+                  <li>• 180° valley views</li>
+                  <li>• Wildlife & nature tours</li>
+                </ul>
+              </div>
+
+              {/* Casa Chameleon */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Casa Chameleon Las Catalinas</h4>
+                <p className="text-white/80 font-satoshi mb-4">Las Catalinas, Guanacaste</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Private infinity pools</li>
+                  <li>• Adults-only luxury</li>
+                  <li>• Ocean-view villas</li>
+                  <li>• Relais & Châteaux member</li>
+                </ul>
+              </div>
+
+              {/* Kura Boutique Hotel */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Kura Boutique Hotel</h4>
+                <p className="text-white/80 font-satoshi mb-4">Uvita, Pacific Coast</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Rainforest luxury suites</li>
+                  <li>• Panoramic ocean views</li>
+                  <li>• Fine dining experience</li>
+                  <li>• Sustainable luxury</li>
+                </ul>
+              </div>
+
+              {/* Silvestre Nosara */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Silvestre Nosara</h4>
+                <p className="text-white/80 font-satoshi mb-4">Nosara, Guanacaste</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Family-friendly luxury</li>
+                  <li>• Surf concierge service</li>
+                  <li>• Rooftop infinity pool</li>
+                  <li>• Wellness studio</li>
+                </ul>
+              </div>
+
+              {/* El Mangroove */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">El Mangroove</h4>
+                <p className="text-white/80 font-satoshi mb-4">Playa Panama, Guanacaste</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Beachfront mangroves</li>
+                  <li>• Private tour boats</li>
+                  <li>• Bearth Spa treatments</li>
+                  <li>• Contemporary luxury</li>
+                </ul>
+              </div>
+
+              {/* Andaz Costa Rica */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Andaz Costa Rica Resort</h4>
+                <p className="text-white/80 font-satoshi mb-4">Peninsula Papagayo</p>
+                <ul className="text-white/80 font-satoshi space-y-2">
+                  <li>• Private peninsula setting</li>
+                  <li>• Multiple pools & beaches</li>
+                  <li>• 11 dining venues</li>
+                  <li>• Family-friendly activities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
