@@ -1,107 +1,148 @@
 "use client";
 
-import { Header } from '@/components/Header';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function MaldivesPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Header />
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center min-h-[70vh] pt-24 pb-8 px-4">
-        <div className="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto w-full">
-          <div className="flex-1 flex flex-col items-start gap-6">
-            <Badge className="bg-yellow-500 text-black text-sm mb-2 font-satoshi tracking-wide">Maldives International Financial Centre</Badge>
-            <h1 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-2 tracking-tight">$8.8B Digital Asset Hub</h1>
-            <p className="text-lg md:text-2xl text-white/90 font-satoshi max-w-xl leading-snug">
-              The Maldives is launching the MIFC, an initiative to turn Malé into a blockchain and digital asset hub, aiming to triple the nation&#39;s economy and redefine its financial future.
-            </p>
+    <div className="min-h-screen bg-black text-white font-satoshi">
+      {/* Premium header accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div className="space-y-16">
+          {/* Hero Section */}
+          <div className="text-center space-y-8">
+            <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Digital Assets • Financial Innovation • Economic Growth</p>
+            <h1 className="text-center">
+              <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+                Maldives
+              </span>
+            </h1>
+            <div className="flex items-center justify-center mt-6">
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">A New Era of Financial Innovation</p>
+              <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
+            
+            {/* Featured Visual */}
+            <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <Image 
+                src="/maldives.jpg" 
+                alt="Malé Skyline" 
+                width={1200} 
+                height={675} 
+                className="w-full h-full object-cover" 
+                priority 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+            </div>
+          </div>
+
+          {/* Overview Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              The MIFC Vision
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                The Maldives International Financial Centre (MIFC) represents an $8.8 billion initiative to transform Malé into a global blockchain and digital asset hub. This ambitious project aims to triple the nation&apos;s economy while establishing a new paradigm for financial innovation in the region.
+              </p>
+              <div className="mt-6">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Features:</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>No corporate taxes</li>
+                  <li>No residency requirements</li>
+                  <li>Tax-free inheritance</li>
+                  <li>Full ownership rights</li>
+                  <li>Renewable energy powered</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Features */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-4xl">💎</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                  Digital Assets
+                </h3>
+              </div>
+              <p className="text-center text-lg md:text-xl">
+                Blockchain Innovation
+              </p>
+            </div>
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-4xl">🏢</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                  Smart Offices
+                </h3>
+              </div>
+              <p className="text-center text-lg md:text-xl">
+                Modern Infrastructure
+              </p>
+            </div>
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-4xl">🌱</span>
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                  Sustainability
+                </h3>
+              </div>
+              <p className="text-center text-lg md:text-xl">
+                Green Technology
+              </p>
+            </div>
+          </div>
+
+          {/* Project Details */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Project Scope
+            </h3>
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">Development & Infrastructure</h4>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <p className="text-white/80 font-satoshi mb-4">
+                    Spanning 830,000 square meters in Malé, the MIFC will accommodate 6,500 residents and create approximately 16,000 jobs. The district will be powered entirely by renewable energy and feature smart offices, climate-resilient infrastructure, and advanced digital banking and offshore services.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Key Metrics:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside">
+                        <li>830,000 sqm development</li>
+                        <li>6,500 residents</li>
+                        <li>16,000 new jobs</li>
+                        <li>100% renewable energy</li>
+                        <li>2030 completion target</li>
+                        <li>$1B+ annual revenue</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Investment:</h5>
+                      <p className="text-white/80 font-satoshi">$8.8 billion total</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center">
             <Link href="https://www.mifc.gov.mv/" target="_blank">
-              <Button className="bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-xl mt-2 hover:bg-yellow-400 transition-all duration-300 font-epilogue tracking-tight">
+              <Button className="bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:bg-yellow-400 transition-all duration-300 font-epilogue tracking-tight">
                 Visit Official MIFC Site
               </Button>
             </Link>
           </div>
-          <div className="flex-1 flex justify-center items-center">
-            <div className="w-full max-w-[500px] aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)]">
-              {/* Placeholder for hero image or video */}
-              <Image src="/maldives.jpg" alt="Malé Skyline" width={1200} height={675} className="w-full h-full object-cover rounded-2xl" priority />
-            </div>
-          </div>
         </div>
-      </section>
-
-      <Separator className="my-8 bg-yellow-500/20" />
-
-      {/* Editorial Content */}
-      <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-6 font-bold tracking-tight uppercase">Economic Transformation</h2>
-          <p className="text-lg text-white/80 font-satoshi mb-6">
-            Traditionally reliant on tourism and fisheries, the Maldives is now setting its sights on a bold new future. The Maldives International Financial Centre (MIFC) is more than just an $8.8 billion investment—it is a strategic leap to diversify the nation&#39;s economy and establish Malé as a global hub for blockchain and digital assets. With incentives such as no corporate taxes, no residency requirements, tax-free inheritance, and full ownership rights, the MIFC aims to attract a new wave of global blockchain enterprises, fintech startups, and investment funds.
-          </p>
-          <p className="text-lg text-white/80 font-satoshi mb-6">
-            This initiative comes at a critical time. The Maldives faces significant debt obligations, with $600–700 million due in 2025 and nearly $1 billion in 2026. Finance Minister Moosa Zameer has emphasized the need for innovative solutions beyond traditional borrowing. The MIFC is envisioned as a pathway to long-term financial stability, offering the promise of tripling the nation&#39;s GDP within four years.
-          </p>
-        </div>
-      </section>
-
-      <Separator className="my-8 bg-yellow-500/20" />
-
-      {/* Project Scope and Features - Card for Key Stats */}
-      <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-6 text-center font-bold tracking-tight uppercase">Project Scope & Features</h2>
-          <p className="text-lg text-white/80 font-satoshi mb-8 text-center">
-            Spanning 830,000 square meters in Malé, the MIFC will accommodate 6,500 residents and create approximately 16,000 jobs. The district will be powered entirely by renewable energy and feature smart offices, climate-resilient infrastructure, and advanced digital banking and offshore services. The project is slated for completion by 2030, with expectations to generate over $1 billion in annual revenue by its fifth year. The MIFC will also host Web3summits, positioning the Maldives at the forefront of digital innovation in the region.
-          </p>
-        </div>
-      </section>
-
-      <Separator className="my-8 bg-yellow-500/20" />
-
-      {/* Funding and Investment */}
-      <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-6 font-bold tracking-tight uppercase">Funding & Investment</h2>
-          <p className="text-lg text-white/80 font-satoshi mb-6">
-            The ambitious scale of the MIFC is matched by its funding. MBS Global Investments, a Dubai-based family office managing $14 billion in assets, is leading the charge. The firm has already secured commitments between $4–5 billion from high-net-worth individuals and a global network of family offices, with the remaining funds to be raised through a combination of equity and debt financing.
-          </p>
-        </div>
-      </section>
-
-      <Separator className="my-8 bg-yellow-500/20" />
-
-      {/* Challenges and Considerations */}
-      <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-6 font-bold tracking-tight uppercase">Challenges & Considerations</h2>
-          <p className="text-lg text-white/80 font-satoshi mb-6">
-            While the MIFC presents significant opportunities, several challenges must be addressed. Establishing a comprehensive regulatory framework for digital assets and ensuring compliance with international standards will be crucial. The Maldives must also focus on developing a skilled workforce proficient in blockchain technology and financial services, and invest in both physical and digital infrastructure to support the hub&#39;s operations. Finally, the MIFC will need to position itself competitively against established financial centers like Dubai, Singapore, and Mauritius.
-          </p>
-        </div>
-      </section>
-
-      <Separator className="my-8 bg-yellow-500/20" />
-
-      {/* Conclusion */}
-      <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">Conclusion</h2>
-          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            The Maldives&#39; MIFC project is a bold leap toward economic diversification and modernization. By embracing digital innovation and strategic investment, the nation aims to become a leading player in the global financial ecosystem.
-          </p>
-          <Link href="https://www.mifc.gov.mv/" target="_blank">
-            <Button className="bg-yellow-500 text-black font-bold text-lg px-8 py-4 rounded-xl mt-2 hover:bg-yellow-400 transition-all duration-300 font-epilogue tracking-tight">
-              Learn More at MIFC.mv
-            </Button>
-          </Link>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
