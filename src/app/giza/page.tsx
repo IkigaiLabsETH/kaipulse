@@ -48,6 +48,59 @@ export default function GizaPage() {
             </div>
           </div>
 
+          {/* Technology Stack */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Advanced Technology Stack
+            </h3>
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Core Technologies</h4>
+                  <ul className="text-white/80 font-satoshi space-y-3">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Zero-Knowledge Proofs (ZKML)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Machine Learning Algorithms</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Cairo Programming Language</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Smart Contract Automation</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Open Source Projects</h4>
+                  <ul className="text-white/80 font-satoshi space-y-3">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>LuminAIR</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Rekommender</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>NumerAIR</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>ARMA Documentation</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Key Features */}
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -119,6 +172,86 @@ export default function GizaPage() {
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Performance Metrics */}
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">Performance & Backtesting</h4>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Backtesting Results:</h5>
+                      <ul className="text-white/80 font-satoshi space-y-2">
+                        <li>83.45% higher APR vs competitors</li>
+                        <li>Based on DEFILLAMA USDC data</li>
+                        <li>$10,000 example: $1,031.86 earned</li>
+                        <li>10.31% daily average APR</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Transaction Volume:</h5>
+                      <ul className="text-white/80 font-satoshi space-y-2">
+                        <li>$5.4M volume on Base</li>
+                        <li>4-week performance period</li>
+                        <li>Continuous optimization</li>
+                        <li>Real-time monitoring</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Community & Resources */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Community & Resources
+            </h3>
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Community Channels</h4>
+                  <ul className="text-white/80 font-satoshi space-y-3">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Discord Community</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Telegram Group</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>X (Twitter) Updates</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>GitHub Repository</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Documentation</h4>
+                  <ul className="text-white/80 font-satoshi space-y-3">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Technical Documentation</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>API References</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Security Audits</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-500">•</span>
+                      <span>Integration Guides</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
