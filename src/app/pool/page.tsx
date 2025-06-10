@@ -1,5 +1,4 @@
-export const revalidate = 3600;
-
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 import HeroSection from "./components/HeroSection";
 import OverviewSection from "./components/OverviewSection";
@@ -12,6 +11,18 @@ import HeatingEnergy from "./components/HeatingEnergy";
 import SolarEnergySystem from "./components/SolarEnergySystem";
 import BeatbotSection from "./components/BeatbotSection";
 
+export const metadata: Metadata = {
+  title: 'Premium Pool Solutions | Custom Design & Construction',
+  description: 'Discover our premium pool solutions featuring custom design, advanced features, and sustainable energy systems. Transform your backyard into a luxury oasis.',
+  openGraph: {
+    title: 'Premium Pool Solutions | Custom Design & Construction',
+    description: 'Discover our premium pool solutions featuring custom design, advanced features, and sustainable energy systems.',
+    type: 'website',
+  },
+};
+
+export const revalidate = 3600;
+
 function LoadingFallback() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi flex items-center justify-center">
@@ -20,7 +31,7 @@ function LoadingFallback() {
   );
 }
 
-export default function PoolPage() {
+export default async function PoolPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
       {/* Premium header accent */}
