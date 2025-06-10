@@ -9,6 +9,7 @@ import WaterTreatmentSystems from "./components/WaterTreatmentSystems";
 import NaturalStoneOptions from "./components/NaturalStoneOptions";
 import HeatingEnergy from "./components/HeatingEnergy";
 import SolarEnergySystem from "./components/SolarEnergySystem";
+import BeatbotSection from "./components/BeatbotSection";
 
 export default function PoolPage() {
   return (
@@ -35,6 +36,9 @@ export default function PoolPage() {
 
           {/* New Section: Water Treatment Systems */}
           <WaterTreatmentSystems />
+
+          {/* New Section: Beatbot Smart Cleaning */}
+          <BeatbotSection />
 
           {/* New Section: Natural Stone Options */}
           <NaturalStoneOptions />
