@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function VideoPlayer() {
+const VideoPlayer: React.FC = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
@@ -20,4 +20,6 @@ export default function VideoPlayer() {
       allowFullScreen
     />
   );
-} 
+};
+
+export default VideoPlayer; 
