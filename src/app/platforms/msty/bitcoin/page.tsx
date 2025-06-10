@@ -241,36 +241,13 @@ export default function BitcoinPage() {
         >
           <div className="relative p-4 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-              <video 
-                className="absolute top-0 left-0 w-full h-full object-cover"
-                autoPlay 
-                loop 
-                controls
-                playsInline
-                onError={(e) => {
-                  const target = e.target as HTMLVideoElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML += `
-                      <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/90">
-                        <div class="text-center p-8">
-                          <p class="text-yellow-500 text-xl mb-4">Video Loading...</p>
-                          <p class="text-white/60">Please ensure aha_moment_bitcoin.mp4 is in the public/visuals directory</p>
-                        </div>
-                      </div>
-                    `;
-                  }
-                }}
-              >
-                <source src="/visuals/aha_moment_bitcoin.mp4" type="video/mp4" />
-                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/90">
-                  <div className="text-center p-8">
-                    <p className="text-yellow-500 text-xl mb-4">Video Not Available</p>
-                    <p className="text-white/60">Please ensure video file is in the public/visuals directory</p>
-                  </div>
-                </div>
-              </video>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/7hyoONj4nEY"
+                title="Bitcoin Explained"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
         </motion.div>
