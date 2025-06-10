@@ -42,17 +42,19 @@ export default function ArcPage() {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p className="text-lg">
-                The Arc Sport is now fully customizable, putting you in complete control. Add precision navigation, fine-tune your perfect wave, and amplify every ride with immersive sound. Plus, new exterior colors, Clay and Sage, let you make it truly yours.
+                Arc Boat Company is revolutionizing the marine industry with high-performance, all-electric watercraft. Our mission is to electrify the marine industry, starting with recreational boating and expanding into commercial applications. The Arc Sport combines aerospace engineering, electric vehicle technology, and advanced software to deliver superior performance, reduced maintenance, and lower operating costs compared to traditional boats.
               </p>
               <div className="mt-6">
                 <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Features:</h4>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>100% electric powertrain</li>
-                  <li>Zero emissions operation</li>
-                  <li>Unmatched performance</li>
-                  <li>Customizable wave settings</li>
-                  <li>Premium sound system</li>
-                  <li>New exterior color options</li>
+                  <li>100% electric powertrain with zero emissions</li>
+                  <li>Double the torque of premium gas-powered wakeboats</li>
+                  <li>Software-controlled ballast systems</li>
+                  <li>Bow and stern thrusters for easy docking</li>
+                  <li>Auto-retract hardtop tower</li>
+                  <li>Over-the-air software updates</li>
+                  <li>Quiet operation for conversation at high speeds</li>
+                  <li>Eliminated fuel odors</li>
                 </ul>
               </div>
             </div>
@@ -107,15 +109,18 @@ export default function ArcPage() {
                   <ul className="text-white/80 font-satoshi space-y-2">
                     <li>226 kWh battery pack</li>
                     <li>570-horsepower electric motor</li>
+                    <li>Double the torque of premium gas boats</li>
                     <li>4-6 hours active use (towing)</li>
-                    <li>24+ hours cruising speed</li>
-                    <li>Top speed: 40 mph (software-limited)</li>
+                    <li>24+ hours cruising speed (mid-20s mph)</li>
+                    <li>Software-limited top speed: 40 mph</li>
                     <li>Level 1, 2, and DC fast charging support</li>
+                    <li>Full charge overnight (Level 2)</li>
+                    <li>80% charge in ~45 minutes (Level 3)</li>
                   </ul>
                 </div>
               </div>
               <div className="space-y-4">
-                <h4 className="text-xl font-bold text-yellow-500">Dimensions & Capacity</h4>
+                <h4 className="text-xl font-bold text-yellow-500">Dimensions & Features</h4>
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                   <ul className="text-white/80 font-satoshi space-y-2">
                     <li>23-foot length</li>
@@ -124,6 +129,9 @@ export default function ArcPage() {
                     <li>15-passenger capacity</li>
                     <li>Fiberglass hull construction</li>
                     <li>Auto-retract hardtop tower</li>
+                    <li>Software-controlled ballast systems</li>
+                    <li>Bow and stern thrusters</li>
+                    <li>OTA software updates</li>
                   </ul>
                 </div>
               </div>
