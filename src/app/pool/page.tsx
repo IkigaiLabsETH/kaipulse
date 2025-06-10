@@ -1,6 +1,4 @@
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
-export const runtime = 'nodejs';
+"use client";
 
 import { Suspense } from 'react';
 import HeroSection from "./components/HeroSection";
