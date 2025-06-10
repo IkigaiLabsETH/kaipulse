@@ -33,7 +33,7 @@ export default function HeroSection() {
         </h1>
         <div className="flex items-center justify-center mt-6">
           <div className="h-px w-24 bg-yellow-500/30"></div>
-          <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">A Masterpiece of Aquatic Luxury</p>
+          <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Masterpiece of Aquatic Luxury</p>
           <div className="h-px w-24 bg-yellow-500/30"></div>
         </div>
       </div>
