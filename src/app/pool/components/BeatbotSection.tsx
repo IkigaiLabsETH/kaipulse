@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function BeatbotSection() {
   return (
     <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
