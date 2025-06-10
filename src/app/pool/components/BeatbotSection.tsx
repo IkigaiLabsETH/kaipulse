@@ -1,3 +1,12 @@
+import dynamic from 'next/dynamic';
+
+const BeatbotVideo = dynamic(() => import('./BeatbotVideo'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute top-0 left-0 w-full h-full bg-black/70 animate-pulse" />
+  ),
+});
+
 export default function BeatbotSection() {
   return (
     <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -11,13 +20,7 @@ export default function BeatbotSection() {
         {/* Left: Video or Image */}
         <div className="w-full">
           <div className="relative w-full rounded-xl overflow-hidden mb-4 aspect-video bg-black/70">
-            <iframe
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/ckYhWibOE8A"
-              title="Beatbot AquaSense 2 Ultra Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            <BeatbotVideo />
           </div>
         </div>
         {/* Right: Features and Button */}
