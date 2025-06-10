@@ -1,4 +1,4 @@
-"use client";
+export const dynamic = 'force-static';
 
 import HeroSection from "./components/HeroSection";
 import OverviewSection from "./components/OverviewSection";
