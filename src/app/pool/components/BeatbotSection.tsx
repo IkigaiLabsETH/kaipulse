@@ -21,17 +21,6 @@ export default function BeatbotSection() {
               allowFullScreen
             />
           </div>
-          <div className="relative w-full h-40 rounded-xl overflow-hidden bg-black/40 flex items-center justify-center">
-            <Image
-              src="/images/beatbot-aquasense.jpg"
-              alt="Beatbot AquaSense 2 Ultra Robotic Pool Cleaner"
-              fill
-              className="object-contain"
-              style={{ objectFit: 'contain' }}
-              onError={(e) => { (e.target as HTMLImageElement).src = '/images/placeholder.png'; }}
-              priority
-            />
-          </div>
         </div>
         {/* Right: Features and Button */}
         <div className="flex flex-col gap-6 justify-between h-full">
