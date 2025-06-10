@@ -11,9 +11,6 @@ import HeatingEnergy from "./components/HeatingEnergy";
 import SolarEnergySystem from "./components/SolarEnergySystem";
 import BeatbotSection from "./components/BeatbotSection";
 
-export const dynamic = 'force-dynamic';
-export const runtime = 'nodejs';
-
 export const metadata: Metadata = {
   title: 'Premium Pool Solutions | Custom Design & Construction',
   description: 'Discover our premium pool solutions featuring custom design, advanced features, and sustainable energy systems. Transform your backyard into a luxury oasis.',
@@ -24,6 +21,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600; // ISR: Regenerate every hour
+
 function LoadingFallback() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi flex items-center justify-center">
@@ -32,7 +31,7 @@ function LoadingFallback() {
   );
 }
 
-export default async function PoolPage() {
+export default function PoolPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
       {/* Premium header accent */}
