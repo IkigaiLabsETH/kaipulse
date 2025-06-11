@@ -17,6 +17,24 @@ export default function BitaxePage() {
       ),
     },
     {
+      q: "What are the odds of finding a block with Bitaxe?",
+      a: (
+        <span>
+          Mining with Bitaxe is like running a background lottery engine:
+          <br /><br />
+          • 1-in-5M odds of finding a block
+          <br />
+          • Expected value of 3.125 BTC per block
+          <br />
+          • No daily ticket to buy
+          <br />
+          • Runs continuously in the background
+          <br /><br />
+          While the odds may seem long, the key difference from a lottery is that you&apos;re not paying for tickets - your miner is constantly working to find blocks. It&apos;s like having a lottery machine running 24/7, where each attempt costs only electricity.
+        </span>
+      ),
+    },
+    {
       q: "How does Bitaxe compare to industrial miners?",
       a: (
         <span>
