@@ -38,6 +38,33 @@ export default function SleepSection() {
             Temperature is the biggest factor—too hot and you&apos;ll wake up. A cold room and proper bedding can help anyone sleep better. Prioritizing sleep improves all health markers, boosts immunity, and helps your brain clear plaque to prevent dementia. As Bryan Johnson says: sleep is the #1 health hack.
           </p>
         </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mt-8">
+          <div>
+            <h4 className="text-xl font-bold text-yellow-500 mb-4">Morning Routine</h4>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Get outdoor light within 30 min of waking (5 min minimum)</li>
+              <li>Delay coffee by ~90 min after waking</li>
+              <li>Trigger cortisol timer early with light + movement</li>
+              <li>Set your 14-hour melatonin countdown</li>
+            </ul>
+            <p className="mt-4 text-sm text-gray-400">
+              Note: Morning light through windows is 50x less effective than direct exposure. This routine helps set your circadian rhythm for optimal sleep later.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-xl font-bold text-yellow-500 mb-4">Night-Light Laws</h4>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Minimize light exposure after 8pm</li>
+              <li>Avoid screens between 11pm–4am</li>
+              <li>Even dim light can suppress melatonin and dopamine</li>
+              <li>Put phone away early to prevent &quot;disappointment circuit&quot;</li>
+            </ul>
+            <p className="mt-4 text-sm text-gray-400">
+              Remember: Falling asleep starts with how you wake up. Proper morning light exposure and evening light management are crucial for quality sleep.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
