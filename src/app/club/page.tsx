@@ -1,10 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
-import { Button } from '@/components/ui/button'
+import { createThirdwebClient } from "thirdweb"
+import { PayEmbed, darkTheme } from "thirdweb/react"
+import { base } from "thirdweb/chains"
+
+const client = createThirdwebClient({
+  clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "",
+})
 
 export default function ClubPage() {
   return (
@@ -55,11 +60,30 @@ export default function ClubPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Link href="/mint">
-                <Button className="bg-[#1c1f26] border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:text-black font-bold text-xl px-8 py-6 rounded-xl transition-all duration-300">
-                  Join the Club
-                </Button>
-              </Link>
+              <PayEmbed
+                client={client}
+                payOptions={{
+                  metadata: {
+                    name: "LTL Membership",
+                  },
+                  mode: "direct_payment",
+                  paymentInfo: {
+                    chain: base,
+                    sellerAddress: "0x77CAacb4d8D84C68FB8e33baDADFde8a26AA6d25", 
+                    amount: "0.01",
+                  },
+                }}
+                connectOptions={{
+                  accountAbstraction: {
+                    chain: base,
+                    sponsorGas: false,
+                  },
+                }}
+                theme={darkTheme({
+                  colors: { modalBg: "hsl(228, 12%, 8%)" },
+                })}
+                className="w-full"
+              />
             </motion.div>
           </div>
 
@@ -73,6 +97,7 @@ export default function ClubPage() {
               src="/background_120.jpeg"
               alt="The Club"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover rounded-xl"
               priority
             />
