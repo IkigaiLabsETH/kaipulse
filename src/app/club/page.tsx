@@ -3,13 +3,13 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
-import { createThirdwebClient } from "thirdweb"
-import { PayEmbed, darkTheme } from "thirdweb/react"
-import { base } from "thirdweb/chains"
+// import { createThirdwebClient } from "thirdweb"
+// import { PayEmbed, getDefaultToken, darkTheme } from "thirdweb/react"
+// import { base } from "thirdweb/chains"
 
-const client = createThirdwebClient({
-  clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "",
-})
+// const client = createThirdwebClient({
+//   clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || "",
+// })
 
 export default function ClubPage() {
   return (
@@ -60,17 +60,20 @@ export default function ClubPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
+              {/*
               <PayEmbed
                 client={client}
                 payOptions={{
                   metadata: {
                     name: "LTL Membership",
+                    image: "/logo_fur.png",
                   },
                   mode: "direct_payment",
                   paymentInfo: {
                     chain: base,
+                    token: getDefaultToken(base, "USDC"),
                     sellerAddress: "0x77CAacb4d8D84C68FB8e33baDADFde8a26AA6d25", 
-                    amount: "0.01",
+                    amount: "10",
                   },
                 }}
                 connectOptions={{
@@ -84,6 +87,7 @@ export default function ClubPage() {
                 })}
                 className="w-full"
               />
+              */}
             </motion.div>
           </div>
 
