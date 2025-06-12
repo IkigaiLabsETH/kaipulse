@@ -24,14 +24,15 @@ export default function TwentyOneEnergyPage() {
               <div className="h-px w-24 bg-yellow-500/30"></div>
             </div>
             
-            {/* Featured Video */}
+            {/* Featured Image */}
             <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <iframe
-                src="https://www.youtube.com/embed/QjD412AjUkc"
-                title="21energy Bitcoin Heater Review"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
+              <Image
+                src="/21energy.jpeg"
+                alt="21energy Bitcoin Heater"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                className="object-cover"
+                priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
             </div>
