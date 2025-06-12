@@ -426,6 +426,51 @@ export default function BitaxePage() {
             </div>
           </div>
 
+          {/* Parasite Pool Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Parasite Pool: The Decentralization Revolution
+            </h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                While centralized mining pools have betrayed Bitcoin&apos;s original vision, Parasite Pool emerges as a radical reimagination of mining - a zero-fee, Lightning-powered solution that flips the script on corporate mining.
+              </p>
+              
+              <div className="mt-6">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Innovations:</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Zero fees - unlike Ocean&apos;s 2% or Foundry&apos;s 0.05 BTC minimums</li>
+                  <li>10-sat payout threshold - perfect for Bitaxe miners</li>
+                  <li>Lightning payouts as simple as Venmo</li>
+                  <li>1 BTC guaranteed to block finder</li>
+                  <li>Remaining 2.125 BTC + fees split via Lightning</li>
+                  <li>No complex channel management required</li>
+                </ul>
+              </div>
+
+              <div className="mt-6">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Why Parasite Matters:</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Empowers home miners to capture micro energy efficiently</li>
+                  <li>Decentralizes hash rate across thousands of home miners</li>
+                  <li>Prioritizes small miners in the reward structure</li>
+                  <li>Eliminates FPPS insolvency risks</li>
+                  <li>Delivers near-instant, fee-free payouts via Lightning</li>
+                </ul>
+              </div>
+
+              <div className="mt-8 p-6 bg-black/30 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">The Future of Mining</h4>
+                <p className="text-lg">
+                  As halvings reduce block subsidies and transaction fees become more important, Parasite Pool&apos;s model ensures small-scale miners can thrive. By combining the best of solo mining (1 BTC jackpot potential) with the stability of pool mining (consistent Lightning payouts), Parasite creates a new paradigm for home mining.
+                </p>
+                <p className="text-lg mt-4">
+                  Currently in beta, Parasite Pool represents a revolutionary force in Bitcoin mining - one that could fundamentally reshape the mining landscape by empowering individuals and small-scale operations. Whether it finds blocks or not, its existence challenges the status quo and pushes Bitcoin closer to its original vision of true decentralization.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* FAQ Section */}
           <div className="space-y-4">
             {faqs.map((faq, index) => (
