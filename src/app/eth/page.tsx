@@ -222,6 +222,128 @@ export default function EthHonestTake() {
             </div>
           </div>
 
+          {/* Digital Oil Thesis Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              ETH Is Digital Oil: The Investment Thesis for a Machine-Driven Future
+            </h3>
+            
+            {/* TL;DR */}
+            <div className="mb-8 p-6 bg-black/30 rounded-lg border border-yellow-500/30">
+              <h4 className="text-xl font-bold text-yellow-500 mb-4">TL;DR</h4>
+              <p className="text-lg text-gray-300">
+                Ethereum is not a company. ETH is not equity. ETH is programmable collateral, yield-generating commodity, and the neutral reserve powering the machine-native economy. As AI agents emerge, as finance moves onchain, and as institutions seek yield with credible neutrality, ETH is the asset they&apos;ll need—but don&apos;t yet own. This mispricing is our opportunity.
+              </p>
+            </div>
+
+            {/* Main Content */}
+            <div className="space-y-8 text-gray-300">
+              {/* Section I */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">I. The Shift: From Sovereign Systems to Autonomous Infrastructure</h4>
+                <p className="text-lg mb-4">
+                  We&apos;re witnessing a structural migration from fiat-based analog finance to permissionless, composable, and credibly neutral infrastructure. Ethereum is emerging as the operating system for this onchain future.
+                </p>
+                <p className="text-lg">
+                  Over $767B in tokenized assets already reside on Ethereum L1 and L2s. It&apos;s the platform of choice for stablecoins (60%+ market share), RWAs (82%), and institutional-grade smart contract deployment.
+                </p>
+                <p className="text-lg mt-4">
+                  Ethereum isn&apos;t just infrastructure — it&apos;s the final settlement layer of the AI and tokenized economies.
+                </p>
+              </div>
+
+              {/* Section II */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">II. ETH&apos;s Role: More Than Money</h4>
+                <p className="text-lg mb-4">
+                  ETH is not merely a speculative asset — it is a productive, scarce, and deflationary commodity underpinning the entire Ethereum economy:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-lg">
+                  <li>Digital Oil: ETH is consumed (burned) to fuel every transaction, every RWA issuance, every stablecoin transfer, and every AI agent deployment.</li>
+                  <li>Native Yield: ETH can be staked with a validator set securing {'>'} $88B in value, yielding ~3% APY while preserving liquidity through LSDs.</li>
+                  <li>Pristine Collateral: ETH is credibly neutral—free from jurisdictional or issuer risk—and collateralizes billions in DeFi, stablecoins, and permissioned finance.</li>
+                  <li>Deflationary by Design: Since The Merge, ETH&apos;s supply inflation has averaged ~0.09%, often going negative due to EIP-1559 burns.</li>
+                  <li>Strategic Reserve Asset: ETH is being stockpiled by protocols, DAOs, institutions, and sovereign treasuries. Its programmability makes it far more capital-efficient than BTC.</li>
+                </ul>
+              </div>
+
+              {/* Section III */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">III. Why ETH Is Mispriced</h4>
+                <p className="text-lg mb-4">
+                  ETH/BTC has declined 70% from its 2022 ratio, despite Ethereum dominating every institutional metric. Why?
+                </p>
+                <p className="text-lg">
+                  Because BTC is understood by TradFi: &quot;digital gold.&quot; ETH, however, defies legacy valuation. It&apos;s oil, it&apos;s yield, it&apos;s collateral. You don&apos;t model ETH with a DCF — you model it like energy or monetary base assets.
+                </p>
+                <p className="text-lg mt-4">
+                  This disconnect creates asymmetric opportunity. ETH isn&apos;t lagging — it&apos;s loading.
+                </p>
+              </div>
+
+              {/* Section IV */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">IV. ETH x AI: The Coming Explosion</h4>
+                <p className="text-lg mb-4">
+                  AI agents will need a native economy: money, identity, settlement, property rights. Ethereum is the only platform with all of that today:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-lg">
+                  <li>Finality & Composability: For agents transacting, bidding, and negotiating in real-time.</li>
+                  <li>Smart Contract Enforcement: Rights enforced by code, not courts.</li>
+                  <li>Agent Meshes: Autonomous agents staking, settling, and coordinating value — all denominated in ETH.</li>
+                </ul>
+                <p className="text-lg mt-4">
+                  ETH is not just digital oil. It&apos;s machine money.
+                </p>
+              </div>
+
+              {/* Section V */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">V. Valuation Benchmarks</h4>
+                <p className="text-lg mb-4">
+                  Forget P/E multiples. ETH valuation maps to real-world commodity and monetary frameworks:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-lg">
+                  <li>Oil reserves: $85T</li>
+                  <li>Global M2: $93T</li>
+                  <li>Bond market collateral: $141T</li>
+                  <li>Tokenized global assets (10% penetration): $50T</li>
+                </ul>
+                <p className="text-lg mt-4">
+                  Even a conservative 10% share of these flows implies ETH can support a multi-trillion-dollar valuation.
+                </p>
+                <div className="mt-4 space-y-2 text-lg">
+                  <p>Short-term target: $8K ETH</p>
+                  <p>Mid-term: $80K ETH</p>
+                  <p>Long-term: Uncapped, reflexively deflationary</p>
+                </div>
+              </div>
+
+              {/* Section VI */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">VI. Catalysts</h4>
+                <ul className="list-disc list-inside space-y-2 text-lg">
+                  <li>✅ ETH ETFs approved, staking yield ETFs next</li>
+                  <li>✅ Regulatory clarity: ETH = commodity</li>
+                  <li>✅ Strategic ETH Reserve growing (~$2.5B publicly disclosed)</li>
+                  <li>✅ AI-native economies forming: L2s for agents (e.g. World Chain, Base)</li>
+                  <li>✅ Ethereum&apos;s renaissance: zkVMs, account abstraction, cross-L2 unification</li>
+                </ul>
+              </div>
+
+              {/* Conclusion */}
+              <div className="mt-8 p-6 bg-black/30 rounded-lg border border-yellow-500/30">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Conclusion: ETH Is the Reserve Asset of the Onchain Renaissance</h4>
+                <p className="text-lg">
+                  The Ethereum thesis is now simple: as the global economy replatforms onto autonomous, tokenized rails, ETH becomes the neutral, productive, and programmable base layer money.
+                </p>
+                <p className="text-lg mt-4">
+                  The world just doesn&apos;t know it yet.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* CTA Section */}
           <div className="text-center space-y-8">
             <Link href="https://ethereum.org/en/" target="_blank">
