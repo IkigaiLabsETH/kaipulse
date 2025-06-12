@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function TwentyOneEnergyPage() {
   return (
     <div className="min-h-screen bg-black text-white font-satoshi">
@@ -312,6 +314,20 @@ export default function TwentyOneEnergyPage() {
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Ideal Applications
             </h3>
+
+            {/* Featured Image */}
+            <div className="relative w-full h-[800px] mb-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
+              <Image
+                src="/ecopool.png"
+                alt="21energy Bitcoin Heater Applications"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                 <h4 className="text-xl font-bold text-yellow-400 mb-4">Residential</h4>
