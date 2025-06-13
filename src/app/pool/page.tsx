@@ -1,14 +1,8 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import HeroSection from './components/HeroSection';
 import OverviewSection from './components/OverviewSection';
 import CostBreakdown from './components/CostBreakdown';
-import ConstructionDetails from './components/ConstructionDetails';
-import NaturalStoneOptions from './components/NaturalStoneOptions';
-import SolarEnergySystem from './components/SolarEnergySystem';
-import WaterTreatmentSystems from './components/WaterTreatmentSystems';
-import AdvancedFeatures from './components/AdvancedFeatures';
-import HeatingEnergy from './components/HeatingEnergy';
-import BeatbotSection from './components/BeatbotSection';
 
 export const metadata: Metadata = {
   title: 'Premium Pool Solutions | Custom Design & Construction',
@@ -61,13 +55,15 @@ export default function PoolPage() {
             </a>
           </div>
         </div>
-        <ConstructionDetails />
-        <NaturalStoneOptions />
-        <SolarEnergySystem />
-        <WaterTreatmentSystems />
-        <HeatingEnergy />
-        <AdvancedFeatures />
-        <BeatbotSection />
+        {/* View Details Link */}
+        <div className="text-center">
+          <Link 
+            href="/pool/details" 
+            className="inline-block px-8 py-4 bg-yellow-500 text-black font-bold rounded-none hover:bg-yellow-400 transition-colors duration-300"
+          >
+            View Detailed Specifications
+          </Link>
+        </div>
       </div>
     </div>
   );
