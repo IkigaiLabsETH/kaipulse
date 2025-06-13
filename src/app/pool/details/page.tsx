@@ -44,6 +44,13 @@ const ErrorFallback = () => (
   </div>
 );
 
+// Client-side wrapper for error boundary
+const ClientErrorBoundary = ({ children }: { children: React.ReactNode }) => (
+  <ErrorBoundary fallback={<ErrorFallback />}>
+    {children}
+  </ErrorBoundary>
+);
+
 export default function PoolDetailsPage() {
   return (
     <Suspense fallback={<PageLoading />}>
@@ -51,41 +58,41 @@ export default function PoolDetailsPage() {
         {/* Premium header accent */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 space-y-16">
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <ConstructionDetails />
-          </ErrorBoundary>
+          </ClientErrorBoundary>
 
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <NaturalStoneOptions />
-          </ErrorBoundary>
+          </ClientErrorBoundary>
 
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <Suspense fallback={<SectionLoading height="h-[450px]" />}>
               <DynamicSolarEnergy />
             </Suspense>
-          </ErrorBoundary>
+          </ClientErrorBoundary>
 
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <Suspense fallback={<SectionLoading height="h-[500px]" />}>
               <DynamicWaterTreatment />
             </Suspense>
-          </ErrorBoundary>
+          </ClientErrorBoundary>
 
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <Suspense fallback={<SectionLoading height="h-[400px]" />}>
               <DynamicHeatingEnergy />
             </Suspense>
-          </ErrorBoundary>
+          </ClientErrorBoundary>
 
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <Suspense fallback={<SectionLoading height="h-[600px]" />}>
               <DynamicAdvancedFeatures />
             </Suspense>
-          </ErrorBoundary>
+          </ClientErrorBoundary>
 
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ClientErrorBoundary>
             <BeatbotSection />
-          </ErrorBoundary>
+          </ClientErrorBoundary>
         </div>
       </div>
     </Suspense>
