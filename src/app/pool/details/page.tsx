@@ -19,8 +19,13 @@ export const metadata: Metadata = {
   },
 };
 
-// Force dynamic rendering
+// Force dynamic rendering and ensure server-side rendering
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+export const revalidate = 0;
+
+// Ensure this page is always rendered on the server
+export const preferredRegion = 'auto';
 
 export default function PoolDetailsPage() {
   return (
