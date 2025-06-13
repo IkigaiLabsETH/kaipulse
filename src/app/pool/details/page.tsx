@@ -1,11 +1,13 @@
 import { Metadata } from 'next';
 import ConstructionDetails from '../components/ConstructionDetails';
 import NaturalStoneOptions from '../components/NaturalStoneOptions';
-import SolarEnergySystem from '../components/SolarEnergySystem';
-import WaterTreatmentSystems from '../components/WaterTreatmentSystems';
-import HeatingEnergy from '../components/HeatingEnergy';
-import AdvancedFeatures from '../components/AdvancedFeatures';
 import BeatbotSection from '../components/BeatbotSection';
+import {
+  DynamicAdvancedFeatures,
+  DynamicWaterTreatment,
+  DynamicSolarEnergy,
+  DynamicHeatingEnergy
+} from '../components/dynamic-imports';
 
 export const metadata: Metadata = {
   title: 'Pool Details | Advanced Features & Systems',
@@ -17,7 +19,8 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // ISR: Regenerate every hour
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 export default function PoolDetailsPage() {
   return (
@@ -27,10 +30,10 @@ export default function PoolDetailsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 space-y-16">
         <ConstructionDetails />
         <NaturalStoneOptions />
-        <SolarEnergySystem />
-        <WaterTreatmentSystems />
-        <HeatingEnergy />
-        <AdvancedFeatures />
+        <DynamicSolarEnergy />
+        <DynamicWaterTreatment />
+        <DynamicHeatingEnergy />
+        <DynamicAdvancedFeatures />
         <BeatbotSection />
       </div>
     </div>
