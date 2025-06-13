@@ -1,3 +1,5 @@
+'use client';
+
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ConstructionDetails from '../components/ConstructionDetails';
