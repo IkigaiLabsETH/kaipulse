@@ -208,6 +208,31 @@ export default function DGXPage() {
             </div>
           </motion.section>
 
+          {/* Additional Video Section */}
+          <motion.section variants={sectionVariants} className="space-y-8">
+            <h2 className="text-3xl font-bold text-yellow-500">The Future of AI Computing</h2>
+            <Card className="p-6 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <div className="aspect-video w-full overflow-hidden rounded-lg">
+                <iframe
+                  src="https://www.youtube.com/embed/X9cHONwKkn4"
+                  title="The Future of AI Computing"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="mt-6">
+                <h3 className="text-xl font-bold text-yellow-500 mb-2">
+                  The Future of AI Computing
+                </h3>
+                <p className="text-white/80">
+                  Explore the cutting-edge developments in AI computing and how they&apos;re shaping the future of technology.
+                  Learn about the latest advancements and their implications for businesses and developers.
+                </p>
+              </div>
+            </Card>
+          </motion.section>
+
           {/* Conclusion Section */}
           <motion.section variants={sectionVariants} className="space-y-8">
             <h2 className="text-3xl font-bold text-yellow-500">The Next Decade Belongs to the Builders</h2>
