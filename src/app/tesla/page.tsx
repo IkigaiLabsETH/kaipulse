@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Card } from '@/components/ui/card';
 
 export default function TeslaPage() {
   // Animation variants for staggered animations
@@ -157,98 +156,23 @@ export default function TeslaPage() {
           </div>
         </motion.section>
 
-        {/* Performance Icons on Four Wheels Section */}
-        <motion.section
+        {/* Featured Image: Model S & X New */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mb-20"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mb-16"
         >
-          <div className="flex items-center mb-8">
-            <h2 className="text-3xl font-bold text-yellow-500">Performance Icons on Four Wheels</h2>
-            <div className="h-px flex-grow bg-yellow-500/20 ml-6"></div>
+          <div className="relative w-full h-[500px] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <Image
+              src="/models-new.jpeg"
+              alt="Tesla Model S & X New Featured"
+              fill
+              className="object-cover z-0 transition duration-700 transform group-hover:scale-105"
+              priority
+            />
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              custom={0}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="h-full"
-            >
-              <Card className="p-6 bg-[#1c1f26] h-full relative group overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Model 3 Performance (2024 refresh)</h3>
-                <ul className="list-disc pl-5 space-y-2 text-white/80 text-lg mb-8">
-                  <motion.li
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6, duration: 0.3 }}
-                  >
-                    510 hp / 554 lb-ft, dual-motor AWD
-                  </motion.li>
-                  <motion.li
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7, duration: 0.3 }}
-                  >
-                    0-60 mph: 2.8 s, ¼-mile: 11.0 s @ 125 mph
-                  </motion.li>
-                  <motion.li
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8, duration: 0.3 }}
-                  >
-                    EPA 303 mi range, base price $56.6k
-                  </motion.li>
-                </ul>
-                <p className="mt-auto text-white/80 text-lg">
-                  The car is &quot;pocket-rocket&quot; quick but still under $60k, therefore it&apos;s the gateway drug for first-time EV buyers who used to mod 911s—and who now stack sats on the side.
-                </p>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              custom={1}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="h-full"
-            >
-              <Card className="p-6 bg-[#1c1f26] h-full relative group overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-                <h3 className="text-2xl font-bold mb-4 text-yellow-500">Model S Plaid (2025)</h3>
-                <ul className="list-disc pl-5 space-y-2 text-white/80 text-lg mb-8">
-                  <motion.li
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7, duration: 0.3 }}
-                  >
-                    Tri-motor, 1,020 hp, AWD
-                  </motion.li>
-                  <motion.li
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8, duration: 0.3 }}
-                  >
-                    0-60 mph: 2.1 s—quicker than many hyper-cars
-                  </motion.li>
-                  <motion.li
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.9, duration: 0.3 }}
-                  >
-                    Top speed 200 mph, range 359 mi
-                  </motion.li>
-                </ul>
-                <p className="mt-auto text-white/80 text-lg">
-                  Its straight-line physics verge on videogame absurd, but the yoke steering and sparse cabin remind you Tesla still iterates in public, therefore the Plaid is both halo car and rolling beta-test.
-                </p>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.section>
+        </motion.div>
 
         {/* Robots, Robotaxis & the Long-Delayed Roadster Section */}
         <motion.section
@@ -321,6 +245,24 @@ export default function TeslaPage() {
             </div>
           </div>
         </motion.section>
+
+                {/* Featured Image: Roadster */}
+                <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mb-16"
+        >
+          <div className="relative w-full h-[500px] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <Image
+              src="/roadster.jpg"
+              alt="Tesla Roadster Featured"
+              fill
+              className="object-cover z-0 transition duration-700 transform group-hover:scale-105"
+              priority
+            />
+          </div>
+        </motion.div>
 
         {/* Dojo, FSD v12 and the AI Flywheel Section */}
         <motion.section
