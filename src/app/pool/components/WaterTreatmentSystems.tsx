@@ -157,56 +157,6 @@ export default function WaterTreatmentSystems() {
             </div>
           </div>
         </div>
-        {/* French Regulations */}
-        <div className="space-y-4">
-          <h4 className="text-xl font-bold text-yellow-500">French Regulations</h4>
-          <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h5 className="text-yellow-400 font-epilogue mb-4">Compliance Requirements</h5>
-                <ul className="text-white/80 font-satoshi space-y-2">
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Raffarin Law compliance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Safety devices required</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Clear water standards</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Regular water testing</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="text-yellow-400 font-epilogue mb-4">Maintenance Records</h5>
-                <ul className="text-white/80 font-satoshi space-y-2">
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Chemical balance logs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Equipment maintenance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Safety inspections</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-yellow-500 mr-2">✓</span>
-                    <span>Annual compliance check</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
