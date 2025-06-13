@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import PriceTicker from '@/components/Sbet';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -40,6 +41,11 @@ export default function SharpLinkAnalysis() {
             </div>
           </div>
 
+          {/* Price Chart */}
+          <div className="mt-8">
+            <PriceTicker />
+          </div>
+
           {/* Key Metrics */}
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -73,6 +79,30 @@ export default function SharpLinkAnalysis() {
               </div>
               <p className="text-center text-lg md:text-xl">
                 ConsenSys & Joseph Lubin
+              </p>
+            </div>
+          </div>
+
+          {/* Market Update Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <span className="text-4xl">📊</span>
+              <h3 className="text-2xl md:text-3xl font-bold text-yellow-500">
+                Market Update
+              </h3>
+            </div>
+            <div className="space-y-4">
+              <p className="text-lg text-white/90">
+                On June 13, 2025, SharpLink Gaming&apos;s shares experienced a significant 70% decline following confusion over a regulatory S-3 filing. The market reaction was triggered by misinterpretation of standard procedures rather than the company&apos;s Ethereum treasury strategy itself.
+              </p>
+              <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
+                <p className="text-lg text-white/90 italic">
+                  &quot;Some are misinterpreting SBET&apos;s S-3 filing: It registers shares for potential resale by prior investors. The &apos;Shares Owned After the Offering&apos; column is hypothetical, assuming full sale of registered shares. This is standard post-PIPE procedure in tradfi, not an indication of actual sales. To clarify, neither Consensys nor I have sold any shares.&quot;
+                </p>
+                <p className="text-right text-yellow-500 mt-2">- Joseph Lubin, Chairman</p>
+              </div>
+              <p className="text-lg text-white/90">
+                The S-3 filing in question is a routine procedure following private placements, registering shares for potential resale but unrelated to immediate insider sales. This clarification from Chairman Joseph Lubin helped provide much-needed context to the market situation.
               </p>
             </div>
           </div>
