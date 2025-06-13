@@ -220,6 +220,16 @@ export default function CoinbasePage() {
                     </div>
                 </div>
             </div>
+
+            {/* Coinbase Credit Card */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">Coinbase Credit Card</h3>
+                <div className="space-y-4 text-gray-300 text-lg">
+                    <p>
+                        Expanding its integration with traditional finance, Coinbase has partnered with American Express to launch a credit card. This card offers users 4% cashback in Bitcoin on purchases, providing a seamless way for consumers to earn cryptocurrency rewards through their everyday spending. This move aligns with the growing trend of crypto reward programs designed to bridge the gap between digital assets and conventional banking.
+                    </p>
+                </div>
+            </div>
             
             {/* Conclusion */}
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -241,8 +251,8 @@ export default function CoinbasePage() {
               Create an account today and join the future of finance. It&apos;s secure, easy to use, and trusted by millions of users worldwide.
             </p>
             <Button size="lg" className="bg-yellow-500 text-black hover:bg-yellow-400 rounded-none border-2 border-yellow-600 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] hover:shadow-none transition-all duration-200 ease-in-out transform hover:-translate-y-1">
-                <Link href="https://www.coinbase.com/signup" target="_blank">
-                    Sign Up Now
+                <Link href="https://www.coinbase.com/en-fr/creditcard" target="_blank">
+                    Learn More & Sign Up
                 </Link>
             </Button>
           </div>
