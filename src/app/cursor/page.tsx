@@ -31,6 +31,38 @@ export default function CursorPage() {
             </div>
           </div>
 
+          {/* The New Game Section */}
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-6">The New Game: AI, BTC, and Time</h2>
+            <p className="max-w-4xl mx-auto text-lg text-white/80 leading-relaxed mb-10">
+              You now operate with three core currencies: <span className="text-yellow-500 font-semibold">AI (Knowledge)</span>, <span className="text-yellow-500 font-semibold">BTC (Money)</span>, and <span className="text-yellow-500 font-semibold">Time (which remains finite)</span>. The strategy is simple: when you lack one, leverage the other two to acquire it.
+            </p>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {/* AI Card */}
+                <div className="bg-[#1c1f26] p-6 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] text-left">
+                    <h3 className="text-2xl font-bold text-yellow-500 mb-3">Not enough AI?</h3>
+                    <p className="text-white/80">Spend time training it. Spend BTC to fine-tune it.</p>
+                </div>
+                {/* BTC Card */}
+                <div className="bg-[#1c1f26] p-6 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] text-left">
+                    <h3 className="text-2xl font-bold text-yellow-500 mb-3">Not enough BTC?</h3>
+                    <p className="text-white/80">Offer your AI services. Trade your time for sats.</p>
+                </div>
+                {/* Time Card */}
+                <div className="bg-[#1c1f26] p-6 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] text-left">
+                    <h3 className="text-2xl font-bold text-yellow-500 mb-3">Not enough Time?</h3>
+                    <p className="text-white/80">Automate with AI. Buy back your time with BTC.</p>
+                </div>
+            </div>
+            <div className="mt-12">
+              <div className="h-px w-32 bg-yellow-500/30 mx-auto"></div>
+              <p className="mt-6 text-xl text-white/90 font-light italic">
+                The old game was to trade time for money.<br/> The new game is to <span className="font-bold text-yellow-500">build AI</span>, <span className="font-bold text-yellow-500">stack sats</span>, and <span className="font-bold text-yellow-500">reclaim time</span>.
+              </p>
+              <div className="h-px w-32 bg-yellow-500/30 mx-auto mt-6"></div>
+            </div>
+          </div>
+
           {/* Main Content Cards */}
           <div className="space-y-12">
             {/* Intro Card */}
@@ -135,6 +167,182 @@ export default function CursorPage() {
                 <span className="block text-yellow-500 font-mono text-sm mb-2">Pro Tip</span>
                 <span className="text-white/90 text-sm">Enable YOLO mode to let Cursor &quot;just do it&quot;—create files, run commands, and iterate until a goal is reached. Always use version control!</span>
               </div>
+            </div>
+
+            {/* AI Models Introduction */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Understanding Cursor&apos;s AI Model Ecosystem</h2>
+              <p className="text-lg text-white/80 leading-relaxed mb-4">
+                Cursor AI is an AI-powered code editor that supports various large language models (LLMs) to assist with coding, reasoning, and other tasks. Each model has unique strengths, making it suitable for different purposes like coding, creative writing, or research. Below, we explore the models available in Cursor and recommend which to use based on your needs.
+              </p>
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-500/90 mt-6 mb-3">Key Points</h3>
+              <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li>Research suggests Cursor AI integrates models like Anthropic&apos;s Claude, DeepSeek, Google&apos;s Gemini, and its own Cursor Small, each excelling in coding and related tasks.</li>
+                <li>It seems likely that Claude 4 Opus is great for complex coding and reasoning, while Claude 3.5 Sonnet suits general coding and creative writing.</li>
+                <li>The evidence leans toward DeepSeek models being efficient for technical coding and AI research, and Gemini 2.5 Pro for large-scale, multimodal tasks.</li>
+                <li>Cursor Small appears ideal for basic, lightweight coding assistance, given its low cost and small size.</li>
+              </ul>
+            </div>
+
+            {/* Detailed Model Analysis */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Survey Note: Detailed Analysis of AI Models</h2>
+              <p className="text-lg text-white/80 leading-relaxed mb-6">
+                This survey note provides an in-depth exploration of the AI models integrated within Cursor AI, an AI-powered code editor, focusing on their strengths, capabilities, and specific use cases for tasks like coding, creative writing, and research. The analysis is grounded in recent research and benchmarks, reflecting the state of AI as of June 14, 2025.
+              </p>
+
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-500/90 mt-6 mb-3">Anthropic Models (Claude)</h3>
+              <p className="text-white/80 leading-relaxed mb-4">
+                Anthropic&apos;s Claude family is prominently featured in Cursor, with models ranging from lightweight to highly capable. They are known for their depth over breadth, prioritizing deep reasoning and specialized capabilities like code generation.
+              </p>
+              <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">Claude 4 Opus/Sonnet:</span> High-performance models for agentic tasks, complex coding, and reasoning. Opus is the most capable for highly complex problems.</li>
+                <li><span className="text-yellow-500 font-semibold">Claude 3.7 Sonnet:</span> Balances capability and performance, optimized for real-world applications like instruction following.</li>
+                <li><span className="text-yellow-500 font-semibold">Claude 3.5 Sonnet:</span> A great all-rounder for most tasks, excelling in coding, multistep workflows, and chart interpretation.</li>
+                <li><span className="text-yellow-500 font-semibold">Claude 3.5 Haiku & Claude 3 Opus:</span> Lighter-weight, cost-effective models for quick, efficient tasks or those needing deep reasoning on a smaller scale.</li>
+              </ul>
+
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-500/90 mt-6 mb-3">DeepSeek Models</h3>
+              <p className="text-white/80 leading-relaxed mb-4">
+                DeepSeek models are known for their efficiency and high performance, particularly in technical coding, AI research, and multilingual support. They use a Mixture of Experts (MoE) architecture to reduce computational costs.
+              </p>
+              <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">DeepSeek V3 & R1:</span> Excel in reasoning, coding, and logical inference, rivaling top models at a lower cost.</li>
+                <li><span className="text-yellow-500 font-semibold">DeepSeek-Coder-V2:</span> A coding-focused model supporting 338 languages, ideal for multilingual projects.</li>
+                <li><span className="text-yellow-500 font-semibold">DeepSeek-VL2:</span> A competitive multimodal model for tasks involving text and images.</li>
+              </ul>
+
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-500/90 mt-6 mb-3">Google Models (Gemini)</h3>
+              <p className="text-white/80 leading-relaxed mb-4">
+                Google&apos;s Gemini models are integrated for their large context windows and strong multimodal capabilities, making them ideal for handling extensive documents or codebases.
+              </p>
+              <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">Gemini 2.5 Pro:</span> A powerful model with up to a 1M token context window, excelling at agentic tasks and reasoning over large-scale, complex information.</li>
+                <li><span className="text-yellow-500 font-semibold">Gemini 2.5 Flash:</span> A faster, high-throughput model also with a 1M context window.</li>
+              </ul>
+
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-500/90 mt-6 mb-3">Cursor Proprietary Models</h3>
+              <p className="text-white/80 leading-relaxed mb-4">
+                Cursor develops its own models optimized for the platform.
+              </p>
+              <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">Cursor Small:</span> A lightweight, free model likely optimized for basic coding assistance, autocompletion, and other quick, in-editor tasks.</li>
+              </ul>
+            </div>
+
+            {/* Comparative Analysis Table */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Comparative Analysis</h2>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th className="border-b-2 border-yellow-500/50 p-2 text-yellow-500">Model</th>
+                                <th className="border-b-2 border-yellow-500/50 p-2 text-yellow-500">Provider</th>
+                                <th className="border-b-2 border-yellow-500/50 p-2 text-yellow-500">Context Window</th>
+                                <th className="border-b-2 border-yellow-500/50 p-2 text-yellow-500">Capabilities</th>
+                                <th className="border-b-2 border-yellow-500/50 p-2 text-yellow-500">Cost Efficiency</th>
+                                <th className="border-b-2 border-yellow-500/50 p-2 text-yellow-500">Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-white/80">
+                            <tr>
+                                <td className="border-b border-yellow-500/20 p-2">Claude 4 Opus</td>
+                                <td className="border-b border-yellow-500/20 p-2">Anthropic</td>
+                                <td className="border-b border-yellow-500/20 p-2">200k</td>
+                                <td className="border-b border-yellow-500/20 p-2">Complex reasoning, coding</td>
+                                <td className="border-b border-yellow-500/20 p-2">Moderate</td>
+                                <td className="border-b border-yellow-500/20 p-2">Advanced coding, deep analysis</td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-yellow-500/20 p-2">Claude 3.5 Sonnet</td>
+                                <td className="border-b border-yellow-500/20 p-2">Anthropic</td>
+                                <td className="border-b border-yellow-500/20 p-2">75k/200k</td>
+                                <td className="border-b border-yellow-500/20 p-2">General coding, creative writing</td>
+                                <td className="border-b border-yellow-500/20 p-2">High</td>
+                                <td className="border-b border-yellow-500/20 p-2">General tasks, content creation</td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-yellow-500/20 p-2">Claude 3.5 Haiku</td>
+                                <td className="border-b border-yellow-500/20 p-2">Anthropic</td>
+                                <td className="border-b border-yellow-500/20 p-2">60k</td>
+                                <td className="border-b border-yellow-500/20 p-2">Lightweight, fast tasks</td>
+                                <td className="border-b border-yellow-500/20 p-2">Very High</td>
+                                <td className="border-b border-yellow-500/20 p-2">Quick, efficient coding</td>
+                            </tr>
+                            <tr>
+                                <td className="border-b border-yellow-500/20 p-2">DeepSeek V3</td>
+                                <td className="border-b border-yellow-500/20 p-2">DeepSeek</td>
+                                <td className="border-b border-yellow-500/20 p-2">60k</td>
+                                <td className="border-b border-yellow-500/20 p-2">Reasoning, coding, multimodal</td>
+                                <td className="border-b border-yellow-500/20 p-2">Very High</td>
+                                <td className="border-b border-yellow-500/20 p-2">AI research, technical coding</td>
+                            </tr>
+                             <tr>
+                                <td className="border-b border-yellow-500/20 p-2">DeepSeek R1</td>
+                                <td className="border-b border-yellow-500/20 p-2">DeepSeek</td>
+                                <td className="border-b border-yellow-500/20 p-2">60k</td>
+                                <td className="border-b border-yellow-500/20 p-2">Logical inference, math</td>
+                                <td className="border-b border-yellow-500/20 p-2">High</td>
+                                <td className="border-b border-yellow-500/20 p-2">Problem-solving, precise reasoning</td>
+                            </tr>
+                             <tr>
+                                <td className="border-b border-yellow-500/20 p-2">Gemini 2.5 Pro</td>
+                                <td className="border-b border-yellow-500/20 p-2">Google</td>
+                                <td className="border-b border-yellow-500/20 p-2">120k/1M</td>
+                                <td className="border-b border-yellow-500/20 p-2">Large-scale, multimodal tasks</td>
+                                <td className="border-b border-yellow-500/20 p-2">Moderate</td>
+                                <td className="border-b border-yellow-500/20 p-2">Extensive research, complex coding</td>
+                            </tr>
+                             <tr>
+                                <td className="p-2">Cursor Small</td>
+                                <td className="p-2">Cursor</td>
+                                <td className="p-2">60k</td>
+                                <td className="p-2">Basic coding assistance</td>
+                                <td className="p-2">Very High (Free)</td>
+                                <td className="p-2">Lightweight edits, autocomplete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Recommendations Card */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Recommendations for Specific Tasks</h2>
+              <p className="text-lg text-white/80 leading-relaxed mb-6">
+                Based on the strengths outlined, here are detailed recommendations for which model to use for your specific task in Cursor.
+              </p>
+              
+              <h3 className="text-xl font-bold text-yellow-500/90 mt-6 mb-3">Coding</h3>
+              <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">General-Purpose Coding:</span> Use <span className="font-mono">Claude 3.5 Sonnet</span> for its balance of capability and efficiency.</li>
+                <li><span className="text-yellow-500 font-semibold">Complex Projects:</span> Choose <span className="font-mono">Claude 4 Opus</span> for its deep reasoning and precision.</li>
+                <li><span className="text-yellow-500 font-semibold">Multilingual Coding:</span> Opt for <span className="font-mono">DeepSeek-Coder-V2</span>, which supports over 300 languages.</li>
+                <li><span className="text-yellow-500 font-semibold">Lightweight Edits:</span> Try <span className="font-mono">Cursor Small</span> or <span className="font-mono">Claude 3.5 Haiku</span> for quick, cost-effective tasks.</li>
+              </ul>
+              
+              <h3 className="text-xl font-bold text-yellow-500/90 mt-6 mb-3">Creative Writing</h3>
+               <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">Long-Form Content:</span> Use <span className="font-mono">Gemini 2.5 Pro</span> for its large context window to maintain coherence.</li>
+                <li><span className="text-yellow-500 font-semibold">Shorter Pieces:</span> <span className="font-mono">Claude 3.5 Sonnet</span> is a versatile and cost-effective option.</li>
+              </ul>
+
+              <h3 className="text-xl font-bold text-yellow-500/90 mt-6 mb-3">Research & Analysis</h3>
+               <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">Extensive Documents:</span> <span className="font-mono">Gemini 2.5 Pro</span> is ideal for its ability to process large amounts of information.</li>
+                <li><span className="text-yellow-500 font-semibold">Accuracy-Critical Tasks:</span> Use <span className="font-mono">DeepSeek R1</span> for its strength in logical inference.</li>
+              </ul>
+
+              <h3 className="text-xl font-bold text-yellow-500/90 mt-6 mb-3">Multimodal & Technical Tasks</h3>
+               <ul className="list-disc pl-6 text-white/80 space-y-2 mb-4">
+                <li><span className="text-yellow-500 font-semibold">Multimedia Applications:</span> <span className="font-mono">Gemini 2.5 Pro</span> and <span className="font-mono">DeepSeek-VL2</span> support multimodal inputs.</li>
+                <li><span className="text-yellow-500 font-semibold">AI Research & Technical Coding:</span> <span className="font-mono">DeepSeek V3</span> offers performance rivaling top models with high efficiency.</li>
+              </ul>
+
+              <p className="text-white/80 leading-relaxed mt-6">
+                This analysis, based on recent research and benchmarks as of June 14, 2025, suggests that the choice of model in Cursor depends on the task&apos;s complexity, cost considerations, and required capabilities. These recommendations aim to guide users in leveraging Cursor&apos;s diverse model ecosystem effectively for coding, creative writing, research, and beyond.
+              </p>
             </div>
 
             {/* Summary Card */}
