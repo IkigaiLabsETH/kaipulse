@@ -55,16 +55,16 @@ export default function LovePage() {
                     </div>
 
                     {/* Intro Section */}
-                    <ActSection title="Intro — Biarritz, 2024: Two Glasses of Bordeaux and a Spark">
-                        <p>
-                            We met them on a windswept terrace above the Grande Plage—an elegant couple in their late seventies, laughing into the Atlantic spray as if the ocean itself had told a perfect joke.The maître-d&apos; brought a bottle of 2010 Château Haut-Brion; they insisted we share it.Within ten minutes we were swapping stories; within twenty we were taking notes.
-                        </p>
+                    <ActSection title="Intro — Biarritz, 2024: The Spark">
+                        <p>We met them on a salt-slick terrace above the Grande Plage, two strangers in their late seventies sharing a bottle of 2010 Haut-Brion like it was an inside joke with the Atlantic.</p>
+                        <p>Their laughter rolled louder than the surf.</p>
+                        <p>When the maître-d&apos; poured three glasses instead of two, we took the invitation.</p>
                         <JournalNote>
-                            “Bitcoin paid for the wine,” the gentleman winked, “but dreams paid for everything else.”
+                            &ldquo;Bitcoin paid for the wine,&rdquo; the man said, raising his glass, &ldquo;but dreams paid for everything else.&rdquo;
                         </JournalNote>
-                        <p>
-                            That twilight conversation—equal parts Bordeaux, sea-salt, and audacity—became the blueprint for the life we&apos;re living now. The tale that follows is their story, folded into ours: a five-year Riviera sprint followed by a Provençal forever. Their ledger was measured in satoshis, yes—but their true currency was imagination.
-                        </p>
+                        <p>The woman—sea-spray silver in her hair—leaned in, eyes shining.</p>
+                        <p>&ldquo;Tell us,&rdquo; we asked.</p>
+                        <p>And they did.</p>
                     </ActSection>
 
                     <div className="flex items-center justify-center">
@@ -99,6 +99,16 @@ export default function LovePage() {
 
                     {/* Act II */}
                     <ActSection title="Act II | The Monaco Intermezzo (Age 55 → 60)">
+                        <p>They arrived in Monaco on the eve of their fifty-fifth birthdays with nothing but two suitcases and twenty-five cold-stored bitcoin.</p>
+                        <JournalNote>
+                            &ldquo;It was never about tax,&rdquo; she said. &ldquo;It was about waking up with the yachts each morning and knowing everyone out there believed in impossible things.&rdquo;
+                        </JournalNote>
+                        <p>They rented a cliff-side flat that smelled of citrus at dawn, joined yacht parties where deals were hatched on napkins, and collected friends the way others collected designer luggage: lightly, delightedly, forever.</p>
+                        <p>Every May they watched the Grand Prix from a secret balcony, engines reverberating through their ribs.</p>
+                        <p>Every June they threw a dinner on Hôtel de Paris&apos;s rooftop—one coin for a constellation of memories.</p>
+                        <p>They called it their Riviera Intermission. Five summers.</p>
+                        <p>Enough sunrises to write a book about light.</p>
+                        <div className="py-6"><div className="h-px w-full bg-yellow-500/20"></div></div>
                         <div>
                             <h3 className="text-xl font-semibold text-white mb-2">Assumptions</h3>
                             <ul className="list-disc list-inside space-y-1 pl-4 text-gray-400">
@@ -138,7 +148,14 @@ export default function LovePage() {
 
                     {/* Act III */}
                     <ActSection title="Act III | La Douce France (Age 60 → 85)">
-                        <p>You settle into a debt-free Provençal bastide but upgrade the playbook: no heirs, so luxury-hotel hopping becomes the hobby.</p>
+                        <p>On their sixtieth birthday they sailed west, trailing a wake of Monte-Carlo legends.</p>
+                        <p>The plan was simple: trade the roar of engines for the hum of cicadas.</p>
+                        <p>France welcomed them like a long exhale.</p>
+                        <p>They bought a bastide outside Gordes—stone walls, fig tree, a cellar cool enough for secrets.</p>
+                        <p>Mornings were croissants and code reviews under fig-leaf shade; afternoons were road trips to Chardonnay valleys; evenings, rosé that glowed like pixelated sunsets.</p>
+                        <p>Without heirs to impress, they spent with intention: spa suites on Wednesdays, truffle lunches on Thursdays, long drives to nowhere every time the mistral shifted.</p>
+                        <p>They called it slow luxury—lavish, but unhurried; decadent, yet measured against the ticking of their own hearts.</p>
+                        <div className="py-6"><div className="h-px w-full bg-yellow-500/20"></div></div>
                         <div>
                             <h3 className="text-xl font-semibold text-white mb-2">New Parameters</h3>
                             <ul className="list-disc list-inside space-y-1 pl-4 text-gray-400">
@@ -167,6 +184,25 @@ export default function LovePage() {
                         <p className="font-semibold text-center text-yellow-500/90 text-xl border-t border-b border-yellow-500/20 py-4">
                             Net worth at 2060: 14.7 BTC × €25 M ≈ €368 million, after a lifetime of first-class living and under €2 million paid to the taxman.
                         </p>
+                    </ActSection>
+
+                    <div className="flex items-center justify-center">
+                        <div className="h-px w-24 bg-yellow-500/30"></div>
+                        <span className="mx-4 text-yellow-500 text-2xl font-serif">⸻</span>
+                        <div className="h-px w-24 bg-yellow-500/30"></div>
+                    </div>
+
+                    {/* Lessons from the Ledger */}
+                    <ActSection title="Lessons from the Ledger of Life">
+                        <p>One December night, the Provençal sky snow-globed with stars, he confessed a quiet epiphany:</p>
+                        <blockquote className="my-6 border-l-4 border-yellow-500/60 bg-black/20 p-4 text-white/90 rounded-r-lg text-lg italic space-y-2">
+                            <p>&ldquo;I used to think saving bitcoin was the point.</p>
+                            <p>Then I thought spending bitcoin was the point.</p>
+                            <p>Now I know the point was always the stories between the two.&rdquo;</p>
+                        </blockquote>
+                        <p>She laughed softly, because she&apos;d known all along.</p>
+                        <p>The next morning they planned a route through every Relais &amp; Châteaux in France, &ldquo;before our knees complain,&rdquo; she said.</p>
+                        <p>They circled mountains, rivers, and memories, leaving nothing un-lived.</p>
                     </ActSection>
 
                     <div className="flex items-center justify-center">
@@ -205,13 +241,20 @@ export default function LovePage() {
 
                     {/* Curtain Call */}
                     <div className="text-center space-y-8 bg-[#1c1f26] p-8 md:p-12 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-                        <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 tracking-tight font-satoshi">Curtain Call</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 tracking-tight font-satoshi">Curtain Call: Time, Fiction, and the Last Satoshi</h2>
+                        <p className="text-xl text-white/80 font-light max-w-3xl mx-auto">Years later, with the bastide fireplace glowing low, they tallied nothing—no spreadsheets, no balance sheets—only sunrises witnessed and friends still calling from distant paddocks.</p>
+                        <JournalNote>
+                            &ldquo;Life is a simulation,&rdquo; he said, sipping the final splash of rosé.
+                        </JournalNote>
+                        <p className="text-xl text-white/80 font-light max-w-3xl mx-auto">&ldquo;Then let&apos;s keep hacking it,&rdquo; she replied, slipping the last satoshi into the cracks of the stone hearth—a secret bookmark for whoever renovates the house a century from now.</p>
+                        <p className="text-xl text-white/80 font-light max-w-3xl mx-auto">They fell asleep to the rustle of olive leaves, certain that reality, at last, had caught up to their fiction.</p>
+                        <div className="py-6"><div className="h-px w-full bg-yellow-500/20"></div></div>
                         <ul className="list-none space-y-3 text-xl text-white/90 max-w-2xl mx-auto">
                             <li>Spent the Riviera&apos;s best five summers tax-free.</li>
                             <li>Checked into every Aman and Oetker you fancied.</li>
                             <li>Still finished with ≈ 15 BTC—a fortune even in hyperbitcoinised euros.</li>
                         </ul>
-                        <p className="text-xl md:text-2xl text-yellow-500/90 font-semibold italic max-w-3xl mx-auto pt-4 border-t border-yellow-500/20">
+                        <p className="text-xl text-white/80 font-light max-w-3xl mx-auto pt-4 border-t border-yellow-500/20">
                             The lesson is plain: time-weighted BTC preservation matters more than tax perfection. Live large early, live well later, but always let the base layer grow.
                         </p>
                         <p className="text-2xl pt-6">
@@ -231,13 +274,13 @@ export default function LovePage() {
                         {/* Journal Hero */}
                         <div className="text-center space-y-4">
                             <h2 className="text-4xl md:text-5xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-                                “Sats & Sunsets”
+                                &ldquo;Sats & Sunsets&rdquo;
                             </h2>
                             <p className="text-lg md:text-xl text-white/70 font-light max-w-3xl mx-auto">
                                 A Travel-Journal of Our Monaco-to-Provence Pivot (2030 – 2060)
                             </p>
                             <p className="text-md text-white/60 italic">
-                                written by “E.” — 55-year-old Bitcoiner; co-authored by my partner-in-crime, “M.”
+                                written by &ldquo;E.&rdquo; — 55-year-old Bitcoiner; co-authored by my partner-in-crime, &ldquo;M.&rdquo;
                             </p>
                             <div className="flex items-center justify-center pt-4">
                                 <div className="h-px w-24 bg-yellow-500/30"></div>
@@ -263,7 +306,7 @@ export default function LovePage() {
                         <ActSection title="Monaco Years (2030 - 2034) — Five Summers of Tax-Free Decadence">
                             <div className="space-y-8">
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2030 — “The First Coin”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2030 — &ldquo;The First Coin&rdquo;</h4>
                                     <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €261 k. We sell 0.96 BTC the morning we receive our Monaco residency card.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>Base camp: a terraced one-bed on Avenue de la Costa, view of Port Hercule dotted with superyachts that each burn more fuel in a day than we&apos;ll burn bitcoin all year.</li>
@@ -271,11 +314,11 @@ export default function LovePage() {
                                         <li><span className="text-yellow-500 mr-3"> • </span>Splurge: Joel Robuchon&apos;s 10-course degustation. M. cries at the langoustine ravioli. Totally worth 0.03 BTC.</li>
                                     </ul>
                                     <JournalNote>
-                                        “The only tax we pay is the 10 % service charge—denominated in fiat, which feels like Monopoly money now.”
+                                        &ldquo;The only tax we pay is the 10 % service charge—denominated in fiat, which feels like Monopoly money now.&rdquo;
                                     </JournalNote>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2031 — “Terrazzo, Tuna-Tataki & Time Appreciation”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2031 — &ldquo;Terrazzo, Tuna-Tataki & Time Appreciation&rdquo;</h4>
                                     <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €314 k. We sell 0.80 BTC. The euro amount (€250 k) is the same; the coin footprint is already shrink-wrapping.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>Routine: Sunrise swims at Larvotto, espresso at Café de Paris, code review for my open-source Lightning tool at 10 a.m., lunch at Maya Bay.</li>
@@ -283,17 +326,17 @@ export default function LovePage() {
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2032 — “A Yacht Called Time Preference”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2032 — &ldquo;A Yacht Called Time Preference&rdquo;</h4>
                                      <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €377 k. We charter a 45-footer for three weekends. Total cost: 0.20 BTC.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>First mental ledger check: only 20 BTC left. Feels okay.</li>
                                     </ul>
                                     <JournalNote>
-                                        “Sats per bliss unit = rising.”
+                                        &ldquo;Sats per bliss unit = rising.&rdquo;
                                     </JournalNote>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2033 — “Shoulder-Season and Second Thoughts”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2033 — &ldquo;Shoulder-Season and Second Thoughts&rdquo;</h4>
                                      <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €452 k. We sell 0.55 BTC.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>Over lunch at Le Grill, we sketch a map: Provence, Dordogne, Basque Country, back to Paris.</li>
@@ -301,7 +344,7 @@ export default function LovePage() {
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2034 — “The Last Monte-Carlo Sunset”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2034 — &ldquo;The Last Monte-Carlo Sunset&rdquo;</h4>
                                      <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €542 k. We sell 0.46 BTC and book an entire top deck at the Hôtel de Paris for a farewell soirée.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>Hand back the residency card with a grin; we played the zero-tax game flawlessly.</li>
@@ -321,7 +364,7 @@ export default function LovePage() {
                         <ActSection title="France Years (2035 - 2060) — Provençal Slow Burn">
                             <div className="space-y-8">
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2035 — “Keys to the Bastide”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2035 — &ldquo;Keys to the Bastide&rdquo;</h4>
                                     <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>Move-in: a stone farmhouse outside Gordes, lavender fields like pixel art.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €650 k. France taxes 30 %. To net €150 k luxury-hotel budget we sell 0.33 BTC and pay €32 k in tax. Does not hurt.</li>
@@ -329,7 +372,7 @@ export default function LovePage() {
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2037 — “Relais & Châteaux Grand Tour”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2037 — &ldquo;Relais & Châteaux Grand Tour&rdquo;</h4>
                                     <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>We plot a circuit: Les Prés d&apos;Eugénie → La Chèvre d&apos;Or → Baumanière — stamping the passport of taste.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC crossed €940 k; each room night costs 0.01 BTC now.</li>
@@ -337,25 +380,25 @@ export default function LovePage() {
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2040 — “One Coin Buys a Vineyard”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2040 — &ldquo;One Coin Buys a Vineyard&rdquo;</h4>
                                      <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €1.62 M. Our annual spend now equals 0.07 BTC after tax.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>We buy a 2-hectare plot in Gigondas for fun, financed by off-loading a single coin.</li>
-                                        <li><span className="text-yellow-500 mr-3"> • </span>Officially retire from consulting; open a micro-cellar, bottling “Block-Height Rosé.”</li>
+                                        <li><span className="text-yellow-500 mr-3"> • </span>Officially retire from consulting; open a micro-cellar, bottling &ldquo;Block-Height Rosé.&rdquo;</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2050 — “Sat Millionaire, Fiat Relativist”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2050 — &ldquo;Sat Millionaire, Fiat Relativist&rdquo;</h4>
                                      <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €10 M. Selling 0.012 BTC funds the whole year of Aman & Oetker.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>Total tax paid over the past decade and a half: ≈ €1 M – now equal to 0.1 BTC. Laughable.</li>
                                     </ul>
                                     <JournalNote>
-                                        “Fiat is what we tip in.”
+                                        &ldquo;Fiat is what we tip in.&rdquo;
                                     </JournalNote>
                                 </div>
                                 <div>
-                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2060 — “Sats at Sunset”</h4>
+                                    <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">2060 — &ldquo;Sats at Sunset&rdquo;</h4>
                                      <ul className="list-none space-y-2 pl-4">
                                         <li><span className="text-yellow-500 mr-3"> • </span>BTC ≈ €25 M. We are 85 and 84.</li>
                                         <li><span className="text-yellow-500 mr-3"> • </span>Remaining coins: ≈ 14.7 BTC → €368 M.</li>
@@ -383,7 +426,7 @@ export default function LovePage() {
                                 We traded five Riviera years for thirty Provencal ones and ended richer—in coins, memories, and time together.
                             </p>
                             <blockquote className="mt-8 border-l-4 border-yellow-500 pl-6 text-xl italic text-white/90">
-                                “The measure of wealth is not how many things you can buy with a bitcoin, but how many sunrises you get to watch before you spend the next one.”
+                                &ldquo;The measure of wealth is not how many things you can buy with a bitcoin, but how many sunrises you get to watch before you spend the next one.&rdquo;
                             </blockquote>
                         </ActSection>
                     </div>
@@ -415,6 +458,34 @@ export default function LovePage() {
                             Reality may hand you spreadsheets; fiction hands you steering wheels.<br />
                             Choose fiction that outruns the ledger.<br />
                             Dream, pivot, repeat—until the credits roll with your favourite person beside you and just enough sats left for the closing scene.
+                        </p>
+                    </ActSection>
+
+                    {/* Separator */}
+                    <div className="flex items-center justify-center pt-12">
+                        <div className="h-px w-24 bg-yellow-500/30"></div>
+                        <span className="mx-4 text-yellow-500 text-2xl font-serif">⸻</span>
+                        <div className="h-px w-24 bg-yellow-500/30"></div>
+                    </div>
+
+                    <ActSection title="Epilogue — Our Turn">
+                        <p>
+                            Their story became our compass.
+                        </p>
+                        <p>
+                            It wasn&apos;t the zeros saved, or even the zeros spent, but the way each decision irradiated the days that followed.
+                        </p>
+                        <p>
+                            We, still novices with our own 25 BTC and a notebook full of blank pages, decided in that Bordeaux twilight to chase the same equation:
+                        </p>
+                        <blockquote className="my-6 border-l-4 border-yellow-500/60 bg-black/20 p-4 text-yellow-500/90 rounded-r-lg text-lg italic">
+                            Dream big, spend wisely, love audaciously—because the only true currency is the story you get to tell at sunset.
+                        </blockquote>
+                        <p>
+                            And so we raise a glass to them, to the Riviera, to Provence, and to every unreal plan that outshines reality.
+                        </p>
+                        <p>
+                            May your simulations run wild, and may your ledger always reflect more sunrises than withdrawals.
                         </p>
                     </ActSection>
 
