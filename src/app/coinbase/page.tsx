@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CoinbasePage() {
   return (
@@ -219,6 +220,17 @@ export default function CoinbasePage() {
                         </table>
                     </div>
                 </div>
+            </div>
+
+            {/* Coinbase Credit Card Visual */}
+            <div className="relative">
+              <Image
+                src="/coinbase.jpeg"
+                alt="Coinbase Credit Card Visual"
+                width={1200}
+                height={675}
+                className="w-full h-auto rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+              />
             </div>
 
             {/* Coinbase Credit Card */}
