@@ -26,6 +26,25 @@ const MetricCard = ({ title, value, description }: { title: string, value: strin
     </div>
 );
 
+const MinerProfileCard = ({ name, ticker, marketCap, btcHoldings }: { name: string, ticker: string, marketCap: string, btcHoldings: string }) => (
+    <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20 flex flex-col justify-between">
+        <div>
+            <h4 className="text-xl font-bold text-white">{name}</h4>
+            <p className="text-yellow-400 font-mono">{ticker}</p>
+        </div>
+        <div className="mt-4 space-y-2">
+            <div>
+                <p className="text-sm text-white/70">Market Cap</p>
+                <p className="text-lg font-bold text-white">{marketCap}</p>
+            </div>
+            <div>
+                <p className="text-sm text-white/70">BTC Holdings</p>
+                <p className="text-lg font-bold text-white">{btcHoldings}</p>
+            </div>
+        </div>
+    </div>
+);
+
 const FinancialsTable = ({ data }: { data: { metric: string, value: string }[] }) => (
     <div className="mt-6 border border-yellow-500/20">
         {data.map((item, index) => (
@@ -236,6 +255,32 @@ export default function MiningPage() {
             <p>
                 In this context, Bitcoin—with its immutable, fixed supply of 21 million—stands apart. It cannot be debased or printed into oblivion. For a miner, holding even a small portion of their yield is a vote of confidence that this digital scarcity will provide a robust store of value, preserving purchasing power in a future where fiat currencies may falter. It transforms the mining operation from a simple cash-flow business into a long-term accumulator of a unique treasury reserve asset.
             </p>
+          </Section>
+
+          <Section title="The Public Face of Mining: Top Traded Companies">
+            <p>
+                As the industry has matured, Bitcoin mining has moved from a niche hobby to a sector with major, publicly traded corporations. These companies provide a way for investors to gain exposure to the mining industry through traditional stock markets. Their performance is closely tied to the price of Bitcoin, energy costs, and operational efficiency. Here are three of the largest players by market capitalization.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 mt-6">
+                <MinerProfileCard
+                    name="Marathon Digital"
+                    ticker="NASDAQ: MARA"
+                    marketCap="$6 Billion"
+                    btcHoldings="49,179 BTC"
+                />
+                <MinerProfileCard
+                    name="CleanSpark"
+                    ticker="NASDAQ: CLSK"
+                    marketCap="$3.7 Billion"
+                    btcHoldings="12,502 BTC"
+                />
+                <MinerProfileCard
+                    name="Riot Platforms"
+                    ticker="NASDAQ: RIOT"
+                    marketCap="$3.1 Billion"
+                    btcHoldings="19,225 BTC"
+                />
+            </div>
           </Section>
 
           <Section title="Hash is the New Gravity">
