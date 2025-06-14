@@ -54,6 +54,25 @@ export default function LovePage() {
                         </div>
                     </div>
 
+                    {/* Intro Section */}
+                    <ActSection title="Intro — Biarritz, 2024: Two Glasses of Bordeaux and a Spark">
+                        <p>
+                            We met them on a windswept terrace above the Grande Plage—an elegant couple in their late seventies, laughing into the Atlantic spray as if the ocean itself had told a perfect joke.The maître-d&apos; brought a bottle of 2010 Château Haut-Brion; they insisted we share it.Within ten minutes we were swapping stories; within twenty we were taking notes.
+                        </p>
+                        <JournalNote>
+                            “Bitcoin paid for the wine,” the gentleman winked, “but dreams paid for everything else.”
+                        </JournalNote>
+                        <p>
+                            That twilight conversation—equal parts Bordeaux, sea-salt, and audacity—became the blueprint for the life we&apos;re living now. The tale that follows is their story, folded into ours: a five-year Riviera sprint followed by a Provençal forever. Their ledger was measured in satoshis, yes—but their true currency was imagination.
+                        </p>
+                    </ActSection>
+
+                    <div className="flex items-center justify-center">
+                        <div className="h-px w-24 bg-yellow-500/30"></div>
+                        <span className="mx-4 text-yellow-500 text-2xl font-serif">⸻</span>
+                        <div className="h-px w-24 bg-yellow-500/30"></div>
+                    </div>
+
                     {/* Act I */}
                     <ActSection title="Act I | Age 50: Keys, Dreams, and a Map">
                         <p>
