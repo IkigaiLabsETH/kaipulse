@@ -109,6 +109,7 @@ export default function IntroPage() {
                     <li><Link href="/mara" className="hover:text-yellow-500 transition-colors">MARA</Link></li>
                     <li><Link href="/doge" className="hover:text-yellow-500 transition-colors">DOGE</Link></li>
                     <li><Link href="/ln" className="hover:text-yellow-500 transition-colors">Lightning Network</Link></li>
+                    <li><Link href="/21energy" className="hover:text-yellow-500 transition-colors">21 Energy</Link></li>
                   </ul>
                 </div>
                 <div className="space-y-4">
@@ -154,7 +155,6 @@ export default function IntroPage() {
                     <li><Link href="/sol" className="hover:text-yellow-500 transition-colors">Solana</Link></li>
                     <li><Link href="/sui" className="hover:text-yellow-500 transition-colors">Sui</Link></li>
                     <li><Link href="/etherfi" className="hover:text-yellow-500 transition-colors">EtherFi</Link></li>
-                    <li><Link href="/holyheld" className="hover:text-yellow-500 transition-colors">Holyheld</Link></li>
                   </ul>
                 </div>
                 <div className="space-y-4">
@@ -174,8 +174,7 @@ export default function IntroPage() {
                     <li><Link href="/fairmint" className="hover:text-yellow-500 transition-colors">Fairmint</Link></li>
                     <li><Link href="/otonomos" className="hover:text-yellow-500 transition-colors">Otonomos</Link></li>
                     <li><Link href="/abra" className="hover:text-yellow-500 transition-colors">Abra</Link></li>
-                    <li><Link href="/firefish" className="hover:text-yellow-500 transition-colors">FireFish</Link></li>
-                  </ul>
+                    <li><Link href="/firefish" className="hover:text-yellow-500 transition-colors">FireFish</Link></li>                  </ul>
                 </div>
               </div>
             </div>
@@ -299,6 +298,7 @@ export default function IntroPage() {
                     <li><Link href="/tesla" className="hover:text-yellow-500 transition-colors">Tesla</Link></li>
                     <li><Link href="/train" className="hover:text-yellow-500 transition-colors">Training</Link></li>
                     <li><Link href="/wine" className="hover:text-yellow-500 transition-colors">Wine Tasting</Link></li>
+                    <li><Link href="/pool" className="hover:text-yellow-500 transition-colors">Pool Life</Link></li>
                   </ul>
                 </div>
                 <div className="space-y-4">
@@ -317,6 +317,7 @@ export default function IntroPage() {
                     <li><Link href="/ai" className="hover:text-yellow-500 transition-colors">AI Tools</Link></li>
                     <li><Link href="/vibecode" className="hover:text-yellow-500 transition-colors">VibeCode</Link></li>
                     <li><Link href="/cursor" className="hover:text-yellow-500 transition-colors">Cursor</Link></li>
+                    <li><Link href="/dgx" className="hover:text-yellow-500 transition-colors">DGX Spark</Link></li>
                   </ul>
                 </div>
               </div>
