@@ -3,6 +3,7 @@ import Link from 'next/link';
 import HeroSection from './components/HeroSection';
 import OverviewSection from './components/OverviewSection';
 import CostBreakdown from './components/CostBreakdown';
+import PergolaInfo from './components/PergolaInfo';
 
 export const metadata: Metadata = {
   title: 'Premium Pool Solutions | Custom Design & Construction',
@@ -55,6 +56,8 @@ export default function PoolPage() {
             </a>
           </div>
         </div>
+        {/* Pergola Information */}
+        <PergolaInfo />
         {/* View Details Link */}
         <div className="text-center">
           <Link 
