@@ -156,6 +156,57 @@ export default function TeslaPage() {
           </div>
         </motion.section>
 
+        {/* Model S & X: The Road Ahead Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-16"
+        >
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Model S & X: The Road Ahead
+            </h2>
+            
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-4">Desired Updates</h3>
+                <ul className="list-disc pl-6 space-y-2 text-white/90 text-lg">
+                  <li>Steer-by-wire to properly utilize the yoke</li>
+                  <li>Powered frunk</li>
+                  <li>Faster charging curve</li>
+                  <li>Auto-opening doors for Model S</li>
+                  <li>Better track performance for Model S Plaid</li>
+                </ul>
+              </div>
+
+              <div className="border-l-4 border-yellow-500 pl-6 py-2">
+                <p className="text-white/90 text-lg">
+                  However, the business reality tells a different story. Many years ago, the Model S and Model X made up nearly 100% of Tesla&apos;s revenue. Today, they account for under 5% (~$5B) and shrinking. The Model Y alone generates 10x more revenue than the S/X combined.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-white/90 text-lg mb-4">
+                  While these updates would be welcome improvements, Tesla&apos;s engineering resources are increasingly focused on higher-impact projects:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-white/90 text-lg">
+                  <li>Cybercab development</li>
+                  <li>Optimus humanoid robot</li>
+                  <li>Next-gen Roadster</li>
+                  <li>FSD and autonomy advancements</li>
+                </ul>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/30">
+                <p className="text-white/90 text-lg">
+                  The Model S and X played a crucial role in helping Tesla survive and grow into the company it is today, and many people feel a sense of sentimentality toward them. They remain exceptional vehicles, but as Tesla shifts its focus more toward autonomy and robotics, the S and X will continue to become less of a priority in the company&apos;s broader vision.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         {/* Featured Image: Model S & X New */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
