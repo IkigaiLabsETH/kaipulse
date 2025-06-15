@@ -90,6 +90,35 @@ const PergolaInfo = () => {
         </div>
       </div>
 
+      {/* Video Section */}
+      <div className="mb-12">
+        <h3 className="text-2xl font-bold text-yellow-500 mb-6">Featured Video</h3>
+        <div className="bg-black/40 p-6 rounded-none border border-yellow-500/30">
+          <div className="relative w-full h-[600px]">
+            <iframe
+              src="https://www.youtube.com/embed/IVTiS88JS0Y"
+              title="PERGOLUX Pergola S3 Series Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full rounded-none"
+            />
+          </div>
+          <p className="text-gray-300 mt-4 text-center">
+            Watch how our premium pergolas transform your outdoor living space
+          </p>
+          <div className="mt-6 text-center">
+            <a 
+              href="https://pergolux.fr/collections/pergola" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 bg-yellow-500 text-black font-bold hover:bg-yellow-400 transition-colors duration-200 rounded-none border-2 border-yellow-500 hover:border-yellow-400"
+            >
+              View All Pergola Models
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Key Features */}
       <div className="mb-12">
         <h3 className="text-2xl font-bold text-yellow-500 mb-6">Key Features</h3>
