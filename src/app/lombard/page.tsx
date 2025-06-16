@@ -101,37 +101,6 @@ export default function LombardPage() {
               Lombard Loan Solutions
             </h3>
             <div className="space-y-8">
-              {/* Personal BTC */}
-              <div className="space-y-4">
-                <h4 className="text-xl font-bold text-yellow-500">Personal BTC Collateral</h4>
-                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                  <p className="text-white/80 font-satoshi mb-4">
-                    For portfolios under €250,000, we recommend direct application to our partner lenders like Mt Pelerin. This approach offers quick access to liquidity with minimal setup costs.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div>
-                      <h5 className="text-yellow-400 font-epilogue mb-2">Features:</h5>
-                      <ul className="text-white/80 font-satoshi list-disc list-inside">
-                        <li>40% loan-to-value ratio</li>
-                        <li>~3% interest rate</li>
-                        <li>Quick setup (1-2 weeks)</li>
-                        <li>No setup costs</li>
-                        <li>Simple management</li>
-                        <li>Direct control</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h5 className="text-yellow-400 font-epilogue mb-2">Considerations:</h5>
-                      <ul className="text-white/80 font-satoshi list-disc list-inside">
-                        <li>Personal liability</li>
-                        <li>Direct tax exposure</li>
-                        <li>Asset concentration</li>
-                        <li>Limited loan terms</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               {/* Finary One */}
               <div className="space-y-4">
