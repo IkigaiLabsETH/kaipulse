@@ -35,6 +35,26 @@ export default function BitaxePage() {
       ),
     },
     {
+      q: "How do mining odds compare to winning the lottery?",
+      a: (
+        <span>
+          While mining odds per block (1 in 900M) seem worse than lottery odds (1 in 292M for Powerball), this comparison is misleading. Here&apos;s why:
+          <br /><br />
+          • Bitcoin produces 144 blocks daily vs. 3 Powerball drawings per week
+          <br />
+          • Daily mining odds: 1 in 6.25M (46x better than Powerball)
+          <br />
+          • Weekly mining odds: 1 in 892K (108x better than Powerball)
+          <br />
+          • Monthly mining odds: 1 in 208K (105x better than Powerball)
+          <br />
+          • Yearly mining odds: 1 in 17K (110x better than Powerball)
+          <br /><br />
+          The key difference is frequency - while lottery drawings are infrequent events, Bitcoin mining gives you constant chances to win. When you repeat unlikely events often, your chance of success compounds significantly.
+        </span>
+      ),
+    },
+    {
       q: "How does Bitaxe compare to industrial miners?",
       a: (
         <span>
