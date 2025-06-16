@@ -18,6 +18,16 @@ export default function LombardPage() {
               <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
                 Finary One
               </span>
+              <div className="mt-4">
+                <Link 
+                  href="https://finary.com/referral/T46XYZ" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-yellow-500/80 hover:text-yellow-500 transition-colors duration-200 text-lg font-light"
+                >
+                  Visit Finary.com →
+                </Link>
+              </div>
             </h1>
             <div className="flex items-center justify-center mt-6">
               <div className="h-px w-24 bg-yellow-500/30"></div>
