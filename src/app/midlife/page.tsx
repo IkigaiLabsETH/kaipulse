@@ -305,6 +305,30 @@ export default function MidlifePage() {
               </p>
             </div>
           </div>
+
+          {/* Final Note Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Final Note: The U-Curve, Privilege, and the Power to Reimagine</h3>
+            <p className="text-lg text-white/80 mb-4">
+              <span className="font-bold text-yellow-400">The U-Curve Is Real — But Context Is Everything</span><br/>
+              The happiness U-curve is a well-documented phenomenon, surfacing in data from dozens of countries, income brackets, and even among our primate cousins. But it&apos;s not a one-size-fits-all destiny. For Boomers and Gen X, the curve was cushioned by affordable homes, stable jobs, and strong safety nets. Millennials and Gen Z, meanwhile, are navigating a world of soaring costs, gig work, debt, and relentless uncertainty.
+            </p>
+            <p className="text-lg text-white/80 mb-4">
+              <span className="font-bold text-yellow-400">The Shape Remains — But the Valley Feels Deeper</span><br/>
+              Today&apos;s younger generations still trace a U-shaped arc, but the starting line is lower, the dip is steeper, and the climb out is less assured—unless we actively rewrite the script. At LiveTheLife.tv, we don&apos;t pine for the past. We&apos;re here to help you build a future rooted in autonomy, creativity, and community—leveraging Web3 and new models of meaning.
+            </p>
+            <p className="text-lg text-white/80 mb-4">
+              <span className="font-bold text-yellow-400">If Your Curve Looks Like a W, You&apos;re Not Broken</span><br/>
+              If your happiness feels more like a rollercoaster or a flatline, it&apos;s not a personal failing—it&apos;s a reflection of the times. Thriving now means redefining success: choosing autonomy over algorithms, ownership over extraction, and meaning over mindless consumption.
+            </p>
+            <p className="text-lg text-white/80 mb-4">
+              <span className="font-bold text-yellow-400">Let&apos;s Bend the Curve — On Our Terms</span><br/>
+              We may not inherit the privileges of previous generations, but we can choose to bend our own arc—toward art, joy, and collective liberation. The boomer curve was easier; ours can be more intentional, more communal, and more deeply aligned with what matters.
+            </p>
+            <p className="text-lg text-white/80 font-semibold">
+              Ready to co-author that future? Let&apos;s build it—curve by curve.
+            </p>
+          </div>
         </div>
       </div>
     </div>
