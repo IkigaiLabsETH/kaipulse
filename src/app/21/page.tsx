@@ -395,7 +395,7 @@ export default function BitcoinPage21() {
                 
                 <div>
                   <label className="block text-sm font-medium text-white/70 mb-2">
-                    Withdrawal Rate (%)
+                    Growth Rate (%)
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -407,12 +407,12 @@ export default function BitcoinPage21() {
                       className="block w-full pl-10 pr-4 py-3 bg-black/30 border border-yellow-500/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-white"
                     >
                       <option value={4}>4% - Conservative (Traditional FIRE)</option>
-                      <option value={14.5}>14.5% - Current BTC CAGR</option>
-                      <option value={36}>36% - Aggressive (Historical BTC Growth)</option>
+                      <option value={20}>20% - Average BTC CAGR</option>
+                      <option value={30}>30% - Projected BTC Growth</option>
                     </select>
                   </div>
                   <p className="mt-2 text-sm text-white/60">
-                    Annual withdrawal rate based on growth assumptions
+                    Annual Growth rate
                   </p>
                 </div>
               </div>
@@ -427,7 +427,7 @@ export default function BitcoinPage21() {
                     {formatNumber(btcNeeded)} BTC
                   </div>
                   <p className="mt-4 text-white/70">
-                    Based on ${formatNumber(annualSpending)} annual spending at {withdrawalRate}% withdrawal rate
+                    Based on ${formatNumber(annualSpending)} annual spending at {withdrawalRate}% growth rate
                   </p>
                 </div>
                 
