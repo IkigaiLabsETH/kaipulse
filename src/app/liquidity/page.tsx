@@ -979,6 +979,16 @@ export default function LiquidityPage() {
                       <p className="text-red-200 text-sm font-semibold">
                         This appears to be a classic pump-and-dump scenario. Exercise extreme caution with any tokens associated with James Wynn or similar influencers who have a history of abandoning projects after profiting from them.
                       </p>
+                      
+                      <div className="bg-black/30 p-4 rounded border border-red-500/30 mt-4">
+                        <h5 className="text-red-300 font-semibold mb-2">Notable Wallet Activity:</h5>
+                        <p className="text-red-200 text-sm leading-relaxed mb-2">
+                          <strong>Wallet:</strong> 8f5yZ7QdfDitcbXw7KW9dd3dzMnu1VkcTKpKbbfyWkoH
+                        </p>
+                        <p className="text-red-200 text-sm leading-relaxed">
+                          2 months ago, this wallet scooped up 34.1M $MOONPIG at a $50K market cap for just $1.8K. Today, they sold everything for $287.94K. That&apos;s a <span className="text-yellow-300 font-bold">160x profit</span> in the books.
+                        </p>
+                      </div>
                     </div>
                   </div>
 
