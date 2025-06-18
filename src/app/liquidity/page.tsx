@@ -117,9 +117,9 @@ export default function LiquidityPage() {
   const [trendingTokens, setTrendingTokens] = useState<DexscreenerToken[]>([]);
   const [trendingLoading, setTrendingLoading] = useState(false);
   const [trendingError, setTrendingError] = useState<string | null>(null);
-  const [moonpigData, setMoonpigData] = useState<MoonpigData | null>(null);
-  const [moonpigLoading, setMoonpigLoading] = useState(false);
-  const [moonpigError, setMoonpigError] = useState<string | null>(null);
+  const [fartcoinData, setFartcoinData] = useState<MoonpigData | null>(null);
+  const [fartcoinLoading, setFartcoinLoading] = useState(false);
+  const [fartcoinError, setFartcoinError] = useState<string | null>(null);
   const [lowFloatTokens, setLowFloatTokens] = useState<DexscreenerToken[]>([]);
   const [lowFloatLoading, setLowFloatLoading] = useState(false);
   const [lowFloatError, setLowFloatError] = useState<string | null>(null);
@@ -175,25 +175,25 @@ export default function LiquidityPage() {
   useEffect(() => {
     if (!useDexscreener) return;
     
-    const fetchMoonpigData = async () => {
-      setMoonpigLoading(true);
-      setMoonpigError(null);
+    const fetchFartcoinData = async () => {
+      setFartcoinLoading(true);
+      setFartcoinError(null);
       try {
-        const response = await fetch('/api/dexscreener/moonpig');
-        if (!response.ok) throw new Error('Failed to fetch Moonpig data');
+        const response = await fetch('/api/dexscreener/fartcoin');
+        if (!response.ok) throw new Error('Failed to fetch Fartcoin data');
         const data = await response.json();
-        setMoonpigData(data);
+        setFartcoinData(data);
       } catch {
-        setMoonpigError('Failed to fetch Moonpig data');
+        setFartcoinError('Failed to fetch Fartcoin data');
         // Optionally log error to a logging service
       } finally {
-        setMoonpigLoading(false);
+        setFartcoinLoading(false);
       }
     };
 
-    fetchMoonpigData();
+    fetchFartcoinData();
     // Refresh data every 30 seconds
-    const interval = setInterval(fetchMoonpigData, 30000);
+    const interval = setInterval(fetchFartcoinData, 30000);
     return () => clearInterval(interval);
   }, [useDexscreener]);
 
@@ -587,25 +587,25 @@ export default function LiquidityPage() {
               <div className="bg-[#1c1f26] border-2 border-yellow-500 rounded-none p-8 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                 <div className="flex items-center gap-6 mb-6">
                   <Image
-                    src="/moonpig.jpg"
-                    alt="Moonpig"
+                    src="/fartcoin.png"
+                    alt="Fartcoin"
                     width={80}
                     height={80}
                     className="rounded-full border-2 border-yellow-500"
                   />
                   <div>
                     <h3 className="text-2xl font-bold text-yellow-500 flex items-center gap-3">
-                      Moonpig
+                      Fartcoin
                       <button
-                        onClick={() => handleCopyAddress('Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump')}
+                        onClick={() => handleCopyAddress('9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump')}
                         className="px-3 py-1 text-sm bg-yellow-500 text-black rounded hover:bg-yellow-400 focus:outline-none border border-yellow-700"
                         title="Copy address"
                       >
-                        {copiedAddress === 'Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump' ? 'Copied!' : 'Copy Address'}
+                        {copiedAddress === '9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump' ? 'Copied!' : 'Copy Address'}
                       </button>
                       <span className="flex gap-2">
                         <a
-                          href="https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump"
+                          href="https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
                           target="_blank"
                           rel="noopener noreferrer"
                           title="Swap on Raydium"
@@ -614,7 +614,7 @@ export default function LiquidityPage() {
                           <RaydiumIcon />
                         </a>
                         <a
-                          href="https://jup.ag/swap/SOL-Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump"
+                          href="https://jup.ag/swap/SOL-9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
                           target="_blank"
                           rel="noopener noreferrer"
                           title="Swap on Jupiter"
@@ -624,31 +624,33 @@ export default function LiquidityPage() {
                         </a>
                       </span>
                     </h3>
-                    <p className="text-gray-400 mt-1">The most oinktastic meme coin on Solana</p>
+                    <p className="text-gray-400 mt-1">Devised by an AI chatbot called Truth Terminal</p>
                   </div>
                 </div>
+                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
                     <h4 className="text-yellow-400 font-semibold mb-2">Live Price Data</h4>
-                    {moonpigLoading ? (
+                    {fartcoinLoading ? (
                       <p className="text-gray-400">Loading...</p>
-                    ) : moonpigError ? (
-                      <p className="text-red-500">{moonpigError}</p>
-                    ) : moonpigData ? (
+                    ) : fartcoinError ? (
+                      <p className="text-red-500">{fartcoinError}</p>
+                    ) : fartcoinData ? (
                       <div className="space-y-2">
                         <p className="text-white">
-                          Price: <span className="text-yellow-500 font-bold">{formatNumber(moonpigData.price.usd)}</span>
+                          Price: <span className="text-yellow-500 font-bold">{formatNumber(fartcoinData.price.usd)}</span>
                         </p>
                         <p className="text-white">
-                          24h Change: <span className={`font-bold ${moonpigData.price.change24h >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                            {moonpigData.price.change24h >= 0 ? '+' : ''}{moonpigData.price.change24h?.toFixed(2)}%
+                          24h Change: <span className={`font-bold ${fartcoinData.price.change24h >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                            {fartcoinData.price.change24h >= 0 ? '+' : ''}{fartcoinData.price.change24h?.toFixed(2)}%
                           </span>
                         </p>
                         <p className="text-white">
-                          24h Volume: <span className="text-yellow-500 font-bold">{formatNumber(moonpigData.volume.h24)}</span>
+                          24h Volume: <span className="text-yellow-500 font-bold">{formatNumber(fartcoinData.volume.h24)}</span>
                         </p>
                         <p className="text-white">
-                          Liquidity: <span className="text-yellow-500 font-bold">{formatNumber(moonpigData.liquidity.usd)}</span>
+                          Liquidity: <span className="text-yellow-500 font-bold">{formatNumber(fartcoinData.liquidity.usd)}</span>
                         </p>
                       </div>
                     ) : (
@@ -658,15 +660,15 @@ export default function LiquidityPage() {
                   <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
                     <h4 className="text-yellow-400 font-semibold mb-2">Quick Links</h4>
                     <div className="flex flex-col gap-2">
-                      <a href="https://dexscreener.com/solana/Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">View on DEXScreener</a>
-                      <a href="https://solscan.io/token/Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">View on Solscan</a>
+                      <a href="https://dexscreener.com/solana/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">View on DEXScreener</a>
+                      <a href="https://solscan.io/token/9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">View on Solscan</a>
                     </div>
                   </div>
                   <div className="bg-black/30 p-4 rounded border border-yellow-500/30">
                     <h4 className="text-yellow-400 font-semibold mb-2">Trading Pairs</h4>
                     <div className="flex flex-col gap-2">
-                      <a href="https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">SOL/MOONPIG on Raydium</a>
-                      <a href="https://jup.ag/swap/SOL-Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">SOL/MOONPIG on Jupiter</a>
+                      <a href="https://raydium.io/swap/?inputCurrency=SOL&outputCurrency=9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">SOL/FART on Raydium</a>
+                      <a href="https://jup.ag/swap/SOL-9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:text-yellow-400 transition-colors">SOL/FART on Jupiter</a>
                     </div>
                   </div>
                 </div>
@@ -965,6 +967,33 @@ export default function LiquidityPage() {
                         Wynn&apos;s final post on the matter became iconic: &quot;Lost $100M, gained a legend. Moonpig lives. 🐷&quot; His story embodies the high-stakes nature of crypto trading and the power of community in the memecoin space.
                       </p>
                     </div>
+                  </div>
+
+                  {/* Critical Warning Section */}
+                  <div className="bg-red-900/20 border-2 border-red-500 rounded-none p-6 mt-8">
+                    <h4 className="text-red-400 font-bold mb-4 text-xl">⚠️ CRITICAL UPDATE: Recent Developments</h4>
+                    <div className="space-y-4">
+                      <p className="text-red-300 text-sm leading-relaxed">
+                        James Wynn has recently moved away from $MOONPIG after one of his side wallets dumped massive supply, causing a 50% drop in token value. He initially claimed he was de-risking his portfolio due to war news, but has since deleted that post. He has also been involved in another coin scam and has completely stopped posting about Moonpig.
+                      </p>
+                      <p className="text-red-200 text-sm font-semibold">
+                        This appears to be a classic pump-and-dump scenario. Exercise extreme caution with any tokens associated with James Wynn or similar influencers who have a history of abandoning projects after profiting from them.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-white/90 space-y-4 mt-6">
+                    <h4 className="text-yellow-400 font-semibold text-lg">Red Flags to Watch For:</h4>
+                    <ul className="list-disc list-inside space-y-2 text-white/90">
+                      <li>Influencers suddenly changing their narrative or deleting posts</li>
+                      <li>Large wallet dumps coinciding with influencer announcements</li>
+                      <li>Claims of &quot;de-risking&quot; or &quot;portfolio management&quot; as excuses for selling</li>
+                      <li>Abandonment of projects after initial promotion</li>
+                      <li>History of involvement in multiple failed or scam projects</li>
+                    </ul>
+                    <p className="text-yellow-300 font-semibold mt-4">
+                      Always verify wallet addresses, check transaction history, and be skeptical of influencers who have a track record of abandoning projects.
+                    </p>
                   </div>
 
                   <div className="bg-yellow-500/10 p-4 rounded border border-yellow-500/30">

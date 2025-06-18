@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 
-const MOONPIG_ADDRESS = 'Ai3eKAWjzKMV8wRwd41nVP83yqfbAVJykhvJVPxspump';
+const FARTCOIN_ADDRESS = '9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump';
 
 export async function GET() {
   try {
     // Fetch token data from DEXScreener
-    const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${MOONPIG_ADDRESS}`);
+    const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${FARTCOIN_ADDRESS}`);
     
     if (!response.ok) {
       throw new Error('Failed to fetch data from DEXScreener');
@@ -22,9 +22,9 @@ export async function GET() {
 
     // Format the response with relevant data
     const formattedData = {
-      name: pair.baseToken?.name || 'Moonpig',
-      symbol: pair.baseToken?.symbol || 'MOONPIG',
-      address: MOONPIG_ADDRESS,
+      name: pair.baseToken?.name || 'Fartcoin',
+      symbol: pair.baseToken?.symbol || 'FART',
+      address: FARTCOIN_ADDRESS,
       price: {
         usd: pair.priceUsd,
         change24h: pair.priceChange?.h24,
@@ -51,7 +51,7 @@ export async function GET() {
     });
   } catch {
     return NextResponse.json(
-      { error: 'Failed to fetch Moonpig data' },
+      { error: 'Failed to fetch Fartcoin data' },
       { status: 500 }
     );
   }
