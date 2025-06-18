@@ -306,6 +306,133 @@ export default function MidlifePage() {
             </div>
           </div>
 
+          {/* Dalio Leverage/U-Curve Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Why Your 40s Feel Like Collapse — And How to Leverage the U-Curve Instead</h2>
+            <p className="text-lg text-white/80 mb-4">
+              Your 40s will wreck you.<br/>
+              You&apos;re working 60-hour weeks.<br/>
+              Your kids need money.<br/>
+              Your parents need care.<br/>
+              Your energy is down, but the expectations are up.<br/>
+            </p>
+            <p className="text-lg text-white/80 mb-4">
+              Economists call it the &quot;midlife squeeze.&quot;<br/>
+              Psychologists call it the happiness U-curve.<br/>
+              Ray Dalio calls it the turning point that made him.<br/>
+              And most people? They never see it coming.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">📉 The U-Curve Is Real. So Is the Squeeze.</h3>
+            <p className="text-lg text-white/80 mb-4">
+              Across 132 countries, the data tells the same story: Happiness hits rock bottom between ages 45 and 50.<br/>
+              It&apos;s not about mood. It&apos;s math.<br/>
+              You&apos;re part of the &quot;sandwich generation&quot; — financially supporting children while caring for aging parents.<br/>
+              47% of adults in their 40s and 50s are living this double-load reality.
+            </p>
+            <ul className="text-white/80 mb-4 list-disc list-inside">
+              <li>Raising a child: $233,610</li>
+              <li>Eldercare: $75,000/year</li>
+              <li>Career: Peak earning years with zero margin for error</li>
+            </ul>
+            <p className="text-lg text-white/80 mb-4">
+              Meanwhile, your brain is in full-blown survival mode:<br/>
+              Your amygdala — the fight-or-flight control center — actually grows by 20%.<br/>
+              Your decision-making capacity? It drops by 13 IQ points under chronic stress.<br/>
+              This isn&apos;t burnout. It&apos;s biology.<br/>
+              And this moment — this dip — breaks most people.<br/>
+              But it doesn&apos;t have to.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">🧭 Ray Dalio&apos;s Midlife Collapse Was the Beginning of His Empire</h3>
+            <p className="text-lg text-white/80 mb-4">
+              In 1982, Ray Dalio got it all wrong.<br/>
+              His firm, Bridgewater Associates, was on the brink.<br/>
+              He lost clients, money, reputation.<br/>
+              But instead of hiding, he built a framework.<br/>
+              <span className="italic text-yellow-400">&quot;The key to thriving in complexity is leverage.&quot;<br/>— Dalio</span>
+            </p>
+            <p className="text-lg text-white/80 mb-4">
+              He called it the Leverage Principle:<br/>
+              More output, less input.<br/>
+              50:1 efficiency, clarity, and trust.<br/>
+              The kind of operating system midlife demands.
+            </p>
+            <p className="text-lg text-white/80 mb-4">
+              Here&apos;s how it works:
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">📈 The 3 Pillars of the U-Curve Rebound</h3>
+            <ol className="list-decimal list-inside text-white/80 mb-4 space-y-2">
+              <li>
+                <span className="font-semibold text-yellow-400">Mental Clarity → Amplify Focus</span><br/>
+                Dalio starts every morning with Transcendental Meditation.<br/>
+                Science backs him up: cortisol (your stress hormone) drops by 30%.<br/>
+                Your 40s aren&apos;t the time to grind harder. They&apos;re the time to think sharper.<br/>
+                Midlife leverage begins with protecting your mind.<br/>
+                Build rituals. Own your mornings. Block your best hours for your deepest moves.
+              </li>
+              <li>
+                <span className="font-semibold text-yellow-400">Relationship Optimization → Audit Your Circle</span><br/>
+                The longest-running Harvard study on happiness landed on one conclusion:<br/>
+                &quot;The quality of your relationships determines the quality of your life.&quot;<br/>
+                Dalio runs relationship audits — regularly.<br/>
+                He identifies:<br/>
+                <ul className="list-disc list-inside ml-6">
+                  <li>Energy creators vs. energy drainers</li>
+                  <li>Who helps him grow</li>
+                  <li>Who distracts from the mission</li>
+                </ul>
+                He doesn&apos;t ghost. He recalibrates.<br/>
+                Midlife isn&apos;t about cutting people off. It&apos;s about realigning expectations.
+              </li>
+              <li>
+                <span className="font-semibold text-yellow-400">Strategic Leverage → Multiply Your Impact</span><br/>
+                This is where the curve flips.<br/>
+                Dalio gets 50x return on time by using:<br/>
+                <ul className="list-disc list-inside ml-6">
+                  <li>Technology to codify once, deploy forever</li>
+                  <li>Principles to automate decision-making</li>
+                  <li>People who are better at the work than him</li>
+                </ul>
+                He starts each day with 2–3 high-leverage actions — tasks that create disproportionate returns.<br/>
+                Then he aligns those actions with his peak mental state.<br/>
+                Most people waste their best energy on emails.<br/>
+                Dalio spends his on building empires.
+              </li>
+            </ol>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">🌀 Reframing the U-Curve: It&apos;s Not Decline — It&apos;s the Setup</h3>
+            <p className="text-lg text-white/80 mb-4">
+              At livethelife.tv, we don&apos;t see your 40s as a crisis.<br/>
+              We see them as a system upgrade.<br/>
+              The dip isn&apos;t dysfunction. It&apos;s data.<br/>
+              It&apos;s the part of the story where the hero stops trying to win the wrong game…<br/>
+              and starts designing a life worth scaling.<br/>
+              Just like startups hit founder fatigue after product-market fit,<br/>
+              life hits complexity once you&apos;ve built something worth protecting.<br/>
+              But that&apos;s when you stop sprinting and start scaling with strategy.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">✨ The U-Curve Is Your Invitation to Reinvent</h3>
+            <p className="text-lg text-white/80 mb-4">
+              When you feel like it&apos;s all collapsing, you&apos;re actually standing at the base of the next arc.<br/>
+              It&apos;s not about doing more. It&apos;s about doing differently.
+            </p>
+            <ul className="text-white/80 mb-4 list-disc list-inside">
+              <li>Meditate.</li>
+              <li>Audit.</li>
+              <li>Leverage.</li>
+              <li>Protect your attention like capital.</li>
+              <li>Build your compound time engine.</li>
+            </ul>
+            <p className="text-lg text-white/80 mb-4">
+              The U-curve is real.<br/>
+              But so is the rebound.<br/>
+              And it&apos;s even stronger when you build it on your own terms — not society&apos;s playbook.
+            </p>
+          </div>
+
           {/* Final Note Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Final Note: The U-Curve, Privilege, and the Power to Reimagine</h3>
