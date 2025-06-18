@@ -456,6 +456,84 @@ export default function MidlifePage() {
               Ready to co-author that future? Let&apos;s build it—curve by curve.
             </p>
           </div>
+
+          {/* Fork in the Wave Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-yellow-500 mb-12 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">The Fork in the Wave: Where the U-Curve Breaks After 2030</h2>
+            <p className="text-2xl md:text-3xl leading-relaxed text-white/90 mb-10 max-w-3xl">
+              We&apos;ve shown how your 40s can flip from crushing squeeze to creative springboard, but the larger arc of society is about to split in two—like a perfect wave that closes out for some and opens into a clean barrel for others. Therefore it&apos;s time to read the swell before it hits.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🌊 2025-2030 · The Set-Up</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              AGI jumps from labs to laptops. Mid-skill ladders vanish; equity flows to the top 10%. Municipal skies fill with drone swarms, sold as &quot;situational awareness,&quot; but really fencing crowds into data corrals. Governments plug the gaps with UBI stipends—just enough dopamine to dull revolt.
+            </p>
+            <p className="italic text-yellow-400 md:text-3xl lg:text-4xl font-serif mb-10 max-w-4xl">
+              LiveTheLife.tv takeaway: Skill up on ownership, not just output. Collect equity in open-source AI or culture DAOs the way we collect secret surf spots—because access beats possession when the tide shifts.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🌴 2030-2035 · The Split</h3>
+            <ul className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl list-disc list-inside">
+              <li>AGI⁺ Nouveau Rich retreat to lidar-ringed cul-de-sacs: private reefs, biometric gates, on-demand everything.</li>
+              <li>UBI⁺ Underbelly scrolls hyper-personal feeds, praying to GPT-prophets that whisper why the status quo is &quot;just the way.&quot;</li>
+            </ul>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              Birth licenses replace baby showers, issued only to those who pass a &quot;resource viability score.&quot; Revolts ignite on socials, fizzle under drone spotlights.
+            </p>
+            <p className="italic text-yellow-400 md:text-3xl lg:text-4xl font-serif mb-10 max-w-4xl">
+              LiveTheLife.tv takeaway: Culture still slips through cracks. A single meme, a song, a piece of generative art can cross every firewall—use it.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🧭 2035-2045 · Two Futures, One Choice</h3>
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mb-4">Path A · The Great Silencing</h4>
+                <ul className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl list-disc list-inside">
+                  <li>Enclaves hoard water, land, algorithmic alpha.</li>
+                  <li>AI gospels justify hierarchy.</li>
+                  <li>Protest equals instant geofence.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mb-4">Path B · The Quiet Rebellion</h4>
+                <ul className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl list-disc list-inside">
+                  <li>Mesh economies trade energy, art, micro-manufacturing peer-to-peer.</li>
+                  <li>Open-source agents leak, fork, iterate in the wild.</li>
+                  <li>Network states form around values, not ZIP codes.</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              Which breaks first—walls or waves? History says walls crack wherever creativity seeps in.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🛠️ How to Bend Your Personal Curve</h3>
+            <ol className="list-decimal list-inside text-white/80 mb-8 space-y-2 text-lg md:text-2xl leading-relaxed max-w-4xl">
+              <li><span className="font-semibold text-yellow-400">Own a Slice of the Toolchain</span><br/>Equity in data DAOs or open agents &gt; salary in legacy firms.</li>
+              <li><span className="font-semibold text-yellow-400">Compound Relationships, Not Credentials</span><br/>Trust networks move faster than diplomas once AI grades the tests.</li>
+              <li><span className="font-semibold text-yellow-400">Curate Low-Entropy Zones</span><br/>Morning surf, nightly meditation—protect headspace like capital.</li>
+              <li><span className="font-semibold text-yellow-400">Meme With Intent</span><br/>Narratives travel lighter than drones and slip past every checkpoint.</li>
+            </ol>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🏄‍♂️ The LiveTheLife.tv Stance</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              We don&apos;t accept a future of gated cul-de-sacs and drone-policed sunsets. We&apos;re carving a third line: luxury that remains porous, art that stays open-source, and travel that rewires perspective rather than escapes it.
+            </p>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              The wave is forming. But waves are invitations, not verdicts. Therefore the only question left is:
+            </p>
+            <p className="text-2xl md:text-3xl leading-relaxed text-yellow-400 font-extrabold mb-8 max-w-3xl">
+              Will you duck-dive beneath the coming set—or paddle into the barrel and shape the next horizon with us?
+            </p>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 font-semibold mb-8 max-w-4xl">
+              Drop in, or drift. What&apos;s your move?
+            </p>
+          </div>
         </div>
       </div>
     </div>
