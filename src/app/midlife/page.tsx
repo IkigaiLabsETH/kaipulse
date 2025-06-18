@@ -175,7 +175,7 @@ export default function MidlifePage() {
           {/* Main Content Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <div className="space-y-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 Why Your 50s Might Just Be the Beginning of Your Best Chapter Yet
               </h2>
               <p className="text-lg text-white/80">
@@ -190,7 +190,7 @@ export default function MidlifePage() {
 
               <div className="h-px w-full bg-yellow-500/30 my-8"></div>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 📉 The Descent: When Life Gets Real (and Weirdly Less Fun)
               </h2>
               <p className="text-lg text-white/80">
@@ -208,7 +208,7 @@ export default function MidlifePage() {
 
               <div className="h-px w-full bg-yellow-500/30 my-8"></div>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 🧠 What&apos;s Really Happening: It&apos;s Not a Crisis, It&apos;s a Reckoning
               </h2>
               <p className="text-lg text-white/80">
@@ -221,14 +221,14 @@ export default function MidlifePage() {
                 So what gives?
               </p>
               <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                <p className="text-white/80 italic mb-2">&quot;In our 40s and 50s, we start confronting the gap between expectation and reality,&quot; says Dr. Jonathan Rauch, author of The Happiness Curve. &quot;We&apos;ve built the life we were told to want, and yet something feels...off.&quot;</p>
+                <p className="italic text-yellow-400 md:text-2xl mb-6">&quot;In our 40s and 50s, we start confronting the gap between expectation and reality,&quot; says Dr. Jonathan Rauch, author of The Happiness Curve. &quot;We&apos;ve built the life we were told to want, and yet something feels...off.&quot;</p>
                 <p className="text-white/80">You might be successful on paper — but paper doesn&apos;t hug you back. You might be secure — but security isn&apos;t the same as freedom.</p>
                 <p className="text-white/80">So the dip? It&apos;s not failure. It&apos;s feedback. It&apos;s your soul whispering: what now?</p>
               </div>
 
               <div className="h-px w-full bg-yellow-500/30 my-8"></div>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 🌅 The Rise: Joy, Reimagined
               </h2>
               <p className="text-lg text-white/80">
@@ -256,7 +256,7 @@ export default function MidlifePage() {
 
               <div className="h-px w-full bg-yellow-500/30 my-8"></div>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 🌀 The Bigger Picture: Your U-Curve as a Sacred Arc
               </h2>
               <p className="text-lg text-white/80">
@@ -271,7 +271,7 @@ export default function MidlifePage() {
 
               <div className="h-px w-full bg-yellow-500/30 my-8"></div>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 🌍 Live the Life, Curve and All
               </h2>
               <p className="text-lg text-white/80">
@@ -294,7 +294,7 @@ export default function MidlifePage() {
 
               <div className="h-px w-full bg-yellow-500/30 my-8"></div>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-yellow-500">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
                 Your Happiness Isn&apos;t Behind You — It&apos;s Just Getting Started.
               </h2>
               <p className="text-lg text-white/80">
@@ -308,34 +308,34 @@ export default function MidlifePage() {
 
           {/* Dalio Leverage/U-Curve Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Why Your 40s Feel Like Collapse — And How to Leverage the U-Curve Instead</h2>
-            <p className="text-lg text-white/80 mb-4">
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">Why Your 40s Feel Like Collapse — And How to Leverage the U-Curve Instead</h2>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               Your 40s will wreck you.<br/>
               You&apos;re working 60-hour weeks.<br/>
               Your kids need money.<br/>
               Your parents need care.<br/>
               Your energy is down, but the expectations are up.<br/>
             </p>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               Economists call it the &quot;midlife squeeze.&quot;<br/>
               Psychologists call it the happiness U-curve.<br/>
               Ray Dalio calls it the turning point that made him.<br/>
               And most people? They never see it coming.
             </p>
             <div className="h-px w-full bg-yellow-500/30 my-8"></div>
-            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">📉 The U-Curve Is Real. So Is the Squeeze.</h3>
-            <p className="text-lg text-white/80 mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-4">📉 The U-Curve Is Real. So Is the Squeeze.</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               Across 132 countries, the data tells the same story: Happiness hits rock bottom between ages 45 and 50.<br/>
               It&apos;s not about mood. It&apos;s math.<br/>
               You&apos;re part of the &quot;sandwich generation&quot; — financially supporting children while caring for aging parents.<br/>
               47% of adults in their 40s and 50s are living this double-load reality.
             </p>
-            <ul className="text-white/80 mb-4 list-disc list-inside">
+            <ul className="text-white/80 mb-6 list-disc list-inside text-lg md:text-2xl leading-relaxed">
               <li>Raising a child: $233,610</li>
               <li>Eldercare: $75,000/year</li>
               <li>Career: Peak earning years with zero margin for error</li>
             </ul>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               Meanwhile, your brain is in full-blown survival mode:<br/>
               Your amygdala — the fight-or-flight control center — actually grows by 20%.<br/>
               Your decision-making capacity? It drops by 13 IQ points under chronic stress.<br/>
@@ -344,26 +344,26 @@ export default function MidlifePage() {
               But it doesn&apos;t have to.
             </p>
             <div className="h-px w-full bg-yellow-500/30 my-8"></div>
-            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">🧭 Ray Dalio&apos;s Midlife Collapse Was the Beginning of His Empire</h3>
-            <p className="text-lg text-white/80 mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-4">🧭 Ray Dalio&apos;s Midlife Collapse Was the Beginning of His Empire</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               In 1982, Ray Dalio got it all wrong.<br/>
               His firm, Bridgewater Associates, was on the brink.<br/>
               He lost clients, money, reputation.<br/>
               But instead of hiding, he built a framework.<br/>
-              <span className="italic text-yellow-400">&quot;The key to thriving in complexity is leverage.&quot;<br/>— Dalio</span>
+              <span className="italic text-yellow-400 md:text-2xl mb-6">&quot;The key to thriving in complexity is leverage.&quot;<br/>— Dalio</span>
             </p>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               He called it the Leverage Principle:<br/>
               More output, less input.<br/>
               50:1 efficiency, clarity, and trust.<br/>
               The kind of operating system midlife demands.
             </p>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               Here&apos;s how it works:
             </p>
             <div className="h-px w-full bg-yellow-500/30 my-8"></div>
-            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">📈 The 3 Pillars of the U-Curve Rebound</h3>
-            <ol className="list-decimal list-inside text-white/80 mb-4 space-y-2">
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-4">📈 The 3 Pillars of the U-Curve Rebound</h3>
+            <ol className="list-decimal list-inside text-white/80 mb-6 space-y-2 text-lg md:text-2xl leading-relaxed">
               <li>
                 <span className="font-semibold text-yellow-400">Mental Clarity → Amplify Focus</span><br/>
                 Dalio starts every morning with Transcendental Meditation.<br/>
@@ -378,7 +378,7 @@ export default function MidlifePage() {
                 &quot;The quality of your relationships determines the quality of your life.&quot;<br/>
                 Dalio runs relationship audits — regularly.<br/>
                 He identifies:<br/>
-                <ul className="list-disc list-inside ml-6">
+                <ul className="list-disc list-inside ml-6 text-lg md:text-2xl leading-relaxed">
                   <li>Energy creators vs. energy drainers</li>
                   <li>Who helps him grow</li>
                   <li>Who distracts from the mission</li>
@@ -390,7 +390,7 @@ export default function MidlifePage() {
                 <span className="font-semibold text-yellow-400">Strategic Leverage → Multiply Your Impact</span><br/>
                 This is where the curve flips.<br/>
                 Dalio gets 50x return on time by using:<br/>
-                <ul className="list-disc list-inside ml-6">
+                <ul className="list-disc list-inside ml-6 text-lg md:text-2xl leading-relaxed">
                   <li>Technology to codify once, deploy forever</li>
                   <li>Principles to automate decision-making</li>
                   <li>People who are better at the work than him</li>
@@ -402,8 +402,8 @@ export default function MidlifePage() {
               </li>
             </ol>
             <div className="h-px w-full bg-yellow-500/30 my-8"></div>
-            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">🌀 Reframing the U-Curve: It&apos;s Not Decline — It&apos;s the Setup</h3>
-            <p className="text-lg text-white/80 mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-4">🌀 Reframing the U-Curve: It&apos;s Not Decline — It&apos;s the Setup</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               At livethelife.tv, we don&apos;t see your 40s as a crisis.<br/>
               We see them as a system upgrade.<br/>
               The dip isn&apos;t dysfunction. It&apos;s data.<br/>
@@ -414,19 +414,19 @@ export default function MidlifePage() {
               But that&apos;s when you stop sprinting and start scaling with strategy.
             </p>
             <div className="h-px w-full bg-yellow-500/30 my-8"></div>
-            <h3 className="text-xl md:text-2xl font-bold text-yellow-500 mb-2">✨ The U-Curve Is Your Invitation to Reinvent</h3>
-            <p className="text-lg text-white/80 mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-4">✨ The U-Curve Is Your Invitation to Reinvent</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               When you feel like it&apos;s all collapsing, you&apos;re actually standing at the base of the next arc.<br/>
               It&apos;s not about doing more. It&apos;s about doing differently.
             </p>
-            <ul className="text-white/80 mb-4 list-disc list-inside">
+            <ul className="text-white/80 mb-6 list-disc list-inside text-lg md:text-2xl leading-relaxed">
               <li>Meditate.</li>
               <li>Audit.</li>
               <li>Leverage.</li>
               <li>Protect your attention like capital.</li>
               <li>Build your compound time engine.</li>
             </ul>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               The U-curve is real.<br/>
               But so is the rebound.<br/>
               And it&apos;s even stronger when you build it on your own terms — not society&apos;s playbook.
@@ -435,24 +435,24 @@ export default function MidlifePage() {
 
           {/* Final Note Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-4">Final Note: The U-Curve, Privilege, and the Power to Reimagine</h3>
-            <p className="text-lg text-white/80 mb-4">
+            <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-yellow-500 mb-8 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">The U-Curve, Privilege, and the Power to Reimagine</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               <span className="font-bold text-yellow-400">The U-Curve Is Real — But Context Is Everything</span><br/>
               The happiness U-curve is a well-documented phenomenon, surfacing in data from dozens of countries, income brackets, and even among our primate cousins. But it&apos;s not a one-size-fits-all destiny. For Boomers and Gen X, the curve was cushioned by affordable homes, stable jobs, and strong safety nets. Millennials and Gen Z, meanwhile, are navigating a world of soaring costs, gig work, debt, and relentless uncertainty.
             </p>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               <span className="font-bold text-yellow-400">The Shape Remains — But the Valley Feels Deeper</span><br/>
               Today&apos;s younger generations still trace a U-shaped arc, but the starting line is lower, the dip is steeper, and the climb out is less assured—unless we actively rewrite the script. At LiveTheLife.tv, we don&apos;t pine for the past. We&apos;re here to help you build a future rooted in autonomy, creativity, and community—leveraging Web3 and new models of meaning.
             </p>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               <span className="font-bold text-yellow-400">If Your Curve Looks Like a W, You&apos;re Not Broken</span><br/>
               If your happiness feels more like a rollercoaster or a flatline, it&apos;s not a personal failing—it&apos;s a reflection of the times. Thriving now means redefining success: choosing autonomy over algorithms, ownership over extraction, and meaning over mindless consumption.
             </p>
-            <p className="text-lg text-white/80 mb-4">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-6">
               <span className="font-bold text-yellow-400">Let&apos;s Bend the Curve — On Our Terms</span><br/>
               We may not inherit the privileges of previous generations, but we can choose to bend our own arc—toward art, joy, and collective liberation. The boomer curve was easier; ours can be more intentional, more communal, and more deeply aligned with what matters.
             </p>
-            <p className="text-lg text-white/80 font-semibold">
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 font-semibold mb-6">
               Ready to co-author that future? Let&apos;s build it—curve by curve.
             </p>
           </div>
