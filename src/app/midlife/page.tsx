@@ -534,6 +534,58 @@ export default function MidlifePage() {
               Drop in, or drift. What&apos;s your move?
             </p>
           </div>
+
+          {/* Bitcoin: The Rip-Current Beneath the Fork Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] max-w-7xl mx-auto my-12">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-yellow-500 mb-12 [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">Bitcoin: The Rip-Current Beneath the Fork</h2>
+            <p className="text-2xl md:text-3xl leading-relaxed text-white/90 mb-10 max-w-3xl">
+              We&apos;ve mapped how society may split between AGI-powered enclaves and UBI-padded underbellies, but there&apos;s a third force rolling beneath both shorelines: Bitcoin. Therefore any future forecast that ignores this orange undertow is reading the set without spotting the rip current.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🪙 1.  The AGI⁺ Class Will Hoard Satoshis, Not Cash</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              Spot-Bitcoin ETFs now pull in billions of dollars a week, giving institutions a compliance-wrapped gateway to hard-capped digital gold. BlackRock alone steered more than $400 million in a single day, pushing total ETF inflows past $46 billion in under six months.<br/>
+              Corporate treasuries are already rebalancing. When AGI starts printing alpha at 50 : 1 leverage, the nouveau rich will hedge that fiat overflow in 21 million scarce coins.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🌐 2.  Mesh-Economy Lifeline for the UBI⁺ Majority</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              Lightning Network fees have crashed to fractions of a cent, making sub-penny payments viable for content, energy swaps, even IoT machine-to-machine rentals.<br/>
+              Add BRC-20 and Ordinals, and suddenly Bitcoin isn&apos;t just a vault—it&apos;s a creator rail projected to unlock a $4.5 billion NFT market by 2025.<br/>
+              In Path B (&quot;Quiet Rebellion&quot;), peer-to-peer sats fund local micro-factories, surf-hostel DAOs, and off-grid art residencies—beyond any central choke point.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🛡️ 3.  Birth-Right Money in a Permissioned-Procreation World</h3>
+            <p className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl">
+              When population &quot;stewardship scores&quot; decide who may reproduce, parents can time-lock Bitcoin for future heirs—seed phrases memorized, etched on art, or embedded in generative glyphs. No gatekeeper, no veto.
+            </p>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🚨 4.  Why The Great Silencing Still Fears Orange</h3>
+            <ul className="text-lg md:text-2xl leading-relaxed text-white/80 mb-8 max-w-4xl list-disc list-inside">
+              <li>Drone swarms can geofence bodies, not keys.</li>
+              <li>KYC walls shove more liquidity into non-custodial dark pools.</li>
+              <li>AI gospels may preach post-scarcity serenity, but Bitcoin&apos;s fixed supply is the ultimate counter-narrative to infinite-money PR.</li>
+            </ul>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">🏄‍♂️ LiveTheLife.tv Playbook — Riding, Not Fighting, the Rip</h3>
+            <ol className="list-decimal list-inside text-white/80 mb-8 space-y-2 text-lg md:text-2xl leading-relaxed max-w-4xl">
+              <li><span className="font-semibold text-yellow-400">Stack Sovereign Liquidity</span><br/>Allocate a slice of treasury or personal net worth to cold-storage BTC or low-fee ETFs—your hedge against AGI-inflated assets and UBI-flatlined wages.</li>
+              <li><span className="font-semibold text-yellow-400">Leverage Layer-2 Flow</span><br/>Launch Lightning-native revenue: sat-streamed surf cams, micro-paywalled editorials, Bitcoin-secured art drops.</li>
+              <li><span className="font-semibold text-yellow-400">Seed Mesh Nodes Early</span><br/>Partner with Lightning hubs in surf towns and artist residencies—proof-of-work meets proof-of-place.</li>
+              <li><span className="font-semibold text-yellow-400">Meme With Intent</span><br/>Weave Bitcoin lore into every story: sovereignty, scarcity, renaissance. Memes travel lighter than drones and slip past every checkpoint.</li>
+            </ol>
+            <div className="h-px w-full bg-yellow-500/30 my-8"></div>
+
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-yellow-500 mb-6">Bottom Line</h3>
+            <p className="text-2xl md:text-3xl leading-relaxed text-yellow-400 font-extrabold mb-8 max-w-3xl">
+              The coming bifurcation may wall off lidar-ringed cul-de-sacs, but Bitcoin seeps through every crack, therefore acting both as the castle vault and the rebel&apos;s lifeline. Ignore it, and you&apos;ll surf the future on someone else&apos;s board.
+            </p>
+          </div>
         </div>
       </div>
     </div>
