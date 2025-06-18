@@ -167,7 +167,7 @@ export default function CryptoPage() {
                 Solana (SOL)
               </Button>
             </Link>
-            <Link href="/hype" className="w-full sm:w-auto flex-1">
+            <Link href="/hyperliquid" className="w-full sm:w-auto flex-1">
               <Button
                 size="lg"
                 className="relative w-full gap-2 sm:gap-3 font-semibold text-sm sm:text-base py-3 sm:py-6 bg-gradient-to-r from-black via-zinc-900 to-black hover:bg-[#F7B500] hover:from-[#F7B500] hover:via-[#F7B500] hover:to-[#F7B500] text-[#F7B500] hover:text-black transition-all duration-300 ease-out border border-[#F7B500] shadow-[3px_3px_0px_0px_#F7B500] sm:shadow-[5px_5px_0px_0px_#F7B500] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] sm:hover:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] disabled:opacity-70 disabled:cursor-not-allowed rounded-md text-xl sm:text-2xl font-epilogue tracking-tight"
