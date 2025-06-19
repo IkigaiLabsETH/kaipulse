@@ -710,6 +710,121 @@ export default function BioPage() {
         </div>
       </div>
 
+      {/* The Signal Section */}
+      <div className="py-24 relative overflow-hidden">
+        {/* Artistic background elements */}
+        <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-[0.02] mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-yellow-950/5 to-black"></div>
+        
+        {/* Bitcoin pattern background */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ 
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35.6c-3 0-5.6-2.6-5.6-5.6s2.6-5.6 5.6-5.6 5.6 2.6 5.6 5.6-2.5 5.6-5.6 5.6zm-.7-9.8v1.5c-1 0-1.7.3-1.9.6-.3.4-.1 1 .3 1.9l1.3-.5c-.2-.4-.2-.8-.1-.9 0 0 .2-.1.5-.1v2.1l-.4.1c-.7.2-1.3.5-1.6.9-.3.4-.4.9-.3 1.4.1.5.4.9.8 1.1.4.3.9.4 1.5.4v.9h.9v-.9c1.2-.1 2-1 2.4-1.9l-1.4-.6c-.2.5-.5.8-.9.9v-1.9c.7-.2 1.2-.4 1.6-.7.3-.2.6-.5.7-.9.1-.3.1-.7 0-1.1-.1-.4-.4-.7-.7-.9-.3-.2-.8-.3-1.3-.4v-1.5h-.9zm0 6.5c-.4 0-.6-.3-.6-.5 0-.2.1-.3.2-.4.1-.1.2-.1.5-.2v1.1h-.1zm.9-3.1v-1c.2 0 .4.1.5.2.1.1.2.2.2.4 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2-.2-.1-.3 0-.4-.1z' fill='%23F7B500' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: "60px 60px"
+        }}></div>
+
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Premium gold border with enhanced glow gradient */}
+            <motion.div 
+              className="absolute -inset-0.5 bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600 rounded-sm shadow-[0_0_30px_rgba(234,179,8,0.2)]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="absolute inset-0.5 bg-black/95 backdrop-blur-sm rounded-sm"></div>
+            </motion.div>
+
+            <div className="relative z-10 p-12">
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold text-yellow-500 mb-12 tracking-tight font-satoshi"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                The Signal
+              </motion.h2>
+              <motion.div 
+                className="space-y-6 text-xl text-white/90 leading-relaxed font-satoshi"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <p>
+                  You spoke about Bitcoin.
+                </p>
+                <p>
+                  They nodded, half-listening.<br />
+                  Some smirked. Others scoffed.<br />
+                  Most changed the subject.
+                </p>
+                <p>
+                  You weren&apos;t preaching.<br />
+                  Just sharing something<br />
+                  that rewired how you saw the world.
+                </p>
+                <p>
+                  They weren&apos;t ready.<br />
+                  It sounded… off.<br />
+                  Too radical. Too risky.
+                </p>
+                <p>
+                  So you stopped pushing.<br />
+                  You started listening.<br />
+                  You learned in silence.<br />
+                  You held through storms.
+                </p>
+                <p>
+                  And the world began to crack.
+                </p>
+                <p>
+                  The trust they once had<br />
+                  in the old system<br />
+                  started to rot from within.
+                </p>
+                <p>
+                  Now the laughter&apos;s faded.<br />
+                  The questions have begun.
+                </p>
+                <p>
+                  Not because you convinced them—<br />
+                  but because the world<br />
+                  did the convincing for you.
+                </p>
+                <p>
+                  Now, when they come back around,<br />
+                  they&apos;re not asking for price targets.
+                </p>
+                <p>
+                  They&apos;re asking for something real.<br />
+                  Something that won&apos;t vanish<br />
+                  when the music stops.
+                </p>
+                <p>
+                  They&apos;re looking for signal.<br />
+                  And they&apos;re looking at you.
+                </p>
+              </motion.div>
+
+              {/* Decorative separator */}
+              <div className="mt-16 flex items-center justify-center">
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                <div className="mx-4 text-yellow-500/50 text-2xl">⸻</div>
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Manifesto Section */}
       <div className="py-24 relative overflow-hidden">
         {/* Artistic background elements */}
