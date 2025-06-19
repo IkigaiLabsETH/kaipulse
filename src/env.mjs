@@ -11,6 +11,7 @@ export const env = createEnv({
     REDIS_TOKEN: z.string().optional(),
   },
   client: {
+    NEXT_PUBLIC_SITE_URL: z.string().url().optional().default("http://localhost:3000"),
     NEXT_PUBLIC_CMP_CONTRACT_ADDRESS: z.string().optional(),
     NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID: z.string().optional(),
     NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID: z.string().optional(),
@@ -25,6 +26,7 @@ export const env = createEnv({
     REDIS_TOKEN: process.env.REDIS_TOKEN,
   },
   experimental__runtimeEnv: {
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_CMP_CONTRACT_ADDRESS: process.env.NEXT_PUBLIC_CMP_CONTRACT_ADDRESS,
     NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID: process.env.NEXT_PUBLIC_CMP_CONTRACT_CHAIN_ID,
     NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID: process.env.NEXT_PUBLIC_CMP_CONTRACT_TOKEN_ID,

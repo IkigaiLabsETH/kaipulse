@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 import { Toaster } from "@/components/ui/toaster";
 import { ThirdwebWrapper } from "@/components/ThirdwebWrapper";
+import { env } from "@/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
@@ -68,9 +69,6 @@ export const metadata: Metadata = {
     images: ["https://livethelife.tv/background_helo.jpeg"],
     creator: "@LiveTheLifeTV"
   },
-  alternates: {
-    canonical: "https://livethelife.tv"
-  },
   verification: {
     google: "your-google-site-verification",
     yandex: "your-yandex-verification",
@@ -118,6 +116,21 @@ export default function RootLayout({
         <link rel="preconnect" href="https://storage.googleapis.com" />
         <link rel="dns-prefetch" href="https://opensea.io" />
         <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'LiveTheLifeTV',
+              url: env.NEXT_PUBLIC_SITE_URL || 'https://livethelife.tv',
+              logo: `${env.NEXT_PUBLIC_SITE_URL || 'https://livethelife.tv'}/logo.png`,
+              sameAs: [
+                'https://twitter.com/LiveTheLifeTV',
+              ],
+            }),
+          }}
+        />
       </head>
       <body className={cn(
         "min-h-screen bg-background font-satoshi antialiased",
