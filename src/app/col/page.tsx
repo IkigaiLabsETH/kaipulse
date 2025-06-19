@@ -325,6 +325,60 @@ export default function CostOfLivingPage() {
         </span>
       ),
     },
+    {
+      q: "What are the best crypto-friendly locations with a Mediterranean climate?",
+      a: (
+        <span>
+          Several Mediterranean locations offer a great climate and crypto-friendly policies. Here are some top options:
+          <br /><br />
+          <strong>Malta:</strong>
+          <br />
+          • Known as &quot;Blockchain Island&quot; with a strong regulatory framework for crypto.
+          <br />
+          • Favorable tax policies for crypto gains and businesses.
+          <br />
+          • Moderate cost of living (~$2,500–$3,500/month for a couple).
+          <br />
+          • Offers residency and citizenship-by-investment programs.
+          <br /><br />
+          <strong>Portugal (Lisbon, Algarve):</strong>
+          <br />
+          • Historically a crypto tax haven, though recent changes tax short-term gains. Long-term holdings (over one year) are often tax-free for individuals.
+          <br />
+          • High quality of life with costs around $2,500–$3,600/month for a couple.
+          <br />
+          • Golden Visa program is popular with investors.
+          <br /><br />
+          <strong>Spain (Mallorca, Barcelona, Malaga):</strong>
+          <br />
+          • Moderately crypto-friendly with regulations aligned with the EU&apos;s MiCA framework.
+          <br />
+          • Capital gains tax of 19–23% on crypto assets.
+          <br />
+          • Cost of living varies, from ~$2,200/month in Malaga to ~$3,000–$4,000 in Barcelona.
+          <br />
+          • Golden Visa available for property investment.
+          <br /><br />
+          <strong>Greece (Crete, Santorini, Athens):</strong>
+          <br />
+          • Crypto-friendly with evolving regulations. No specific capital gains tax in many cases for individuals.
+          <br />
+          • Low cost of living, around $2,000–$3,000/month for a couple.
+          <br />
+          • One of Europe&apos;s most affordable Golden Visa programs.
+          <br /><br />
+          <strong>Cyprus (Northern Cyprus, Limassol):</strong>
+          <br />
+          • Crypto-friendly with no capital gains tax on crypto for individuals in many cases.
+          <br />
+          • Northern Cyprus is very affordable (~$2,000–$3,000/month for a couple).
+          <br />
+          • Offers residency through investment.
+          <br /><br />
+          <em>Disclaimer: Crypto tax policies change frequently. Always consult with a local tax advisor before making financial decisions.</em>
+        </span>
+      ),
+    },
   ];
 
   return (
