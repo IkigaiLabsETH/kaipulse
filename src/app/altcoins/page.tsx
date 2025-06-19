@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import OutperformingAltcoins from '@/components/crypto/OutperformingAltcoins';
 
 export default function AltcoinsPage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -315,6 +316,9 @@ export default function AltcoinsPage() {
             </div>
           </div>
 
+          {/* Outperforming Altcoins Section */}
+          <OutperformingAltcoins />
+
           {/* Market Context Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
@@ -402,27 +406,6 @@ export default function AltcoinsPage() {
                 </div>
               </div>
 
-              {/* Select Altcoins Performance */}
-              <div>
-                <h4 className="text-xl font-bold text-yellow-500 mb-4">Select Altcoins Outperforming</h4>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div className="bg-black/30 p-4 rounded">
-                    <p className="font-bold">Solana (SOL)</p>
-                    <p className="text-green-500">+5% YTD</p>
-                    <p className="text-yellow-500/70">Strong fundamentals</p>
-                  </div>
-                  <div className="bg-black/30 p-4 rounded">
-                    <p className="font-bold">XRP</p>
-                    <p className="text-green-500">+21% YTD</p>
-                    <p className="text-yellow-500/70">Regulatory clarity</p>
-                  </div>
-                  <div className="bg-black/30 p-4 rounded">
-                    <p className="font-bold">Ethereum</p>
-                    <p className="text-red-500">-18% YTD</p>
-                    <p className="text-yellow-500/70">Watch ETH/BTC ratio</p>
-                  </div>
-                </div>
-              </div>
 
               {/* Why This Cycle Differs */}
               <div>
