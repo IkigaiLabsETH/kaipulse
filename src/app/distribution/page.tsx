@@ -179,7 +179,7 @@ export default function DistributionPage() {
               2. The On-Chain Distribution: Whales Dominate
             </h2>
             <div className="space-y-8">
-              <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] h-96 md:h-[500px] mx-auto md:w-2/3">
+              <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] h-96 md:h-[500px] md:w-2/3">
                 <Doughnut data={onChainDistributionData} options={chartOptions} />
               </div>
               <div className="text-gray-300 space-y-3">
@@ -202,7 +202,7 @@ export default function DistributionPage() {
               3. Ownership by Sector
             </h2>
              <div className="space-y-8">
-               <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] h-96 md:h-[500px] mx-auto md:w-2/3">
+               <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] h-96 md:h-[500px] md:w-2/3">
                  <Doughnut data={ownershipBySectorData} options={chartOptions} />
                </div>
                <div className="text-gray-300 space-y-3">
