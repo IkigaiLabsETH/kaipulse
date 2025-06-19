@@ -324,16 +324,19 @@ export default function DistributionPage() {
 
           {/* Section 7: Bottom Line */}
           <section className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h2 className="text-3xl font-bold text-yellow-500 mb-6">7. The Bottom Line</h2>
+            <h2 className="text-3xl font-bold text-yellow-500 mb-6">7. The Bottom Line: The Great Wealth Collision</h2>
             <div className="space-y-6 text-gray-300 text-lg">
               <p>
-                Bitcoin&apos;s ledger may be decentralized, but its ownership is highly concentrated and its effective supply is shrinking. This creates a potent combination of <strong>scarcity</strong>, <strong>transparency</strong>, and <strong>institutional gravity</strong>.
+                Bitcoin&apos;s digital scarcity is on a collision course with traditional wealth. While there are approximately <strong>22.8 million HNWIs</strong> (High-Net-Worth Individuals) with over $1 million in liquid assets, the supply of Bitcoin is profoundly limited.
               </p>
               <p>
-                The key takeaway is that the market is far more sensitive than it appears. With a top-heavy distribution and a growing influx of institutional capital (via ETFs and corporate treasuries), even modest shifts in demand can trigger outsized price movements and intensify regulatory debates.
+                Consider the goal of owning 21 BTC—a one-in-a-million share of the total supply. Today, fewer than <strong>0.16%</strong> of Bitcoin addresses hold this amount. For a new investor to acquire 21 BTC with a standard 5% portfolio allocation (at ~$100k/BTC), they would need a net worth of over <strong>$42 million</strong>.
+              </p>
+              <p>
+                Only a tiny fraction of the world&apos;s millionaires—roughly <strong>300,000 UHNWIs</strong> (Ultra-High-Net-Worth Individuals)—are in this bracket. This sets up a classic supply squeeze, where the potential demand from a sliver of the global elite could overwhelm the available float.
               </p>
               <p className="text-xl italic text-yellow-500/80 mt-6">
-                In short: the game theory is shifting. As individual investors, institutions, and even nations compete for a piece of a diminishing pie, the strategic implications are profound. Ignore this triad of market forces at your own peril.
+                The key takeaway is that the race for digital scarcity is intensifying. As institutional and private wealth awakens to this reality, the exclusivity of owning a significant stake in the network is set to increase exponentially.
               </p>
             </div>
           </section>
