@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import useSWR from 'swr';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Line } from 'react-chartjs-2';
@@ -14,6 +15,8 @@ import {
   Tooltip,
   Legend,
   LogarithmicScale,
+  Filler,
+  type ChartOptions,
 } from 'chart.js';
 import Image from 'next/image';
 import MaxPain from '@/components/cycles/MaxPain';
@@ -26,8 +29,148 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+interface LiveChartData {
+  date: string;
+  price: number;
+  twoYearMA: number | null;
+  twoYearMAx5: number | null;
+}
+
+interface ErrorData {
+  error: string;
+  details?: string;
+}
+
+function TwoYearMAMultiplierChart() {
+  const { data: chartData, error } = useSWR<LiveChartData[] | ErrorData>('/api/cryptocompare/btc-price-history', fetcher);
+
+  if (error) return <div>Failed to load chart data. Please try again later.</div>;
+  if (!chartData) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <p className="text-yellow-500">Loading Real-Time Data...</p>
+      </div>
+    );
+  }
+
+  if (!Array.isArray(chartData)) {
+    const errorPayload = chartData as ErrorData;
+    const errorMessage = errorPayload.details || errorPayload.error || 'An unknown error occurred.';
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-center">
+        <p className="text-red-500 font-bold">Failed to load chart data.</p>
+        <p className="text-sm text-gray-400 mt-2">Error: {errorMessage}</p>
+      </div>
+    );
+  }
+
+  const labels = chartData.map(d => d.date);
+  
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Bitcoin Price',
+        data: chartData.map(d => d.price),
+        borderColor: 'white',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        pointRadius: 0,
+        tension: 0.1,
+        borderWidth: 1.5,
+      },
+      {
+        label: '2-Year MA x 5 (Sell Target)',
+        data: chartData.map(d => d.twoYearMAx5),
+        borderColor: '#ef4444', // red-500
+        backgroundColor: 'transparent',
+        pointRadius: 0,
+        tension: 0.4,
+        borderWidth: 2,
+      },
+      {
+        label: '2-Year MA (Buy Zone)',
+        data: chartData.map(d => d.twoYearMA),
+        borderColor: '#22c55e', // green-500
+        backgroundColor: 'transparent',
+        pointRadius: 0,
+        tension: 0.4,
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const options: ChartOptions<'line'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+        labels: {
+          color: 'white',
+          padding: 20,
+          font: {
+            size: 14,
+          }
+        }
+      },
+      title: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        type: 'logarithmic' as const,
+        title: {
+          display: true,
+          text: 'Price (USD)',
+          color: 'white',
+        },
+        ticks: {
+          color: 'white',
+          callback: function (value: string | number) {
+            if (typeof value !== 'number') {
+              return value;
+            }
+            if (value >= 1000000) {
+              return `$${(value / 1000000).toFixed(1)}M`;
+            }
+            if (value >= 1000) {
+              return `$${(value / 1000).toFixed(0)}k`;
+            }
+            return `$${value}`;
+          },
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+        }
+      },
+      x: {
+        ticks: {
+          color: 'white',
+          maxRotation: 0,
+          autoSkip: true,
+          maxTicksLimit: 10,
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+        }
+      }
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
+  };
+
+  return <Line options={options} data={data} />;
+}
+
 
 const cycles = [
   { start: 2014, bottom: 176, gain: 113, drawdown: 0.84 },
@@ -162,6 +305,34 @@ export default function MaxPainPage() {
               <div className="h-px w-24 bg-yellow-500/30"></div>
               <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Understanding Bitcoin&apos;s Market Cycles</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
+            </div>
+          </div>
+
+          {/* 2-Year MA Multiplier Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 text-center">
+              The 2-Year Moving Average Multiplier
+            </h3>
+            <div className="w-full h-[60vh]">
+              <TwoYearMAMultiplierChart />
+            </div>
+            <div className="mt-8 pt-6 border-t border-yellow-500/20 text-gray-300">
+                <h4 className="text-xl font-bold text-yellow-400 mb-4">A RECESSION IS COMING. ARE YOU READY?</h4>
+                <div className="space-y-4 text-lg leading-relaxed">
+                    <p>The clock is ticking. By the end of 2025 or early 2026, the economic storm will hit. Most people? They&apos;ll be caught off guard—unprepared, overwhelmed, and outmaneuvered. But not me. I&apos;m ready. And I want you to be too.</p>
+                    <p>My goal this cycle? Simple: Sell the top. Buy the bottom. No guesswork. No emotions. Just a proven strategy that&apos;s worked in every crypto cycle since 2013. The key? The 2-Year Moving Average Multiplier. It&apos;s not hype—it&apos;s data.</p>
+                    <p className="font-semibold text-yellow-400/90">Here&apos;s how it works:</p>
+                    <p><span className="text-red-500 font-bold">🔴 The Red Line (2Y MA x5):</span> Every time Bitcoin hits this level, the bull run ends. The market tops out. That&apos;s when I sell. No hesitation. This has called every peak—2014, 2017, 2021. It&apos;s the exit signal you can&apos;t ignore.</p>
+                    <p><span className="text-green-400 font-bold">🟢 The Green Line (2Y MA):</span> When Bitcoin drops below this line, it&apos;s the bottom. The reload zone. The wealth transfer moment. This is where I buy back in—big. It nailed the lows in 2014, 2017, and 2021. Every. Single. Time.</p>
+                    <p className="font-semibold text-yellow-400/90">My plan is crystal clear:</p>
+                    <ul className="list-disc list-inside pl-4 space-y-2">
+                        <li>Sell at the red line. Lock in profits.</li>
+                        <li>Buy below the green line. Build wealth for the next cycle.</li>
+                    </ul>
+                    <p>No noise. No speculation. Just cold, hard data guiding every move.</p>
+                    <p>When the time comes to exit, I&apos;ll be shouting it from the rooftops. When it&apos;s time to buy back in, you&apos;ll hear me even louder. Follow the lines, and you&apos;re in control. Ignore them, and you&apos;re someone else&apos;s exit liquidity.</p>
+                    <p className="font-bold">Follow me. Let&apos;s ride this cycle together—buying bottoms, not chasing tops. The recession&apos;s coming, but we&apos;ll be ready.</p>
+                </div>
             </div>
           </div>
 
