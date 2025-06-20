@@ -432,6 +432,165 @@ export default function AIContent() {
         </div>
       </motion.div>
 
+      {/* The New Normal Section */}
+      <motion.div
+        variants={sectionVariants}
+        className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+      >
+        <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">The New Normal</h3>
+        <div className="space-y-4 text-gray-300">
+          <ul className="list-none space-y-3 text-lg">
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The new SaaS wedge is: wrap the model, add memory, build the brand, create media.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>We&apos;re entering the copy/paste phase of startup building.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Your cofounder is a chat window.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Software used to wait for you. Now it moves on its own.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Apps are starting to think, not just react.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>You don&apos;t click around anymore, you ask.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Every document, call, or video is now searchable and useful.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Workflows are the new IP.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The MVP is the prompt.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Your next &quot;aha moment&quot; from an app will come from something your app did without asking.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Someday soon, you&apos;ll forget what it felt like to use software that waited.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>&quot;Chat&quot; is a placeholder for better UX.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Personalization used to mean your name in the subject line. Now it means completely different experiences.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>90% of your idea already exists in a chat history somewhere.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Building a product is now easier than building an audience/community.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Most startups will start as workflows.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>English is the new code, and curiosity is the new IDE.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>&quot;Powered by AI&quot; is not a value prop.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Attention span is the new API limit.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>When the model is the engine, UI becomes the brand.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Your roadmap is now a dialogue with the model.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Product-market fit is being replaced by prompt-market fit.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The app you open next will already know why you came.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The faster you close the loop between idea and result, the more dangerous you become.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>&quot;Good design&quot; used to mean intuitive. Now it means invisible.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Lots of first-time founders will build faster than veterans because they are more AI fluent/grew up on vlogging.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The real moats are memory, feedback loops, and distribution.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>&quot;What can this do?&quot; is a failure of design.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The next wave of breakout products will feel like friends, not tools.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The more obvious your idea feels, the more likely it&apos;s worth doing right now.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The new founder skillset: knowing what not to build.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Pricing models are now part of the UX.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Product intuition now beats technical ability 9 times out of 10.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>The real race is who gets to default status first.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>Marketing is now: &quot;here&apos;s the before/after. want in?&quot;</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-yellow-500 mt-1">•</span>
+              <span>If you can&apos;t explain it in a tweet, it will never reach product/market fit.</span>
+            </li>
+          </ul>
+          <p className="text-yellow-500 font-bold text-xl mt-8 text-center">
+            Welcome to the new normal.
+          </p>
+        </div>
+      </motion.div>
+
       {/* Final Call to Action */}
       <motion.div 
         variants={sectionVariants}
