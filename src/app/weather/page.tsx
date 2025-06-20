@@ -66,7 +66,7 @@ export default async function WeatherPage() {
         const index = Math.round(degrees / 22.5) % 16;
         return directions[index];
       };
-      const MarineSurfFrame = ({ label, data, timeLabel, timeValue }: { label: string; data: { wave_height: number; wave_period: number; wave_direction: number; sea_surface_temperature: number; }; timeLabel: string; timeValue: string }) => (
+      const MarineSurfFrame = ({ label, data, timeLabel, timeValue }: { label: string; data: { wave_height: number; wave_period: number; wave_direction: number; sea_surface_temperature: number; wind_speed_10m?: number; wind_direction_10m?: number }; timeLabel: string; timeValue: string }) => (
         <div className="relative bg-black/60 backdrop-blur-md rounded-xl p-7 h-full flex flex-col justify-between min-h-[320px] min-w-[260px] shadow-lg hover:shadow-2xl transition-all duration-200 group border border-yellow-500/30 hover:border-yellow-500">
           <div className="absolute inset-0 rounded-xl border-2 border-yellow-500/30 group-hover:border-yellow-500 group-hover:shadow-[0_0_30px_rgba(234,179,8,0.7)] transition-all duration-200 pointer-events-none" />
           <div className="relative z-10 flex-1 flex flex-col justify-between">
@@ -92,16 +92,47 @@ export default async function WeatherPage() {
                   <span className="text-gray-400 flex items-center gap-1"><Thermometer className="w-4 h-4 text-yellow-500" />Sea Temp</span>
                   <span className="text-yellow-500 font-extrabold text-xl">{data.sea_surface_temperature}°C</span>
                 </div>
+                {data.wind_speed_10m !== undefined && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400 flex items-center gap-1"><Wind className="w-4 h-4 text-yellow-500" />Wind Speed</span>
+                    <span className="text-yellow-500 font-extrabold text-xl">{data.wind_speed_10m} <span className="text-base font-bold">km/h</span></span>
+                  </div>
+                )}
+                {data.wind_direction_10m !== undefined && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400 flex items-center gap-1"><Wind className="w-4 h-4 text-yellow-500" />Wind Dir</span>
+                    <span className="text-yellow-500 font-extrabold text-xl">{getCardinalDirection(data.wind_direction_10m)} <span className="text-base font-bold">({data.wind_direction_10m}°)</span></span>
+                  </div>
+                )}
               </div>
             </div>
             <div className="text-xs text-gray-400 mt-4">{timeLabel}: {timeValue}</div>
           </div>
         </div>
       );
+
+      const currentData = {
+        ...biarritzSurfInfo.value,
+        wind_speed_10m: biarritzWeather.status === 'fulfilled' && biarritzWeather.value.current ? biarritzWeather.value.current.wind_speed_10m : undefined,
+        wind_direction_10m: biarritzWeather.status === 'fulfilled' && biarritzWeather.value.current ? biarritzWeather.value.current.wind_direction_10m : undefined,
+      };
+
+      const forecastData = {
+        ...forecast,
+        wind_speed_10m: (biarritzWeather.status === 'fulfilled' && biarritzWeather.value.hourly.wind_speed_10m ? biarritzWeather.value.hourly.wind_speed_10m[0] : undefined) ?? undefined,
+        wind_direction_10m: (biarritzWeather.status === 'fulfilled' && biarritzWeather.value.hourly.wind_direction_10m ? biarritzWeather.value.hourly.wind_direction_10m[0] : undefined) ?? undefined,
+      };
+
+      const nextDayData = {
+        ...nextDay,
+        wind_speed_10m: (biarritzWeather.status === 'fulfilled' && biarritzWeather.value.hourly.wind_speed_10m ? biarritzWeather.value.hourly.wind_speed_10m[24] : undefined) ?? undefined,
+        wind_direction_10m: (biarritzWeather.status === 'fulfilled' && biarritzWeather.value.hourly.wind_direction_10m ? biarritzWeather.value.hourly.wind_direction_10m[24] : undefined) ?? undefined,
+      };
+
       marineFrames = [
-        <MarineSurfFrame key="current" label="Current" data={biarritzSurfInfo.value} timeLabel="Last updated" timeValue={currentTime} />,
-        <MarineSurfFrame key="next-hour" label="Next Hour" data={forecast} timeLabel="Forecast" timeValue={forecastTime} />,
-        <MarineSurfFrame key="next-day" label="Next Day" data={nextDay} timeLabel="Forecast" timeValue={nextDayTime} />,
+        <MarineSurfFrame key="current" label="Current" data={currentData} timeLabel="Last updated" timeValue={currentTime} />,
+        <MarineSurfFrame key="next-hour" label="Next Hour" data={forecastData} timeLabel="Forecast" timeValue={forecastTime} />,
+        <MarineSurfFrame key="next-day" label="Next Day" data={nextDayData} timeLabel="Forecast" timeValue={nextDayTime} />,
       ];
     }
 

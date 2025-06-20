@@ -112,7 +112,7 @@ export const getWeatherData = cache(async (city: keyof typeof CITIES): Promise<W
   try {
     const { lat, lon } = CITIES[city];
     const response = await fetchWithTimeout(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m&models=meteofrance_seamless`
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,wind_speed_10m,wind_direction_10m&current=wind_speed_10m,wind_direction_10m&models=meteofrance_seamless`
     );
     return response.json();
   } catch (error) {

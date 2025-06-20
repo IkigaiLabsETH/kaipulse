@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 export default function BioPage() {
   // Animation variants for staggered animations
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
