@@ -58,6 +58,26 @@ export default function FireContent() {
             </div>
           </div>
 
+          {/* Featured Video Section */}
+          <motion.div
+            variants={sectionVariants}
+            className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 [text-shadow:_0_1px_10px_rgba(234,179,8,0.2)]">
+              Watch The Manifesto
+            </h2>
+            <div className="relative h-0 pb-[56.25%] overflow-hidden rounded-lg">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/5VSGeuuqlsY"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </motion.div>
+
           {/* Main Content Section */}
           <motion.div 
             variants={sectionVariants}
