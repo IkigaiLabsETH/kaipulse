@@ -788,39 +788,7 @@ const sections = [
 
 export default function HumePage() {
   const copyToClipboard = () => {
-    const allSections = [
-      ...sections,
-      { title: 'Gold', content: `<GOLD>${GOLD}</GOLD>` },
-      { title: 'Mining', content: `<MINING>${MINING}</MINING>` },
-      { title: 'Sauna', content: `<SAUNA>${SAUNA}</SAUNA>` },
-      { title: 'Sparrow Wallet', content: `<SPARROW_WALLET>${SPARROW_WALLET}</SPARROW_WALLET>` },
-      { title: 'Altcoins', content: `<ALTCOINS>${ALTCOINS}</ALTCOINS>` },
-      { title: 'Strike', content: `<STRIKE>${STRIKE}</STRIKE>` },
-      { title: '21Energy', content: `<TWENTYONE_ENERGY>${TWENTYONE_ENERGY}</TWENTYONE_ENERGY>` },
-      { title: 'Real Estate', content: `<REAL_ESTATE>${REAL_ESTATE}</REAL_ESTATE>` },
-      { title: 'Generative Art', content: `<GENART>${GENART}</GENART>` },
-      { title: 'France', content: `<FRANCE>${FRANCE}</FRANCE>` },
-      { title: 'Hästens', content: `<HASTENS>${HASTENS}</HASTENS>` },
-      { title: 'Whoop', content: `<WHOOP>${WHOOP}</WHOOP>` },
-      { title: 'Hyperliquid', content: `<HYPERLIQUID>${HYPERLIQUID}</HYPERLIQUID>` },
-      { title: 'Airstream', content: `<AIRSTREAM>${AIRSTREAM}</AIRSTREAM>` },
-      { title: '80/20 Principle', content: `<EIGHTY_TWENTY>${EIGHTY_TWENTY}</EIGHTY_TWENTY>` },
-      { title: 'Sovereign Travel', content: `<SOVEREIGN_TRAVEL>${SOVEREIGN_TRAVEL}</SOVEREIGN_TRAVEL>` },
-      { title: 'Catamaran', content: `<CATAMARAN>${CATAMARAN}</CATAMARAN>` },
-      { title: 'Sovereign Entities', content: `<SOVEREIGN_ENTITIES>${SOVEREIGN_ENTITIES}</SOVEREIGN_ENTITIES>` },
-      { title: 'Bitcoin Node', content: `<BITCOIN_NODE>${BITCOIN_NODE}</BITCOIN_NODE>` },
-      { title: 'Max Pain', content: `<MAX_PAIN>${MAX_PAIN}</MAX_PAIN>` },
-      { title: 'The Grind', content: `<THE_GRIND>${THE_GRIND}</THE_GRIND>` },
-      { title: 'Crypto Vernacular', content: `<CRYPTO_VERNACULAR>${CRYPTO_VERNACULAR}</CRYPTO_VERNACULAR>` },
-      { title: 'Mining Operations', content: `<MINING_OPERATIONS>${MINING_OPERATIONS}</MINING_OPERATIONS>` },
-      { title: 'Alternative Assets', content: `<ALTERNATIVE_ASSETS>${ALTERNATIVE_ASSETS}</ALTERNATIVE_ASSETS>` },
-      { title: 'Sovereign Tech Stack', content: `<SOVEREIGN_TECH_STACK>${SOVEREIGN_TECH_STACK}</SOVEREIGN_TECH_STACK>` },
-      { title: 'Financial Instruments', content: `<FINANCIAL_INSTRUMENTS>${FINANCIAL_INSTRUMENTS}</FINANCIAL_INSTRUMENTS>` },
-      { title: 'Bio-Energetics & Performance', content: `<BIO_ENERGETICS>${BIO_ENERGETICS}</BIO_ENERGETICS>` },
-      { title: 'Visionaries & Culture', content: `<VISIONARIES_AND_CULTURE>${VISIONARIES_AND_CULTURE}</VISIONARIES_AND_CULTURE>` },
-      { title: 'Decentralized Physical Systems', content: `<DECENTRALIZED_PHYSICAL>${DECENTRALIZED_PHYSICAL}</DECENTRALIZED_PHYSICAL>` },
-      { title: 'Art & Curation', content: `<ART_AND_CURATION>${ART_AND_CURATION}</ART_AND_CURATION>` },
-    ];
+    const allSections = sections;
     const text = allSections.map(section => section.content).join('\n\n');
     navigator.clipboard.writeText(text);
   };
@@ -868,38 +836,7 @@ export default function HumePage() {
           </motion.div>
 
           {/* Sections */}
-          {[...sections, 
-            { title: 'Gold', content: `<GOLD>${GOLD}</GOLD>` },
-            { title: 'Mining', content: `<MINING>${MINING}</MINING>` },
-            { title: 'Sauna', content: `<SAUNA>${SAUNA}</SAUNA>` },
-            { title: 'Sparrow Wallet', content: `<SPARROW_WALLET>${SPARROW_WALLET}</SPARROW_WALLET>` },
-            { title: 'Altcoins', content: `<ALTCOINS>${ALTCOINS}</ALTCOINS>` },
-            { title: 'Strike', content: `<STRIKE>${STRIKE}</STRIKE>` },
-            { title: '21Energy', content: `<TWENTYONE_ENERGY>${TWENTYONE_ENERGY}</TWENTYONE_ENERGY>` },
-            { title: 'Real Estate', content: `<REAL_ESTATE>${REAL_ESTATE}</REAL_ESTATE>` },
-            { title: 'Generative Art', content: `<GENART>${GENART}</GENART>` },
-            { title: 'France', content: `<FRANCE>${FRANCE}</FRANCE>` },
-            { title: 'Hästens', content: `<HASTENS>${HASTENS}</HASTENS>` },
-            { title: 'Whoop', content: `<WHOOP>${WHOOP}</WHOOP>` },
-            { title: 'Hyperliquid', content: `<HYPERLIQUID>${HYPERLIQUID}</HYPERLIQUID>` },
-            { title: 'Airstream', content: `<AIRSTREAM>${AIRSTREAM}</AIRSTREAM>` },
-            { title: '80/20 Principle', content: `<EIGHTY_TWENTY>${EIGHTY_TWENTY}</EIGHTY_TWENTY>` },
-            { title: 'Sovereign Travel', content: `<SOVEREIGN_TRAVEL>${SOVEREIGN_TRAVEL}</SOVEREIGN_TRAVEL>` },
-            { title: 'Catamaran', content: `<CATAMARAN>${CATAMARAN}</CATAMARAN>` },
-            { title: 'Sovereign Entities', content: `<SOVEREIGN_ENTITIES>${SOVEREIGN_ENTITIES}</SOVEREIGN_ENTITIES>` },
-            { title: 'Bitcoin Node', content: `<BITCOIN_NODE>${BITCOIN_NODE}</BITCOIN_NODE>` },
-            { title: 'Max Pain', content: `<MAX_PAIN>${MAX_PAIN}</MAX_PAIN>` },
-            { title: 'The Grind', content: `<THE_GRIND>${THE_GRIND}</THE_GRIND>` },
-            { title: 'Crypto Vernacular', content: `<CRYPTO_VERNACULAR>${CRYPTO_VERNACULAR}</CRYPTO_VERNACULAR>` },
-            { title: 'Mining Operations', content: `<MINING_OPERATIONS>${MINING_OPERATIONS}</MINING_OPERATIONS>` },
-            { title: 'Alternative Assets', content: `<ALTERNATIVE_ASSETS>${ALTERNATIVE_ASSETS}</ALTERNATIVE_ASSETS>` },
-            { title: 'Sovereign Tech Stack', content: `<SOVEREIGN_TECH_STACK>${SOVEREIGN_TECH_STACK}</SOVEREIGN_TECH_STACK>` },
-            { title: 'Financial Instruments', content: `<FINANCIAL_INSTRUMENTS>${FINANCIAL_INSTRUMENTS}</FINANCIAL_INSTRUMENTS>` },
-            { title: 'Bio-Energetics & Performance', content: `<BIO_ENERGETICS>${BIO_ENERGETICS}</BIO_ENERGETICS>` },
-            { title: 'Visionaries & Culture', content: `<VISIONARIES_AND_CULTURE>${VISIONARIES_AND_CULTURE}</VISIONARIES_AND_CULTURE>` },
-            { title: 'Decentralized Physical Systems', content: `<DECENTRALIZED_PHYSICAL>${DECENTRALIZED_PHYSICAL}</DECENTRALIZED_PHYSICAL>` },
-            { title: 'Art & Curation', content: `<ART_AND_CURATION>${ART_AND_CURATION}</ART_AND_CURATION>` }
-          ].map((section, index) => (
+          {sections.map((section, index) => (
             <motion.div
               key={index}
               variants={sectionVariants}
