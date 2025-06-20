@@ -88,6 +88,22 @@ export default function ThesisSection() {
         </div>
       </div>
 
+      {/* Counter Arguments & Risks */}
+      <div className="mb-8">
+        <h4 className="text-xl font-bold text-red-500 mb-4">Counter Arguments & Risks</h4>
+        <div className="bg-black/50 p-6 rounded-none border border-red-500/20 shadow-[5px_5px_0px_0px_rgba(220,38,38,0.3)]">
+          <ul className="space-y-3 text-white/80">
+            <li>• Coinbase/Robinhood launching futures in the US, creating domestic competition.</li>
+            <li>• Significant selling pressure: 4.7M HYPE in 7-day unstaking queue, including one whale unstaking 2.4M.</li>
+            <li>• Rumors of Binance secretly developing a direct competitor.</li>
+            <li>• Custody risk: Funds are secured in a 3-of-4 multi-signature wallet.</li>
+            <li>• Centralization risk: The network is maintained by only 21 active validators.</li>
+            <li>• Sanction risk: Reports of sanctioned entities (e.g., North Korea) using the platform.</li>
+            <li>• Lack of Lindy: The protocol is relatively new and has not been battle-tested over multiple market cycles.</li>
+          </ul>
+        </div>
+      </div>
+
       {/* Concise Summary */}
       <div className="bg-yellow-500/10 p-6 rounded-none border-2 border-yellow-500/30">
         <h4 className="text-xl font-bold text-yellow-500 mb-4">Concise Summary</h4>
