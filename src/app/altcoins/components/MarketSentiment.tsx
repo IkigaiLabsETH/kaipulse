@@ -115,6 +115,39 @@ export function MarketSentiment() {
           </div>
         </div>
 
+        {/* Narrative Cycles vs. Altseasons */}
+        <div>
+          <h4 className="text-xl font-bold text-yellow-500 mb-4">The Narrative Cycle Thesis</h4>
+          <div className="bg-black/30 p-6 rounded">
+            <p className="text-lg leading-relaxed">
+              People keep waiting for &ldquo;altcoin season&rdquo; like it&apos;s 2021.
+            </p>
+            <p className="text-lg leading-relaxed mt-4">
+              Dude… look around. It already happened:
+            </p>
+            <ul className="space-y-2 list-disc list-inside my-4 pl-4">
+              <li>$HYPE: $0 → $44</li>
+              <li>$SOL: $8 → $296</li>
+              <li>$RAY: $0.15 → $8</li>
+              <li>$PEPE: Launched as a joke → $12B mcap</li>
+              <li>$SUI: $0.38 → $4.84</li>
+              <li>$SPX: From 0 → $1.5B ecosystem</li>
+              <li>$KAS: $0.002 → $0.20</li>
+            </ul>
+            <p className="text-lg font-bold leading-relaxed">
+              That was altseason — just not the one you were waiting for.
+            </p>
+            <div className="mt-4 text-lg leading-relaxed">
+              <p>What people miss is:</p>
+              <p className="font-bold mt-2">Narrative cycles replaced altseasons.</p>
+              <p className="mt-2">
+                It&apos;s not about ETH leading the charge anymore — it&apos;s about
+                sniping high-conviction narratives early and rotating fast.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Key Indicators */}
         <div>
           <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Indicators to Watch</h4>
