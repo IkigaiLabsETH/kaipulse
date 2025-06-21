@@ -15,7 +15,7 @@ export default function QOLPage() {
             <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-epilogue">Lifestyle Design • Philosophy • Well-being</p>
             <h1 className="text-center font-boska">
               <span className="text-7xl md:text-9xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)]">
-                The Sweet Life
+                Quality of Life
               </span>
             </h1>
             <div className="flex items-center justify-center mt-6">
