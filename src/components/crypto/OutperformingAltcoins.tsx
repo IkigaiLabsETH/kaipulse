@@ -72,9 +72,59 @@ const ErrorDisplay = () => (
   </div>
 );
 
+const SkeletonRow = () => (
+  <tr className="animate-pulse">
+    <td className="py-4 px-4">
+      <div className="h-4 bg-gray-700 rounded w-6"></div>
+    </td>
+    <td className="py-4 px-4">
+      <div className="flex items-center">
+        <div className="w-6 h-6 mr-3 rounded-full bg-gray-700"></div>
+        <div>
+          <div className="h-4 bg-gray-700 rounded w-24 mb-1"></div>
+          <div className="h-3 bg-gray-700 rounded w-12"></div>
+        </div>
+      </div>
+    </td>
+    <td className="py-4 px-4">
+      <div className="h-4 bg-gray-700 rounded w-16 ml-auto"></div>
+    </td>
+    <td className="py-4 px-4">
+      <div className="h-4 bg-gray-700 rounded w-12 ml-auto"></div>
+    </td>
+    <td className="py-4 px-4">
+      <div className="h-4 bg-gray-700 rounded w-12 ml-auto"></div>
+    </td>
+    <td className="py-4 px-4">
+      <div className="h-4 bg-gray-700 rounded w-12 ml-auto"></div>
+    </td>
+  </tr>
+);
+
 const LoadingSkeleton = () => (
-  <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] text-center">
-    Loading...
+  <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+    <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+      Altcoins Outperforming Bitcoin (24h)
+    </h3>
+    <div className="overflow-x-auto">
+      <table className="w-full text-left">
+        <thead>
+          <tr className="border-b border-yellow-500/30">
+            <th className="py-3 px-4">#</th>
+            <th className="py-3 px-4">Name</th>
+            <th className="py-3 px-4 text-right">Price</th>
+            <th className="py-3 px-4 text-right">24h %</th>
+            <th className="py-3 px-4 text-right">7d %</th>
+            <th className="py-3 px-4 text-right">30d %</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...Array(10)].map((_, i) => (
+            <SkeletonRow key={i} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   </div>
 );
 
