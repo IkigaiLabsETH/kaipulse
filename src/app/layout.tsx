@@ -10,7 +10,7 @@ import { env } from "@/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
-  title: "LiveTheLifeTV - Bitcoin Doesn't Sell Coin. It Sells Freedom.",
+  title: "LiveTheLifeTV -  Bitcoin Sells Freedom. Unplug from the Matrix.",
   description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth. Unplug from the matrix. Educational content, not financial advice.",
   keywords: [
     "Bitcoin",
@@ -135,6 +135,7 @@ export default function RootLayout({
               name: 'LiveTheLifeTV',
               url: env.NEXT_PUBLIC_SITE_URL || 'https://livethelife.tv',
               logo: `${env.NEXT_PUBLIC_SITE_URL || 'https://livethelife.tv'}/logo.png`,
+              description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth. Unplug from the matrix. Educational content, not financial advice.",
               sameAs: [
                 'https://twitter.com/LiveTheLifeTV',
               ],
