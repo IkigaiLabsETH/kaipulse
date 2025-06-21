@@ -12,7 +12,7 @@ import JsonLd from "@/components/common/JsonLd";
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
   title: "LiveTheLifeTV -  Bitcoin Sells Freedom. Unplug from the Matrix.",
-  description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your ticket to escape the matrix. Freedom is priced in Bitcoin. Educational content, not financial advice.",
+  description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your ticket to escape the matrix. Freedom is priced in Bitcoin. When you understand Bitcoin it feels like understanding the code in the matrix.",
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
   openGraph: {
