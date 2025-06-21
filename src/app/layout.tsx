@@ -6,55 +6,13 @@ import { cn } from "@/lib/utils";
 import { PipelineErrorHandler } from "@/components/PipelineErrorHandler";
 import { Toaster } from "@/components/ui/toaster";
 import { ThirdwebWrapper } from "@/components/ThirdwebWrapper";
-import { env } from "@/env.mjs";
+import { satoshi, epilogue, boska } from "@/lib/fonts";
+import JsonLd from "@/components/common/JsonLd";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
   title: "LiveTheLifeTV -  Bitcoin Sells Freedom. Unplug from the Matrix.",
   description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth. Unplug from the matrix. Educational content, not financial advice.",
-  keywords: [
-    "Bitcoin",
-    "Freedom",
-    "Sovereignty",
-    "Time",
-    "Truth",
-    "Exit Fiat",
-    "Financial Freedom",
-    "Be Your Own Bank",
-    "Digital Property",
-    "Infinite Resilience",
-    "Unplug from the Matrix",
-    "Bitcoin Education",
-    "Portfolio Planning",
-    "Bitcoin Strategy",
-    "Financial Sovereignty",
-    "Bitcoin is not a product",
-    "Bitcoin is a revolution",
-    "Digital Capital",
-    "Digital Intelligence",
-    "AI",
-    "Bitcoin Calculator",
-    "MSTR Analysis",
-    "Investment Education",
-    "Wealth Education",
-    "Bitcoin ROI",
-    "Portfolio Tools",
-    "Crypto Education",
-    "Financial Education",
-    "Bitcoin Returns",
-    "Investment Calculator",
-    "Bitcoin Allocation",
-    "Crypto Learning",
-    "Bitcoin Portfolio",
-    "Digital Asset Education",
-    "Bitcoin Investment Guide",
-    "Fix Money Fix The World",
-    "Bitcoin Freedom",
-    "Live Your Best Life",
-    "Bitcoin Life Balance",
-    "BTC Lifestyle",
-    "Life with Bitcoin"
-  ],
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
   openGraph: {
@@ -122,32 +80,20 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <JsonLd />
         <link rel="preconnect" href="https://opensea.io" />
         <link rel="preconnect" href="https://storage.googleapis.com" />
         <link rel="dns-prefetch" href="https://opensea.io" />
         <link rel="dns-prefetch" href="https://storage.googleapis.com" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'LiveTheLifeTV',
-              url: env.NEXT_PUBLIC_SITE_URL || 'https://livethelife.tv',
-              logo: `${env.NEXT_PUBLIC_SITE_URL || 'https://livethelife.tv'}/logo.png`,
-              description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth. Unplug from the matrix. Educational content, not financial advice.",
-              sameAs: [
-                'https://twitter.com/LiveTheLifeTV',
-              ],
-            }),
-          }}
-        />
       </head>
       <body className={cn(
         "min-h-screen bg-background font-satoshi antialiased",
         "selection:bg-accent selection:text-accent-foreground",
-        "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30"
-      )} style={{ fontFamily: 'Satoshi, Epilogue, Boska, system-ui, sans-serif' }}>
+        "scrollbar-thin scrollbar-track-background scrollbar-thumb-muted-foreground/20 hover:scrollbar-thumb-muted-foreground/30",
+        satoshi.variable,
+        epilogue.variable,
+        boska.variable
+      )}>
         <a href="#main-content" className="sr-only focus:not-sr-only">Skip to content</a>
         <ThirdwebWrapper>
           <PipelineErrorHandler>
