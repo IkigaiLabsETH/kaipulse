@@ -43,7 +43,7 @@ export default function HomePageClient() {
               >
                 <Image
                   src="/bitcoin/coin-bitcoin.svg"
-                  alt="Bitcoin"
+                  alt="Bitcoin logo for Bitcoin-First Strategy button"
                   width={22}
                   height={22}
                   className="w-5 h-5 group-hover:scale-110 transition-transform"
@@ -64,7 +64,7 @@ export default function HomePageClient() {
               >
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
-                  alt="Strategy"
+                  alt="Icon for Bull Market Peak Indicators tool"
                   width={18}
                   height={18}
                   className="w-4 h-4"
@@ -72,7 +72,7 @@ export default function HomePageClient() {
                 Bull Market Peak Indicators - Sell At The Top
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
-                  alt="Strategy"
+                  alt="Icon for Bull Market Peak Indicators tool"
                   width={18}
                   height={18}
                   className="w-4 h-4"
@@ -84,7 +84,7 @@ export default function HomePageClient() {
               >
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
-                  alt="Newsletter"
+                  alt="Icon for Mando Minutes market updates"
                   width={18}
                   height={18}
                   className="w-4 h-4"
@@ -99,7 +99,7 @@ export default function HomePageClient() {
               >
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
-                  alt="StackWisely"
+                  alt="Icon linking to StackWisely website"
                   width={18}
                   height={18}
                   className="w-4 h-4"
@@ -107,7 +107,7 @@ export default function HomePageClient() {
                 StackWisely
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
-                  alt="StackWisely"
+                  alt="Icon linking to StackWisely website"
                   width={18}
                   height={18}
                   className="w-4 h-4"
@@ -136,7 +136,7 @@ export default function HomePageClient() {
               <div className="bg-black px-4">
                 <Image
                   src="/bitcoin/coin-bitcoin.svg"
-                  alt="Bitcoin Icon"
+                  alt="Decorative Bitcoin icon"
                   width={28}
                   height={28}
                   className="w-7 h-7 text-yellow-500"
@@ -194,7 +194,7 @@ export default function HomePageClient() {
             >
               <Image
                 src="/bitcoin/bitcoin-plus.svg"
-                alt="Bitcoin Icon"
+                alt="Bitcoin icon for Unlock Insights button"
                 width={28}
                 height={28}
                 className="w-7 h-7 group-hover:scale-110 transition-transform"
