@@ -183,6 +183,41 @@ export default function GoldPage() {
             </div>
           </Section>
 
+          <Section title="The Inevitable Conclusion">
+            <div className="space-y-6 text-lg text-gray-300">
+                <p>
+                    Here&apos;s the funny thing about gold...
+                </p>
+                <p>
+                    No one does gold near the end of a big debt cycle. Because by that point, everyone has made so much money on limitless debt expansion, that they completely forget the importance of hard money.
+                </p>
+                <p>
+                    It&apos;s only when the debt bonanza reaches its inevitable conclusion that hard money regains its status as the &quot;must have&quot; asset. We are already at the early stages of that conclusion.
+                </p>
+                <p>
+                    The smart investors figured it out in 2020. Just look at Gold vs. long term US Treasuries. They used to move in lockstep until summer of 2020. That&apos;s when the US debt crisis became a simple matter of time.
+                </p>
+                <p>
+                    Gold is up 65% since then. Meanwhile, long term treasuries have lost 42% of their value vs. the dollar, which itself has been hideously debased in purchasing power terms since 2020.
+                </p>
+                <p>
+                    Bitcoin, the emerging hard money standard, is up 808% since August 2020. And the hodlers who bought the covid panic because they understood where this was headed are up 1,884% on Bitcoin.
+                </p>
+                <p className="font-bold text-yellow-400 italic">
+                    So as hard as it is for the very serious professionals to admit... Bitcoin hodlers are the best investors of the 2010&apos;s and 2020&apos;s.
+                </p>
+                <p>
+                    So maybe it&apos;s a good idea to listen to the ones with an accurate track record of spelling out exactly what&apos;s going to happen. They see that the fiat games are reaching their inevitable conclusion. And that someday soon hard money is the only investment thesis that will matter.
+                </p>
+                <p className="text-xl font-bold text-white mt-8">
+                    So you may not do Bitcoin now... But you will.
+                </p>
+                <p className="italic">
+                    And you don&apos;t need a crystal ball to see that; just a history book.
+                </p>
+            </div>
+          </Section>
+
         </div>
       </div>
     </div>
