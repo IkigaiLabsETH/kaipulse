@@ -12,6 +12,7 @@ import MeditationSection from "./sections/MeditationSection";
 import RecoverySection from "./sections/RecoverySection";
 import BiohackingSection from "./sections/BiohackingSection";
 import TrackingSection from "./sections/TrackingSection";
+import AntiOptimizationSection from './sections/AntiOptimizationSection';
 import NicotineCaffeineSection from './sections/NicotineCaffeineSection';
 import KeyFeaturesSection from './sections/KeyFeaturesSection';
 import GettingStartedSection from './sections/GettingStartedSection';
@@ -76,6 +77,9 @@ export default function TrainPage() {
 
           {/* Tracking Section */}
           <TrackingSection />
+
+          {/* Anti-Optimization Section */}
+          <AntiOptimizationSection />
 
           {/* Nicotine & Caffeine Section */}
           <NicotineCaffeineSection />
