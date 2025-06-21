@@ -177,15 +177,44 @@ const stocks = [
     ],
     recentDev: "Continued GPU demand for AI and blockchain applications drives growth.",
     whyNow: "NVDA offers indirect crypto exposure with lower volatility than pure-play crypto stocks like COIN or MARA.",
+    },
+    {
+      name: "Tesla, Inc.",
+      ticker: "TSLA",
+      path: "/tesla",
+      description: "Tesla, Inc. is a crypto-related stock due to its $1.03 billion in Bitcoin holdings and CEO Elon Musk's influence, though its core business remains electric vehicles, energy, and AI.",
+      whyExplore: [
+        "Crypto Exposure: Holds $1.03 billion in Bitcoin and benefits from CEO Elon Musk's crypto advocacy, aligning with interests in Bitcoin and Dogecoin.",
+        "EV & AI Leadership: Dominance in the EV market and ambitious projects like Full Self-Driving (FSD) and the Optimus robot offer diversification beyond crypto.",
+        "Analyst Outlook: Despite a consensus 'Hold' rating, some analysts see significant upside driven by AI, with price targets as high as $500.",
+        "Leadership Influence: Elon Musk's high-profile involvement in crypto and tech policy adds a unique, albeit volatile, dimension to the stock's narrative.",
+      ],
+      financials: {
+          price: "$309.39",
+          marketCap: "~$983.5 billion",
+          ytdReturn: "N/A",
+          peRatio: "N/A"
+      },
+      risks: [
+          "Declining EV deliveries and price cuts are eroding profit margins.",
+          "The value of its Bitcoin holdings introduces volatility to its balance sheet.",
+          "CEO Elon Musk's various ventures (xAI, X) raise concerns about his focus on Tesla.",
+          "Intensifying competition from legacy automakers and new EV startups."
+      ],
+      recentDev: "Reported challenging Q1 2025 financials with an 8% YoY revenue drop, though a new accounting rule allowed a $600M gain on Bitcoin holdings in Q4 2024.",
+      whyNow: "Tesla offers a unique blend of crypto exposure and tech leadership. Watch for Q2 2025 delivery numbers and Bitcoin price movements as key catalysts."
     }
 ];
 
 const comparisonData = [
+    { ticker: "HOOD", company: "Robinhood Markets, Inc.", exposure: "Crypto Trading & Services", price: "$78.50", marketCap: "$69.274B", ytdReturn: "N/A", risk: "PFOF Regulation" },
+    { ticker: "CRCL", company: "Circle Internet Financial", exposure: "USDC Stablecoin", price: "$199.59", marketCap: "$18.4B", ytdReturn: "N/A", risk: "Stablecoin Competition" },
     { ticker: "COIN", company: "Coinbase Global", exposure: "Crypto Exchange", price: "~$280", marketCap: "~$65B", ytdReturn: "+150%", risk: "Regulatory uncertainty" },
     { ticker: "MSTR", company: "MicroStrategy", exposure: "Bitcoin Holdings", price: "~$420", marketCap: "~$45B", ytdReturn: "+35%", risk: "Bitcoin price volatility" },
     { ticker: "MARA", company: "Marathon Digital", exposure: "Bitcoin Mining", price: "~$19", marketCap: "~$5B", ytdReturn: "+200%", risk: "Mining difficulty, energy costs" },
     { ticker: "XYZ", company: "Block, Inc.", exposure: "Bitcoin Payments", price: "~$65", marketCap: "~$40B", ytdReturn: "+30%", risk: "Fintech competition" },
     { ticker: "NVDA", company: "NVIDIA Corporation", exposure: "Crypto Mining GPUs", price: "~$144.12", marketCap: "~$350B", ytdReturn: "+60%", risk: "Limited direct crypto exposure" },
+    { ticker: "TSLA", company: "Tesla, Inc.", exposure: "Bitcoin Holdings", price: "$309.39", marketCap: "~$983.5 billion", ytdReturn: "N/A", risk: "EV Market Competition" },
 ];
 
 
@@ -349,9 +378,17 @@ export default function StocksPage() {
 
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                 <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">Conclusion</h3>
-                <p className="text-gray-300">
-                Exploring <Link href="/coinbase" className="text-yellow-400 hover:underline">COIN</Link>, <Link href="/platforms/msty/mstr" className="text-yellow-400 hover:underline">MSTR</Link>, <Link href="/mara" className="text-yellow-400 hover:underline">MARA</Link>, <Link href="/block" className="text-yellow-400 hover:underline">XYZ</Link>, and <Link href="/nvda" className="text-yellow-400 hover:underline">NVDA</Link> provides diversified exposure to the crypto ecosystem, from exchanges and Bitcoin holdings to mining and infrastructure. These stocks align with your crypto enthusiasm while offering the regulatory clarity and liquidity of public markets. <Link href="/coinbase" className="text-yellow-400 hover:underline">COIN</Link> and <Link href="/platforms/msty/mstr" className="text-yellow-400 hover:underline">MSTR</Link> stand out for direct crypto exposure, while <Link href="/nvda" className="text-yellow-400 hover:underline">NVDA</Link> offers stability through its AI-blockchain overlap. Monitor regulatory developments and Bitcoin&apos;s price, as they heavily influence these stocks&apos; performance. For further research, tools like TradingView can aid in tracking price trends.
-                </p>
+                <div className="space-y-4 text-gray-300">
+                  <p>
+                    The companies analyzed—<Link href="/crcl" className="text-yellow-400 hover:underline">CRCL</Link>, <Link href="/hood" className="text-yellow-400 hover:underline">HOOD</Link>, <Link href="/nvda" className="text-yellow-400 hover:underline">NVDA</Link>, <Link href="/block" className="text-yellow-400 hover:underline">XYZ</Link>, and <Link href="/tesla" className="text-yellow-400 hover:underline">TSLA</Link>—represent a full spectrum of crypto-related investment opportunities. They span stablecoins (<Link href="/crcl" className="text-yellow-400 hover:underline">CRCL</Link>), trading platforms (<Link href="/hood" className="text-yellow-400 hover:underline">HOOD</Link>), essential infrastructure (<Link href="/nvda" className="text-yellow-400 hover:underline">NVDA</Link>), integrated payments and mining (<Link href="/block" className="text-yellow-400 hover:underline">XYZ</Link>), and corporate Bitcoin holdings coupled with high-profile advocacy (<Link href="/tesla" className="text-yellow-400 hover:underline">TSLA</Link>).
+                  </p>
+                  <p>
+                    For investors seeking direct crypto exposure through traditional markets, <Link href="/crcl" className="text-yellow-400 hover:underline">CRCL</Link> and <Link href="/block" className="text-yellow-400 hover:underline">XYZ</Link> stand out. Their business models are deeply intertwined with the success of stablecoins and Bitcoin, respectively. Conversely, <Link href="/nvda" className="text-yellow-400 hover:underline">NVDA</Link> and <Link href="/tesla" className="text-yellow-400 hover:underline">TSLA</Link> offer a diversified approach, mitigating crypto&apos;s inherent volatility with leadership in the AI and EV sectors. This ability to leverage traditional markets while tapping into crypto trends validates the observation that significant capital remains just outside the native crypto ecosystem, seeking familiar, regulated entry points.
+                  </p>
+                  <p>
+                    This selection aligns closely with a strategic interest in Bitcoin, altcoins like Solana, and the growing AI-blockchain nexus. The recent pro-crypto regulatory shifts, including the GENIUS Act and key SEC decisions, further bolster the investment thesis for these regulated entities. By monitoring crypto market dynamics, ongoing regulatory developments, and company-specific catalysts, investors can effectively navigate the risks and rewards within this compelling and rapidly evolving sector.
+                  </p>
+                </div>
             </div>
 
         </div>

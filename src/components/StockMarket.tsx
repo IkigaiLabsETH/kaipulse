@@ -18,6 +18,7 @@ const STOCK_TICKERS: Price[] = [
   { symbol: 'COIN', tradingViewSymbol: 'NASDAQ:COIN', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'HODL', tradingViewSymbol: 'CSE:HODL', exchange: 'CSE', color: 'text-yellow-500' },
   { symbol: 'NVDA', tradingViewSymbol: 'NASDAQ:NVDA', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'TSLA', tradingViewSymbol: 'NASDAQ:TSLA', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'MSTR', tradingViewSymbol: 'NASDAQ:MSTR', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'MSTY', tradingViewSymbol: 'AMEX:MSTY', exchange: 'AMEX', color: 'text-yellow-500' },
   { symbol: 'STRF', tradingViewSymbol: 'NASDAQ:STRF', exchange: 'NASDAQ', color: 'text-yellow-500' },
