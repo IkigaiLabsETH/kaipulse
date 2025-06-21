@@ -52,6 +52,30 @@ export default function BeyondTheHalvingPage() {
           {/* Acts */}
           <main className="space-y-12">
             <Section>
+              <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 flex items-center gap-4">
+                <span>📈</span>
+                <span>TLDR Intro: Bitcoin&apos;s Mid-Cycle Conviction Signal</span>
+              </h3>
+              <Paragraph>
+                Bitcoin continues to respect its long-term logarithmic growth channel, a structure in place since 2012 and reinforced by each post-halving cycle. With price action now pressing above the midline trend—supported by strong EMA ribbons and an RSI still below overbought levels—the setup points to a potential parabolic leg targeting as high as $900K by mid-2026.
+              </Paragraph>
+              <Paragraph>
+                This projection aligns with Bitcoin&apos;s historical rhythm: peaks tend to occur 75 weeks after each halving, placing the next likely cycle top between Q4 2025 and summer 2026. A long-formed Cup & Handle breakout adds further confluence, with a conservative technical target in the $170K–$250K range, and upside fueled by macro catalysts like ETF inflows, de-dollarization, and institutional spillover.
+              </Paragraph>
+              <div className="border-t-2 border-yellow-500/20 pt-6 mt-6">
+                <h4 className="text-xl font-bold text-white flex items-center gap-3">
+                  <span>✅</span>
+                  <span>Bottom Line:</span>
+                </h4>
+                <div className="text-white/80 text-lg leading-relaxed mt-4 pl-9">
+                  If BTC holds above $100K, it unlocks the next expansion zone.<br />
+                  Primary range: $170K (base case) → $928K (speculative ceiling)<br />
+                  Volatility expected — but structurally, Bitcoin remains in a textbook post-halving expansion phase.
+                </div>
+              </div>
+            </Section>
+
+            <Section>
               <ActTitle number="I" title="The Halving Has Spoken" />
               <Paragraph>
                 On April 20th, 2024, Bitcoin whispered its fourth epochal truth into the void — the halving. An event so deceptively simple yet so profoundly catalytic, it cuts miner rewards in half, but historically sets fire to the second half of the bull cycle. It&apos;s not magic — it&apos;s memetics and math. What follows is never guaranteed, but history? History rhymes.
