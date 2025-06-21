@@ -150,7 +150,7 @@ export default function QOLPage() {
                             <tr>
                                 <th className="border-b-2 border-yellow-500/50 p-4 text-yellow-500 font-epilogue">Variable</th>
                                 <th className="border-b-2 border-yellow-500/50 p-4 text-yellow-500 font-epilogue">France</th>
-                                <th className="border-b-2 border-yellow-500/50 p-4 text-yellow-500 font-epilogue">United States</th>
+                                <th className="border-b-2 border-yellow-500/50 p-4 text-yellow-500 font-epilogue">USA</th>
                                 <th className="border-b-2 border-yellow-500/50 p-4 text-yellow-500 font-epilogue">Why It Matters</th>
                             </tr>
                         </thead>
