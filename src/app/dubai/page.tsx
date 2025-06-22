@@ -184,6 +184,66 @@ export default function DubaiPage() {
               </div>
             </div>
           </div>
+
+          {/* Featured Video */}
+          <div className="relative w-full mx-auto aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <iframe
+              src="https://www.youtube.com/embed/G_BJuT0PffU"
+              title="SIRO One Za'abeel Lifestyle Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+          </div>
+
+          {/* SIRO One Za'abeel Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              SIRO One Za&apos;abeel: A New Era of Wellness Hospitality
+            </h3>
+            <p className="text-lg text-white/80 font-satoshi mb-8">
+              Opened in early 2024, SIRO One Za&apos;abeel is Dubai&apos;s first fitness and recovery-focused hotel. Part of the iconic One Za&apos;abeel development, it&apos;s an immersive lifestyle destination featuring two skyscrapers connected by &quot;The Link,&quot; the world&apos;s longest cantilevered structure. It redefines luxury with a deep focus on holistic wellbeing.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Left Column: Fitness & Recovery */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20 space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">Fitness & Recovery Core</h4>
+                <p className="text-white/80 font-satoshi">
+                  The hotel boasts a state-of-the-art Fitness Lab and a dedicated Recovery Floor with advanced therapies. Guests can engage in personalized training, group classes, or curated experiences like desert workouts and skydiving.
+                </p>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                  <li>Cutting-edge equipment with downtown views</li>
+                  <li>Pioneering recovery-focused treatments</li>
+                  <li>Rooms designed to optimize sleep and performance</li>
+                </ul>
+              </div>
+
+              {/* Right Column: Culinary & Luxury */}
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20 space-y-4">
+                <h4 className="text-xl font-bold text-yellow-500">Culinary & Luxury</h4>
+                <p className="text-white/80 font-satoshi">
+                  With nine restaurants, including concepts from world-renowned chefs like Anne-Sophie Pic and Tetsuya Wakuda, dining is a key part of the experience. Bespoke nutrition programs align with wellness goals.
+                </p>
+                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-1">
+                  <li>La Dame de Pic: Refined French cuisine</li>
+                  <li>Sagetsu: Sophisticated Japanese dining</li>
+                  <li>Stunning views from the 27th-floor infinity pool</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+                <Link href="https://www.sirohotels.com/onezaabeel" target="_blank" className="inline-block bg-yellow-500 text-black font-bold py-3 px-8 rounded-none hover:bg-yellow-600 transition-colors duration-300 shadow-[3px_3px_0px_0px_rgba(255,255,255,0.3)]">
+                    Explore SIRO One Za&apos;abeel
+                </Link>
+            </div>
+            
+            <div className="mt-8 text-white/70 text-sm font-satoshi text-center">
+              <p>Rated 9/10 by The Telegraph and highly on Tripadvisor, SIRO is praised for its innovative concept. It&apos;s located a 5-minute walk from the Dubai World Trade Centre.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
