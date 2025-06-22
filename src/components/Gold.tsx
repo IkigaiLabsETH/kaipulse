@@ -14,6 +14,8 @@ interface Price {
 
 const DEFAULT_TICKERS: Price[] = [
   { symbol: 'GOLD', tradingViewSymbol: 'TVC:XAUBTC', exchange: 'TVC', color: 'text-yellow-500' },
+  { symbol: 'PAX GOLD', tradingViewSymbol: 'BINANCE:PAXGUSDT', exchange: 'BINANCE', color: 'text-yellow-500' },
+  { symbol: 'XAUT', tradingViewSymbol: 'BITFINEX:XAUTUSD', exchange: 'BITFINEX', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
