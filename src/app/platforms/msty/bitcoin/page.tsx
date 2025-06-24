@@ -873,6 +873,31 @@ export default function BitcoinPage() {
           </Card>
         </motion.div>
 
+        {/* This is Bitcoin Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-16"
+        >
+          <Card>
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl font-bold text-yellow-500">This is Bitcoin</h2>
+              </div>
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/1PkMFIa7rmQ"
+                  title="This is Bitcoin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+
         {/* Quantum Computing Section (Foldable) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
