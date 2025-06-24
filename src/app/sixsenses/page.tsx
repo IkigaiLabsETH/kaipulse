@@ -170,6 +170,69 @@ export default function SixSensesPage() {
             </div>
           </div>
 
+          {/* Six Senses Porto Heli Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-6 text-center font-epilogue">
+              Six Senses Residences Porto Heli, Greece
+            </h2>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">Location</h3>
+                <p className="text-white/80">
+                  Situated on the eastern Peloponnese peninsula, a 2.5-hour drive from Athens. The estate is set on a hillside overlooking the Aegean Sea, near the cosmopolitan islands of Spetses and Hydra, offering a serene Mediterranean escape.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">Residences</h3>
+                <ul className="list-disc list-inside text-white/80 space-y-2">
+                  <li>An exclusive collection of 10 branded villas with five to eight bedrooms.</li>
+                  <li>Residences feature contemporary Mediterranean aesthetics with whitewashed walls and stone accents.</li>
+                  <li>Each villa includes a private pool, terrace, and landscaped gardens with maximized sea views.</li>
+                  <li>Fully managed by Six Senses, including an optional rental program.</li>
+                </ul>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <Card className="bg-black p-6 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                  <CardHeader>
+                    <CardTitle className="font-epilogue text-xl text-yellow-400">Unique Appeal</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-white/80">A hidden gem in the Greek Riviera, offering a quieter alternative to other Greek islands, with a focus on yachting culture.</p>
+                  </CardContent>
+                </Card>
+                <Card className="bg-black p-6 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                  <CardHeader>
+                    <CardTitle className="font-epilogue text-xl text-yellow-400">Development Timeline</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-white/80">The resort and residences are scheduled to open in 2027.</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">Amenities and Facilities</h3>
+                <ul className="list-disc list-inside text-white/80 space-y-2">
+                  <li>**Six Senses Resort & Spa:** A 60-key hotel with a 1,600 square-meter spa.</li>
+                  <li>**Dining:** A beach-front all-day restaurant, a sunset bar, and a traditional Greek Kafeneio.</li>
+                  <li>**Activities:** Direct beach access with a boat jetty and beach club, water sports, and cultural excursions to nearby archaeological sites like Epidaurus.</li>
+                  <li>**Wellness:** Biohacking lounge, outdoor fitness circuit, and spa herbal gardens.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">Why Consider Porto Heli?</h3>
+                <ul className="list-disc list-inside text-white/80 space-y-2">
+                    <li>A blend of coastal relaxation and cultural exploration in a less commercialized part of Greece.</li>
+                    <li>Strong investment potential in a growing luxury market.</li>
+                    <li>Ideal for year-round living with a mild Mediterranean climate and easy access to Athens.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div className="text-center pt-8">
             <p className="text-white/70 font-satoshi mb-4">
               For the latest updates and inquiries, contact the Six Senses sales team.
