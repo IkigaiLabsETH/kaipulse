@@ -109,14 +109,14 @@ export default function CryptoPage() {
           <GlobalMarketDashboardCard />
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <AltcoinInfoCard id="uniswap" />
+            <AltcoinInfoCard id="hyperliquid" />
             <AltcoinInfoCard id="render-token" />
-            <AltcoinInfoCard id="mantle" />
-            <AltcoinInfoCard id="grass" />
+            <AltcoinInfoCard id="kaia" />
+            <AltcoinInfoCard id="aave" />
             <AltcoinInfoCard id="injective-protocol" />
-            <AltcoinInfoCard id="ethena" />
-            <AltcoinInfoCard id="cookie" />
-            <AltcoinInfoCard id="railgun" />
+            <AltcoinInfoCard id="sei-network" />
+            <AltcoinInfoCard id="spx6900" />
+            <AltcoinInfoCard id="dogwifcoin" />
             <AltcoinInfoCard id="rekt-4" />
             <AltcoinInfoCard id="mog-coin" />
             <AltcoinInfoCard id="fartcoin" />
