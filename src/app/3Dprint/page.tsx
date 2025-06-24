@@ -227,7 +227,7 @@ export default function ThreeDPrintPage() {
             <div className="space-y-8 text-gray-300">
                 <div>
                   <p className="text-lg mb-6">
-                    While Constructions-3D is a strong contender, several other innovative companies are shaping the European 3D concrete printing market. Here is a look at some of the key players.
+                    While Constructions-3D is a strong contender, several other innovative companies are shaping the European 3D concrete printing market.
                   </p>
                   <div className="grid md:grid-cols-2 gap-8">
                     {/* CyBe Construction */}
@@ -235,26 +235,26 @@ export default function ThreeDPrintPage() {
                       <h4 className="text-xl font-bold text-yellow-500 mb-2">CyBe Construction (Netherlands)</h4>
                       <p className="mb-4">Offers a range of printers and a &ldquo;Building as a Service&rdquo; model. Known for accessible entry-level options and strong customer support.</p>
                       <ul className="list-disc list-inside space-y-1">
-                        <li><b>Printers:</b> CyBe R (fixed), RC (mobile crawler), RT (track), G (gantry).</li>
-                        <li><b>Focus:</b> Accessibility for research and small firms, with comprehensive support.</li>
+                        <li><b>Printers:</b> CyBe R (fixed), RC (mobile crawler), RT (track), G.</li>
+                        <li><b>Focus:</b> For research and small firms, with comprehensive support.</li>
                       </ul>
                     </div>
                     {/* COBOD International */}
                     <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                       <h4 className="text-xl font-bold text-yellow-500 mb-2">COBOD International (Denmark)</h4>
-                      <p className="mb-4">A global leader with the widely adopted BOD2 printer. Focuses on high-speed automation and open-source material strategies.</p>
+                      <p className="mb-4">Focuses on high-speed automation and open-source material strategies.</p>
                       <ul className="list-disc list-inside space-y-1">
                         <li><b>Printer:</b> BOD2, known for speed and scalability.</li>
-                        <li><b>Focus:</b> Large-scale projects, cost reduction, and material flexibility.</li>
+                        <li><b>Focus:</b> Large-scale projects and material flexibility.</li>
                       </ul>
                     </div>
                     {/* PERI 3D Construction */}
                     <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                       <h4 className="text-xl font-bold text-yellow-500 mb-2">PERI 3D Construction (Germany)</h4>
-                      <p className="mb-4">A division of a major construction group that uses COBOD&apos;s BOD2 printer and offers end-to-end project implementation.</p>
+                      <p className="mb-4">BOD2 printer and offers end-to-end project implementation.</p>
                       <ul className="list-disc list-inside space-y-1">
                         <li><b>Printer:</b> Utilizes the COBOD BOD2.</li>
-                        <li><b>Focus:</b> Comprehensive services for large developers, with significant project experience.</li>
+                        <li><b>Focus:</b> For large developers, with significant project experience.</li>
                       </ul>
                     </div>
                     {/* Saint-Gobain Weber */}
@@ -263,7 +263,7 @@ export default function ThreeDPrintPage() {
                       <p className="mb-4">Operates a factory in the Netherlands for printing lightweight, complex structural elements with a focus on CO2 reduction.</p>
                        <ul className="list-disc list-inside space-y-1">
                         <li><b>Technology:</b> Proprietary factory-based printers.</li>
-                        <li><b>Focus:</b> Prefabricated, high-design elements with a low carbon footprint.</li>
+                        <li><b>Focus:</b> Prefabricated, high-design elements.</li>
                       </ul>
                     </div>
                   </div>
