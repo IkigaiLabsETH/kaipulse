@@ -7,7 +7,7 @@ export default function HeroSection() {
         <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">Luxury Pool • Premium Construction • Natural Stone</p>
         <h1 className="text-center">
           <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
-            11x6m Pool
+            12x6m Pool
           </span>
         </h1>
         <div className="flex items-center justify-center mt-6">
