@@ -11,7 +11,7 @@ export default function CostBreakdown() {
           </h3>
         </div>
         <p className="text-center text-lg md:text-xl">
-          €50,000 - €60,000
+          €60,000 - €70,000
         </p>
       </div>
       <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -22,7 +22,7 @@ export default function CostBreakdown() {
           </h3>
         </div>
         <p className="text-center text-lg md:text-xl">
-          €25,000 - €30,000
+          €30,000 - €50,000
         </p>
       </div>
       <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -33,7 +33,7 @@ export default function CostBreakdown() {
           </h3>
         </div>
         <p className="text-center text-lg md:text-xl">
-          €100,000
+          €110,000
         </p>
       </div>
     </div>
