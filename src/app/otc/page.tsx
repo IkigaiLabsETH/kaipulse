@@ -97,10 +97,21 @@ const OTCPage: NextPage = () => {
 
             <SectionCard title="Market Outlook and Future Developments">
               <p>
-                The depletion of OTC Bitcoin supply, combined with strong institutional demand, is setting the stage for a potential supply shock in 2025. Analysts predict that this could lead to significant price increases, but also increased volatility, as the market adjusts to the new dynamics. Blockchain.News in April 2025 suggested that the tightening liquidity environment could precede bullish momentum, while Crypto News Flash in February 2025 warned of possible price surges as OTC reserves dwindle.
+                The Bitcoin market is at a pivotal juncture, where dwindling Over-the-Counter (OTC) supply and persistent institutional appetite are creating the perfect storm for a supply shock. The core of the issue is simple: large buyers are running out of their preferred, private channel for acquisition and will be forced onto the public stage of exchanges. This sets up a series of critical market shifts:
               </p>
-              <p>
-                The market remains on a knife-edge, with the potential for both bullish rallies and sharp corrections depending on how institutional players navigate this new landscape. Investors and market participants should closely monitor on-chain data, exchange flows, and institutional activity to navigate this evolving situation. The Bitcoin market in 2025 is not just a story of price movements but a testament to the shifting dynamics of supply and demand in a maturing asset class.
+              <ul className="list-disc list-inside space-y-4 pl-4 mt-4">
+                  <li>
+                      <strong className="text-yellow-400">Intensified Volatility:</strong> Transparent, large-scale buys on public exchanges are likely to trigger more significant and rapid price movements compared to discrete OTC trades.
+                  </li>
+                  <li>
+                      <strong className="text-yellow-400">Potential for Price Surges:</strong> With exchange liquidity already tight, the influx of institutional capital is expected to create substantial upward pressure on Bitcoin&apos;s price. Forecasts of $150,000 or higher are becoming more common as analysts model this new demand hitting a limited supply.
+                  </li>
+                  <li>
+                      <strong className="text-yellow-400">The Miner X-Factor:</strong> While Bitcoin miners have increased their selling to cover costs, this supply stream appears insufficient to fully absorb the wave of institutional demand. The net flow of BTC on exchanges remains negative, suggesting buying pressure is dominant.
+                  </li>
+              </ul>
+              <p className="mt-4">
+                <strong className="text-yellow-400">Conclusion:</strong> The market is on a knife-edge. The depletion of OTC desks is not just a supply issue; it&apos;s a structural change that will likely redefine market dynamics in 2025. Investors should prepare for a period of heightened volatility and closely monitor on-chain data, particularly exchange inflows and outflows, to navigate the impending supply crunch. The era of quiet institutional accumulation may be ending, giving way to a more openly contested and dynamic market.
               </p>
             </SectionCard>
           </div>
