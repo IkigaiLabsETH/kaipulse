@@ -95,6 +95,17 @@ export default function InhausPage() {
             </div>
           </div>
 
+          {/* Featured Image */}
+          <div className="relative w-full mx-auto mt-12 aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <Image
+              src="/02_inhaus_by_fsa_03.jpg"
+              alt="Casas inHAUS architectural design"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+          </div>
+
           {/* Award-Winning Achievements */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
