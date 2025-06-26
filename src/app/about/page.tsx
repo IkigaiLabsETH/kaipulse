@@ -301,6 +301,36 @@ export default function AboutPage() {
           </Card>
         </div>
       </section>
+      {/* Michael Saylor Bitcoin Strategy Video Section */}
+      <section className="w-full flex flex-col items-center justify-center py-16 bg-black border-t border-yellow-500/20">
+        <div className="max-w-4xl w-full px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-yellow-500 mb-4">There is no second best keynote.</h2>
+            <div className="w-24 h-1 bg-yellow-500 mx-auto mb-8"></div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="aspect-video w-full rounded-lg overflow-hidden shadow-[0_0_20px_rgba(234,179,8,0.5)] border-2 border-yellow-500/50"
+          >
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/Pef22g53zsg"
+              title="Michael Saylor on Bitcoin Strategy"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </motion.div>
+        </div>
+      </section>
       {/* The Genesis Block Story Section */}
       <section className="w-full flex flex-col items-center justify-center py-16 bg-black border-t border-yellow-500/20">
         <div className="max-w-4xl w-full px-4">
