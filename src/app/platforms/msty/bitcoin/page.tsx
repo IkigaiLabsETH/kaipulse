@@ -888,7 +888,7 @@ export default function BitcoinPage() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg"
-                  src="https://www.youtube.com/embed/FQXC3DX-cDg"
+                  src="https://www.youtube.com/embed/Pef22g53zsg"
                   title="This is Bitcoin"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
