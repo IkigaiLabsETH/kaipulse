@@ -917,6 +917,123 @@ export default function RealEstatePage() {
             </div>
           </div>
 
+          {/* FHFA Crypto Mortgage Analysis Section */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              A Comprehensive Analysis of Using Cryptocurrency as an Asset for Mortgages and Its Impact on Bitcoin
+            </h3>
+            <div className="space-y-6 text-gray-300">
+              <div className="bg-yellow-500/10 p-6 rounded-lg">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Points</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Research suggests using crypto for mortgages could boost Bitcoin adoption and price stability.</li>
+                  <li>It seems likely that this will increase Bitcoin&apos;s legitimacy, but volatility risks remain controversial.</li>
+                  <li>The evidence leans toward both opportunities and challenges for Bitcoin in the housing market.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Introduction</h4>
+                <p className="text-lg">
+                  As of June 26, 2025, the financial landscape in the United States has witnessed a transformative development with the Federal Housing Finance Agency (FHFA) directing Fannie Mae and Freddie Mac to consider cryptocurrency holdings, including Bitcoin (BTC), as assets for mortgage eligibility. Announced on June 25, 2025, this policy shift allows borrowers to leverage their crypto wealth without converting it to U.S. dollars, marking a significant step towards integrating digital assets into traditional financial systems. This report explores the implications for Bitcoin, drawing on recent news, expert opinions, and market data to provide a detailed analysis.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">The Policy Context</h4>
+                <p className="text-lg">
+                  The FHFA&apos;s directive, led by Director Bill Pulte, requires Fannie Mae and Freddie Mac to design safeguards for crypto volatility and submit plans for approval. This aligns with President Donald Trump&apos;s vision to make the U.S. the &quot;crypto capital of the world,&quot; as noted in an X post by Pulte. The policy specifies that only crypto assets held on U.S.-regulated, centralized exchanges will be considered, ensuring compliance with financial regulations. This is a pivotal move, given that Fannie Mae and Freddie Mac guarantee over half of the nation&apos;s mortgages, potentially impacting millions of Americans.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Benefits for Bitcoin</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li><strong className="text-yellow-400">Increased Adoption and Legitimacy:</strong> By recognizing Bitcoin as a legitimate asset for mortgages, the FHFA enhances its credibility. This could boost adoption, as more individuals may view Bitcoin as a viable store of value and a means to secure significant transactions like home loans. Approximately 20% of Americans (around 65 million people) own crypto, with 74% of U.S. crypto portfolios valued at less than $50,000, suggesting a broad potential user base.</li>
+                  <li><strong className="text-yellow-400">Reduced Selling Pressure:</strong> Traditionally, Bitcoin holders might sell their assets to fund home purchases. However, using Bitcoin as collateral allows retention, potentially reducing selling pressure. This could stabilize or increase prices, especially given Bitcoin&apos;s current price of $108,067.00 USD, reflecting recent market confidence.</li>
+                  <li><strong className="text-yellow-400">Enhanced Utility:</strong> Bitcoin&apos;s role expands beyond speculation to include collateral for mortgages, increasing its utility. Providers like Milo and Figure already offer crypto-backed mortgages, accepting Bitcoin for loans up to $5 million and $20 million, respectively, without requiring credit checks. The FHFA&apos;s directive could mainstream this practice, driving demand.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Risks and Challenges</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li><strong className="text-yellow-400">Volatility and Margin Calls:</strong> Bitcoin&apos;s price volatility poses a major risk. If its value drops, borrowers may face margin calls, requiring additional funds. Failure to comply could lead to liquidation, as seen with Milo, which requests margin calls at 65% of the loan amount and liquidates at 30%. Historical data shows Bitcoin&apos;s value fell by two-thirds between November 2021 and June 2022, highlighting potential losses.</li>
+                  <li><strong className="text-yellow-400">Regulatory Scrutiny and Compliance:</strong> The requirement for U.S.-regulated exchanges could limit eligible Bitcoin holdings, excluding decentralized or self-custodied assets. Increased regulatory attention might impose new restrictions, affecting Bitcoin&apos;s adoption.</li>
+                  <li><strong className="text-yellow-400">Market Manipulation and Systemic Risks:</strong> Large Bitcoin holders could manipulate prices, impacting both crypto and housing markets. Defaults due to volatility could destabilize mortgage-backed securities, a critical component of the financial system.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Expert Opinions</h4>
+                <ul className="list-disc list-inside space-y-2">
+                  <li><strong className="text-yellow-400">Sam Cooling, Editor at 99Bitcoins,</strong> advises caution, emphasizing thorough documentation for Bitcoin mortgage applications, noting the complexities of integration.</li>
+                  <li><strong className="text-yellow-400">Mitchell Askew, Analyst at Blockware,</strong> views Bitcoin as ideal collateral due to its liquidity and transparent custody on the public blockchain, enhancing its financial role.</li>
+                  <li><strong className="text-yellow-400">CJ Konstantinos, Founder of People&apos;s Reserve,</strong> argues Bitcoin could derisk the mortgage-backed securities market, calling it a &quot;no-brainer&quot; for modernizing finance.</li>
+                  <li>An anonymous commenter on <strong className="text-yellow-400">ZeroHedge</strong> raises concerns about risk models, noting borrower net worth can swing 50% weekly with volatile assets like Bitcoin, complicating stress-testing.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Broader Implications</h4>
+                <ul className="list-disc list-inside space-y-2">
+                    <li><strong className="text-yellow-400">Housing Market Accessibility:</strong> For crypto holders with limited traditional income, this policy could ease homeownership. In 2024, the FHA issued over 760,000 single-family mortgages worth $230 billion, suggesting significant potential impact.</li>
+                    <li><strong className="text-yellow-400">Crypto Market Growth:</strong> Recognition by major institutions could accelerate Bitcoin adoption, driving investment and prices. However, overleveraging risks exist, with potential defaults if Bitcoin prices crash, affecting both markets.</li>
+                    <li><strong className="text-yellow-400">Economic Considerations:</strong> This could address housing market challenges, like declining mortgage originations, by tapping into crypto wealth, but requires robust risk management to prevent systemic issues.</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Detailed Analysis Table</h4>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full border border-yellow-500/20">
+                    <thead>
+                      <tr className="bg-yellow-500/10">
+                        <th className="px-4 py-2 text-left">Aspect</th>
+                        <th className="px-4 py-2 text-left">Details</th>
+                        <th className="px-4 py-2 text-left">Impact on Bitcoin</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Adoption and Legitimacy</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Recognized by FHFA, potentially attracting more investors</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Positive, increases demand and credibility</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Price Stability</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Reduced selling pressure by using as collateral</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Positive, could stabilize or increase price</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Volatility Risks</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Margin calls and potential defaults due to price swings</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Negative, risks borrower and lender stability</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Regulatory Compliance</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Must be on U.S.-regulated exchanges, limiting options</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Mixed, ensures security but restricts access</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Market Manipulation</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Potential for large holders to influence prices</td>
+                        <td className="px-4 py-2 border-t border-yellow-500/20">Negative, could destabilize markets</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Conclusion</h4>
+                <p className="text-lg">
+                  The FHFA&apos;s directive to allow cryptocurrency as an asset for mortgages is a landmark development with significant implications for Bitcoin. It offers opportunities for increased adoption, legitimacy, and price stability, but also introduces risks from volatility, regulatory scrutiny, and potential market manipulation. As of June 26, 2025, with Bitcoin at $108,067.00 USD, the market seems to respond positively, but long-term outcomes depend on effective risk management. This policy could reshape financial systems, balancing innovation with stability, and warrants close monitoring for its impact on both crypto and housing markets.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* FAQ Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
