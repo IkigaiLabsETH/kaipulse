@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface CompanyHolding {
   name: string;
@@ -20,26 +20,36 @@ interface TreasuryData {
   market_cap_dominance: number;
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5
-    }
-  }
+      duration: 0.5,
+    },
+  },
 };
+
+const StatCard = ({ title, value, variants }: { title: string; value: string; variants?: Variants }) => (
+  <motion.div
+    className="p-6 sm:p-8 bg-black rounded-lg"
+    variants={variants}
+  >
+    <p className="text-xs sm:text-sm text-[#FFD700]/80 mb-2 sm:mb-3 font-epilogue">{title}</p>
+    <p className="text-2xl sm:text-4xl font-boska text-[#FFD700]">{value}</p>
+  </motion.div>
+);
 
 export default function PublicTreasuryPage() {
   const [btcData, setBtcData] = useState<TreasuryData | null>(null);
@@ -110,268 +120,224 @@ export default function PublicTreasuryPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-6xl font-boska mb-6 text-[#FFD700]">
-            Public Companies Crypto Holdings
+          <p className="uppercase tracking-[0.4em] text-[#FFD700]/90 text-sm mb-4 font-light font-satoshi">CORPORATE TREASURIES • ON-CHAIN DATA • TRANSPARENCY</p>
+          <h1 className="text-center">
+            <span className="text-6xl md:text-8xl font-bold text-[#FFD700] tracking-tight [text-shadow:_0_1px_20px_rgba(255,215,0,0.3)] font-satoshi">
+              The Bitcoin Treasury
+            </span>
           </h1>
-          <p className="text-gray-400 text-lg font-epilogue">
-            Real-time tracking of Bitcoin and Ethereum holdings by public companies
-          </p>
+          <div className="flex items-center justify-center mt-6">
+            <div className="h-px w-24 bg-[#FFD700]/30"></div>
+            <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
+              Real-time tracking of Bitcoin and Ethereum holdings by public companies
+            </p>
+            <div className="h-px w-24 bg-[#FFD700]/30"></div>
+          </div>
         </motion.div>
         
-        <Tabs defaultValue="bitcoin" className="w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <TabsList
-              className="grid w-full grid-cols-2 bg-black p-1 sm:p-2 rounded-2xl mb-8 sm:mb-12 shadow-[0_0_40px_0_rgba(255,215,0,0.10)]"
-              style={{ boxShadow: '0 0 40px 0 rgba(255,215,0,0.10)' }}
+        <Tabs defaultValue="bitcoin" className="w-full space-y-12 mb-20">
+          <TabsList className="grid w-full grid-cols-2 rounded-none">
+            <TabsTrigger
+              value="bitcoin"
+              className="flex-1 items-center justify-center gap-3 rounded-none bg-[#1c1f26] px-8 py-4 font-boska text-base sm:text-lg font-semibold text-white transition-all duration-300 data-[state=active]:bg-yellow-500 data-[state=active]:text-black"
             >
-              <TabsTrigger
-                value="bitcoin"
-                className="
-                  font-boska text-base sm:text-lg py-3 sm:py-4 rounded-xl transition-all duration-300
-                  data-[state=active]:bg-[#FFD700] data-[state=active]:text-black data-[state=active]:font-bold
-                  data-[state=active]:shadow-[0_0_24px_0_rgba(255,215,0,0.7)]
-                  bg-transparent text-white font-normal
-                  hover:bg-[#FFD700]/10 hover:text-[#FFD700]
-                  flex items-center justify-center gap-2
-                  border-none outline-none
-                "
-                style={{ boxShadow: undefined }}
-              >
-                <span className="text-xl sm:text-2xl" style={{ color: 'inherit' }}>₿</span>
-                <span>Bitcoin Holdings</span>
-              </TabsTrigger>
-              <TabsTrigger
-                value="ethereum"
-                className="
-                  font-boska text-base sm:text-lg py-3 sm:py-4 rounded-xl transition-all duration-300
-                  data-[state=active]:bg-[#FFD700] data-[state=active]:text-black data-[state=active]:font-bold
-                  data-[state=active]:shadow-[0_0_24px_0_rgba(255,215,0,0.7)]
-                  bg-transparent text-white font-normal
-                  hover:bg-[#FFD700]/10 hover:text-[#FFD700]
-                  flex items-center justify-center gap-2
-                  border-none outline-none
-                "
-                style={{ boxShadow: undefined }}
-              >
-                <span className="text-xl sm:text-2xl" style={{ color: 'inherit' }}>Ξ</span>
-                <span>Ethereum Holdings</span>
-              </TabsTrigger>
-            </TabsList>
-          </motion.div>
+              <span className="text-xl sm:text-2xl" style={{ color: 'inherit' }}>₿</span>
+              <span>Bitcoin Holdings</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="ethereum"
+              className="flex-1 items-center justify-center gap-3 rounded-none bg-[#1c1f26] px-8 py-4 font-boska text-base sm:text-lg font-semibold text-white transition-all duration-300 data-[state=active]:bg-yellow-500 data-[state=active]:text-black"
+            >
+              <span className="text-xl sm:text-2xl" style={{ color: 'inherit' }}>Ξ</span>
+              <span>Ethereum Holdings</span>
+            </TabsTrigger>
+          </TabsList>
 
           <TabsContent value="bitcoin">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Card className="bg-black border border-[#FFD700] shadow-[0_0_30px_rgba(255,215,0,0.15)]">
-                <CardHeader>
-                  <CardTitle className="text-3xl font-boska text-[#FFD700]">Bitcoin Holdings Overview</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {btcData && (
-                    <div className="space-y-8">
-                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 mb-8 sm:mb-12">
-                        <motion.div 
-                          variants={itemVariants}
-                          className="p-6 sm:p-8 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_30px_rgba(255,215,0,0.2)] transition-all duration-300"
-                        >
-                          <p className="text-xs sm:text-sm text-[#FFD700]/80 mb-2 sm:mb-3 font-epilogue">Total Holdings</p>
-                          <p className="text-2xl sm:text-4xl font-boska text-[#FFD700]">{btcData.total_holdings.toLocaleString()} BTC</p>
-                        </motion.div>
-                        <motion.div 
-                          variants={itemVariants}
-                          className="p-6 sm:p-8 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_30px_rgba(255,215,0,0.2)] transition-all duration-300"
-                        >
-                          <p className="text-xs sm:text-sm text-[#FFD700]/80 mb-2 sm:mb-3 font-epilogue">Market Cap Dominance</p>
-                          <p className="text-2xl sm:text-4xl font-boska text-[#FFD700]">{btcData.market_cap_dominance.toFixed(2)}%</p>
-                        </motion.div>
-                      </div>
-                      <motion.div 
+            <Card className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <CardHeader>
+                <CardTitle className="text-3xl font-boska text-[#FFD700]">Bitcoin Holdings Overview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {btcData && (
+                  <div className="space-y-8">
+                    <motion.div 
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <StatCard
+                        title="Total Holdings"
+                        value={`${btcData.total_holdings.toLocaleString()} BTC`}
                         variants={itemVariants}
-                        className="overflow-x-auto rounded-xl shadow-[0_0_30px_rgba(255,215,0,0.15)]"
-                      >
-                        <table className="w-full min-w-[500px] sm:min-w-0">
-                          <thead>
-                            <tr className="border-b border-[#FFD700]/20">
-                              <th className="text-left py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Company</th>
-                              <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Holdings</th>
-                              <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Country</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {btcData.companies.map((company, index) => (
-                              <motion.tr 
-                                key={company.symbol} 
-                                className="border-b border-[#FFD700]/10 hover:bg-[#FFD700]/5 transition-colors"
-                                variants={itemVariants}
-                                custom={index}
-                              >
-                                <td className="py-4 sm:py-6 px-4 sm:px-8">
-                                  <div>
-                                    <p className="font-epilogue text-base sm:text-lg text-white">{company.name}</p>
-                                    <p className="text-xs sm:text-sm text-[#FFD700]/60 font-satoshi">{company.symbol}</p>
-                                  </div>
-                                </td>
-                                <td className="text-right py-4 sm:py-6 px-4 sm:px-8">
-                                  <span className="font-boska text-[#FFD700] text-base sm:text-lg">{company.total_holdings.toLocaleString()} BTC</span>
-                                </td>
-                                <td className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm">{company.country}</td>
-                              </motion.tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </motion.div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
+                      />
+                      <StatCard
+                        title="Market Cap Dominance"
+                        value={`${btcData.market_cap_dominance.toFixed(2)}%`}
+                        variants={itemVariants}
+                      />
+                    </motion.div>
+                    <motion.div 
+                      variants={itemVariants}
+                      className="overflow-x-auto"
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <table className="w-full min-w-[500px] sm:min-w-0">
+                        <thead>
+                          <tr className="border-b border-[#FFD700]/20">
+                            <th className="text-left py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Company</th>
+                            <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Holdings</th>
+                            <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Country</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {btcData.companies.map((company, index) => (
+                            <motion.tr 
+                              key={company.symbol} 
+                              className="border-b border-[#FFD700]/10 last:border-b-0 hover:bg-[#FFD700]/5 transition-colors"
+                              variants={itemVariants}
+                              custom={index}
+                            >
+                              <td className="py-4 sm:py-6 px-4 sm:px-8">
+                                <div>
+                                  <p className="font-epilogue text-base sm:text-lg text-white">{company.name}</p>
+                                  <p className="text-xs sm:text-sm text-[#FFD700]/60 font-satoshi">{company.symbol}</p>
+                                </div>
+                              </td>
+                              <td className="text-right py-4 sm:py-6 px-4 sm:px-8">
+                                <span className="font-boska text-[#FFD700] text-base sm:text-lg">{company.total_holdings.toLocaleString()} BTC</span>
+                              </td>
+                              <td className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm">{company.country}</td>
+                            </motion.tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </motion.div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="ethereum">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Card className="bg-black border border-[#FFD700] shadow-[0_0_30px_rgba(255,215,0,0.15)]">
-                <CardHeader>
-                  <CardTitle className="text-3xl font-boska text-[#FFD700]">Ethereum Holdings Overview</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {ethData && (
-                    <div className="space-y-8">
-                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 mb-8 sm:mb-12">
-                        <motion.div 
-                          variants={itemVariants}
-                          className="p-6 sm:p-8 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_30px_rgba(255,215,0,0.2)] transition-all duration-300"
-                        >
-                          <p className="text-xs sm:text-sm text-[#FFD700]/80 mb-2 sm:mb-3 font-epilogue">Total Holdings</p>
-                          <p className="text-2xl sm:text-4xl font-boska text-[#FFD700]">{ethData.total_holdings.toLocaleString()} ETH</p>
-                        </motion.div>
-                        <motion.div 
-                          variants={itemVariants}
-                          className="p-6 sm:p-8 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)] hover:shadow-[0_0_30px_rgba(255,215,0,0.2)] transition-all duration-300"
-                        >
-                          <p className="text-xs sm:text-sm text-[#FFD700]/80 mb-2 sm:mb-3 font-epilogue">Market Cap Dominance</p>
-                          <p className="text-2xl sm:text-4xl font-boska text-[#FFD700]">{ethData.market_cap_dominance.toFixed(2)}%</p>
-                        </motion.div>
-                      </div>
-                      <motion.div 
+            <Card className="bg-[#1c1f26] rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <CardHeader>
+                <CardTitle className="text-3xl font-boska text-[#FFD700]">Ethereum Holdings Overview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {ethData && (
+                  <div className="space-y-8">
+                    <motion.div 
+                      className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <StatCard
+                        title="Total Holdings"
+                        value={`${ethData.total_holdings.toLocaleString()} ETH`}
                         variants={itemVariants}
-                        className="overflow-x-auto rounded-xl shadow-[0_0_30px_rgba(255,215,0,0.15)]"
-                      >
-                        <table className="w-full min-w-[500px] sm:min-w-0">
-                          <thead>
-                            <tr className="border-b border-[#FFD700]/20">
-                              <th className="text-left py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Company</th>
-                              <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Holdings</th>
-                              <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Country</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {ethData.companies.map((company, index) => (
-                              <motion.tr 
-                                key={company.symbol} 
-                                className="border-b border-[#FFD700]/10 hover:bg-[#FFD700]/5 transition-colors"
-                                variants={itemVariants}
-                                custom={index}
-                              >
-                                <td className="py-4 sm:py-6 px-4 sm:px-8">
-                                  <div>
-                                    <p className="font-epilogue text-base sm:text-lg text-white">{company.name}</p>
-                                    <p className="text-xs sm:text-sm text-[#FFD700]/60 font-satoshi">{company.symbol}</p>
-                                  </div>
-                                </td>
-                                <td className="text-right py-4 sm:py-6 px-4 sm:px-8">
-                                  <span className="font-boska text-[#FFD700] text-base sm:text-lg">{company.total_holdings.toLocaleString()} ETH</span>
-                                </td>
-                                <td className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm">{company.country}</td>
-                              </motion.tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </motion.div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
+                      />
+                      <StatCard
+                        title="Market Cap Dominance"
+                        value={`${ethData.market_cap_dominance.toFixed(2)}%`}
+                        variants={itemVariants}
+                      />
+                    </motion.div>
+                    <motion.div 
+                      variants={itemVariants}
+                      className="overflow-x-auto"
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <table className="w-full min-w-[500px] sm:min-w-0">
+                        <thead>
+                          <tr className="border-b border-[#FFD700]/20">
+                            <th className="text-left py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Company</th>
+                            <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Holdings</th>
+                            <th className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm uppercase tracking-wider">Country</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {ethData.companies.map((company, index) => (
+                            <motion.tr 
+                              key={company.symbol} 
+                              className="border-b border-[#FFD700]/10 last:border-b-0 hover:bg-[#FFD700]/5 transition-colors"
+                              variants={itemVariants}
+                              custom={index}
+                            >
+                              <td className="py-4 sm:py-6 px-4 sm:px-8">
+                                <div>
+                                  <p className="font-epilogue text-base sm:text-lg text-white">{company.name}</p>
+                                  <p className="text-xs sm:text-sm text-[#FFD700]/60 font-satoshi">{company.symbol}</p>
+                                </div>
+                              </td>
+                              <td className="text-right py-4 sm:py-6 px-4 sm:px-8">
+                                <span className="font-boska text-[#FFD700] text-base sm:text-lg">{company.total_holdings.toLocaleString()} ETH</span>
+                              </td>
+                              <td className="text-right py-4 sm:py-6 px-4 sm:px-8 text-[#FFD700]/80 font-epilogue text-xs sm:text-sm">{company.country}</td>
+                            </motion.tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </motion.div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
-      </div>
-      <div className="container mx-auto py-24 px-4">
-        <motion.div 
-          className="mb-20 text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h2 className="text-4xl font-boska mb-6 text-[#FFD700]">
-            2026 Institutional Bitcoin Adoption Projection
-          </h2>
-          <p className="text-gray-400 text-lg font-epilogue mb-12">
-            A bold projection for institutional Bitcoin adoption by the end of 2026, estimating $426.9 billion in inflows
-          </p>
-        </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-8"
+          className="space-y-12"
         >
-          <Card className="bg-black border border-[#FFD700] shadow-[0_0_30px_rgba(255,215,0,0.15)]">
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="relative aspect-video w-full">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/1kiD8eLq4uI"
+                title="Institutional Bitcoin Adoption"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen>
+              </iframe>
+            </div>
+          </div>
+
+          <Card className="bg-[#1c1f26] rounded-none border-2 border-[#FFD700] shadow-[5px_5px_0px_0px_rgba(255,215,0,1)]">
+            <CardHeader>
+              <CardTitle className="text-3xl font-boska text-[#FFD700] text-center">
+                2026 Institutional Bitcoin Adoption Projection
+              </CardTitle>
+            </CardHeader>
             <CardContent className="pt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
-                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
-                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🔵 Nation-States</h3>
-                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$161.7B</p>
-                    <p className="text-white/80 font-epilogue">1,617,000 BTC (7.70%)</p>
-                  </div>
-                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
-                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🟡 Wealth Management</h3>
-                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$120.0B</p>
-                    <p className="text-white/80 font-epilogue">1,200,000 BTC (5.71%)</p>
-                  </div>
-                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
-                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🔴 Public Companies</h3>
-                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$117.8B</p>
-                    <p className="text-white/80 font-epilogue">1,178,000 BTC (5.61%)</p>
-                  </div>
+                  <StatCard title="🔵 Nation-States" value="$161.7B" variants={itemVariants} />
+                  <StatCard title="🟡 Wealth Management" value="$120.0B" variants={itemVariants} />
+                  <StatCard title="🔴 Public Companies" value="$117.8B" variants={itemVariants} />
                 </div>
                 <div className="space-y-6">
-                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
-                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🟢 U.S. States</h3>
-                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$19.6B</p>
-                    <p className="text-white/80 font-epilogue">196,000 BTC (0.93%)</p>
-                  </div>
-                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
-                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🟣 Sovereign Wealth Funds</h3>
-                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$7.8B</p>
-                    <p className="text-white/80 font-epilogue">78,000 BTC (0.37%)</p>
-                  </div>
-                  <div className="p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
-                    <h3 className="text-[#FFD700] text-xl font-boska mb-4">🧠 Total Forecast</h3>
-                    <p className="text-[#FFD700] text-2xl font-boska mb-2">$426.9B</p>
-                    <p className="text-white/80 font-epilogue">4,269,000 BTC (20.32%)</p>
-                  </div>
+                  <StatCard title="🟢 U.S. States" value="$19.6B" variants={itemVariants} />
+                  <StatCard title="🟣 Sovereign Wealth Funds" value="$7.8B" variants={itemVariants} />
+                  <StatCard title="🧠 Total Forecast" value="$426.9B" variants={itemVariants} />
                 </div>
               </div>
 
-              <div className="mt-12 p-6 bg-black rounded-xl shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+              <motion.div
+                className="mt-12 p-6 bg-black rounded-lg"
+                variants={itemVariants}
+              >
                 <h3 className="text-[#FFD700] text-xl font-boska mb-4">🧩 Key Insight</h3>
                 <p className="text-white/80 font-epilogue">
                   With Bitcoin already trading above $100K, these projections become even more compelling. The institutional demand outlined here could create a significant supply shock, as the available Bitcoin supply becomes increasingly scarce. This structural scarcity, combined with institutional FOMO, could drive prices significantly higher than current levels.
                 </p>
-              </div>
+              </motion.div>
             </CardContent>
           </Card>
         </motion.div>
