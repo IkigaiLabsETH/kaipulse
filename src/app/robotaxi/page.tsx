@@ -44,6 +44,58 @@ const businessModelData = {
       { title: "Financial Flexibility", description: "Our hybrid LLD-to-own model balances risk and reward perfectly." },
   ]
 
+  const marketingPlanData = [
+    {
+      phase: "Phase 1: Stealth-Mode Proof of Concept (Moons Over Paris)",
+      goal: "Build mystique, get early adopter data, and spark word-of-mouth.",
+      actions: [
+        "Branding: Wrap all 12 vehicles in matte black with minimalist glyphs & QR. No name. Just: ⚡MOONS.Paris",
+        "UX Hook: Free rides for a tip of €1 or more via wallet connect, building a Web3-savvy rider base with no fiat tax complexity.",
+        "Referral NFT: Riders mint a &quot;Founding Moonrider&quot; collectible for free weekly rides and friend-code rewards.",
+        "Content: Ask permission to log scenic robotaxi moments for weekly Instagram/TikTok reels titled &quot;Dreams From a Tesla&quot;.",
+        "Partners: Stealth launch in collaboration with exclusive venues like Hôtel Costes or Silencio.",
+      ],
+      kpi: "Grow from 15 to 22 rides/vehicle/day via &quot;invitation only&quot; scarcity."
+    },
+    {
+      phase: "Phase 2: From 12 → 48 Vehicles: The RΞZ Network",
+      goal: "Activate mass attention and begin to scale to B2B channels.",
+      actions: [
+        "Narrative Flip: Rebrand to RΞZ.network (Robotaxi Experience Zone), using Founding NFTs as lifetime access keys.",
+        "Onboard Creators: Offer 20 local creators free rides for 6 months in exchange for POV content and testimonials.",
+        "Midnight Loop: Pilot night-only ride circuits along the Seine and Montmartre to create FOMO for urban youth.",
+        "Fashion Week Flash Fleet: Wrap cars in sponsor visuals (e.g., LVMH) for limited-time viral clips.",
+        "Press Kit: Curated drop to publications like Les Inrocks to frame the narrative as a &quot;techno-chic ghost fleet&quot;.",
+      ],
+      kpi: "Lower CAC via a creator flywheel and crypto-native loyalty through the NFT rewards system."
+    },
+    {
+      phase: "Phase 3: Export Narrative to Lyon, Marseille + Berlin",
+      goal: "Use content virality to announce arrival before physical deployment and build community.",
+      actions: [
+        "Use geotagged content virality to announce arrival before any physical deployment.",
+        "Allow riders to stake future city expansions by locking a RΞZ token for ride credits and event invites.",
+        "Build an AI-native community on platforms like Warpcast/Paragraph, blending urban lore with mobility autonomy.",
+      ],
+      kpi: "Pre-launch user acquisition and community engagement in new markets."
+    }
+  ];
+
+  const accountancyData = {
+    coreStack: [
+      { tool: "Indy (indy.fr)", purpose: "Automates TVA, cotisations, and URSSAF for SASU / auto-entrepreneur structures." },
+      { tool: "Pennylane", purpose: "Full-stack French accounting SaaS that connects to Stripe, Tesla invoices, and bank feeds." },
+      { tool: "Qonto", purpose: "Fintech bank with a real-time API, instant expense cards, and automated receipt scanning." },
+      { tool: "Stripe Atlas + Revolut", purpose: "Optional stack for seamless Web3/US rails integration for NFT or crypto payments." },
+    ],
+    summaryFlow: [
+        { layer: "GTM", strategy: "Scarcity, crypto-native referrals, and storytelling to drive virality over high CAC." },
+        { layer: "Expansion", strategy: "Stealth Launch → Creator Flywheel → Geo-Memetic Expansion." },
+        { layer: "Bookkeeping", strategy: "Pennylane + Qonto for 95% hands-off, URSSAF and TVA-ready accounting." },
+        { layer: "Growth Finance", strategy: "LLD flip to a full purchase using fleet cash flow as loan collateral." },
+    ]
+  };
+
 // --- Reusable SectionCard Component ---
 const SectionCard = ({ title, children, titleClassName = 'text-2xl md:text-3xl' }: { title: string, children: React.ReactNode, titleClassName?: string }) => (
     <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -192,6 +244,69 @@ export default function RobotaxiPage() {
             </div>
           </SectionCard>
           
+          <SectionCard title="🧠 Marketing Plan">
+            <div className="space-y-8">
+              {marketingPlanData.map((phase, index) => (
+                <div key={index} className="space-y-4 border-t border-yellow-500/10 pt-6 first:border-t-0 first:pt-0">
+                  <h4 className="text-xl font-bold text-yellow-500">{phase.phase}</h4>
+                  <p className="italic text-white/70">{phase.goal}</p>
+                  <ul className="list-disc list-inside space-y-2 text-white/80 pl-2">
+                    {phase.actions.map((action, actionIndex) => (
+                      <li key={actionIndex}>{action}</li>
+                    ))}
+                  </ul>
+                   <div className="bg-black/30 p-3 mt-4 border border-yellow-500/20">
+                      <p className="font-bold text-yellow-500/90"><span className="font-bold">KPI:</span> {phase.kpi}</p>
+                    </div>
+                </div>
+              ))}
+            </div>
+          </SectionCard>
+          
+          <SectionCard title="🧾 Automated Accountancy">
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-xl font-bold text-yellow-500/90 mb-4">Core Stack (France-native)</h4>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left font-satoshi">
+                    <thead className="border-b-2 border-yellow-500/30"><tr className="text-yellow-500 uppercase tracking-wider font-bold"><th className="p-3">Tool</th><th className="p-3">Purpose</th></tr></thead>
+                    <tbody>
+                      {accountancyData.coreStack.map((item, index) => (
+                        <tr key={index} className={`border-b border-white/10 ${index % 2 !== 0 ? 'bg-black/20' : ''}`}>
+                          <td className="p-3 font-bold">{item.tool}</td><td className="p-3">{item.purpose}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+               <div>
+                <h4 className="text-xl font-bold text-yellow-500/90 mb-4">Automation Workflow</h4>
+                 <ol className="list-decimal list-inside space-y-3 text-white/80">
+                    <li><span className="font-bold text-white">Fleet Ops API → Pennylane:</span> All Tesla payments, charging, insurance, and maintenance are auto-tagged.</li>
+                    <li><span className="font-bold text-white">Stripe for Payments:</span> Connected directly to Pennylane/Indy, with sub-accounts per city for automated revenue aggregation.</li>
+                    <li><span className="font-bold text-white">Payroll/VAT:</span> Use Pennylane to auto-report quarterly TVA and social charges under an agile SASU structure.</li>
+                    <li><span className="font-bold text-white">KPI Dashboard:</span> A live Pennylane dashboard tracks Rev/vehicle, cost/km, and cash-on-cash, synced to an internal cockpit.</li>
+                </ol>
+              </div>
+            </div>
+          </SectionCard>
+
+          <SectionCard title="✅ Strategic + Operational Flow">
+             <div className="overflow-x-auto">
+                <table className="w-full text-left font-satoshi">
+                    <thead className="border-b-2 border-yellow-500/30"><tr className="text-yellow-500 uppercase tracking-wider font-bold"><th className="p-3">Layer</th><th className="p-3">Strategy</th></tr></thead>
+                    <tbody>
+                      {accountancyData.summaryFlow.map((item, index) => (
+                        <tr key={index} className={`border-b border-white/10 ${index % 2 !== 0 ? 'bg-black/20' : ''}`}>
+                          <td className="p-3 font-bold">{item.layer}</td><td className="p-3">{item.strategy}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                </table>
+            </div>
+          </SectionCard>
+
           <footer className="text-center pt-8 text-white/50 font-light">
             <p>This analysis is based on data and industry trends as of June 27, 2025.</p>
             <p>Always consult local regulations and manufacturer leasing terms for specifics.</p>
