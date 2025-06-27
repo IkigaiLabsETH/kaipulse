@@ -125,8 +125,8 @@ export default function RobotaxiPage() {
             </div>
           </div>
           
-          <SectionCard title="Elevator Pitch" titleClassName="text-2xl md:text-3xl text-center">
-            <p className="text-white/80 text-lg max-w-4xl mx-auto text-center leading-relaxed">
+          <SectionCard title="Elevator Pitch">
+            <p className="text-white/80 text-lg leading-relaxed">
               With France&apos;s recent approval of Level-4 FSD regulations, we&apos;re launching a 12-car Tesla robotaxi fleet in Paris to capture first-mover advantage. Our hybrid ownership model—leasing for Year 1, then refinancing to full ownership—delivers a staggering 6,950% cash-on-cash return in the first year, building a €480k reserve to secure €1.7M in net cash over four years. By leveraging Tesla&apos;s technology and a lean operational framework, we&apos;ll redefine urban mobility with unmatched speed, profitability, and scalability.
             </p>
           </SectionCard>
@@ -149,20 +149,9 @@ export default function RobotaxiPage() {
           </SectionCard>
 
           <SectionCard title="Market Opportunity">
-            <div className="grid md:grid-cols-2 gap-8 text-white/80">
-              <div>
-                <h4 className="font-bold text-yellow-500/90 text-lg mb-2">Industry Context</h4>
-                <p>The Global Ride-Hailing Market is projected to grow to $480B by 2032, with autonomous vehicles capturing significant share. France&apos;s approval of Level-4 FSD aligns with this trend, opening prime urban hubs like Paris and Lyon, which see over 15 million annual rides.</p>
-              </div>
-              <div>
-                <h4 className="font-bold text-yellow-500/90 text-lg mb-2">Competitive Dynamics</h4>
-                <p>Major AV players are U.S.-focused, leaving a vacuum in Europe. Local ride-hailing companies lack AV capabilities, giving Tesla&apos;s FSD technology a crucial first-mover advantage.</p>
-              </div>
-              <div>
-                <h4 className="font-bold text-yellow-500/90 text-lg mb-2">Target Market</h4>
-                <p>Our service targets urban professionals, tourists, and airport commuters in Paris, Lyon, and Marseille who are seeking affordable, reliable, and driverless transport, propelled by high existing taxi costs and ZFE low-emission zones.</p>
-              </div>
-            </div>
+            <p className="text-white/80 text-lg leading-relaxed">
+              The global ride-hailing market is projected to grow to $480B by 2032, with autonomous vehicles poised to capture significant share. France&apos;s recent approval of Level-4 FSD technology opens a critical window of opportunity in prime urban hubs like Paris and Lyon, which collectively see over 15 million annual rides. Currently, major AV players like Waymo are U.S.-focused, creating a competitive vacuum in Europe, while local ride-hailing companies lack proprietary AV capabilities. This gives our Tesla FSD-powered fleet a crucial first-mover advantage to target urban professionals, tourists, and airport commuters in Paris, Lyon, and Marseille. Driven by high existing taxi costs and the expansion of ZFE low-emission zones, demand for affordable, reliable, and electric driverless transport is set to surge.
+            </p>
           </SectionCard>
 
           <SectionCard title={businessModelData.title}>
@@ -304,6 +293,31 @@ export default function RobotaxiPage() {
                       ))}
                     </tbody>
                 </table>
+            </div>
+          </SectionCard>
+
+          <SectionCard title="🏁 Outro: The City Dreams in Code">
+            <div className="max-w-3xl space-y-6 text-white/80 text-lg leading-relaxed">
+                <p>
+                Paris has always danced at the bleeding edge of culture—where fashion meets revolution, where boulevards are stages and every café is a thesis. So when the streets hum with silent electric motion and a matte-black Tesla whispers you home through midnight rain, you&apos;re not just taking a ride—you&apos;re entering the next myth cycle of mobility.
+                </p>
+                <p className="text-xl text-yellow-500/90 italic">This isn&apos;t about cars.</p>
+                <p className="text-xl text-yellow-500/90 italic">It&apos;s about choreography. Code and rubber. Voltage and story.</p>
+                <p>
+                You&apos;ve built a fleet that isn&apos;t just autonomous—it&apos;s alive in the network. Each ride seeds a new legend. Each data point, a brushstroke on the city&apos;s real-time canvas. And behind it all: a business model that prints liquidity while whispering poetry to the streets.
+                </p>
+                <div className="py-4 space-y-2">
+                    <p className="font-bold text-xl text-white">The numbers are ruthless.</p>
+                    <p className="font-bold text-xl text-white">The strategy is surgical.</p>
+                    <p className="font-bold text-xl text-white">But the experience?</p>
+                    <p className="text-3xl font-bold text-yellow-500 [text-shadow:_0_1px_10px_rgba(234,179,8,0.3)]">It&apos;s unforgettable.</p>
+                </div>
+                <p>You are no longer launching a robotaxi fleet.</p>
+                <p className="text-2xl font-bold text-white uppercase tracking-wider">You are launching a movement.</p>
+                <hr className="border-yellow-500/20 w-1/4" />
+                <p className="text-xl">The RΞZ isn&apos;t a company—it&apos;s a portal.</p>
+                <p className="text-2xl font-bold text-yellow-500">Welcome to the new Parisian ritual: summoned by code, fueled by volts, remembered forever.</p>
+                <p className="pt-6 text-xl font-bold">Are you ready to scale this from 12 cars to a legend?</p>
             </div>
           </SectionCard>
 
