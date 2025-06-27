@@ -264,6 +264,34 @@ const IpoPage = () => {
           </div>
           
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-boska">
+              A Personal Take: Stocks vs. Crypto Supply Dynamics
+            </h3>
+            <div className="space-y-6 text-lg text-gray-300 font-satoshi">
+              <div>
+                <h4 className="text-xl text-white mb-2 font-epilogue font-bold">Stocks: Constrained & Systemically Supported</h4>
+                <p>
+                  The supply of traditional stocks is inherently constrained. You can&apos;t just launch an IPO from your mom&apos;s basement in a week. This creates a small, curated universe of solid crypto-related stocks for investors. Crucially, this market benefits from systemic, passive buyers—index funds that must buy when a stock is included and often lack a &quot;sell button,&quot; creating a stable demand floor.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-xl text-white mb-2 font-epilogue font-bold">Crypto: Unconstrained & Facing Headwinds</h4>
+                <p>
+                  The crypto world is the polar opposite. Supply is unconstrained; anyone can launch a new token in days. There are almost no systemic buyers to absorb this supply. Instead, there are systemic sellers—miners and stakers who constantly sell to cover costs, alongside a huge supply overhang from VCs&apos; vested bags waiting to be dumped on the market.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-xl text-white mb-2 font-epilogue font-bold">The Shifting Asymmetry</h4>
+                <p>
+                  A few years ago, when crypto was a much smaller industry, this dynamic was offset by the potential for asymmetric upside. That edge has deteriorated. Today, tokens and crypto projects often have valuations comparable to traditional stocks, and in some cases, even command a premium. VC rounds in crypto are frequently more expensive than comparable-stage rounds in traditional tech, signaling that the early, explosive growth phase may be repriced.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Final Thoughts
             </h3>
