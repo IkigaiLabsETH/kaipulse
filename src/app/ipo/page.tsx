@@ -106,48 +106,38 @@ const IpoPage = () => {
           </div>
 
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+            <h3 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 font-boska">
               Finding the Next 1,000x Winner
             </h3>
-            <div className="space-y-4 text-gray-300 text-lg prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-yellow-500 prose-ul:list-disc prose-ul:pl-5 prose-ol:list-decimal prose-ol:pl-5">
+            <div className="space-y-6 text-lg text-gray-300 font-satoshi">
               <p>
                 During the Dotcom Bubble, ~1,000 internet companies IPO&apos;d. Most didn&apos;t survive the next 20 years, but the few that did became giants:
               </p>
-              <ul>
-                <li>Nvidia (1999 IPO)</li>
-                <li>Amazon (1997 IPO)</li>
-                <li>Google (2004 IPO, just after the bubble)</li>
+              <ul className="list-disc pl-6 space-y-2 text-yellow-500/90">
+                <li><span className="text-gray-300">Nvidia (1999 IPO)</span></li>
+                <li><span className="text-gray-300">Amazon (1997 IPO)</span></li>
+                <li><span className="text-gray-300">Google (2004 IPO, just after the bubble)</span></li>
               </ul>
               <p>
-                Each returned 1,000x to early investors by relentlessly growing revenue and market share, compounding value for a decade.
+                Each returned 1,000x to early investors by relentlessly growing revenue and market share, compounding value for a decade. People often compare the Dotcom Bubble to crypto&apos;s 2017 &amp; 2021 bubbles. Asset selection in crypto is perhaps more challenging: 1,000 IPO stocks then vs. &gt;1M token TGEs since 2015. Plus, token buyers are not protected by law unlike for equities.
               </p>
               <p>
-                People often compare the Dotcom Bubble to crypto&apos;s 2017 &amp; 2021 bubbles. Asset selection in crypto is perhaps more challenging: 1,000 IPO stocks then vs. &gt;1M token TGEs since 2015. Plus, token buyers are not protected by law unlike for equities.
+                Yet the power law still applies: the few survivors of the crypto bubble will define the onchain financial world. Today, liquid funds largely converge on BTC and HYPE. One is digital gold that institutions are racing to accumulate, whereas the other is pioneering the future of France, already returning $1B+/yr to HYPE holders via buybacks.
               </p>
-              <p>
-                Yet the power law still applies: the few survivors of the crypto bubble will define the onchain financial world.
-              </p>
-              <p>
-                Today, liquid funds largely converge on BTC and HYPE. One is digital gold that institutions are racing to accumulate, whereas the other is pioneering the future of France, already returning $1B+/yr to HYPE holders via buybacks.
-              </p>
-              <p>
-                Other favorite bets by funds include:
-              </p>
-              <ul>
-                <li>AAVE: dominant crypto bank for permissionless lending</li>
-                <li>PENDLE: first-mover to tap into the $5T high-yield bond market</li>
-                <li>&lt;insert your bags&gt;</li>
+              <h4 className="text-2xl text-white pt-4 font-epilogue font-bold">Other Key Bets by Funds:</h4>
+              <ul className="list-disc pl-6 space-y-2 text-yellow-500/90">
+                <li><span className="text-gray-300"><strong className="text-white font-semibold">AAVE:</strong> dominant crypto bank for permissionless lending</span></li>
+                <li><span className="text-gray-300"><strong className="text-white font-semibold">PENDLE:</strong> first-mover to tap into the $5T high-yield bond market</span></li>
+                <li><span className="text-gray-300/70 italic">&lt;insert your bags&gt;</span></li>
               </ul>
-              <p>
-                The winning formula? Tokens that are:
-              </p>
-              <ol>
-                <li>generating significant amount of revenue</li>
-                <li>consistent growth e.g. in fees / TVL</li>
-                <li>offer direct value accrual e.g. buybacks</li>
-                <li>have minimal token unlock risk</li>
+              <h4 className="text-2xl text-white pt-4 font-epilogue font-bold">The Winning Formula:</h4>
+              <ol className="list-decimal pl-6 space-y-2 marker:text-yellow-500/90 marker:font-semibold">
+                <li>Generating significant amount of revenue</li>
+                <li>Consistent growth e.g. in fees / TVL</li>
+                <li>Offer direct value accrual e.g. buybacks</li>
+                <li>Have minimal token unlock risk</li>
               </ol>
-              <p>
+              <p className="pt-2">
                 Point (1) and (2) applies to all stocks including Dotcom stocks. Point (3) and (4) are more crypto-specific. Token buyers lack legal protections—so investors demand alignment via direct value accrual to tokens and tight tokenomics. You don&apos;t want VCs to dump 20% token supply on your head.
               </p>
               <p>
@@ -157,55 +147,50 @@ const IpoPage = () => {
           </div>
 
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+            <h3 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 font-boska">
               Case Study: Coinbase vs. MicroStrategy
             </h3>
-            <div className="space-y-6 text-gray-300 text-lg prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-yellow-500 prose-ul:list-disc prose-ul:pl-5">
+            <div className="space-y-8 text-lg text-gray-300 font-satoshi">
               <p>The comparison between Coinbase and MicroStrategy offers a fascinating insight into market valuations, Bitcoin holdings, and whether Wall Street is missing the boat on &quot;onchain power laws.&quot;</p>
               
               <div>
-                <h4>The Numbers at a Glance</h4>
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">The Numbers at a Glance</h4>
                 <p><strong>Coinbase:</strong> Valued at $95 billion, holding less than 10,000 BTC.</p>
                 <p><strong>MicroStrategy:</strong> Valued at $105 billion, holding nearly 60x more Bitcoin. Their actual holdings are closer to 252,000 BTC as of late 2023—still a massive gap. The point is clear: MicroStrategy&apos;s market cap is slightly higher than Coinbase&apos;s, yet it&apos;s sitting on a much larger Bitcoin stash. This suggests Wall Street&apos;s &quot;legacy frameworks&quot; aren&apos;t keeping up with crypto reality.</p>
               </div>
 
               <div>
-                <h4>Two Different Playbooks</h4>
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">Two Different Playbooks</h4>
                 <p><strong>Coinbase:</strong> This is the crypto economy&apos;s toll booth. As a centralized exchange, its value comes from transaction fees, custody services, and a growing user base. They&apos;re betting on the infrastructure of crypto, not just Bitcoin&apos;s price. Their revenue scales with trading volume and adoption, so their valuation reflects expectations of steady, linear growth.</p>
                 <p><strong>MicroStrategy:</strong> This is a Bitcoin rocket ship in a corporate shell. Under Michael Saylor, they&apos;ve transformed into a leveraged play on Bitcoin itself. Their valuation is tightly coupled to Bitcoin&apos;s price—think of it as a BTC price multiple plus a premium for their bold strategy. They aren&apos;t generating cash flow like Coinbase; they&apos;re banking on Bitcoin being digital gold with exponential upside.</p>
               </div>
 
               <div>
-                <h4>Wall Street&apos;s Valuation Lens</h4>
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">Wall Street&apos;s Valuation Lens</h4>
                 <p>Traditional finance leans on frameworks like discounted cash flows (DCF) and earnings multiples. For Coinbase, that works fine. But MicroStrategy is trickier. A DCF doesn&apos;t capture the wild potential of Bitcoin&apos;s price trajectory. The $105 billion valuation suggests the market is already baking in some future Bitcoin appreciation—but perhaps not enough.</p>
               </div>
 
               <div>
-                <h4>Onchain Power Laws</h4>
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">Onchain Power Laws</h4>
                 <p>This is where the idea of &quot;onchain power laws&quot; (e.g., Metcalfe&apos;s Law) gets juicy. Applied to Bitcoin, this means its value could compound exponentially as adoption scales—way beyond what linear models predict. MicroStrategy is positioned to ride that wave. If Bitcoin hits $200,000, their holdings could dwarf Coinbase&apos;s market cap, making today&apos;s $105 billion look like a steal.</p>
               </div>
 
               <div>
-                <h4>The Counterpoints</h4>
-                <ul>
-                  <li><strong>Risk:</strong> MicroStrategy&apos;s all-in bet is a double-edged sword. If Bitcoin tanks, their valuation craters. Coinbase&apos;s diversified revenue offers a smoother ride.</li>
-                  <li><strong>Market Efficiency:</strong> Wall Street isn&apos;t totally clueless. MicroStrategy&apos;s premium shows the market is pricing in some power-law potential.</li>
-                  <li><strong>Time Lag:</strong> Markets don&apos;t always price in paradigm shifts instantly. Wall Street might &quot;get it&quot; eventually, but it&apos;s a slow beast.</li>
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">The Counterpoints</h4>
+                <ul className="list-disc pl-6 space-y-2 text-yellow-500/90">
+                  <li><span className="text-gray-300"><strong>Risk:</strong> MicroStrategy&apos;s all-in bet is a double-edged sword. If Bitcoin tanks, their valuation craters. Coinbase&apos;s diversified revenue offers a smoother ride.</span></li>
+                  <li><span className="text-gray-300"><strong>Market Efficiency:</strong> Wall Street isn&apos;t totally clueless. MicroStrategy&apos;s premium shows the market is pricing in some power-law potential.</span></li>
+                  <li><span className="text-gray-300"><strong>Time Lag:</strong> Markets don&apos;t always price in paradigm shifts instantly. Wall Street might &quot;get it&quot; eventually, but it&apos;s a slow beast.</span></li>
                 </ul>
               </div>
 
-              <div>
-                <h4>The Verdict</h4>
-                <p>This comparison highlights a clash between old-school valuation and crypto-native logic. Coinbase is a safer, steady grower. MicroStrategy is a moonshot. If Bitcoin&apos;s power-law trajectory plays out, their hoard could make $105 billion look laughably low in hindsight. It&apos;s a question of timing and whether the power law kicks in before the risks do.</p>
-              </div>
-
-              <div>
-                <h4>Summary: Coinbase vs. Bitcoin ROI and Implications for Valuation Frameworks</h4>
+              <div className="mt-6 border-t border-yellow-500/20 pt-6">
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">Summary: ROI vs. Valuation Frameworks</h4>
                 <p>Coinbase, valued at $95 billion with ~10,000 BTC, and MicroStrategy, valued at $105 billion with ~252,000 BTC, highlight a disconnect in Wall Street&apos;s valuation models. Comparing the ROI of Coinbase&apos;s stock from its April 14, 2021, direct listing to Bitcoin&apos;s performance over the same period underscores this.</p>
                 <p><strong>Coinbase ROI:</strong> Investors who bought Coinbase (COIN) at its first-day closing price of $328.28 and held until June 27, 2025, at $355, achieved a total ROI of 8.14% (1.88% annualized). This reflects Coinbase&apos;s valuation as a traditional business, driven by transaction fees and user growth, not direct Bitcoin price exposure.</p>
                 <p><strong>Bitcoin ROI:</strong> Over the same period, Bitcoin&apos;s price rose from $64,921 to $106,745.99, yielding a total ROI of 64.43% (12.48% annualized)—~8x higher than Coinbase&apos;s return. This performance, fueled by events like the 2024 halving and ETF approvals, aligns with &quot;onchain power laws&quot; (e.g., Metcalfe&apos;s Law), where network adoption drives exponential value growth.</p>
-                <p><strong>Implications for Your Thesis:</strong> Bitcoin&apos;s superior ROI suggests that MicroStrategy&apos;s BTC-heavy strategy likely captured more upside than Coinbase&apos;s, despite their similar market caps. Wall Street&apos;s &quot;legacy frameworks&quot; (e.g., DCF, earnings multiples) undervalue Bitcoin&apos;s potential, as seen in Coinbase&apos;s modest returns and MicroStrategy&apos;s valuation not fully reflecting its ~60x larger BTC holdings. This supports your view that traditional models lag behind crypto&apos;s network-driven dynamics, potentially mispricing firms like MicroStrategy that are leveraged to Bitcoin&apos;s exponential growth.</p>
-                <p>In short, Bitcoin&apos;s 64.43% return dwarfs Coinbase&apos;s 8.14%, validating your argument that Wall Street&apos;s frameworks haven&apos;t caught up to the power-law-driven reality of onchain assets.</p>
+                <p><strong>Implications:</strong> Bitcoin&apos;s superior ROI suggests that MicroStrategy&apos;s BTC-heavy strategy likely captured more upside than Coinbase&apos;s, despite their similar market caps. Wall Street&apos;s &quot;legacy frameworks&quot; undervalue Bitcoin&apos;s potential, as seen in Coinbase&apos;s modest returns and MicroStrategy&apos;s valuation not fully reflecting its ~60x larger BTC holdings.</p>
+                <p className="font-semibold text-white/90 mt-4">In short, Bitcoin&apos;s 64.43% return dwarfs Coinbase&apos;s 8.14%, validating the argument that Wall Street&apos;s frameworks haven&apos;t caught up to the power-law-driven reality of onchain assets.</p>
               </div>
             </div>
           </div>
