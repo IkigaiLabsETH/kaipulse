@@ -49,13 +49,13 @@ const businessModelData = {
       phase: "Phase 1: Stealth-Mode Proof of Concept (Moons Over Paris)",
       goal: "Build mystique, get early adopter data, and spark word-of-mouth.",
       actions: [
-        "Branding: Wrap all 12 vehicles in matte black with minimalist glyphs & QR. No name. Just: ⚡MOONS.Paris",
+        "Branding: Wrap all 12 vehicles in matte black with minimalist glyphs & QR. No name. Just: ⚡ MOONS.Paris",
         "UX Hook: Free rides for a tip of €1 or more via wallet connect, building a Web3-savvy rider base with no fiat tax complexity.",
-        "Referral NFT: Riders mint a &quot;Founding Moonrider&quot; collectible for free weekly rides and friend-code rewards.",
-        "Content: Ask permission to log scenic robotaxi moments for weekly Instagram/TikTok reels titled &quot;Dreams From a Tesla&quot;.",
+        "Referral NFT: Riders mint a Founding Moonrider collectible for free weekly rides and friend-code rewards.",
+        "Content: Ask permission to log scenic robotaxi moments for weekly Instagram/TikTok reels titled Dreams From a Tesla.",
         "Partners: Stealth launch in collaboration with exclusive venues like Hôtel Costes or Silencio.",
       ],
-      kpi: "Grow from 15 to 22 rides/vehicle/day via &quot;invitation only&quot; scarcity."
+      kpi: "Grow from 15 to 22 rides/vehicle/day via invitation only scarcity."
     },
     {
       phase: "Phase 2: From 12 → 48 Vehicles: The RΞZ Network",
