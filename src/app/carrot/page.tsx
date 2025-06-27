@@ -36,9 +36,8 @@ export default function CarrotPage() {
                 <Image
                     src="/model_s_tesla.jpeg"
                     alt="Tesla Model S Quicksilver"
-                    layout="fill"
-                    objectFit="cover"
-                    className="w-full h-full"
+                    fill
+                    className="object-cover"
                 />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
             </div>
