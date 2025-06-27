@@ -222,10 +222,11 @@ export default function CarrotPage() {
 
           {/* Section 6 */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h2 className="text-3xl font-bold text-yellow-500 mb-6">Conclusion: The Door Closes Faster Than You Think</h2>
+              <h2 className="text-3xl font-bold text-yellow-500 mb-6">Conclusion: The Anatomy of a Cash Grab</h2>
               <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Europe needs deeper capital markets. Households deserve better returns. But the bridge from carrot to stick is shorter than you think. The smartest posture is constructive skepticism: cheer for a voluntary Savings Standard while keeping an escape hatch—whether that&apos;s cold-storage Bitcoin, offshore brokers, or simply diversified custody.</p>
-                <p className="text-lg">Because if history teaches us anything, it&apos;s this: voluntary can become compulsory at the speed of a parliamentary vote. By then, the door is already closed.</p>
+                <p className="text-lg">The EU Savings Standard is presented as a &apos;win-win&apos;: higher yields for savers, vital funding for the continent. But beneath this optimistic surface lies a familiar pattern, one driven by immense fiscal pressure and historical precedent.</p>
+                <p className="text-lg">The real danger isn&apos;t the voluntary plan itself, but the centralized infrastructure it creates. Brussels is already letting member states overshoot deficit rules to fund new defence pledges, a policy projected to swell debt ratios by 8 percentage points by 2029. When the bill for this fiscal room comes due, the temptation to tap into that €17 trillion pool of private savings via &apos;patriotic investments&apos; may prove irresistible.</p>
+                <p className="text-lg">History, from Argentina to Poland, teaches us that such financial plumbing is rarely built just for convenience. It&apos;s built for control. The smartest posture is not to wait and see. It&apos;s to recognize that the door to capital freedom closes quietly at first, and then all at once. True portfolio resilience means having an exit strategy before the voluntary carrot reveals itself as the mandatory stick.</p>
               </div>
           </div>
         </div>
