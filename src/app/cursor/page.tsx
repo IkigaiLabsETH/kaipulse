@@ -65,6 +65,32 @@ export default function CursorPage() {
 
           {/* Main Content Cards */}
           <div className="space-y-12">
+            {/* The Cure is Purpose Section */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-4">Purpose is the Cure</h2>
+              <p className="text-lg text-white/80 leading-relaxed mb-6">
+                If you&apos;ve ever felt lost, adrift, or that you aren&apos;t moving in the right direction, there&apos;s a powerful antidote: building something. For many of us, life can feel like it&apos;s in black and white—a cycle of restless nights and lethargic days, with no tangible proof of progress.
+              </p>
+              <p className="text-lg text-white/80 leading-relaxed mb-8">
+                Discovering the ability to take an idea from your mind and turn it into a real product changes everything. When you build, you create purpose. You start waking up excited and going to bed satisfied. Life shifts into full color because you have concrete evidence of your forward momentum.
+              </p>
+              <h3 className="text-xl md:text-2xl font-bold text-yellow-500/90 mt-6 mb-3">A Simple Path to Finding Purpose</h3>
+              <div className="bg-black border border-yellow-500 shadow-[3px_3px_0px_0px_rgba(234,179,8,0.7)] p-6 mt-4">
+                <p className="text-white/80 leading-relaxed mb-4">
+                  If you&apos;re lacking direction, please do me a favor: start building. Anything. I 100% guarantee you your life will change.
+                </p>
+                <ol className="list-decimal list-inside text-white/90 space-y-3 font-mono text-sm md:text-base px-4">
+                  <li>Go to an AI like Grok or ChatGPT.</li>
+                  <li>Tell the AI what you post about or what you&apos;re passionate about.</li>
+                  <li>Ask it for common challenges people have in your niche.</li>
+                  <li>Ask it what software you could build to solve those challenges.</li>
+                  <li>Download Cursor and build one of those projects.</li>
+                </ol>
+              </div>
+              <p className="mt-6 text-xl text-white/90 font-light italic">
+                I truly believe the cure to almost everything in life is purpose.<br/> If you&apos;re ever feeling lost, just start building. Just start moving forward.
+              </p>
+            </div>
             {/* Intro Card */}
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
               <h2 className="text-3xl md:text-4xl font-bold text-yellow-500 mb-4">Overview</h2>
