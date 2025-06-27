@@ -155,8 +155,8 @@ const IpoPage = () => {
               
               <div>
                 <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">The Numbers at a Glance</h4>
-                <p><strong>Coinbase:</strong> Valued at $95 billion, holding less than 10,000 BTC.</p>
-                <p><strong>MicroStrategy:</strong> Valued at $105 billion, holding nearly 60x more Bitcoin. Their actual holdings are closer to 252,000 BTC as of late 2023—still a massive gap. The point is clear: MicroStrategy&apos;s market cap is slightly higher than Coinbase&apos;s, yet it&apos;s sitting on a much larger Bitcoin stash. This suggests Wall Street&apos;s &quot;legacy frameworks&quot; aren&apos;t keeping up with crypto reality.</p>
+                <p><strong>Coinbase:</strong> Valued at $95 billion, holding less than 6,885 BTC.</p>
+                <p><strong>MicroStrategy:</strong> Valued at $105 billion, holding 576,230 BTC—approximately 83.7 times more than Coinbase. The point is clear: MicroStrategy&apos;s market cap is slightly higher than Coinbase&apos;s, yet it&apos;s sitting on a much larger Bitcoin stash. This suggests Wall Street&apos;s &quot;legacy frameworks&quot; aren&apos;t keeping up with crypto reality.</p>
               </div>
 
               <div>
@@ -184,13 +184,24 @@ const IpoPage = () => {
                 </ul>
               </div>
 
-              <div className="mt-6 border-t border-yellow-500/20 pt-6">
-                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">Summary: ROI vs. Valuation Frameworks</h4>
-                <p>Coinbase, valued at $95 billion with ~10,000 BTC, and MicroStrategy, valued at $105 billion with ~252,000 BTC, highlight a disconnect in Wall Street&apos;s valuation models. Comparing the ROI of Coinbase&apos;s stock from its April 14, 2021, direct listing to Bitcoin&apos;s performance over the same period underscores this.</p>
+              <div>
+                <h4 className="text-2xl text-white mb-3 pt-6 border-t border-yellow-500/20 mt-8 font-epilogue font-bold">The Verdict</h4>
+                <p>This comparison highlights a clash between old-school valuation and crypto-native logic. Coinbase is a safer, steady grower. MicroStrategy is a moonshot. If Bitcoin&apos;s power-law trajectory plays out, their hoard could make $105 billion look laughably low in hindsight. It&apos;s a question of timing and whether the power law kicks in before the risks do.</p>
+              </div>
+
+              <div className="mt-8 border-t border-yellow-500/20 pt-6">
+                <h4 className="text-2xl text-white mb-3 font-epilogue font-bold">The ROI Data: A Quantitative Look</h4>
+                <p>Coinbase, valued at $95 billion with ~6,885 BTC, and MicroStrategy, valued at $105 billion with ~576,230 BTC, highlight a disconnect in Wall Street&apos;s valuation models. Comparing the ROI of Coinbase&apos;s stock from its April 14, 2021, direct listing to Bitcoin&apos;s performance over the same period underscores this.</p>
                 <p><strong>Coinbase ROI:</strong> Investors who bought Coinbase (COIN) at its first-day closing price of $328.28 and held until June 27, 2025, at $355, achieved a total ROI of 8.14% (1.88% annualized). This reflects Coinbase&apos;s valuation as a traditional business, driven by transaction fees and user growth, not direct Bitcoin price exposure.</p>
                 <p><strong>Bitcoin ROI:</strong> Over the same period, Bitcoin&apos;s price rose from $64,921 to $106,745.99, yielding a total ROI of 64.43% (12.48% annualized)—~8x higher than Coinbase&apos;s return. This performance, fueled by events like the 2024 halving and ETF approvals, aligns with &quot;onchain power laws&quot; (e.g., Metcalfe&apos;s Law), where network adoption drives exponential value growth.</p>
-                <p><strong>Implications:</strong> Bitcoin&apos;s superior ROI suggests that MicroStrategy&apos;s BTC-heavy strategy likely captured more upside than Coinbase&apos;s, despite their similar market caps. Wall Street&apos;s &quot;legacy frameworks&quot; undervalue Bitcoin&apos;s potential, as seen in Coinbase&apos;s modest returns and MicroStrategy&apos;s valuation not fully reflecting its ~60x larger BTC holdings.</p>
-                <p className="font-semibold text-white/90 mt-4">In short, Bitcoin&apos;s 64.43% return dwarfs Coinbase&apos;s 8.14%, validating the argument that Wall Street&apos;s frameworks haven&apos;t caught up to the power-law-driven reality of onchain assets.</p>
+                <p><strong>Implications:</strong> Bitcoin&apos;s superior ROI suggests that MicroStrategy&apos;s BTC-heavy strategy likely captured more upside than Coinbase&apos;s, despite their similar market caps. Wall Street&apos;s &quot;legacy frameworks&quot; undervalue Bitcoin&apos;s potential, as seen in Coinbase&apos;s modest returns and MicroStrategy&apos;s valuation not fully reflecting its vastly larger BTC holdings.</p>
+              </div>
+
+             <div className="mt-8 border-t-4 border-yellow-500 pt-6">
+                <h4 className="text-3xl font-boska text-yellow-500 mb-4">Final Takeaway</h4>
+                <p className="text-xl text-white/90">
+                Bitcoin&apos;s <strong>64.43%</strong> return dwarfs Coinbase&apos;s <strong>8.14%</strong>, validating the argument that Wall Street&apos;s frameworks haven&apos;t caught up to the power-law-driven reality of onchain assets.
+                </p>
               </div>
             </div>
           </div>
