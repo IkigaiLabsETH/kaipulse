@@ -17,10 +17,10 @@ export default function CarrotPage() {
             </h1>
             <div className="max-w-4xl mx-auto space-y-6 text-xl text-white/80 font-light">
                 <p>
-                    It begins with a whisper from Brussels. A suggestion about your savings. Eleven trillion euros, Europe&apos;s largest pot of idle cash, could be put to &apos;better use&apos;. They call it the &apos;EU Savings Standard&apos;—a voluntary fund promising higher returns while financing the continent&apos;s future. A perfect carrot.
+                    A whisper from Brussels suggests a new purpose for your savings. They want to mobilize Europe&apos;s €11 trillion in household deposits—the largest pot of idle cash on the planet. They call it the &apos;EU Savings Standard,&apos; a voluntary fund promising higher returns while financing the continent&apos;s future. A perfect carrot.
                 </p>
                 <p>
-                    But the timing is no accident. A continent is re-arming. The bill will run into the hundreds of billions. Fiscal rules are being bent. And suddenly, that vast pool of household savings looks less like an opportunity, and more like a necessity.
+                    But the timing is no accident. A continent is re-arming. The bill will be measured in hundreds of billions. Fiscal rules are bending. And suddenly, that vast pool of private savings looks less like an opportunity and more like a necessity.
                 </p>
             </div>
              <div className="flex items-center justify-center pt-6">
@@ -46,10 +46,10 @@ export default function CarrotPage() {
           
           {/* Section 2 & Cautionary Tales */}
            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h2 className="text-3xl font-bold text-yellow-500 mb-6">The Pattern: Carrot, Default, Stick</h2>
+            <h2 className="text-3xl font-bold text-yellow-500 mb-6">The Pattern: Carrot to Stick</h2>
              <div className="space-y-4 text-gray-300">
                 <p className="text-lg">
-                Economists call it financial repression; politicians prefer softer words. Either way, the pattern repeats:
+                Economists call it financial repression. Politicians prefer softer words. Either way, the pattern is ruthlessly consistent:
                 </p>
                 <ol className="list-decimal list-inside space-y-2 pl-4">
                 <li>Fiscal squeeze.</li>
@@ -58,72 +58,72 @@ export default function CarrotPage() {
                 <li>Mandatory transfer or outright confiscation.</li>
                 </ol>
                 <p className="text-lg">
-                Below, eight cautionary tales—organised chronologically so you can watch the carrot mutate.
+                Below are eight cautionary tales. Watch the carrot mutate.
                 </p>
             </div>
             <div className="space-y-8 mt-8">
-                <CaseStudy title="Argentina 2008" subtitle={`"Protecting retirees" ... by seizing US $30 bn`}>
+                <CaseStudy title="Argentina, 2008" subtitle={`The Pitch: "Protect retirees." The Reality: Seizing $30bn.`}>
                   <ul className="list-disc list-inside space-y-2 text-gray-400">
                     <li><span className="font-bold text-yellow-400">Carrot:</span> President Fernández said nationalising private pensions would shield workers from market turmoil.</li>
-                    <li><span className="font-bold text-yellow-400">Stick:</span> Congress rubber-stamped the grab; 14-year-old private funds vanished overnight, assets worth 13 % of GDP migrated to the Treasury.</li>
-                    <li><span className="font-bold text-yellow-400">After-taste:</span> Peso collapsed, CDS spreads spiked; the $30 bn financed current spending, not pensions.</li>
+                    <li><span className="font-bold text-yellow-400">Stick:</span> Congress rubber-stamped the grab. Private funds vanished overnight. Assets worth 13% of GDP were absorbed by the Treasury.</li>
+                    <li><span className="font-bold text-yellow-400">After-taste:</span> The Peso collapsed. The purloined $30bn financed current spending, not pensions.</li>
                   </ul>
                 </CaseStudy>
 
-                <CaseStudy title="Hungary 2010" subtitle={`"It's your choice, but ..."`}>
+                <CaseStudy title="Hungary, 2010" subtitle={`The Pitch: "It's your choice." The Reality: Financial exile.`}>
                   <ul className="list-disc list-inside space-y-2 text-gray-400">
-                    <li><span className="font-bold text-yellow-400">Carrot:</span> Keep your private account or switch to the state and receive a guaranteed benefit.</li>
-                    <li><span className="font-bold text-yellow-400">Default-in twist:</span> Those who stayed private forfeited future state-pension rights—financial exile in practice.</li>
-                    <li><span className="font-bold text-yellow-400">Stick:</span> 97 % capitulated, transferring $14 bn to the budget.</li>
-                    <li><span className="font-bold text-yellow-400">After-taste:</span> Debt/GDP fell 10 pp, ratings still downgraded; in 2012 the second pillar was closed for good.</li>
+                    <li><span className="font-bold text-yellow-400">Carrot:</span> Keep your private account or switch to the state for a guaranteed benefit.</li>
+                    <li><span className="font-bold text-yellow-400">Default-in twist:</span> Those who stayed private forfeited all future state-pension rights.</li>
+                    <li><span className="font-bold text-yellow-400">Stick:</span> 97% of savers capitulated, transferring $14bn to the budget.</li>
+                    <li><span className="font-bold text-yellow-400">After-taste:</span> Public debt fell 10pp, yet ratings were still downgraded. The private pillar was abolished entirely in 2012.</li>
                   </ul>
                 </CaseStudy>
 
-                <CaseStudy title="Poland 2014" subtitle="Half a trim, half a chop">
+                <CaseStudy title="Poland, 2014" subtitle={`The Pitch: "A portfolio rebalance." The Reality: Half for you, half for us.`}>
                   <ul className="list-disc list-inside space-y-2 text-gray-400">
-                    <li><span className="font-bold text-yellow-400">Carrot:</span> A &quot;portfolio rebalance&quot; would make pensions safer.</li>
-                    <li><span className="font-bold text-yellow-400">Stick:</span> Warsaw ordered open pension funds (OFE) to hand 51.5 % of assets—mostly T-bonds—to ZUS; the bonds were immediately cancelled, trimming headline debt by 9 % of GDP.</li>
-                    <li><span className="font-bold text-yellow-400">After-taste:</span> Private savings/GDP halved; citizens must re-opt-in every four years or default back to the state.</li>
+                    <li><span className="font-bold text-yellow-400">Carrot:</span> A simple &quot;portfolio rebalance&quot; would make pensions safer.</li>
+                    <li><span className="font-bold text-yellow-400">Stick:</span> Warsaw ordered pension funds to hand 51.5% of their assets—mostly government bonds—to the state. The bonds were immediately cancelled, trimming debt by 9% of GDP.</li>
+                    <li><span className="font-bold text-yellow-400">After-taste:</span> Private savings were halved. Citizens must now re-opt-in every four years or default back to the state.</li>
                   </ul>
                 </CaseStudy>
 
-                 <CaseStudy title="Cyprus 2013" subtitle="The overnight haircut">
+                 <CaseStudy title="Cyprus, 2013" subtitle={`The Pitch: "Financial stability." The Reality: The overnight haircut.`}>
                   <ul className="list-disc list-inside space-y-2 text-gray-400">
-                    <li><span className="font-bold text-yellow-400">Carrot:</span> EU/IMF bailout promised financial stability.</li>
-                    <li><span className="font-bold text-yellow-400">Stick:</span> Deposits above €100 000 in the Bank of Cyprus took a 47.5 % haircut (&quot;bail-in&quot;).</li>
-                    <li><span className="font-bold text-yellow-400">After-taste:</span> Capital controls and angry Russian oligarchs; trust evaporated faster than a frappé on Nicosia&apos;s seafront.</li>
+                    <li><span className="font-bold text-yellow-400">Carrot:</span> An EU/IMF bailout promised to stabilize the banking system.</li>
+                    <li><span className="font-bold text-yellow-400">Stick:</span> Deposits above €100,000 at the Bank of Cyprus took a 47.5% haircut in a depositor &quot;bail-in.&quot;</li>
+                    <li><span className="font-bold text-yellow-400">After-taste:</span> Capital controls, angry oligarchs, and trust that evaporated faster than a frappé on Nicosia&apos;s seafront.</li>
                   </ul>
                 </CaseStudy>
 
-                <CaseStudy title="Greece 2015" subtitle="Cash rationing at the ATM">
+                <CaseStudy title="Greece, 2015" subtitle={`The Pitch: "Brief and targeted." The Reality: Five years of cash rationing.`}>
                   <ul className="list-disc list-inside space-y-2 text-gray-400">
-                    <li><span className="font-bold text-yellow-400">Carrot:</span> Controls would be &quot;brief and targeted.&quot;</li>
-                    <li><span className="font-bold text-yellow-400">Stick:</span> Withdrawals capped at €60/day → €420/week for five years; cross-border transfers frozen.</li>
-                    <li><span className="font-bold text-yellow-400">After-taste:</span> SMEs starved, e-commerce fled abroad; controls weren&apos;t fully lifted until late-2019.</li>
+                    <li><span className="font-bold text-yellow-400">Carrot:</span> Capital controls would be &quot;brief and targeted&quot; during negotiations.</li>
+                    <li><span className="font-bold text-yellow-400">Stick:</span> Withdrawals were capped at €60 a day—€420 a week—for five years.</li>
+                    <li><span className="font-bold text-yellow-400">After-taste:</span> A starved SME sector and an e-commerce industry that fled abroad. Controls weren&apos;t fully lifted until late 2019.</li>
                   </ul>
                 </CaseStudy>
 
-                 <CaseStudy title="Iceland 2008–2017" subtitle="Nine years in a cold bath">
+                 <CaseStudy title="Iceland, 2008–2017" subtitle={`The Pitch: "Until markets calm." The Reality: Nine years in a cold bath.`}>
                   <ul className="list-disc list-inside space-y-2 text-gray-400">
-                    <li><span className="font-bold text-yellow-400">Carrot:</span> Controls would only stay &quot;until markets calm.&quot;</li>
-                    <li><span className="font-bold text-yellow-400">Stick:</span> Outflows banned, krona trapped; only in 2017 did Reykjavík scrap the last restrictions.</li>
-                    <li><span className="font-bold text-yellow-400">After-taste:</span> Economy healed, but international investors demanded higher risk premia for a decade.</li>
+                    <li><span className="font-bold text-yellow-400">Carrot:</span> Controls would only last &quot;until markets calm.&quot;</li>
+                    <li><span className="font-bold text-yellow-400">Stick:</span> All capital outflows were banned, trapping the krona. Reykjavík didn&apos;t scrap the last restrictions until 2017.</li>
+                    <li><span className="font-bold text-yellow-400">After-taste:</span> The economy healed, but international investors demanded higher risk premia for a decade.</li>
                   </ul>
                 </CaseStudy>
                 
-                <CaseStudy title="Malaysia 1998–2005" subtitle="Peg & penalty">
+                <CaseStudy title="Malaysia, 1998–2005" subtitle={`The Pitch: "Temporary stability." The Reality: Seven years of capital gates.`}>
                     <ul className="list-disc list-inside space-y-2 text-gray-400">
-                        <li><span className="font-bold text-yellow-400">Carrot:</span> A temporary ringgit peg and a one-year holding period would stabilise markets.</li>
+                        <li><span className="font-bold text-yellow-400">Carrot:</span> A temporary currency peg and a one-year holding period would stabilise markets.</li>
                         <li><span className="font-bold text-yellow-400">Stick:</span> Exit levies and tight capital gates lasted seven years.</li>
-                        <li><span className="font-bold text-yellow-400">After-taste:</span> Growth returned swiftly, therefore some hail it as a success—but foreign ownership of Malaysian assets never fully recovered.</li>
+                        <li><span className="font-bold text-yellow-400">After-taste:</span> Growth returned swiftly, and some hail it as a success—but foreign ownership of Malaysian assets never fully recovered.</li>
                     </ul>
                 </CaseStudy>
 
-                <CaseStudy title="India 2016" subtitle="Demonetisation chaos">
+                <CaseStudy title="India, 2016" subtitle={`The Pitch: "Eradicate corruption." The Reality: Demonetisation chaos.`}>
                     <ul className="list-disc list-inside space-y-2 text-gray-400">
-                        <li><span className="font-bold text-yellow-400">Carrot:</span> Eradicate &quot;black money&quot; and corruption.</li>
-                        <li><span className="font-bold text-yellow-400">Stick:</span> 86 % of cash voided overnight; queues, truck traffic jams, at least 80 deaths linked to the cash crunch.</li>
-                        <li><span className="font-bold text-yellow-400">After-taste:</span> GDP growth dipped, informal jobs vanished; Supreme Court upheld legality years later, but not the wisdom.</li>
+                        <li><span className="font-bold text-yellow-400">Carrot:</span> A bold move to eradicate &quot;black money&quot; and corruption.</li>
+                        <li><span className="font-bold text-yellow-400">Stick:</span> 86% of the country&apos;s cash was voided overnight, leading to queues, chaos, and supply-chain collapse.</li>
+                        <li><span className="font-bold text-yellow-400">After-taste:</span> GDP growth dipped and informal jobs vanished. The Supreme Court upheld the legality years later, but not the wisdom.</li>
                     </ul>
                 </CaseStudy>
             </div>
@@ -165,21 +165,21 @@ export default function CarrotPage() {
                     </tbody>
                 </table>
             </div>
-             <p className="text-lg text-gray-300 pt-4">In other words: infrastructure first, compulsion later—exactly what played out in the eight cases above.</p>
+             <p className="text-lg text-gray-300 pt-4">In other words: infrastructure first, compulsion later. This is the script from the eight stories above. </p>
           </div>
 
           {/* Section 4 */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-            <h2 className="text-3xl font-bold text-yellow-500 mb-6">Why Bitcoiners (and Gold Bugs) Keep Their Keys Offline</h2>
+            <h2 className="text-3xl font-bold text-yellow-500 mb-6">The Escape Hatch: Why Bitcoiners Sleep Better</h2>
             <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Because a 12-word seed phrase doesn&apos;t live at a custodian. Regulators can license exchanges, but they cannot unilaterally &quot;transfer 51 % of your cold wallet to the Treasury.&quot; The asset is trans-jurisdictional, censorship-resistant and—as Cyprus taught—a last-resort escape hatch when local banks lock their doors.</p>
-                <p className="text-lg">That doesn&apos;t mean BTC is risk-free (price volatility, regulatory KYC choke-points). Therefore portfolio resilience ≠ 100 % Bitcoin; it means optionality: a slice of wealth that can cross borders at the speed of memory.</p>
+                <p className="text-lg">A 12-word seed phrase doesn&apos;t live in a bank vault. Regulators can license exchanges, but they cannot unilaterally decree that &quot;51% of your cold wallet now belongs to the Treasury.&quot; The asset is trans-jurisdictional, censorship-resistant, and—as Cyprus taught us—a last-resort escape hatch when the local banks lock their doors.</p>
+                <p className="text-lg">This isn&apos;t to say Bitcoin is without risk. But in a world of escalating capital controls, portfolio resilience means having optionality. It means owning a slice of wealth that can cross borders at the speed of memory.</p>
             </div>
           </div>
 
           {/* Section 5 */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h2 className="text-3xl font-bold text-yellow-500 mb-6">A Practical Playbook for Savers & Start-ups</h2>
+              <h2 className="text-3xl font-bold text-yellow-500 mb-6">A Practical Playbook for European Savers</h2>
               <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                       <thead>
@@ -222,10 +222,10 @@ export default function CarrotPage() {
 
           {/* Section 6 */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
-              <h2 className="text-3xl font-bold text-yellow-500 mb-6">Conclusion: History Doesn&apos;t Repeat, But It Rhymes</h2>
+              <h2 className="text-3xl font-bold text-yellow-500 mb-6">Conclusion: The Door Closes Faster Than You Think</h2>
               <div className="space-y-4 text-gray-300">
-                <p className="text-lg">Europe absolutely needs deeper capital markets; households absolutely deserve more than 0.5 % on deposits. But the bridge from carrot to stick is shorter than you think. Therefore the smartest posture is constructive scepticism: cheer for a voluntary Savings Standard while keeping an escape hatch—whether that&apos;s cold-storage Bitcoin, offshore brokers, or simply diversified custody across jurisdictions.</p>
-                <p className="text-lg">Because if Argentina, Hungary, Cyprus or Greece taught us anything, it&apos;s this: voluntary can become compulsory at the speed of a parliamentary vote—and by then the barn door is closed.</p>
+                <p className="text-lg">Europe needs deeper capital markets. Households deserve better returns. But the bridge from carrot to stick is shorter than you think. The smartest posture is constructive skepticism: cheer for a voluntary Savings Standard while keeping an escape hatch—whether that&apos;s cold-storage Bitcoin, offshore brokers, or simply diversified custody.</p>
+                <p className="text-lg">Because if history teaches us anything, it&apos;s this: voluntary can become compulsory at the speed of a parliamentary vote. By then, the door is already closed.</p>
               </div>
           </div>
         </div>
