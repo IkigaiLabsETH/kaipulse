@@ -33,7 +33,7 @@ const AccordionItem = ({
         />
       </button>
       {isOpen && (
-        <div className="pb-4 text-white/80">
+        <div className="pb-4 text-white/80 text-base">
           {children}
         </div>
       )}
@@ -142,37 +142,105 @@ export default function MSTYPlatformsPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-12"
         >
-          <div className="relative p-4 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+          <div className="relative bg-[#1c1f26] rounded-lg p-8 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <div className="space-y-6 text-lg text-white/90">
               <p className="font-medium text-yellow-500">I&apos;ve got a question for you.</p>
+              <p>Why would you leverage trade, risk your sanity over red candles, or bet the house on a 20% pump when one wrong move could nuke your account?</p>
               
-              <p>Why would you leverage trade?</p>
+              <div className="w-full h-px bg-yellow-500/20 my-8"></div>
+
+              <p className="font-medium text-yellow-500">MSTY gets all the hate, but it pays you every single month.</p>
+              <p>No stress. No price alerts. No 3AM panic sweats. Just dividends, dropping like clockwork. Gone are the days of chasing pumps and praying for &quot;God candles.&quot; All you need to do? Absolutely nothing.</p>
+
+              <div className="w-full h-px bg-yellow-500/20 my-8"></div>
+
+              <p className="font-medium text-yellow-500">And let&apos;s be honest—to those complaining about NAV erosion? You&apos;re weak.</p>
+              <p>Think about it. With MSTY, you&apos;re trading countless emotional breakdowns, failed entries, and margin calls for a tiny NAV dip and a guaranteed payout. That&apos;s not erosion. That&apos;s evolution.</p>
               
-              <p>Why would you risk your sanity over red candles and liquidation wicks?</p>
+              <div className="w-full h-px bg-yellow-500/20 my-8"></div>
               
-              <p>Why would you bet the house just to maybe catch a 20% pump—when one wrong move nukes your entire account?</p>
-              
-              <p className="text-yellow-500 font-medium">MSTY gets all the hate, but it pays you every single month. No stress. No price alerts. No 3AM panic sweats. Just dividends, dropping like clockwork.</p>
-              
-              <p>Gone are the days as a pump chaser, so are the days praying for &quot;God candles&quot; (we all know who that retard is). 😂</p>
-              
-              <p>In fact, all you need to do? Absolutely nothing.</p>
-              
-              <p>If this isn&apos;t the easiest way to balloon up your wealth, I don&apos;t know what is.</p>
-              
-              <p>And let&apos;s be honest—to those complaining about NAV erosion?</p>
-              
-              <p className="text-yellow-500 font-medium">You&apos;re weak.</p>
-              
-              <p>Think about it. With MSTY, you&apos;re trading countless emotional breakdowns, failed entries, and margin calls for a tiny NAV dip and a guaranteed payout.</p>
-              
-              <p>That&apos;s not erosion to me. That&apos;s evolution.</p>
-              
-              <p>MSTY isn&apos;t for the hype chasers. It&apos;s about being smarter—with your time, your capital, and your peace of mind.</p>
-              
-              <p>It sure doesn&apos;t promise the moon, but quietly pays for your life, all while your friends are still busy hoping for the next shitcoin moonshot, gambling on leverage, or HODLing Bitcoin forever as a paper millionaire with no exit plan.</p>
-              
-              <p className="text-yellow-500 font-medium">Quiet wealth wins.</p>
+              <p className="font-medium text-yellow-500">Quiet wealth wins.</p>
+              <p>MSTY isn&apos;t for hype chasers. It&apos;s for being smarter—with your time, your capital, and your peace of mind. It doesn&apos;t promise the moon, but it quietly pays for your life while others are still gambling on the next shitcoin.</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Alternative Perspective Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-16"
+        >
+          <div className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8 space-y-8">
+            <h2 className="text-3xl font-bold text-yellow-500">An Alternative View: The BTC-Native Solution</h2>
+            
+            <div>
+              <p className="text-lg text-white/90">
+                🚀 <span className="font-semibold">Sell a fraction of BTC per month.</span>
+              </p>
+              <p className="text-white/70">Zero mental gymnastics. No NAV decay, no ROC games, no options drag. No risk of underperformance from 3rd-party wrappers.</p>
+              <p className="mt-2 text-white/80">If your BTC grows more than you sell, you&apos;re drawing far less than your stack appreciates—your net worth still compounds.</p>
+            </div>
+            
+            <div className="w-full h-px bg-yellow-500/20 my-8"></div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">Why This Wins</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[600px] text-left text-sm md:text-base">
+                  <thead className="text-white/80">
+                    <tr className="border-b border-yellow-500/20">
+                      <th className="p-4 font-semibold">Strategy</th>
+                      <th className="p-4 font-semibold">Complexity</th>
+                      <th className="p-4 font-semibold">Capital Preservation</th>
+                      <th className="p-4 font-semibold">Wealth Compounding</th>
+                      <th className="p-4 font-semibold">Liquidity</th>
+                      <th className="p-4 font-semibold">Tax Simplicity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td className="p-4 font-medium text-white">Yield ETFs (PLTY, NVDY, MSTY)</td>
+                      <td className="p-4 text-red-400">High</td>
+                      <td className="p-4 text-red-400">Low (NAV decay)</td>
+                      <td className="p-4 text-yellow-400">Weak</td>
+                      <td className="p-4 text-green-400">Good (monthly)</td>
+                      <td className="p-4 text-red-400">Messy (ROC)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-medium text-yellow-500">BTC-only (Sell fraction/month)</td>
+                      <td className="p-4 text-green-400">Low</td>
+                      <td className="p-4 text-green-400">High</td>
+                      <td className="p-4 text-green-400">Strong</td>
+                      <td className="p-4 text-green-400">Perfect</td>
+                      <td className="p-4 text-green-400">Simple</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="w-full h-px bg-yellow-500/20 my-8"></div>
+
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">Why Avoid Yield ETFs (For Now)</h3>
+              <ul className="space-y-4 text-white/80 list-none text-base">
+                <li>🛑 NAV bleeds slowly while giving the illusion of high income.</li>
+                <li>🛑 Most of the &quot;yield&quot; is just selling your own capital back to you.</li>
+                <li>🛑 Total return trails BTC long-term, especially post-halving.</li>
+                <li>🛑 These are not wealth boosters, just yield wrappers for traders.</li>
+              </ul>
+            </div>
+
+            <div className="w-full h-px bg-yellow-500/20 my-8"></div>
+            
+            <div>
+              <h3 className="text-2xl font-bold text-yellow-500 mb-4">Final Verdict</h3>
+              <p className="text-lg text-white/90">Keep stacking sats.</p>
+              <p className="text-lg text-white/90">Sell a small fraction monthly.</p>
+              <p className="text-lg text-white/90">Sleep easy. Skip the noise.</p>
+              <p className="mt-4 text-xl font-semibold text-white">You&apos;re already holding the alpha asset. No need to wrap it.</p>
             </div>
           </div>
         </motion.div>
@@ -193,7 +261,7 @@ export default function MSTYPlatformsPage() {
                       Score: {broker.score}
                     </span>
                   </div>
-                  <ul className="mt-6 space-y-2">
+                  <ul className="mt-6 space-y-2 text-base">
                     {broker.pros.map((pro) => (
                       <li key={pro} className="flex items-center text-white/80">
                         <span className="mr-2 text-yellow-500">•</span>
@@ -201,7 +269,7 @@ export default function MSTYPlatformsPage() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 space-y-2 text-white/80">
+                  <div className="mt-6 space-y-2 text-white/80 text-base">
                     <p>Fees: {broker.fees}</p>
                     <p>Minimum Deposit: {broker.minDeposit}</p>
                   </div>
@@ -236,7 +304,7 @@ export default function MSTYPlatformsPage() {
         >
           <Card>
             <div className="p-8">
-              <h2 className="text-2xl font-bold text-yellow-500">How to Trade MSTY in Europe</h2>
+              <h2 className="text-3xl font-bold text-yellow-500">How to Trade MSTY in Europe</h2>
               <div className="mt-8 space-y-4">
                 <AccordionItem title="1. Understanding MSTY in Europe">
                   MSTY is now available to European investors through YieldMax&apos;s UCITS fund structure. This provides EU investors with a regulated way to access MSTY&apos;s option income strategy while maintaining compliance with European regulations.
