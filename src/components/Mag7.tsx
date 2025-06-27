@@ -21,6 +21,10 @@ const STOCK_TICKERS: Price[] = [
   { symbol: 'NVDA', tradingViewSymbol: 'NASDAQ:NVDA', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'TSLA', tradingViewSymbol: 'NASDAQ:TSLA', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'AVGO', tradingViewSymbol: 'NASDAQ:AVGO', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'MSTR', tradingViewSymbol: 'NASDAQ:MSTR', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'COIN', tradingViewSymbol: 'NASDAQ:COIN', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'CRCL', tradingViewSymbol: 'NYSE:CRCL', exchange: 'NYSE', color: 'text-yellow-500' },
+  { symbol: 'HOOD', tradingViewSymbol: 'NASDAQ:HOOD', exchange: 'NASDAQ', color: 'text-yellow-500' },
 ];
 
 export default function Mag7() {
