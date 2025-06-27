@@ -177,6 +177,78 @@ export default function Mag7Page() {
             <p>The Magnificent Seven stocks represent a cohort of high-performing companies that have garnered significant attention in the investment world for their market dominance, technological advances, and growth potential.</p>
             <p>However, investors need to know the risks and challenges associated with these stocks. The dynamic nature of the technology sector, regulatory scrutiny, market saturation, and global economic factors like inflation and geopolitical tensions can affect their performance. Additionally, high market valuations bring lofty expectations, and any failure to meet these can lead to significant stock price corrections.</p>
             <p>Thus, while the Magnificent Seven offer potential for substantial growth, they also require careful analysis and a balanced approach considering their strengths and the various external factors that could influence their future trajectory.</p>
+
+            <h2 className="text-3xl font-bold text-yellow-500 mt-12 pt-8 border-t border-yellow-500/30">
+              🧠 Cyber, Crypto & Compute: The Trifecta of Digital Power
+            </h2>
+            <p>
+              The next decade belongs to firms that secure, accelerate, and own the future of data—across AI, digital finance, and global compute infrastructure. This is not a single sector play. It&apos;s a converging supercycle.
+            </p>
+            <p className="font-bold mt-4">Here&apos;s the curated basket:</p>
+            
+            <div className="space-y-8 mt-6">
+              <div>
+                <h3 className="text-2xl font-bold text-white">🛡️ 1. $CRWD – CrowdStrike</h3>
+                <p className="italic text-yellow-500/90 mt-1">AI-native endpoint protection</p>
+                <p className="mt-2">
+                  Dominates the zero-trust endpoint war with Falcon. Every new device, every new attack—Falcon gets smarter. Their moat is compounding.
+                </p>
+                <p className="mt-2 p-3 bg-black/20 border-l-4 border-yellow-500/50">
+                  <strong className="text-white/80">Think:</strong> Digital immune system for the enterprise.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white">🌐 2. $NET – Cloudflare</h3>
+                <p className="italic text-yellow-500/90 mt-1">Programmable edge + Zero Trust infra</p>
+                <p className="mt-2">
+                  The internet&apos;s firewall. A real-time security and performance layer across 300+ cities. Now bundling compute, ZTNA, and Workers—Web3-friendly and AI-ready.
+                </p>
+                <p className="mt-2 p-3 bg-black/20 border-l-4 border-yellow-500/50">
+                  <strong className="text-white/80">Think:</strong> Akamai + Okta + AWS-lite in one.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white">🔐 3. $ZS – Zscaler</h3>
+                <p className="italic text-yellow-500/90 mt-1">Zero Trust Network Access (ZTNA)</p>
+                <p className="mt-2">
+                  Legacy VPNs are dying. Zscaler pioneered per-user/per-app security that scales with remote and hybrid work. Deep integration into Fed and Fortune 500.
+                </p>
+                <p className="mt-2 p-3 bg-black/20 border-l-4 border-yellow-500/50">
+                  <strong className="text-white/80">Think:</strong> SaaS-native digital border control.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white">💾 4. $RBRK – Rubrik</h3>
+                <p className="italic text-yellow-500/90 mt-1">Ransomware recovery + data vaulting</p>
+                <p className="mt-2">
+                  Your last line of defense. Rubrik ensures recoverability and compliance—backed by Microsoft and built for the AI/Big Data era.
+                </p>
+                <p className="mt-2 p-3 bg-black/20 border-l-4 border-yellow-500/50">
+                  <strong className="text-white/80">Think:</strong> Fireproof backups + AI data observability.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white">🚀 5. $GLXY – Galaxy Digital</h3>
+                <p className="italic text-yellow-500/90 mt-1">AI data centers + crypto-native banking</p>
+                <p className="mt-2">
+                  From BTC liquidity and ETF exposure to digital infrastructure and AI-powered compute investments, Galaxy is building the Goldman Sachs of the on-chain world.
+                </p>
+                <p className="mt-2 p-3 bg-black/20 border-l-4 border-yellow-500/50">
+                  <strong className="text-white/80">Think:</strong> $NVDA meets $GS—with crypto upside.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-yellow-500/30">
+              <h3 className="text-2xl font-bold text-yellow-500/90">Thesis in One Line</h3>
+              <p className="text-lg italic mt-2">
+                Security + Speed + Sovereignty. You want to own the companies that defend, accelerate, and monetize digital transformation across every layer of the stack.
+              </p>
+            </div>
           </div>
         </div>
       </div>
