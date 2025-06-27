@@ -233,6 +233,17 @@ export default function RobotaxiPage() {
             </div>
           </SectionCard>
           
+          <div className="relative w-full mx-auto aspect-[16/9] overflow-hidden rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <Image
+                  src="/robotaxi_tesla.jpg"
+                  alt="Tesla Robotaxi"
+                  layout="fill"
+                  objectFit="cover"
+                  className="w-full h-full"
+              />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+          </div>
+          
           <SectionCard title="A Note on Tesla's Endgame">
             <div className="space-y-6 text-white/80 text-lg leading-relaxed">
                 <p className="text-2xl text-yellow-500/90 italic font-bold">
