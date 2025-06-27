@@ -233,6 +233,33 @@ export default function RobotaxiPage() {
             </div>
           </SectionCard>
           
+          <SectionCard title="A Note on Tesla's Endgame">
+            <div className="space-y-6 text-white/80 text-lg leading-relaxed">
+                <p className="text-2xl text-yellow-500/90 italic font-bold">
+                  If you want to own a Tesla, you better hurry!
+                </p>
+                <p>
+                    I predict that within the next ~5 years, Tesla will all but stop selling vehicles. Once Tesla Network scales and Tesla&apos;s cash flows can support it, Tesla would be foolish to sell those money making machines to customers.
+                </p>
+                <div>
+                    <h4 className="text-lg font-bold text-yellow-500/90 mb-3">Some simple assumptions:</h4>
+                    <ul className="list-disc list-inside space-y-2 pl-2">
+                        <li>$0.20/mile profit</li>
+                        <li>100k miles per year per robotaxi</li>
+                        <li>$20k profit per robotaxi per year</li>
+                        <li>10M robotaxis on Tesla Network</li>
+                        <li>&lt;$40k ASP once Tesla ramps lower cost models such as Cybercab</li>
+                    </ul>
+                </div>
+                <p>
+                    This would be $200B in yearly profits, meaning Tesla will be able to buy 5M of its own vehicles each year to add to the Tesla Network.
+                </p>
+                <p>
+                    Initially customers will still be able to buy Teslas and add them to the Tesla Network ala AirBnB, but as Tesla&apos;s cash flows increase, Tesla will sell less and less vehicles and simply own and operate its own fleet of robotaxis and transition into an AMaaS (Autonomous Mobility as a Service) company.
+                </p>
+            </div>
+          </SectionCard>
+          
           <SectionCard title="🧠 Marketing Plan">
             <div className="space-y-8">
               {marketingPlanData.map((phase, index) => (
