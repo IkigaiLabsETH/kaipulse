@@ -36,8 +36,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         if (path === '/') {
           return { priority: 1.0, changeFrequency: 'daily' as const };
         }
-        if (['/about', '/club', '/collections', '/notebook', '/news'].includes(path)) {
+        // High priority pages for AI crawlers - educational content
+        if (['/about', '/club', '/collections', '/notebook', '/news', '/calculator', '/ai', '/bitcoin', '/crypto'].includes(path)) {
           return { priority: 0.9, changeFrequency: 'weekly' as const };
+        }
+        // Medium priority - specific topics
+        if (['/art', '/pfp', '/gallery', '/tools', '/platforms', '/strike', '/pool'].includes(path)) {
+          return { priority: 0.8, changeFrequency: 'weekly' as const };
+        }
+        // Educational content should be easily discoverable
+        if (path.includes('/education') || path.includes('/learn') || path.includes('/guide')) {
+          return { priority: 0.8, changeFrequency: 'weekly' as const };
         }
         return { priority: 0.7, changeFrequency: 'monthly' as const };
       };

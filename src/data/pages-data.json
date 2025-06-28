@@ -1,0 +1,3438 @@
+{
+  "totalPages": 169,
+  "pagesByCategory": {
+    "Financial": [
+      {
+        "path": "/",
+        "title": "Bitcoin-First Strategy & Tools | LiveTheLifeTV",
+        "description": "Master a Bitcoin-first investment strategy with our advanced tools. Track bull market peak indicators, get live price data, and learn to sell at the top. For educational purposes only.",
+        "keywords": [
+          "Bitcoin strategy",
+          "Bitcoin tools",
+          "Bull market indicator",
+          "Bitcoin price ticker",
+          "Crypto investment strategy",
+          "Sell Bitcoin top",
+          "Financial education"
+        ],
+        "category": "Financial",
+        "directory": "root"
+      },
+      {
+        "path": "/calculator",
+        "title": "Calculator | LiveTheLifeTV",
+        "description": "Explore calculator content and insights.",
+        "keywords": [
+          "calculator"
+        ],
+        "category": "Financial",
+        "directory": "calculator"
+      },
+      {
+        "path": "/fire",
+        "title": "Fire | LiveTheLifeTV",
+        "description": "Explore fire content and insights.",
+        "keywords": [
+          "fire"
+        ],
+        "category": "Financial",
+        "directory": "fire"
+      },
+      {
+        "path": "/firefish",
+        "title": "Firefish | LiveTheLifeTV",
+        "description": "Bitcoin-Backed Loans • Non-Custodial • Instant Access...",
+        "keywords": [
+          "firefish"
+        ],
+        "category": "Financial",
+        "directory": "firefish"
+      },
+      {
+        "path": "/ipo",
+        "title": "Ipo | LiveTheLifeTV",
+        "description": "Market Analysis • Public Offerings...",
+        "keywords": [
+          "ipo"
+        ],
+        "category": "Financial",
+        "directory": "ipo"
+      },
+      {
+        "path": "/mag7",
+        "title": "Mag7 | LiveTheLifeTV",
+        "description": "The Magnificent Seven stocks are a group of the most influential companies in the U.S. stock market. This term has been popularized to describe a set of dominant companies, particularly in the tech se...",
+        "keywords": [
+          "mag7"
+        ],
+        "category": "Financial",
+        "directory": "mag7"
+      },
+      {
+        "path": "/options",
+        "title": "Options | LiveTheLifeTV",
+        "description": "Income Strategy • Options Trading • Wealth Management...",
+        "keywords": [
+          "options"
+        ],
+        "category": "Financial",
+        "directory": "options"
+      },
+      {
+        "path": "/otc",
+        "title": "Otc | LiveTheLifeTV",
+        "description": "Market Analysis • Institutional Trends • Supply Shock...",
+        "keywords": [
+          "otc"
+        ],
+        "category": "Financial",
+        "directory": "otc"
+      },
+      {
+        "path": "/stocks",
+        "title": "Stocks | LiveTheLifeTV",
+        "description": "Explore stocks content and insights.",
+        "keywords": [
+          "stocks"
+        ],
+        "category": "Financial",
+        "directory": "stocks"
+      }
+    ],
+    "Other": [
+      {
+        "path": "/1on1",
+        "title": "One-on-One Collection | Digital Art Gallery",
+        "description": "A curated selection of unique one-on-one digital artworks.",
+        "keywords": [
+          "1on1"
+        ],
+        "category": "Other",
+        "directory": "1on1"
+      },
+      {
+        "path": "/2026",
+        "title": "2026 | LiveTheLifeTV",
+        "description": "Explore 2026 content and insights.",
+        "keywords": [
+          "2026"
+        ],
+        "category": "Other",
+        "directory": "2026"
+      },
+      {
+        "path": "/21",
+        "title": "21 | LiveTheLifeTV",
+        "description": "Explore 21 content and insights.",
+        "keywords": [
+          "21"
+        ],
+        "category": "Other",
+        "directory": "21"
+      },
+      {
+        "path": "/21energy",
+        "title": "21energy | LiveTheLifeTV",
+        "description": "Bitcoin Mining • Space Heating • Energy Efficiency...",
+        "keywords": [
+          "21energy"
+        ],
+        "category": "Other",
+        "directory": "21energy"
+      },
+      {
+        "path": "/3Dprint",
+        "title": "3Dprint | LiveTheLifeTV",
+        "description": "SUSTAINABLE CONSTRUCTION • INNOVATION • DECARBONIZATION...",
+        "keywords": [
+          "3Dprint"
+        ],
+        "category": "Other",
+        "directory": "3Dprint"
+      },
+      {
+        "path": "/69",
+        "title": "69 | LiveTheLifeTV",
+        "description": "Bitcoin Scarcity • Wealth Analysis • Market Reality...",
+        "keywords": [
+          "69"
+        ],
+        "category": "Other",
+        "directory": "69"
+      },
+      {
+        "path": "/7fig",
+        "title": "7fig | LiveTheLifeTV",
+        "description": "Digital Wealth • Luxury Living • Bitcoin Lifestyle...",
+        "keywords": [
+          "7fig"
+        ],
+        "category": "Other",
+        "directory": "7fig"
+      },
+      {
+        "path": "/8020",
+        "title": "8020 | LiveTheLifeTV",
+        "description": "Long-term asymmetric bet on Bitcoin as pristine collateral and digital gold....",
+        "keywords": [
+          "8020"
+        ],
+        "category": "Other",
+        "directory": "8020"
+      },
+      {
+        "path": "/about",
+        "title": "About | LiveTheLifeTV",
+        "description": "Explore about content and insights.",
+        "keywords": [
+          "about"
+        ],
+        "category": "Other",
+        "directory": "about"
+      },
+      {
+        "path": "/altbg",
+        "title": "Altbg | LiveTheLifeTV",
+        "description": "Bitcoin Treasury • Data Intelligence • Blockchain Technology...",
+        "keywords": [
+          "altbg"
+        ],
+        "category": "Other",
+        "directory": "altbg"
+      },
+      {
+        "path": "/altcoins",
+        "title": "Altcoins | LiveTheLifeTV",
+        "description": "Explore altcoins content and insights.",
+        "keywords": [
+          "altcoins"
+        ],
+        "category": "Other",
+        "directory": "altcoins"
+      },
+      {
+        "path": "/art/explore",
+        "title": "Explore Collection | Digital Art Gallery",
+        "description": "Explore our complete collection of exceptional digital artworks showcasing unique pieces from our featured collection.",
+        "keywords": [
+          "explore"
+        ],
+        "category": "Other",
+        "directory": "explore"
+      },
+      {
+        "path": "/assets",
+        "title": "Assets | LiveTheLifeTV",
+        "description": "Generational Wealth • Asset Evolution • Market Cycles...",
+        "keywords": [
+          "assets"
+        ],
+        "category": "Other",
+        "directory": "assets"
+      },
+      {
+        "path": "/bera",
+        "title": "Bera | LiveTheLifeTV",
+        "description": "Explore bera content and insights.",
+        "keywords": [
+          "bera"
+        ],
+        "category": "Other",
+        "directory": "bera"
+      },
+      {
+        "path": "/bitbonds",
+        "title": "Bitbonds | LiveTheLifeTV",
+        "description": "Bitcoin Bonds • Treasury Innovation • Capital Markets...",
+        "keywords": [
+          "bitbonds"
+        ],
+        "category": "Other",
+        "directory": "bitbonds"
+      },
+      {
+        "path": "/block",
+        "title": "Block | LiveTheLifeTV",
+        "description": "FINTECH • CRYPTO • DECENTRALIZATION...",
+        "keywords": [
+          "block"
+        ],
+        "category": "Other",
+        "directory": "block"
+      },
+      {
+        "path": "/cirrus",
+        "title": "Cirrus | LiveTheLifeTV",
+        "description": "Explore cirrus content and insights.",
+        "keywords": [
+          "cirrus"
+        ],
+        "category": "Other",
+        "directory": "cirrus"
+      },
+      {
+        "path": "/club",
+        "title": "The Club",
+        "description": "Explore club content and insights.",
+        "keywords": [
+          "club"
+        ],
+        "category": "Other",
+        "directory": "club"
+      },
+      {
+        "path": "/coinbase",
+        "title": "Coinbase | LiveTheLifeTV",
+        "description": "Digital Currency • Crypto Exchange • Web3...",
+        "keywords": [
+          "coinbase"
+        ],
+        "category": "Other",
+        "directory": "coinbase"
+      },
+      {
+        "path": "/collections/[slug]",
+        "title": "[slug] | LiveTheLifeTV",
+        "description": "Explore [slug] content and insights.",
+        "keywords": [
+          "[slug]"
+        ],
+        "category": "Other",
+        "directory": "[slug]"
+      },
+      {
+        "path": "/collections/[slug]/[tokenId]",
+        "title": "[tokenId] | LiveTheLifeTV",
+        "description": "Explore [tokenId] content and insights.",
+        "keywords": [
+          "[tokenId]"
+        ],
+        "category": "Other",
+        "directory": "[tokenId]"
+      },
+      {
+        "path": "/crcl",
+        "title": "Crcl | LiveTheLifeTV",
+        "description": "Stablecoin Issuer • Financial Technology...",
+        "keywords": [
+          "crcl"
+        ],
+        "category": "Other",
+        "directory": "crcl"
+      },
+      {
+        "path": "/crwv",
+        "title": "Crwv | LiveTheLifeTV",
+        "description": "AI Infrastructure • Crypto-Adjacent...",
+        "keywords": [
+          "crwv"
+        ],
+        "category": "Other",
+        "directory": "crwv"
+      },
+      {
+        "path": "/cult",
+        "title": "Cult | LiveTheLifeTV",
+        "description": "Sacred Manifesto • Digital Sovereignty • Cryptographic Truth...",
+        "keywords": [
+          "cult"
+        ],
+        "category": "Other",
+        "directory": "cult"
+      },
+      {
+        "path": "/dgx",
+        "title": "Dgx | LiveTheLifeTV",
+        "description": "With a self-hosted model, you&apos;re not at the mercy of a provider&apos;s changing terms...",
+        "keywords": [
+          "dgx"
+        ],
+        "category": "Other",
+        "directory": "dgx"
+      },
+      {
+        "path": "/docu",
+        "title": "Docu | LiveTheLifeTV",
+        "description": "Explore docu content and insights.",
+        "keywords": [
+          "docu"
+        ],
+        "category": "Other",
+        "directory": "docu"
+      },
+      {
+        "path": "/downbad",
+        "title": "Downbad | LiveTheLifeTV",
+        "description": "Fiscal Policy • Economic Structures • Global Comparison...",
+        "keywords": [
+          "downbad"
+        ],
+        "category": "Other",
+        "directory": "downbad"
+      },
+      {
+        "path": "/ecoflow",
+        "title": "DELTA Pro Ultra",
+        "description": "Run your entire home—including HVAC, appliances, and essentials—for days. Automatic grid-to-backup switchover in 20 ms with Smart Home Panel 2....",
+        "keywords": [
+          "ecoflow"
+        ],
+        "category": "Other",
+        "directory": "ecoflow"
+      },
+      {
+        "path": "/elon",
+        "title": "Elon | LiveTheLifeTV",
+        "description": "Social Media • Tech • Politics...",
+        "keywords": [
+          "elon"
+        ],
+        "category": "Other",
+        "directory": "elon"
+      },
+      {
+        "path": "/france",
+        "title": "France | LiveTheLifeTV",
+        "description": "Explore france content and insights.",
+        "keywords": [
+          "france"
+        ],
+        "category": "Other",
+        "directory": "france"
+      },
+      {
+        "path": "/gdculture",
+        "title": "Gdculture | LiveTheLifeTV",
+        "description": "Explore gdculture content and insights.",
+        "keywords": [
+          "gdculture"
+        ],
+        "category": "Other",
+        "directory": "gdculture"
+      },
+      {
+        "path": "/giza",
+        "title": "Giza | LiveTheLifeTV",
+        "description": "DeFi • AI • Autonomous Agents...",
+        "keywords": [
+          "giza"
+        ],
+        "category": "Other",
+        "directory": "giza"
+      },
+      {
+        "path": "/gm",
+        "title": "Gm | LiveTheLifeTV",
+        "description": "Analysis • Cycle Theory • Power Law...",
+        "keywords": [
+          "gm"
+        ],
+        "category": "Other",
+        "directory": "gm"
+      },
+      {
+        "path": "/grind",
+        "title": "The $1K Grind Challenge - Turn $1,000 into $100K",
+        "description": "A strategic approach to turning $1,000 into $100K through calculated microcap investments and disciplined trading. For educational purposes only.",
+        "keywords": [
+          "grind"
+        ],
+        "category": "Other",
+        "directory": "grind"
+      },
+      {
+        "path": "/holyheld",
+        "title": "One Card for All Crypto",
+        "description": "Get your virtual card immediately while waiting for the physical card delivery....",
+        "keywords": [
+          "holyheld"
+        ],
+        "category": "Other",
+        "directory": "holyheld"
+      },
+      {
+        "path": "/hx50",
+        "title": "Hx50 | LiveTheLifeTV",
+        "description": "Revolutionizing personal rotorcraft aviation...",
+        "keywords": [
+          "hx50"
+        ],
+        "category": "Other",
+        "directory": "hx50"
+      },
+      {
+        "path": "/intro",
+        "title": "Intro | LiveTheLifeTV",
+        "description": "Bitcoin Education • Life Balance • Financial Freedom...",
+        "keywords": [
+          "intro"
+        ],
+        "category": "Other",
+        "directory": "intro"
+      },
+      {
+        "path": "/legal",
+        "title": "Legal Disclaimer and Regulatory Notice",
+        "description": "Explore legal content and insights.",
+        "keywords": [
+          "legal"
+        ],
+        "category": "Other",
+        "directory": "legal"
+      },
+      {
+        "path": "/liquidity",
+        "title": "Liquidity | LiveTheLifeTV",
+        "description": "Token Analysis • Market Liquidity • Trading Metrics...",
+        "keywords": [
+          "liquidity"
+        ],
+        "category": "Other",
+        "directory": "liquidity"
+      },
+      {
+        "path": "/ln",
+        "title": "Ln | LiveTheLifeTV",
+        "description": "Explore ln content and insights.",
+        "keywords": [
+          "ln"
+        ],
+        "category": "Other",
+        "directory": "ln"
+      },
+      {
+        "path": "/ltl",
+        "title": "Ltl | LiveTheLifeTV",
+        "description": "Explore ltl content and insights.",
+        "keywords": [
+          "ltl"
+        ],
+        "category": "Other",
+        "directory": "ltl"
+      },
+      {
+        "path": "/metaplanet",
+        "title": "Metaplanet | LiveTheLifeTV",
+        "description": "Bitcoin Treasury • Japanese Market • Web3 Innovation...",
+        "keywords": [
+          "metaplanet"
+        ],
+        "category": "Other",
+        "directory": "metaplanet"
+      },
+      {
+        "path": "/midlife",
+        "title": "Midlife | LiveTheLifeTV",
+        "description": "Life Journey • Happiness • Personal Growth...",
+        "keywords": [
+          "midlife"
+        ],
+        "category": "Other",
+        "directory": "midlife"
+      },
+      {
+        "path": "/mint/CMP",
+        "title": "CMP | LiveTheLifeTV",
+        "description": "Explore CMP content and insights.",
+        "keywords": [
+          "CMP"
+        ],
+        "category": "Other",
+        "directory": "CMP"
+      },
+      {
+        "path": "/mitochondria",
+        "title": "Mitochondria | LiveTheLifeTV",
+        "description": "Cellular Health • Energy Production • Longevity...",
+        "keywords": [
+          "mitochondria"
+        ],
+        "category": "Other",
+        "directory": "mitochondria"
+      },
+      {
+        "path": "/nakamoto",
+        "title": "Nakamoto | LiveTheLifeTV",
+        "description": "Bitcoin Treasury • Healthcare • Global Capital Markets...",
+        "keywords": [
+          "nakamoto"
+        ],
+        "category": "Other",
+        "directory": "nakamoto"
+      },
+      {
+        "path": "/naval",
+        "title": "Naval | LiveTheLifeTV",
+        "description": "Explore naval content and insights.",
+        "keywords": [
+          "naval"
+        ],
+        "category": "Other",
+        "directory": "naval"
+      },
+      {
+        "path": "/news",
+        "title": "Bitcoin Insights",
+        "description": "Explore news content and insights.",
+        "keywords": [
+          "news"
+        ],
+        "category": "Other",
+        "directory": "news"
+      },
+      {
+        "path": "/news/[slug]",
+        "title": "Article not found",
+        "description": "Explore [slug] content and insights.",
+        "keywords": [
+          "[slug]"
+        ],
+        "category": "Other",
+        "directory": "[slug]"
+      },
+      {
+        "path": "/node",
+        "title": "Node | LiveTheLifeTV",
+        "description": "Onchain Economy • Digital Assets • Blockchain Infrastructure...",
+        "keywords": [
+          "node"
+        ],
+        "category": "Other",
+        "directory": "node"
+      },
+      {
+        "path": "/olympus",
+        "title": "Olympus | LiveTheLifeTV",
+        "description": "Explore olympus content and insights.",
+        "keywords": [
+          "olympus"
+        ],
+        "category": "Other",
+        "directory": "olympus"
+      },
+      {
+        "path": "/otonomos",
+        "title": "Otonomos | LiveTheLifeTV",
+        "description": "Web3 Entity Formation • DAO Structuring • Crypto Treasury...",
+        "keywords": [
+          "otonomos"
+        ],
+        "category": "Other",
+        "directory": "otonomos"
+      },
+      {
+        "path": "/pfp/[slug]",
+        "title": "[slug] | LiveTheLifeTV",
+        "description": "Explore [slug] content and insights.",
+        "keywords": [
+          "[slug]"
+        ],
+        "category": "Other",
+        "directory": "[slug]"
+      },
+      {
+        "path": "/pfp/[slug]/[tokenId]",
+        "title": "[tokenId] | LiveTheLifeTV",
+        "description": "Explore [tokenId] content and insights.",
+        "keywords": [
+          "[tokenId]"
+        ],
+        "category": "Other",
+        "directory": "[tokenId]"
+      },
+      {
+        "path": "/platforms/bitwise",
+        "title": "Bitwise | LiveTheLifeTV",
+        "description": "Explore bitwise content and insights.",
+        "keywords": [
+          "bitwise"
+        ],
+        "category": "Other",
+        "directory": "bitwise"
+      },
+      {
+        "path": "/platforms/coinbase",
+        "title": "Coinbase | LiveTheLifeTV",
+        "description": "Explore coinbase content and insights.",
+        "keywords": [
+          "coinbase"
+        ],
+        "category": "Other",
+        "directory": "coinbase"
+      },
+      {
+        "path": "/platforms/msty",
+        "title": "Msty | LiveTheLifeTV",
+        "description": "Bitcoin Income • Options Strategy • Monthly Distributions...",
+        "keywords": [
+          "msty"
+        ],
+        "category": "Other",
+        "directory": "msty"
+      },
+      {
+        "path": "/platforms/msty/brokers",
+        "title": "Brokers | LiveTheLifeTV",
+        "description": "Explore brokers content and insights.",
+        "keywords": [
+          "brokers"
+        ],
+        "category": "Other",
+        "directory": "brokers"
+      },
+      {
+        "path": "/platforms/msty/mstr",
+        "title": "Mstr | LiveTheLifeTV",
+        "description": "Bitcoin Strategy • Enterprise Analytics • Corporate Adoption...",
+        "keywords": [
+          "mstr"
+        ],
+        "category": "Other",
+        "directory": "mstr"
+      },
+      {
+        "path": "/pod5",
+        "title": "Pod5 | LiveTheLifeTV",
+        "description": "Smart Sleep Technology • AI-Powered Health Monitoring • Temperature Control...",
+        "keywords": [
+          "pod5"
+        ],
+        "category": "Other",
+        "directory": "pod5"
+      },
+      {
+        "path": "/print",
+        "title": "Print | LiveTheLifeTV",
+        "description": "Artistic Philosophy • Manifesto...",
+        "keywords": [
+          "print"
+        ],
+        "category": "Other",
+        "directory": "print"
+      },
+      {
+        "path": "/pumpnotfun",
+        "title": "Pumpnotfun | LiveTheLifeTV",
+        "description": "Crypto • DeFi • Token Launches...",
+        "keywords": [
+          "pumpnotfun"
+        ],
+        "category": "Other",
+        "directory": "pumpnotfun"
+      },
+      {
+        "path": "/rlt",
+        "title": "Rlt | LiveTheLifeTV",
+        "description": "Photobiomodulation • Cellular Health • Recovery...",
+        "keywords": [
+          "rlt"
+        ],
+        "category": "Other",
+        "directory": "rlt"
+      },
+      {
+        "path": "/robotaxi",
+        "title": "Robotaxi | LiveTheLifeTV",
+        "description": "Paris & Lyon Level-4 FSD EU Deployment...",
+        "keywords": [
+          "robotaxi"
+        ],
+        "category": "Other",
+        "directory": "robotaxi"
+      },
+      {
+        "path": "/sixsenses",
+        "title": "Sixsenses | LiveTheLifeTV",
+        "description": "Luxury Residences • Wellness • Nature...",
+        "keywords": [
+          "sixsenses"
+        ],
+        "category": "Other",
+        "directory": "sixsenses"
+      },
+      {
+        "path": "/sonar",
+        "title": "Sonar | LiveTheLifeTV",
+        "description": "Token Sales • Equity Analysis • Market Dynamics...",
+        "keywords": [
+          "sonar"
+        ],
+        "category": "Other",
+        "directory": "sonar"
+      },
+      {
+        "path": "/sparrow/migrate",
+        "title": "Migrate | LiveTheLifeTV",
+        "description": "Explore migrate content and insights.",
+        "keywords": [
+          "migrate"
+        ],
+        "category": "Other",
+        "directory": "migrate"
+      },
+      {
+        "path": "/strd",
+        "title": "Strd | LiveTheLifeTV",
+        "description": "Preferred Stock • Bitcoin Strategy • Fixed Income...",
+        "keywords": [
+          "strd"
+        ],
+        "category": "Other",
+        "directory": "strd"
+      },
+      {
+        "path": "/strf",
+        "title": "Strf | LiveTheLifeTV",
+        "description": "Preferred Stock • Bitcoin Strategy • Fixed Income...",
+        "keywords": [
+          "strf"
+        ],
+        "category": "Other",
+        "directory": "strf"
+      },
+      {
+        "path": "/tbs",
+        "title": "Tbs | LiveTheLifeTV",
+        "description": "Explore tbs content and insights.",
+        "keywords": [
+          "tbs"
+        ],
+        "category": "Other",
+        "directory": "tbs"
+      },
+      {
+        "path": "/time",
+        "title": "Time | LiveTheLifeTV",
+        "description": "In 1999, I sold my most precious asset—my time—for $100 an hour. It felt like winning. Most people I knew were earning far less, locked into daily routines that ate away at their lives. I was young, d...",
+        "keywords": [
+          "time"
+        ],
+        "category": "Other",
+        "directory": "time"
+      },
+      {
+        "path": "/toto",
+        "title": "Toto | LiveTheLifeTV",
+        "description": "Japanese Innovation • Smart Technology • Sustainable Design...",
+        "keywords": [
+          "toto"
+        ],
+        "category": "Other",
+        "directory": "toto"
+      },
+      {
+        "path": "/train/schedule",
+        "title": "Schedule | LiveTheLifeTV",
+        "description": "Weekly Training • Daily Movement • Sustainable Fitness...",
+        "keywords": [
+          "schedule"
+        ],
+        "category": "Other",
+        "directory": "schedule"
+      },
+      {
+        "path": "/twentyone",
+        "title": "Twentyone | LiveTheLifeTV",
+        "description": "Bitcoin Treasury • Bitcoin-Native Finance • Public Markets...",
+        "keywords": [
+          "twentyone"
+        ],
+        "category": "Other",
+        "directory": "twentyone"
+      },
+      {
+        "path": "/vibecode",
+        "title": "Vibecode | LiveTheLifeTV",
+        "description": "Tao • Terminal • Technology...",
+        "keywords": [
+          "vibecode"
+        ],
+        "category": "Other",
+        "directory": "vibecode"
+      },
+      {
+        "path": "/visuals",
+        "title": "Memes & Dreams",
+        "description": "Explore visuals content and insights.",
+        "keywords": [
+          "visuals"
+        ],
+        "category": "Other",
+        "directory": "visuals"
+      },
+      {
+        "path": "/vjepa2",
+        "title": "Vjepa2 | LiveTheLifeTV",
+        "description": "AI Research • Robotics • Computer Vision...",
+        "keywords": [
+          "vjepa2"
+        ],
+        "category": "Other",
+        "directory": "vjepa2"
+      },
+      {
+        "path": "/voice",
+        "title": "Voice | LiveTheLifeTV",
+        "description": "Explore voice content and insights.",
+        "keywords": [
+          "voice"
+        ],
+        "category": "Other",
+        "directory": "voice"
+      },
+      {
+        "path": "/weather",
+        "title": "Something went wrong",
+        "description": "Failed to load weather data...",
+        "keywords": [
+          "weather"
+        ],
+        "category": "Other",
+        "directory": "weather"
+      },
+      {
+        "path": "/whitepaper",
+        "title": "Whitepaper | LiveTheLifeTV",
+        "description": "Bitcoin introduces a system where:...",
+        "keywords": [
+          "whitepaper"
+        ],
+        "category": "Other",
+        "directory": "whitepaper"
+      },
+      {
+        "path": "/whoop",
+        "title": "Whoop | LiveTheLifeTV",
+        "description": "Wearable Technology • Health Analytics • Fitness...",
+        "keywords": [
+          "whoop"
+        ],
+        "category": "Other",
+        "directory": "whoop"
+      },
+      {
+        "path": "/wine",
+        "title": "South African &amp; French Wines",
+        "description": "Founded in 1688, Boschendal offers award-winning wines, farm-to-table dining, and historic Cape Dutch architecture. Known for exceptional Chardonnay and Shiraz....",
+        "keywords": [
+          "wine"
+        ],
+        "category": "Other",
+        "directory": "wine"
+      },
+      {
+        "path": "/xapo",
+        "title": "Xapo | LiveTheLifeTV",
+        "description": "Private Banking • Bitcoin • Financial Freedom...",
+        "keywords": [
+          "xapo"
+        ],
+        "category": "Other",
+        "directory": "xapo"
+      },
+      {
+        "path": "/zero",
+        "title": "Zero | LiveTheLifeTV",
+        "description": "Bitcoin • Wealth • Freedom...",
+        "keywords": [
+          "zero"
+        ],
+        "category": "Other",
+        "directory": "zero"
+      }
+    ],
+    "Products": [
+      {
+        "path": "/abra",
+        "title": "Abra | LiveTheLifeTV",
+        "description": "Bitcoin Loans • Strike vs. Abra • 2025 Comparison...",
+        "keywords": [
+          "abra"
+        ],
+        "category": "Products",
+        "directory": "abra"
+      },
+      {
+        "path": "/bitaxe",
+        "title": "Bitaxe | LiveTheLifeTV",
+        "description": "Solo Mining • Open Source • Self-Sovereignty...",
+        "keywords": [
+          "bitaxe"
+        ],
+        "category": "Products",
+        "directory": "bitaxe"
+      },
+      {
+        "path": "/ledger",
+        "title": "Ledger FLEX",
+        "description": "Pair your Ledger Nano X via Bluetooth or connect Nano S Plus by USB-C. Compatible with computers and mobile devices....",
+        "keywords": [
+          "ledger"
+        ],
+        "category": "Products",
+        "directory": "ledger"
+      },
+      {
+        "path": "/s9pro",
+        "title": "S9pro | LiveTheLifeTV",
+        "description": "Immersion Cooling • Heat Recovery • Smart Integration...",
+        "keywords": [
+          "s9pro"
+        ],
+        "category": "Products",
+        "directory": "s9pro"
+      },
+      {
+        "path": "/sparrow",
+        "title": "Sparrow | LiveTheLifeTV",
+        "description": "Explore sparrow content and insights.",
+        "keywords": [
+          "sparrow"
+        ],
+        "category": "Products",
+        "directory": "sparrow"
+      },
+      {
+        "path": "/strike",
+        "title": "Strike | LiveTheLifeTV",
+        "description": "Explore strike content and insights.",
+        "keywords": [
+          "strike"
+        ],
+        "category": "Products",
+        "directory": "strike"
+      },
+      {
+        "path": "/tangem",
+        "title": "Tangem | LiveTheLifeTV",
+        "description": "Wearable Crypto Wallet • EAL6+ Security • NFC Enabled...",
+        "keywords": [
+          "tangem"
+        ],
+        "category": "Products",
+        "directory": "tangem"
+      },
+      {
+        "path": "/tax",
+        "title": "Tax Tracking",
+        "description": "Explore tax content and insights.",
+        "keywords": [
+          "tax"
+        ],
+        "category": "Products",
+        "directory": "tax"
+      }
+    ],
+    "Technology": [
+      {
+        "path": "/ai",
+        "title": "The New Startup Playbook | LiveTheLifeTV",
+        "description": "The Startup Playbook Has Been Rewritten—Forever. A deep dive into how AI, agents, and culture are reshaping the startup landscape. For educational purposes only - not financial advice.",
+        "keywords": [
+          "AI",
+          "Startup",
+          "Technology",
+          "Innovation",
+          "Digital Transformation",
+          "Future of Work",
+          "Business Strategy",
+          "Tech Trends"
+        ],
+        "category": "Technology",
+        "directory": "ai"
+      },
+      {
+        "path": "/airstream",
+        "title": "Airstream | LiveTheLifeTV",
+        "description": "Luxury Travel • Smart Investment • Premium Experience...",
+        "keywords": [
+          "airstream"
+        ],
+        "category": "Technology",
+        "directory": "airstream"
+      },
+      {
+        "path": "/arc",
+        "title": "Arc | LiveTheLifeTV",
+        "description": "Electric Boating • Sustainable Luxury • Premium Performance...",
+        "keywords": [
+          "arc"
+        ],
+        "category": "Technology",
+        "directory": "arc"
+      },
+      {
+        "path": "/cursor",
+        "title": "Cursor | LiveTheLifeTV",
+        "description": "AI Coding • Next.js • Crypto APIs...",
+        "keywords": [
+          "cursor"
+        ],
+        "category": "Technology",
+        "directory": "cursor"
+      },
+      {
+        "path": "/data",
+        "title": "Data | LiveTheLifeTV",
+        "description": "Explore data content and insights.",
+        "keywords": [
+          "data"
+        ],
+        "category": "Technology",
+        "directory": "data"
+      },
+      {
+        "path": "/dubai",
+        "title": "Dubai | LiveTheLifeTV",
+        "description": "Crypto Hub • Luxury Living • Business Opportunities...",
+        "keywords": [
+          "dubai"
+        ],
+        "category": "Technology",
+        "directory": "dubai"
+      },
+      {
+        "path": "/eliza",
+        "title": "Eliza | LiveTheLifeTV",
+        "description": "AI AGENTS • WEB3 • OPEN SOURCE...",
+        "keywords": [
+          "eliza"
+        ],
+        "category": "Technology",
+        "directory": "eliza"
+      },
+      {
+        "path": "/fairmint",
+        "title": "Fairmint | LiveTheLifeTV",
+        "description": "Onchain Equity • Smart Contracts • DeFi Native...",
+        "keywords": [
+          "fairmint"
+        ],
+        "category": "Technology",
+        "directory": "fairmint"
+      },
+      {
+        "path": "/hume",
+        "title": "Hume | LiveTheLifeTV",
+        "description": "Explore hume content and insights.",
+        "keywords": [
+          "hume"
+        ],
+        "category": "Technology",
+        "directory": "hume"
+      },
+      {
+        "path": "/maxpain",
+        "title": "Maxpain | LiveTheLifeTV",
+        "description": "Loading Real-Time Data......",
+        "keywords": [
+          "maxpain"
+        ],
+        "category": "Technology",
+        "directory": "maxpain"
+      },
+      {
+        "path": "/notebook",
+        "title": "Bitcoin Blog Notebook",
+        "description": "Explore notebook content and insights.",
+        "keywords": [
+          "notebook"
+        ],
+        "category": "Technology",
+        "directory": "notebook"
+      },
+      {
+        "path": "/pool/details",
+        "title": "Pool Details | Advanced Features & Systems",
+        "description": "Explore the advanced features, energy systems, and premium construction details of our luxury pool solutions.",
+        "keywords": [
+          "details"
+        ],
+        "category": "Technology",
+        "directory": "details"
+      },
+      {
+        "path": "/search",
+        "title": "Search | LiveTheLifeTV",
+        "description": "Explore search content and insights.",
+        "keywords": [
+          "search"
+        ],
+        "category": "Technology",
+        "directory": "search"
+      },
+      {
+        "path": "/spain",
+        "title": "Spain | LiveTheLifeTV",
+        "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+        "keywords": [
+          "spain"
+        ],
+        "category": "Technology",
+        "directory": "spain"
+      },
+      {
+        "path": "/tools",
+        "title": "Tools | LiveTheLifeTV",
+        "description": "Explore tools content and insights.",
+        "keywords": [
+          "tools"
+        ],
+        "category": "Technology",
+        "directory": "tools"
+      },
+      {
+        "path": "/train",
+        "title": "Train | LiveTheLifeTV",
+        "description": "Explore train content and insights.",
+        "keywords": [
+          "train"
+        ],
+        "category": "Technology",
+        "directory": "train"
+      }
+    ],
+    "Art & Culture": [
+      {
+        "path": "/art",
+        "title": "Featured Collection | Digital Art Gallery",
+        "description": "A curated selection of exceptional digital artworks showcasing unique pieces from our featured collection.",
+        "keywords": [
+          "art"
+        ],
+        "category": "Art & Culture",
+        "directory": "art"
+      },
+      {
+        "path": "/col",
+        "title": "Col | LiveTheLifeTV",
+        "description": "Cost Comparison • Lifestyle Analysis • Financial Planning...",
+        "keywords": [
+          "col"
+        ],
+        "category": "Art & Culture",
+        "directory": "col"
+      },
+      {
+        "path": "/collections",
+        "title": "Collections | LiveTheLifeTV",
+        "description": "Explore collections content and insights.",
+        "keywords": [
+          "collections"
+        ],
+        "category": "Art & Culture",
+        "directory": "collections"
+      },
+      {
+        "path": "/gallery",
+        "title": "Gallery | LiveTheLifeTV",
+        "description": "Digital Art • Immersive Experience • 3D Gallery...",
+        "keywords": [
+          "gallery"
+        ],
+        "category": "Art & Culture",
+        "directory": "gallery"
+      },
+      {
+        "path": "/genart",
+        "title": "Genart | LiveTheLifeTV",
+        "description": "Generative Art • Digital Painting • Web3...",
+        "keywords": [
+          "genart"
+        ],
+        "category": "Art & Culture",
+        "directory": "genart"
+      },
+      {
+        "path": "/pfp",
+        "title": "Pfp | LiveTheLifeTV",
+        "description": "Explore pfp content and insights.",
+        "keywords": [
+          "pfp"
+        ],
+        "category": "Art & Culture",
+        "directory": "pfp"
+      },
+      {
+        "path": "/smarthome",
+        "title": "Smarthome | LiveTheLifeTV",
+        "description": "Curated selection of premium brands for your dream home...",
+        "keywords": [
+          "smarthome"
+        ],
+        "category": "Art & Culture",
+        "directory": "smarthome"
+      }
+    ],
+    "Travel": [
+      {
+        "path": "/biarritz",
+        "title": "Biarritz | LiveTheLifeTV",
+        "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+        "keywords": [
+          "biarritz"
+        ],
+        "category": "Travel",
+        "directory": "biarritz"
+      },
+      {
+        "path": "/costarica",
+        "title": "Costarica | LiveTheLifeTV",
+        "description": "Luxury Travel • Nature • Adventure...",
+        "keywords": [
+          "costarica"
+        ],
+        "category": "Travel",
+        "directory": "costarica"
+      },
+      {
+        "path": "/italy",
+        "title": "Italy | LiveTheLifeTV",
+        "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+        "keywords": [
+          "italy"
+        ],
+        "category": "Travel",
+        "directory": "italy"
+      },
+      {
+        "path": "/maldives",
+        "title": "Maldives | LiveTheLifeTV",
+        "description": "Digital Assets • Financial Innovation • Economic Growth...",
+        "keywords": [
+          "maldives"
+        ],
+        "category": "Travel",
+        "directory": "maldives"
+      },
+      {
+        "path": "/maroc",
+        "title": "Maroc | LiveTheLifeTV",
+        "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+        "keywords": [
+          "maroc"
+        ],
+        "category": "Travel",
+        "directory": "maroc"
+      },
+      {
+        "path": "/monaco",
+        "title": "Monaco | LiveTheLifeTV",
+        "description": "Explore monaco content and insights.",
+        "keywords": [
+          "monaco"
+        ],
+        "category": "Travel",
+        "directory": "monaco"
+      },
+      {
+        "path": "/portugal",
+        "title": "Portugal | LiveTheLifeTV",
+        "description": "Crypto & Lifestyle • Cultural Experiences • Luxury Travel...",
+        "keywords": [
+          "portugal"
+        ],
+        "category": "Travel",
+        "directory": "portugal"
+      },
+      {
+        "path": "/sotogrande",
+        "title": "Sotogrande | LiveTheLifeTV",
+        "description": "Explore sotogrande content and insights.",
+        "keywords": [
+          "sotogrande"
+        ],
+        "category": "Travel",
+        "directory": "sotogrande"
+      },
+      {
+        "path": "/swiss",
+        "title": "Swiss | LiveTheLifeTV",
+        "description": "Luxury Travel • Wellness • Alpine Adventure...",
+        "keywords": [
+          "swiss"
+        ],
+        "category": "Travel",
+        "directory": "swiss"
+      }
+    ],
+    "Lifestyle": [
+      {
+        "path": "/bio",
+        "title": "Bio | LiveTheLifeTV",
+        "description": "Bitcoin Maximalist • Digital Pioneer • Art Curator...",
+        "keywords": [
+          "bio"
+        ],
+        "category": "Lifestyle",
+        "directory": "bio"
+      },
+      {
+        "path": "/biohacking",
+        "title": "Biohacking | LiveTheLifeTV",
+        "description": "Explore biohacking content and insights.",
+        "keywords": [
+          "biohacking"
+        ],
+        "category": "Lifestyle",
+        "directory": "biohacking"
+      },
+      {
+        "path": "/hastens",
+        "title": "Hastens | LiveTheLifeTV",
+        "description": "Luxury Sleep • Swedish Craftsmanship • Natural Materials...",
+        "keywords": [
+          "hastens"
+        ],
+        "category": "Lifestyle",
+        "directory": "hastens"
+      },
+      {
+        "path": "/love",
+        "title": "Love | LiveTheLifeTV",
+        "description": "We met them on a salt-slick terrace above the Grande Plage, two strangers in their late seventies sharing a bottle of 2010 Haut-Brion like it was an inside joke with the Atlantic....",
+        "keywords": [
+          "love"
+        ],
+        "category": "Lifestyle",
+        "directory": "love"
+      },
+      {
+        "path": "/qol",
+        "title": "Qol | LiveTheLifeTV",
+        "description": "Lifestyle Design • Philosophy • Well-being...",
+        "keywords": [
+          "qol"
+        ],
+        "category": "Lifestyle",
+        "directory": "qol"
+      },
+      {
+        "path": "/quality",
+        "title": "Quality | LiveTheLifeTV",
+        "description": "Life Philosophy • Investment Strategy • Personal Growth...",
+        "keywords": [
+          "quality"
+        ],
+        "category": "Lifestyle",
+        "directory": "quality"
+      },
+      {
+        "path": "/sauna",
+        "title": "Sauna | LiveTheLifeTV",
+        "description": "Scandinavian Wellness • French Craftsmanship • Luxury Outdoor Living...",
+        "keywords": [
+          "sauna"
+        ],
+        "category": "Lifestyle",
+        "directory": "sauna"
+      }
+    ],
+    "Cryptocurrency": [
+      {
+        "path": "/btcab",
+        "title": "Btcab | LiveTheLifeTV",
+        "description": "CEO (Head of Bitcoin Operations)...",
+        "keywords": [
+          "btcab"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "btcab"
+      },
+      {
+        "path": "/crypto",
+        "title": "Crypto | LiveTheLifeTV",
+        "description": "Explore crypto content and insights.",
+        "keywords": [
+          "crypto"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "crypto"
+      },
+      {
+        "path": "/defi",
+        "title": "Defi | LiveTheLifeTV",
+        "description": "Bitcoin • DeFi • Financial Freedom...",
+        "keywords": [
+          "defi"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "defi"
+      },
+      {
+        "path": "/doge",
+        "title": "Doge | LiveTheLifeTV",
+        "description": "Community Driven • Elon&apos;s Favorite • The People&apos;s Crypto...",
+        "keywords": [
+          "doge"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "doge"
+      },
+      {
+        "path": "/eth",
+        "title": "Eth | LiveTheLifeTV",
+        "description": "Trust Commodity • Digital Oil • Settlement Layer...",
+        "keywords": [
+          "eth"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "eth"
+      },
+      {
+        "path": "/etherfi",
+        "title": "ether.fi Cash Card",
+        "description": "Deposit your crypto (eETH, USDC, and more coming soon) into your own Gnosis Safe—fully under your control....",
+        "keywords": [
+          "etherfi"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "etherfi"
+      },
+      {
+        "path": "/hype",
+        "title": "Hype | LiveTheLifeTV",
+        "description": "Explore hype content and insights.",
+        "keywords": [
+          "hype"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "hype"
+      },
+      {
+        "path": "/hyperliquid",
+        "title": "Hyperliquid | LiveTheLifeTV",
+        "description": "Explore hyperliquid content and insights.",
+        "keywords": [
+          "hyperliquid"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "hyperliquid"
+      },
+      {
+        "path": "/lombard",
+        "title": "Lombard | LiveTheLifeTV",
+        "description": "Private Wealth Management • Crypto Finance • Tax Optimization...",
+        "keywords": [
+          "lombard"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "lombard"
+      },
+      {
+        "path": "/platforms/msty/bitcoin",
+        "title": "Bitcoin | LiveTheLifeTV",
+        "description": "Monetary Rebellion • Digital Gold • Freedom Money...",
+        "keywords": [
+          "bitcoin"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "bitcoin"
+      },
+      {
+        "path": "/sol",
+        "title": "Sol | LiveTheLifeTV",
+        "description": "Explore sol content and insights.",
+        "keywords": [
+          "sol"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "sol"
+      },
+      {
+        "path": "/stacks",
+        "title": "Stacks: Bitcoin Unleashed",
+        "description": "Explore stacks content and insights.",
+        "keywords": [
+          "stacks"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "stacks"
+      },
+      {
+        "path": "/sui",
+        "title": "Sui | LiveTheLifeTV",
+        "description": "Explore sui content and insights.",
+        "keywords": [
+          "sui"
+        ],
+        "category": "Cryptocurrency",
+        "directory": "sui"
+      }
+    ],
+    "Investment": [
+      {
+        "path": "/carrot",
+        "title": "Carrot | LiveTheLifeTV",
+        "description": "THE PROMISE • THE PRICE • THE PRECEDENT...",
+        "keywords": [
+          "carrot"
+        ],
+        "category": "Investment",
+        "directory": "carrot"
+      },
+      {
+        "path": "/catamaran",
+        "title": "Catamaran | LiveTheLifeTV",
+        "description": "Hybrid Technology • Luxury Design • Sustainable Yachting...",
+        "keywords": [
+          "catamaran"
+        ],
+        "category": "Investment",
+        "directory": "catamaran"
+      },
+      {
+        "path": "/gold",
+        "title": "Gold | LiveTheLifeTV",
+        "description": "Hard Money • Store of Value • Digital Gold...",
+        "keywords": [
+          "gold"
+        ],
+        "category": "Investment",
+        "directory": "gold"
+      },
+      {
+        "path": "/hood",
+        "title": "Hood | LiveTheLifeTV",
+        "description": "Explore hood content and insights.",
+        "keywords": [
+          "hood"
+        ],
+        "category": "Investment",
+        "directory": "hood"
+      },
+      {
+        "path": "/mara",
+        "title": "Mara | LiveTheLifeTV",
+        "description": "Bitcoin Mining • Digital Assets • Renewable Energy...",
+        "keywords": [
+          "mara"
+        ],
+        "category": "Investment",
+        "directory": "mara"
+      },
+      {
+        "path": "/nvda",
+        "title": "Nvda | LiveTheLifeTV",
+        "description": "GPU • AI • CRYPTO INFRASTRUCTURE...",
+        "keywords": [
+          "nvda"
+        ],
+        "category": "Investment",
+        "directory": "nvda"
+      },
+      {
+        "path": "/realestate",
+        "title": "Realestate | LiveTheLifeTV",
+        "description": "Smart Homes • Tech Integration • Bitcoin Strategy...",
+        "keywords": [
+          "realestate"
+        ],
+        "category": "Investment",
+        "directory": "realestate"
+      },
+      {
+        "path": "/tesla",
+        "title": "Tesla | LiveTheLifeTV",
+        "description": "The gateway to Tesla&apos;s performance lineup...",
+        "keywords": [
+          "tesla"
+        ],
+        "category": "Investment",
+        "directory": "tesla"
+      }
+    ],
+    "Business": [
+      {
+        "path": "/distribution",
+        "title": "Distribution | LiveTheLifeTV",
+        "description": "Explore distribution content and insights.",
+        "keywords": [
+          "distribution"
+        ],
+        "category": "Business",
+        "directory": "distribution"
+      },
+      {
+        "path": "/mint",
+        "title": "Mint | LiveTheLifeTV",
+        "description": "Explore mint content and insights.",
+        "keywords": [
+          "mint"
+        ],
+        "category": "Business",
+        "directory": "mint"
+      },
+      {
+        "path": "/sharplink",
+        "title": "Sharplink | LiveTheLifeTV",
+        "description": "Ethereum Treasury • Gaming Technology • Blockchain Integration...",
+        "keywords": [
+          "sharplink"
+        ],
+        "category": "Business",
+        "directory": "sharplink"
+      }
+    ],
+    "Real Estate": [
+      {
+        "path": "/inhaus",
+        "title": "Inhaus | LiveTheLifeTV",
+        "description": "Premium Modular Homes • Architecture • Design...",
+        "keywords": [
+          "inhaus"
+        ],
+        "category": "Real Estate",
+        "directory": "inhaus"
+      },
+      {
+        "path": "/land",
+        "title": "Land | LiveTheLifeTV",
+        "description": "Sustainable Investment • Ecological Value • Long-term Growth...",
+        "keywords": [
+          "land"
+        ],
+        "category": "Real Estate",
+        "directory": "land"
+      },
+      {
+        "path": "/mobilehome",
+        "title": "Mobilehome | LiveTheLifeTV",
+        "description": "Adventure • Luxury • Innovation...",
+        "keywords": [
+          "mobilehome"
+        ],
+        "category": "Real Estate",
+        "directory": "mobilehome"
+      }
+    ],
+    "Mining": [
+      {
+        "path": "/mining",
+        "title": "Mining | LiveTheLifeTV",
+        "description": "Explore mining content and insights.",
+        "keywords": [
+          "mining"
+        ],
+        "category": "Mining",
+        "directory": "mining"
+      },
+      {
+        "path": "/pool",
+        "title": "Premium Pool Solutions | Custom Design & Construction",
+        "description": "Discover our premium pool solutions featuring custom design, advanced features, and sustainable energy systems. Transform your backyard into a luxury oasis.",
+        "keywords": [
+          "pool"
+        ],
+        "category": "Mining",
+        "directory": "pool"
+      }
+    ]
+  },
+  "allPages": [
+    {
+      "path": "/",
+      "title": "Bitcoin-First Strategy & Tools | LiveTheLifeTV",
+      "description": "Master a Bitcoin-first investment strategy with our advanced tools. Track bull market peak indicators, get live price data, and learn to sell at the top. For educational purposes only.",
+      "keywords": [
+        "Bitcoin strategy",
+        "Bitcoin tools",
+        "Bull market indicator",
+        "Bitcoin price ticker",
+        "Crypto investment strategy",
+        "Sell Bitcoin top",
+        "Financial education"
+      ],
+      "category": "Financial",
+      "directory": "root"
+    },
+    {
+      "path": "/1on1",
+      "title": "One-on-One Collection | Digital Art Gallery",
+      "description": "A curated selection of unique one-on-one digital artworks.",
+      "keywords": [
+        "1on1"
+      ],
+      "category": "Other",
+      "directory": "1on1"
+    },
+    {
+      "path": "/2026",
+      "title": "2026 | LiveTheLifeTV",
+      "description": "Explore 2026 content and insights.",
+      "keywords": [
+        "2026"
+      ],
+      "category": "Other",
+      "directory": "2026"
+    },
+    {
+      "path": "/21",
+      "title": "21 | LiveTheLifeTV",
+      "description": "Explore 21 content and insights.",
+      "keywords": [
+        "21"
+      ],
+      "category": "Other",
+      "directory": "21"
+    },
+    {
+      "path": "/21energy",
+      "title": "21energy | LiveTheLifeTV",
+      "description": "Bitcoin Mining • Space Heating • Energy Efficiency...",
+      "keywords": [
+        "21energy"
+      ],
+      "category": "Other",
+      "directory": "21energy"
+    },
+    {
+      "path": "/3Dprint",
+      "title": "3Dprint | LiveTheLifeTV",
+      "description": "SUSTAINABLE CONSTRUCTION • INNOVATION • DECARBONIZATION...",
+      "keywords": [
+        "3Dprint"
+      ],
+      "category": "Other",
+      "directory": "3Dprint"
+    },
+    {
+      "path": "/69",
+      "title": "69 | LiveTheLifeTV",
+      "description": "Bitcoin Scarcity • Wealth Analysis • Market Reality...",
+      "keywords": [
+        "69"
+      ],
+      "category": "Other",
+      "directory": "69"
+    },
+    {
+      "path": "/7fig",
+      "title": "7fig | LiveTheLifeTV",
+      "description": "Digital Wealth • Luxury Living • Bitcoin Lifestyle...",
+      "keywords": [
+        "7fig"
+      ],
+      "category": "Other",
+      "directory": "7fig"
+    },
+    {
+      "path": "/8020",
+      "title": "8020 | LiveTheLifeTV",
+      "description": "Long-term asymmetric bet on Bitcoin as pristine collateral and digital gold....",
+      "keywords": [
+        "8020"
+      ],
+      "category": "Other",
+      "directory": "8020"
+    },
+    {
+      "path": "/about",
+      "title": "About | LiveTheLifeTV",
+      "description": "Explore about content and insights.",
+      "keywords": [
+        "about"
+      ],
+      "category": "Other",
+      "directory": "about"
+    },
+    {
+      "path": "/abra",
+      "title": "Abra | LiveTheLifeTV",
+      "description": "Bitcoin Loans • Strike vs. Abra • 2025 Comparison...",
+      "keywords": [
+        "abra"
+      ],
+      "category": "Products",
+      "directory": "abra"
+    },
+    {
+      "path": "/ai",
+      "title": "The New Startup Playbook | LiveTheLifeTV",
+      "description": "The Startup Playbook Has Been Rewritten—Forever. A deep dive into how AI, agents, and culture are reshaping the startup landscape. For educational purposes only - not financial advice.",
+      "keywords": [
+        "AI",
+        "Startup",
+        "Technology",
+        "Innovation",
+        "Digital Transformation",
+        "Future of Work",
+        "Business Strategy",
+        "Tech Trends"
+      ],
+      "category": "Technology",
+      "directory": "ai"
+    },
+    {
+      "path": "/airstream",
+      "title": "Airstream | LiveTheLifeTV",
+      "description": "Luxury Travel • Smart Investment • Premium Experience...",
+      "keywords": [
+        "airstream"
+      ],
+      "category": "Technology",
+      "directory": "airstream"
+    },
+    {
+      "path": "/altbg",
+      "title": "Altbg | LiveTheLifeTV",
+      "description": "Bitcoin Treasury • Data Intelligence • Blockchain Technology...",
+      "keywords": [
+        "altbg"
+      ],
+      "category": "Other",
+      "directory": "altbg"
+    },
+    {
+      "path": "/altcoins",
+      "title": "Altcoins | LiveTheLifeTV",
+      "description": "Explore altcoins content and insights.",
+      "keywords": [
+        "altcoins"
+      ],
+      "category": "Other",
+      "directory": "altcoins"
+    },
+    {
+      "path": "/arc",
+      "title": "Arc | LiveTheLifeTV",
+      "description": "Electric Boating • Sustainable Luxury • Premium Performance...",
+      "keywords": [
+        "arc"
+      ],
+      "category": "Technology",
+      "directory": "arc"
+    },
+    {
+      "path": "/art",
+      "title": "Featured Collection | Digital Art Gallery",
+      "description": "A curated selection of exceptional digital artworks showcasing unique pieces from our featured collection.",
+      "keywords": [
+        "art"
+      ],
+      "category": "Art & Culture",
+      "directory": "art"
+    },
+    {
+      "path": "/art/explore",
+      "title": "Explore Collection | Digital Art Gallery",
+      "description": "Explore our complete collection of exceptional digital artworks showcasing unique pieces from our featured collection.",
+      "keywords": [
+        "explore"
+      ],
+      "category": "Other",
+      "directory": "explore"
+    },
+    {
+      "path": "/assets",
+      "title": "Assets | LiveTheLifeTV",
+      "description": "Generational Wealth • Asset Evolution • Market Cycles...",
+      "keywords": [
+        "assets"
+      ],
+      "category": "Other",
+      "directory": "assets"
+    },
+    {
+      "path": "/bera",
+      "title": "Bera | LiveTheLifeTV",
+      "description": "Explore bera content and insights.",
+      "keywords": [
+        "bera"
+      ],
+      "category": "Other",
+      "directory": "bera"
+    },
+    {
+      "path": "/biarritz",
+      "title": "Biarritz | LiveTheLifeTV",
+      "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+      "keywords": [
+        "biarritz"
+      ],
+      "category": "Travel",
+      "directory": "biarritz"
+    },
+    {
+      "path": "/bio",
+      "title": "Bio | LiveTheLifeTV",
+      "description": "Bitcoin Maximalist • Digital Pioneer • Art Curator...",
+      "keywords": [
+        "bio"
+      ],
+      "category": "Lifestyle",
+      "directory": "bio"
+    },
+    {
+      "path": "/biohacking",
+      "title": "Biohacking | LiveTheLifeTV",
+      "description": "Explore biohacking content and insights.",
+      "keywords": [
+        "biohacking"
+      ],
+      "category": "Lifestyle",
+      "directory": "biohacking"
+    },
+    {
+      "path": "/bitaxe",
+      "title": "Bitaxe | LiveTheLifeTV",
+      "description": "Solo Mining • Open Source • Self-Sovereignty...",
+      "keywords": [
+        "bitaxe"
+      ],
+      "category": "Products",
+      "directory": "bitaxe"
+    },
+    {
+      "path": "/bitbonds",
+      "title": "Bitbonds | LiveTheLifeTV",
+      "description": "Bitcoin Bonds • Treasury Innovation • Capital Markets...",
+      "keywords": [
+        "bitbonds"
+      ],
+      "category": "Other",
+      "directory": "bitbonds"
+    },
+    {
+      "path": "/block",
+      "title": "Block | LiveTheLifeTV",
+      "description": "FINTECH • CRYPTO • DECENTRALIZATION...",
+      "keywords": [
+        "block"
+      ],
+      "category": "Other",
+      "directory": "block"
+    },
+    {
+      "path": "/btcab",
+      "title": "Btcab | LiveTheLifeTV",
+      "description": "CEO (Head of Bitcoin Operations)...",
+      "keywords": [
+        "btcab"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "btcab"
+    },
+    {
+      "path": "/calculator",
+      "title": "Calculator | LiveTheLifeTV",
+      "description": "Explore calculator content and insights.",
+      "keywords": [
+        "calculator"
+      ],
+      "category": "Financial",
+      "directory": "calculator"
+    },
+    {
+      "path": "/carrot",
+      "title": "Carrot | LiveTheLifeTV",
+      "description": "THE PROMISE • THE PRICE • THE PRECEDENT...",
+      "keywords": [
+        "carrot"
+      ],
+      "category": "Investment",
+      "directory": "carrot"
+    },
+    {
+      "path": "/catamaran",
+      "title": "Catamaran | LiveTheLifeTV",
+      "description": "Hybrid Technology • Luxury Design • Sustainable Yachting...",
+      "keywords": [
+        "catamaran"
+      ],
+      "category": "Investment",
+      "directory": "catamaran"
+    },
+    {
+      "path": "/cirrus",
+      "title": "Cirrus | LiveTheLifeTV",
+      "description": "Explore cirrus content and insights.",
+      "keywords": [
+        "cirrus"
+      ],
+      "category": "Other",
+      "directory": "cirrus"
+    },
+    {
+      "path": "/club",
+      "title": "The Club",
+      "description": "Explore club content and insights.",
+      "keywords": [
+        "club"
+      ],
+      "category": "Other",
+      "directory": "club"
+    },
+    {
+      "path": "/coinbase",
+      "title": "Coinbase | LiveTheLifeTV",
+      "description": "Digital Currency • Crypto Exchange • Web3...",
+      "keywords": [
+        "coinbase"
+      ],
+      "category": "Other",
+      "directory": "coinbase"
+    },
+    {
+      "path": "/col",
+      "title": "Col | LiveTheLifeTV",
+      "description": "Cost Comparison • Lifestyle Analysis • Financial Planning...",
+      "keywords": [
+        "col"
+      ],
+      "category": "Art & Culture",
+      "directory": "col"
+    },
+    {
+      "path": "/collections",
+      "title": "Collections | LiveTheLifeTV",
+      "description": "Explore collections content and insights.",
+      "keywords": [
+        "collections"
+      ],
+      "category": "Art & Culture",
+      "directory": "collections"
+    },
+    {
+      "path": "/collections/[slug]",
+      "title": "[slug] | LiveTheLifeTV",
+      "description": "Explore [slug] content and insights.",
+      "keywords": [
+        "[slug]"
+      ],
+      "category": "Other",
+      "directory": "[slug]"
+    },
+    {
+      "path": "/collections/[slug]/[tokenId]",
+      "title": "[tokenId] | LiveTheLifeTV",
+      "description": "Explore [tokenId] content and insights.",
+      "keywords": [
+        "[tokenId]"
+      ],
+      "category": "Other",
+      "directory": "[tokenId]"
+    },
+    {
+      "path": "/costarica",
+      "title": "Costarica | LiveTheLifeTV",
+      "description": "Luxury Travel • Nature • Adventure...",
+      "keywords": [
+        "costarica"
+      ],
+      "category": "Travel",
+      "directory": "costarica"
+    },
+    {
+      "path": "/crcl",
+      "title": "Crcl | LiveTheLifeTV",
+      "description": "Stablecoin Issuer • Financial Technology...",
+      "keywords": [
+        "crcl"
+      ],
+      "category": "Other",
+      "directory": "crcl"
+    },
+    {
+      "path": "/crwv",
+      "title": "Crwv | LiveTheLifeTV",
+      "description": "AI Infrastructure • Crypto-Adjacent...",
+      "keywords": [
+        "crwv"
+      ],
+      "category": "Other",
+      "directory": "crwv"
+    },
+    {
+      "path": "/crypto",
+      "title": "Crypto | LiveTheLifeTV",
+      "description": "Explore crypto content and insights.",
+      "keywords": [
+        "crypto"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "crypto"
+    },
+    {
+      "path": "/cult",
+      "title": "Cult | LiveTheLifeTV",
+      "description": "Sacred Manifesto • Digital Sovereignty • Cryptographic Truth...",
+      "keywords": [
+        "cult"
+      ],
+      "category": "Other",
+      "directory": "cult"
+    },
+    {
+      "path": "/cursor",
+      "title": "Cursor | LiveTheLifeTV",
+      "description": "AI Coding • Next.js • Crypto APIs...",
+      "keywords": [
+        "cursor"
+      ],
+      "category": "Technology",
+      "directory": "cursor"
+    },
+    {
+      "path": "/data",
+      "title": "Data | LiveTheLifeTV",
+      "description": "Explore data content and insights.",
+      "keywords": [
+        "data"
+      ],
+      "category": "Technology",
+      "directory": "data"
+    },
+    {
+      "path": "/defi",
+      "title": "Defi | LiveTheLifeTV",
+      "description": "Bitcoin • DeFi • Financial Freedom...",
+      "keywords": [
+        "defi"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "defi"
+    },
+    {
+      "path": "/dgx",
+      "title": "Dgx | LiveTheLifeTV",
+      "description": "With a self-hosted model, you&apos;re not at the mercy of a provider&apos;s changing terms...",
+      "keywords": [
+        "dgx"
+      ],
+      "category": "Other",
+      "directory": "dgx"
+    },
+    {
+      "path": "/distribution",
+      "title": "Distribution | LiveTheLifeTV",
+      "description": "Explore distribution content and insights.",
+      "keywords": [
+        "distribution"
+      ],
+      "category": "Business",
+      "directory": "distribution"
+    },
+    {
+      "path": "/docu",
+      "title": "Docu | LiveTheLifeTV",
+      "description": "Explore docu content and insights.",
+      "keywords": [
+        "docu"
+      ],
+      "category": "Other",
+      "directory": "docu"
+    },
+    {
+      "path": "/doge",
+      "title": "Doge | LiveTheLifeTV",
+      "description": "Community Driven • Elon&apos;s Favorite • The People&apos;s Crypto...",
+      "keywords": [
+        "doge"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "doge"
+    },
+    {
+      "path": "/downbad",
+      "title": "Downbad | LiveTheLifeTV",
+      "description": "Fiscal Policy • Economic Structures • Global Comparison...",
+      "keywords": [
+        "downbad"
+      ],
+      "category": "Other",
+      "directory": "downbad"
+    },
+    {
+      "path": "/dubai",
+      "title": "Dubai | LiveTheLifeTV",
+      "description": "Crypto Hub • Luxury Living • Business Opportunities...",
+      "keywords": [
+        "dubai"
+      ],
+      "category": "Technology",
+      "directory": "dubai"
+    },
+    {
+      "path": "/ecoflow",
+      "title": "DELTA Pro Ultra",
+      "description": "Run your entire home—including HVAC, appliances, and essentials—for days. Automatic grid-to-backup switchover in 20 ms with Smart Home Panel 2....",
+      "keywords": [
+        "ecoflow"
+      ],
+      "category": "Other",
+      "directory": "ecoflow"
+    },
+    {
+      "path": "/eliza",
+      "title": "Eliza | LiveTheLifeTV",
+      "description": "AI AGENTS • WEB3 • OPEN SOURCE...",
+      "keywords": [
+        "eliza"
+      ],
+      "category": "Technology",
+      "directory": "eliza"
+    },
+    {
+      "path": "/elon",
+      "title": "Elon | LiveTheLifeTV",
+      "description": "Social Media • Tech • Politics...",
+      "keywords": [
+        "elon"
+      ],
+      "category": "Other",
+      "directory": "elon"
+    },
+    {
+      "path": "/eth",
+      "title": "Eth | LiveTheLifeTV",
+      "description": "Trust Commodity • Digital Oil • Settlement Layer...",
+      "keywords": [
+        "eth"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "eth"
+    },
+    {
+      "path": "/etherfi",
+      "title": "ether.fi Cash Card",
+      "description": "Deposit your crypto (eETH, USDC, and more coming soon) into your own Gnosis Safe—fully under your control....",
+      "keywords": [
+        "etherfi"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "etherfi"
+    },
+    {
+      "path": "/fairmint",
+      "title": "Fairmint | LiveTheLifeTV",
+      "description": "Onchain Equity • Smart Contracts • DeFi Native...",
+      "keywords": [
+        "fairmint"
+      ],
+      "category": "Technology",
+      "directory": "fairmint"
+    },
+    {
+      "path": "/fire",
+      "title": "Fire | LiveTheLifeTV",
+      "description": "Explore fire content and insights.",
+      "keywords": [
+        "fire"
+      ],
+      "category": "Financial",
+      "directory": "fire"
+    },
+    {
+      "path": "/firefish",
+      "title": "Firefish | LiveTheLifeTV",
+      "description": "Bitcoin-Backed Loans • Non-Custodial • Instant Access...",
+      "keywords": [
+        "firefish"
+      ],
+      "category": "Financial",
+      "directory": "firefish"
+    },
+    {
+      "path": "/france",
+      "title": "France | LiveTheLifeTV",
+      "description": "Explore france content and insights.",
+      "keywords": [
+        "france"
+      ],
+      "category": "Other",
+      "directory": "france"
+    },
+    {
+      "path": "/gallery",
+      "title": "Gallery | LiveTheLifeTV",
+      "description": "Digital Art • Immersive Experience • 3D Gallery...",
+      "keywords": [
+        "gallery"
+      ],
+      "category": "Art & Culture",
+      "directory": "gallery"
+    },
+    {
+      "path": "/gdculture",
+      "title": "Gdculture | LiveTheLifeTV",
+      "description": "Explore gdculture content and insights.",
+      "keywords": [
+        "gdculture"
+      ],
+      "category": "Other",
+      "directory": "gdculture"
+    },
+    {
+      "path": "/genart",
+      "title": "Genart | LiveTheLifeTV",
+      "description": "Generative Art • Digital Painting • Web3...",
+      "keywords": [
+        "genart"
+      ],
+      "category": "Art & Culture",
+      "directory": "genart"
+    },
+    {
+      "path": "/giza",
+      "title": "Giza | LiveTheLifeTV",
+      "description": "DeFi • AI • Autonomous Agents...",
+      "keywords": [
+        "giza"
+      ],
+      "category": "Other",
+      "directory": "giza"
+    },
+    {
+      "path": "/gm",
+      "title": "Gm | LiveTheLifeTV",
+      "description": "Analysis • Cycle Theory • Power Law...",
+      "keywords": [
+        "gm"
+      ],
+      "category": "Other",
+      "directory": "gm"
+    },
+    {
+      "path": "/gold",
+      "title": "Gold | LiveTheLifeTV",
+      "description": "Hard Money • Store of Value • Digital Gold...",
+      "keywords": [
+        "gold"
+      ],
+      "category": "Investment",
+      "directory": "gold"
+    },
+    {
+      "path": "/grind",
+      "title": "The $1K Grind Challenge - Turn $1,000 into $100K",
+      "description": "A strategic approach to turning $1,000 into $100K through calculated microcap investments and disciplined trading. For educational purposes only.",
+      "keywords": [
+        "grind"
+      ],
+      "category": "Other",
+      "directory": "grind"
+    },
+    {
+      "path": "/hastens",
+      "title": "Hastens | LiveTheLifeTV",
+      "description": "Luxury Sleep • Swedish Craftsmanship • Natural Materials...",
+      "keywords": [
+        "hastens"
+      ],
+      "category": "Lifestyle",
+      "directory": "hastens"
+    },
+    {
+      "path": "/holyheld",
+      "title": "One Card for All Crypto",
+      "description": "Get your virtual card immediately while waiting for the physical card delivery....",
+      "keywords": [
+        "holyheld"
+      ],
+      "category": "Other",
+      "directory": "holyheld"
+    },
+    {
+      "path": "/hood",
+      "title": "Hood | LiveTheLifeTV",
+      "description": "Explore hood content and insights.",
+      "keywords": [
+        "hood"
+      ],
+      "category": "Investment",
+      "directory": "hood"
+    },
+    {
+      "path": "/hume",
+      "title": "Hume | LiveTheLifeTV",
+      "description": "Explore hume content and insights.",
+      "keywords": [
+        "hume"
+      ],
+      "category": "Technology",
+      "directory": "hume"
+    },
+    {
+      "path": "/hx50",
+      "title": "Hx50 | LiveTheLifeTV",
+      "description": "Revolutionizing personal rotorcraft aviation...",
+      "keywords": [
+        "hx50"
+      ],
+      "category": "Other",
+      "directory": "hx50"
+    },
+    {
+      "path": "/hype",
+      "title": "Hype | LiveTheLifeTV",
+      "description": "Explore hype content and insights.",
+      "keywords": [
+        "hype"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "hype"
+    },
+    {
+      "path": "/hyperliquid",
+      "title": "Hyperliquid | LiveTheLifeTV",
+      "description": "Explore hyperliquid content and insights.",
+      "keywords": [
+        "hyperliquid"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "hyperliquid"
+    },
+    {
+      "path": "/inhaus",
+      "title": "Inhaus | LiveTheLifeTV",
+      "description": "Premium Modular Homes • Architecture • Design...",
+      "keywords": [
+        "inhaus"
+      ],
+      "category": "Real Estate",
+      "directory": "inhaus"
+    },
+    {
+      "path": "/intro",
+      "title": "Intro | LiveTheLifeTV",
+      "description": "Bitcoin Education • Life Balance • Financial Freedom...",
+      "keywords": [
+        "intro"
+      ],
+      "category": "Other",
+      "directory": "intro"
+    },
+    {
+      "path": "/ipo",
+      "title": "Ipo | LiveTheLifeTV",
+      "description": "Market Analysis • Public Offerings...",
+      "keywords": [
+        "ipo"
+      ],
+      "category": "Financial",
+      "directory": "ipo"
+    },
+    {
+      "path": "/italy",
+      "title": "Italy | LiveTheLifeTV",
+      "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+      "keywords": [
+        "italy"
+      ],
+      "category": "Travel",
+      "directory": "italy"
+    },
+    {
+      "path": "/land",
+      "title": "Land | LiveTheLifeTV",
+      "description": "Sustainable Investment • Ecological Value • Long-term Growth...",
+      "keywords": [
+        "land"
+      ],
+      "category": "Real Estate",
+      "directory": "land"
+    },
+    {
+      "path": "/ledger",
+      "title": "Ledger FLEX",
+      "description": "Pair your Ledger Nano X via Bluetooth or connect Nano S Plus by USB-C. Compatible with computers and mobile devices....",
+      "keywords": [
+        "ledger"
+      ],
+      "category": "Products",
+      "directory": "ledger"
+    },
+    {
+      "path": "/legal",
+      "title": "Legal Disclaimer and Regulatory Notice",
+      "description": "Explore legal content and insights.",
+      "keywords": [
+        "legal"
+      ],
+      "category": "Other",
+      "directory": "legal"
+    },
+    {
+      "path": "/liquidity",
+      "title": "Liquidity | LiveTheLifeTV",
+      "description": "Token Analysis • Market Liquidity • Trading Metrics...",
+      "keywords": [
+        "liquidity"
+      ],
+      "category": "Other",
+      "directory": "liquidity"
+    },
+    {
+      "path": "/ln",
+      "title": "Ln | LiveTheLifeTV",
+      "description": "Explore ln content and insights.",
+      "keywords": [
+        "ln"
+      ],
+      "category": "Other",
+      "directory": "ln"
+    },
+    {
+      "path": "/lombard",
+      "title": "Lombard | LiveTheLifeTV",
+      "description": "Private Wealth Management • Crypto Finance • Tax Optimization...",
+      "keywords": [
+        "lombard"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "lombard"
+    },
+    {
+      "path": "/love",
+      "title": "Love | LiveTheLifeTV",
+      "description": "We met them on a salt-slick terrace above the Grande Plage, two strangers in their late seventies sharing a bottle of 2010 Haut-Brion like it was an inside joke with the Atlantic....",
+      "keywords": [
+        "love"
+      ],
+      "category": "Lifestyle",
+      "directory": "love"
+    },
+    {
+      "path": "/ltl",
+      "title": "Ltl | LiveTheLifeTV",
+      "description": "Explore ltl content and insights.",
+      "keywords": [
+        "ltl"
+      ],
+      "category": "Other",
+      "directory": "ltl"
+    },
+    {
+      "path": "/mag7",
+      "title": "Mag7 | LiveTheLifeTV",
+      "description": "The Magnificent Seven stocks are a group of the most influential companies in the U.S. stock market. This term has been popularized to describe a set of dominant companies, particularly in the tech se...",
+      "keywords": [
+        "mag7"
+      ],
+      "category": "Financial",
+      "directory": "mag7"
+    },
+    {
+      "path": "/maldives",
+      "title": "Maldives | LiveTheLifeTV",
+      "description": "Digital Assets • Financial Innovation • Economic Growth...",
+      "keywords": [
+        "maldives"
+      ],
+      "category": "Travel",
+      "directory": "maldives"
+    },
+    {
+      "path": "/mara",
+      "title": "Mara | LiveTheLifeTV",
+      "description": "Bitcoin Mining • Digital Assets • Renewable Energy...",
+      "keywords": [
+        "mara"
+      ],
+      "category": "Investment",
+      "directory": "mara"
+    },
+    {
+      "path": "/maroc",
+      "title": "Maroc | LiveTheLifeTV",
+      "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+      "keywords": [
+        "maroc"
+      ],
+      "category": "Travel",
+      "directory": "maroc"
+    },
+    {
+      "path": "/maxpain",
+      "title": "Maxpain | LiveTheLifeTV",
+      "description": "Loading Real-Time Data......",
+      "keywords": [
+        "maxpain"
+      ],
+      "category": "Technology",
+      "directory": "maxpain"
+    },
+    {
+      "path": "/metaplanet",
+      "title": "Metaplanet | LiveTheLifeTV",
+      "description": "Bitcoin Treasury • Japanese Market • Web3 Innovation...",
+      "keywords": [
+        "metaplanet"
+      ],
+      "category": "Other",
+      "directory": "metaplanet"
+    },
+    {
+      "path": "/midlife",
+      "title": "Midlife | LiveTheLifeTV",
+      "description": "Life Journey • Happiness • Personal Growth...",
+      "keywords": [
+        "midlife"
+      ],
+      "category": "Other",
+      "directory": "midlife"
+    },
+    {
+      "path": "/mining",
+      "title": "Mining | LiveTheLifeTV",
+      "description": "Explore mining content and insights.",
+      "keywords": [
+        "mining"
+      ],
+      "category": "Mining",
+      "directory": "mining"
+    },
+    {
+      "path": "/mint",
+      "title": "Mint | LiveTheLifeTV",
+      "description": "Explore mint content and insights.",
+      "keywords": [
+        "mint"
+      ],
+      "category": "Business",
+      "directory": "mint"
+    },
+    {
+      "path": "/mint/CMP",
+      "title": "CMP | LiveTheLifeTV",
+      "description": "Explore CMP content and insights.",
+      "keywords": [
+        "CMP"
+      ],
+      "category": "Other",
+      "directory": "CMP"
+    },
+    {
+      "path": "/mitochondria",
+      "title": "Mitochondria | LiveTheLifeTV",
+      "description": "Cellular Health • Energy Production • Longevity...",
+      "keywords": [
+        "mitochondria"
+      ],
+      "category": "Other",
+      "directory": "mitochondria"
+    },
+    {
+      "path": "/mobilehome",
+      "title": "Mobilehome | LiveTheLifeTV",
+      "description": "Adventure • Luxury • Innovation...",
+      "keywords": [
+        "mobilehome"
+      ],
+      "category": "Real Estate",
+      "directory": "mobilehome"
+    },
+    {
+      "path": "/monaco",
+      "title": "Monaco | LiveTheLifeTV",
+      "description": "Explore monaco content and insights.",
+      "keywords": [
+        "monaco"
+      ],
+      "category": "Travel",
+      "directory": "monaco"
+    },
+    {
+      "path": "/nakamoto",
+      "title": "Nakamoto | LiveTheLifeTV",
+      "description": "Bitcoin Treasury • Healthcare • Global Capital Markets...",
+      "keywords": [
+        "nakamoto"
+      ],
+      "category": "Other",
+      "directory": "nakamoto"
+    },
+    {
+      "path": "/naval",
+      "title": "Naval | LiveTheLifeTV",
+      "description": "Explore naval content and insights.",
+      "keywords": [
+        "naval"
+      ],
+      "category": "Other",
+      "directory": "naval"
+    },
+    {
+      "path": "/news",
+      "title": "Bitcoin Insights",
+      "description": "Explore news content and insights.",
+      "keywords": [
+        "news"
+      ],
+      "category": "Other",
+      "directory": "news"
+    },
+    {
+      "path": "/news/[slug]",
+      "title": "Article not found",
+      "description": "Explore [slug] content and insights.",
+      "keywords": [
+        "[slug]"
+      ],
+      "category": "Other",
+      "directory": "[slug]"
+    },
+    {
+      "path": "/node",
+      "title": "Node | LiveTheLifeTV",
+      "description": "Onchain Economy • Digital Assets • Blockchain Infrastructure...",
+      "keywords": [
+        "node"
+      ],
+      "category": "Other",
+      "directory": "node"
+    },
+    {
+      "path": "/notebook",
+      "title": "Bitcoin Blog Notebook",
+      "description": "Explore notebook content and insights.",
+      "keywords": [
+        "notebook"
+      ],
+      "category": "Technology",
+      "directory": "notebook"
+    },
+    {
+      "path": "/nvda",
+      "title": "Nvda | LiveTheLifeTV",
+      "description": "GPU • AI • CRYPTO INFRASTRUCTURE...",
+      "keywords": [
+        "nvda"
+      ],
+      "category": "Investment",
+      "directory": "nvda"
+    },
+    {
+      "path": "/olympus",
+      "title": "Olympus | LiveTheLifeTV",
+      "description": "Explore olympus content and insights.",
+      "keywords": [
+        "olympus"
+      ],
+      "category": "Other",
+      "directory": "olympus"
+    },
+    {
+      "path": "/options",
+      "title": "Options | LiveTheLifeTV",
+      "description": "Income Strategy • Options Trading • Wealth Management...",
+      "keywords": [
+        "options"
+      ],
+      "category": "Financial",
+      "directory": "options"
+    },
+    {
+      "path": "/otc",
+      "title": "Otc | LiveTheLifeTV",
+      "description": "Market Analysis • Institutional Trends • Supply Shock...",
+      "keywords": [
+        "otc"
+      ],
+      "category": "Financial",
+      "directory": "otc"
+    },
+    {
+      "path": "/otonomos",
+      "title": "Otonomos | LiveTheLifeTV",
+      "description": "Web3 Entity Formation • DAO Structuring • Crypto Treasury...",
+      "keywords": [
+        "otonomos"
+      ],
+      "category": "Other",
+      "directory": "otonomos"
+    },
+    {
+      "path": "/pfp",
+      "title": "Pfp | LiveTheLifeTV",
+      "description": "Explore pfp content and insights.",
+      "keywords": [
+        "pfp"
+      ],
+      "category": "Art & Culture",
+      "directory": "pfp"
+    },
+    {
+      "path": "/pfp/[slug]",
+      "title": "[slug] | LiveTheLifeTV",
+      "description": "Explore [slug] content and insights.",
+      "keywords": [
+        "[slug]"
+      ],
+      "category": "Other",
+      "directory": "[slug]"
+    },
+    {
+      "path": "/pfp/[slug]/[tokenId]",
+      "title": "[tokenId] | LiveTheLifeTV",
+      "description": "Explore [tokenId] content and insights.",
+      "keywords": [
+        "[tokenId]"
+      ],
+      "category": "Other",
+      "directory": "[tokenId]"
+    },
+    {
+      "path": "/platforms/bitwise",
+      "title": "Bitwise | LiveTheLifeTV",
+      "description": "Explore bitwise content and insights.",
+      "keywords": [
+        "bitwise"
+      ],
+      "category": "Other",
+      "directory": "bitwise"
+    },
+    {
+      "path": "/platforms/coinbase",
+      "title": "Coinbase | LiveTheLifeTV",
+      "description": "Explore coinbase content and insights.",
+      "keywords": [
+        "coinbase"
+      ],
+      "category": "Other",
+      "directory": "coinbase"
+    },
+    {
+      "path": "/platforms/msty",
+      "title": "Msty | LiveTheLifeTV",
+      "description": "Bitcoin Income • Options Strategy • Monthly Distributions...",
+      "keywords": [
+        "msty"
+      ],
+      "category": "Other",
+      "directory": "msty"
+    },
+    {
+      "path": "/platforms/msty/bitcoin",
+      "title": "Bitcoin | LiveTheLifeTV",
+      "description": "Monetary Rebellion • Digital Gold • Freedom Money...",
+      "keywords": [
+        "bitcoin"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "bitcoin"
+    },
+    {
+      "path": "/platforms/msty/brokers",
+      "title": "Brokers | LiveTheLifeTV",
+      "description": "Explore brokers content and insights.",
+      "keywords": [
+        "brokers"
+      ],
+      "category": "Other",
+      "directory": "brokers"
+    },
+    {
+      "path": "/platforms/msty/mstr",
+      "title": "Mstr | LiveTheLifeTV",
+      "description": "Bitcoin Strategy • Enterprise Analytics • Corporate Adoption...",
+      "keywords": [
+        "mstr"
+      ],
+      "category": "Other",
+      "directory": "mstr"
+    },
+    {
+      "path": "/pod5",
+      "title": "Pod5 | LiveTheLifeTV",
+      "description": "Smart Sleep Technology • AI-Powered Health Monitoring • Temperature Control...",
+      "keywords": [
+        "pod5"
+      ],
+      "category": "Other",
+      "directory": "pod5"
+    },
+    {
+      "path": "/pool",
+      "title": "Premium Pool Solutions | Custom Design & Construction",
+      "description": "Discover our premium pool solutions featuring custom design, advanced features, and sustainable energy systems. Transform your backyard into a luxury oasis.",
+      "keywords": [
+        "pool"
+      ],
+      "category": "Mining",
+      "directory": "pool"
+    },
+    {
+      "path": "/pool/details",
+      "title": "Pool Details | Advanced Features & Systems",
+      "description": "Explore the advanced features, energy systems, and premium construction details of our luxury pool solutions.",
+      "keywords": [
+        "details"
+      ],
+      "category": "Technology",
+      "directory": "details"
+    },
+    {
+      "path": "/portugal",
+      "title": "Portugal | LiveTheLifeTV",
+      "description": "Crypto & Lifestyle • Cultural Experiences • Luxury Travel...",
+      "keywords": [
+        "portugal"
+      ],
+      "category": "Travel",
+      "directory": "portugal"
+    },
+    {
+      "path": "/print",
+      "title": "Print | LiveTheLifeTV",
+      "description": "Artistic Philosophy • Manifesto...",
+      "keywords": [
+        "print"
+      ],
+      "category": "Other",
+      "directory": "print"
+    },
+    {
+      "path": "/pumpnotfun",
+      "title": "Pumpnotfun | LiveTheLifeTV",
+      "description": "Crypto • DeFi • Token Launches...",
+      "keywords": [
+        "pumpnotfun"
+      ],
+      "category": "Other",
+      "directory": "pumpnotfun"
+    },
+    {
+      "path": "/qol",
+      "title": "Qol | LiveTheLifeTV",
+      "description": "Lifestyle Design • Philosophy • Well-being...",
+      "keywords": [
+        "qol"
+      ],
+      "category": "Lifestyle",
+      "directory": "qol"
+    },
+    {
+      "path": "/quality",
+      "title": "Quality | LiveTheLifeTV",
+      "description": "Life Philosophy • Investment Strategy • Personal Growth...",
+      "keywords": [
+        "quality"
+      ],
+      "category": "Lifestyle",
+      "directory": "quality"
+    },
+    {
+      "path": "/realestate",
+      "title": "Realestate | LiveTheLifeTV",
+      "description": "Smart Homes • Tech Integration • Bitcoin Strategy...",
+      "keywords": [
+        "realestate"
+      ],
+      "category": "Investment",
+      "directory": "realestate"
+    },
+    {
+      "path": "/rlt",
+      "title": "Rlt | LiveTheLifeTV",
+      "description": "Photobiomodulation • Cellular Health • Recovery...",
+      "keywords": [
+        "rlt"
+      ],
+      "category": "Other",
+      "directory": "rlt"
+    },
+    {
+      "path": "/robotaxi",
+      "title": "Robotaxi | LiveTheLifeTV",
+      "description": "Paris & Lyon Level-4 FSD EU Deployment...",
+      "keywords": [
+        "robotaxi"
+      ],
+      "category": "Other",
+      "directory": "robotaxi"
+    },
+    {
+      "path": "/s9pro",
+      "title": "S9pro | LiveTheLifeTV",
+      "description": "Immersion Cooling • Heat Recovery • Smart Integration...",
+      "keywords": [
+        "s9pro"
+      ],
+      "category": "Products",
+      "directory": "s9pro"
+    },
+    {
+      "path": "/sauna",
+      "title": "Sauna | LiveTheLifeTV",
+      "description": "Scandinavian Wellness • French Craftsmanship • Luxury Outdoor Living...",
+      "keywords": [
+        "sauna"
+      ],
+      "category": "Lifestyle",
+      "directory": "sauna"
+    },
+    {
+      "path": "/search",
+      "title": "Search | LiveTheLifeTV",
+      "description": "Explore search content and insights.",
+      "keywords": [
+        "search"
+      ],
+      "category": "Technology",
+      "directory": "search"
+    },
+    {
+      "path": "/sharplink",
+      "title": "Sharplink | LiveTheLifeTV",
+      "description": "Ethereum Treasury • Gaming Technology • Blockchain Integration...",
+      "keywords": [
+        "sharplink"
+      ],
+      "category": "Business",
+      "directory": "sharplink"
+    },
+    {
+      "path": "/sixsenses",
+      "title": "Sixsenses | LiveTheLifeTV",
+      "description": "Luxury Residences • Wellness • Nature...",
+      "keywords": [
+        "sixsenses"
+      ],
+      "category": "Other",
+      "directory": "sixsenses"
+    },
+    {
+      "path": "/smarthome",
+      "title": "Smarthome | LiveTheLifeTV",
+      "description": "Curated selection of premium brands for your dream home...",
+      "keywords": [
+        "smarthome"
+      ],
+      "category": "Art & Culture",
+      "directory": "smarthome"
+    },
+    {
+      "path": "/sol",
+      "title": "Sol | LiveTheLifeTV",
+      "description": "Explore sol content and insights.",
+      "keywords": [
+        "sol"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "sol"
+    },
+    {
+      "path": "/sonar",
+      "title": "Sonar | LiveTheLifeTV",
+      "description": "Token Sales • Equity Analysis • Market Dynamics...",
+      "keywords": [
+        "sonar"
+      ],
+      "category": "Other",
+      "directory": "sonar"
+    },
+    {
+      "path": "/sotogrande",
+      "title": "Sotogrande | LiveTheLifeTV",
+      "description": "Explore sotogrande content and insights.",
+      "keywords": [
+        "sotogrande"
+      ],
+      "category": "Travel",
+      "directory": "sotogrande"
+    },
+    {
+      "path": "/spain",
+      "title": "Spain | LiveTheLifeTV",
+      "description": "Luxury Travel • Cultural Experiences • Fine Dining...",
+      "keywords": [
+        "spain"
+      ],
+      "category": "Technology",
+      "directory": "spain"
+    },
+    {
+      "path": "/sparrow",
+      "title": "Sparrow | LiveTheLifeTV",
+      "description": "Explore sparrow content and insights.",
+      "keywords": [
+        "sparrow"
+      ],
+      "category": "Products",
+      "directory": "sparrow"
+    },
+    {
+      "path": "/sparrow/migrate",
+      "title": "Migrate | LiveTheLifeTV",
+      "description": "Explore migrate content and insights.",
+      "keywords": [
+        "migrate"
+      ],
+      "category": "Other",
+      "directory": "migrate"
+    },
+    {
+      "path": "/stacks",
+      "title": "Stacks: Bitcoin Unleashed",
+      "description": "Explore stacks content and insights.",
+      "keywords": [
+        "stacks"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "stacks"
+    },
+    {
+      "path": "/stocks",
+      "title": "Stocks | LiveTheLifeTV",
+      "description": "Explore stocks content and insights.",
+      "keywords": [
+        "stocks"
+      ],
+      "category": "Financial",
+      "directory": "stocks"
+    },
+    {
+      "path": "/strd",
+      "title": "Strd | LiveTheLifeTV",
+      "description": "Preferred Stock • Bitcoin Strategy • Fixed Income...",
+      "keywords": [
+        "strd"
+      ],
+      "category": "Other",
+      "directory": "strd"
+    },
+    {
+      "path": "/strf",
+      "title": "Strf | LiveTheLifeTV",
+      "description": "Preferred Stock • Bitcoin Strategy • Fixed Income...",
+      "keywords": [
+        "strf"
+      ],
+      "category": "Other",
+      "directory": "strf"
+    },
+    {
+      "path": "/strike",
+      "title": "Strike | LiveTheLifeTV",
+      "description": "Explore strike content and insights.",
+      "keywords": [
+        "strike"
+      ],
+      "category": "Products",
+      "directory": "strike"
+    },
+    {
+      "path": "/sui",
+      "title": "Sui | LiveTheLifeTV",
+      "description": "Explore sui content and insights.",
+      "keywords": [
+        "sui"
+      ],
+      "category": "Cryptocurrency",
+      "directory": "sui"
+    },
+    {
+      "path": "/swiss",
+      "title": "Swiss | LiveTheLifeTV",
+      "description": "Luxury Travel • Wellness • Alpine Adventure...",
+      "keywords": [
+        "swiss"
+      ],
+      "category": "Travel",
+      "directory": "swiss"
+    },
+    {
+      "path": "/tangem",
+      "title": "Tangem | LiveTheLifeTV",
+      "description": "Wearable Crypto Wallet • EAL6+ Security • NFC Enabled...",
+      "keywords": [
+        "tangem"
+      ],
+      "category": "Products",
+      "directory": "tangem"
+    },
+    {
+      "path": "/tax",
+      "title": "Tax Tracking",
+      "description": "Explore tax content and insights.",
+      "keywords": [
+        "tax"
+      ],
+      "category": "Products",
+      "directory": "tax"
+    },
+    {
+      "path": "/tbs",
+      "title": "Tbs | LiveTheLifeTV",
+      "description": "Explore tbs content and insights.",
+      "keywords": [
+        "tbs"
+      ],
+      "category": "Other",
+      "directory": "tbs"
+    },
+    {
+      "path": "/tesla",
+      "title": "Tesla | LiveTheLifeTV",
+      "description": "The gateway to Tesla&apos;s performance lineup...",
+      "keywords": [
+        "tesla"
+      ],
+      "category": "Investment",
+      "directory": "tesla"
+    },
+    {
+      "path": "/time",
+      "title": "Time | LiveTheLifeTV",
+      "description": "In 1999, I sold my most precious asset—my time—for $100 an hour. It felt like winning. Most people I knew were earning far less, locked into daily routines that ate away at their lives. I was young, d...",
+      "keywords": [
+        "time"
+      ],
+      "category": "Other",
+      "directory": "time"
+    },
+    {
+      "path": "/tools",
+      "title": "Tools | LiveTheLifeTV",
+      "description": "Explore tools content and insights.",
+      "keywords": [
+        "tools"
+      ],
+      "category": "Technology",
+      "directory": "tools"
+    },
+    {
+      "path": "/toto",
+      "title": "Toto | LiveTheLifeTV",
+      "description": "Japanese Innovation • Smart Technology • Sustainable Design...",
+      "keywords": [
+        "toto"
+      ],
+      "category": "Other",
+      "directory": "toto"
+    },
+    {
+      "path": "/train",
+      "title": "Train | LiveTheLifeTV",
+      "description": "Explore train content and insights.",
+      "keywords": [
+        "train"
+      ],
+      "category": "Technology",
+      "directory": "train"
+    },
+    {
+      "path": "/train/schedule",
+      "title": "Schedule | LiveTheLifeTV",
+      "description": "Weekly Training • Daily Movement • Sustainable Fitness...",
+      "keywords": [
+        "schedule"
+      ],
+      "category": "Other",
+      "directory": "schedule"
+    },
+    {
+      "path": "/twentyone",
+      "title": "Twentyone | LiveTheLifeTV",
+      "description": "Bitcoin Treasury • Bitcoin-Native Finance • Public Markets...",
+      "keywords": [
+        "twentyone"
+      ],
+      "category": "Other",
+      "directory": "twentyone"
+    },
+    {
+      "path": "/vibecode",
+      "title": "Vibecode | LiveTheLifeTV",
+      "description": "Tao • Terminal • Technology...",
+      "keywords": [
+        "vibecode"
+      ],
+      "category": "Other",
+      "directory": "vibecode"
+    },
+    {
+      "path": "/visuals",
+      "title": "Memes & Dreams",
+      "description": "Explore visuals content and insights.",
+      "keywords": [
+        "visuals"
+      ],
+      "category": "Other",
+      "directory": "visuals"
+    },
+    {
+      "path": "/vjepa2",
+      "title": "Vjepa2 | LiveTheLifeTV",
+      "description": "AI Research • Robotics • Computer Vision...",
+      "keywords": [
+        "vjepa2"
+      ],
+      "category": "Other",
+      "directory": "vjepa2"
+    },
+    {
+      "path": "/voice",
+      "title": "Voice | LiveTheLifeTV",
+      "description": "Explore voice content and insights.",
+      "keywords": [
+        "voice"
+      ],
+      "category": "Other",
+      "directory": "voice"
+    },
+    {
+      "path": "/weather",
+      "title": "Something went wrong",
+      "description": "Failed to load weather data...",
+      "keywords": [
+        "weather"
+      ],
+      "category": "Other",
+      "directory": "weather"
+    },
+    {
+      "path": "/whitepaper",
+      "title": "Whitepaper | LiveTheLifeTV",
+      "description": "Bitcoin introduces a system where:...",
+      "keywords": [
+        "whitepaper"
+      ],
+      "category": "Other",
+      "directory": "whitepaper"
+    },
+    {
+      "path": "/whoop",
+      "title": "Whoop | LiveTheLifeTV",
+      "description": "Wearable Technology • Health Analytics • Fitness...",
+      "keywords": [
+        "whoop"
+      ],
+      "category": "Other",
+      "directory": "whoop"
+    },
+    {
+      "path": "/wine",
+      "title": "South African &amp; French Wines",
+      "description": "Founded in 1688, Boschendal offers award-winning wines, farm-to-table dining, and historic Cape Dutch architecture. Known for exceptional Chardonnay and Shiraz....",
+      "keywords": [
+        "wine"
+      ],
+      "category": "Other",
+      "directory": "wine"
+    },
+    {
+      "path": "/xapo",
+      "title": "Xapo | LiveTheLifeTV",
+      "description": "Private Banking • Bitcoin • Financial Freedom...",
+      "keywords": [
+        "xapo"
+      ],
+      "category": "Other",
+      "directory": "xapo"
+    },
+    {
+      "path": "/zero",
+      "title": "Zero | LiveTheLifeTV",
+      "description": "Bitcoin • Wealth • Freedom...",
+      "keywords": [
+        "zero"
+      ],
+      "category": "Other",
+      "directory": "zero"
+    }
+  ],
+  "scanDate": "2025-06-28T22:27:21.964Z"
+}

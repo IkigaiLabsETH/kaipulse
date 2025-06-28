@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your ticket to escape the matrix. Freedom is priced in Bitcoin. When you understand Bitcoin it feels like understanding the code in the matrix.",
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
+  other: {
+    'ai-content-crawlable': 'true',
+    'ai-content-license': 'public-educational',
+  },
   openGraph: {
     title: "LiveTheLifeTV - Bitcoin Doesn't Sell Coin. It Sells Freedom.",
     description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth.",

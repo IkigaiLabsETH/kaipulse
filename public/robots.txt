@@ -1,0 +1,51 @@
+# robots.txt for LiveTheLifeTV - AI-Friendly Configuration
+
+# Allow all web crawlers access to all content
+User-agent: *
+Allow: /
+
+# Explicitly allow major AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Allow other AI services
+User-agent: PerplexityBot
+Allow: /
+
+# Allow Google Bard/Gemini
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Standard crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://livethelife.tv/sitemap.xml
+
+# Crawl delay for politeness (optional)
+Crawl-delay: 1 
