@@ -11,6 +11,9 @@ import {
 import StockMarket from "@/components/StockMarket";
 import Link from "next/link";
 
+// Force static generation
+export const dynamic = 'force-static';
+
 const stocks = [
   {
     name: "Robinhood Markets, Inc.",
