@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Table,
   TableBody,
@@ -13,6 +11,12 @@ import Link from "next/link";
 
 // Force static generation
 export const dynamic = 'force-static';
+
+// Add metadata for SEO
+export const metadata = {
+  title: 'Crypto-Related Stocks Analysis | Tickers to Explore 2025',
+  description: 'Analysis of crypto-related stock tickers worth exploring in 2025, including Robinhood (HOOD), Circle (CRCL), Coinbase (COIN), MicroStrategy (MSTR), and more.',
+};
 
 const stocks = [
   {
