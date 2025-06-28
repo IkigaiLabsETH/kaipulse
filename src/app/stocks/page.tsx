@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from 'next/dynamic';
 import {
   Table,
   TableBody,
@@ -10,8 +11,10 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 
-// Import StockMarket as a client component
-import StockMarket from "@/components/StockMarket";
+// Dynamically import StockMarket with no SSR
+const StockMarket = dynamic(() => import("@/components/StockMarket"), {
+  ssr: false,
+});
 
 const stocks = [
   {
