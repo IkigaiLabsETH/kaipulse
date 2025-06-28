@@ -81,12 +81,12 @@ export function Header() {
       dropdown: true,
       items: [
         { name: 'COST OF LIVING', href: '/col' },
-        { name: 'THE 4% RULE', href: '/21' },
-        { name: 'CALCULATOR', href: '/calculator' },
+        { name: 'LIFE QUALITY', href: '/col' },
         { name: 'ALT COINS', href: '/altcoins' },
         { name: 'MAX PAIN', href: '/maxpain' },
         { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
+        { name: 'CURSOR', href: '/cursor' },
       ]
     },
     { 
@@ -96,11 +96,11 @@ export function Header() {
       items: [
         { name: 'BTC', href: '/platforms/msty/bitcoin' },
         { name: 'MSTR', href: '/platforms/msty/mstr' },
-        { name: 'MSTY', href: '/platforms/msty' },
-        { name: 'ABRA', href: '/abra' },
+        { name: 'TESLA', href: '/tesla' },
+        { name: 'CRYPTO', href: '/crypto' },
+        { name: 'STOCKS', href: '/stocks' },
+        { name: 'OPTIONS', href: '/options' },
         { name: 'BITBONDS', href: '/bitbonds' },
-        { name: 'TWENTY ONE', href: '/twentyone' },
-        { name: 'WATCH LIST', href: '/crypto' },
       ]
     },
     { 
@@ -108,13 +108,13 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'WINE', href: '/wine' },
+        { name: 'POOL', href: '/pool' },
         { name: 'PLAY', href: '/train' },
-        { name: 'CLUB', href: '/club' },
-        { name: 'DRIVE', href: '/tesla' },
+        { name: 'HOME', href: '/smarthome' },
+        { name: 'TAXI', href: '/robotaxi' },
         { name: 'SOLAR', href: '/ecoflow' },
         { name: 'THINK', href: '/naval' },
-        { name: 'BUILD', href: '/ln' },
+        { name: 'BUIDL', href: '/time' },
       ]
     },
     { 
