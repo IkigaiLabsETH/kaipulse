@@ -37,15 +37,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           return { priority: 1.0, changeFrequency: 'daily' as const };
         }
         // High priority pages for AI crawlers - educational content
-        if (['/about', '/club', '/collections', '/notebook', '/news', '/calculator', '/ai', '/bitcoin', '/crypto'].includes(path)) {
+        if (['/about', '/search', '/col', '/altcoins', '/maxpain', '/calculator', '/ai', '/bitcoin', '/crypto', '/cursor', '/assets', '/tesla', '/stocks', '/options', '/bitbonds', '/downbad', '/platforms/msty/bitcoin', '/platforms/msty/mstr'].includes(path)) {
           return { priority: 0.9, changeFrequency: 'weekly' as const };
         }
         // Medium priority - specific topics
-        if (['/art', '/pfp', '/gallery', '/tools', '/platforms', '/strike', '/pool'].includes(path)) {
+        if (['/twentyone', '/platforms/msty', '/strf', '/strd', '/platforms', '/strike', '/nakamoto', '/altbg', '/btcab', '/metaplanet', '/tbs', '/s9pro', '/bitaxe', '/node', '/mara', '/doge', '/ln', '/21energy', '/sol', '/hyperliquid', '/eth', '/defi', '/sui', '/zero', '/time', '/naval', '/train', '/pool', '/wine', '/docu', '/monaco', '/sonar'].includes(path)) {
           return { priority: 0.8, changeFrequency: 'weekly' as const };
         }
         // Educational content should be easily discoverable
-        if (path.includes('/education') || path.includes('/learn') || path.includes('/guide')) {
+        if (path.includes('/realestate') || path.includes('/land') || path.includes('/smarthome') || path.includes('/robotaxi')) {
           return { priority: 0.8, changeFrequency: 'weekly' as const };
         }
         return { priority: 0.7, changeFrequency: 'monthly' as const };
