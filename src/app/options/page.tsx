@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import OptionsPlaybook from '@/components/OptionsPlaybook';
+import InteractiveTradePlaybook from '@/components/InteractiveTradePlaybook';
 
 // Helper component for styled sections
 const SectionCard = ({ title, children }: { title: string, children: React.ReactNode }) => (
@@ -154,7 +154,7 @@ export default function OptionsPage() {
           </SectionCard>
 
           <div className="my-24">
-            <OptionsPlaybook />
+            <InteractiveTradePlaybook />
           </div>
 
         </div>
