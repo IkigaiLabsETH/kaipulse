@@ -67,7 +67,7 @@ const stocks = [
       "Market Leadership: Handles over $1.5 trillion in annual trading volume, with 130 million verified users across 100+ countries.",
       "Regulatory Tailwinds: Recent regulatory clarity, such as the dismissal of SEC investigations into crypto exchanges, supports growth.",
       "Diversification: Beyond trading, Coinbase offers a debit card, cloud platform for digital currency storage, and institutional custody services.",
-      "Alignment with User Interest: Your interest in altcoins (e.g., Ethereum, Solana) aligns with Coinbase&apos;s broad crypto offerings.",
+      "Alignment with User Interest: Your interest in altcoins (e.g., Ethereum, Solana) aligns with Coinbase's broad crypto offerings.",
     ],
     financials: {
       price: "~$280",
@@ -163,7 +163,7 @@ const stocks = [
         "Crypto Mining Demand: GPUs power Bitcoin and altcoin mining, with renewed demand as crypto prices rise.",
         "Dual Market Leadership: Dominates AI and blockchain, diversifying revenue streams.",
         "Financial Strength: 45% year-over-year revenue growth, with a Strong Buy rating from 40 analysts.",
-        "User Relevance: Your interest in AI-related tokens (e.g., TAO) suggests NVDA&apos;s AI-blockchain overlap is appealing.",
+        "User Relevance: Your interest in AI-related tokens (e.g., TAO) suggests NVDA's AI-blockchain overlap is appealing.",
     ],
     financials: {
         price: "~$144.12",
