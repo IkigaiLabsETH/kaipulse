@@ -13,8 +13,6 @@ import Link from "next/link";
 
 // Force static generation for client component
 export const dynamic = 'force-static';
-export const dynamicParams = false;
-export const revalidate = false;
 
 const stocks = [
   {
