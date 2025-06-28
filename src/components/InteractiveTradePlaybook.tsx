@@ -231,7 +231,7 @@ export default function InteractiveTradePlaybook() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-12">
+        <div className="space-y-12">
             <div className="text-center">
                 <h2 className="text-4xl font-bold font-boska text-white">🦉 Interactive Playbook</h2>
                 <p className="text-lg text-white/70 mt-2 font-satoshi">Dynamic Covered Call Assistant</p>

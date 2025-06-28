@@ -33,7 +33,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await fetch(`https://www.alphavantage.co/query?function=QUOTE&symbol=${ticker}&apikey=${apiKey}`);
+    const response = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${apiKey}`);
     const data = await response.json();
 
     const quote = data['Global Quote'];
@@ -42,7 +42,7 @@ export async function GET(request: Request) {
         // This will catch rate-limit errors or invalid key messages from Alpha Vantage
         return NextResponse.json({ error: `Alpha Vantage Error: ${data['Information']}` }, { status: 400 });
       }
-      return NextResponse.json({ error: 'No data found for this ticker from Alpha Vantage.' }, { status: 404 });
+      return NextResponse.json({ error: `No data found. Full API response: ${JSON.stringify(data)}` }, { status: 404 });
     }
 
     const spotPrice = parseFloat(quote['05. price']);
