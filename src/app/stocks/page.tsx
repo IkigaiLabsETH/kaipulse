@@ -1,4 +1,4 @@
-"use client";
++"use client";
 
 import {
   Table,
@@ -8,11 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import StockMarket from "@/components/StockMarket";
 import Link from "next/link";
 
-// Force static generation for client component
-export const dynamic = 'force-static';
+// Import StockMarket as a client component
+import StockMarket from "@/components/StockMarket";
+
+// Add metadata for SEO
+export const metadata = {
+  title: 'Crypto-Related Stocks Analysis | Tickers to Explore 2025',
+  description: 'Analysis of crypto-related stock tickers worth exploring in 2025, including Robinhood (HOOD), Circle (CRCL), Coinbase (COIN), MicroStrategy (MSTR), and more.',
+};
 
 const stocks = [
   {
