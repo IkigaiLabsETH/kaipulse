@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -6,17 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import StockMarket from "@/components/StockMarket";
+// import StockMarket from "@/components/StockMarket";
 import Link from "next/link";
 
-// Force static generation
+// Force static generation for client component
 export const dynamic = 'force-static';
-
-// Add metadata for SEO
-export const metadata = {
-  title: 'Crypto-Related Stocks Analysis | Tickers to Explore 2025',
-  description: 'Analysis of crypto-related stock tickers worth exploring in 2025, including Robinhood (HOOD), Circle (CRCL), Coinbase (COIN), MicroStrategy (MSTR), and more.',
-};
+export const dynamicParams = false;
+export const revalidate = false;
 
 const stocks = [
   {
@@ -251,7 +249,10 @@ export default function StocksPage() {
           </div>
 
           <div className="relative w-full mx-auto -mt-8">
-            <StockMarket />
+            {/* <StockMarket /> */}
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+              <p className="text-gray-300">Stock market chart component temporarily disabled for deployment.</p>
+            </div>
           </div>
         
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
