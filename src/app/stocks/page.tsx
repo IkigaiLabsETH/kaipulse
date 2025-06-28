@@ -803,6 +803,172 @@ export default function StocksPage() {
                 </div>
             </div>
 
+            {/* New section for Bitcoin Mining stocks */}
+            <div className="text-center space-y-8 pt-16">
+                <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">
+                Bitcoin Mining Sector
+                </p>
+                <h1 className="text-center">
+                <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-boska">
+                    Mining Stock Analysis
+                </span>
+                </h1>
+                <div className="flex items-center justify-center mt-6">
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
+                    June 2025 Performance
+                </p>
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Key Points</h3>
+                <ul className="space-y-4 text-gray-300 list-disc list-inside">
+                    <li>Research suggests these stocks, primarily Bitcoin mining companies, had strong returns in June 2025, ranging from 2% to 63%, likely driven by sector trends and company-specific events.</li>
+                    <li>It seems likely that factors like operational expansions, capital raises, and acquisition rumors influenced their performance, with varying impacts across stocks.</li>
+                    <li>The evidence leans toward Bitcoin&apos;s price stability and positive crypto market sentiment contributing to overall gains, though individual stock performance varied.</li>
+                </ul>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Stock Performance Overview</h3>
+                <p className="text-gray-300 mb-6">
+                    The stocks listed ($IREN, $CORZ, $CIFR, $RIOT, $CLSK, $WULF, $HUT, $MARA, $GLXY) are mainly involved in cryptocurrency mining, especially Bitcoin, with returns over the last month (May 28 to June 28, 2025) ranging from 2% to 63%. These returns reflect a robust period for the sector, likely influenced by Bitcoin&apos;s price stability around $107,000 and positive market sentiment.
+                </p>
+                
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mb-4 font-epilogue">Top Performers and Key Drivers</h4>
+                <ul className="list-disc list-inside text-gray-300 space-y-3">
+                    <li><strong>Iris Energy ($IREN, 63%):</strong> Likely boosted by a $550 million convertible notes offering closed on June 13, 2025, and its pivot to AI and data centers, signaling growth potential.</li>
+                    <li><strong>Core Scientific ($CORZ, 56%):</strong> Surged due to acquisition talks with CoreWeave, reported on June 26, 2025, enhancing investor confidence.</li>
+                    <li><strong>Cipher Mining ($CIFR, 31%):</strong> Benefited from starting Bitcoin mining at the Black Pearl site on June 23, 2025, and a raised price target, driving stock gains.</li>
+                </ul>
+
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mt-6 mb-4 font-epilogue">Other Stocks</h4>
+                <p className="text-gray-300">
+                    Stocks like $RIOT (29%), $CLSK (22%), $WULF (15%), $HUT (15%), $MARA (3%), and $GLXY (2%) also saw positive returns, likely due to sector-wide trends and operational updates, though with less pronounced catalysts compared to the top performers.
+                </p>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Survey Note: Deep Research on Listed Stocks</h3>
+                <p className="text-gray-300 mb-6">This survey note provides a comprehensive analysis of the stocks provided ($IREN, $CORZ, $CIFR, $RIOT, $CLSK, $WULF, $HUT, $MARA, $GLXY) with their respective returns over the last month (May 28 to June 28, 2025), as indicated by the percentages (63%, 56%, 31%, 29%, 22%, 15%, 15%, 3%, 2%). The research focuses on understanding the drivers behind their performance, company fundamentals, and broader market context, based on available data as of 03:25 PM CEST on Saturday, June 28, 2025.</p>
+                
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mt-6 mb-4 font-epilogue">Methodology and Context</h4>
+                <p className="text-gray-300">The analysis began by identifying the stocks as primarily Bitcoin mining companies, with $GLXY (Galaxy Digital) being an exception as a crypto financial services firm. The percentages were confirmed via an X post from June 28, 2025, by @ericjackson, stating &quot;Returns in the last month:&quot; followed by the exact list, suggesting these are one-month returns. Given the current date, the period analyzed is from May 28 to June 28, 2025. The research leveraged news articles, company updates, and market trends to explain performance, focusing on operational, financial, and market-driven factors.</p>
+
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mt-6 mb-4 font-epilogue">Market and Sector Overview</h4>
+                <p className="text-gray-300">The cryptocurrency mining sector has shown resilience in June 2025, with Bitcoin&apos;s price stable around $107,000, as reported by <a href="https://www.coindesk.com/price/bitcoin" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">CoinDesk</a> on June 27, 2025, with a slight monthly decrease of 1.74% noted in TradingView data. Despite this, the sector benefited from positive sentiment, driven by:</p>
+                <ul className="list-disc list-inside text-gray-300 space-y-2 mt-4">
+                    <li>Regulatory developments, such as a Wyoming lawmaker urging Congress to pass crypto-friendly bills (GENIUS Act) on June 28, 2025, as per <a href="https://www.tradingview.com/news/coinpedia:d8b2c64ed094b:0-coinpedia-digest-this-week-s-crypto-news-highlights-28-june-2025/" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">TradingView</a>.</li>
+                    <li>Institutional interest, with Ric Edelman recommending 10%-40% portfolio allocation to crypto, including Bitcoin, on June 27, 2025, as per <a href="https://www.cnbc.com/2025/06/27/bitcoin-hodl-ric-edelman-wants-10percent-40percent-portfolio-crypto.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">CNBC</a>.</li>
+                    <li>Coinbase being the best-performing S&P 500 stock in June, signaling strong crypto market momentum, as reported on June 27, 2025, by <a href="https://www.cnbc.com/2025/06/27/coinbase-is-best-performing-stock-in-sp-500-in-june-and-may-move-higher.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">CNBC</a>.</li>
+                </ul>
+                <p className="text-gray-300 mt-4">These factors likely created a favorable environment for mining stocks, though individual performance varied based on company-specific events.</p>
+
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mt-6 mb-4 font-epilogue">Detailed Analysis by Stock</h4>
+                <p className="text-gray-300 mb-4">Below is a detailed breakdown of each stock, including key developments and their likely impact on the reported returns. The table summarizes the top performers, with additional notes for others.</p>
+                <div className="overflow-x-auto">
+                    <Table>
+                        <TableHeader>
+                            <TableRow className="border-yellow-500/30">
+                                <TableHead className="text-yellow-500 font-bold">Ticker</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Company</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Return (%)</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Key Developments in June 2025</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Likely Impact</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow className="border-yellow-500/10"><TableCell>$IREN</TableCell><TableCell>Iris Energy</TableCell><TableCell>63</TableCell><TableCell>Closed $550M convertible notes offering on June 13; pivoting to AI and data centers.</TableCell><TableCell>Strong investor confidence in growth plans.</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>$CORZ</TableCell><TableCell>Core Scientific</TableCell><TableCell>56</TableCell><TableCell>Acquisition talks with CoreWeave reported on June 26, surged 33% that day.</TableCell><TableCell>Acquisition rumors drove significant gains.</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>$CIFR</TableCell><TableCell>Cipher Mining</TableCell><TableCell>31</TableCell><TableCell>Commenced Bitcoin mining at Black Pearl on June 23; Cantor Fitzgerald raised price target on June 5.</TableCell><TableCell>Operational milestone and analyst support.</TableCell></TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
+                
+                <div className="space-y-8 mt-8">
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">1. Iris Energy ($IREN, 63%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Iris Energy, headquartered in Sydney, Australia, owns and operates Bitcoin mining data centers and provides HPC solutions, including AI cloud services. It rebranded to IREN Limited in November 2024.</p>
+                            <p><strong>June 2025 Developments:</strong> On June 13, 2025, IREN closed an upsized $550 million convertible notes offering at 3.50%, initially planned for $450 million, with strong investor demand leading to an additional $50 million via a greenshoe option. Net proceeds were approximately $534.9 million, used for capped call transactions, a prepaid forward transaction, and general corporate purposes. The company also pivoted towards AI and data center ventures, as noted in a Perplexity article from May 15, 2025, with analysts maintaining a positive outlook despite some margin pressures.</p>
+                            <p><strong>Impact:</strong> The capital raise and AI pivot likely boosted investor confidence, contributing to the 63% return. News headlines, such as &quot;Crypto Miner IREN Surges 102% as AI Pivot Delivers Profit Haul&quot; on June 9, 2025, from CNN Markets, suggest significant market enthusiasm.</p>
+                            <p><strong>Citation:</strong> <a href="https://www.globenewswire.com/news-release/2025/06/13/3099290/0/en/IREN-closes-upsized-550-million-convertible-notes-offering.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">IREN closes upsized $550 million convertible notes offering</a></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">2. Core Scientific ($CORZ, 56%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Core Scientific is a leader in digital infrastructure for Bitcoin mining and HPC, operating one of North America&apos;s largest fleets. It returned to Nasdaq in January 2024 after reorganization.</p>
+                            <p><strong>June 2025 Developments:</strong> On June 26, 2025, shares surged 33% following a report by <a href="https://www.cnbc.com/2025/06/26/core-scientific-shares-surge-on-report-of-buyout-talks-with-coreweave.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">CNBC</a> that CoreWeave, an AI infrastructure firm, is in talks to acquire Core Scientific, potentially finalizing in weeks. This follows a long-standing partnership, including 12-year hosting contracts signed in June 2024, expected to generate billions in revenue. The stock&apos;s second-sharpest rally since its Nasdaq return underscores the impact.</p>
+                            <p><strong>Impact:</strong> The acquisition rumor was a major catalyst, likely driving the 56% return, as it signals potential value creation and aligns with growing AI infrastructure demand.</p>
+                            <p><strong>Citation:</strong> <a href="https://www.cnbc.com/2025/06/26/core-scientific-shares-surge-on-report-of-buyout-talks-with-coreweave.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">Core Scientific shares surge on report of buyout talks with CoreWeave</a></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">3. Cipher Mining ($CIFR, 31%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Cipher Mining operates industrial-scale Bitcoin mining data centers in the U.S., with a focus on expanding hash rate and HPC capabilities. It is listed on NASDAQ.</p>
+                            <p><strong>June 2025 Developments:</strong> On June 23, 2025, Cipher commenced Bitcoin mining at its Black Pearl data center, expected to increase total hash rate to ~23.1 EH/s by Q3 2025, as per <a href="https://www.globenewswire.com/news-release/2025/06/23/3103825/0/en/Cipher-Mining-Commences-Bitcoin-Mining-at-Black-Pearl-Data-Center.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">GlobeNewswire</a>. On June 5, 2025, Cantor Fitzgerald raised its price target to $6 from $4, maintaining a Buy rating, as reported by CNN Markets.</p>
+                            <p><strong>Impact:</strong> The operational milestone and positive analyst coverage likely contributed to the 31% return, reflecting investor confidence in Cipher&apos;s growth trajectory.</p>
+                            <p><strong>Citation:</strong> <a href="https://www.globenewswire.com/news-release/2025/06/23/3103825/0/en/Cipher-Mining-Commences-Bitcoin-Mining-at-Black-Pearl-Data-Center.html" target="_blank" rel="noopener noreferrer" className="text-yellow-400 hover:underline">Cipher Mining Commences Bitcoin Mining at Black Pearl Data Center</a></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">4. Riot Platforms ($RIOT, 29%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Riot Platforms is a major U.S. Bitcoin miner, focusing on operational efficiency and expansion. It has a significant mining fleet and is known for its energy-efficient operations.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific news was identified for June 2025, but its 29% return aligns with sector trends. Historical data from Investing.com articles suggest Riot&apos;s performance is tied to Bitcoin price stability and operational expansions, such as acquiring Block Mining in July 2024.</p>
+                            <p><strong>Impact:</strong> Likely driven by general sector momentum and Bitcoin&apos;s stable price, with no major catalysts identified for the month.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">5. CleanSpark ($CLSK, 22%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> CleanSpark focuses on sustainable Bitcoin mining, emphasizing low-cost energy and operational efficiency. It has been expanding its mining fleet and data centers.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific June 2025 news was found, but its 22% return suggests sector-wide benefits. Past reports, such as its acquisition of GRIID Infrastructure in June 2024, indicate a focus on growth, likely contributing to performance.</p>
+                            <p><strong>Impact:</strong> General sector trends and operational efficiency likely drove the return, with no major company-specific events noted.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">6. TeraWulf ($WULF, 15%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> TeraWulf operates Bitcoin mining data centers powered by nuclear and hydro energy, emphasizing sustainability. It is listed on NASDAQ.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific news for June 2025, but its 15% return aligns with sector performance. Past analyst ratings, such as Rosenblatt&apos;s Buy rating in May 2025, suggest positive sentiment, as per Investing.com articles.</p>
+                            <p><strong>Impact:</strong> Likely driven by sector momentum and sustainable energy focus, with no major catalysts identified.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">7. Hut 8 Mining ($HUT, 15%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Hut 8 is a diversified Bitcoin miner with operations in mining, hosting, and HPC, operating across North America. It has a strong balance sheet and expansion plans.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific June 2025 news, but its 15% return reflects sector trends. Past updates, such as plans to upgrade ASIC mining fleet in Q1 2025, suggest growth focus, as per CoinCodex articles from February 2025.</p>
+                            <p><strong>Impact:</strong> General sector performance and operational plans likely contributed, with no major events noted for the month.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">8. Marathon Digital ($MARA, 3%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Marathon Digital is one of the largest Bitcoin miners, with a significant hash rate and focus on scaling operations. It is listed on NASDAQ.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific news for June 2025, and its 3% return is the lowest, possibly indicating fewer positive catalysts. Past reports suggest challenges post-halving, but no recent negative news was identified.</p>
+                            <p><strong>Impact:</strong> Likely impacted by sector trends, but with less pronounced gains, possibly due to lack of significant updates.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-epilogue font-bold text-yellow-400 text-lg">9. Galaxy Digital ($GLXY, 2%)</h4>
+                        <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
+                            <p><strong>Company Profile:</strong> Galaxy Digital is a crypto financial services firm, involved in trading, asset management, and investment banking, listed on the Toronto Stock Exchange with OTC trading in the U.S.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific news for June 2025, and its 2% return reflects its different business model, less tied to mining operations. Its performance is more aligned with broader crypto market sentiment.</p>
+                            <p><strong>Impact:</strong> Likely driven by general crypto market trends, with minimal mining-specific catalysts affecting performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mt-6 mb-4 font-epilogue">Comparative Analysis</h4>
+                <p className="text-gray-300">The top performers ($IREN, $CORZ, $CIFR) had clear catalysts (capital raises, acquisitions, operational milestones), while others ($RIOT, $CLSK, $WULF, $HUT) benefited from sector momentum. $MARA and $GLXY had lower returns, possibly due to fewer company-specific drivers or their business models being less aligned with mining sector dynamics.</p>
+            </div>
+
         </div>
       </div>
     </div>
