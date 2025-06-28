@@ -60,7 +60,7 @@ export function Header() {
 
   const navigation: NavigationItem[] = [
     { name: 'HOME', href: '/', dropdown: false },
-    { name: 'INTRO', href: '/intro', dropdown: false },
+    { name: 'SEARCH', href: '/search', dropdown: false },
     { 
       name: 'MEDIA', 
       href: '#', 
@@ -81,12 +81,12 @@ export function Header() {
       dropdown: true,
       items: [
         { name: 'COST OF LIVING', href: '/col' },
-        { name: 'LIFE QUALITY', href: '/col' },
         { name: 'ALT COINS', href: '/altcoins' },
         { name: 'MAX PAIN', href: '/maxpain' },
         { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
         { name: 'CURSOR', href: '/cursor' },
+        { name: 'ASSETS', href: '/assets' },
       ]
     },
     { 
