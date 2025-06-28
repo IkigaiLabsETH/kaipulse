@@ -391,6 +391,418 @@ export default function StocksPage() {
                 </div>
             </div>
 
+            {/* New section for high-upside stocks */}
+            <div className="text-center space-y-8 pt-16">
+                <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">
+                Innovating Equities
+                </p>
+                <h1 className="text-center">
+                <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-boska">
+                    Future-Forward Stocks
+                </span>
+                </h1>
+                <div className="flex items-center justify-center mt-6">
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
+                    Analysis for 2025
+                </p>
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Key Points</h3>
+                <ul className="space-y-4 text-gray-300 list-disc list-inside">
+                    <li>Research suggests quantum computing stocks like IonQ and IBM are innovating rapidly, potentially transforming industries like healthcare and finance.</li>
+                    <li>It seems likely that AI leaders like Nvidia and Microsoft will continue to drive advancements in automation and data analysis, impacting wealth and defense.</li>
+                    <li>The evidence leans toward biotechnology firms like Vertex and Moderna leading in gene editing and mRNA therapies, with significant health implications.</li>
+                    <li>Defense tech stocks such as Lockheed Martin and Kratos are advancing with AI and autonomous systems, crucial for national security.</li>
+                    <li>High-end tech stocks like Taiwan Semiconductor are vital for enabling these innovations, with broad impacts on health, wealth, and defense.</li>
+                </ul>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Overview of Innovating Stocks</h3>
+                <p className="text-gray-300 mb-6">
+                    Below, I&apos;ll break down the key areas—quantum computing, AI, biogenetics, and defense tech—highlighting stocks that are at the forefront of innovation and their potential global impact.
+                </p>
+                <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mb-4 font-epilogue">Survey Note: Deep Research on Innovating Stocks in Quantum Computing, AI, Biogenetics, and High-End Tech</h4>
+                <p className="text-gray-300">
+                    This survey note provides an in-depth analysis of stocks innovating in quantum computing, AI, biogenetics, and other high-end technologies, focusing on their potential to impact health, wealth, defense, and beyond. The analysis is based on recent data and trends as of June 28, 2025, ensuring relevance for investors and researchers interested in these transformative fields.
+                </p>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Quantum Computing: Pioneering the Next Computational Frontier</h3>
+                <div className="space-y-6 text-gray-300">
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">Quantum computing leverages quantum mechanics to perform calculations at unprecedented speeds, with applications in drug discovery, materials science, optimization, and cryptography. The following companies are leading innovators, each with unique technological approaches and market positions:</p>
+                    <ul className="list-disc list-inside space-y-4">
+                    <li><strong className="font-epilogue text-yellow-400">IonQ (IONQ):</strong> A pure-play quantum computing company specializing in trapped-ion technology, IonQ is notable for its partnerships with major cloud providers like Amazon Web Services (AWS) and Google Cloud. This approach allows for scalable quantum systems, with potential applications in healthcare for simulating molecular interactions and in finance for optimizing portfolios. Recent developments include progress in reducing error rates, positioning IonQ as a leader in the race for practical quantum computing.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Rigetti Computing (RGTI):</strong> Focused on superconducting qubit technology, Rigetti offers cloud-based access to its quantum systems and is advancing hybrid quantum-classical algorithms. Its innovations could accelerate AI training and complex simulations, impacting industries like logistics and energy. Rigetti has made strides in improving qubit coherence times, essential for practical applications.</li>
+                    <li><strong className="font-epilogue text-yellow-400">D-Wave Quantum (QBTS):</strong> Specializing in quantum annealing, D-Wave is already delivering systems to enterprises and governments, with applications in optimization problems. Its technology is used in logistics, finance, and defense, with potential to expand into healthcare and energy optimization. Recent efforts focus on refining annealing technology for broader commercial use.</li>
+                    <li><strong className="font-epilogue text-yellow-400">IBM (IBM):</strong> A pioneer in quantum computing, IBM leverages superconducting qubits and offers cloud-based quantum services through IBM Quantum. It achieved a milestone with its 127-qubit Eagle quantum computer, with applications in drug discovery and financial modeling. IBM is focusing on error mitigation and scaling, aiming for fault-tolerant quantum systems by the end of the decade.</li>
+                    </ul>
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">These companies are poised to transform industries, with quantum computing potentially reducing drug development timelines and enhancing cybersecurity, impacting health and wealth significantly.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Artificial Intelligence: Driving Automation and Data Insights</h3>
+                <div className="space-y-6 text-gray-300">
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">AI is already a transformative force, with applications in healthcare diagnostics, financial modeling, autonomous vehicles, and defense. The following stocks are leaders in AI innovation, each contributing to wealth creation and technological advancement:</p>
+                    <ul className="list-disc list-inside space-y-4">
+                    <li><strong className="font-epilogue text-yellow-400">Nvidia (NVDA):</strong> Dominating the AI hardware market with GPUs essential for training and running AI models, Nvidia also offers cloud-based AI services through DGX systems. Its technology powers self-driving cars, drug discovery, and data centers, with recent expansions into quantum computing through cloud services and partnerships. Nvidia&apos;s impact is broad, enhancing wealth through AI-driven industries and supporting defense through AI-enabled systems.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Microsoft (MSFT):</strong> Integrating AI across its ecosystem, including Azure cloud services and productivity tools like Office 365, Microsoft is also advancing quantum computing through Azure Quantum. Its AI tools are used in healthcare, finance, and cybersecurity, with recent developments including its own AI chips and quantum computing roadmap, impacting wealth and defense strategies.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Alphabet (GOOGL):</strong> A leader in AI research with projects like DeepMind and Gemini AI, Alphabet offers quantum computing services through Google Cloud. Its AI is used in search, advertising, healthcare (e.g., AlphaFold for protein folding), and autonomous vehicles, with recent breakthroughs in quantum error correction, enhancing health and wealth through technological innovation.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Amazon (AMZN):</strong> AWS provides AI tools and infrastructure for enterprises, with Amazon developing its own AI chips and partnerships with quantum computing companies like IonQ. Its AI is used in e-commerce, logistics, and healthcare, with potential to expand into quantum-accelerated applications, impacting wealth and health through scalable cloud solutions.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Palantir (PLTR):</strong> Specializing in AI-driven data analytics, Palantir&apos;s platforms are used in defense, healthcare, and finance for complex decision-making and predictive modeling. Its recent expansion of the AI Platform (AIP) to include generative AI capabilities enhances its impact on national security and supply chain optimization, contributing to wealth and defense.</li>
+                    </ul>
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">AI&apos;s influence is growing, with potential to automate industries, improve healthcare diagnostics, and enhance defense capabilities, creating significant wealth and societal benefits.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Biogenetics: Revolutionizing Healthcare Through Gene Editing and Therapies</h3>
+                <div className="space-y-6 text-gray-300">
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">Biogenetics, particularly in gene editing and mRNA therapeutics, is poised to address major health challenges, offering cures for genetic diseases and improving global health outcomes. The following companies are leaders in this space:</p>
+                    <ul className="list-disc list-inside space-y-4">
+                    <li><strong className="font-epilogue text-yellow-400">Vertex Pharmaceuticals (VRTX):</strong> A leader in cystic fibrosis treatments, Vertex is expanding into gene editing therapies for genetic diseases like sickle cell disease. Its work could lead to cures for previously untreatable conditions, with recent partnerships with CRISPR Therapeutics advancing its pipeline, impacting global health significantly.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Regeneron Pharmaceuticals (REGN):</strong> Developing treatments for cancer, eye diseases, and rare disorders, Regeneron has a strong pipeline of innovative therapies. Its drugs have transformed treatments for conditions like macular degeneration and cancer, with recent expansions in immuno-oncology and gene therapy research, enhancing health outcomes.</li>
+                    <li><strong className="font-epilogue text-yellow-400">CRISPR Therapeutics (CRSP):</strong> Pioneering gene-editing technologies, CRISPR is developing therapies for sickle cell disease, beta-thalassemia, and cancer. Its technology could enable precise genetic modifications, offering cures for hereditary diseases, with significant progress in clinical trials and potential FDA approvals, revolutionizing healthcare.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Moderna (MRNA):</strong> Known for its mRNA vaccines during the COVID-19 pandemic, Moderna is expanding into cancer vaccines, rare diseases, and personalized medicine. Its mRNA platform could revolutionize vaccine development and therapeutics, with recent advancements in its pipeline for cancer and infectious disease vaccines, impacting global health.</li>
+                    </ul>
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">These companies are at the forefront of medical innovation, with potential to cure genetic disorders, improve cancer treatments, and enhance vaccine development, significantly impacting health worldwide.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Defense Technology: Advancing National Security with High-End Tech</h3>
+                <div className="space-y-6 text-gray-300">
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">Defense technology is evolving with AI, autonomous systems, and advanced materials, crucial for national security and space exploration. The following stocks are leaders in defense innovation:</p>
+                    <ul className="list-disc list-inside space-y-4">
+                    <li><strong className="font-epilogue text-yellow-400">Lockheed Martin (LMT):</strong> A global leader in aerospace and defense, Lockheed Martin focuses on advanced systems like the F-35 fighter jet and missile defense, investing in AI and autonomous systems. Its technologies are essential for national security, with recent integrations of AI into defense systems and expansions in space technology, impacting defense and space exploration.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Raytheon Technologies (RTX):</strong> A leader in missile systems, cybersecurity, and aerospace, Raytheon is involved in directed energy weapons and hypersonic technology. Its innovations are crucial for modern warfare, with recent advancements in AI-driven defense systems and global partnerships, enhancing national security.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Northrop Grumman (NOC):</strong> Specializing in advanced aircraft, space systems, and cyber technologies, Northrop is a key player in stealth aircraft and missile defense. Its technologies are vital for defense, with recent focus on autonomous systems and next-generation aircraft, impacting national security and space.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Kratos Defense & Security Solutions (KTOS):</strong> A small-cap company specializing in unmanned systems, satellite communications, and advanced defense technologies, Kratos is advancing in autonomous systems and cybersecurity. Its innovations are critical for modern defense strategies, with recent contracts for unmanned aerial systems and AI capabilities, enhancing defense capabilities.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Leonardo DRS (DRS):</strong> Providing advanced technologies for land, air, sea, space, and cyber defense, Leonardo DRS is a leader in electric power systems and thermal management. Its technologies are essential for next-generation defense systems, with recent expansions in autonomous systems and cyber defense, impacting national security.</li>
+                    </ul>
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">These companies are driving innovation in defense, with applications in AI, autonomous systems, and space technology, crucial for national security and global stability.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Other High-End Tech: Enabling the Ecosystem</h3>
+                <div className="space-y-6 text-gray-300">
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">Beyond the specific categories, certain companies are at the intersection of these technologies, enabling broad advancements. These include:</p>
+                    <ul className="list-disc list-inside space-y-4">
+                    <li><strong className="font-epilogue text-yellow-400">Taiwan Semiconductor Manufacturing Company (TSM):</strong> The world&apos;s largest semiconductor foundry, TSM produces chips for AI, quantum computing, and other high-tech applications. Its advanced manufacturing capabilities are essential for the tech ecosystem, with recent investments in next-generation chip technologies, impacting health, wealth, and defense through enabling technologies.</li>
+                    <li><strong className="font-epilogue text-yellow-400">Broadcom (AVGO):</strong> Providing semiconductors and infrastructure software for AI, data centers, and networking, Broadcom is a key supplier for AI and quantum computing hardware. Its chips are critical for high-performance computing, with recent expansions in AI and quantum computing-related product lines, enhancing technological innovation.</li>
+                    </ul>
+                    <p className="prose prose-invert max-w-none prose-p:text-gray-300">These companies are vital for the infrastructure supporting quantum computing, AI, and biogenetics, with broad impacts on health, wealth, and defense.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Comparative Analysis: Impact on Health, Wealth, and Defense</h3>
+                <p className="text-gray-300 mb-4">To summarize, the following table highlights the key stocks, their primary focus, and their potential impact areas:</p>
+                <div className="overflow-x-auto">
+                    <Table>
+                        <TableHeader>
+                            <TableRow className="border-yellow-500/30">
+                                <TableHead className="text-yellow-500 font-bold">Stock</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Category</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Primary Focus</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Impact Areas</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow className="border-yellow-500/10"><TableCell>IonQ (IONQ)</TableCell><TableCell>Quantum Computing</TableCell><TableCell>Trapped-ion quantum systems</TableCell><TableCell>Health, Finance, Cybersecurity</TableCell>
+                            </TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>IBM (IBM)</TableCell><TableCell>Quantum Computing</TableCell><TableCell>Superconducting qubits, cloud services</TableCell><TableCell>Health, Finance, Research</TableCell>
+                            </TableRow>
+                             <TableRow className="border-yellow-500/10">
+                                <TableCell>Nvidia (NVDA)</TableCell><TableCell>AI</TableCell><TableCell>AI hardware (GPUs), cloud services</TableCell><TableCell>Wealth, Defense, Healthcare</TableCell>
+                            </TableRow>
+                             <TableRow className="border-yellow-500/10">
+                                <TableCell>Microsoft (MSFT)</TableCell><TableCell>AI</TableCell><TableCell>Cloud AI, quantum computing</TableCell><TableCell>Wealth, Defense, Healthcare</TableCell>
+                            </TableRow>
+                             <TableRow className="border-yellow-500/10">
+                                <TableCell>Vertex (VRTX)</TableCell><TableCell>Biogenetics</TableCell><TableCell>Gene editing, cystic fibrosis treatments</TableCell><TableCell>Health</TableCell>
+                            </TableRow>
+                             <TableRow className="border-yellow-500/10">
+                                <TableCell>Moderna (MRNA)</TableCell><TableCell>Biogenetics</TableCell><TableCell>mRNA vaccines, cancer therapies</TableCell><TableCell>Health</TableCell>
+                            </TableRow>
+                             <TableRow className="border-yellow-500/10">
+                                <TableCell>Lockheed Martin (LMT)</TableCell><TableCell>Defense Tech</TableCell><TableCell>Advanced aircraft, missile defense</TableCell><TableCell>Defense, Space</TableCell>
+                            </TableRow>
+                            <TableRow className="border-yellow-500/10">
+                                <TableCell>Kratos (KTOS)</TableCell><TableCell>Defense Tech</TableCell><TableCell>Unmanned systems, cybersecurity</TableCell><TableCell>Defense, Cybersecurity</TableCell>
+                            </TableRow>
+                            <TableRow className="border-yellow-500/10">
+                                <TableCell>TSM (TSM)</TableCell><TableCell>High-End Tech</TableCell><TableCell>Semiconductor manufacturing</TableCell><TableCell>Health, Wealth, Defense</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
+                <p className="text-gray-300 mt-4">This table illustrates the diverse impacts of these stocks, with overlapping effects on health, wealth, and defense, driven by their innovative technologies.</p>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Conclusion</h3>
+                <div className="space-y-4 text-gray-300">
+                  <p>
+                    The stocks listed above represent the cutting edge of innovation in quantum computing, AI, biogenetics, and defense technology, with significant potential to transform health, wealth, and defense. 
+                  </p>
+                </div>
+            </div>
+
+            {/* New section for high-upside stocks */}
+            <div className="text-center space-y-8 pt-16">
+                <p className="uppercase tracking-[0.4em] text-yellow-500/90 text-sm mb-4 font-light font-satoshi">
+                High-Growth Watchlist
+                </p>
+                <h1 className="text-center">
+                <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-boska">
+                    Early-Stage Upside
+                </span>
+                </h1>
+                <div className="flex items-center justify-center mt-6">
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
+                    Analysis for 2025
+                </p>
+                <div className="h-px w-24 bg-yellow-500/30"></div>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Key Points</h3>
+                <ul className="space-y-4 text-gray-300 list-disc list-inside">
+                    <li>Research suggests D-Wave Quantum (QBTS), CRISPR Therapeutics (CRSP), Rigetti Computing (RGTI), and Quantum Computing Inc. (QUBT) are early-stage stocks with significant upside potential in quantum computing and biogenetics.</li>
+                    <li>It seems likely that Kratos Defense & Security Solutions (KTOS) and Leonardo DRS (DRS) also have growth potential in defense tech, though with more moderate upside.</li>
+                    <li>The evidence leans toward QBTS and CRSP having the highest upside (up to 186% and 90%, respectively), based on analyst price targets, making them top watchlist candidates.</li>
+                    <li>IonQ (IONQ) is more established with limited upside, while larger companies like Nvidia and Taiwan Semiconductor (TSM) are less &quot;early&quot; for huge growth.</li>
+                </ul>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Stocks with Upside Potential</h3>
+                <div className="space-y-8">
+                    <div>
+                        <h4 className="font-bold text-yellow-400 font-epilogue">Huge Upside Potential</h4>
+                        <p className="text-gray-400 mb-3">These stocks are considered early due to smaller market caps and high growth potential, ideal for investors seeking significant returns:</p>
+                        <ul className="list-disc list-inside text-gray-300 space-y-3">
+                            <li><strong>D-Wave Quantum (QBTS):</strong> Current price ~$7, analyst targets $12-$20, potential upside <span className="text-green-400 font-bold">71%-186%</span>.</li>
+                            <li><strong>CRISPR Therapeutics (CRSP):</strong> Current price ~$42, analyst targets $70-$80, potential upside <span className="text-green-400 font-bold">67%-90%</span>.</li>
+                            <li><strong>Rigetti Computing (RGTI):</strong> Current price ~$11, analyst targets $14-$15, potential upside <span className="text-green-400 font-bold">27%-36%</span>.</li>
+                            <li><strong>Quantum Computing Inc. (QUBT):</strong> Current price ~$17, analyst target $22, potential upside <span className="text-green-400 font-bold">~29%</span>.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="font-bold text-yellow-400 font-epilogue">Moderate Upside Potential</h4>
+                        <p className="text-gray-400 mb-3">These are also early stage but with less pronounced growth compared to the above:</p>
+                        <ul className="list-disc list-inside text-gray-300 space-y-3">
+                           <li><strong>Kratos Defense & Security Solutions (KTOS):</strong> Current price ~$33.83, analyst targets $30-$35, potential upside <span className="text-orange-400 font-bold">-11% to +3.5%</span>.</li>
+                           <li><strong>Leonardo DRS (DRS):</strong> Current price ~$37, analyst targets $33-$48, potential upside <span className="text-orange-400 font-bold">-11% to +29.7%</span>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Watchlist Recommendations</h3>
+                 <p className="text-gray-300 mb-4">Based on analyst &quot;Buy&quot; or &quot;Strong Buy&quot; ratings, add the following to your watchlist, prioritizing those with highest upside:</p>
+                <ul className="list-disc list-inside text-gray-300 space-y-2">
+                    <li><strong>Top picks:</strong> QBTS, CRSP, RGTI, QUBT for their significant growth potential.</li>
+                    <li><strong>Consider:</strong> KTOS, DRS, and IONQ for additional exposure, though with more limited upside.</li>
+                </ul>
+            </div>
+
+             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Survey Note: Analysis of Early-Stage Stocks</h3>
+                <p className="text-gray-300">
+                   This survey note provides a comprehensive analysis of stocks innovating in quantum computing, AI, biogenetics, and defense technologies, focusing on those that are early stage with significant upside potential and suitable for a watchlist based on analyst recommendations. The analysis is based on current market data as of June 28, 2025, ensuring relevance for investors seeking high-growth opportunities in health, wealth, and defense sectors.
+                </p>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Quantum Computing Stocks: Early-Stage Leaders with High Upside</h3>
+                <div className="text-gray-300">
+                    <p className="mb-6">Quantum computing is still in its nascent stages, with companies developing technologies that could revolutionize industries like healthcare, finance, and cybersecurity. The following stocks were identified as early stage with significant upside:</p>
+                    <ul className="space-y-8">
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">D-Wave Quantum Inc. (QBTS)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$4.5B</p>
+                                    <p><strong>Current Price:</strong> ~$7</p>
+                                    <p><strong>Analyst Targets:</strong> $12-$20</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-green-400">71% to 186%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Strong Buy (8 analysts)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                    D-Wave specializes in quantum annealing, serving 132 customers with systems like Advantage2. Its small market cap and high analyst targets indicate significant growth potential, though it reported Q1 2025 revenue of $15M with ongoing losses.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">Rigetti Computing Inc. (RGTI)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$3.5B</p>
+                                    <p><strong>Current Price:</strong> ~$11</p>
+                                    <p><strong>Analyst Targets:</strong> $14-$15</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-green-400">27% to 36%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Strong Buy (4 analysts)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                    Rigetti focuses on superconducting qubits, with an 84-qubit Ankaa-3 system and plans for 100+ qubits by year-end. Its Q4 2024 revenue was $2.27M, indicating early-stage development.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">Quantum Computing Inc. (QUBT)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$2.5B</p>
+                                    <p><strong>Current Price:</strong> ~$17</p>
+                                    <p><strong>Analyst Target:</strong> $22</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-green-400">~29%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Strong Buy (1 analyst)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                    QUBT develops photonic quantum computing, with Q4 2024 revenue of $101,000 and a net loss of $51.2M, indicating it is very early stage.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">IonQ Inc. (IONQ)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$10.53B</p>
+                                    <p><strong>Current Price:</strong> ~$41</p>
+                                    <p><strong>Analyst Targets:</strong> $30-$50</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-orange-400">-27% to +22%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Strong Buy (6 analysts)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                     IonQ uses trapped-ion technology, with Q4 2024 revenue of $11.7M and partnerships with major cloud providers. Its larger market cap suggests it is more established, with less upside compared to peers.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Biogenetics Stocks: Early-Stage Innovators with High Impact</h3>
+                <div className="text-gray-300">
+                    <p className="mb-6">Biogenetics, particularly gene editing and mRNA therapies, offers significant health impacts. The following stock was identified as early stage with high upside:</p>
+                    <ul className="space-y-8">
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">CRISPR Therapeutics AG (CRSP)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$4.10B</p>
+                                    <p><strong>Current Price:</strong> ~$42</p>
+                                    <p><strong>Analyst Targets:</strong> $70-$80</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-green-400">67% to 90%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Moderate Buy (20 analysts)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                     CRISPR focuses on gene-editing therapies for sickle cell disease and cancer, with recent clinical trial progress. Its smaller market cap compared to Vertex ($115.69B) and Regeneron ($54.94B) indicates early-stage potential.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p className="mt-6">Other biogenetics stocks like Vertex, Regeneron, and Moderna have larger market caps, making them less &quot;early&quot; for huge upside.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Defense Technology Stocks: Smaller Players with Growth Potential</h3>
+                <div className="text-gray-300">
+                    <p className="mb-6">Defense tech stocks with smaller market caps were evaluated for early-stage potential:</p>
+                     <ul className="space-y-8">
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">Kratos Defense & Security Solutions Inc. (KTOS)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$6.5B</p>
+                                    <p><strong>Current Price:</strong> ~$33.83</p>
+                                    <p><strong>Analyst Targets:</strong> $30-$35</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-orange-400">-11% to +3.5%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Buy (13 analysts)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                    Kratos focuses on unmanned systems and cybersecurity, with a record opportunity pipeline of $12.6B, indicating growth potential.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4 className="font-epilogue font-bold text-yellow-400 text-lg">Leonardo DRS Inc. (DRS)</h4>
+                            <div className="mt-2 pl-4 border-l-2 border-yellow-500/30">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <p><strong>Market Cap:</strong> ~$12B</p>
+                                    <p><strong>Current Price:</strong> ~$37</p>
+                                    <p><strong>Analyst Targets:</strong> $33-$48</p>
+                                    <p><strong>Upside Potential:</strong> <span className="font-bold text-orange-400">-11% to +29.7%</span></p>
+                                    <p className="sm:col-span-2"><strong>Analyst Consensus:</strong> Buy (4 analysts)</p>
+                                </div>
+                                <p className="mt-3 text-gray-400 text-sm italic">
+                                    Leonardo DRS provides advanced defense technologies, including AI processors, with recent contracts enhancing growth prospects.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p className="mt-6">Larger defense stocks like Lockheed Martin ($110B), RTX ($195B), and Northrop Grumman ($70.25B) are established, with limited upside for early-stage growth.</p>
+                </div>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">AI and High-End Tech: Larger Players</h3>
+                <p className="text-gray-300">AI stocks like Nvidia, Microsoft, Alphabet, Amazon, and Palantir have market caps in the hundreds of billions to trillions, making them less &quot;early&quot; for huge upside. High-end tech stocks like Taiwan Semiconductor (TSM, $1.14T) and Broadcom (AVGO, $1.27T) are also large, with growth more moderate compared to smaller peers.</p>
+            </div>
+            
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Comparative Analysis: Upside Potential</h3>
+                 <p className="text-gray-300 mb-4">The following table summarizes the stocks with early-stage potential and their upside based on analyst targets:</p>
+                <div className="overflow-x-auto">
+                    <Table>
+                        <TableHeader>
+                            <TableRow className="border-yellow-500/30">
+                                <TableHead className="text-yellow-500 font-bold">Stock</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Category</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Market Cap ($B)</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Current Price</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Avg. Price Target</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Upside Potential</TableHead>
+                                <TableHead className="text-yellow-500 font-bold">Analyst Consensus</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow className="border-yellow-500/10"><TableCell>QBTS</TableCell><TableCell>Quantum Computing</TableCell><TableCell>4.5</TableCell><TableCell>~$7</TableCell><TableCell>~$15</TableCell><TableCell>71%-186%</TableCell><TableCell>Strong Buy</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>CRSP</TableCell><TableCell>Biogenetics</TableCell><TableCell>4.10</TableCell><TableCell>~$42</TableCell><TableCell>~$75</TableCell><TableCell>67%-90%</TableCell><TableCell>Moderate Buy</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>RGTI</TableCell><TableCell>Quantum Computing</TableCell><TableCell>3.5</TableCell><TableCell>~$11</TableCell><TableCell>~$14.5</TableCell><TableCell>27%-36%</TableCell><TableCell>Strong Buy</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>QUBT</TableCell><TableCell>Quantum Computing</TableCell><TableCell>2.5</TableCell><TableCell>~$17</TableCell><TableCell>$22</TableCell><TableCell>~29%</TableCell><TableCell>Strong Buy</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>KTOS</TableCell><TableCell>Defense Tech</TableCell><TableCell>6.5</TableCell><TableCell>~$33.83</TableCell><TableCell>~$34.82</TableCell><TableCell>-11% to +3.5%</TableCell><TableCell>Buy</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>DRS</TableCell><TableCell>Defense Tech</TableCell><TableCell>12</TableCell><TableCell>~$37</TableCell><TableCell>~$40</TableCell><TableCell>-11% to +29.7%</TableCell><TableCell>Buy</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>IONQ</TableCell><TableCell>Quantum Computing</TableCell><TableCell>10.53</TableCell><TableCell>~$41</TableCell><TableCell>~$41</TableCell><TableCell>-27% to +22%</TableCell><TableCell>Strong Buy</TableCell></TableRow>
+                        </TableBody>
+                    </Table>
+                </div>
+                <p className="text-gray-300 mt-4">This table highlights QBTS and CRSP as having the highest upside potential, making them top candidates for the watchlist. RGTI and QUBT follow with significant upside, while KTOS, DRS, and IONQ have more limited growth potential due to their market positions.</p>
+            </div>
+
+            <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Conclusion</h3>
+                <div className="space-y-4 text-gray-300">
+                  <p>
+                    Based on the analysis, the stocks early enough for huge upside potential are D-Wave Quantum (QBTS), CRISPR Therapeutics (CRSP), Rigetti Computing (RGTI), and Quantum Computing Inc. (QUBT), with QBTS and CRSP leading due to their high upside (up to 186% and 90%, respectively). Kratos Defense & Security Solutions (KTOS) and Leonardo DRS (DRS) also warrant consideration for moderate upside, while IonQ (IONQ) is more established with limited growth potential. For the watchlist, prioritize QBTS, CRSP, RGTI, and QUBT, as they align with analyst &quot;Buy&quot; or &quot;Strong Buy&quot; ratings and offer significant growth opportunities in their respective innovative sectors.
+                  </p>
+                </div>
+            </div>
+
         </div>
       </div>
     </div>
