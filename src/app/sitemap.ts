@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           return { priority: 1.0, changeFrequency: 'daily' as const };
         }
         // High priority pages for AI crawlers - educational content
-        if (['/about', '/search', '/col', '/altcoins', '/maxpain', '/calculator', '/ai', '/bitcoin', '/crypto', '/cursor', '/assets', '/tesla', '/stocks', '/options', '/bitbonds', '/downbad', '/platforms/msty/bitcoin', '/platforms/msty/mstr'].includes(path)) {
+        if (['/about', '/search', '/col', '/altcoins', '/maxpain', '/calculator', '/ai', '/bitcoin', '/crypto', '/cursor', '/assets', '/tesla', '/stocks', '/options', '/bitbonds', '/downbad', '/platforms/msty/bitcoin', '/platforms/msty/mstr', '/69', '/vol'].includes(path)) {
           return { priority: 0.9, changeFrequency: 'weekly' as const };
         }
         // Medium priority - specific topics
