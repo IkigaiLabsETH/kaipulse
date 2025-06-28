@@ -1,4 +1,4 @@
-+"use client";
+"use client";
 
 import {
   Table,
@@ -12,12 +12,6 @@ import Link from "next/link";
 
 // Import StockMarket as a client component
 import StockMarket from "@/components/StockMarket";
-
-// Add metadata for SEO
-export const metadata = {
-  title: 'Crypto-Related Stocks Analysis | Tickers to Explore 2025',
-  description: 'Analysis of crypto-related stock tickers worth exploring in 2025, including Robinhood (HOOD), Circle (CRCL), Coinbase (COIN), MicroStrategy (MSTR), and more.',
-};
 
 const stocks = [
   {
@@ -432,7 +426,7 @@ export default function StocksPage() {
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
                 <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6 font-epilogue">Overview of Innovating Stocks</h3>
                 <p className="text-gray-300 mb-6">
-                    Below, I&apos;ll break down the key areas—quantum computing, AI, biogenetics, and defense tech—highlighting stocks that are at the forefront of innovation and their potential global impact.
+                    Below, I&apos;ll break down the key areas—quantum computing, AI, biogenetics, and high-end tech—highlighting stocks that are at the forefront of innovation and their potential global impact.
                 </p>
                 <h4 className="text-xl md:text-2xl font-bold text-yellow-400 mb-4 font-epilogue">Survey Note: Deep Research on Innovating Stocks in Quantum Computing, AI, Biogenetics, and High-End Tech</h4>
                 <p className="text-gray-300">
@@ -888,7 +882,7 @@ export default function StocksPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow className="border-yellow-500/10"><TableCell>$IREN</TableCell><TableCell>Iris Energy</TableCell><TableCell>63</TableCell><TableCell>Closed $550M convertible notes offering on June 13; pivoting to AI and data centers.</TableCell><TableCell>Strong investor confidence in growth plans.</TableCell></TableRow>
+                            <TableRow className="border-yellow-500/10"><TableCell>$IREN</TableCell><TableCell>Iris Energy</TableCell><TableCell>63</TableCell><TableCell>Closed $550M convertible notes offering on June 13; pivoted to AI and data centers.</TableCell><TableCell>Strong investor confidence in growth plans.</TableCell></TableRow>
                             <TableRow className="border-yellow-500/10"><TableCell>$CORZ</TableCell><TableCell>Core Scientific</TableCell><TableCell>56</TableCell><TableCell>Acquisition talks with CoreWeave reported on June 26, surged 33% that day.</TableCell><TableCell>Acquisition rumors drove significant gains.</TableCell></TableRow>
                             <TableRow className="border-yellow-500/10"><TableCell>$CIFR</TableCell><TableCell>Cipher Mining</TableCell><TableCell>31</TableCell><TableCell>Commenced Bitcoin mining at Black Pearl on June 23; Cantor Fitzgerald raised price target on June 5.</TableCell><TableCell>Operational milestone and analyst support.</TableCell></TableRow>
                         </TableBody>
@@ -951,7 +945,7 @@ export default function StocksPage() {
                         <h4 className="font-epilogue font-bold text-yellow-400 text-lg">7. Hut 8 Mining ($HUT, 15%)</h4>
                         <div className="mt-2 pl-4 border-l-2 border-yellow-500/30 text-gray-300 space-y-2 text-sm">
                             <p><strong>Company Profile:</strong> Hut 8 is a diversified Bitcoin miner with operations in mining, hosting, and HPC, operating across North America. It has a strong balance sheet and expansion plans.</p>
-                            <p><strong>June 2025 Developments:</strong> No specific June 2025 news, but its 15% return reflects sector trends. Past updates, such as plans to upgrade ASIC mining fleet in Q1 2025, suggest growth focus, as per CoinCodex articles from February 2025.</p>
+                            <p><strong>June 2025 Developments:</strong> No specific news for June 2025, but its 15% return reflects sector trends. Past updates, such as plans to upgrade ASIC mining fleet in Q1 2025, suggest growth focus, as per CoinCodex articles from February 2025.</p>
                             <p><strong>Impact:</strong> General sector performance and operational plans likely contributed, with no major events noted for the month.</p>
                         </div>
                     </div>
