@@ -224,7 +224,6 @@ export default function InteractiveTradePlaybook() {
 
     const handleLogTrade = () => {
         setIsTradeLogged(true);
-        console.log("Trade Logged:", trade);
     };
 
     const handleChecklistChange = (step: keyof Checklist) => {
