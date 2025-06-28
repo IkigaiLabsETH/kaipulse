@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Search, Clock } from 'lucide-react';
+import { Search, Clock, Bitcoin, Zap, MapPin, Wrench, Users, ChevronRight, LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -20,6 +20,16 @@ interface SearchSuggestion {
   category: string;
 }
 
+interface CategorySection {
+  title: string;
+  icon: LucideIcon;
+  description: string;
+  subcategories: {
+    name: string;
+    items: string[];
+  }[];
+}
+
 export default function SearchPage() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -27,25 +37,121 @@ export default function SearchPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const popularSearches = [
-    'Bitcoin Calculator',
-    'NFT Collections',
-    'AI Tools',
-    'Freedom Calculator',
-    'Crypto Analysis',
-    'News',
-    'Market Data',
-    'Altcoins',
-    'Investment Strategy'
+    'Bitcoin Calculator', 'Freedom Calculator', 'MSTY Strategy', 'MicroStrategy',
+    'NFT Collections', 'Art Gallery', 'PFP Generator', 'Prints',
+    'Portugal Guide', 'Real Estate', 'Airstream', 'Dubai Luxury',
+    'Ledger Wallet', 'Node Setup', 'Lightning Network', 'Mining',
+    'AI Tools', 'Voice Assistant', 'Cursor IDE', 'VibeCode',
+    'Ethereum DeFi', 'HyperLiquid', 'Solana', 'Web3 Tools',
+    'Naval Wisdom', 'Fire Movement', 'Bitcoin Documentary', 'Market Analysis'
   ];
 
-  const quickCategories = [
-    { name: 'Tools', icon: '🛠️', description: 'Calculators & utilities' },
-    { name: 'Collections', icon: '🎨', description: 'NFT & art galleries' },
-    { name: 'Analysis', icon: '📊', description: 'Market insights' },
-    { name: 'Education', icon: '📚', description: 'Learning resources' }  
+  const featuredContent = [
+    { title: 'Bitcoin Core Education', url: '/platforms/msty/bitcoin', description: 'Master the fundamentals of Bitcoin' },
+    { title: 'MicroStrategy Strategy', url: '/platforms/msty/mstr', description: 'Corporate Bitcoin adoption playbook' },
+    { title: 'Bitcoin Documentary', url: '/docu', description: 'Essential viewing for Bitcoin understanding' },
+  ];
+
+  const categoryData: CategorySection[] = [
+    {
+      title: 'Bitcoin Strategy',
+      icon: Bitcoin,
+      description: 'Master Bitcoin fundamentals and build robust long-term strategies',
+      subcategories: [
+        {
+          name: 'Core Bitcoin',
+          items: ['Bitcoin Basics', 'Whitepaper', 'MicroStrategy', 'MSTY', 'Strike', 'Nakamoto', 'Treasury Holdings']
+        },
+        {
+          name: 'Mining & Infrastructure', 
+          items: ['S9 Pro', 'Bitaxe', 'Node Setup', 'MARA', 'Lightning Network', '21 Energy']
+        },
+        {
+          name: 'Investment Tools',
+          items: ['Calculator', 'Cost of Living', 'Max Pain', 'Liquidity Analysis', 'Portfolio Tools']
+        }
+      ]
+    },
+    {
+      title: 'DeFi & Web3',
+      icon: Zap,
+      description: 'Explore decentralized finance and Web3 technologies with a Bitcoin-first approach',
+      subcategories: [
+        {
+          name: 'DeFi Platforms',
+          items: ['Ethereum', 'HyperLiquid', 'Aave', 'Solana', 'Sui', 'EtherFi']
+        },
+        {
+          name: 'NFTs & Collections',
+          items: ['Collections', 'PFP', 'Gallery', 'Art', 'Prints', '1-on-1']
+        },
+        {
+          name: 'Web3 Tools',
+          items: ['Fairmint', 'Otonomos', 'Abra', 'FireFish']
+        }
+      ]
+    },
+    {
+      title: 'Lifestyle & Travel',
+      icon: MapPin,
+      description: 'Live the Bitcoin lifestyle while exploring the world',
+      subcategories: [
+        {
+          name: 'European Destinations',
+          items: ['Portugal', 'Spain', 'France', 'Italy', 'Switzerland']
+        },
+        {
+          name: 'Alternative Living',
+          items: ['Real Estate', 'Mobile Homes', 'Airstream', 'Catamaran', 'Smart Home', 'Land', 'EcoFlow']
+        },
+        {
+          name: 'Luxury Destinations',
+          items: ['Dubai', 'Costa Rica', 'Maldives', 'Biarritz', 'Private Jet', 'Helicopter']
+        }
+      ]
+    },
+    {
+      title: 'Tools & Resources',
+      icon: Wrench,
+      description: 'Comprehensive suite of tools for your Bitcoin journey',
+      subcategories: [
+        {
+          name: 'Hardware & Security',
+          items: ['Ledger', 'Coinbase', 'Sparrow Wallet']
+        },
+        {
+          name: 'Analytics & Research',
+          items: ['Sonar', 'Quality Analysis', 'Monaco', 'SharpLink']
+        },
+        {
+          name: 'The Degens Guide',
+          items: ['Pump Not Fun', 'Grind', '6fig Hell', 'Fire Movement']
+        }
+      ]
+    },
+    {
+      title: 'Community & Culture',
+      icon: Users,
+      description: 'Join our vibrant community of Bitcoin enthusiasts',
+      subcategories: [
+        {
+          name: 'Lifestyle & Health',
+          items: ['Tesla', 'Training', 'Wine Tasting', 'Pool Life']
+        },
+        {
+          name: 'Content & Media',
+          items: ['Bitcoin Documentary', 'Zero', 'Naval Wisdom', 'Time Management']
+        },
+        {
+          name: 'Voice & AI',
+          items: ['Voice Assistant', 'AI Tools', 'VibeCode', 'Cursor IDE', 'DGX Spark']
+        }
+      ]
+    }
   ];
 
   useEffect(() => {
@@ -114,8 +220,15 @@ export default function SearchPage() {
     handleSearch(suggestion);
   };
 
+  const toggleCategory = (categoryTitle: string) => {
+    setExpandedCategory(expandedCategory === categoryTitle ? null : categoryTitle);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Premium header accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-500 to-transparent"></div>
+      
       {/* Header with Logo */}
       <div className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -135,7 +248,7 @@ export default function SearchPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Search Section */}
         <div className={cn(
           "transition-all duration-300",
@@ -151,12 +264,14 @@ export default function SearchPage() {
                 height={120}
                 className="w-30 h-30 mx-auto mb-6"
               />
-              <h1 className="font-boska text-4xl md:text-6xl text-yellow-500 mb-4">
-                Find Anything
+              <h1 className="text-center">
+                <span className="text-6xl md:text-8xl font-bold text-yellow-500 tracking-tight [text-shadow:_0_1px_20px_rgba(234,179,8,0.3)] font-satoshi">
+                  Find Anything
+                </span>
               </h1>
               <p className="text-gray-400 text-lg max-w-2xl mx-auto">
                 Search through our Bitcoin education, NFT collections, market analysis, 
-                tools, and more. Your gateway to financial freedom starts here.
+                lifestyle guides, tools, and more. Your gateway to financial freedom starts here.
               </p>
             </div>
           )}
@@ -171,7 +286,7 @@ export default function SearchPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Search Bitcoin education, NFTs, tools, analysis..."
+                placeholder="Search Bitcoin education, NFTs, tools, lifestyle guides, travel..."
                 className="w-full pl-12 pr-4 py-4 bg-gray-900 border-2 border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors text-lg"
               />
             </div>
@@ -208,16 +323,47 @@ export default function SearchPage() {
           </div>
         </div>
 
+        {/* Featured Content - Only show before first search */}
+        {!hasSearched && (
+          <div className="mb-12">
+            <h2 className="text-xl font-medium text-yellow-500 mb-6 flex items-center">
+              <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+              Featured Content
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {featuredContent.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.url}
+                  className="p-6 bg-[#1c1f26] hover:bg-gray-800 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] transition-all group"
+                >
+                  <h3 className="font-medium text-white group-hover:text-yellow-500 transition-colors mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-400">{item.description}</p>
+                  <div className="flex items-center mt-3 text-yellow-500">
+                    <span className="text-sm">Explore</span>
+                    <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Popular Searches - Only show before first search */}
         {!hasSearched && (
           <div className="mb-12">
-            <h2 className="text-lg font-medium text-gray-300 mb-4">Popular Searches</h2>
+            <h2 className="text-xl font-medium text-yellow-500 mb-6 flex items-center">
+              <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+              Popular Searches
+            </h2>
             <div className="flex flex-wrap gap-2">
               {popularSearches.map((search, index) => (
                 <button
                   key={index}
                   onClick={() => handleSuggestionClick(search)}
-                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm text-gray-300 transition-colors"
+                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   {search}
                 </button>
@@ -226,24 +372,70 @@ export default function SearchPage() {
           </div>
         )}
 
-        {/* Quick Categories - Only show before first search */}
+        {/* Comprehensive Categories - Only show before first search */}
         {!hasSearched && (
           <div className="mb-12">
-            <h2 className="text-lg font-medium text-gray-300 mb-6">Browse by Category</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {quickCategories.map((category, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleSuggestionClick(category.name)}
-                  className="p-6 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-lg transition-colors text-left group"
-                >
-                  <div className="text-2xl mb-3">{category.icon}</div>
-                  <h3 className="font-medium text-white group-hover:text-yellow-500 transition-colors">
-                    {category.name}
-                  </h3>
-                  <p className="text-sm text-gray-400 mt-1">{category.description}</p>
-                </button>
-              ))}
+            <h2 className="text-xl font-medium text-yellow-500 mb-6 flex items-center">
+              <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+              Browse by Category
+            </h2>
+            <div className="space-y-4">
+              {categoryData.map((category, index) => {
+                const IconComponent = category.icon;
+                const isExpanded = expandedCategory === category.title;
+                
+                return (
+                  <div
+                    key={index}
+                    className="bg-[#1c1f26] border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]"
+                  >
+                    <button
+                      onClick={() => toggleCategory(category.title)}
+                      className="w-full p-6 text-left hover:bg-gray-800 transition-colors flex items-center justify-between"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <IconComponent className="h-6 w-6 text-yellow-500" />
+                        <div>
+                          <h3 className="font-medium text-yellow-500 text-lg">
+                            {category.title}
+                          </h3>
+                          <p className="text-sm text-gray-400 mt-1">{category.description}</p>
+                        </div>
+                      </div>
+                      <ChevronRight 
+                        className={cn(
+                          "h-5 w-5 text-yellow-500 transition-transform duration-200",
+                          isExpanded && "rotate-90"
+                        )} 
+                      />
+                    </button>
+                    
+                    {isExpanded && (
+                      <div className="px-6 pb-6">
+                        <div className="grid md:grid-cols-3 gap-6 pt-4 border-t border-gray-700">
+                          {category.subcategories.map((subcat, subIndex) => (
+                            <div key={subIndex} className="space-y-3">
+                              <h4 className="font-medium text-white">{subcat.name}</h4>
+                              <ul className="space-y-2">
+                                {subcat.items.map((item, itemIndex) => (
+                                  <li key={itemIndex}>
+                                    <button
+                                      onClick={() => handleSuggestionClick(item)}
+                                      className="text-gray-400 hover:text-yellow-500 transition-colors text-sm"
+                                    >
+                                      {item}
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -314,7 +506,7 @@ export default function SearchPage() {
                   Try different keywords or browse our popular content below.
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {popularSearches.slice(0, 5).map((search, index) => (
+                  {popularSearches.slice(0, 8).map((search, index) => (
                     <button
                       key={index}
                       onClick={() => handleSuggestionClick(search)}
@@ -328,6 +520,38 @@ export default function SearchPage() {
             )}
           </div>
         )}
+
+        {/* About LiveTheLifeTV - Always show at bottom */}
+        <div className="mt-16 mb-12">
+          <div className="bg-[#1c1f26] p-8 border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h2 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              🎯 Our Mission
+            </h2>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg">
+                We believe in &ldquo;Fix Money, Fix The World.&rdquo; Life isn&rsquo;t about accumulating the biggest stack - it&rsquo;s about living your best life with Bitcoin. Our platform provides educational resources and tools to help you achieve financial freedom while embracing life&rsquo;s true value.
+              </p>
+              <p className="text-lg">
+                If you&rsquo;re new here, start with our <Link href="/docu" className="text-yellow-500 hover:text-yellow-400 transition-colors">featured Bitcoin documentary</Link> and the <Link href="/platforms/msty/bitcoin" className="text-yellow-500 hover:text-yellow-400 transition-colors">Bitcoin page</Link>. Our core focus is Bitcoin, and everything else is research to help you live the life you want. We&rsquo;re leveraging AI through vibe coding to create content that will help fine-tune our bespoke model.
+              </p>
+              <p className="text-lg">
+                Yes, this app might feel like a hot mess - because it is! We&rsquo;re exploring the intersection of Bitcoin, AI, and lifestyle. For crypto veterans: while most altcoins are going to zero, we dive deep into the few dozen projects actually shipping innovative solutions. We trade them hoping for short-term outperformance against Bitcoin, but always swap back to our core Bitcoin stack. Check out our <Link href="/col" className="text-yellow-500 hover:text-yellow-400 transition-colors">cost of living analysis</Link> to see how we measure everything in Bitcoin and satoshis.
+              </p>
+              <p className="text-lg">
+                Our daily routine? Check Mando Minutes for news, monitor Bitcoin price, and review our <Link href="/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">watchlist</Link> for potential <Link href="/crypto" className="text-yellow-500 hover:text-yellow-400 transition-colors">outperformers</Link>. We write deep dives on projects that could impact our industry - from <Link href="/altcoins" className="text-yellow-500 hover:text-yellow-400 transition-colors">HyperLiquid and Sui to Solana, Ethereum, and OG memes like DOGE</Link>. We track traditional finance&rsquo;s embrace of Bitcoin after a decade of resistance, focusing on major players like MicroStrategy by Saylor and 21 by Jack, plus innovative products like MSTY, Stride, and Strike.
+              </p>
+              <p className="text-lg">
+                Beyond trading, we&rsquo;re passionate about digital art - creating, curating, and collecting. Our lifestyle thesis in the About section shares insights from our 20+ years in travel and real estate, documenting our journey through the past, present, and future of this space.
+              </p>
+              <p className="text-lg">
+                Above all, <Link href="/assets" className="text-yellow-500 hover:text-yellow-400 transition-colors">stay hungry, stay curious</Link>. Use our <Link href="/voice" className="text-yellow-500 hover:text-yellow-400 transition-colors">voice AI</Link> to ask questions and explore. Our platform is your gateway to understanding Bitcoin, leveraging AI, and living life on your own terms.
+              </p>
+              <p className="text-lg">
+                If Bitcoin seems too good to be true, that&rsquo;s because it is - but not in the way you might think. It&rsquo;s not a <Link href="/downbad" className="text-yellow-500 hover:text-yellow-400 transition-colors">get-rich-quick scheme or a magical solution</Link>. It&rsquo;s a fundamental shift in how we think about money, value, and freedom. The system isn&rsquo;t broken - it&rsquo;s working exactly as designed to extract value from your labor. Bitcoin isn&rsquo;t trying to sell you something or pump your bags. It just... is. A mathematical truth, a monetary rebellion, and your final protest vote against a system that turned your hard work into &ldquo;clown coupons.&rdquo; You won&rsquo;t &ldquo;buy Bitcoin someday&rdquo; - you&rsquo;ll buy Bitcoin, or you&rsquo;ll own nothing. The choice is yours. <Link href="/downbad" className="text-yellow-500 hover:text-yellow-400 transition-colors">Learn more about why we&rsquo;re down bad</Link> and <Link href="/maxpain" className="text-yellow-500 hover:text-yellow-400 transition-colors">understand Bitcoin&rsquo;s market cycles</Link>.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
