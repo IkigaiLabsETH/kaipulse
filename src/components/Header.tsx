@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useState, useRef, useEffect } from 'react';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search } from 'lucide-react';
 
 // Define types for our navigation items
 type SubItem = {
@@ -169,9 +169,9 @@ export function Header() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-center h-16">
             {/* Desktop nav - centered layout */}
-            <div className="hidden md:flex items-center justify-center space-x-1 lg:space-x-2">
+            <div className="hidden md:flex items-center justify-between w-full">
               {/* Logo on the left */}
-              <Link href="/" className="flex items-center space-x-2 min-w-0 group mr-4 lg:mr-8">
+              <Link href="/" className="flex items-center space-x-2 min-w-0 group">
                 <div className="relative">
                   <Image
                     src="/IKIGAI_LABS_logo.svg"
@@ -200,8 +200,9 @@ export function Header() {
                 </div>
               </Link>
               
-              {/* Navigation items */}
-              {navigation.map((item) => (
+              {/* Navigation items - centered */}
+              <div className="flex items-center space-x-1 lg:space-x-2">
+                {navigation.map((item) => (
                 <div 
                   key={item.name} 
                   className="relative" 
@@ -317,7 +318,23 @@ export function Header() {
                     </Link>
                   )}
                 </div>
-              ))}
+                ))}
+              </div>
+              
+              {/* Search icon on the right */}
+              <div className="flex items-center">
+                <Link
+                  href="/search"
+                  className="flex items-center justify-center p-2 rounded-full text-yellow-400 hover:text-yellow-300 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 relative overflow-hidden group"
+                  aria-label="Search"
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 rounded-full" 
+                    style={{ transition: 'opacity 0.3s ease' }}
+                  />
+                  <Search className="w-5 h-5 relative z-10" />
+                </Link>
+              </div>
             </div>
             
             {/* Mobile view with logo and hamburger */}
@@ -351,8 +368,21 @@ export function Header() {
                 </div>
               </Link>
               
-              {/* Mobile hamburger */}
-              <button
+              {/* Mobile search and hamburger */}
+              <div className="flex items-center space-x-2">
+                <Link
+                  href="/search"
+                  className="flex items-center justify-center p-2 rounded-full text-yellow-400 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 relative overflow-hidden group"
+                  aria-label="Search"
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 rounded-full" 
+                    style={{ transition: 'opacity 0.3s ease' }}
+                  />
+                  <Search className="w-5 h-5 relative z-10" />
+                </Link>
+                
+                <button
                 className="flex items-center justify-center p-2 rounded-full text-yellow-400 hover:bg-yellow-500/10 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 relative overflow-hidden group"
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
                 onClick={() => setMenuOpen((open) => !open)}
@@ -388,7 +418,8 @@ export function Header() {
                     />
                   )}
                 </motion.svg>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
           
@@ -403,6 +434,26 @@ export function Header() {
                 className="md:hidden mt-2 bg-black/95 backdrop-blur-xl rounded-md shadow-lg shadow-black/20 border border-yellow-500/20 overflow-hidden"
               >
                 <div className="flex flex-col py-2">
+                  {/* Search option for mobile */}
+                  <Link
+                    href="/search"
+                    className={cn(
+                      "relative flex items-center px-4 py-3 text-base font-bold transition-colors group",
+                      pathname === '/search' ? "text-yellow-400 bg-yellow-500/5" : "text-white/70 hover:text-white"
+                    )}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <Search className="w-5 h-5 mr-3" />
+                    SEARCH
+                    {pathname === '/search' && (
+                      <motion.div
+                        layoutId="activeMobileSearchTab"
+                        className="absolute left-0 w-[3px] top-0 bottom-0 bg-yellow-500"
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                  
                   {navigation.map((item) => (
                     <div key={item.name} className="relative">
                       {item.dropdown ? (
