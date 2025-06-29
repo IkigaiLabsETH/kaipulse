@@ -210,6 +210,185 @@ export default function NeuralinkPage() {
             </div>
           </div>
 
+          {/* Alzheimer's Disease Research */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Alzheimer&apos;s Disease Research
+            </h3>
+            <div className="space-y-6">
+              <p className="text-lg text-gray-300">
+                While Neuralink&apos;s current clinical trials focus on paralysis and ALS, the company has expressed significant interest in addressing Alzheimer&apos;s disease, particularly in early-stage cases. As of June 2025, no specific Alzheimer&apos;s trials have been announced, but Elon Musk&apos;s statements and the company&apos;s broader neurological goals suggest this neurodegenerative disease represents a major future application.
+              </p>
+              
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Current Status and Executive Statements:</h4>
+                <div className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Musk&apos;s October 2024 Statement:</h5>
+                      <div className="bg-yellow-500/10 p-3 rounded border border-yellow-500/20">
+                        <p className="text-white/80 font-satoshi italic text-sm">
+                          &quot;Early stage, yes, but only limited help is possible for late stage Alzheimer&apos;s, as there is too much neuronal loss.&quot;
+                        </p>
+                        <p className="text-yellow-400 text-xs mt-1">- Elon Musk, X (October 29, 2024)</p>
+                      </div>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Previous Commitments:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>April 2022: Current generation could help with Alzheimer&apos;s</li>
+                        <li>Advanced cases involve macro degeneration challenges</li>
+                        <li>Focus on early-stage intervention potential</li>
+                        <li>Part of broader neurological conditions mission</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Early-Stage Potential:</h4>
+                  <div className="space-y-3">
+                    <p className="text-white/80 font-satoshi">
+                      Neuralink&apos;s approach to Alzheimer&apos;s focuses on early-stage interventions where neuronal loss is limited and brain plasticity remains. The technology could potentially monitor disease progression and provide therapeutic stimulation.
+                    </p>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>Neural activity tracking for disease monitoring</li>
+                      <li>Deep brain stimulation for symptom management</li>
+                      <li>Memory formation and retrieval assistance</li>
+                      <li>Cognitive function preservation strategies</li>
+                      <li>Real-time brain health assessment</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Technical Approach:</h4>
+                  <div className="space-y-3">
+                    <p className="text-white/80 font-satoshi">
+                      Summer 2025 updates revealed plans to access deeper brain regions, including the limbic system, which could be crucial for Alzheimer&apos;s intervention. The N1 implant&apos;s ability to both read and stimulate neural activity offers multiple therapeutic pathways.
+                    </p>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>Limbic system electrode placement</li>
+                      <li>Memory circuit monitoring and stimulation</li>
+                      <li>Hippocampal function enhancement</li>
+                      <li>Neural pathway restoration attempts</li>
+                      <li>Cognitive load distribution optimization</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Research and Development Timeline:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    While no specific Alzheimer&apos;s clinical trials have been announced, the disease appears as a long-term goal within Neuralink&apos;s broader neurological conditions roadmap. Current focus remains on paralysis and ALS, with neurodegenerative diseases as future applications.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Current Priorities (2025):</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>PRIME Study (paralysis)</li>
+                        <li>Convoy Study (robotic arms)</li>
+                        <li>Blindsight development</li>
+                        <li>Communication restoration</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Near-term Goals:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Deeper brain region access</li>
+                        <li>Neurological condition expansion</li>
+                        <li>Psychiatric disorder applications</li>
+                        <li>Technology platform maturation</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Future Vision:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Alzheimer&apos;s early-stage trials</li>
+                        <li>Dementia prevention strategies</li>
+                        <li>Memory enhancement applications</li>
+                        <li>Cognitive aging interventions</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Challenges and Limitations:</h4>
+                <div className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Scientific Challenges:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Late-stage neuronal loss limitations</li>
+                        <li>Complex disease progression patterns</li>
+                        <li>Individual variation in symptoms</li>
+                        <li>Limited understanding of neural restoration</li>
+                        <li>Long-term safety in aging brains</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Regulatory and Ethical Hurdles:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Vulnerable population considerations</li>
+                        <li>Consent capacity in cognitive decline</li>
+                        <li>Long-term care responsibilities</li>
+                        <li>Cost accessibility for elderly patients</li>
+                        <li>Family decision-making complexities</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-4 bg-yellow-500/10 rounded border border-yellow-500/20">
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Stage-Specific Approach:</h5>
+                    <p className="text-white/80 font-satoshi">
+                      Neuralink&apos;s strategy emphasizes early-stage Alzheimer&apos;s intervention, where brain tissue remains viable for technological integration. Late-stage cases, with significant neuronal loss and brain atrophy, present substantially greater challenges that may limit technological intervention effectiveness.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Industry Context and Competition:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    While Neuralink explores Alzheimer&apos;s applications, other neurotechnology companies and research institutions are also investigating brain-computer interfaces for neurodegenerative diseases. The field represents a convergence of aging population needs and advancing neurotechnology capabilities.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Market Opportunity:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>50+ million global Alzheimer&apos;s patients</li>
+                        <li>Growing aging population worldwide</li>
+                        <li>Massive healthcare cost burden</li>
+                        <li>Limited current treatment options</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Research Landscape:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Academic institution collaborations</li>
+                        <li>Pharmaceutical company partnerships</li>
+                        <li>Government research funding</li>
+                        <li>International research consortiums</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 p-6 bg-yellow-500/10 rounded border border-yellow-500/30">
+                <h4 className="text-xl font-bold text-yellow-500 mb-3">Current Assessment</h4>
+                <p className="text-white/80 font-satoshi">
+                  As of June 2025, Alzheimer&apos;s disease remains a speculative future application for Neuralink rather than an immediate clinical priority. While Elon Musk&apos;s statements indicate genuine interest and the technology shows theoretical potential, no specific timelines, clinical trials, or detailed development plans have been announced. Progress will likely depend on successful completion of current paralysis trials, regulatory approval expansion, and continued technological advancement in accessing deeper brain regions.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Technological Enhancement Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
