@@ -73,6 +73,9 @@ export default function OptionsPage() {
             <p className="text-lg">
               Selling covered calls on Tesla (TSLA) is a strategy where you own the stock and sell call options to earn premiums. This can be particularly effective given Tesla&apos;s volatility, which often leads to higher option premiums. It&apos;s a way to generate income while potentially capping your upside if the stock rises above the strike price.
             </p>
+            <p className="text-lg mt-6 italic text-yellow-200">
+              While we&apos;re discussing selling volatility through covered calls, it&apos;s worth noting that Michael Saylor didn&apos;t just buy Bitcoin—he invented the playbook. He sold future volatility to debt markets, raised billions, and bought BTC with it, essentially turning MicroStrategy stock into a Bitcoin-powered call option. Now others are copying this leveraged approach to volatility arbitrage.
+            </p>
           </SectionCard>
           
           <div className="grid md:grid-cols-2 gap-10">
