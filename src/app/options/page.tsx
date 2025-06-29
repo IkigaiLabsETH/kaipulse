@@ -153,6 +153,199 @@ export default function OptionsPage() {
             </div>
           </SectionCard>
 
+          <SectionCard title="Institutional Desk Behavior: The Covered Call Recycling Machine">
+            <div className="space-y-8">
+                <SubSection title="The Systematic Playbook">
+                    <p>Professional trading desks run covered call programs as systematic yield-generation strategies. Here&apos;s how the machine works:</p>
+                    <div className="bg-black/30 p-6 rounded-none border border-yellow-500/30">
+                        <p className="font-mono text-sm">
+                            <strong className="text-yellow-400">Covered Call Formula:</strong><br/>
+                            Long Spot (TSLA/BTC) + Short OTM Call = Premium Income
+                        </p>
+                    </div>
+                    <ul className="list-disc list-inside space-y-2">
+                        <li><strong className="text-yellow-400">Collect premium up-front:</strong> Steady, bond-like &quot;yield&quot; regardless of outcome</li>
+                        <li><strong className="text-yellow-400">If expires below strike:</strong> Keep premium + underlying asset</li>
+                        <li><strong className="text-yellow-400">If expires above strike:</strong> Get &quot;called away&quot; but keep premium</li>
+                    </ul>
+                    <p>Either way, the premium is theirs. The only difference is whether they still hold the underlying afterward.</p>
+                </SubSection>
+
+                <SubSection title="Why Re-buy Spot After Expiry?">
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <div className="bg-red-900/20 p-6 rounded-none border border-red-500/30">
+                            <h5 className="text-lg font-bold text-red-400 mb-3">Scenario A: Called Away</h5>
+                            <ul className="list-disc list-inside space-y-2 text-sm">
+                                <li>Their Tesla shares got delivered to call buyer → now flat</li>
+                                <li>But their mandate requires running the same program next month</li>
+                                <li>→ Immediately buy spot to reload inventory</li>
+                                <li>→ Sell next batch of calls</li>
+                            </ul>
+                        </div>
+                        <div className="bg-blue-900/20 p-6 rounded-none border border-blue-500/30">
+                            <h5 className="text-lg font-bold text-blue-400 mb-3">Scenario B: Not Called Away</h5>
+                            <ul className="list-disc list-inside space-y-2 text-sm">
+                                <li>Still hold Tesla, but delta is now &quot;un-hedged&quot;</li>
+                                <li>Some desks neutralize P/L by being flat gamma over weekends</li>
+                                <li>→ Temporarily sell part of spot before expiry</li>
+                                <li>→ Repurchase once options are off books</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="bg-yellow-900/20 p-4 rounded-none border border-yellow-500/30 mt-4">
+                        <p className="text-yellow-200"><strong>Net Effect:</strong> Predictable post-expiry demand from covered-call sellers who need fresh underlying for new cycles or hedge resets.</p>
+                    </div>
+                </SubSection>
+
+                <SubSection title="Market Impact Mechanics">
+                    <div className="space-y-4">
+                        <div className="bg-gray-900/50 p-6 rounded-none border border-gray-500/30">
+                            <h5 className="text-lg font-bold text-gray-300 mb-3">Into Expiry (Pinning Effect)</h5>
+                            <p className="text-sm">Short calls keep dealers long gamma → dealers sell rallies/buy dips → price gravitates toward popular strikes (&quot;pinning&quot;)</p>
+                        </div>
+                        <div className="bg-green-900/20 p-6 rounded-none border border-green-500/30">
+                            <h5 className="text-lg font-bold text-green-400 mb-3">After Expiry (The Reload)</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm">
+                                <li>Pin evaporates</li>
+                                <li>Covered-call desks buy spot</li>
+                                <li>Dealers unwind hedges</li>
+                                <li>IV often pops a few vol points</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p className="text-yellow-200 italic">This is why Tesla (and crypto like BTC) sometimes catches a mild bid in the 24-48h after big option maturities.</p>
+                </SubSection>
+
+                <SubSection title="Why Institutions Bother with This Strategy">
+                    <div className="grid md:grid-cols-3 gap-4">
+                        <div className="bg-purple-900/20 p-4 rounded-none border border-purple-500/30">
+                            <h6 className="font-bold text-purple-400 mb-2">Yield Environment</h6>
+                            <p className="text-sm">With real rates &gt; 0 and traditional carry trades offering skinny yields, covered calls are one of the few scalable yield trades left.</p>
+                        </div>
+                        <div className="bg-orange-900/20 p-4 rounded-none border border-orange-500/30">
+                            <h6 className="font-bold text-orange-400 mb-2">Stacked Income</h6>
+                            <p className="text-sm">Institutions love multiple income streams: premium + potential dividends + basis when futures trade rich.</p>
+                        </div>
+                        <div className="bg-pink-900/20 p-4 rounded-none border border-pink-500/30">
+                            <h6 className="font-bold text-pink-400 mb-2">Mandate Match</h6>
+                            <p className="text-sm">They accept capped upside because their mandate is income generation, not lottery tickets.</p>
+                        </div>
+                    </div>
+                </SubSection>
+
+                <SubSection title="The Covered Call Contingent">
+                    <p>Who runs these systematic programs?</p>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h6 className="font-bold text-yellow-400 mb-3">Traditional Markets (TSLA, etc.)</h6>
+                            <ul className="list-disc list-inside space-y-1 text-sm">
+                                <li>Covered call ETFs (JEPI, QYLD)</li>
+                                <li>Pension funds with income mandates</li>
+                                <li>Market-neutral hedge funds</li>
+                                <li>Institutional wealth managers</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h6 className="font-bold text-yellow-400 mb-3">Crypto Markets</h6>
+                            <ul className="list-disc list-inside space-y-1 text-sm">
+                                <li>Crypto lending desks</li>
+                                <li>Market-neutral crypto funds</li>
+                                <li>Covered-call crypto ETFs (YBTC)</li>
+                                <li>Mining companies hedging production</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p className="text-yellow-200 mt-4"><strong>Key Insight:</strong> Because they must roll every expiry, their flows are quasi-mechanical — making them predictable for professional traders to anticipate.</p>
+                </SubSection>
+
+                <SubSection title="Data: Post-Expiry Patterns in Bitcoin (Proxy for High-Vol Assets)">
+                    <p>Here&apos;s what typically happens around major option expiries, using Bitcoin as a proxy for high-volatility assets like Tesla:</p>
+                    <div className="overflow-x-auto mt-4">
+                        <table className="w-full text-left border-collapse bg-black/30">
+                            <thead>
+                                <tr className="border-b border-yellow-500/50">
+                                    <th className="p-3 text-yellow-400">Deribit Quarterly Expiry</th>
+                                    <th className="p-3 text-yellow-400">-48h → Expiry</th>
+                                    <th className="p-3 text-yellow-400">Expiry → +48h</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-sm">
+                                <tr className="border-b border-gray-600/30">
+                                    <td className="p-3">29 Mar 2024</td>
+                                    <td className="p-3 text-green-400">+0.63%</td>
+                                    <td className="p-3 text-green-400">+2.06%</td>
+                                </tr>
+                                <tr className="border-b border-gray-600/30">
+                                    <td className="p-3">28 Jun 2024</td>
+                                    <td className="p-3 text-red-400">-0.81%</td>
+                                    <td className="p-3 text-green-400">+3.91%</td>
+                                </tr>
+                                <tr className="border-b border-gray-600/30">
+                                    <td className="p-3">27 Sep 2024</td>
+                                    <td className="p-3 text-green-400">+4.19%</td>
+                                    <td className="p-3 text-red-400">-0.24%</td>
+                                </tr>
+                                <tr className="border-b border-gray-600/30">
+                                    <td className="p-3">27 Dec 2024</td>
+                                    <td className="p-3 text-red-400">-5.17%</td>
+                                    <td className="p-3 text-red-400">-0.67%</td>
+                                </tr>
+                                <tr className="border-b border-gray-600/30">
+                                    <td className="p-3">28 Mar 2025</td>
+                                    <td className="p-3 text-red-400">-2.93%</td>
+                                    <td className="p-3 text-red-400">-2.39%</td>
+                                </tr>
+                                <tr>
+                                    <td className="p-3">27 Jun 2025</td>
+                                    <td className="p-3 text-red-400">-0.25%</td>
+                                    <td className="p-3 text-green-400">+0.22%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div className="mt-6 space-y-4">
+                        <h6 className="font-bold text-yellow-400">What the Numbers Tell Us:</h6>
+                        <div className="grid md:grid-cols-3 gap-4">
+                            <div className="bg-red-900/20 p-4 rounded-none border border-red-500/30">
+                                <h6 className="font-bold text-red-400 mb-2">Pre-Expiry Softness</h6>
+                                <p className="text-xs">Spot drifts or sells off modestly into expiry (dealers long-gamma, selling rallies and buying dips)</p>
+                            </div>
+                            <div className="bg-green-900/20 p-4 rounded-none border border-green-500/30">
+                                <h6 className="font-bold text-green-400 mb-2">Post-Expiry Bid</h6>
+                                <p className="text-xs">Covered-call contingent re-buys to reload inventory before writing next month&apos;s calls</p>
+                            </div>
+                            <div className="bg-orange-900/20 p-4 rounded-none border border-orange-500/30">
+                                <h6 className="font-bold text-orange-400 mb-2">Macro Exceptions</h6>
+                                <p className="text-xs">Dec 2024 & Mar 2025 dominated by risk-off flows, swamping usual patterns</p>
+                            </div>
+                        </div>
+                    </div>
+                </SubSection>
+
+                <SubSection title="Trade-Craft Takeaways for Tesla Options">
+                    <div className="space-y-4">
+                        <div className="bg-blue-900/20 p-4 rounded-none border border-blue-500/30">
+                            <h6 className="font-bold text-blue-400 mb-2">🎯 Expect Pinning</h6>
+                            <p className="text-sm">Into monthly Tesla option expiries, long-gamma dealers clamp intraday moves around popular strikes</p>
+                        </div>
+                        <div className="bg-green-900/20 p-4 rounded-none border border-green-500/30">
+                            <h6 className="font-bold text-green-400 mb-2">📈 Watch Post-Expiry Action</h6>
+                            <p className="text-sm">Monitor unusual volume in Tesla stock on Monday after third Friday expiries - often marks institutional re-buy waves</p>
+                        </div>
+                        <div className="bg-yellow-900/20 p-4 rounded-none border border-yellow-500/30">
+                            <h6 className="font-bold text-yellow-400 mb-2">⚡ IV Reset Opportunities</h6>
+                            <p className="text-sm">Implied volatility often resets higher after big maturities, making fresh call overwriting attractive again</p>
+                        </div>
+                        <div className="bg-purple-900/20 p-4 rounded-none border border-purple-500/30">
+                            <h6 className="font-bold text-purple-400 mb-2">🚨 Fade Wisely</h6>
+                            <p className="text-sm">Only fade the first post-expiry bounce when macro headwinds are strong (earnings, Fed meetings, etc.)</p>
+                        </div>
+                    </div>
+                </SubSection>
+            </div>
+          </SectionCard>
+
           <div className="my-24">
             <InteractiveTradePlaybook />
           </div>
