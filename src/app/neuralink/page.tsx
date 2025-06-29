@@ -112,35 +112,97 @@ export default function NeuralinkPage() {
             </div>
           </div>
 
-          {/* Medical Impact Section */}
+                    {/* Medical Impact Section */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Medical Impact
             </h3>
             <div className="space-y-6">
               <p className="text-lg text-gray-300">
-                                 Neuralink&apos;s brain-machine interfaces (BMIs) show promise in restoring function for paralyzed individuals, with early trials allowing users like Noland Arbaugh to control computers and play games using thought alone. It also aims to restore vision through its Blindsight product, which received FDA &quot;breakthrough device designation&quot; in September 2025, potentially transforming lives for those with neurological conditions.
+                Neuralink&apos;s N1 implant, featuring 1,024 ultra-thin electrode threads, has achieved remarkable success in restoring motor function for paralyzed individuals. The first patient, 29-year-old Noland Arbaugh, paralyzed below the shoulders, has regained digital autonomy through thought-controlled interfaces, even playing Civilization VI for hours - an activity he had &quot;basically given up&quot; after his accident.
               </p>
               
               <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                <h4 className="text-xl font-bold text-yellow-500 mb-4">Current Achievements:</h4>
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Breakthrough Patient Achievements:</h4>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <h5 className="text-yellow-400 font-epilogue mb-2">Paralysis Treatment:</h5>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Noland Arbaugh (First Patient):</h5>
                     <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
-                      <li>Computer cursor control via thought</li>
-                      <li>Gaming with mind commands</li>
-                      <li>Mouse control using neural signals</li>
-                      <li>Restoration of digital autonomy</li>
+                      <li>Chess gameplay via thought control</li>
+                      <li>Hours of Civilization VI gaming</li>
+                      <li>Social media posting with mind</li>
+                      <li>Computer cursor precision control</li>
                     </ul>
                   </div>
                   <div>
-                    <h5 className="text-yellow-400 font-epilogue mb-2">Vision Restoration:</h5>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Second Patient Progress:</h5>
                     <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
-                      <li>Blindsight product development</li>
-                      <li>FDA breakthrough designation</li>
-                      <li>Visual cortex stimulation</li>
-                      <li>Limited vision restoration potential</li>
+                      <li>Video game control mastery</li>
+                      <li>Computer-aided design (CAD) software</li>
+                      <li>3D object creation via thought</li>
+                      <li>Advanced digital manipulation</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Vision Restoration - Blindsight Project:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    Blindsight received FDA &quot;Breakthrough Device&quot; designation in September 2024, designed to bypass damaged optic nerves and stimulate the visual cortex directly. Musk claims it &quot;will enable even those who have lost both eyes and their optic nerve to see&quot; and could potentially allow people blind from birth to gain visual perception.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Capabilities:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Direct visual cortex stimulation</li>
+                        <li>Bypasses damaged optic pathways</li>
+                        <li>Potential for congenital blindness treatment</li>
+                        <li>Basic sight restoration goals</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Status:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>FDA Breakthrough Device status</li>
+                        <li>Accelerated development pathway</li>
+                        <li>Human trials pending approval</li>
+                        <li>Revolutionary potential for blindness</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Expanding Medical Applications:</h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Current Targets:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>Spinal cord injuries</li>
+                      <li>ALS patients</li>
+                      <li>Severe paralysis cases</li>
+                      <li>Speech impairment restoration</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Future Conditions:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>Depression treatment</li>
+                      <li>Schizophrenia management</li>
+                      <li>Autism spectrum support</li>
+                      <li>Obesity intervention</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Active Studies:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>PRIME Study (motor function)</li>
+                      <li>Convoy Study (robotic arms)</li>
+                      <li>Communication restoration</li>
+                      <li>International trial expansion</li>
                     </ul>
                   </div>
                 </div>
@@ -155,27 +217,93 @@ export default function NeuralinkPage() {
             </h3>
             <div className="space-y-6">
               <p className="text-lg text-gray-300">
-                Long-term, Neuralink could enable human-AI symbiosis, enhancing cognitive abilities and allowing direct brain-to-brain communication. Current developments include controlling robotic arms, suggesting future possibilities for integrating technology into daily life, though these are still speculative.
+                The N1 implant represents a quantum leap in brain-computer interface technology, featuring 1,024 ultra-thin electrode threads finer than human hair, implanted by a precision R1 robotic surgeon. This wireless, battery-powered device advances beyond earlier BCIs like the Utah Array with its 100 electrodes and wired connections, offering unprecedented resolution and bandwidth.
               </p>
               
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">N1 Implant Technical Specifications:</h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Hardware:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>1,024 ultra-thin electrode threads</li>
+                      <li>Coin-sized chip in skull</li>
+                      <li>Wireless, battery-powered operation</li>
+                      <li>Real-time neural signal processing</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">R1 Surgical Robot:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>Precision thread insertion</li>
+                      <li>~1 hour automated procedure</li>
+                      <li>&quot;One-click&quot; surgery vision</li>
+                      <li>Minimally invasive approach</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
                   <h4 className="text-xl font-bold text-yellow-500 mb-4">Current Capabilities:</h4>
                   <ul className="text-white/80 font-satoshi list-disc list-inside space-y-2">
-                    <li>Robotic arm control</li>
-                    <li>Thought-to-computer interface</li>
-                    <li>Motor cortex signal reading</li>
-                    <li>Real-time neural processing</li>
+                    <li>Decoding intended hand movements</li>
+                    <li>Real-time cursor control</li>
+                    <li>Complex gaming interfaces</li>
+                    <li>CAD software manipulation</li>
+                    <li>Social media interaction</li>
+                    <li>Robotic arm control (Convoy Study)</li>
                   </ul>
                 </div>
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Future Vision:</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Transhumanist Vision:</h4>
                   <ul className="text-white/80 font-satoshi list-disc list-inside space-y-2">
+                    <li>Human-AI symbiosis achievement</li>
+                    <li>&quot;Universal language&quot; brain-to-brain</li>
+                    <li>Memory upload/download capability</li>
+                    <li>&quot;Digital layer above cortex&quot;</li>
                     <li>Enhanced cognitive abilities</li>
-                    <li>Direct brain-to-brain communication</li>
-                    <li>Human-AI symbiosis</li>
-                    <li>Thought-controlled daily devices</li>
+                    <li>New sensory experiences</li>
                   </ul>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Technical Challenges and Limitations:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    Despite remarkable progress, significant challenges remain. Thread retraction due to brain movement has been observed, with some patients experiencing signal loss as electrode threads pull out of target areas. Neuralink has addressed this through software filtering and hardware improvements.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Stability Issues:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Thread retraction over time</li>
+                        <li>Brain movement effects</li>
+                        <li>Signal degradation risks</li>
+                        <li>Long-term biocompatibility</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Technical Barriers:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Neural code understanding</li>
+                        <li>Bidirectional communication</li>
+                        <li>Complex information encoding</li>
+                        <li>Device longevity goals</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Development Focus:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Thinner, more pliable threads</li>
+                        <li>Improved tissue integration</li>
+                        <li>Higher bandwidth capacity</li>
+                        <li>Extended battery life</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -214,34 +342,129 @@ export default function NeuralinkPage() {
             </div>
           </div>
 
-          {/* Economic and Regulatory Challenges */}
+                    {/* Economic and Regulatory Challenges */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Economic and Regulatory Challenges
             </h3>
             <div className="space-y-6">
               <p className="text-lg text-gray-300">
-                                 Neuralink&apos;s $9.05 billion valuation in 2025 and competition from companies like Synchron indicate economic growth, but it faces regulatory scrutiny over animal testing, impacting public trust and adoption.
+                Neuralink&apos;s rapid financial growth, reaching a $9.05 billion valuation through its 2025 Series E round, demonstrates enormous market confidence. However, the company faces significant regulatory scrutiny, particularly over animal testing practices that have resulted in federal investigations and public trust challenges.
               </p>
               
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Funding Trajectory and Investment:</h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">2025 Series E:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>$650 million raised</li>
+                      <li>$9.05 billion valuation</li>
+                      <li>Led by Founders Fund</li>
+                      <li>Total funding exceeds $1B</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Previous Rounds:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>2021: $205 million</li>
+                      <li>2023: $325 million</li>
+                      <li>Valuation doubled since 2023</li>
+                      <li>Sequential growth trajectory</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-2">Investor Base:</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li>Founders Fund (Peter Thiel)</li>
+                      <li>Sequoia Capital</li>
+                      <li>High-profile tech investors</li>
+                      <li>Speculation of $1T potential</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Animal Testing Controversies:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    Federal investigations revealed that 15 of 23 monkeys with Neuralink brain chips at UC Davis (2017-2020) died or were euthanized during experiments. The Physicians Committee for Responsible Medicine filed complaints alleging &quot;extreme suffering&quot; from crude surgeries, infections, and harmful use of BioGlue that allegedly destroyed parts of monkeys&apos; brains.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Regulatory Response:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>USDA Inspector General probe</li>
+                        <li>Animal Welfare Act violations</li>
+                        <li>Federal investigation ongoing</li>
+                        <li>FDA documentation audits</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Company Response:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Musk denies implant-related deaths</li>
+                        <li>Claims animals were terminally ill</li>
+                        <li>Built dedicated testing facility</li>
+                        <li>Refined surgical protocols</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Market Position:</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">FDA Regulatory Process:</h4>
                   <ul className="text-white/80 font-satoshi list-disc list-inside space-y-2">
-                    <li>$9.05 billion valuation (2025)</li>
-                    <li>$650 million recent funding</li>
-                    <li>Potential $1 trillion future value</li>
-                    <li>Growing investor confidence</li>
+                    <li>Initial 2022 application rejected</li>
+                    <li>May 2023: First approval granted</li>
+                    <li>Safety concerns addressed iteratively</li>
+                    <li>Ongoing trial monitoring</li>
+                    <li>Future PMA process required</li>
+                    <li>Separate approvals per application</li>
                   </ul>
                 </div>
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Regulatory Hurdles:</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Additional Scrutiny:</h4>
                   <ul className="text-white/80 font-satoshi list-disc list-inside space-y-2">
-                    <li>SEC investigations</li>
-                    <li>Animal testing controversies</li>
-                    <li>FDA approval processes</li>
+                    <li>SEC investigation requests</li>
+                    <li>Potential investor misleading claims</li>
                     <li>Public trust challenges</li>
+                    <li>Media scrutiny intensification</li>
+                    <li>International regulatory expansion</li>
+                    <li>Peer review publication needs</li>
                   </ul>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">International Expansion and Manufacturing:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    Neuralink is expanding globally with trials approved in Canada and the Middle East, including partnerships with Cleveland Clinic Abu Dhabi and Toronto hospitals. The company is building a large manufacturing facility in Texas to prepare for mass production of both implants and surgical robots.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Global Reach:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Canadian trial approvals</li>
+                        <li>Middle East partnerships</li>
+                        <li>Multi-country regulatory collaboration</li>
+                        <li>International research networks</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Production Scaling:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Texas manufacturing facility</li>
+                        <li>Mass production preparation</li>
+                        <li>Surgical robot manufacturing</li>
+                        <li>Supply chain development</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -332,31 +555,245 @@ export default function NeuralinkPage() {
           {/* Competition and Market */}
           <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
-              Market Competition
+              Market Competition and Industry Landscape
             </h3>
             <div className="space-y-6">
               <p className="text-lg text-gray-300">
-                Neuralink operates in a competitive market with established players like Synchron, Paradromics, Precision Neuroscience, and BlackRock Neurotech, each bringing unique approaches to brain-machine interface technology.
+                While Neuralink commands the spotlight, it faces sophisticated competition in the rapidly expanding neurotechnology sector. Each competitor brings distinct advantages: from Synchron&apos;s less invasive approach to BlackRock Neurotech&apos;s established Utah Array technology. The race is intensifying to achieve the first FDA-approved commercial brain-computer interface.
               </p>
               
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Competitive Landscape Analysis:</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-3">Synchron Inc. - The Safety Leader</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1 mb-4">
+                      <li><strong>Stentrode device:</strong> 5-10 patients tested</li>
+                      <li><strong>Approach:</strong> Blood vessel insertion (no brain surgery)</li>
+                      <li><strong>Advantage:</strong> Less invasive, potentially faster to market</li>
+                      <li><strong>Status:</strong> FDA trial approved, academic partnerships</li>
+                    </ul>
+                    
+                    <h5 className="text-yellow-400 font-epilogue mb-3">BlackRock Neurotech - The Veteran</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li><strong>Technology:</strong> Utah Array electrodes</li>
+                      <li><strong>Experience:</strong> Decades of academic research</li>
+                      <li><strong>Market position:</strong> Established in research sector</li>
+                      <li><strong>Focus:</strong> Proven electrode technology refinement</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-400 font-epilogue mb-3">Precision Neuroscience - The Insider</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1 mb-4">
+                      <li><strong>Founded by:</strong> Former Neuralink co-founder</li>
+                      <li><strong>Technology:</strong> Flexible electrode arrays</li>
+                      <li><strong>Approach:</strong> Thin-film technology</li>
+                      <li><strong>Strategy:</strong> Less invasive than Neuralink</li>
+                    </ul>
+                    
+                    <h5 className="text-yellow-400 font-epilogue mb-3">Paradromics - The High Bandwidth</h5>
+                    <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                      <li><strong>Focus:</strong> High-bandwidth data interfaces</li>
+                      <li><strong>Innovation:</strong> Advanced signal processing</li>
+                      <li><strong>Target:</strong> Communication restoration</li>
+                      <li><strong>Funding:</strong> Significant venture backing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Key Competitors:</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Neuralink&apos;s Competitive Advantages:</h4>
                   <ul className="text-white/80 font-satoshi list-disc list-inside space-y-2">
-                    <li><strong>Synchron:</strong> Stentrode device (10 users)</li>
-                    <li><strong>Paradromics:</strong> High-bandwidth interfaces</li>
-                    <li><strong>Precision Neuroscience:</strong> Flexible arrays</li>
-                    <li><strong>BlackRock Neurotech:</strong> Utah arrays</li>
+                    <li><strong>Engineering firepower:</strong> Integrated approach</li>
+                    <li><strong>Capital resources:</strong> &gt;$1B funding raised</li>
+                    <li><strong>Talent attraction:</strong> Musk&apos;s magnetic effect</li>
+                    <li><strong>R1 surgical robot:</strong> Automated implantation</li>
+                    <li><strong>Vertical integration:</strong> Hardware + software + robot</li>
+                    <li><strong>Media attention:</strong> High visibility driving innovation</li>
                   </ul>
                 </div>
                 <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
-                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Market Indicators:</h4>
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Industry Growth Indicators:</h4>
                   <ul className="text-white/80 font-satoshi list-disc list-inside space-y-2">
-                    <li>Growing industry investment</li>
-                    <li>Multiple viable approaches</li>
-                    <li>Accelerating innovation</li>
-                    <li>Expanding application areas</li>
+                    <li><strong>Investment surge:</strong> Multi-billion dollar valuations</li>
+                    <li><strong>Academic acceleration:</strong> Increased neuroscience funding</li>
+                    <li><strong>Startup emergence:</strong> New BCI companies launching</li>
+                    <li><strong>Regulatory evolution:</strong> FDA pathway development</li>
+                    <li><strong>Market diversity:</strong> Multiple viable approaches</li>
+                    <li><strong>Future sectors:</strong> Gaming, communication, enhancement</li>
                   </ul>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">The Path to Market Leadership:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    The race to achieve the first FDA-approved commercial BCI device will likely determine market leadership. While Neuralink has the highest profile and funding, competitors like Synchron may reach market faster due to their less invasive approach. The winner will likely capture significant first-mover advantages in what could become a multi-billion dollar industry.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Market Opportunity:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Medical device market entry</li>
+                        <li>Consumer enhancement potential</li>
+                        <li>Enterprise productivity tools</li>
+                        <li>Gaming and entertainment</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Economic Ecosystem:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Device manufacturing</li>
+                        <li>Software platforms</li>
+                        <li>Clinical services</li>
+                        <li>Data analytics</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Success Factors:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Safety demonstration</li>
+                        <li>Regulatory approval speed</li>
+                        <li>Manufacturing scalability</li>
+                        <li>Cost accessibility</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Broader Societal Impact */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Broader Societal Impact
+            </h3>
+            <div className="space-y-6">
+              <p className="text-lg text-gray-300">
+                If Neuralink achieves its vision, the fundamental nature of human communication, work, and daily life could be transformed. From &quot;telepathic&quot; phone calls to thought-controlled environments, we may be witnessing the early stages of humanity&apos;s next evolutionary leap - or facing unprecedented challenges to privacy, identity, and social equity.
+              </p>
+              
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Transforming Daily Life:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    Brain-to-brain communication via Musk&apos;s envisioned &quot;universal language&quot; could revolutionize human interaction by transmitting concepts directly, bypassing spoken language entirely. Hands-free control of computers, smart homes, and vehicles through thought alone could increase productivity and create entirely new forms of human-machine interaction.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Communication Revolution:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Direct thought transmission</li>
+                        <li>&quot;Telepathic&quot; phone calls</li>
+                        <li>Universal language concept</li>
+                        <li>Barrier-free global communication</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Seamless Integration:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Thought-controlled smart homes</li>
+                        <li>Mental web browsing</li>
+                        <li>AR/VR mind interfaces</li>
+                        <li>Autonomous vehicle control</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Creative Applications:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Emotion-responsive gaming</li>
+                        <li>Mind-to-canvas art creation</li>
+                        <li>Immersive thought entertainment</li>
+                        <li>Enhanced creative expression</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Ethical Use vs. Misuse:</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Positive Potential:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Global understanding through translation</li>
+                        <li>Enhanced communication for disabled</li>
+                        <li>Accelerated learning and education</li>
+                        <li>Breakthrough scientific collaboration</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Risk Scenarios:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Authoritarian thought surveillance</li>
+                        <li>&quot;Brain hacking&quot; cybersecurity threats</li>
+                        <li>Thought evidence in legal systems</li>
+                        <li>Mental manipulation possibilities</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <h4 className="text-xl font-bold text-yellow-500 mb-4">Public Perception Data:</h4>
+                  <div className="space-y-3">
+                    <div className="bg-yellow-500/10 p-3 rounded border border-yellow-500/20">
+                      <p className="text-yellow-400 font-semibold mb-1">2021 Pew Research Survey:</p>
+                      <ul className="text-white/80 font-satoshi text-sm list-disc list-inside space-y-1">
+                        <li>56% think brain chips would be bad for society</li>
+                        <li>Only 13% view them positively</li>
+                        <li>31% remain uncertain</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Key Concerns:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Privacy and hacking fears</li>
+                        <li>&quot;Unnatural&quot; human-machine merger</li>
+                        <li>Loss of human uniqueness</li>
+                        <li>Musk polarization effect</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                <h4 className="text-xl font-bold text-yellow-500 mb-4">Human Evolution and Cultural Impact:</h4>
+                <div className="space-y-4">
+                  <p className="text-white/80 font-satoshi">
+                    Neuralink represents a potential inflection point in human evolution - the transition to a cyborg era where merging with machines becomes the next evolutionary step. This raises profound questions about the nature of humanity, consciousness, and our collective future.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Transhumanist Perspective:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Enhanced human potential realization</li>
+                        <li>AI-human competitive parity</li>
+                        <li>Expanded intelligence capabilities</li>
+                        <li>Next stage of human evolution</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="text-yellow-400 font-epilogue mb-2">Cultural Concerns:</h5>
+                      <ul className="text-white/80 font-satoshi list-disc list-inside space-y-1">
+                        <li>Loss of human imperfection value</li>
+                        <li>Religious/philosophical objections</li>
+                        <li>Enhanced vs. natural human divide</li>
+                        <li>Cultural diversity erosion risks</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-4 bg-yellow-500/10 rounded border border-yellow-500/20">
+                    <p className="text-white/80 font-satoshi italic">
+                      &quot;The brain-computer connection is already here... advances will remain boundless as long as we keep questioning and discovering. Society&apos;s role is to stay engaged with these developments, demanding that they align with our values.&quot;
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
