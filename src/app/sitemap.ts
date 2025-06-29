@@ -37,11 +37,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           return { priority: 1.0, changeFrequency: 'daily' as const };
         }
         // High priority pages for AI crawlers - educational content
-        if (['/about', '/search', '/col', '/altcoins', '/maxpain', '/calculator', '/ai', '/bitcoin', '/crypto', '/cursor', '/assets', '/tesla', '/stocks', '/options', '/bitbonds', '/downbad', '/platforms/msty/bitcoin', '/platforms/msty/mstr', '/69', '/vol'].includes(path)) {
+        if (['/about', '/search', '/col', '/altcoins', '/maxpain', '/calculator', '/ai', '/bitcoin', '/crypto', '/cursor', '/assets', '/tesla', '/stocks', '/options', '/bitbonds', '/downbad', '/platforms/msty/bitcoin', '/platforms/msty/mstr', '/69', '/print', '/mag7', '/ipo', '/lombard', '/liquidity', '/hood', '/crcl', '/crwv', '/26', '/8020', '/dgx', '/eliza', '/fairmint', '/pumpnotfun', '/otonomos', '/mining', '/distribution', '/cult', '/block', '/7fig', '/stacks', '/otc'].includes(path)) {
           return { priority: 0.9, changeFrequency: 'weekly' as const };
         }
         // Medium priority - specific topics
-        if (['/twentyone', '/platforms/msty', '/strf', '/strd', '/platforms', '/strike', '/nakamoto', '/altbg', '/btcab', '/metaplanet', '/tbs', '/s9pro', '/bitaxe', '/node', '/mara', '/doge', '/ln', '/21energy', '/sol', '/hyperliquid', '/eth', '/defi', '/sui', '/zero', '/time', '/naval', '/train', '/pool', '/wine', '/docu', '/monaco', '/sonar'].includes(path)) {
+        if (['/twentyone', '/platforms/msty', '/strf', '/strd', '/platforms', '/strike', '/nakamoto', '/altbg', '/btcab', '/metaplanet', '/tbs', '/s9pro', '/bitaxe', '/node', '/mara', '/doge', '/ln', '/21energy', '/sol', '/hyperliquid', '/eth', '/defi', '/sui', '/zero', '/time', '/naval', '/train', '/pool', '/wine', '/docu', '/monaco', '/whoop', '/pod5', '/mobilehome', '/love', '/ltl', '/inhaus', '/hx50', '/cirrus', '/catamaran', '/ecoflow', '/elon', '/fire', '/gold', '/hastens', '/arc', '/nvda', '/sauna', '/toto', '/xapo', '/vjepa2', '/stacks'].includes(path)) {
           return { priority: 0.8, changeFrequency: 'weekly' as const };
         }
         // Educational content should be easily discoverable
