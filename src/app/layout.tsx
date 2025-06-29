@@ -11,8 +11,8 @@ import JsonLd from "@/components/common/JsonLd";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://livethelife.tv'),
-  title: "LiveTheLifeTV -  Bitcoin Sells Freedom. Unplug from the Matrix.",
-  description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your ticket to escape the matrix. Freedom is priced in Bitcoin. When you understand Bitcoin it feels like understanding the code in the matrix.",
+  title: "LiveTheLifeTV - Bitcoin Sells Freedom. Your Fiat Escape Hatch.",
+  description: "Tesla doesn't sell cars. They sell the future. Red Bull doesn't sell energy. They sell thrill. Bitcoin doesn't sell ₿ coin. It sells freedom. LiveTheLifeTV is your multimedia platform blending Bitcoin-first investing, NFT art curation, and crypto-informed lifestyle content—your gateway to financial freedom.",
   authors: [{ name: "LiveTheLifeTV" }],
   robots: "index, follow",
   other: {
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     'ai-content-license': 'public-educational',
   },
   openGraph: {
-    title: "LiveTheLifeTV - Bitcoin Doesn't Sell Coin. It Sells Freedom.",
-    description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth.",
+    title: "LiveTheLifeTV - Bitcoin Sells Freedom",
+    description: "Tesla doesn't sell cars. They sell the future. Red Bull doesn't sell energy. They sell thrill. Bitcoin doesn't sell ₿ coin. It sells freedom. Your multimedia platform for Bitcoin-first investing, NFT curation, and financial freedom.",
     type: "website",
     locale: "en_US",
     siteName: "LiveTheLifeTV",
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
         url: "https://livethelife.tv/background_helo.jpeg",
         width: 1200,
         height: 630,
-        alt: "LiveTheLifeTV Bitcoin Education Tools - For Educational Purposes Only"
+        alt: "LiveTheLifeTV - Bitcoin Strategy, NFT Curation & Creative Lifestyle Platform"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "LiveTheLifeTV - Bitcoin Doesn't Sell Coin. It Sells Freedom.",
-    description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth.",
+    title: "LiveTheLifeTV - Bitcoin Sells Freedom",
+    description: "Tesla doesn't sell cars. They sell the future. Red Bull doesn't sell energy. They sell thrill. Bitcoin doesn't sell ₿ coin. It sells freedom. Your multimedia platform for Bitcoin-first investing, NFT curation, and financial freedom.",
     images: ["https://livethelife.tv/background_helo.jpeg"],
     creator: "@LiveTheLifeTV"
   },

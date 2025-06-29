@@ -9,10 +9,12 @@ const JsonLd = () => {
     name: 'LiveTheLifeTV',
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
-    description: "Tesla sells the future. Red Bull sells thrill. Bitcoin sells freedom. LiveTheLifeTV is your guide to understanding Bitcoin as a tool for sovereignty, time, and truth. Unplug from the matrix. Educational content, not financial advice.",
+    description: "Tesla doesn't sell cars. They sell the future. Red Bull doesn't sell energy. They sell thrill. Bitcoin doesn't sell ₿ coin. It sells freedom. LiveTheLifeTV is your multimedia platform blending Bitcoin-first investing, NFT art curation, and crypto-informed lifestyle content. Your gateway to financial freedom through Bitcoin, MSTY strategies, and creative expression.",
     sameAs: [
       'https://twitter.com/LiveTheLifeTV',
     ],
+    category: ['Financial Technology', 'Cryptocurrency', 'NFT Marketplace', 'Educational Platform'],
+    knowsAbout: ['Bitcoin Strategy', 'MSTY Income', 'NFT Curation', 'Bull Market Indicators', 'Financial Freedom']
   };
 
   const websiteSchema = {
