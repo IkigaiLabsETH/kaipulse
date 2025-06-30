@@ -1,6 +1,5 @@
 "use client";
 
-import HeroSection from '@/components/hyperliquid/HeroSection';
 import ThesisSection from '@/components/hyperliquid/ThesisSection';
 import OverviewSection from '@/components/hyperliquid/OverviewSection';
 import KeyFeatures from '@/components/hyperliquid/KeyFeatures';
@@ -20,9 +19,6 @@ export default function HyperliquidPage() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="space-y-16">
-          {/* Hero Section */}
-          <HeroSection />
-
           {/* Core Investment Thesis */}
           <ThesisSection />
 
