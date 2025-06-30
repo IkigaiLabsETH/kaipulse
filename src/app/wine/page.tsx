@@ -2,100 +2,73 @@
 
 import { Header } from '@/components/Header';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Grid } from '@/components/ui/grid';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import {
+  WineRegionHero,
+  WineRegionIntro,
+  WineEstateCard,
+  WineItineraryDay,
+  WineMenuSection,
+  WineButtonGroup,
+  WineSectionHeader,
+  WineGrid
+} from '@/components/wine';
 
 export default function WinePage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Header />
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center min-h-[70vh] pt-24 pb-8 px-4">
-        <div className="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto w-full">
-          <div className="flex-1 flex flex-col items-start gap-6">
-            <Badge className="bg-yellow-500 text-black text-sm mb-2 font-satoshi tracking-wide">World-Class Wine Regions</Badge>
-            <h1 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-2 tracking-tight">South African &amp; French Wines</h1>
-            <p className="text-lg md:text-2xl text-white/90 font-satoshi max-w-xl leading-snug">
-              Discover the rich heritage and exceptional quality of wines from South Africa&apos;s Cape Winelands and France&apos;s prestigious wine regions. From historic estates to modern vineyards, experience world-class wines and culinary excellence.
-            </p>
-          </div>
-          <div className="flex-1 flex justify-center items-center">
-            <div className="w-full max-w-[500px] aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)]">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/mK7R8hNxY_0"
-                title="Wine Regions of South Africa and France"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full h-full rounded-2xl"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WineRegionHero
+        badge="World-Class Wine Regions"
+        title="South African & French Wines"
+        description="Discover the rich heritage and exceptional quality of wines from South Africa's Cape Winelands and France's prestigious wine regions. From historic estates to modern vineyards, experience world-class wines and culinary excellence."
+        videoUrl="https://www.youtube.com/embed/mK7R8hNxY_0"
+        videoTitle="Wine Regions of South Africa and France"
+      />
 
       <Separator className="my-8 bg-yellow-500/20" />
 
       {/* South African Wines Section */}
-      <section className="py-16 md:py-20 px-4">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">South African Wine Estates</h2>
-          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Experience the finest wine estates in South Africa&apos;s Cape Winelands, where centuries-old tradition meets modern innovation. From Stellenbosch to Franschhoek, discover world-class wines and exceptional dining experiences.
-          </p>
-          <div className="flex justify-center gap-4 mt-8">
-            <Link href="https://guide.michelin.com/en/hotels-stays/cape-town/the-silo-hotel-11136" target="_blank">
-              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                The Silo Hotel Guide
-              </Button>
-            </Link>
-            <Link href="https://guide.michelin.com/en/hotels-stays/Stellenbosch/delaire-graff-lodges-spa-14629" target="_blank">
-              <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                Delaire Graff Guide
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <WineRegionIntro
+        title="South African Wine Estates"
+        description="Experience the finest wine estates in South Africa's Cape Winelands, where centuries-old tradition meets modern innovation. From Stellenbosch to Franschhoek, discover world-class wines and exceptional dining experiences."
+        buttons={[
+          {
+            label: "The Silo Hotel Guide",
+            href: "https://guide.michelin.com/en/hotels-stays/cape-town/the-silo-hotel-11136"
+          },
+          {
+            label: "Delaire Graff Guide",
+            href: "https://guide.michelin.com/en/hotels-stays/Stellenbosch/delaire-graff-lodges-spa-14629"
+          }
+        ]}
+      />
 
-      <Grid columns={3} className="justify-center">
-        <Card className="bg-black border-yellow-500">
-          <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Boschendal Estate</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-white/80 font-satoshi">Founded in 1688, Boschendal offers award-winning wines, farm-to-table dining, and historic Cape Dutch architecture. Known for exceptional Chardonnay and Shiraz.</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-black border-yellow-500">
-          <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Delaire Graff Estate</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-white/80 font-satoshi">A modern luxury vineyard featuring world-class wines, art collection, and fine dining. Their Terraced Block Chardonnay 2022 was named &quot;Chardonnay of the Year.&quot;</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-black border-yellow-500">
-          <CardHeader>
-            <CardTitle className="font-epilogue text-xl text-yellow-400">Mont Rochelle</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-white/80 font-satoshi">Sir Richard Branson&apos;s 22-room hotel and vineyard, featuring historic cellars, award-winning restaurants, and the acclaimed Little Rock wine range.</p>
-          </CardContent>
-        </Card>
-      </Grid>
+      <WineGrid columns={3}>
+        <WineEstateCard
+          title="Boschendal Estate"
+          description="Founded in 1688, Boschendal offers award-winning wines, farm-to-table dining, and historic Cape Dutch architecture. Known for exceptional Chardonnay and Shiraz."
+        />
+        <WineEstateCard
+          title="Delaire Graff Estate"
+          description="A modern luxury vineyard featuring world-class wines, art collection, and fine dining. Their Terraced Block Chardonnay 2022 was named 'Chardonnay of the Year.'"
+        />
+        <WineEstateCard
+          title="Mont Rochelle"
+          description="Sir Richard Branson's 22-room hotel and vineyard, featuring historic cellars, award-winning restaurants, and the acclaimed Little Rock wine range."
+        />
+      </WineGrid>
 
       <Separator className="my-8 bg-yellow-500/20" />
 
       {/* Featured South African Estate */}
       <section className="py-16 md:py-20 px-4">
         <div className="mx-auto max-w-4xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-10 text-center font-bold tracking-tight uppercase">Featured Estate: Boschendal</h2>
+          <WineSectionHeader title="Featured Estate: Boschendal" />
           <Card className="bg-black border-yellow-500">
             <CardContent className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -128,75 +101,63 @@ export default function WinePage() {
       <Separator className="my-8 bg-yellow-500/20" />
 
       {/* French Wines Section */}
-      <section className="py-16 md:py-20 px-4">
+      <WineRegionIntro
+        title="French Wine Regions"
+        description="Explore France's legendary wine regions, each with its distinct terroir and centuries of winemaking tradition. From Bordeaux's grand châteaux to Burgundy's historic climats, discover the epitome of fine wine craftsmanship."
+        className=""
+      />
+
+      <section className="px-4">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-4 font-bold tracking-tight uppercase">French Wine Regions</h2>
-          <p className="text-lg md:text-xl text-white/80 font-satoshi mb-4">
-            Explore France&apos;s legendary wine regions, each with its distinct terroir and centuries of winemaking tradition. From Bordeaux&apos;s grand châteaux to Burgundy&apos;s historic climats, discover the epitome of fine wine craftsmanship.
-          </p>
           <div className="space-y-8 mt-8">
             {/* Bordeaux Region Links */}
-            <div>
-              <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Bordeaux Estates</h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="https://guide.michelin.com/en/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    Château Lafaurie-Peyraguey
-                  </Button>
-                </Link>
-                <Link href="https://guide.michelin.com/en/hotels-stays/bordeaux/les-sources-de-caudalie-6023" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    Les Sources de Caudalie
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            <WineButtonGroup
+              title="Bordeaux Estates"
+              buttons={[
+                {
+                  label: "Château Lafaurie-Peyraguey",
+                  href: "https://guide.michelin.com/en/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006"
+                },
+                {
+                  label: "Les Sources de Caudalie",
+                  href: "https://guide.michelin.com/en/hotels-stays/bordeaux/les-sources-de-caudalie-6023"
+                }
+              ]}
+            />
 
             {/* Loire Valley Links */}
-            <div>
-              <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Loire Valley</h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="https://guide.michelin.com/en/hotels-stays/Cheverny/les-sources-de-cheverny-12201" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    Les Sources de Cheverny
-                  </Button>
-                </Link>
-                <Link href="https://guide.michelin.com/en/hotels-stays/courcelles-sur-vesle/chateau-de-courcelles-9343" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    Château de Courcelles
-                  </Button>
-                </Link>
-              </div>
-              <div className="mt-6 w-full max-w-[500px] mx-auto aspect-video rounded-2xl border-4 border-yellow-400 bg-[#1c1f26] overflow-hidden shadow-[0_8px_32px_0_rgba(247,181,0,0.25),0_2px_8px_0_rgba(0,0,0,0.45)]">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/ChR8FqY8DL0"
-                  title="Loire Valley Wine Region"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full rounded-2xl"
-                ></iframe>
-              </div>
-            </div>
+            <WineRegionIntro
+              title="Loire Valley"
+              description=""
+              buttons={[
+                {
+                  label: "Les Sources de Cheverny",
+                  href: "https://guide.michelin.com/en/hotels-stays/Cheverny/les-sources-de-cheverny-12201"
+                },
+                {
+                  label: "Château de Courcelles",
+                  href: "https://guide.michelin.com/en/hotels-stays/courcelles-sur-vesle/chateau-de-courcelles-9343"
+                }
+              ]}
+              videoUrl="https://www.youtube.com/embed/ChR8FqY8DL0"
+              videoTitle="Loire Valley Wine Region"
+              className=""
+            />
 
             {/* Champagne Region Links */}
-            <div>
-              <h3 className="text-yellow-400 font-epilogue text-xl mb-4">Champagne</h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="https://guide.michelin.com/en/hotels-stays/reims/chateau-les-crayeres-7375" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    Château Les Crayères
-                  </Button>
-                </Link>
-                <Link href="https://guide.michelin.com/en/hotels-stays/champillon/royal-champagne-hotel-spa-6479" target="_blank">
-                  <Button className="bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-all duration-300">
-                    Royal Champagne Hotel
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            <WineButtonGroup
+              title="Champagne"
+              buttons={[
+                {
+                  label: "Château Les Crayères",
+                  href: "https://guide.michelin.com/en/hotels-stays/reims/chateau-les-crayeres-7375"
+                },
+                {
+                  label: "Royal Champagne Hotel",
+                  href: "https://guide.michelin.com/en/hotels-stays/champillon/royal-champagne-hotel-spa-6479"
+                }
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -360,24 +321,21 @@ export default function WinePage() {
           {/* Day-by-day cards */}
           <div className="space-y-10">
             {/* Day 1 */}
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-2xl text-yellow-400">Day 1: Golden Beginnings in Sauternes</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-white/90 font-satoshi mb-2">
-                  <span className="font-bold text-yellow-400">Stay:</span> Château Lafaurie-Peyraguey<br/>
-                  <span className="font-bold text-yellow-400">Dining:</span> Lalique, 1 Michelin star
-                </p>
-                <div className="mb-2">
-                  <Link href="https://guide.michelin.com/fr/fr/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006" target="_blank">
-                    <Button className="bg-yellow-500 text-black font-bold px-4 py-2 rounded-xl hover:bg-yellow-400 transition-all duration-300 mt-2 mb-2">View on Michelin Guide</Button>
-                  </Link>
-                </div>
-                <p className="text-white/80 font-satoshi mb-2">You land gently in the amber-hued heart of Sauternes. Begin your journey at the iconic Château d&apos;Yquem. Each tasting here feels ceremonial; bottles spanning multiple decades reveal why Parker repeatedly awarded this estate the rare perfect score. Move onward to Château Climens and Château Suduiraut, sampling complex, honeyed elixirs balanced by stunning freshness.</p>
-                <p className="text-white/80 font-satoshi">Your first night is indulgently spent at Château Lafaurie-Peyraguey, a Lalique-designed 5-star gem whose glass walls shimmer like Sauternes itself. Dinner at the Michelin-starred Lalique restaurant is refined yet rich, mirroring the wines you&apos;ve encountered today: foie gras with apricot confit, scallops glazed in saffron butter, and finishes with Yquem-infused crème brûlée.</p>
-              </CardContent>
-            </Card>
+            <WineItineraryDay
+              title="Day 1: Golden Beginnings in Sauternes"
+              stayInfo="Château Lafaurie-Peyraguey"
+              diningInfo="Lalique, 1 Michelin star"
+              description={[
+                "You land gently in the amber-hued heart of Sauternes. Begin your journey at the iconic Château d'Yquem. Each tasting here feels ceremonial; bottles spanning multiple decades reveal why Parker repeatedly awarded this estate the rare perfect score. Move onward to Château Climens and Château Suduiraut, sampling complex, honeyed elixirs balanced by stunning freshness.",
+                "Your first night is indulgently spent at Château Lafaurie-Peyraguey, a Lalique-designed 5-star gem whose glass walls shimmer like Sauternes itself. Dinner at the Michelin-starred Lalique restaurant is refined yet rich, mirroring the wines you've encountered today: foie gras with apricot confit, scallops glazed in saffron butter, and finishes with Yquem-infused crème brûlée."
+              ]}
+              buttons={[
+                {
+                  label: "View on Michelin Guide",
+                  href: "https://guide.michelin.com/fr/fr/hotels-stays/bommes/hotel-restaurant-lalique-chateau-lafaurie-peyraguey-9006"
+                }
+              ]}
+            />
             <Separator className="my-4 bg-yellow-500/20" />
             {/* Day 2 */}
             <Card className="bg-black border-yellow-500">
@@ -551,31 +509,38 @@ export default function WinePage() {
       {/* Wine Menu Section */}
       <section className="py-20 px-4 bg-[#111111]">
         <div className="mx-auto max-w-5xl">
-          <h2 className="heading-lg text-yellow-400 font-boska mb-8 text-center font-bold tracking-tight uppercase">La Cave Du Bon Vivant</h2>
+          <WineSectionHeader title="La Cave Du Bon Vivant" />
           <div className="space-y-8">
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-lg text-yellow-400">Bordeaux</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">L&apos;Esprit de Pavie</span>: Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months.</li>
-                  <li><span className="font-bold text-yellow-400">Chapelle d&apos;Aliénor</span>: Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse.</li>
-                  <li><span className="font-bold text-yellow-400">Château Marjosse</span>: Prestigious estate managed by Pierre Lurton; Merlot, Cabernet Sauvignon, Cabernet Franc, Malbec, Sauvignon, and Sémillon.</li>
-                  <li><span className="font-bold text-yellow-400">Château Ronan</span>: 100% Merlot from Pomerol&apos;s Château Clinet team; rich aromas of cherries, raspberry, spices.</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-black border-yellow-500">
-              <CardHeader>
-                <CardTitle className="font-epilogue text-lg text-yellow-400">Bordeaux Supérieur</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-white/80 font-satoshi space-y-2">
-                  <li><span className="font-bold text-yellow-400">Château de Reignac</span>: Lauded by Robert Parker; sophisticated Bordeaux Supérieur, rivaling classified growths.</li>
-                </ul>
-              </CardContent>
-            </Card>
+            <WineMenuSection
+              title="Bordeaux"
+              wines={[
+                {
+                  name: "L'Esprit de Pavie",
+                  description: "Vinified in the tradition of Château Pavie; lush Merlot-led blend aged in oak for 15 months."
+                },
+                {
+                  name: "Chapelle d'Aliénor",
+                  description: "Rich terroir near Saint-Émilion, vines around 40 years old, producing wines of elegant finesse."
+                },
+                {
+                  name: "Château Marjosse",
+                  description: "Prestigious estate managed by Pierre Lurton; Merlot, Cabernet Sauvignon, Cabernet Franc, Malbec, Sauvignon, and Sémillon."
+                },
+                {
+                  name: "Château Ronan",
+                  description: "100% Merlot from Pomerol's Château Clinet team; rich aromas of cherries, raspberry, spices."
+                }
+              ]}
+            />
+            <WineMenuSection
+              title="Bordeaux Supérieur"
+              wines={[
+                {
+                  name: "Château de Reignac",
+                  description: "Lauded by Robert Parker; sophisticated Bordeaux Supérieur, rivaling classified growths."
+                }
+              ]}
+            />
             <Card className="bg-black border-yellow-500">
               <CardHeader>
                 <CardTitle className="font-epilogue text-lg text-yellow-400">Graves & Pessac-Léognan</CardTitle>
