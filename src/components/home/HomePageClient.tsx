@@ -168,7 +168,7 @@ export default function HomePageClient() {
                 <div className="h-px w-16 bg-yellow-500/30"></div>
               </div>
               <p className="text-center text-white/90 max-w-2xl leading-relaxed font-satoshi">
-                Tesla doesn&apos;t sell cars. They sell the future. Red Bull doesn&apos;t sell energy. They sell thrill. Bitcoin doesn&apos;t sell ₿ coin. It sells freedom. Bitcoin-first investing and financial freedom.
+                Tesla doesn&apos;t sell cars. They sell the future. Red Bull doesn&apos;t sell energy. They sell thrill. Bitcoin doesn&apos;t sell ₿ coin. It sells freedom. Bitcoin-first investing and financial freedom. BTC: store of value. ETH: fintech rails. NFTs: contemporary art world. Don’t overthink it.
               </p>
             </div>
             <Link
