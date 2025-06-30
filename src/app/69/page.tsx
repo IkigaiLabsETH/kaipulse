@@ -243,6 +243,61 @@ export default function SixtyNinePage() {
               </div>
             </div>
           </div>
+
+          {/* Ooh, and one more thing */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <div className="text-center space-y-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+                🎯 Ooh, and one more thing...
+              </h3>
+              <div className="space-y-6">
+                <div className="text-center">
+                  <div className="text-6xl md:text-8xl font-bold text-yellow-500 mb-4">
+                    2.5M
+                  </div>
+                  <p className="text-xl md:text-2xl text-white/90 font-medium">
+                    Total Bitcoin on ALL exchanges
+                  </p>
+                  <p className="text-lg text-yellow-400 mt-2">
+                    Lowest level since 2018
+                  </p>
+                </div>
+                
+                <div className="bg-black/50 p-6 rounded-none border border-yellow-500/20">
+                  <div className="space-y-4 text-white/80">
+                    <p className="text-lg">
+                      While millions of millionaires theoretically exist, the reality is even more stark:
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                      <div className="space-y-2">
+                        <h4 className="text-yellow-400 font-bold">What This Means:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm">
+                          <li>Less Bitcoin available to buy than ever</li>
+                          <li>Institutions are withdrawing to cold storage</li>
+                          <li>Retail has learned &quot;not your keys, not your coins&quot;</li>
+                          <li>Supply shock accelerating</li>
+                        </ul>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-yellow-400 font-bold">The Math:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm">
+                          <li>2.5M BTC on exchanges</li>
+                          <li>vs. 22M high net worth individuals</li>
+                          <li>= 0.11 BTC per HNWI</li>
+                          <li>Not even 1/10th of a Bitcoin each</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-none">
+                      <p className="text-center text-yellow-300 font-medium">
+                        🔥 The scarcity is real, the liquidity is drying up, and most &quot;millionaires&quot; can&apos;t even afford 1 BTC without selling assets.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
