@@ -80,13 +80,13 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'COST OF LIVING', href: '/col' },
-        { name: 'ALT COINS', href: '/altcoins' },
+        { name: 'ALTCOINS', href: '/altcoins' },
         { name: 'MAX PAIN', href: '/maxpain' },
         { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
         { name: 'CURSOR', href: '/cursor' },
         { name: 'ASSETS', href: '/assets' },
+        { name: 'LIVING', href: '/col' },
       ]
     },
     { 
