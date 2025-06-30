@@ -159,12 +159,19 @@ export default function HomePageClient() {
             <h2 className="text-5xl sm:text-6xl font-bold text-yellow-400 mb-6 font-boska uppercase tracking-tight">
               Talk to Satoshi
             </h2>
-            <div className="flex items-center justify-center mb-8">
-              <div className="h-px w-16 bg-yellow-500/30"></div>
-              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
-                &ldquo;If you don&apos;t believe it or don&apos;t get it, I don&apos;t have the time to try to convince you, sorry.&rdquo;
+            <div className="flex flex-col items-center justify-center mb-8 space-y-6">
+              <div className="flex items-center justify-center">
+                <div className="h-px w-16 bg-yellow-500/30"></div>
+                <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">
+                  &ldquo;If you don&apos;t believe it or don&apos;t get it, I don&apos;t have the time to try to convince you, sorry.&rdquo;
+                </p>
+                <div className="h-px w-16 bg-yellow-500/30"></div>
+              </div>
+              <p className="text-center text-white/90 max-w-2xl leading-relaxed font-satoshi">
+                Through research and deep conversations, 
+                this space serves as our playground for exploring ideas and training ground for our AI voice agent 
+                who&apos;s learning to think like Satoshi himself.
               </p>
-              <div className="h-px w-16 bg-yellow-500/30"></div>
             </div>
             <Link
               href="/voice"
