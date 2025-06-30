@@ -82,11 +82,11 @@ export function Header() {
       items: [
         { name: 'ALTCOINS', href: '/altcoins' },
         { name: 'MAX PAIN', href: '/maxpain' },
+        { name: 'CRYPTO', href: '/crypto' },
         { name: 'STRIFE', href: '/strf' },
         { name: 'STRIKE', href: '/strike' },
-        { name: 'CURSOR', href: '/cursor' },
-        { name: 'ASSETS', href: '/assets' },
         { name: 'LIVING', href: '/col' },
+        { name: 'CURSOR', href: '/cursor' },
       ]
     },
     { 
@@ -97,8 +97,8 @@ export function Header() {
         { name: 'BTC', href: '/platforms/msty/bitcoin' },
         { name: 'MSTR', href: '/platforms/msty/mstr' },
         { name: 'TESLA', href: '/tesla' },
-        { name: 'CRYPTO', href: '/crypto' },
         { name: 'STOCKS', href: '/stocks' },
+        { name: 'ASSETS', href: '/assets' },
         { name: 'OPTIONS', href: '/options' },
         { name: 'BITBONDS', href: '/bitbonds' },
       ]
