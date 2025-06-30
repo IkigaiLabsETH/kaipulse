@@ -26,7 +26,7 @@ const STOCK_TICKERS: Price[] = [
   { symbol: 'MARA', tradingViewSymbol: 'NASDAQ:MARA', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'RIOT', tradingViewSymbol: 'NASDAQ:RIOT', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'PYPL', tradingViewSymbol: 'NASDAQ:PYPL', exchange: 'NASDAQ', color: 'text-yellow-500' },
-  { symbol: 'SBET', tradingViewSymbol: 'NASDAQ:SBET', exchange: 'NASDAQ', color: 'text-yellow-500' },
+  { symbol: 'BMNR', tradingViewSymbol: 'AMEX:BMNR', exchange: 'AMEX', color: 'text-yellow-500' },
   { symbol: 'XYZ', tradingViewSymbol: 'NYSE:XYZ', exchange: 'NYSE', color: 'text-yellow-500' },
 ];
 
