@@ -245,6 +245,119 @@ export default function MSTYPlatformsPage() {
           </div>
         </motion.div>
 
+        {/* Pushback Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-16"
+        >
+          <div className="bg-[#1c1f26] rounded-lg border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] p-8 space-y-8">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-3xl">🔥</span>
+              <h2 className="text-3xl font-bold text-red-500">Pushback: The MSTY Mirage</h2>
+            </div>
+            
+            <div className="space-y-6 text-lg text-white/90">
+              <p>MSTY dangles a shiny 89% yield to bait yield chasers—but peel back the layers and you&apos;ll find one of the clearest examples of financial engineering dressed up as passive income.</p>
+              
+              <div>
+                <p className="font-medium text-red-400 mb-3">Here&apos;s what it&apos;s actually doing under the hood:</p>
+                <ul className="space-y-2 text-white/80 list-none">
+                  <li>• Synthetic long exposure to MSTR (via long calls + short puts)</li>
+                  <li>• Short-dated covered call selling (OTM, &lt;1-month expiry)</li>
+                  <li>• T-bills on the side to look &quot;conservative&quot;</li>
+                </ul>
+              </div>
+
+              <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-6">
+                <p className="font-bold text-red-400 mb-3">But here&apos;s the kicker:</p>
+                <p>Over half of MSTY&apos;s distributions are just giving your own money back. Literally. Since inception, ~55% of payouts have been return of capital—not yield, not option premiums, just principal repackaged as &quot;dividends.&quot;</p>
+                
+                <div className="mt-4">
+                  <p className="font-medium text-red-400 mb-2">One recent &quot;yield&quot; breakdown?</p>
+                  <ul className="space-y-1 text-white/80 list-none">
+                    <li>• 97.4% return of capital</li>
+                    <li>• 2.6% actual yield</li>
+                  </ul>
+                </div>
+                
+                <p className="mt-4 text-white/90">So unless you bought in early and got lucky with entry price, you&apos;re not compounding—you&apos;re eroding.</p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-red-400 mb-4 flex items-center gap-2">
+                  <span>📉</span>
+                  The Strategy Is Breaking Down
+                </h3>
+                
+                <div className="space-y-4">
+                  <p><span className="font-medium text-red-400">Why?</span> Because MSTR volatility has collapsed in 2025. Option premiums—the core income engine—are drying up. So MSTY keeps faking the yield by returning capital.</p>
+                  
+                  <p>Meanwhile, MSTR ripped +500% in Q4 2024, and MSTY? It caught crumbs. It&apos;s supposed to be a leveraged proxy. Instead, it&apos;s a neutered echo.</p>
+                  
+                  <p><span className="font-medium text-red-400">And now?</span> It&apos;s underperforming both MSTR and BTC. The fund&apos;s NAV is decaying. Premiums are weak. Payouts are funded by slicing off more and more of your own position.</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-red-400 mb-4 flex items-center gap-2">
+                  <span>💸</span>
+                  The Tax Trap
+                </h3>
+                
+                <p>MSTY&apos;s &quot;dividends&quot; are taxable events—even if they&apos;re just giving you your own money.</p>
+                <p className="mt-2"><span className="font-medium text-yellow-400">Compare that to simply holding MSTR or BTC:</span></p>
+                <ul className="mt-2 space-y-1 text-white/80 list-none">
+                  <li>• You only pay tax when you sell</li>
+                  <li>• You keep the upside</li>
+                  <li>• You avoid the 0.99% management fee for the privilege of being slowly drained</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-red-400 mb-4 flex items-center gap-2">
+                  <span>🙃</span>
+                  Capped Upside, Uncapped Downside
+                </h3>
+                
+                <p className="mb-4">Let&apos;s summarize what you&apos;re actually getting with MSTY:</p>
+                <ul className="space-y-2 text-white/80 list-none">
+                  <li>• Cap your upside</li>
+                  <li>• Keep full downside</li>
+                  <li>• Pay taxes and fees for synthetic &quot;yield&quot;</li>
+                  <li>• Watch NAV bleed while feeling good about &quot;income&quot;</li>
+                </ul>
+                
+                <div className="mt-6">
+                  <p className="font-medium text-red-400 mb-3">So Who Buys This?</p>
+                  <ol className="space-y-1 text-white/80 list-none">
+                    <li>1. Yield chasers who don&apos;t understand derivatives</li>
+                    <li>2. &quot;Passive income&quot; seekers who don&apos;t read the fine print</li>
+                    <li>3. Retail bagholders who think 90% APY is just Wall Street magic</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+                <h3 className="text-2xl font-bold text-green-400 mb-4 flex items-center gap-2">
+                  <span>✅</span>
+                  Smarter Alternatives
+                </h3>
+                <ul className="space-y-2 text-white/80 list-none">
+                  <li>• Want MSTR exposure? Buy MSTR</li>
+                  <li>• Want BTC upside? Buy BTC</li>
+                  <li>• Want real yield with no games? Buy T-bills</li>
+                </ul>
+              </div>
+
+              <div className="border-l-4 border-red-500 pl-6">
+                <p className="text-xl font-medium text-white">MSTY is a lesson in financial alchemy: it turns your capital into &quot;income&quot; and charges you for the transformation. If you&apos;re serious about building wealth, look past the headline yield. The emperor has no yield.</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="mt-16 grid gap-8 lg:grid-cols-1">
           {brokers.map((broker, index) => (
             <motion.div
