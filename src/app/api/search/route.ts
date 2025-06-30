@@ -572,23 +572,6 @@ const CONTENT_INDEX: SearchResult[] = [
     keywords: ['time', 'preference', 'gratification', 'bitcoin', 'store of time', 'value']
   },
 
-  // Additional Tools & Resources
-  {
-    title: 'News & Updates Hub',
-    url: '/news',
-    description: 'Latest Bitcoin, crypto, and financial news from our editorial team and trusted sources.',
-    category: 'News',
-    featured: true,
-    keywords: ['news', 'updates', 'bitcoin', 'crypto', 'finance', 'editorial', 'current events']
-  },
-  {
-    title: 'Content Notebook',
-    url: '/notebook',
-    description: 'AI-powered content creation and blog post generation for Bitcoin and crypto topics.',
-    category: 'Tools',
-    keywords: ['notebook', 'content', 'ai', 'blog', 'writing', 'generation', 'creation']
-  }
-
 
 ];
 
