@@ -65,7 +65,7 @@ const businessModelData = {
         "Onboard Creators: Offer 20 local creators free rides for 6 months in exchange for POV content and testimonials.",
         "Midnight Loop: Pilot night-only ride circuits along the Seine and Montmartre to create FOMO for urban youth.",
         "Fashion Week Flash Fleet: Wrap cars in sponsor visuals (e.g., LVMH) for limited-time viral clips.",
-        "Press Kit: Curated drop to publications like Les Inrocks to frame the narrative as a &quot;techno-chic ghost fleet&quot;.",
+        "Press Kit: Curated drop to publications like Les Inrocks to frame the narrative as a techno-chic ghost fleet.",
       ],
       kpi: "Lower CAC via a creator flywheel and crypto-native loyalty through the NFT rewards system."
     },
