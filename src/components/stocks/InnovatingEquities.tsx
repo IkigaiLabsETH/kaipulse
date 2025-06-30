@@ -153,6 +153,20 @@ const innovatingStocks = [
         description: "Providing advanced technologies for land, air, sea, space, and cyber defense, Leonardo DRS is a leader in electric power systems and thermal management.",
         applications: "Technologies essential for next-generation defense systems",
         recentDev: "Recent expansions in autonomous systems and cyber defense, impacting national security."
+      },
+      {
+        name: "General Dynamics",
+        ticker: "GD",
+        description: "A diversified defense contractor specializing in combat vehicles, naval vessels, and aerospace systems, with strong positions in military land systems and submarine construction.",
+        applications: "Critical military hardware including Abrams tanks and Virginia-class submarines",
+        recentDev: "Recent military vehicle contracts and naval shipbuilding programs supporting defense modernization efforts."
+      },
+      {
+        name: "Boeing",
+        ticker: "BA",
+        description: "While primarily known for commercial aviation, Boeing's defense segment provides military aircraft, satellites, and missile systems, including the KC-46 tanker and defense satellites.",
+        applications: "Military aircraft, space systems, and defense technologies vital for air superiority",
+        recentDev: "Recent focus on defense segment growth and space exploration contracts, balancing commercial aviation challenges."
       }
     ]
   }
@@ -166,6 +180,8 @@ const comparisonTable = [
   { stock: "Vertex (VRTX)", category: "Biogenetics", focus: "Gene editing, cystic fibrosis treatments", impact: "Health" },
   { stock: "Moderna (MRNA)", category: "Biogenetics", focus: "mRNA vaccines, cancer therapies", impact: "Health" },
   { stock: "Lockheed Martin (LMT)", category: "Defense Tech", focus: "Advanced aircraft, missile defense", impact: "Defense, Space" },
+  { stock: "General Dynamics (GD)", category: "Defense Tech", focus: "Combat vehicles, naval systems", impact: "Defense, Naval" },
+  { stock: "Boeing (BA)", category: "Defense Tech", focus: "Military aircraft, space systems", impact: "Defense, Aerospace" },
   { stock: "Kratos (KTOS)", category: "Defense Tech", focus: "Unmanned systems, cybersecurity", impact: "Defense, Cybersecurity" },
   { stock: "TSM (TSM)", category: "High-End Tech", focus: "Semiconductor manufacturing", impact: "Health, Wealth, Defense" }
 ];

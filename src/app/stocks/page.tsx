@@ -5,6 +5,7 @@ import CryptoRelatedStocks from "@/components/stocks/CryptoRelatedStocks";
 import InnovatingEquities from "@/components/stocks/InnovatingEquities";
 import HighGrowthWatchlist from "@/components/stocks/HighGrowthWatchlist";
 import BitcoinMiningSector from "@/components/stocks/BitcoinMiningSector";
+import NuclearEnergyStocks from "@/components/stocks/NuclearEnergyStocks";
 
 export default function StocksPage() {
   return (
@@ -36,6 +37,8 @@ export default function StocksPage() {
           </div>
         
           <CryptoRelatedStocks />
+          
+          <NuclearEnergyStocks />
           
           <InnovatingEquities />
           
