@@ -168,9 +168,7 @@ export default function HomePageClient() {
                 <div className="h-px w-16 bg-yellow-500/30"></div>
               </div>
               <p className="text-center text-white/90 max-w-2xl leading-relaxed font-satoshi">
-                Powered by 200+ pages of our Bitcoin research and market analysis, 
-                our AI voice agent channels Satoshi&apos;s original vision to help you 
-                ₿ different and build your sovereign future.
+                Tesla doesn&apos;t sell cars. They sell the future. Red Bull doesn&apos;t sell energy. They sell thrill. Bitcoin doesn&apos;t sell ₿ coin. It sells freedom. Bitcoin-first investing and financial freedom.
               </p>
             </div>
             <Link
