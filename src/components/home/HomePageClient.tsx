@@ -38,7 +38,7 @@ export default function HomePageClient() {
           >
             <div className="flex items-center justify-center mt-0 mb-8">
               <Link
-                href="/strike"
+                href="/platforms/msty/bitcoin"
                 className="group inline-flex items-center gap-2 px-6 py-2 border-2 border-yellow-500 bg-black/60 shadow-[0_2px_16px_0_rgba(247,181,0,0.10)] backdrop-blur font-satoshi font-semibold text-yellow-400 text-lg tracking-wide hover:bg-yellow-500 hover:text-black transition-all duration-300"
               >
                 <Image
@@ -69,7 +69,7 @@ export default function HomePageClient() {
                   height={18}
                   className="w-4 h-4"
                 />
-                Bull Market Peak Indicators - Sell At The Top
+                Bull Market Peak Indicators
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
                   alt="Icon for Bull Market Peak Indicators tool"
@@ -82,6 +82,7 @@ export default function HomePageClient() {
                 onClick={() => openModal('mandominutes')}
                 className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200 ml-4"
               >
+                News
                 <Image
                   src="/bitcoin/bitcoin-plus.svg"
                   alt="Icon for Mando Minutes market updates"
@@ -89,30 +90,7 @@ export default function HomePageClient() {
                   height={18}
                   className="w-4 h-4"
                 />
-                Market updates by Mando Minutes
               </button>
-              <a
-                href="https://www.stackwisely.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 transition-colors duration-200 ml-4"
-              >
-                <Image
-                  src="/bitcoin/bitcoin-plus.svg"
-                  alt="Icon linking to StackWisely website"
-                  width={18}
-                  height={18}
-                  className="w-4 h-4"
-                />
-                StackWisely
-                <Image
-                  src="/bitcoin/bitcoin-plus.svg"
-                  alt="Icon linking to StackWisely website"
-                  width={18}
-                  height={18}
-                  className="w-4 h-4"
-                />
-              </a>
             </p>
           </motion.div>
 
