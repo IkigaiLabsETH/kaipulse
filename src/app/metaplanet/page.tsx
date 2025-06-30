@@ -34,7 +34,7 @@ export default function MetaPlanetPage() {
       q: "What are MetaPlanet's current Bitcoin holdings?",
       a: (
         <span>
-          As of April 2025, MetaPlanet holds approximately 4,525 BTC on its balance sheet, making it one of the top ten public companies worldwide in terms of Bitcoin treasury size. The company has been aggressively accumulating Bitcoin since 2023, with its holdings growing from 141 BTC in June 2023 to the current amount.
+          As of June 30, 2025, MetaPlanet holds 13,350 BTC on its balance sheet, acquired for approximately $1.31 billion at an average price of $97,832 per Bitcoin. This makes it one of the top ten public companies worldwide in terms of Bitcoin treasury size. The company has been aggressively accumulating Bitcoin since 2023, with its holdings growing from 141 BTC in June 2023 to the current amount.
         </span>
       ),
     },
@@ -75,6 +75,32 @@ export default function MetaPlanetPage() {
             </div>
           </div>
 
+          {/* Performance Update */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-400 mb-6">
+              📈 Performance Update Since Publication
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="space-y-2">
+                <h4 className="text-xl font-semibold text-white">Early April 2025</h4>
+                <p className="text-white/90">Stock price: <span className="text-yellow-400">$2+</span></p>
+                <p className="text-white/90">Bitcoin holdings: <span className="text-yellow-400">4,525 BTC</span></p>
+                <p className="text-sm text-white/70 italic">When we first published this analysis</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="text-xl font-semibold text-white">June 2025 Update</h4>
+                <p className="text-white/90">Stock performance: <span className="text-green-400">5x higher</span></p>
+                <p className="text-white/90">Bitcoin holdings: <span className="text-green-400">13,350 BTC</span></p>
+                <p className="text-sm text-white/70 italic">Nearly 3x increase in BTC treasury</p>
+              </div>
+            </div>
+            <div className="p-4 bg-black/20 border border-yellow-500/30">
+              <p className="text-lg text-green-300 font-semibold text-center">
+                🚀 Exceptional execution of Bitcoin treasury strategy with both stock appreciation and treasury growth
+              </p>
+            </div>
+          </div>
+
           {/* Key Features */}
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -92,11 +118,14 @@ export default function MetaPlanetPage() {
               <div className="flex items-center justify-center gap-4 mb-4">
                 <span className="text-4xl">₿</span>
                 <h3 className="text-2xl md:text-3xl font-bold text-yellow-400">
-                  4,525 BTC
+                  13,350 BTC
                 </h3>
               </div>
               <p className="text-center text-lg md:text-xl">
-                Current Bitcoin holdings (April 2025)
+                Current Bitcoin holdings (June 2025)
+              </p>
+              <p className="text-center text-sm text-white/70 mt-2">
+                Acquired for ~$1.31B at avg price of $97,832
               </p>
             </div>
           </div>
