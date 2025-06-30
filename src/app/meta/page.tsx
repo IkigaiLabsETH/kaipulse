@@ -18,7 +18,7 @@ export default function MetaPage() {
             </h1>
             <div className="flex items-center justify-center mt-6">
               <div className="h-px w-24 bg-yellow-500/30"></div>
-              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">The Future of Social Connection and Immersive Technology</p>
+              <p className="mx-6 text-lg text-white/70 font-light italic font-satoshi">Social Connection and Immersive Technology</p>
               <div className="h-px w-24 bg-yellow-500/30"></div>
             </div>
           </div>
@@ -28,13 +28,10 @@ export default function MetaPage() {
             <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
               Key Investment Points
             </h3>
-            <div className="space-y-4 text-gray-300 prose prose-invert max-w-none prose-p:text-gray-300 prose-ul:text-gray-300 prose-headings:text-yellow-500">
-              <ul>
-                <li>Research suggests Meta Platforms, Inc. (META) is a strong candidate for your portfolio, driven by its social media leadership and advancements in AR/VR and AI.</li>
-                <li>It seems likely that META&apos;s financial health and innovations in emerging technologies could lead to significant long-term growth.</li>
-                <li>The evidence leans toward META&apos;s investments in AR/VR hardware (e.g., Quest 3, Orion glasses) and AI (e.g., Llama models) positioning it well for future markets.</li>
-                <li>There is some controversy around regulatory risks and Reality Labs&apos; costs, but these are balanced by its market dominance and profitability.</li>
-              </ul>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                Research suggests Meta Platforms, Inc. (META) is a strong candidate for your portfolio, driven by its social media leadership and advancements in AR/VR and AI. METAs financial health and innovations in emerging technologies position the company for significant long-term growth, particularly through strategic investments in AR/VR hardware like the Quest 3 and Orion glasses, alongside AI developments including the Llama models. While some controversy exists around regulatory risks and Reality Labs costs, these concerns are balanced by the company&apos;s market dominance, strong profitability, and positioning for future technology markets.
+              </p>
             </div>
           </div>
 
@@ -102,15 +99,15 @@ export default function MetaPage() {
             {[
               { 
                 title: "Social Media Leadership", 
-                content: "META&apos;s dominance in social media, through platforms like Facebook, Instagram, Messenger, WhatsApp, and Threads, ensures a steady revenue stream, primarily from advertising. This scale, reaching billions of users globally, underpins its financial stability and market position as part of the &quot;Magnificent Seven&quot; (MAG7) tech giants. The Family of Apps (FoA) segment provides a foundation for cross-platform integration of AR/VR and AI technologies, enhancing user engagement and monetization opportunities." 
+                content: "METAs dominance in social media, through platforms like Facebook, Instagram, Messenger, WhatsApp, and Threads, ensures a steady revenue stream, primarily from advertising. This scale, reaching billions of users globally, underpins its financial stability and market position as part of the Magnificent Seven (MAG7) tech giants. The Family of Apps (FoA) segment provides a foundation for cross-platform integration of AR/VR and AI technologies, enhancing user engagement and monetization opportunities." 
               },
               { 
                 title: "AR/VR Innovation Leadership", 
-                content: "META is a pioneer in AR/VR through its Reality Labs (RL) segment, focusing on hardware like the Meta Quest 3 and upcoming Orion AR glasses, described as &quot;the world&apos;s most advanced AR glasses ever made.&quot; The company partners with organizations like Anduril for defense applications and collaborates with Disney and A24 for VR content creation. Recent developments include the Quest 3S, Ray-Ban Meta AI Glasses, and accessibility initiatives to make mixed reality more mainstream. These investments position META at the forefront of the next computing platform." 
+                content: "META is a pioneer in AR/VR through its Reality Labs (RL) segment, focusing on hardware like the Meta Quest 3 and upcoming Orion AR glasses, described as the worlds most advanced AR glasses ever made. The company partners with organizations like Anduril for defense applications and collaborates with Disney and A24 for VR content creation. Recent developments include the Quest 3S, Ray-Ban Meta AI Glasses, and accessibility initiatives to make mixed reality more mainstream. These investments position META at the forefront of the next computing platform." 
               },
               { 
                 title: "Artificial Intelligence Advancements", 
-                content: "In AI, META is advancing with models like Llama 3.2 and integrating AI tools across its platforms, such as AI-powered advertising and user engagement features. The company is developing custom Broadcom MTIA chips for AI workloads to reduce reliance on NVIDIA GPUs, potentially lowering costs and enhancing efficiency. AI features include image-to-video ad tools, AI avatars for enhanced user experiences, and multimodal AI capabilities with natural language understanding and voice interaction. META&apos;s focus on open-source AI through Llama models positions it as a leader competing with OpenAI." 
+                content: "In AI, META is advancing with models like Llama 3.2 and integrating AI tools across its platforms, such as AI-powered advertising and user engagement features. The company is developing custom Broadcom MTIA chips for AI workloads to reduce reliance on NVIDIA GPUs, potentially lowering costs and enhancing efficiency. AI features include image-to-video ad tools, AI avatars for enhanced user experiences, and multimodal AI capabilities with natural language understanding and voice interaction. METAs focus on open-source AI through Llama models positions it as a leader competing with OpenAI." 
               },
               { 
                 title: "Future Growth Potential", 
@@ -118,7 +115,7 @@ export default function MetaPage() {
               },
               { 
                 title: "Market Position & MAG7 Status", 
-                content: "As part of the \"Magnificent Seven\" alongside Apple, Microsoft, Alphabet, Amazon, NVIDIA, and Tesla, META's performance is benchmarked against tech giants. Its focus on AR/VR and AI differentiates it from peers like NVIDIA (AI hardware focus) and Apple (Vision Pro competitor). META's $1.84 trillion market cap and strong financial metrics demonstrate its position as a technology leader with diversified revenue streams and strategic investments in future platforms." 
+                content: "As part of the Magnificent Seven alongside Apple, Microsoft, Alphabet, Amazon, NVIDIA, and Tesla, META's performance is benchmarked against tech giants. Its focus on AR/VR and AI differentiates it from peers like NVIDIA (AI hardware focus) and Apple (Vision Pro competitor). META's $1.84 trillion market cap and strong financial metrics demonstrate its position as a technology leader with diversified revenue streams and strategic investments in future platforms." 
               },
               { 
                 title: "Risk Assessment", 
@@ -143,10 +140,10 @@ export default function MetaPage() {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p className="text-lg">
-                Meta Platforms, Inc. (META) has evolved from a social media giant to a leader in emerging technologies, particularly augmented reality (AR), virtual reality (VR), and artificial intelligence (AI). The company&apos;s transformation under CEO Mark Zuckerberg&apos;s vision represents one of the most ambitious pivots in tech history, with Reality Labs investments totaling billions annually in pursuit of the next computing platform.
+                Meta Platforms, Inc. (META) has evolved from a social media giant to a leader in emerging technologies, particularly augmented reality (AR), virtual reality (VR), and artificial intelligence (AI). The companys transformation under CEO Mark Zuckerbergs vision represents one of the most ambitious pivots in tech history, with Reality Labs investments totaling billions annually in pursuit of the next computing platform.
               </p>
               <p className="text-lg">
-                The convergence of META&apos;s established social media dominance with cutting-edge AR/VR and AI innovations creates a unique investment opportunity. While competitors focus on specific verticals, META is building an integrated ecosystem where social connection, immersive experiences, and artificial intelligence work together to create new forms of human interaction and commerce.
+                The convergence of METAs established social media dominance with cutting-edge AR/VR and AI innovations creates a unique investment opportunity. While competitors focus on specific verticals, META is building an integrated ecosystem where social connection, immersive experiences, and artificial intelligence work together to create new forms of human interaction and commerce.
               </p>
             </div>
           </div>
@@ -158,10 +155,10 @@ export default function MetaPage() {
             </h3>
             <div className="space-y-4 text-gray-300">
               <p className="text-lg">
-                META is not merely a social media leader but a pioneer in AR/VR and AI, with a strong financial foundation and strategic investments in future growth areas. Its leadership in these emerging technologies, combined with its market dominance and profitability, makes it a compelling addition to a stock portfolio, particularly for long-term investors. While risks exist around regulatory challenges and Reality Labs costs, they are balanced by META&apos;s ability to innovate and adapt, positioning it to capitalize on the next wave of technological advancements.
+                META is not merely a social media leader but a pioneer in AR/VR and AI, with a strong financial foundation and strategic investments in future growth areas. Its leadership in these emerging technologies, combined with its market dominance and profitability, makes it a compelling addition to a stock portfolio, particularly for long-term investors. While risks exist around regulatory challenges and Reality Labs costs, they are balanced by METAs ability to innovate and adapt, positioning it to capitalize on the next wave of technological advancements.
               </p>
               <p className="text-lg">
-                With analyst ratings remaining firmly bullish and a &quot;strong buy&quot; consensus, META represents a unique opportunity to invest in the future of human connection, immersive technology, and artificial intelligence through a financially robust and market-leading company.
+                With analyst ratings remaining firmly bullish and a strong buy consensus, META represents a unique opportunity to invest in the future of human connection, immersive technology, and artificial intelligence through a financially robust and market-leading company.
               </p>
             </div>
           </div>
