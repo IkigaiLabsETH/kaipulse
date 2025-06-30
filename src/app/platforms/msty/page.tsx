@@ -272,7 +272,7 @@ export default function MSTYPlatformsPage() {
 
               <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-6">
                 <p className="font-bold text-red-400 mb-3">But here&apos;s the kicker:</p>
-                <p>Over half of MSTY&apos;s distributions are just giving your own money back. Literally. Since inception, ~55% of payouts have been return of capital—not yield, not option premiums, just principal repackaged as &quot;dividends.&quot;</p>
+                <p>Over half of MSTYs distributions are just giving your own money back. Literally. Since inception, ~55% of payouts have been return of capital—not yield, not option premiums, just principal repackaged as &quot;dividends.&quot;</p>
                 
                 <div className="mt-4">
                   <p className="font-medium text-red-400 mb-2">One recent &quot;yield&quot; breakdown?</p>
