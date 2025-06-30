@@ -168,9 +168,9 @@ export default function HomePageClient() {
                 <div className="h-px w-16 bg-yellow-500/30"></div>
               </div>
               <p className="text-center text-white/90 max-w-2xl leading-relaxed font-satoshi">
-                Through research and deep conversations, 
-                this space serves as our playground for exploring ideas and training ground for our AI voice agent 
-                who&apos;s learning to think like Satoshi himself.
+                Powered by 200+ pages of our Bitcoin research and market analysis, 
+                our AI voice agent channels Satoshi&apos;s original vision to help you 
+                ₿ different and build your sovereign future.
               </p>
             </div>
             <Link
