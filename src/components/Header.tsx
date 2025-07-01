@@ -66,13 +66,13 @@ export function Header() {
       href: '#', 
       dropdown: true,
       items: [
-        { name: 'ART', href: '/art' },
-        { name: 'PUNK', href: '/pfp' },
+        { name: 'NFT', href: '/nft' },
         { name: 'MINT', href: '/mint' },
         { name: 'DOCU', href: '/docu' },
+        { name: 'PUNKS', href: '/pfp' },
         { name: 'GALLERY', href: '/gallery' },
-        { name: '1 ON 1', href: '/1on1' },
         { name: 'COLLECT', href: '/collections' },
+        { name: 'ONCHAIN', href: '/onchain' },
       ]
     },
     { 
