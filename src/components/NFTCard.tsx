@@ -107,9 +107,14 @@ export function NFTCard({ name, imageUrl, contract, tokenId, onLoad, priority = 
             }}
           />
         ) : (
-          <div className="w-full h-full bg-black/30 flex items-center justify-center">
-            <ImageIcon size={48} className="text-white/40" />
-            <span className="mt-2 text-white/60 text-sm">NFT Image Unavailable</span>
+          <div className="w-full h-full bg-gradient-to-br from-yellow-400/5 to-yellow-400/20 flex flex-col items-center justify-center border-2 border-dashed border-yellow-400/30 rounded-lg">
+            <ImageIcon size={32} className="text-yellow-400/50 mb-2" />
+            <span className="text-yellow-400/70 text-xs font-medium tracking-wide">
+              {name || 'NFT'}
+            </span>
+            <span className="text-yellow-400/40 text-xs mt-1">
+              Image unavailable
+            </span>
           </div>
         )}
         {/* Hover Overlay */}

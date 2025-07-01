@@ -30,6 +30,11 @@ interface OpenSeaNFTResponse {
 // Fetch NFTs with improved error handling and resilience
 export async function fetchNFTs(configs: NFTConfig[], priorityCount: number = 4): Promise<NFT[]> {
   try {
+    logger.info(`Starting NFT fetch process`, {
+      configCount: configs.length,
+      priorityCount
+    });
+
     // Sort NFTs by priority if specified
     const sortedConfigs = [...configs].sort((a, b) => 
       (a.priority || Infinity) - (b.priority || Infinity)
@@ -38,6 +43,11 @@ export async function fetchNFTs(configs: NFTConfig[], priorityCount: number = 4)
     // Split configs into priority and non-priority
     const priorityConfigs = sortedConfigs.slice(0, priorityCount);
     const remainingConfigs = sortedConfigs.slice(priorityCount);
+
+    logger.info(`Split configs into batches`, {
+      priority: priorityConfigs.length,
+      remaining: remainingConfigs.length
+    });
 
     // Fetch priority NFTs first with timeout
     const priorityNFTsPromise = Promise.allSettled(
@@ -55,30 +65,46 @@ export async function fetchNFTs(configs: NFTConfig[], priorityCount: number = 4)
       remainingNFTsPromise
     ]);
 
-    // Process priority results
+    // Process priority results - only include successfully loaded NFTs
     const validPriorityNFTs: NFT[] = [];
     if (priorityResults.status === 'fulfilled' && priorityResults.value) {
-      priorityResults.value.forEach(result => {
+      priorityResults.value.forEach((result, index) => {
         if (result.status === 'fulfilled' && result.value) {
           validPriorityNFTs.push(result.value);
+        } else {
+          // Log failed NFT but don't create placeholder
+          const config = priorityConfigs[index];
+          logger.warn(`Failed to load priority NFT: ${config.contract}/${config.tokenId}`);
         }
       });
     }
 
-    // Process remaining results
+    // Process remaining results - only include successfully loaded NFTs
     const validRemainingNFTs: NFT[] = [];
     if (remainingNFTs.status === 'fulfilled' && remainingNFTs.value) {
-      remainingNFTs.value.forEach(nft => {
-        if (nft) validRemainingNFTs.push(nft);
+      remainingNFTs.value.forEach((nft, index) => {
+        if (nft) {
+          validRemainingNFTs.push(nft);
+        } else {
+          // Log failed NFT but don't create placeholder
+          const config = remainingConfigs[index];
+          if (config) {
+            logger.warn(`Failed to load remaining NFT: ${config.contract}/${config.tokenId}`);
+          }
+        }
       });
     }
 
     const allNFTs = [...validPriorityNFTs, ...validRemainingNFTs];
+    const failedCount = configs.length - allNFTs.length;
     
-    logger.info(`Successfully fetched ${allNFTs.length} out of ${configs.length} NFTs`, {
+    logger.info(`NFT fetch completed`, {
+      configured: configs.length,
+      loaded: allNFTs.length,
+      failed: failedCount,
+      successRate: ((allNFTs.length / configs.length) * 100).toFixed(1) + '%',
       priority: validPriorityNFTs.length,
-      remaining: validRemainingNFTs.length,
-      total: allNFTs.length
+      remaining: validRemainingNFTs.length
     });
 
     return allNFTs;
@@ -94,21 +120,23 @@ export async function fetchNFTs(configs: NFTConfig[], priorityCount: number = 4)
 
 // Helper function to fetch a single NFT with improved error handling
 async function fetchSingleNFT(contract: string, tokenId: string, title?: string): Promise<NFT | null> {
-  const maxRetries = 3;
+  const maxRetries = 5;
   let retryCount = 0;
   let lastError: Error | null = null;
 
   while (retryCount < maxRetries) {
     try {
       if (retryCount > 0) {
-        // Exponential backoff with jitter
-        const delay = Math.pow(2, retryCount) * 500 + Math.random() * 500;
+        // Exponential backoff with jitter - more conservative delays
+        const baseDelay = Math.pow(2, retryCount) * 1000; // Increased base delay
+        const jitter = Math.random() * 1000;
+        const delay = baseDelay + jitter;
         await new Promise(resolve => setTimeout(resolve, delay));
       }
 
-      // Add timeout to prevent hanging requests
+      // Increase timeout for better success rate
       const timeoutPromise = new Promise<never>((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout')), 10000)
+        setTimeout(() => reject(new Error('Request timeout')), 15000) // Increased from 10s to 15s
       );
 
       const nftPromise = openSeaService.nft.getNFT({
@@ -124,16 +152,30 @@ async function fetchSingleNFT(contract: string, tokenId: string, title?: string)
         return null;
       }
 
-      // Validate essential fields
+      // Validate essential fields and image accessibility
       if (!nft.image_url && !nft.animation_url) {
         logger.warn(`NFT missing media: ${contract}/${tokenId}`);
+        return null;
+      }
+
+      const imageUrl = nft.image_url || nft.animation_url || '';
+      
+      // Quick validation for obviously invalid URLs
+      if (!imageUrl || imageUrl === 'null' || imageUrl === 'undefined') {
+        logger.warn(`NFT has invalid image URL: ${contract}/${tokenId}`);
+        return null;
+      }
+
+      // Skip data URIs and very short URLs that are likely invalid
+      if (imageUrl.startsWith('data:') || imageUrl.length < 10) {
+        logger.warn(`NFT has invalid image format: ${contract}/${tokenId}`);
         return null;
       }
 
       return {
         name: title || nft.name || 'Untitled',
         description: nft.description || '',
-        image_url: nft.image_url || nft.animation_url || '',
+        image_url: imageUrl,
         contract_address: contract,
         token_id: tokenId,
         blurhash: nft.blurhash || undefined,
@@ -162,7 +204,7 @@ async function fetchSingleNFT(contract: string, tokenId: string, title?: string)
 
 // Helper function to fetch remaining NFTs in batches with better error handling
 async function fetchRemainingNFTs(configs: NFTConfig[]): Promise<(NFT | null)[]> {
-  const batchSize = 8; // Reduced batch size for better stability
+  const batchSize = 5; // Reduced from 8 to 5 for better stability
   const nfts: (NFT | null)[] = [];
   
   for (let i = 0; i < configs.length; i += batchSize) {
@@ -182,9 +224,9 @@ async function fetchRemainingNFTs(configs: NFTConfig[]): Promise<(NFT | null)[]>
       
       nfts.push(...batchNFTs);
       
-      // Add small delay between batches to avoid rate limiting
+      // Increase delay between batches to avoid rate limiting
       if (i + batchSize < configs.length) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 200)); // Increased from 100ms to 200ms
       }
     } catch (error) {
       logger.error(`Error fetching batch ${i}-${i + batchSize}:`, {

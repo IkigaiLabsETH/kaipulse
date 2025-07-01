@@ -5,6 +5,7 @@ import { NFTCard } from './NFTCard';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
+import { logger } from '@/lib/logger';
 
 interface NFTGridProps {
   nfts: Array<{
@@ -78,14 +79,19 @@ function LazyNFTCard({ nft, idx, onPriorityLoad }: { nft: NFTGridProps['nfts'][n
 }
 
 const BATCH_SIZE = 16;
-const SCROLL_THRESHOLD = 800;
+const _SCROLL_THRESHOLD = 800; // Kept for potential future use
 const PRIORITY_TIMEOUT = 5000; // 5 seconds timeout for priority loading
 
 export function NFTMasonryGrid({ nfts }: NFTGridProps) {
   const [priorityLoadedCount, setPriorityLoadedCount] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
+  const [visibleCount, setVisibleCount] = useState(nfts.length); // Show all NFTs immediately
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [showPriorityOverlay, setShowPriorityOverlay] = useState(true);
+
+  // Debug logging to help troubleshoot NFT count issues
+  useEffect(() => {
+    logger.info(`NFTMasonryGrid: Displaying ${nfts.length} NFTs`);
+  }, [nfts.length]);
 
   // Memoize breakpoints to prevent unnecessary recalculations
   const breakpointCols = useMemo(() => ({
@@ -98,7 +104,7 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
     640: 1
   }), []);
 
-  // Handler to load more NFTs with debouncing
+  // Handler to load more NFTs with debouncing (kept for potential future use)
   const loadMore = useCallback(() => {
     if (isLoadingMore || visibleCount >= nfts.length) return;
     
@@ -107,28 +113,11 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
     setIsLoadingMore(false);
   }, [nfts.length, visibleCount, isLoadingMore]);
 
-  // Listen for scroll near bottom with debouncing
+  // Listen for scroll near bottom with debouncing (disabled for now since we show all)
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    const handleScroll = () => {
-      if (timeoutId) clearTimeout(timeoutId);
-      
-      timeoutId = setTimeout(() => {
-        if (
-          window.innerHeight + window.scrollY >= document.body.offsetHeight - SCROLL_THRESHOLD &&
-          visibleCount < nfts.length
-        ) {
-          loadMore();
-        }
-      }, 150); // 150ms debounce
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
+    // Disabled progressive loading for gallery pages
+    // All NFTs are shown immediately
+    return;
   }, [visibleCount, nfts.length, loadMore]);
 
   // Hide priority overlay after timeout or when enough images load
@@ -146,8 +135,8 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
     return () => clearTimeout(timeoutId);
   }, [priorityLoadedCount, nfts.length]);
 
-  // Only render visible NFTs
-  const visibleNFTs = nfts.slice(0, visibleCount);
+  // Show all NFTs
+  const visibleNFTs = nfts; // Show all NFTs instead of slicing
 
   const handlePriorityImageLoad = () => {
     setPriorityLoadedCount((prev) => prev + 1);
@@ -156,7 +145,7 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
   useEffect(() => {
     // Reset loading state when nfts change
     setPriorityLoadedCount(0);
-    setVisibleCount(BATCH_SIZE);
+    setVisibleCount(nfts.length); // Show all NFTs immediately
     setShowPriorityOverlay(nfts.length >= 4); // Only show overlay if we have enough NFTs
   }, [nfts]);
 
@@ -199,8 +188,8 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
         ))}
       </Masonry>
 
-      {/* Loading indicator */}
-      {visibleCount < nfts.length && (
+      {/* Loading indicator - hidden since we show all NFTs */}
+      {false && visibleCount < nfts.length && (
         <div className="mt-8 text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-yellow-400 border-t-transparent" />
         </div>
