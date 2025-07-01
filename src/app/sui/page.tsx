@@ -1,20 +1,25 @@
 "use client";
 
 import { Header } from '@/components/Header';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import {
+  PremiumLayout,
+  PremiumHero,
+  BoxyCard,
+  FinancialTable
+} from '@/components/sol';
 
 const platformComparison = [
-  { feature: 'Primary Asset', sui: 'SUI' },
-  { feature: 'Consensus', sui: 'Narwhal & Bullshark (DAG + BFT)' },
-  { feature: 'Smart Contract Language', sui: 'Move (Sui flavor)' },
-  { feature: 'Execution Model', sui: 'Parallel, object-centric' },
-  { feature: 'Transaction Fees', sui: 'Low, predictable' },
-  { feature: 'Ecosystem Maturity', sui: 'Growing rapidly' },
-  { feature: 'NFT/DeFi Support', sui: 'Strong, expanding' },
-  { feature: 'Bitcoin Integration', sui: 'sBTC (Coming 2025)' },
+  { Feature: 'Primary Asset', SUI: 'SUI' },
+  { Feature: 'Consensus', SUI: 'Narwhal & Bullshark (DAG + BFT)' },
+  { Feature: 'Smart Contract Language', SUI: 'Move (Sui flavor)' },
+  { Feature: 'Execution Model', SUI: 'Parallel, object-centric' },
+  { Feature: 'Transaction Fees', SUI: 'Low, predictable' },
+  { Feature: 'Ecosystem Maturity', SUI: 'Growing rapidly' },
+  { Feature: 'NFT/DeFi Support', SUI: 'Strong, expanding' },
+  { Feature: 'Bitcoin Integration', SUI: 'sBTC (Coming 2025)' }
 ];
 
 const strengths = [
@@ -84,154 +89,117 @@ const pillars = [
 
 export default function SuiHonestTake() {
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Subtle background gradient and pattern overlay */}
-      <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#18191c] via-black to-[#0a0a0a] opacity-90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-black opacity-60" />
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
-      </div>
+    <>
       <Header />
-      <section className="max-w-screen-lg mx-auto pt-32 pb-14 px-4 text-center relative z-10">
-        <Badge className="bg-yellow-500 text-black text-sm mb-6 font-satoshi tracking-wide shadow-md">Builder&apos;s Honest Take</Badge>
-        <h1 className="font-epilogue text-6xl md:text-7xl font-bold text-yellow-400 mb-8 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          SUI: Cooking Up Traction
-        </h1>
-        <div className="max-w-2xl mx-auto">
-          <p className="text-xl md:text-2xl font-epilogue text-yellow-400 italic mb-6 drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-            &quot;Builders at Token2049 were genuinely excited about SUI. The tech is real, the momentum is building, and the vibe is bullish—if you know where to look.&quot;
+      <PremiumLayout>
+        {/* Hero Section */}
+        <PremiumHero
+          title="SUI: Cooking Up Traction"
+          subtitle="Builder's Honest Take"
+        >
+          <div className="max-w-2xl mx-auto mt-8">
+            <p className="text-xl md:text-2xl text-yellow-500 italic mb-6 border-b-2 border-yellow-500/40 pb-4">
+              &quot;Builders at Token2049 were genuinely excited about SUI. The tech is real, the momentum is building, and the vibe is bullish—if you know where to look.&quot;
+            </p>
+            <p className="text-lg md:text-xl text-gray-300 leading-snug">
+              SUI surprised a lot of people this year. The traction is real, and the builder energy is strong. Some are still skeptical, but the ones building here are all in. This isn&apos;t a paid shill—just a snapshot of what&apos;s working, what needs work, and why SUI is worth watching right now.
+            </p>
+          </div>
+        </PremiumHero>
+
+        {/* What Makes SUI Special */}
+        <BoxyCard title="What Makes SUI Different?">
+          <div className="grid md:grid-cols-2 gap-6">
+            {strengths.map((item) => (
+              <div
+                key={item.title}
+                className="bg-yellow-500/5 p-6 rounded border border-yellow-500/20"
+              >
+                <h4 className="text-xl text-yellow-500 font-bold mb-3">
+                  {item.title}
+                </h4>
+                <div className="text-yellow-500 italic mb-3 border-l-4 border-yellow-500/60 pl-4">
+                  {item.highlight}
+                </div>
+                <div className="text-gray-300 mb-3 leading-relaxed">
+                  {item.description}
+                </div>
+                <div className="text-yellow-500/80 text-sm italic">{item.note}</div>
+              </div>
+            ))}
+          </div>
+        </BoxyCard>
+
+        {/* Platform Comparison */}
+        <BoxyCard title="SUI at a Glance">
+          <p className="text-lg text-gray-300 mb-8 text-center">
+            SUI&apos;s features are starting to stand out. But traction comes from real usage, not just tech. The challenge is to turn potential into practice.
           </p>
-          <p className="text-lg md:text-xl font-satoshi text-white/90 leading-snug mb-6">
-            SUI surprised a lot of people this year. The traction is real, and the builder energy is strong. Some are still skeptical, but the ones building here are all in. This isn&apos;t a paid shill—just a snapshot of what&apos;s working, what needs work, and why SUI is worth watching right now.
+          <FinancialTable 
+            headers={['Feature', 'SUI']}
+            rows={platformComparison}
+          />
+        </BoxyCard>
+
+        {/* Who is SUI For Now? */}
+        <BoxyCard title="Who Is SUI For Now?">
+          <p className="text-lg text-gray-300 mb-8 text-center">
+            SUI&apos;s next chapter is about:
           </p>
-        </div>
-      </section>
-
-      {/* Custom section divider */}
-      <div className="w-full flex justify-center mb-20">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* What Makes SUI Special */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-5xl md:text-6xl font-bold text-yellow-400 mb-14 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          What Makes SUI Different?
-        </h2>
-        <div className="grid md:grid-cols-2 gap-16">
-          {strengths.map((item) => (
-            <div key={item.title} className="flex flex-col gap-4 bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20">
-              <div className="font-epilogue text-2xl md:text-3xl text-yellow-400 font-bold leading-tight drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">
-                {item.title}
+          <div className="grid md:grid-cols-3 gap-6">
+            {pillars.map((pillar) => (
+              <div
+                key={pillar.title}
+                className="bg-yellow-500/5 p-6 rounded border border-yellow-500/20"
+              >
+                <h4 className="text-xl text-yellow-500 font-bold mb-3">{pillar.title}</h4>
+                <p className="text-gray-300">{pillar.description}</p>
               </div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-1 border-l-4 border-yellow-500/60 pl-4">
-                {item.highlight}
+            ))}
+          </div>
+        </BoxyCard>
+
+        {/* Honest Flaws & Solutions */}
+        <BoxyCard title="What's Broken & How We Fix It">
+          <div className="space-y-6">
+            {flaws.map((item) => (
+              <div
+                key={item.title}
+                className="bg-yellow-500/5 p-6 rounded border border-yellow-500/20 border-l-4 border-l-yellow-500"
+              >
+                <h4 className="text-xl text-yellow-500 font-bold mb-4">{item.title}</h4>
+                <div className="mb-4">
+                  <div className="text-yellow-500 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
+                  <div className="text-gray-300 mb-4">{item.pain}</div>
+                </div>
+                <div>
+                  <div className="text-yellow-500 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
+                  <div className="text-gray-300">{item.solution}</div>
+                </div>
               </div>
-              <div className="font-satoshi text-white/90 text-lg md:text-xl leading-relaxed">
-                {item.description}
-              </div>
-              <div className="font-satoshi text-yellow-500/80 text-base italic mt-2">{item.note}</div>
+            ))}
+          </div>
+        </BoxyCard>
+
+        {/* Call to Action */}
+        <BoxyCard title="Where Do We Go From Here?">
+          <div className="text-center space-y-6">
+            <p className="text-xl text-yellow-500 italic border-b-2 border-yellow-500/40 pb-4 max-w-2xl mx-auto">
+              &quot;The best chains are built by those who care enough to call out the flaws—and then do the work.&quot;
+            </p>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              SUI&apos;s story is just getting started. If you&apos;re building, you&apos;re early. Let&apos;s keep the momentum going, support each other, and make SUI a chain worth building on. If you&apos;re here, you matter. Let&apos;s write the next chapter together.
+            </p>
+            <div className="pt-4">
+              <Link href="https://docs.sui.io/" target="_blank">
+                <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 tracking-tight text-xl">
+                  SUI Docs <ArrowRight className="ml-4 w-6 h-6" />
+                </Button>
+              </Link>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* Platform Comparison */}
-      <section className="max-w-screen-md mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-10 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          SUI at a Glance
-        </h2>
-        <p className="text-lg font-satoshi text-white/80 mb-8 text-center">
-          SUI&apos;s features are starting to stand out. But traction comes from real usage, not just tech. The challenge is to turn potential into practice.
-        </p>
-        <div className="overflow-x-auto rounded-2xl bg-[#18191c]/80 p-10 mb-4 shadow-xl border border-yellow-500/20">
-          <table className="w-full font-epilogue text-white/90 text-lg">
-            <thead>
-              <tr className="border-b border-yellow-500/40">
-                <th className="text-left py-3 text-yellow-500 font-bold text-xl">Feature</th>
-                <th className="text-left py-3 text-yellow-500 font-bold text-xl">SUI</th>
-              </tr>
-            </thead>
-            <tbody>
-              {platformComparison.map((row) => (
-                <tr key={row.feature} className="border-b border-yellow-500/10 hover:bg-yellow-500/5 transition-colors">
-                  <td className="py-3 font-epilogue font-semibold text-lg">{row.feature}</td>
-                  <td className="py-3 font-satoshi text-white/80 text-lg">{row.sui}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* Who is SUI For Now? */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Who Is SUI For Now?
-        </h2>
-        <p className="text-lg font-satoshi text-white/80 mb-10 text-center max-w-3xl mx-auto">
-          SUI&apos;s next chapter is about:
-        </p>
-        <div className="grid md:grid-cols-3 gap-10">
-          {pillars.map((pillar) => (
-            <div key={pillar.title} className="bg-[#18191c]/80 rounded-2xl p-8 shadow-xl border border-yellow-500/20 flex flex-col gap-3">
-              <div className="font-epilogue text-2xl text-yellow-400 font-bold">{pillar.title}</div>
-              <div className="font-satoshi text-white/90 text-lg">{pillar.description}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-24">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* Honest Flaws & Solutions */}
-      <section className="max-w-screen-lg mx-auto px-4 mb-32 relative z-10">
-        <h2 className="font-epilogue text-4xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-tight text-center leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          What&apos;s Broken &amp; How We Fix It
-        </h2>
-        <div className="space-y-20">
-          {flaws.map((item) => (
-            <div key={item.title} className="bg-[#18191c]/80 rounded-2xl p-10 border-l-4 border-yellow-500/80 mb-2 shadow-xl">
-              <div className="font-epilogue text-2xl text-yellow-400 mb-2 font-bold drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)]">{item.title}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Pain Point</div>
-              <div className="font-satoshi text-white/80 text-lg mb-4">{item.pain}</div>
-              <div className="font-epilogue text-lg text-yellow-400 italic mb-2 border-l-4 border-yellow-500/60 pl-4">Possible Direction</div>
-              <div className="font-satoshi text-white/90 text-lg">{item.solution}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="w-full flex justify-center mb-28">
-        <div className="h-1 w-40 bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full shadow-lg" />
-      </div>
-
-      {/* CTA */}
-      <section className="max-w-screen-md mx-auto px-4 mb-40 text-center relative z-10">
-        <h2 className="font-epilogue text-5xl md:text-8xl font-bold text-yellow-400 mb-10 tracking-tight leading-tight drop-shadow-[0_2px_32px_rgba(247,181,0,0.18)]">
-          Where Do We Go From Here?
-        </h2>
-        <p className="font-epilogue text-2xl text-yellow-400 italic mb-8 max-w-2xl mx-auto drop-shadow-[0_2px_16px_rgba(247,181,0,0.18)] border-b-2 border-yellow-500/40 pb-4">
-          &quot;The best chains are built by those who care enough to call out the flaws—and then do the work.&quot;
-        </p>
-        <p className="text-lg md:text-xl font-satoshi text-white/80 mb-12 max-w-2xl mx-auto">
-          SUI&apos;s story is just getting started. If you&apos;re building, you&apos;re early. Let&apos;s keep the momentum going, support each other, and make SUI a chain worth building on. If you&apos;re here, you matter. Let&apos;s write the next chapter together.
-        </p>
-        <Link href="https://docs.sui.io/" target="_blank">
-          <Button className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-bold px-12 py-6 rounded-2xl shadow-[0_8px_32px_0_rgba(247,181,0,0.18)] hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 font-epilogue tracking-tight text-2xl focus:ring-4 focus:ring-yellow-500/40">
-            SUI Docs <ArrowRight className="ml-4 w-7 h-7" />
-          </Button>
-        </Link>
-      </section>
-    </div>
+          </div>
+        </BoxyCard>
+      </PremiumLayout>
+    </>
   );
 }
