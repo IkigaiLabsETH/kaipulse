@@ -129,12 +129,18 @@ export class BaseOpenSeaAPI {
       }
 
       if (!response.ok) {
-        logger.error('OpenSea API request failed:', {
-          status: response.status,
-          url: fullUrl,
-          response: responseBody,
-          retryCount
-        });
+        const isListingsEndpoint = fullUrl.includes('/listings');
+        const is404 = response.status === 404;
+        
+        // Don't log 404s for listings as errors - they're expected when NFTs aren't listed
+        if (!(is404 && isListingsEndpoint)) {
+          logger.error('OpenSea API request failed:', {
+            status: response.status,
+            url: fullUrl,
+            response: responseBody,
+            retryCount
+          });
+        }
 
         // Handle specific error cases
         if (response.status === 404) {

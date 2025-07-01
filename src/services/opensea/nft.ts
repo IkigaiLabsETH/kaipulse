@@ -186,7 +186,7 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
                   }))
                 }).parse(data);
               } catch {
-                logger.warn('Invalid listings data format, using empty listings', { data });
+                // Silently return empty listings for invalid data
                 return { listings: [] };
               }
             }
@@ -194,9 +194,17 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
           if (priceData?.listings?.length) {
             listings.push(...priceData.listings);
           }
-        } catch {
-          // Non-critical error, continue without listings
-          logger.warn('Failed to fetch NFT listings, continuing without listings data');
+        } catch (error) {
+          // Non-critical error - many NFTs don't have listings
+          // Only log if it's not a 404 (which is expected)
+          const isNotFound = error instanceof Error && error.message.includes('404');
+          if (!isNotFound) {
+            logger.debug('Failed to fetch NFT listings (non-critical):', {
+              contract: validatedParams.address,
+              tokenId: formattedTokenId,
+              error: error instanceof Error ? error.message : String(error)
+            });
+          }
         }
   
         return {

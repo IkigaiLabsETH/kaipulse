@@ -79,11 +79,13 @@ function LazyNFTCard({ nft, idx, onPriorityLoad }: { nft: NFTGridProps['nfts'][n
 
 const BATCH_SIZE = 16;
 const SCROLL_THRESHOLD = 800;
+const PRIORITY_TIMEOUT = 5000; // 5 seconds timeout for priority loading
 
 export function NFTMasonryGrid({ nfts }: NFTGridProps) {
   const [priorityLoadedCount, setPriorityLoadedCount] = useState(0);
   const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [showPriorityOverlay, setShowPriorityOverlay] = useState(true);
 
   // Memoize breakpoints to prevent unnecessary recalculations
   const breakpointCols = useMemo(() => ({
@@ -129,6 +131,21 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
     };
   }, [visibleCount, nfts.length, loadMore]);
 
+  // Hide priority overlay after timeout or when enough images load
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowPriorityOverlay(false);
+    }, PRIORITY_TIMEOUT);
+
+    // Also hide when we have at least 4 loaded or when we have fewer than 4 total NFTs
+    if (priorityLoadedCount >= 4 || nfts.length < 4) {
+      setShowPriorityOverlay(false);
+      clearTimeout(timeoutId);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [priorityLoadedCount, nfts.length]);
+
   // Only render visible NFTs
   const visibleNFTs = nfts.slice(0, visibleCount);
 
@@ -140,6 +157,7 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
     // Reset loading state when nfts change
     setPriorityLoadedCount(0);
     setVisibleCount(BATCH_SIZE);
+    setShowPriorityOverlay(nfts.length >= 4); // Only show overlay if we have enough NFTs
   }, [nfts]);
 
   return (
@@ -150,14 +168,14 @@ export function NFTMasonryGrid({ nfts }: NFTGridProps) {
         aria-hidden="true"
       />
       
-      {/* Loading overlay */}
+      {/* Non-blocking loading overlay with timeout */}
       <AnimatePresence>
-        {priorityLoadedCount < 4 && (
+        {showPriorityOverlay && nfts.length >= 4 && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center"
+            className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10 flex items-center justify-center pointer-events-none"
             role="status"
             aria-label="Loading artworks"
           >

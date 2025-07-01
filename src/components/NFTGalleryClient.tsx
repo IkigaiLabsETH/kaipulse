@@ -12,12 +12,13 @@ interface NFTGalleryClientProps {
     title?: string;
     priority?: number;
   }>;
+  priorityCount?: number; // Make it configurable, default to loading all
 }
 
 // Simple in-memory cache for client-side
 const clientCache = new Map<string, NFT[]>();
 
-export function NFTGalleryClient({ nftConfigs }: NFTGalleryClientProps) {
+export function NFTGalleryClient({ nftConfigs, priorityCount }: NFTGalleryClientProps) {
   const [nfts, setNfts] = useState<NFT[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,8 +27,8 @@ export function NFTGalleryClient({ nftConfigs }: NFTGalleryClientProps) {
 
     async function loadNFTs() {
       try {
-        // Create a cache key from the configs
-        const cacheKey = JSON.stringify(nftConfigs);
+        // Create a cache key from the configs and priority count
+        const cacheKey = JSON.stringify({ nftConfigs, priorityCount });
         
         // Check if we have cached data
         if (clientCache.has(cacheKey)) {
@@ -38,7 +39,9 @@ export function NFTGalleryClient({ nftConfigs }: NFTGalleryClientProps) {
           return;
         }
 
-        const fetchedNFTs = await fetchNFTs(nftConfigs, 4);
+        // Fetch all NFTs by default (priorityCount defaults to nftConfigs.length)
+        const effectivePriorityCount = priorityCount ?? nftConfigs.length;
+        const fetchedNFTs = await fetchNFTs(nftConfigs, effectivePriorityCount);
         if (mounted) {
           setNfts(fetchedNFTs);
           // Cache the results
@@ -57,7 +60,7 @@ export function NFTGalleryClient({ nftConfigs }: NFTGalleryClientProps) {
     return () => {
       mounted = false;
     };
-  }, [nftConfigs]);
+  }, [nftConfigs, priorityCount]);
 
   if (isLoading) {
     return null; // The Suspense fallback will handle the loading state
