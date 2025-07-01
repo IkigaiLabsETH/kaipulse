@@ -351,6 +351,240 @@ export default function OnchainPage() {
             </div>
           </div>
 
+          {/* Complete Asset Directory */}
+          <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
+            <h3 className="text-2xl md:text-3xl font-bold text-yellow-500 mb-6">
+              Complete Tokenized Asset Directory
+            </h3>
+            <p className="text-base md:text-lg text-white/80 font-satoshi mb-8 text-center leading-relaxed">
+              Comprehensive list of all available tokenized stocks and ETFs from Backed Finance, offering 1:1 backing by real assets and 24/7 trading capabilities.
+            </p>
+            
+            {/* Asset Categories */}
+            <div className="space-y-8">
+              {/* xStocks Section */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                  <span className="text-2xl">⚡</span>
+                  xStocks (Solana-Based)
+                </h4>
+                <p className="text-white/70 font-satoshi mb-6">Next-generation tokenized stocks on Solana with DeFi integration</p>
+                
+                {/* Tech Giants */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">Technology Giants</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "Apple", symbol: "AAPLx" },
+                      { name: "Microsoft", symbol: "MSFTx" },
+                      { name: "NVIDIA", symbol: "NVDAx" },
+                      { name: "Alphabet", symbol: "GOOGLx" },
+                      { name: "Amazon", symbol: "AMZNx" },
+                      { name: "Meta", symbol: "METAx" },
+                      { name: "Tesla", symbol: "TSLAx" },
+                      { name: "Netflix", symbol: "NFLXx" },
+                      { name: "Oracle", symbol: "ORCLx" },
+                      { name: "Cisco", symbol: "CSCOx" },
+                      { name: "Intel", symbol: "INTCx" },
+                      { name: "Broadcom", symbol: "AVGOx" },
+                      { name: "Salesforce", symbol: "CRMx" },
+                      { name: "Palantir", symbol: "PLTRx" },
+                      { name: "CrowdStrike", symbol: "CRWDx" },
+                      { name: "Marvell", symbol: "MRVLx" },
+                      { name: "AppLovin", symbol: "APPx" },
+                      { name: "IBM", symbol: "IBMx" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Financial Services */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">Financial Services</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "JPMorgan Chase", symbol: "JPMx" },
+                      { name: "Bank of America", symbol: "BACx" },
+                      { name: "Berkshire Hathaway", symbol: "BRK.Bx" },
+                      { name: "Goldman Sachs", symbol: "GSx" },
+                      { name: "Visa", symbol: "Vx" },
+                      { name: "Mastercard", symbol: "MAx" },
+                      { name: "Coinbase", symbol: "COINx" },
+                      { name: "MicroStrategy", symbol: "MSTRx" },
+                      { name: "Robinhood", symbol: "HOODx" },
+                      { name: "Circle", symbol: "CRCLx" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Healthcare & Pharma */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">Healthcare & Pharmaceuticals</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "Johnson & Johnson", symbol: "JNJx" },
+                      { name: "UnitedHealth", symbol: "UNHx" },
+                      { name: "Pfizer", symbol: "PFEx" },
+                      { name: "AbbVie", symbol: "ABBVx" },
+                      { name: "Eli Lilly", symbol: "LLYx" },
+                      { name: "Merck", symbol: "MRKx" },
+                      { name: "Abbott", symbol: "ABTx" },
+                      { name: "Thermo Fisher", symbol: "TMOx" },
+                      { name: "Danaher", symbol: "DHRx" },
+                      { name: "Medtronic", symbol: "MDTx" },
+                      { name: "AstraZeneca", symbol: "AZNx" },
+                      { name: "Novo Nordisk", symbol: "NVOx" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Consumer & Industrial */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">Consumer & Industrial</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "Walmart", symbol: "WMTx" },
+                      { name: "Coca-Cola", symbol: "KOx" },
+                      { name: "PepsiCo", symbol: "PEPx" },
+                      { name: "Procter & Gamble", symbol: "PGx" },
+                      { name: "McDonald's", symbol: "MCDx" },
+                      { name: "Home Depot", symbol: "HDx" },
+                      { name: "Chevron", symbol: "CVXx" },
+                      { name: "Exxon Mobil", symbol: "XOMx" },
+                      { name: "Honeywell", symbol: "HONx" },
+                      { name: "Linde", symbol: "LINx" },
+                      { name: "Philip Morris", symbol: "PMx" },
+                      { name: "Comcast", symbol: "CMCSAx" },
+                      { name: "Accenture", symbol: "ACNx" },
+                      { name: "Gamestop", symbol: "GMEx" },
+                      { name: "Amber", symbol: "AMBRx" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ETFs & Indexes */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">ETFs & Market Indexes</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "S&P 500", symbol: "SPYx" },
+                      { name: "Nasdaq", symbol: "QQQx" },
+                      { name: "TQQQ", symbol: "TQQQx" },
+                      { name: "Vanguard Total", symbol: "VTIx" },
+                      { name: "Gold ETF", symbol: "GLDx" },
+                      { name: "DFDV", symbol: "DFDVx" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* bTokens Section */}
+              <div>
+                <h4 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                  <span className="text-2xl">🔗</span>
+                  bTokens (Multi-Chain Assets)
+                </h4>
+                <p className="text-white/70 font-satoshi mb-6">Original tokenized assets across multiple blockchains including Ethereum, Polygon, and more</p>
+                
+                {/* Equity bTokens */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">Equity bTokens</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "Alphabet", symbol: "bGOOGL" },
+                      { name: "Microsoft", symbol: "bMSFT" },
+                      { name: "NVIDIA", symbol: "bNVDA" },
+                      { name: "Tesla", symbol: "bTSLA" },
+                      { name: "Coinbase", symbol: "bCOIN" },
+                      { name: "MicroStrategy", symbol: "bMSTR" },
+                      { name: "GameStop", symbol: "bGME" },
+                      { name: "Niu Technologies", symbol: "bNIU" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Fixed Income bTokens */}
+                <div className="mb-6">
+                  <h5 className="text-lg font-bold text-yellow-300 mb-3">Fixed Income & Bonds</h5>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {[
+                      { name: "S&P 500 ETF", symbol: "bCSPX" },
+                      { name: "1-Month T-Bill", symbol: "bZPR1" },
+                      { name: "0-1yr Treasury", symbol: "bIB01" },
+                      { name: "1-3yr Treasury", symbol: "bIBTA" },
+                      { name: "USD Ultrashort", symbol: "bERNA" },
+                      { name: "EUR Ultrashort", symbol: "bERNX" },
+                      { name: "EUR Investment Grade", symbol: "bC3M" },
+                      { name: "EUR High Yield", symbol: "bHIGH" },
+                      { name: "Swiss Gov Bond", symbol: "bCSBGC3" }
+                    ].map((stock) => (
+                      <div key={stock.symbol} className="bg-black/50 p-3 rounded-none border border-yellow-500/20 hover:border-yellow-500/40 transition-all">
+                        <p className="text-white font-satoshi text-sm font-bold">{stock.name}</p>
+                        <p className="text-yellow-400 font-satoshi text-xs">{stock.symbol}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Features */}
+              <div className="bg-black/30 p-6 rounded-none border border-yellow-500/30">
+                <h4 className="text-lg font-bold text-yellow-400 mb-4">Asset Features & Benefits</h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="text-yellow-300 font-bold mb-2">xStocks Advantages:</h5>
+                    <ul className="text-white/80 font-satoshi space-y-1 text-sm">
+                      <li>• Built on Solana for high-speed, low-cost transactions</li>
+                      <li>• Native DeFi integration and composability</li>
+                      <li>• 24/7 trading with instant settlement</li>
+                      <li>• Use as collateral in lending protocols</li>
+                      <li>• Available on Kraken and Bybit exchanges</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="text-yellow-300 font-bold mb-2">bTokens Advantages:</h5>
+                    <ul className="text-white/80 font-satoshi space-y-1 text-sm">
+                      <li>• Multi-chain availability (Ethereum, Polygon, Base)</li>
+                      <li>• Established track record and regulatory compliance</li>
+                      <li>• Includes fixed income and bond products</li>
+                      <li>• Institutional-grade custody and backing</li>
+                      <li>• Chainlink Proof of Reserve integration</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Call to Action */}
           <div className="text-center">
             <div className="bg-[#1c1f26] p-8 rounded-none border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)]">
@@ -358,15 +592,35 @@ export default function OnchainPage() {
                 Join the Tokenized Assets Revolution
               </h3>
               <p className="text-lg text-white/80 font-satoshi mb-6">
-                As traditional finance meets blockchain innovation, tokenized stocks represent the next evolution in asset accessibility and global market participation.
+                As tradfi meets blockchain, tokenized stocks represent the next evolution in asset accessibility and global market participation.
               </p>
+              <div className="bg-black/30 p-4 rounded-none border border-yellow-500/30 mb-6">
+                <p className="text-yellow-400 font-satoshi text-sm mb-2">🎁 Special Offer</p>
+                <p className="text-white/80 font-satoshi text-sm">
+                  Get €20 in crypto when you sign up for Robinhood with our link and deposit €20 to start trading by 5 July.
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-yellow-500 text-black font-bold px-8 py-3 rounded-none hover:bg-yellow-400 transition-all duration-300">
-                  Explore Platforms
-                </Button>
-                <Button variant="outline" className="border-yellow-500 text-yellow-500 font-bold px-8 py-3 rounded-none hover:bg-yellow-500 hover:text-black transition-all duration-300">
-                  Research More
-                </Button>
+                <a 
+                  href="https://join.robinhood.com/eu_crypto/yvesv-2a991583/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <Button className="bg-yellow-500 text-black font-bold px-8 py-3 rounded-none hover:bg-yellow-400 transition-all duration-300 w-full">
+                    Get €20 Free on Robinhood
+                  </Button>
+                </a>
+                <a 
+                  href="https://join.robinhood.com/eu_crypto/yvesv-2a991583/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <Button variant="outline" className="border-yellow-500 text-yellow-500 font-bold px-8 py-3 rounded-none hover:bg-yellow-500 hover:text-black transition-all duration-300 w-full">
+                    Start Trading Now
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
