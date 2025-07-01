@@ -15,16 +15,6 @@ interface SearchResult {
 const CONTENT_INDEX: SearchResult[] = [
   // Featured Introduction
   {
-    title: 'LiveTheLifeTV Introduction',
-    url: '/intro',
-    description: 'Your gateway to Bitcoin education & life balance. Complete guide to our platform covering Bitcoin strategy, DeFi, lifestyle, and tools.',
-    category: 'Education',
-    featured: true,
-    keywords: ['intro', 'introduction', 'gateway', 'bitcoin', 'education', 'life balance', 'getting started']
-  },
-
-  // Core Bitcoin Strategy
-  {
     title: 'Bitcoin Core Education',
     url: '/platforms/msty/bitcoin',
     description: 'Comprehensive Bitcoin education covering fundamentals, investment strategies, and long-term wealth building.',
@@ -32,13 +22,8 @@ const CONTENT_INDEX: SearchResult[] = [
     featured: true,
     keywords: ['bitcoin', 'btc', 'education', 'strategy', 'investment', 'wealth', 'satoshi', 'hodl']
   },
-  {
-    title: 'Bitcoin Whitepaper',
-    url: '/whitepaper',
-    description: 'Study the original Bitcoin whitepaper by Satoshi Nakamoto and understand the foundational principles of Bitcoin.',
-    category: 'Education',
-    keywords: ['whitepaper', 'satoshi', 'nakamoto', 'bitcoin', 'fundamentals', 'peer-to-peer', 'electronic cash']
-  },
+
+  // Core Bitcoin Strategy
   {
     title: 'MicroStrategy Bitcoin Strategy',
     url: '/platforms/msty/mstr',
@@ -46,21 +31,6 @@ const CONTENT_INDEX: SearchResult[] = [
     category: 'Bitcoin',
     featured: true,
     keywords: ['microstrategy', 'mstr', 'saylor', 'corporate', 'treasury', 'bitcoin', 'strategy']
-  },
-  {
-    title: 'MSTY Freedom Calculator',
-    url: '/calculator',
-    description: 'Calculate your path to financial freedom using Bitcoin-first portfolio strategies. Includes income projections and allocation recommendations.',
-    category: 'Tools',
-    featured: true,
-    keywords: ['msty', 'calculator', 'freedom', 'bitcoin', 'portfolio', 'allocation', 'income', 'financial']
-  },
-  {
-    title: 'MSTY Investment Platform',
-    url: '/platforms/msty/',
-    description: 'Explore MSTY covered call ETF strategies for generating income while maintaining Bitcoin exposure.',
-    category: 'Investment',
-    keywords: ['msty', 'etf', 'covered call', 'income', 'yield', 'bitcoin', 'strategy']
   },
   {
     title: 'Cost of Living Calculator',
@@ -98,20 +68,6 @@ const CONTENT_INDEX: SearchResult[] = [
     description: 'Learn about Bitaxe open-source Bitcoin mining hardware for solo mining and lottery-style mining.',
     category: 'Technology',
     keywords: ['bitaxe', 'solo mining', 'open source', 'mining', 'bitcoin', 'lottery']
-  },
-  {
-    title: 'Bitcoin Node Setup',
-    url: '/node',
-    description: 'Step-by-step guide to running your own Bitcoin full node for network participation and sovereignty.',
-    category: 'Technology',
-    keywords: ['node', 'bitcoin', 'full node', 'sovereignty', 'network', 'setup']
-  },
-  {
-    title: 'Lightning Network',
-    url: '/ln',
-    description: 'Bitcoin Lightning Network payments, channels, and second-layer scaling solutions for instant Bitcoin transactions.',
-    category: 'Technology',
-    keywords: ['lightning', 'network', 'payments', 'scaling', 'bitcoin', 'layer 2', 'instant']
   },
 
   // DeFi & Altcoins
@@ -468,7 +424,7 @@ const CONTENT_INDEX: SearchResult[] = [
 
   // Analytics & Research Tools
   {
-    title: 'Sonar Analytics',
+    title: 'Sonar',
     url: '/sonar',
     description: 'Advanced analytics and research tools for Bitcoin and cryptocurrency market analysis.',
     category: 'Tools',

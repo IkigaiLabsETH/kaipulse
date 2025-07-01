@@ -41,13 +41,38 @@ export default function SearchPage() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const popularSearches = [
-    'Bitcoin Calculator', 'Freedom Calculator', 'MSTY Strategy', 'MicroStrategy',
-    'NFT Collections', 'Art Gallery', 'PFP Generator', 'Prints',
-    'Portugal Guide', 'Real Estate', 'Airstream', 'Dubai Luxury',
-    'Ledger Wallet', 'Node Setup', 'Lightning Network', 'Mining',
-    'AI Tools', 'Voice Assistant', 'Cursor IDE', 'VibeCode',
-    'Ethereum DeFi', 'HyperLiquid', 'Solana', 'Web3 Tools',
-    'Naval Wisdom', 'Fire Movement', 'Bitcoin Documentary', 'Market Analysis'
+    // Core Bitcoin & Strategy
+    'MicroStrategy', 'Strike', 'Nakamoto', '21 Energy', 'Max Pain',
+    
+    // Hardware & Security  
+   'Bitaxe', 'S9 Pro',
+    
+    // DeFi & Altcoins
+   'HyperLiquid', 'Solana', 'Sui', 'Lombard', 'Stride',
+    
+    // NFTs & Digital Art
+    'NFT Collections', 'Art Gallery', 'Prints', 'Generative Art', 'PFP', '1-on-1',
+    
+    // Stocks & Traditional Finance
+    'Tesla', 'NVDA', 'Mag7', 'Gold', 'Options Trading', 'IPO', 'Stocks', 'Hood',
+    
+    // Travel & Destinations
+    'Portugal Guide', 'Spain', 'Costa Rica', 'Dubai', 'Monaco', 'Morocco', 'Biarritz', 'Sotogrande',
+    
+    // Lifestyle & Luxury
+    'Real Estate', 'Airstream', 'Catamaran', 'Mobile Home', 'Land Investment', 'Smart Home', 'Pool Life', 'Sauna', 'Hastens', 'Six Senses',
+    
+    // AI & Technology
+    'AI Tools', 'Voice Assistant', 'Cursor IDE', 'Vibe Coding', 'Eliza', 'Neuralink', 'Robotaxi', 
+    
+    // Health & Biohacking
+    'Biohacking', 'Mitochondria', 'Training', 'Whoop', 'Quality of Life',
+    
+    // Philosophy & Culture
+    'Naval Wisdom', 'Fire Movement', 'Bitcoin Documentary', 'Down Bad', 'Grind', 'Time Management', 'Cost of Living',
+    
+    // Business & Tools
+    'Fairmint', 'Otonomos', 'SharpLink', 'Sonar', 'Distribution'
   ];
 
   const featuredContent = [
