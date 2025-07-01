@@ -1,10 +1,6 @@
 import { Metadata } from 'next';
-import { fetchNFTs } from '@/lib/nft';
-import { NFTGallery } from '@/components/NFTGallery';
+import { NFTGalleryWithLoadMore } from '@/components/NFTGalleryWithLoadMore';
 import { featuredNFTs } from '@/config/featured-nfts-2';
-
-// Force dynamic rendering to prevent build timeouts
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Explore Collection | Digital Art Gallery',
@@ -15,9 +11,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
-
-// Increase revalidation time to reduce build load
-export const revalidate = 86400; // 24 hours
 
 // Structured data for SEO
 const structuredData = {
@@ -32,12 +25,7 @@ const structuredData = {
   }
 };
 
-// Use all featured NFTs
-const nftConfigs = featuredNFTs;
-
-export default async function ExplorePage() {
-  const nfts = await fetchNFTs(nftConfigs);
-
+export default function ExplorePage() {
   return (
     <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
       <script
@@ -59,7 +47,12 @@ export default async function ExplorePage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <NFTGallery nfts={nfts} />
+        <NFTGalleryWithLoadMore 
+          nftConfigs={featuredNFTs}
+          initialBatchSize={12}
+          loadMoreBatchSize={8}
+          collectionName="Explore Collection"
+        />
       </div>
     </div>
   );

@@ -1,11 +1,6 @@
-import { fetchNFTs } from '@/lib/nft';
-import { NFTGallery } from '@/components/NFTGallery';
+import { NFTGalleryWithLoadMore } from '@/components/NFTGalleryWithLoadMore';
 import { Metadata } from 'next';
 import { oneononeNFTs } from '@/config/one-on-one';
-import { Suspense } from 'react';
-
-// Use ISR with 1 hour revalidation
-export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'One-on-One Collection | Digital Art Gallery',
@@ -30,12 +25,7 @@ const structuredData = {
   }
 };
 
-// Use all one-on-one NFTs
-const nftConfigs = oneononeNFTs;
-
-export default async function OneOnOnePage() {
-  const nfts = await fetchNFTs(nftConfigs);
-
+export default function OneOnOnePage() {
   return (
     <div className="min-h-screen bg-black px-8 pt-32 pb-8 md:px-12 md:pt-36 md:pb-12">
       <script
@@ -57,9 +47,12 @@ export default async function OneOnOnePage() {
             <div className="h-px w-24 bg-yellow-500/30"></div>
           </div>
         </div>
-        <Suspense fallback={<div className="py-16 text-center text-white/60">Loading artworks...</div>}>
-          <NFTGallery nfts={nfts} />
-        </Suspense>
+        <NFTGalleryWithLoadMore 
+          nftConfigs={oneononeNFTs}
+          initialBatchSize={12}
+          loadMoreBatchSize={8}
+          collectionName="One-on-One Collection"
+        />
       </div>
     </div>
   );

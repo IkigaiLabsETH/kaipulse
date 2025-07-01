@@ -194,17 +194,9 @@ export class OpenSeaNFTAPI extends BaseOpenSeaAPI {
           if (priceData?.listings?.length) {
             listings.push(...priceData.listings);
           }
-        } catch (error) {
+        } catch {
           // Non-critical error - many NFTs don't have listings
-          // Only log if it's not a 404 (which is expected)
-          const isNotFound = error instanceof Error && error.message.includes('404');
-          if (!isNotFound) {
-            logger.debug('Failed to fetch NFT listings (non-critical):', {
-              contract: validatedParams.address,
-              tokenId: formattedTokenId,
-              error: error instanceof Error ? error.message : String(error)
-            });
-          }
+          // Silently ignore 404s and other listing errors as they're expected
         }
   
         return {
