@@ -275,18 +275,20 @@ export default function HumePage() {
               {/* Description */}
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold font-epilogue text-yellow-400 mb-6">
-                  Voice-Optimized System Prompt
+                  Enhanced Bitcoin-Native System Prompt
                 </h2>
                 <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-                  This is the new optimized Bitcoin-native system prompt for Hume EVI, built using proven patterns 
-                  for voice conversations. It follows the exact XML structure from the Hume documentation while 
-                  preserving your unique Satoshi-inspired personality.
+                  This is the enhanced Bitcoin-native system prompt for Hume EVI, now packed with specialized knowledge 
+                  from our comprehensive legacy content. Built using proven voice patterns while integrating unique expertise 
+                  in Bitcoin treasuries, French wine, luxury lifestyle, AI infrastructure, and sovereign living.
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-yellow-400/80">
-                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Voice-First Design</span>
-                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Expression Handling</span>
-                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Memory & Context</span>
-                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Bitcoin-Native</span>
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Voice-Optimized</span>
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Advanced Investment Knowledge</span>
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">French Wine Expertise</span>
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Luxury & Sovereignty</span>
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">AI Infrastructure</span>
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full">Biohacking Protocols</span>
                 </div>
               </div>
 
@@ -301,11 +303,11 @@ export default function HumePage() {
                         : 'bg-yellow-400 text-black hover:bg-yellow-300'
                     }`}
                   >
-                    {copied ? '✓ Copied!' : 'Copy Prompt'}
+                    {copied ? '✓ Copied!' : 'Copy Enhanced Prompt'}
                   </button>
                 </div>
                 <div className="pr-20">
-                  <h3 className="text-xl font-bold text-yellow-400 mb-4">System Prompt</h3>
+                  <h3 className="text-xl font-bold text-yellow-400 mb-4">Enhanced System Prompt</h3>
                   <pre className="text-white/90 text-sm leading-relaxed whitespace-pre-wrap font-mono overflow-x-auto">
                     {optimizedSystemPrompt}
                   </pre>
@@ -314,49 +316,63 @@ export default function HumePage() {
 
               {/* Implementation Guide */}
               <div className="bg-zinc-900/50 backdrop-blur-sm border border-yellow-400/10 rounded-2xl p-8 mt-8">
-                <h3 className="text-2xl font-bold text-yellow-400 mb-6">Implementation Guide</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-6">Enhanced Knowledge Base</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-3">Key Improvements</h4>
+                    <h4 className="text-lg font-bold text-white mb-3">Advanced Bitcoin Knowledge</h4>
                     <ul className="space-y-2 text-white/80">
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Voice-optimized conversation patterns</span>
+                        <span>STRK, STRF, BitBonds, Twenty One treasury strategies</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Advanced expression handling</span>
+                        <span>Bitcoin Freedom Timeline mathematics</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Memory and context management</span>
+                        <span>MetaPlanet and corporate adoption strategies</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Proactive conversation building</span>
+                        <span>MSTY volatility extraction and income generation</span>
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-3">Usage</h4>
+                    <h4 className="text-lg font-bold text-white mb-3">Specialized Expertise</h4>
                     <ul className="space-y-2 text-white/80">
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Copy the system prompt above</span>
+                        <span>French wine terroir (Bordeaux, Burgundy, Champagne)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Paste into Hume EVI interface</span>
+                        <span>Sovereign transportation (Tesla, Cirrus, Hill HX50)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Test voice conversations</span>
+                        <span>Smart home technology (KNX, Savant, luxury brands)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-400 mt-1">•</span>
-                        <span>Monitor expression responses</span>
+                        <span>Art curation and biohacking protocols</span>
                       </li>
                     </ul>
+                  </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-yellow-400/20">
+                  <h4 className="text-lg font-bold text-white mb-3">Voice-Optimized Features</h4>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="text-white/80">
+                      <span className="text-yellow-400 font-semibold">Expression Handling:</span> Advanced emotional context recognition
+                    </div>
+                    <div className="text-white/80">
+                      <span className="text-yellow-400 font-semibold">Memory System:</span> Continuous relationship building
+                    </div>
+                    <div className="text-white/80">
+                      <span className="text-yellow-400 font-semibold">Conversation Examples:</span> 20+ specialized scenarios
+                    </div>
                   </div>
                 </div>
               </div>
@@ -371,11 +387,12 @@ export default function HumePage() {
               {/* Description */}
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold font-epilogue text-yellow-400 mb-6">
-                  Legacy Content Sections
+                  Legacy Content Archive
                 </h2>
                 <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-                  The original detailed content sections, now compressed for reference. 
-                  This content has been optimized and integrated into the new system prompt above.
+                  The comprehensive knowledge base that powers our enhanced system prompt. This detailed content 
+                  has been distilled and integrated into the voice-optimized prompt above, preserving the depth 
+                  while making it conversational and accessible for AI voice interactions.
                 </p>
               </div>
 
