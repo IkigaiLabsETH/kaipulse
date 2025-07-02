@@ -51,7 +51,7 @@ export default function SearchPage() {
    'HyperLiquid', 'Solana', 'Sui', 'Lombard', 'Stride',
     
     // NFTs & Digital Art
-    'NFT Collections', 'Art Gallery', 'Prints', 'Generative Art', 'PFP', '1-on-1',
+    'NFT Collections', 'Art Gallery', 'Prints', 
     
     // Stocks & Traditional Finance
     'Tesla', 'NVDA', 'Mag7', 'Gold', 'Options Trading', 'IPO', 'Stocks', 'Hood',
