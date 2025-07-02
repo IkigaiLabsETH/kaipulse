@@ -8,6 +8,54 @@ interface MicFFTProps {
   className?: string;
 }
 
+// Particle effect component with client-side generation to avoid hydration issues
+const ParticleEffect = ({ isActive, fft }: { isActive: boolean; fft: number[] }) => {
+  const [particles, setParticles] = useState<Array<{
+    x: string;
+    y: string;
+    duration: number;
+  }>>([]);
+
+  useEffect(() => {
+    // Generate particle properties on client side only
+    const newParticles = Array.from({ length: 5 }).map(() => ({
+      x: `${Math.random() * 100}%`,
+      y: `${Math.random() * 50}%`,
+      duration: 2 + Math.random() * 2,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  if (!isActive || !fft.some(v => v > 0.5)) return null;
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {particles.map((particle, i) => (
+        <motion.div
+          key={`particle-${i}`}
+          className="absolute w-1 h-1 rounded-full bg-yellow-500/60"
+          initial={{ 
+            x: particle.x, 
+            y: '100%',
+            opacity: 0.8
+          }}
+          animate={{ 
+            y: particle.y,
+            opacity: 0
+          }}
+          transition={{ 
+            duration: particle.duration,
+            repeat: Infinity,
+            repeatType: 'loop',
+            ease: 'easeOut',
+            delay: i * 0.5
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export const MicFFT = ({ isActive, className = '' }: MicFFTProps) => {
   const [fft, setFFT] = useState<number[]>(Array(64).fill(0));
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -130,32 +178,7 @@ export const MicFFT = ({ isActive, className = '' }: MicFFTProps) => {
       </div>
       
       {/* Animated particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {isActive && fft.some(v => v > 0.5) && (
-          Array.from({ length: 5 }).map((_, i) => (
-            <motion.div
-              key={`particle-${i}`}
-              className="absolute w-1 h-1 rounded-full bg-yellow-500/60"
-              initial={{ 
-                x: `${Math.random() * 100}%`, 
-                y: '100%',
-                opacity: 0.8
-              }}
-              animate={{ 
-                y: `${Math.random() * 50}%`,
-                opacity: 0
-              }}
-              transition={{ 
-                duration: 2 + Math.random() * 2,
-                repeat: Infinity,
-                repeatType: 'loop',
-                ease: 'easeOut',
-                delay: i * 0.5
-              }}
-            />
-          ))
-        )}
-      </div>
+      <ParticleEffect isActive={isActive} fft={fft} />
     </div>
   );
 }; 

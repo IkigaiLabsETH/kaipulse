@@ -18,6 +18,14 @@ const GalleryVisualizer = ({ isRecording }: { isRecording: boolean }) => {
   const width = 300;
   const height = 80;
   const bars = 32;
+  
+  const [barHeights, setBarHeights] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Generate bar heights on client side only to avoid hydration mismatch
+    const heights = Array.from({ length: bars }, () => Math.random() * 25 + 15);
+    setBarHeights(heights);
+  }, [bars]);
 
   return (
     <div className="relative w-[300px] h-[80px]">
@@ -28,7 +36,7 @@ const GalleryVisualizer = ({ isRecording }: { isRecording: boolean }) => {
         className="absolute inset-0 w-full h-full"
       >
         {Array.from({ length: bars }).map((_, index) => {
-          const initialHeight = Math.random() * 25 + 15;
+          const initialHeight = barHeights[index] || 20; // Fallback to 20 if not yet generated
           
           return (
             <motion.rect

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -18,6 +18,60 @@ const shimmer = {
     },
   },
 };
+
+// Floating particles component with client-side generation to avoid hydration issues
+function FloatingParticles() {
+  const [particles, setParticles] = useState<Array<{
+    width: number;
+    height: number;
+    left: string;
+    top: string;
+    animateY: number;
+    duration: number;
+    delay: number;
+  }>>([]);
+
+  useEffect(() => {
+    // Generate particles on client side only to avoid hydration mismatch
+    const newParticles = [...Array(12)].map(() => ({
+      width: Math.random() * 10 + 5,
+      height: Math.random() * 10 + 5,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animateY: Math.random() * -150 - 50,
+      duration: Math.random() * 10 + 15,
+      delay: Math.random() * 5,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+      {particles.map((particle, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full bg-yellow-400/30 shadow-[0_0_20px_2px_rgba(234,179,8,0.3)]"
+          style={{
+            width: particle.width,
+            height: particle.height,
+            left: particle.left,
+            top: particle.top,
+          }}
+          animate={{
+            y: [0, particle.animateY],
+            opacity: [0, 0.8, 0],
+            scale: [0, 1, 0.5],
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function LightningNetworkPage() {
   return (
@@ -257,30 +311,7 @@ export default function LightningNetworkPage() {
       {/* Grid pattern overlay */}
       <div className="fixed inset-0 bg-[url('/grid-pattern.png')] bg-repeat opacity-10 pointer-events-none z-0"></div>
       {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-yellow-400/30 shadow-[0_0_20px_2px_rgba(234,179,8,0.3)]"
-            style={{
-              width: Math.random() * 10 + 5,
-              height: Math.random() * 10 + 5,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, Math.random() * -150 - 50],
-              opacity: [0, 0.8, 0],
-              scale: [0, 1, 0.5],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 15,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
-      </div>
+      <FloatingParticles />
       {/* Hero Section */}
       <div className="relative z-20">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pt-10 pb-8 relative">

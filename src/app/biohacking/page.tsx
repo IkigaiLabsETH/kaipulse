@@ -112,29 +112,57 @@ const ChecklistItem = ({ text }: { text: string }) => (
 
 // Floating particle effect
 const FloatingParticle = ({ delay = 0 }: { delay?: number }) => {
+  const [particle, setParticle] = useState<{
+    initialX: number;
+    initialY: number;
+    animateX: [number, number];
+    animateY: [number, number];
+    scale: number;
+    duration: number;
+    width: number;
+    height: number;
+  } | null>(null);
+
+  useEffect(() => {
+    // Generate particle properties on client side only
+    const newParticle = {
+      initialX: Math.random() * 100 - 50,
+      initialY: Math.random() * 100 - 50,
+      animateX: [Math.random() * 100 - 50, Math.random() * 100 - 50] as [number, number],
+      animateY: [Math.random() * 100 - 50, Math.random() * 100 - 50] as [number, number],
+      scale: Math.random() * 0.5 + 0.5,
+      duration: Math.random() * 10 + 15,
+      width: Math.random() * 100 + 50,
+      height: Math.random() * 100 + 50,
+    };
+    setParticle(newParticle);
+  }, []);
+
+  if (!particle) return null;
+
   return (
     <motion.div
       className="absolute z-0 bg-yellow-500/20 rounded-full backdrop-blur-md"
       initial={{ 
-        x: Math.random() * 100 - 50, 
-        y: Math.random() * 100 - 50, 
+        x: particle.initialX, 
+        y: particle.initialY, 
         opacity: 0,
         scale: 0 
       }}
       animate={{ 
-        x: [Math.random() * 100 - 50, Math.random() * 100 - 50],
-        y: [Math.random() * 100 - 50, Math.random() * 100 - 50],
+        x: particle.animateX,
+        y: particle.animateY,
         opacity: [0, 0.3, 0],
-        scale: [0, Math.random() * 0.5 + 0.5, 0]
+        scale: [0, particle.scale, 0]
       }}
       transition={{
-        duration: Math.random() * 10 + 15,
+        duration: particle.duration,
         repeat: Infinity,
         delay: delay,
       }}
       style={{
-        width: Math.random() * 100 + 50,
-        height: Math.random() * 100 + 50,
+        width: particle.width,
+        height: particle.height,
         filter: 'blur(40px)',
       }}
     />

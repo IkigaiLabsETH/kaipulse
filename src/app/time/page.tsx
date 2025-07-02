@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,18 +33,31 @@ const sectionVariants = {
 
 // Simple sparkle/particle effect for hero
 function SparkleBG() {
+  const [sparkles, setSparkles] = useState<Array<{
+    left: string;
+    top: string;
+    animationDelay: string;
+    opacity: number;
+  }>>([]);
+
+  useEffect(() => {
+    // Generate sparkles on client side only to avoid hydration mismatch
+    const newSparkles = [...Array(24)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 3}s`,
+      opacity: 0.7 + Math.random() * 0.3,
+    }));
+    setSparkles(newSparkles);
+  }, []);
+
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-      {[...Array(24)].map((_, i) => (
+      {sparkles.map((sparkle, i) => (
         <span
           key={i}
           className="absolute block w-1.5 h-1.5 rounded-full bg-yellow-400/70 blur-[2px] animate-sparkle"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            opacity: 0.7 + Math.random() * 0.3,
-          }}
+          style={sparkle}
         />
       ))}
     </div>

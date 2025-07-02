@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 interface VoiceVisualizerProps {
   isRecording: boolean;
@@ -10,6 +11,14 @@ export function VoiceVisualizer({ isRecording }: VoiceVisualizerProps) {
   const width = 200;
   const height = 60;
   const bars = 24;
+  
+  const [barHeights, setBarHeights] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Generate bar heights on client side only to avoid hydration mismatch
+    const heights = Array.from({ length: bars }, () => Math.random() * 20 + 10);
+    setBarHeights(heights);
+  }, [bars]);
 
   return (
     <div className="relative w-[200px] h-[60px]">
@@ -20,7 +29,7 @@ export function VoiceVisualizer({ isRecording }: VoiceVisualizerProps) {
         className="absolute inset-0 w-full h-full"
       >
         {Array.from({ length: bars }).map((_, index) => {
-          const initialHeight = Math.random() * 20 + 10; // Random initial height between 10 and 30
+          const initialHeight = barHeights[index] || 15; // Fallback to 15 if not yet generated
           
           return (
             <motion.rect
