@@ -12,6 +12,7 @@ import { EthBtcAnalysis } from './components/EthBtcAnalysis';
 import { EthOutperforms } from './components/EthOutperforms';
 import { FeaturedVisual } from './components/FeaturedVisual';
 import { Tldr } from './components/Tldr';
+import { PromisingAltcoins } from './components/PromisingAltcoins';
 
 export default function AltcoinsPage() {
   return (
@@ -24,6 +25,8 @@ export default function AltcoinsPage() {
           <HeroSection />
 
           <OutperformingAltcoins />
+
+          <PromisingAltcoins />
 
           <MarketSentiment />
 
