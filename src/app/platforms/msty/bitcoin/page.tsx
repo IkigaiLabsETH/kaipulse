@@ -1037,6 +1037,84 @@ export default function BitcoinPage() {
             </div>
           </Card>
         </motion.div>
+
+        {/* Final Note - Market Analysis */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="mt-16"
+        >
+          <Card>
+            <div className="p-8">
+              <h2 className="text-2xl font-bold text-yellow-500">The End of Bitcoin as a Secret</h2>
+              <div className="mt-8 space-y-8">
+                <div className="prose prose-invert max-w-none">
+                  <p className="text-lg text-white/80 leading-relaxed">
+                    When you&apos;ve been around Bitcoin for a while, you start to feel a breakout before it happens.
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed mt-4">
+                    $109,500 this morning and a breakout feels imminent. If you adjust for dollar weakness, we&apos;ve been in this range since November of 2024. Which means we&apos;ve spent 9 months building a foundation for the next move higher.
+                  </p>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2 mt-12">
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-yellow-500">Who Has Been Laying the Bricks?</h3>
+                    <p className="text-white/80 leading-relaxed">
+                      A wave of treasury companies that have raised cheap capital and packed their balance sheets full of BTC. Dozens of public and private companies have re-aligned their corporate strategy towards Bitcoin. And they now have a duty to their shareholders to continue acquiring BTC.
+                    </p>
+                    <p className="text-white/80 leading-relaxed">
+                      Back in 2020, we used to ask ourselves what would happen if more ultra-high net worth people like Michael Saylor started buying Bitcoin hand-over-fist. Well, we&apos;re about to find out.
+                    </p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <h3 className="text-xl font-bold text-yellow-500">It Isn&apos;t Just Billionaires</h3>
+                    <p className="text-white/80 leading-relaxed">
+                      It&apos;s corporations raising hundreds of millions of siloed capital from return-starved capital markets and channeling it into Bitcoin. And the smart ones are keeping debt levels low while they do it. Which means they&apos;re going into this with a plan to not just survive the next bear market, but to take advantage of it by accumulating BTC at discount prices.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <h3 className="text-xl font-bold text-yellow-500">The Open Secret</h3>
+                  <p className="text-white/80 leading-relaxed">
+                    What we&apos;re actually witnessing is the end of Bitcoin as a secret. Bitcoiners have had an incredible edge in the past 10 years because we understood something that most people were reluctant to believe. But the capital markets have finally sniffed it out.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    The wave of treasury companies raising endless capital is proof. The now open secret is: <strong className="text-yellow-500">Bitcoin will outperform nearly every business on the planet in the medium term.</strong>
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    There are very few productive activities you can undertake as a corporation that will outperform Bitcoin as it&apos;s repriced to reflect its attributes as neutral finite money. Therefore you have to buy it.
+                  </p>
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <h3 className="text-xl font-bold text-yellow-500">The Acquisition Imperative</h3>
+                  <p className="text-white/80 leading-relaxed">
+                    You can buy it with cash reserves, cashflows, debt, or equity issuance. But you have to buy it or risk falling behind those who do. There&apos;s one major problem with this: there isn&apos;t nearly enough $100K Bitcoin to satisfy the demand of all of these corporations buying BTC.
+                  </p>
+                  <div className="bg-yellow-500/10 p-6 rounded-lg border border-yellow-500/20">
+                    <p className="text-lg text-yellow-500 font-bold">
+                      Therefore we must go higher. Much, much higher.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-12 space-y-6">
+                  <h3 className="text-xl font-bold text-yellow-500">The Strategic Reality</h3>
+                  <p className="text-white/80 leading-relaxed">
+                    Bitcoiners have had an incredible edge in the past 10 years because we understood something that most people were reluctant to believe. But the capital markets have finally sniffed it out. The wave of treasury companies raising endless capital is proof that the secret is out.
+                  </p>
+                  <p className="text-white/80 leading-relaxed">
+                    The market is no longer about convincing people Bitcoin is valuable. It&apos;s about corporations competing to acquire it before their competitors do. This is the new paradigm.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
       </div>
     </div>
   )
