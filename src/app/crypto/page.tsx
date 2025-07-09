@@ -14,6 +14,7 @@ import TopLosers from './TopLosers';
 import BtcRelativePerformance from './BtcRelativePerformance';
 import GlobalMarketDashboardCard from '@/components/GlobalMarketDashboardCard';
 import AltcoinInfoCard from '@/components/AltcoinInfoCard';
+import FidelityBlockchainAnalysis from '@/components/FidelityBlockchainAnalysis';
 
 interface AltcoinData {
   [key: string]: {
@@ -140,6 +141,9 @@ export default function CryptoPage() {
 
           {/* Trending Altcoins Section */}
           <TrendingAltcoins />
+
+          {/* Fidelity Blockchain Analysis */}
+          <FidelityBlockchainAnalysis />
 
           {/* Stunning Navigation Buttons - now directly under the chart */}
           <div className="w-full max-w-[90rem] mx-auto flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 mt-8 sm:mt-12 mb-8 sm:mb-12">

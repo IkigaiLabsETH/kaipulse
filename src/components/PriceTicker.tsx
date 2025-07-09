@@ -23,6 +23,7 @@ const TICKERS: Price[] = [
   { symbol: 'HOOD', tradingViewSymbol: 'NASDAQ:HOOD', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'SBET', tradingViewSymbol: 'NASDAQ:SBET', exchange: 'NASDAQ', color: 'text-yellow-500' },
   { symbol: 'SQNS', tradingViewSymbol: 'NYSE:SQNS', exchange: 'NYSE', color: 'text-yellow-500' },
+  { symbol: 'MBAV', tradingViewSymbol: 'NASDAQ:MBAV', exchange: 'NASDAQ', color: 'text-yellow-500' },
 ];
 
 export default function PriceTicker() {
