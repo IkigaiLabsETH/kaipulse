@@ -185,6 +185,14 @@ export default function FidelityBlockchainAnalysis() {
             </div>
           </div>
 
+          {/* Important ETH Performance Note */}
+          <div className="bg-red-500/10 border border-red-500/30 p-6 rounded-xl">
+            <h4 className="text-2xl font-epilogue text-red-400 font-bold mb-3">⚠️ Important ETH Context</h4>
+            <p className="text-lg font-satoshi text-white/90">
+              <span className="text-red-400 font-bold">Do not believe that Ethereum is some sort of value buy cause it hasn&apos;t gone up as much as Bitcoin.</span> What they don&apos;t tell you is that it&apos;s already up nearly <span className="text-yellow-400 font-bold">1,000,000% in 10 years</span> from its $0.30 ICO. It can still go up more. But you&apos;re very late to the trade.
+            </p>
+          </div>
+
           {/* Key Implication */}
           <div className="bg-black/30 p-6 rounded-xl">
             <h4 className="text-2xl font-epilogue text-yellow-500 font-bold mb-3 flex items-center gap-2">
