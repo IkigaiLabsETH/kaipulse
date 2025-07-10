@@ -15,10 +15,6 @@ type ToolMessage = {
 };
 
 // Knowledge base functions with caching
-let cachedKnowledgeChunks: string[] | null = null;
-let lastCacheTime = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
 async function loadKnowledgeFiles(): Promise<string[]> {
   // Return cached chunks if recent
   const now = Date.now();
@@ -91,6 +87,11 @@ function needsWebSearch(query: string): boolean {
 let cachedBTCPrice: { price: number, timestamp: number } | null = null;
 const BTC_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
 
+// Add cache for knowledge chunks with better error handling
+let cachedKnowledgeChunks: string[] | null = null;
+let lastCacheTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 async function getFastBTCPrice(): Promise<number | null> {
   const now = Date.now();
   if (cachedBTCPrice && (now - cachedBTCPrice.timestamp) < BTC_CACHE_TTL) {
@@ -156,7 +157,10 @@ export async function POST(request: Request) {
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
-        { error: 'Message is required and must be a string' },
+        { 
+          error: 'Message is required and must be a string',
+          content: 'Please provide a valid message to chat with Grok4.'
+        },
         { status: 400 }
       );
     }
@@ -178,7 +182,7 @@ export async function POST(request: Request) {
             temperature: temperature || 0.7,
             max_tokens: 120,
           }),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('Prediction timeout')), 5000))
+          new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Prediction timeout')), 5000))
         ]) as ChatCompletion;
         prediction = predictionResp.choices && predictionResp.choices[0]?.message?.content ? predictionResp.choices[0].message.content : '';
       } catch {
@@ -306,6 +310,12 @@ export async function POST(request: Request) {
                 const content = chunk.choices?.[0]?.delta?.content;
                 if (content) {
                   controller.enqueue(encoder.encode(content));
+                }
+                // Handle tool calls in streaming
+                const toolCalls = chunk.choices?.[0]?.delta?.tool_calls;
+                if (toolCalls) {
+                  // For now, we'll handle tool calls in non-streaming mode
+                  // This could be enhanced to stream tool call responses
                 }
               }
             } catch (streamError) {
