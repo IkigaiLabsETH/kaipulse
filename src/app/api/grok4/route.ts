@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Grok4Service, duckDuckGoSearch } from './grok4';
+import { Grok4Service, enhancedWebSearch } from './grok4';
 import { logger } from '@/lib/logger';
 import type { ChatCompletionTool } from "openai/resources/chat/completions";
 import type { ChatCompletionMessageParam } from "openai/resources/index";
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         type: 'function',
         function: {
           name: 'search',
-          description: 'Search the web for up-to-date information.',
+          description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices and market data.',
           parameters: {
             type: 'object',
             properties: {
@@ -112,7 +112,7 @@ export async function POST(request: Request) {
       const toolCall = Grok4Service.extractToolCall(completion);
       if (!toolCall || toolCall.function?.name !== 'search') break;
       const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
-      const searchResult = await duckDuckGoSearch(searchQuery);
+      const searchResult = await enhancedWebSearch(searchQuery);
       // Add tool response to messages
       messages.push({
         role: 'tool',

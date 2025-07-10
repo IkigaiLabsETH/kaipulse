@@ -50,6 +50,16 @@ export interface DeferredCompletion {
   choices: Array<ChatCompletion.Choice>;
 }
 
+// CoinGecko API types
+interface CoinGeckoPrice {
+  [key: string]: {
+    usd: number;
+    usd_24h_change: number;
+    usd_market_cap: number;
+    usd_24h_vol: number;
+  };
+}
+
 export class Grok4Service {
   static async chatCompletion(request: Grok4Request): Promise<ChatCompletion> {
     try {
@@ -119,7 +129,182 @@ export class Grok4Service {
   }
 }
 
-// Simple DuckDuckGo web search utility
+// Enhanced crypto price API using CoinGecko
+export async function getCryptoPrice(query: string): Promise<string> {
+  try {
+    // Extract cryptocurrency name from query
+    const cryptoMatch = query.toLowerCase().match(/(bitcoin|btc|ethereum|eth|cardano|ada|solana|sol|binance|bnb|ripple|xrp|polkadot|dot|chainlink|link|litecoin|ltc|bitcoin cash|bch|stellar|xlm|vechain|vet|filecoin|fil|tron|trx|avalanche|avax|polygon|matic|cosmos|atom|algorand|algo|monero|xmr|tezos|xtz|neo|dash|zcash|zec|decred|dcr|digibyte|dgb|ravencoin|rvn|groestlcoin|grs|vertcoin|vtc|namecoin|nmc|peercoin|ppc|novacoin|nvc|feathercoin|ftc|ixcoin|ixc|terra|luna|uniswap|uni|aave|sushi|curve|crv|yearn|yfi|compound|comp|maker|mkr|synthetix|snx|balancer|bal|1inch|pancakeswap|cake)/);
+    
+    if (!cryptoMatch) {
+      return 'Please specify a cryptocurrency name (e.g., "bitcoin", "ethereum", "btc", "eth").';
+    }
+
+    const cryptoName = cryptoMatch[1];
+    
+    // Map common names to CoinGecko IDs
+    const cryptoIdMap: { [key: string]: string } = {
+      'bitcoin': 'bitcoin',
+      'btc': 'bitcoin',
+      'ethereum': 'ethereum',
+      'eth': 'ethereum',
+      'cardano': 'cardano',
+      'ada': 'cardano',
+      'solana': 'solana',
+      'sol': 'solana',
+      'binance': 'binancecoin',
+      'bnb': 'binancecoin',
+      'ripple': 'ripple',
+      'xrp': 'ripple',
+      'polkadot': 'polkadot',
+      'dot': 'polkadot',
+      'chainlink': 'chainlink',
+      'link': 'chainlink',
+      'litecoin': 'litecoin',
+      'ltc': 'litecoin',
+      'bitcoin cash': 'bitcoin-cash',
+      'bch': 'bitcoin-cash',
+      'stellar': 'stellar',
+      'xlm': 'stellar',
+      'vechain': 'vechain',
+      'vet': 'vechain',
+      'filecoin': 'filecoin',
+      'fil': 'filecoin',
+      'tron': 'tron',
+      'trx': 'tron',
+      'avalanche': 'avalanche-2',
+      'avax': 'avalanche-2',
+      'polygon': 'matic-network',
+      'matic': 'matic-network',
+      'cosmos': 'cosmos',
+      'atom': 'cosmos',
+      'algorand': 'algorand',
+      'algo': 'algorand',
+      'monero': 'monero',
+      'xmr': 'monero',
+      'tezos': 'tezos',
+      'xtz': 'tezos',
+      'neo': 'neo',
+      'dash': 'dash',
+      'zcash': 'zcash',
+      'zec': 'zcash',
+      'decred': 'decred',
+      'dcr': 'decred',
+      'digibyte': 'digibyte',
+      'dgb': 'digibyte',
+      'ravencoin': 'ravencoin',
+      'rvn': 'ravencoin',
+      'groestlcoin': 'groestlcoin',
+      'grs': 'groestlcoin',
+      'vertcoin': 'vertcoin',
+      'vtc': 'vertcoin',
+      'namecoin': 'namecoin',
+      'nmc': 'namecoin',
+      'peercoin': 'peercoin',
+      'ppc': 'peercoin',
+      'novacoin': 'novacoin',
+      'nvc': 'novacoin',
+      'feathercoin': 'feathercoin',
+      'ftc': 'feathercoin',
+      'ixcoin': 'ixcoin',
+      'ixc': 'ixcoin',
+      'terra': 'terra-luna-2',
+      'luna': 'terra-luna-2',
+      'uniswap': 'uniswap',
+      'uni': 'uniswap',
+      'aave': 'aave',
+      'sushi': 'sushi',
+      'curve': 'curve-dao-token',
+      'crv': 'curve-dao-token',
+      'yearn': 'yearn-finance',
+      'yfi': 'yearn-finance',
+      'compound': 'compound-governance-token',
+      'comp': 'compound-governance-token',
+      'maker': 'maker',
+      'mkr': 'maker',
+      'synthetix': 'havven',
+      'snx': 'havven',
+      'balancer': 'balancer',
+      'bal': 'balancer',
+      '1inch': '1inch',
+      'pancakeswap': 'pancakeswap-token',
+      'cake': 'pancakeswap-token',
+    };
+
+    const coinId = cryptoIdMap[cryptoName];
+    if (!coinId) {
+      return `Cryptocurrency "${cryptoName}" not found. Please try a different name.`;
+    }
+
+    // Fetch price data from CoinGecko
+    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`);
+    
+    if (!response.ok) {
+      throw new Error(`CoinGecko API error: ${response.status}`);
+    }
+
+    const data: CoinGeckoPrice = await response.json();
+    const coinData = data[coinId];
+
+    if (!coinData) {
+      return `Price data not available for ${cryptoName}.`;
+    }
+
+    const price = coinData.usd;
+    const change24h = coinData.usd_24h_change;
+    const marketCap = coinData.usd_market_cap;
+    const volume24h = coinData.usd_24h_vol;
+
+    // Format the response
+    const formattedPrice = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 8
+    }).format(price);
+
+    const formattedChange = change24h ? `${change24h >= 0 ? '+' : ''}${change24h.toFixed(2)}%` : 'N/A';
+    const formattedMarketCap = marketCap ? new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      notation: 'compact',
+      maximumFractionDigits: 1
+    }).format(marketCap) : 'N/A';
+    const formattedVolume = volume24h ? new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      notation: 'compact',
+      maximumFractionDigits: 1
+    }).format(volume24h) : 'N/A';
+
+    const changeColor = change24h >= 0 ? '🟢' : '🔴';
+    
+    return `${cryptoName.toUpperCase()} Price Data:
+💰 Price: ${formattedPrice}
+${changeColor} 24h Change: ${formattedChange}
+📊 Market Cap: ${formattedMarketCap}
+📈 24h Volume: ${formattedVolume}
+⏰ Updated: ${new Date().toLocaleString()}`;
+
+  } catch (error) {
+    logger.error('Crypto price API error:', error);
+    return `Failed to fetch crypto price data: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// Enhanced web search that prioritizes crypto price queries
+export async function enhancedWebSearch(query: string): Promise<string> {
+  // Check if this is a crypto price query
+  const cryptoPricePattern = /(bitcoin|btc|ethereum|eth|cardano|ada|solana|sol|binance|bnb|ripple|xrp|polkadot|dot|chainlink|link|litecoin|ltc|bitcoin cash|bch|stellar|xlm|vechain|vet|filecoin|fil|tron|trx|avalanche|avax|polygon|matic|cosmos|atom|algorand|algo|monero|xmr|tezos|xtz|neo|dash|zcash|zec|decred|dcr|digibyte|dgb|ravencoin|rvn|groestlcoin|grs|vertcoin|vtc|namecoin|nmc|peercoin|ppc|novacoin|nvc|feathercoin|ftc|ixcoin|ixc|terra|luna|uniswap|uni|aave|sushi|curve|crv|yearn|yfi|compound|comp|maker|mkr|synthetix|snx|balancer|bal|1inch|pancakeswap|cake).*(price|value|worth|cost|market|trading)/i;
+  
+  if (cryptoPricePattern.test(query)) {
+    return await getCryptoPrice(query);
+  }
+
+  // Fallback to DuckDuckGo for non-crypto queries
+  return await duckDuckGoSearch(query);
+}
+
+// Simple DuckDuckGo web search utility (kept for non-crypto queries)
 export async function duckDuckGoSearch(query: string): Promise<string> {
   try {
     const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_redirect=1&no_html=1`;
@@ -144,11 +329,6 @@ export async function duckDuckGoSearch(query: string): Promise<string> {
     // Fallbacks
     if (!snippet && data.Answer) snippet = data.Answer;
     if (!title && query) title = query;
-    // Special handling for BTC price queries
-    if (/bitcoin|btc.*price|price.*btc|price.*bitcoin/i.test(query)) {
-      const match = snippet.match(/\$[0-9,]+(\.[0-9]{2})?/);
-      if (match) return `BTC Price: ${match[0]}`;
-    }
     // Format result
     let result = '';
     if (title) result += `Title: ${title}\n`;
