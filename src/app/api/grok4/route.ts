@@ -11,33 +11,10 @@ type ToolMessage = {
   content: string;
 };
 
-// In-memory cache for fingerprint tokens
-const fingerprintCache = new Map<string, string>();
-
-async function getFingerprintToken(fingerprintId: string): Promise<string> {
-  if (fingerprintCache.has(fingerprintId)) {
-    return fingerprintCache.get(fingerprintId)!;
-  }
-  // Call xAI /fingerprint endpoint
-  const res = await fetch('https://api.x.ai/v1/fingerprint', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.XAI_API_KEY}`,
-    },
-    body: JSON.stringify({ identifier: fingerprintId }),
-  });
-  if (!res.ok) throw new Error('Failed to get fingerprint token from xAI');
-  const data = await res.json();
-  if (!data.fingerprint) throw new Error('No fingerprint token returned from xAI');
-  fingerprintCache.set(fingerprintId, data.fingerprint);
-  return data.fingerprint;
-}
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { message, systemPrompt, temperature, stream, fingerprintId } = body;
+    const { message, systemPrompt, temperature, stream } = body;
 
     if (!message || typeof message !== 'string') {
       return NextResponse.json(
@@ -74,12 +51,6 @@ export async function POST(request: Request) {
     }
     messages.push({ role: 'user', content: message });
 
-    // Get fingerprint token if provided
-    let fingerprintToken: string | undefined = undefined;
-    if (fingerprintId) {
-      fingerprintToken = await getFingerprintToken(fingerprintId);
-    }
-
     // --- Streaming logic ---
     if (stream) {
       // Streaming response using OpenAI SDK
@@ -94,7 +65,6 @@ export async function POST(request: Request) {
         tools,
         tool_choice: 'auto',
         stream: true,
-        ...(fingerprintToken ? { fingerprint: fingerprintToken } : {}),
       });
 
       const encoder = new TextEncoder();
@@ -124,7 +94,6 @@ export async function POST(request: Request) {
       temperature,
       tools,
       tool_choice: 'auto',
-      ...(fingerprintToken ? { fingerprint: fingerprintToken } : {}),
     });
 
     // Handle deferred completion (initial)
@@ -154,7 +123,6 @@ export async function POST(request: Request) {
       completion = await Grok4Service.chatCompletion({
         messages,
         temperature,
-        ...(fingerprintToken ? { fingerprint: fingerprintToken } : {}),
       });
       // Handle deferred completion (tool call)
       // @ts-expect-error: xAI API may return 'deferred.completion' object
