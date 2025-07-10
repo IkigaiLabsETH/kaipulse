@@ -137,12 +137,19 @@ export async function POST(request: Request) {
     }
 
     // Return Grok4's final answer
-    const content = completion.choices?.[0]?.message?.content || 'No response from Grok4.';
+    let content = completion.choices?.[0]?.message?.content;
+    if (!content || !content.trim()) {
+      content = 'No response from Grok4 (empty or unexpected error).';
+    }
     return NextResponse.json({ content });
   } catch (error) {
     logger.error('Grok4 API route error:', error);
+    const key = process.env.XAI_API_KEY || '';
+    logger.info('XAI_API_KEY:', key ? key.slice(0,6) + '...' + key.slice(-2) : '[not set]');
+    logger.error('API error:', error);
     return NextResponse.json(
       { 
+        content: 'No response from Grok4 (API error).',
         error: 'Failed to generate response from Grok4',
         details: error instanceof Error ? error.message : String(error)
       },

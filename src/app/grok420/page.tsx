@@ -118,16 +118,20 @@ export default function Grok420Page() {
             ));
           }
         }
+        // After streaming, check for empty content
+        if (!assistantContent.trim()) {
+          setMessages(prev => prev.map(m =>
+            m.id === assistantMessage.id ? { ...m, content: 'No response from Grok4 (empty or unexpected error).' } : m
+          ));
+        }
       } else {
         // Fallback: non-streaming
         const data = await response.json();
-        if (data.polling) {
-          setIsPolling(true);
-        }
+        const content = data.content && data.content.trim() ? data.content : (data.error || 'Grok4 did not return a response.');
         const assistantMessage: Message = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
-          content: data.content,
+          content,
           timestamp: new Date(),
         };
         setMessages(prev => [...prev, assistantMessage]);
@@ -144,6 +148,15 @@ export default function Grok420Page() {
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
+      // Show error details in a big, obvious way if present
+      if (error instanceof Error && error.message && error.message.includes('{')) {
+        setMessages(prev => [...prev, {
+          id: (Date.now() + 2).toString(),
+          role: 'assistant',
+          content: `<pre style='color: #ff3333; background: #1a0000; font-size: 1.1em; padding: 1em; border-radius: 8px; margin-top: 1em; overflow-x: auto;'>${error.message}</pre>`,
+          timestamp: new Date(),
+        }]);
+      }
     } finally {
       setIsLoading(false);
       setIsPolling(false);
