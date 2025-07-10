@@ -146,7 +146,9 @@ export default function Grok420Page() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: error instanceof Error ? error.message : 'Sorry, I encountered an error. Please try again.',
+        content: error instanceof Error
+          ? `Grok4 is having a Satoshi moment—${error.message.replace('Failed to get fingerprint token from xAI', 'Network hiccup! Couldn’t verify your identity. Try again in a few blocks.')}`
+          : 'Grok4 is having a Satoshi moment—please try again soon.',
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -209,7 +211,7 @@ export default function Grok420Page() {
       setMessages(prev => [...prev, {
         id: (Date.now() + 2).toString(),
         role: 'assistant',
-        content: 'Sorry, image generation failed.' + (err instanceof Error ? `\n${err.message}` : ''),
+        content: `My creative circuits glitched! Couldn’t generate your Bitcoin masterpiece.` + (err instanceof Error ? `\n${err.message.replace('Unexpected token', 'Looks like I got HTML instead of art. Try again soon!')}` : ''),
         timestamp: new Date(),
       }]);
     } finally {
