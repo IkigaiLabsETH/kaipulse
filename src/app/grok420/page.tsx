@@ -448,7 +448,6 @@ export default function Grok420Page() {
                         key={message.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
                         className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div className={`flex gap-3 max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
@@ -657,14 +656,14 @@ export default function Grok420Page() {
                     </div>
                     <div className="flex gap-4 mt-4 items-center">
                       <button
-                        onClick={() => modalIdx > 0 && setModalIdx(modalIdx - 1)}
+                        onClick={() => modalIdx! > 0 && setModalIdx(modalIdx! - 1)}
                         disabled={modalIdx === 0}
                         className="px-3 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-lg disabled:opacity-40"
                         title="Previous image"
                       >←</button>
                       <span className="text-yellow-400 text-xs">{modalIdx + 1} / {imageHistory.length}</span>
                       <button
-                        onClick={() => modalIdx < imageHistory.length - 1 && setModalIdx(modalIdx + 1)}
+                        onClick={() => modalIdx! < imageHistory.length - 1 && setModalIdx(modalIdx! + 1)}
                         disabled={modalIdx === imageHistory.length - 1}
                         className="px-3 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-lg disabled:opacity-40"
                         title="Next image"
@@ -696,7 +695,7 @@ export default function Grok420Page() {
                 </div>
               )}
               {/* Regenerate and History */}
-              {imageHistory.length > 0 && (
+              {imageHistory.length > 0 && mainImageIdx >= 0 && imageHistory[mainImageIdx] && (
                 <div className="w-full flex flex-col items-center mb-12">
                   {/* Main Image Card */}
                   <motion.div
@@ -708,44 +707,46 @@ export default function Grok420Page() {
                     title="Click to view full size"
                   >
                     <div className="w-full flex justify-center">
-                      <Image
-                        src={imageHistory[mainImageIdx].url}
-                        alt={imageHistory[mainImageIdx].prompt}
-                        width={512}
-                        height={512}
-                        className={`rounded-xl border-2 border-yellow-500 shadow-lg max-w-full h-auto transition-all duration-300 ${imageHistory[mainImageIdx].moderation ? 'blur-md' : ''} group-hover:scale-105`}
-                        unoptimized
-                      />
+                      {imageHistory[mainImageIdx] && (
+                        <Image
+                          src={imageHistory[mainImageIdx].url}
+                          alt={imageHistory[mainImageIdx].prompt}
+                          width={512}
+                          height={512}
+                          className={`rounded-xl border-2 border-yellow-500 shadow-lg max-w-full h-auto transition-all duration-300 ${imageHistory[mainImageIdx].moderation ? 'blur-md' : ''} group-hover:scale-105`}
+                          unoptimized
+                        />
+                      )}
                     </div>
                     <div className="w-full flex flex-col md:flex-row gap-6 mt-6">
                       <div className="flex-1">
                         <div className="font-bold text-yellow-400 mb-1">Original Prompt:</div>
-                        <div className="text-xs text-yellow-400/80 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[mainImageIdx].prompt}</div>
+                        <div className="text-xs text-yellow-400/80 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[mainImageIdx]?.prompt}</div>
                       </div>
-                      {imageHistory[mainImageIdx].revisedPrompt && (
+                      {imageHistory[mainImageIdx]?.revisedPrompt && (
                         <div className="flex-1">
                           <div className="font-bold text-yellow-400 mb-1">Revised Prompt:</div>
-                          <div className="text-xs text-yellow-400/60 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[mainImageIdx].revisedPrompt}</div>
+                          <div className="text-xs text-yellow-400/60 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[mainImageIdx]?.revisedPrompt}</div>
                         </div>
                       )}
                     </div>
                     <div className="flex gap-3 mt-6 flex-wrap justify-center">
                       <button
-                        onClick={e => { e.stopPropagation(); handleCopyPrompt(imageHistory[mainImageIdx].prompt); }}
+                        onClick={e => { e.stopPropagation(); handleCopyPrompt(imageHistory[mainImageIdx]?.prompt || ''); }}
                         className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors flex items-center gap-2 text-xs"
                       >
                         <Copy className="h-4 w-4" /> Copy Original
                       </button>
-                      {imageHistory[mainImageIdx].revisedPrompt && (
+                      {imageHistory[mainImageIdx]?.revisedPrompt && (
                         <button
-                          onClick={e => { e.stopPropagation(); handleCopyPrompt(imageHistory[mainImageIdx].revisedPrompt!); }}
+                          onClick={e => { e.stopPropagation(); handleCopyPrompt(imageHistory[mainImageIdx]?.revisedPrompt || ''); }}
                           className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors flex items-center gap-2 text-xs"
                         >
                           <Copy className="h-4 w-4" /> Copy Revised
                         </button>
                       )}
-                      <a href={imageHistory[mainImageIdx].url} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Open</a>
-                      <a href={imageHistory[mainImageIdx].url} download className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Download</a>
+                      <a href={imageHistory[mainImageIdx]?.url || '#'} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Open</a>
+                      <a href={imageHistory[mainImageIdx]?.url || '#'} download className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Download</a>
                       <button
                         onClick={e => { e.stopPropagation(); handleRegenerateImage(); }}
                         className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-xs"
@@ -754,8 +755,8 @@ export default function Grok420Page() {
                       </button>
                     </div>
                     <div className="text-xs text-yellow-400/60 mt-4 text-center">
-                      Size: {imageHistory[mainImageIdx].size.replace('x', ' × ')} | Created: {imageHistory[mainImageIdx].timestamp.toLocaleString()}
-                      {imageHistory[mainImageIdx].moderation && (
+                      Size: {imageHistory[mainImageIdx]?.size?.replace('x', ' × ')} | Created: {imageHistory[mainImageIdx]?.timestamp?.toLocaleString()}
+                      {imageHistory[mainImageIdx]?.moderation && (
                         <span className="text-red-400 ml-2">• NSFW/Moderation</span>
                       )}
                     </div>
