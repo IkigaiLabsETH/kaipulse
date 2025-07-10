@@ -2,8 +2,9 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Eye } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import Image from 'next/image';
 
 interface Message {
   id: string;
@@ -30,6 +31,7 @@ export default function Grok420Page() {
     id: string;
     url: string;
     prompt: string;
+    revisedPrompt?: string;
     size: string;
     moderation: boolean;
     timestamp: Date;
@@ -37,6 +39,8 @@ export default function Grok420Page() {
   const [imageHistory, setImageHistory] = useState<ImageHistoryItem[]>([]);
   const [imageSize, setImageSize] = useState('1024x1024');
   const [lastImagePrompt, setLastImagePrompt] = useState('');
+  const [showImagePreview, setShowImagePreview] = useState(false);
+  const [previewImage, setPreviewImage] = useState<ImageHistoryItem | null>(null);
 
   useEffect(() => {
     let id = localStorage.getItem('grok_fingerprint_id');
@@ -163,17 +167,16 @@ export default function Grok420Page() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error + (data.details ? `\n${data.details}` : ''));
       const id = (Date.now() + 2).toString();
-      setImageHistory(prev => [
-        ...prev,
-        {
-          id,
-          url: data.imageUrl,
-          prompt: data.prompt,
-          size: sizeToUse,
-          moderation: !!data.moderation,
-          timestamp: new Date(),
-        },
-      ]);
+      const newImage: ImageHistoryItem = {
+        id,
+        url: data.imageUrl,
+        prompt: data.prompt,
+        revisedPrompt: data.revised_prompt,
+        size: sizeToUse,
+        moderation: !!data.moderation,
+        timestamp: new Date(),
+      };
+      setImageHistory(prev => [...prev, newImage]);
       setMessages(prev => [...prev, {
         id,
         role: 'assistant',
@@ -212,6 +215,26 @@ export default function Grok420Page() {
     if (lastImagePrompt) {
       setShowImageDialog(true);
       setImagePrompt(lastImagePrompt);
+    }
+  };
+
+  const handlePreviewImage = (image: ImageHistoryItem) => {
+    setPreviewImage(image);
+    setShowImagePreview(true);
+  };
+
+  const handleCopyPrompt = async (prompt: string) => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      // You could add a toast notification here
+    } catch {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = prompt;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
     }
   };
 
@@ -491,6 +514,87 @@ export default function Grok420Page() {
                   </div>
                 </div>
               )}
+
+              {/* Image Preview Dialog */}
+              {showImagePreview && previewImage && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/80">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="bg-[#222] border-2 border-yellow-500 rounded-lg p-6 shadow-lg max-w-4xl max-h-[90vh] overflow-y-auto"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-xl font-bold text-yellow-500">Image Preview</h3>
+                      <button
+                        onClick={() => setShowImagePreview(false)}
+                        className="text-yellow-400 hover:text-yellow-300 text-2xl font-bold"
+                      >
+                        ×
+                      </button>
+                    </div>
+                    <div className="flex flex-col lg:flex-row gap-6">
+                      <div className="flex-1">
+                        <Image
+                          src={previewImage.url}
+                          alt={previewImage.prompt}
+                          width={800}
+                          height={800}
+                          className={`rounded-lg border-2 border-yellow-500 w-full h-auto ${previewImage.moderation ? 'blur-md' : ''}`}
+                          unoptimized
+                        />
+                      </div>
+                      <div className="flex-1 space-y-4">
+                        <div>
+                          <h4 className="text-yellow-400 font-bold mb-2">Original Prompt:</h4>
+                          <p className="text-white/90 text-sm bg-black/40 p-3 rounded border border-yellow-500/20">
+                            {previewImage.prompt}
+                          </p>
+                        </div>
+                        {previewImage.revisedPrompt && (
+                          <div>
+                            <h4 className="text-yellow-400 font-bold mb-2">Revised Prompt:</h4>
+                            <p className="text-white/70 text-sm bg-black/40 p-3 rounded border border-yellow-500/20">
+                              {previewImage.revisedPrompt}
+                            </p>
+                          </div>
+                        )}
+                        <div className="flex gap-2 flex-wrap">
+                          <button
+                            onClick={() => handleCopyPrompt(previewImage.prompt)}
+                            className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors flex items-center gap-2"
+                          >
+                            <Copy className="h-4 w-4" />
+                            Copy Original
+                          </button>
+                          {previewImage.revisedPrompt && (
+                            <button
+                              onClick={() => handleCopyPrompt(previewImage.revisedPrompt!)}
+                              className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors flex items-center gap-2"
+                            >
+                              <Copy className="h-4 w-4" />
+                              Copy Revised
+                            </button>
+                          )}
+                          <a href={previewImage.url} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors">
+                            Open Full Size
+                          </a>
+                          <a href={previewImage.url} download className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors">
+                            Download
+                          </a>
+                        </div>
+                        <div className="text-xs text-yellow-400/60">
+                          Size: {previewImage.size.replace('x', ' × ')} | 
+                          Created: {previewImage.timestamp.toLocaleString()}
+                          {previewImage.moderation && (
+                            <span className="text-red-400 ml-2">• NSFW/Moderation</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              )}
               {/* Regenerate and History */}
               {imageHistory.length > 0 && (
                 <div className="mt-8 w-full max-w-2xl mx-auto">
@@ -506,23 +610,54 @@ export default function Grok420Page() {
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     {imageHistory.map(img => (
-                      <div key={img.id} className="bg-[#1c1f26] border-2 border-yellow-500 rounded-lg p-4 flex flex-col items-center">
-                        <img
-                          src={img.url}
-                          alt={img.prompt}
-                          className={`rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto ${img.moderation ? 'blur-md' : ''}`}
-                        />
-                        <div className="text-yellow-400 text-sm mt-2 text-center">{img.prompt}</div>
+                      <motion.div
+                        key={img.id}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="bg-[#1c1f26] border-2 border-yellow-500 rounded-lg p-4 flex flex-col items-center"
+                      >
+                        <div className="relative group cursor-pointer" onClick={() => handlePreviewImage(img)}>
+                          <Image
+                            src={img.url}
+                            alt={img.prompt}
+                            width={512}
+                            height={512}
+                            className={`rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto transition-all duration-300 ${img.moderation ? 'blur-md' : ''} group-hover:scale-105`}
+                            unoptimized
+                          />
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                            <Eye className="h-8 w-8 text-yellow-500" />
+                          </div>
+                        </div>
+                        <div className="text-yellow-400 text-sm mt-2 text-center max-w-full">
+                          <div className="font-medium">Original Prompt:</div>
+                          <div className="text-xs text-yellow-400/80 break-words">{img.prompt}</div>
+                          {img.revisedPrompt && (
+                            <>
+                              <div className="font-medium mt-2">Revised Prompt:</div>
+                              <div className="text-xs text-yellow-400/60 break-words">{img.revisedPrompt}</div>
+                            </>
+                          )}
+                        </div>
                         <div className="text-xs text-yellow-400 mt-1">{img.size.replace('x', ' × ')}</div>
-                        <div className="flex gap-2 mt-2">
-                          <a href={img.url} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors">Open</a>
-                          <a href={img.url} download className="px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors">Download</a>
+                        <div className="flex gap-2 mt-2 flex-wrap justify-center">
+                          <button
+                            onClick={() => handleCopyPrompt(img.prompt)}
+                            className="px-3 py-1 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-xs flex items-center gap-1"
+                            title="Copy prompt"
+                          >
+                            <Copy className="h-3 w-3" />
+                            Copy
+                          </button>
+                          <a href={img.url} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Open</a>
+                          <a href={img.url} download className="px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Download</a>
                         </div>
                         {img.moderation && (
                           <div className="text-red-400 text-xs mt-2">NSFW/Moderation: This image may contain sensitive content.</div>
                         )}
                         <div className="text-yellow-400 text-xs mt-2">{img.timestamp.toLocaleString()}</div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
