@@ -34,7 +34,6 @@ export default function Grok420Page() {
     timestamp: Date;
   };
   const [imageHistory, setImageHistory] = useState<ImageHistoryItem[]>([]);
-  const [imageSize, setImageSize] = useState('1024x1024');
   const [lastImagePrompt, setLastImagePrompt] = useState('');
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [previewImage, setPreviewImage] = useState<ImageHistoryItem | null>(null);
@@ -147,10 +146,9 @@ export default function Grok420Page() {
     }
   };
 
-  const handleImageGenerate = async (e: React.FormEvent, customPrompt?: string, customSize?: string) => {
+  const handleImageGenerate = async (e: React.FormEvent, customPrompt?: string) => {
     e.preventDefault();
     const promptToUse = customPrompt || imagePrompt;
-    const sizeToUse = customSize || imageSize;
     if (!promptToUse.trim() || isImageLoading) return;
     setShowImageDialog(false);
     setIsImageLoading(true);
@@ -159,7 +157,7 @@ export default function Grok420Page() {
       const response = await fetch('/api/grok4/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: promptToUse, size: sizeToUse }),
+        body: JSON.stringify({ prompt: promptToUse }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error + (data.details ? `\n${data.details}` : ''));
@@ -169,7 +167,7 @@ export default function Grok420Page() {
         url: data.imageUrl,
         prompt: data.prompt,
         revisedPrompt: data.revised_prompt,
-        size: sizeToUse,
+        size: '1024x1024', // Default size since xAI doesn't support size selection
         moderation: !!data.moderation,
         timestamp: new Date(),
       };
@@ -200,7 +198,7 @@ export default function Grok420Page() {
       setMessages(prev => [...prev, {
         id: (Date.now() + 2).toString(),
         role: 'assistant',
-        content: `My creative circuits glitched! Couldn’t generate your Bitcoin masterpiece.` + (err instanceof Error ? `\n${err.message.replace('Unexpected token', 'Looks like I got HTML instead of art. Try again soon!')}` : ''),
+        content: `My creative circuits glitched! Couldn't generate your Bitcoin masterpiece.` + (err instanceof Error ? `\n${err.message.replace('Unexpected token', 'Looks like I got HTML instead of art. Try again soon!')}` : ''),
         timestamp: new Date(),
       }]);
     } finally {
@@ -527,40 +525,8 @@ export default function Grok420Page() {
                       placeholder="Describe the art direction..."
                       autoFocus
                     />
-                    <div className="flex gap-4 w-full mb-4">
-                      <label className="text-yellow-400 text-sm flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="size"
-                          value="1024x1024"
-                          checked={imageSize === '1024x1024'}
-                          onChange={() => setImageSize('1024x1024')}
-                          className="accent-yellow-500"
-                        />
-                        Square
-                      </label>
-                      <label className="text-yellow-400 text-sm flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="size"
-                          value="1024x1792"
-                          checked={imageSize === '1024x1792'}
-                          onChange={() => setImageSize('1024x1792')}
-                          className="accent-yellow-500"
-                        />
-                        Portrait
-                      </label>
-                      <label className="text-yellow-400 text-sm flex items-center gap-2">
-                        <input
-                          type="radio"
-                          name="size"
-                          value="1792x1024"
-                          checked={imageSize === '1792x1024'}
-                          onChange={() => setImageSize('1792x1024')}
-                          className="accent-yellow-500"
-                        />
-                        Landscape
-                      </label>
+                    <div className="text-yellow-400/60 text-xs mb-4 text-center">
+                      xAI generates images at 1024x1024 resolution
                     </div>
                     <div className="flex gap-4 w-full justify-end">
                       <button
