@@ -56,26 +56,22 @@ async function loadKnowledgeFiles(): Promise<string[]> {
 }
 
 async function findRelevantKnowledge(query: string, chunks: string[]): Promise<string[]> {
-  // Improved: Only return the single most relevant chunk, truncated for brevity
+  // Improved: Return top 2 most relevant chunks, but limit each to 400 chars
   const queryWords = query.toLowerCase().split(/\W+/).filter(w => w.length > 2);
-  let bestChunk = '';
-  let bestScore = 0;
-  for (const chunk of chunks) {
+  const scoredChunks = chunks.map(chunk => {
     const chunkLower = chunk.toLowerCase();
     let score = 0;
     for (const word of queryWords) {
       if (chunkLower.includes(word)) score++;
     }
-    if (score > bestScore) {
-      bestScore = score;
-      bestChunk = chunk;
-    }
-  }
-  if (bestScore > 0) {
-    // Truncate to 300 chars for safety
-    return [bestChunk.slice(0, 300)];
-  }
-  return [];
+    return { chunk, score };
+  }).filter(item => item.score > 0);
+  
+  // Sort by score and take top 2, truncate each
+  return scoredChunks
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 2)
+    .map(item => item.chunk.slice(0, 400));
 }
 
 // Check if query needs web search
@@ -105,15 +101,17 @@ export async function POST(request: Request) {
     const knowledgeChunks = await loadKnowledgeFiles();
     const relevantKnowledge = await findRelevantKnowledge(message, knowledgeChunks);
     
-    // Build enhanced system prompt with knowledge
+    // Build enhanced system prompt with improved knowledge injection
     let enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto.';
     
     if (relevantKnowledge.length > 0) {
-      enhancedSystemPrompt += '\n\nYou have access to the following knowledge base information:\n' + 
-        `[Knowledge]:\n${relevantKnowledge[0]}` +
-        '\nIf you cannot answer from the above knowledge, say so explicitly.';
+      enhancedSystemPrompt += '\n\nYou have access to the following knowledge base information:\n';
+      relevantKnowledge.forEach((chunk, index) => {
+        enhancedSystemPrompt += `[Knowledge ${index + 1}]:\n${chunk}\n\n`;
+      });
+      enhancedSystemPrompt += 'IMPORTANT: If you cannot answer from the above knowledge, say so explicitly. Do not leave your response blank.';
     } else {
-      enhancedSystemPrompt += '\nIf you do not know the answer, say \'I don\'t know based on my current knowledge base.\'';
+      enhancedSystemPrompt += '\n\nIMPORTANT: No relevant knowledge base entries were found for this query. If you do not know the answer, say "I don\'t have information about that in my knowledge base." Do not leave your response blank.';
     }
 
     // Log the full prompt and user message for debugging
@@ -189,7 +187,7 @@ export async function POST(request: Request) {
         messages,
         temperature: temperature || 0.7,
         ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
-        max_tokens: 500, // Further reduced for faster responses
+        max_tokens: 600, // Increased slightly for better responses
       }),
       new Promise<never>((_, reject) => 
         setTimeout(() => reject(new Error('Grok4 API timeout')), 15000)
@@ -225,7 +223,7 @@ export async function POST(request: Request) {
           Grok4Service.chatCompletion({
             messages,
             temperature: temperature || 0.7,
-            max_tokens: 500, // Further reduced for faster responses
+            max_tokens: 600, // Increased slightly for better responses
           }),
           new Promise<never>((_, reject) => 
             setTimeout(() => reject(new Error('Grok4 API timeout')), 15000)
@@ -234,7 +232,7 @@ export async function POST(request: Request) {
       }
     }
 
-    // Extract content from final response
+    // Extract content from final response with improved error handling
     let content = completion.choices?.[0]?.message?.content;
     
     // Add detailed logging to debug the empty response
@@ -243,9 +241,16 @@ export async function POST(request: Request) {
     logger.info('Grok4 content type:', typeof content);
     logger.info('Grok4 content length:', content?.length);
     
+    // Improved empty content handling with specific fallback messages
     if (!content || !content.trim()) {
       logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
-      content = 'No response from Grok4 (empty or unexpected error).';
+      
+      // Provide context-aware fallback message
+      if (relevantKnowledge.length > 0) {
+        content = 'I found some relevant information in my knowledge base, but I couldn\'t generate a proper response. Please try rephrasing your question.';
+      } else {
+        content = 'I don\'t have information about that in my knowledge base. Please try asking something else or rephrasing your question.';
+      }
     }
     
     return NextResponse.json({ content });
@@ -256,7 +261,7 @@ export async function POST(request: Request) {
     logger.error('API error:', error);
     return NextResponse.json(
       { 
-        content: 'No response from Grok4 (API error).',
+        content: 'Sorry, I\'m having trouble connecting to Grok4 right now. Please try again in a moment.',
         error: 'Failed to generate response from Grok4',
         details: error instanceof Error ? error.message : String(error)
       },
