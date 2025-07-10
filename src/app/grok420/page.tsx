@@ -40,6 +40,7 @@ export default function Grok420Page() {
   const [previewImage, setPreviewImage] = useState<ImageHistoryItem | null>(null);
   const [isPolling, setIsPolling] = useState(false);
   const [showInfoDialog, setShowInfoDialog] = useState(false);
+  const [copiedMessageId, setCopiedMessageId] = useState<string | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -234,6 +235,14 @@ export default function Grok420Page() {
     }
   };
 
+  const handleCopyMessage = async (content: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      setCopiedMessageId(id);
+      setTimeout(() => setCopiedMessageId(null), 1200);
+    } catch {}
+  };
+
   const _clearChat = () => {
     setMessages([]);
   };
@@ -402,7 +411,17 @@ export default function Grok420Page() {
                             message.role === 'user' 
                               ? 'bg-yellow-500/20 border border-yellow-500/30' 
                               : 'bg-black/40 border border-yellow-500/20'
-                          }`}>
+                          } relative`}>
+                            <button
+                              className="absolute top-2 right-2 p-1 rounded bg-yellow-500/10 hover:bg-yellow-500/30 transition-colors"
+                              title="Copy message"
+                              onClick={() => handleCopyMessage(message.content, message.id)}
+                            >
+                              <Copy className="h-4 w-4 text-yellow-400" />
+                            </button>
+                            {copiedMessageId === message.id && (
+                              <span className="absolute top-2 right-10 text-xs text-yellow-400 bg-black/80 px-2 py-1 rounded shadow">Copied!</span>
+                            )}
                             <p className="text-white/90 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: message.content }} />
                             <p className="text-xs text-yellow-400/50 mt-2">
                               {message.timestamp.toLocaleTimeString()}
