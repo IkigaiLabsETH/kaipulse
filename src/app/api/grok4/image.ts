@@ -4,7 +4,7 @@ export const runtime = 'edge';
 
 export async function POST(request: Request) {
   try {
-    const { prompt, fingerprintId, size } = await request.json();
+    const { prompt, n, size } = await request.json();
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
     }
@@ -12,12 +12,9 @@ export async function POST(request: Request) {
     const body: Record<string, unknown> = {
       prompt,
       model: 'grok-2-image',
-      n: 1,
+      n: n || 1,
       size: size || '1024x1024',
     };
-    if (fingerprintId) {
-      body.fingerprint = fingerprintId;
-    }
     const res = await fetch('https://api.x.ai/v1/images/generations', {
       method: 'POST',
       headers: {
