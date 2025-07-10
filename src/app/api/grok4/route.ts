@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server';
-import { Grok4Service } from './grok4';
+import { Grok4Service, enhancedWebSearch } from './grok4';
 import { logger } from '@/lib/logger';
-import type { ChatCompletionMessageParam } from "openai/resources/index";
+import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
+
+// Type for tool response message
+type ToolMessage = {
+  role: 'tool';
+  tool_call_id: string;
+  content: string;
+};
 
 export async function POST(request: Request) {
   try {
@@ -14,6 +21,27 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    // Define the Live Search tool
+    const tools: ChatCompletionTool[] = [
+      {
+        type: 'function',
+        function: {
+          name: 'search',
+          description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices and market data.',
+          parameters: {
+            type: 'object',
+            properties: {
+              query: {
+                type: 'string',
+                description: 'The search query'
+              }
+            },
+            required: ['query']
+          }
+        }
+      }
+    ];
 
     // Prepare messages
     const messages: ChatCompletionMessageParam[] = [];
@@ -29,9 +57,11 @@ export async function POST(request: Request) {
         apiKey: process.env.XAI_API_KEY,
         baseURL: 'https://api.x.ai/v1',
       }).chat.completions.create({
-        model: 'grok-4', // Fixed: use correct model name
+        model: 'grok-4',
         messages,
         temperature: temperature || 0.7,
+        tools,
+        tool_choice: 'auto',
         stream: true,
       });
 
@@ -55,14 +85,41 @@ export async function POST(request: Request) {
       });
     }
 
-    // --- Non-streaming logic ---
-    // Simple chat completion without tools for now
-    const completion = await Grok4Service.chatCompletion({
+    // --- Non-streaming logic with tool calling ---
+    // Step 1: Initial call with tools
+    let completion = await Grok4Service.chatCompletion({
       messages,
       temperature: temperature || 0.7,
+      tools,
+      tool_choice: 'auto',
     });
 
-    // Extract content from response
+    // Step 2: Handle tool calls (search)
+    while (true) {
+      const toolCall = Grok4Service.extractToolCall(completion);
+      if (!toolCall || toolCall.function?.name !== 'search') break;
+      
+      const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
+      logger.info('Grok4 requested search for:', searchQuery);
+      
+      // Use enhanced web search (prioritizes crypto prices)
+      const searchResult = await enhancedWebSearch(searchQuery);
+      
+      // Add tool response to messages
+      messages.push({
+        role: 'tool',
+        tool_call_id: toolCall.id,
+        content: searchResult,
+      } as ToolMessage);
+      
+      // Get next Grok4 response
+      completion = await Grok4Service.chatCompletion({
+        messages,
+        temperature: temperature || 0.7,
+      });
+    }
+
+    // Extract content from final response
     let content = completion.choices?.[0]?.message?.content;
     
     // Add detailed logging to debug the empty response
