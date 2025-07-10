@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
+import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Message {
@@ -23,6 +23,9 @@ export default function Grok420Page() {
   const [fingerprintId, setFingerprintId] = useState<string | null>(null);
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [resetMessage, setResetMessage] = useState('');
+  const [showImageDialog, setShowImageDialog] = useState(false);
+  const [imagePrompt, setImagePrompt] = useState('');
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   useEffect(() => {
     let id = localStorage.getItem('grok_fingerprint_id');
@@ -129,6 +132,42 @@ export default function Grok420Page() {
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleImageGenerate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!imagePrompt.trim() || isImageLoading) return;
+    setShowImageDialog(false);
+    setIsImageLoading(true);
+    try {
+      const response = await fetch('/api/grok4/image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: imagePrompt, fingerprintId }),
+      });
+      if (!response.ok) throw new Error('Failed to generate image');
+      const data = await response.json();
+      const assistantMessage: Message = {
+        id: (Date.now() + 2).toString(),
+        role: 'assistant',
+        content: '',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+      setMessages(prev => prev.map(m =>
+        m.id === assistantMessage.id ? { ...m, content: `<img src='${data.imageUrl}' alt='Generated art' class='rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto' />` } : m
+      ));
+    } catch {
+      setMessages(prev => [...prev, {
+        id: (Date.now() + 2).toString(),
+        role: 'assistant',
+        content: 'Sorry, image generation failed.',
+        timestamp: new Date(),
+      }]);
+    } finally {
+      setIsImageLoading(false);
+      setImagePrompt('');
     }
   };
 
@@ -249,7 +288,7 @@ export default function Grok420Page() {
                               ? 'bg-yellow-500/20 border border-yellow-500/30' 
                               : 'bg-black/40 border border-yellow-500/20'
                           }`}>
-                            <p className="text-white/90 whitespace-pre-wrap">{message.content}</p>
+                            <p className="text-white/90 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: message.content }} />
                             <p className="text-xs text-yellow-400/50 mt-2">
                               {message.timestamp.toLocaleTimeString()}
                             </p>
@@ -291,7 +330,7 @@ export default function Grok420Page() {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask Grok4 anything..."
                   className="flex-1 bg-black/60 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-yellow-400/50 focus:border-yellow-500 focus:outline-none"
-                  disabled={isLoading}
+                  disabled={isLoading || isImageLoading}
                 />
                 <button
                   type="submit"
@@ -300,7 +339,56 @@ export default function Grok420Page() {
                 >
                   <Send className="h-5 w-5" />
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setShowImageDialog(true)}
+                  disabled={isImageLoading}
+                  className="bg-yellow-500/20 hover:bg-yellow-400/30 text-yellow-500 font-bold px-4 py-3 rounded-lg border border-yellow-500/30 transition-colors disabled:cursor-not-allowed flex items-center justify-center"
+                  title="Generate image with art direction prompt"
+                >
+                  <ImageIcon className="h-5 w-5" />
+                </button>
               </form>
+              {/* Image Prompt Dialog */}
+              {showImageDialog && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
+                  <form onSubmit={handleImageGenerate} className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center w-full max-w-md">
+                    <h2 className="text-xl font-bold text-yellow-500 mb-4">Generate Art</h2>
+                    <textarea
+                      value={imagePrompt}
+                      onChange={e => setImagePrompt(e.target.value)}
+                      className="w-full h-24 bg-black/60 border border-yellow-500/30 rounded-lg p-3 text-white text-sm resize-none focus:border-yellow-500 focus:outline-none mb-4"
+                      placeholder="Describe the art direction..."
+                      autoFocus
+                    />
+                    <div className="flex gap-4 w-full justify-end">
+                      <button
+                        type="button"
+                        onClick={() => setShowImageDialog(false)}
+                        className="px-6 py-2 bg-gray-700 text-yellow-400 rounded-lg font-medium hover:bg-gray-600 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isImageLoading || !imagePrompt.trim()}
+                        className="px-6 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors disabled:opacity-50"
+                      >
+                        {isImageLoading ? 'Generating...' : 'Generate'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+              {/* Show loading indicator for image generation */}
+              {isImageLoading && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
+                  <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center">
+                    <Loader2 className="h-8 w-8 text-yellow-500 animate-spin mb-4" />
+                    <p className="text-yellow-400">Generating image...</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
