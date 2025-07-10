@@ -144,6 +144,11 @@ export async function duckDuckGoSearch(query: string): Promise<string> {
     // Fallbacks
     if (!snippet && data.Answer) snippet = data.Answer;
     if (!title && query) title = query;
+    // Special handling for BTC price queries
+    if (/bitcoin|btc.*price|price.*btc|price.*bitcoin/i.test(query)) {
+      const match = snippet.match(/\$[0-9,]+(\.[0-9]{2})?/);
+      if (match) return `BTC Price: ${match[0]}`;
+    }
     // Format result
     let result = '';
     if (title) result += `Title: ${title}\n`;
