@@ -40,6 +40,8 @@ export default function Grok420Page() {
   const [copiedMessageId, setCopiedMessageId] = useState<string | null>(null);
   const [mainImageIdx] = useState(imageHistory.length - 1);
   const [showImagePreview, setShowImagePreview] = useState(false);
+  const [lastUserMessage, setLastUserMessage] = useState<string | null>(null);
+  const [timeoutError, setTimeoutError] = useState<string | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -49,14 +51,15 @@ export default function Grok420Page() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, retryMessage?: string) => {
     e.preventDefault();
-    if (!input.trim() || isLoading) return;
+    const messageToSend = retryMessage || input;
+    if (!messageToSend.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: input.trim(),
+      content: messageToSend.trim(),
       timestamp: new Date(),
     };
 
@@ -64,6 +67,8 @@ export default function Grok420Page() {
     setInput('');
     setIsLoading(true);
     setIsPolling(false);
+    setLastUserMessage(messageToSend);
+    setTimeoutError(null);
 
     try {
       // Streaming support
@@ -167,6 +172,17 @@ export default function Grok420Page() {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Error:', error);
+      let isTimeout = false;
+      let errorMsg = '';
+      if (error instanceof Error) {
+        errorMsg = error.message;
+        if (errorMsg.includes('timeout') || errorMsg.includes('504') || errorMsg.includes('taking too long')) {
+          isTimeout = true;
+        }
+      }
+      if (isTimeout) {
+        setTimeoutError('Grok4 is taking too long to respond. Please try again or check your network connection.');
+      }
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -578,6 +594,26 @@ export default function Grok420Page() {
                         <div className="flex items-center gap-2">
                           <Loader2 className="h-4 w-4 text-yellow-500 animate-spin" />
                           <span className="text-yellow-400/80">Grok4 is still thinking... (live result pending)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {timeoutError && lastUserMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex gap-3 justify-start"
+                  >
+                    <div className="flex gap-3 max-w-[80%]">
+                      <div className="p-2 rounded-full bg-yellow-500/10">
+                        <Bot className="h-4 w-4 text-yellow-500" />
+                      </div>
+                      <div className="p-4 rounded-lg bg-black/40 border border-yellow-500/20">
+                        <div className="flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 text-yellow-500 animate-spin" />
+                          <span className="text-yellow-400/80">Grok4 is taking too long to respond. Please try again or check your network connection.</span>
                         </div>
                       </div>
                     </div>

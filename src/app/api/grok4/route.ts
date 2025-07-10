@@ -4,6 +4,7 @@ import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
 import fs from 'fs';
 import path from 'path';
+import { performance } from 'perf_hooks';
 
 // Type for tool response message
 type ToolMessage = {
@@ -86,7 +87,11 @@ function needsWebSearch(query: string): boolean {
 }
 
 export async function POST(request: Request) {
+  const stepTimings: Record<string, number> = {};
+  const stepStart = (label: string) => stepTimings[label] = performance.now();
+  const stepEnd = (label: string) => stepTimings[label] = performance.now() - (stepTimings[label] || 0);
   try {
+    stepStart('total');
     // Validate request method
     if (request.method !== 'POST') {
       return NextResponse.json(
@@ -136,9 +141,41 @@ export async function POST(request: Request) {
       );
     }
 
-    // Load knowledge base
-    const knowledgeChunks = await loadKnowledgeFiles();
-    const relevantKnowledge = await findRelevantKnowledge(message, knowledgeChunks);
+    stepStart('knowledge_load');
+    let knowledgeChunks: string[] = [];
+    try {
+      knowledgeChunks = await Promise.race([
+        loadKnowledgeFiles(),
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Knowledge base load timeout')), 5000))
+      ]);
+      stepEnd('knowledge_load');
+    } catch (kbError) {
+      stepEnd('knowledge_load');
+      stepEnd('total');
+      logger.error('Knowledge base load error:', kbError);
+      logger.info('Step timings (ms):', stepTimings);
+      return NextResponse.json({
+        content: 'Sorry, the knowledge base is currently unavailable. Please try again later.',
+        error: 'Knowledge base load timeout',
+        details: kbError instanceof Error ? kbError.message : String(kbError)
+      }, { status: 504 });
+    }
+    stepStart('find_relevant_knowledge');
+    let relevantKnowledge: string[] = [];
+    try {
+      relevantKnowledge = await findRelevantKnowledge(message, knowledgeChunks);
+      stepEnd('find_relevant_knowledge');
+    } catch (relError) {
+      stepEnd('find_relevant_knowledge');
+      stepEnd('total');
+      logger.error('Relevant knowledge search error:', relError);
+      logger.info('Step timings (ms):', stepTimings);
+      return NextResponse.json({
+        content: 'Sorry, there was an error searching the knowledge base.',
+        error: 'Knowledge search error',
+        details: relError instanceof Error ? relError.message : String(relError)
+      }, { status: 500 });
+    }
     
     // Build enhanced system prompt with improved knowledge injection
     let enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto.';
@@ -218,6 +255,8 @@ export async function POST(request: Request) {
             }
           }
         });
+        stepEnd('total');
+        logger.info('Step timings (ms):', stepTimings);
         return new Response(streamResponse, {
           headers: {
             'Content-Type': 'text/plain; charset=utf-8',
@@ -225,7 +264,9 @@ export async function POST(request: Request) {
           },
         });
       } catch (streamError) {
+        stepEnd('total');
         logger.error('Failed to create streaming response:', streamError);
+        logger.info('Step timings (ms):', stepTimings);
         return NextResponse.json(
           { 
             content: 'Sorry, I\'m having trouble with the streaming response. Please try again.',
@@ -237,106 +278,95 @@ export async function POST(request: Request) {
     }
 
     // --- Non-streaming logic with tool calling ---
+    stepStart('grok4_api');
+    let completion;
     try {
-      // Step 1: Initial call with tools (if needed)
-      let completion = await Promise.race([
+      completion = await Promise.race([
         Grok4Service.chatCompletion({
           messages,
           temperature: temperature || 0.7,
           ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
           max_tokens: 600,
         }),
-        new Promise<never>((_, reject) => 
-          setTimeout(() => reject(new Error('Grok4 API timeout')), 15000)
-        )
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Grok4 API timeout')), 15000))
       ]);
-
-      // Step 2: Handle tool calls (search) - only if tools were provided
-      if (tools.length > 0) {
-        while (true) {
-          const toolCall = Grok4Service.extractToolCall(completion);
-          if (!toolCall || toolCall.function?.name !== 'search') break;
-          
-          try {
-            const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
-            logger.info('Grok4 requested search for:', searchQuery);
-            
-            // Use enhanced web search with timeout
-            const searchResult = await Promise.race([
-              enhancedWebSearch(searchQuery),
-              new Promise<string>((_, reject) => 
-                setTimeout(() => reject(new Error('Search timeout')), 10000)
-              )
-            ]).catch(() => 'Web search timed out. Please try again.');
-            
-            // Add tool response to messages
-            messages.push({
-              role: 'tool',
-              tool_call_id: toolCall.id,
-              content: searchResult,
-            } as ToolMessage);
-            
-            // Get next Grok4 response with timeout
-            completion = await Promise.race([
-              Grok4Service.chatCompletion({
-                messages,
-                temperature: temperature || 0.7,
-                max_tokens: 600,
-              }),
-              new Promise<never>((_, reject) => 
-                setTimeout(() => reject(new Error('Grok4 API timeout')), 15000)
-              )
-            ]);
-          } catch (toolError) {
-            logger.error('Tool call error:', toolError);
-            break;
-          }
-        }
-      }
-
-      // Extract content from final response with improved error handling
-      let content = completion.choices?.[0]?.message?.content;
-      
-      // Add detailed logging to debug the empty response
-      logger.info('Grok4 completion object:', JSON.stringify(completion, null, 2));
-      logger.info('Grok4 content field:', content);
-      logger.info('Grok4 content type:', typeof content);
-      logger.info('Grok4 content length:', content?.length);
-      
-      // Improved empty content handling with specific fallback messages
-      if (!content || !content.trim()) {
-        logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
-        
-        // Provide context-aware fallback message
-        if (relevantKnowledge.length > 0) {
-          content = 'I found some relevant information in my knowledge base, but I couldn\'t generate a proper response. Please try rephrasing your question.';
-        } else {
-          content = 'I don\'t have information about that in my knowledge base. Please try asking something else or rephrasing your question.';
-        }
-      }
-      
-      return NextResponse.json({ content });
-    } catch (apiError) {
-      logger.error('Grok4 API call failed:', apiError);
-      return NextResponse.json(
-        { 
-          content: 'Sorry, I\'m having trouble connecting to Grok4 right now. Please try again in a moment.',
-          error: 'Grok4 API call failed',
-          details: apiError instanceof Error ? apiError.message : String(apiError)
-        },
-        { status: 500 }
-      );
+      stepEnd('grok4_api');
+    } catch (grokError) {
+      stepEnd('grok4_api');
+      stepEnd('total');
+      logger.error('Grok4 API error:', grokError);
+      logger.info('Step timings (ms):', stepTimings);
+      return NextResponse.json({
+        content: 'Sorry, Grok4 is taking too long to respond. Please try again in a moment.',
+        error: 'Grok4 API timeout',
+        details: grokError instanceof Error ? grokError.message : String(grokError)
+      }, { status: 504 });
     }
-  } catch (error) {
-    logger.error('Grok4 API route error:', error);
-    const key = process.env.XAI_API_KEY || '';
-    logger.info('XAI_API_KEY:', key ? key.slice(0,6) + '...' + key.slice(-2) : '[not set]');
-    logger.error('API error:', error);
+
+    // Step 2: Handle tool calls (search) - only if tools were provided
+    if (tools.length > 0) {
+      while (true) {
+        const toolCall = Grok4Service.extractToolCall(completion);
+        if (!toolCall || toolCall.function?.name !== 'search') break;
+        try {
+          const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
+          logger.info('Grok4 requested search for:', searchQuery);
+          // Use enhanced web search with timeout
+          const searchResult = await Promise.race([
+            enhancedWebSearch(searchQuery),
+            new Promise<string>((_, reject) => setTimeout(() => reject(new Error('Search timeout')), 10000))
+          ]).catch(() => 'Web search timed out. Please try again.');
+          // Add tool response to messages
+          messages.push({
+            role: 'tool',
+            tool_call_id: toolCall.id,
+            content: searchResult,
+          } as ToolMessage);
+          // Get next Grok4 response with timeout
+          completion = await Promise.race([
+            Grok4Service.chatCompletion({
+              messages,
+              temperature: temperature || 0.7,
+              max_tokens: 600,
+            }),
+            new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Grok4 API timeout')), 15000))
+          ]);
+        } catch (toolError) {
+          logger.error('Tool call error:', toolError);
+          break;
+        }
+      }
+    }
+
+    // Extract content from final response with improved error handling
+    let content = completion.choices?.[0]?.message?.content;
+    // Add detailed logging to debug the empty response
+    logger.info('Grok4 completion object:', JSON.stringify(completion, null, 2));
+    logger.info('Grok4 content field:', content);
+    logger.info('Grok4 content type:', typeof content);
+    logger.info('Grok4 content length:', content?.length);
+    // Improved empty content handling with specific fallback messages
+    if (!content || !content.trim()) {
+      logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
+      // Provide context-aware fallback message
+      if (relevantKnowledge.length > 0) {
+        content = 'I found some relevant information in my knowledge base, but I couldn\'t generate a proper response. Please try rephrasing your question.';
+      } else {
+        content = 'I don\'t have information about that in my knowledge base. Please try asking something else or rephrasing your question.';
+      }
+    }
+    stepEnd('total');
+    logger.info('Step timings (ms):', stepTimings);
+    return NextResponse.json({ content });
+  } catch (apiError) {
+    stepEnd('total');
+    logger.error('Grok4 API call failed:', apiError);
+    logger.info('Step timings (ms):', stepTimings);
     return NextResponse.json(
       { 
         content: 'Sorry, I\'m having trouble connecting to Grok4 right now. Please try again in a moment.',
-        error: 'Failed to generate response from Grok4',
-        details: error instanceof Error ? error.message : String(error)
+        error: 'Grok4 API call failed',
+        details: apiError instanceof Error ? apiError.message : String(apiError)
       },
       { status: 500 }
     );
