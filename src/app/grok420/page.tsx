@@ -234,7 +234,18 @@ export default function Grok420Page() {
 
   const handleCopyMessage = async (content: string, id: string) => {
     try {
-      await navigator.clipboard.writeText(content);
+      // Extract prompt text from HTML content if it's an image message
+      let textToCopy = content;
+      
+      // If content contains image HTML, extract the original prompt
+      if (content.includes('Original Prompt:') && content.includes('Generated art')) {
+        const promptMatch = content.match(/Original Prompt:<\/div>\s*<div[^>]*>([^<]+)<\/div>/);
+        if (promptMatch) {
+          textToCopy = promptMatch[1].trim();
+        }
+      }
+      
+      await navigator.clipboard.writeText(textToCopy);
       setCopiedMessageId(id);
       setTimeout(() => setCopiedMessageId(null), 1200);
     } catch {}
