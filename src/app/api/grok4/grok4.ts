@@ -41,6 +41,15 @@ export type ToolCall = {
   };
 };
 
+// Add a type for deferred completion response
+export interface DeferredCompletion {
+  id: string;
+  object: string;
+  created: number;
+  model: string;
+  choices: Array<ChatCompletion.Choice>;
+}
+
 export class Grok4Service {
   static async chatCompletion(request: Grok4Request): Promise<ChatCompletion> {
     try {
@@ -89,6 +98,24 @@ export class Grok4Service {
       tools,
       tool_choice,
     });
+  }
+
+  static async pollDeferredCompletion(requestId: string, maxAttempts = 20, intervalMs = 1000): Promise<DeferredCompletion> {
+    const url = `https://api.x.ai/v1/chat/deferred-completion/${requestId}`;
+    for (let i = 0; i < maxAttempts; i++) {
+      const res = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${env.XAI_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (res.status === 200) {
+        return await res.json();
+      }
+      if (res.status !== 202) throw new Error('Unexpected status from deferred completion');
+      await new Promise(r => setTimeout(r, intervalMs));
+    }
+    throw new Error('Deferred completion timed out');
   }
 }
 

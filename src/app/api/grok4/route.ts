@@ -127,6 +127,17 @@ export async function POST(request: Request) {
       ...(fingerprintToken ? { fingerprint: fingerprintToken } : {}),
     });
 
+    // Handle deferred completion (initial)
+    // @ts-expect-error: xAI API may return 'deferred.completion' object
+    if (completion && typeof completion === 'object' && 'object' in completion && completion.object === 'deferred.completion' && 'id' in completion && completion.id) {
+      const deferred = await Grok4Service.pollDeferredCompletion(completion.id);
+      if (deferred.object === 'chat.completion') {
+        completion = deferred as import("openai/resources/chat/completions").ChatCompletion;
+      } else {
+        throw new Error('Deferred completion did not resolve to a chat.completion object.');
+      }
+    }
+
     // Step 3: Loop for multiple tool calls
     while (true) {
       const toolCall = Grok4Service.extractToolCall(completion);
@@ -145,6 +156,16 @@ export async function POST(request: Request) {
         temperature,
         ...(fingerprintToken ? { fingerprint: fingerprintToken } : {}),
       });
+      // Handle deferred completion (tool call)
+      // @ts-expect-error: xAI API may return 'deferred.completion' object
+      if (completion && typeof completion === 'object' && 'object' in completion && completion.object === 'deferred.completion' && 'id' in completion && completion.id) {
+        const deferred = await Grok4Service.pollDeferredCompletion(completion.id);
+        if (deferred.object === 'chat.completion') {
+          completion = deferred as import("openai/resources/chat/completions").ChatCompletion;
+        } else {
+          throw new Error('Deferred completion did not resolve to a chat.completion object.');
+        }
+      }
     }
 
     // Return Grok4's final answer

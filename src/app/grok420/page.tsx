@@ -41,6 +41,7 @@ export default function Grok420Page() {
   const [lastImagePrompt, setLastImagePrompt] = useState('');
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [previewImage, setPreviewImage] = useState<ImageHistoryItem | null>(null);
+  const [isPolling, setIsPolling] = useState(false);
 
   useEffect(() => {
     let id = localStorage.getItem('grok_fingerprint_id');
@@ -73,6 +74,7 @@ export default function Grok420Page() {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
+    setIsPolling(false);
 
     try {
       // Streaming support
@@ -127,6 +129,9 @@ export default function Grok420Page() {
       } else {
         // Fallback: non-streaming
         const data = await response.json();
+        if (data.polling) {
+          setIsPolling(true);
+        }
         const assistantMessage: Message = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
@@ -147,6 +152,7 @@ export default function Grok420Page() {
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      setIsPolling(false);
     }
   };
 
@@ -391,6 +397,26 @@ export default function Grok420Page() {
                         <div className="flex items-center gap-2">
                           <Loader2 className="h-4 w-4 text-yellow-500 animate-spin" />
                           <span className="text-yellow-400/80">Grok4 is thinking...</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {isPolling && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex gap-3 justify-start"
+                  >
+                    <div className="flex gap-3 max-w-[80%]">
+                      <div className="p-2 rounded-full bg-yellow-500/10">
+                        <Bot className="h-4 w-4 text-yellow-500" />
+                      </div>
+                      <div className="p-4 rounded-lg bg-black/40 border border-yellow-500/20">
+                        <div className="flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 text-yellow-500 animate-spin" />
+                          <span className="text-yellow-400/80">Grok4 is still thinking... (live result pending)</span>
                         </div>
                       </div>
                     </div>
