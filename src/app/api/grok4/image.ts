@@ -4,19 +4,18 @@ export const runtime = 'edge';
 
 export async function POST(request: Request) {
   try {
-    const { prompt, fingerprintId } = await request.json();
+    const { prompt, fingerprintId, size } = await request.json();
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
     }
     // Prepare request body for xAI
-    const body: Record<string, any> = {
+    const body: Record<string, unknown> = {
       prompt,
       model: 'grok-2-image',
       n: 1,
-      size: '1024x1024',
+      size: size || '1024x1024',
     };
     if (fingerprintId) {
-      // Optionally, call /fingerprint endpoint as in grok4/route.ts, or just pass as identifier
       body.fingerprint = fingerprintId;
     }
     const res = await fetch('https://api.x.ai/v1/images/generations', {
@@ -32,11 +31,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'xAI image generation failed', details: err }, { status: 500 });
     }
     const data = await res.json();
-    const imageUrl = data.data?.[0]?.url || data.images?.[0]?.url;
+    const imageObj = data.data?.[0] || data.images?.[0];
+    const imageUrl = imageObj?.url;
+    const moderation = imageObj?.moderation || imageObj?.nsfw || false;
     if (!imageUrl) {
       return NextResponse.json({ error: 'No image URL returned from xAI' }, { status: 500 });
     }
-    return NextResponse.json({ imageUrl });
+    return NextResponse.json({ imageUrl, prompt, moderation });
   } catch (error) {
     return NextResponse.json({ error: 'Image generation failed', details: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
   }

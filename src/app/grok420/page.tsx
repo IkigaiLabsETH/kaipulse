@@ -26,6 +26,17 @@ export default function Grok420Page() {
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [imagePrompt, setImagePrompt] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(false);
+  type ImageHistoryItem = {
+    id: string;
+    url: string;
+    prompt: string;
+    size: string;
+    moderation: boolean;
+    timestamp: Date;
+  };
+  const [imageHistory, setImageHistory] = useState<ImageHistoryItem[]>([]);
+  const [imageSize, setImageSize] = useState('1024x1024');
+  const [lastImagePrompt, setLastImagePrompt] = useState('');
 
   useEffect(() => {
     let id = localStorage.getItem('grok_fingerprint_id');
@@ -135,39 +146,72 @@ export default function Grok420Page() {
     }
   };
 
-  const handleImageGenerate = async (e: React.FormEvent) => {
+  const handleImageGenerate = async (e: React.FormEvent, customPrompt?: string, customSize?: string) => {
     e.preventDefault();
-    if (!imagePrompt.trim() || isImageLoading) return;
+    const promptToUse = customPrompt || imagePrompt;
+    const sizeToUse = customSize || imageSize;
+    if (!promptToUse.trim() || isImageLoading) return;
     setShowImageDialog(false);
     setIsImageLoading(true);
+    setLastImagePrompt(promptToUse);
     try {
       const response = await fetch('/api/grok4/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: imagePrompt, fingerprintId }),
+        body: JSON.stringify({ prompt: promptToUse, fingerprintId, size: sizeToUse }),
       });
-      if (!response.ok) throw new Error('Failed to generate image');
       const data = await response.json();
-      const assistantMessage: Message = {
-        id: (Date.now() + 2).toString(),
+      if (!response.ok) throw new Error(data.error + (data.details ? `\n${data.details}` : ''));
+      const id = (Date.now() + 2).toString();
+      setImageHistory(prev => [
+        ...prev,
+        {
+          id,
+          url: data.imageUrl,
+          prompt: data.prompt,
+          size: sizeToUse,
+          moderation: !!data.moderation,
+          timestamp: new Date(),
+        },
+      ]);
+      setMessages(prev => [...prev, {
+        id,
         role: 'assistant',
         content: '',
         timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, assistantMessage]);
+      }]);
       setMessages(prev => prev.map(m =>
-        m.id === assistantMessage.id ? { ...m, content: `<img src='${data.imageUrl}' alt='Generated art' class='rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto' />` } : m
+        m.id === id
+          ? {
+              ...m,
+              content: `<div class='flex flex-col items-center gap-2'>
+                <img src='${data.imageUrl}' alt='Generated art' class='rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto ${data.moderation ? 'blur-md' : ''}' />
+                <div class='text-yellow-400 text-sm mt-2'>${data.prompt}</div>
+                <div class='flex gap-2 mt-2'>
+                  <a href='${data.imageUrl}' target='_blank' rel='noopener noreferrer' class='px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors'>Open</a>
+                  <a href='${data.imageUrl}' download class='px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors'>Download</a>
+                </div>
+                ${data.moderation ? "<div class='text-red-400 text-xs mt-2'>NSFW/Moderation: This image may contain sensitive content.</div>" : ''}
+              </div>`
+            }
+          : m
       ));
-    } catch {
+    } catch (err) {
       setMessages(prev => [...prev, {
         id: (Date.now() + 2).toString(),
         role: 'assistant',
-        content: 'Sorry, image generation failed.',
+        content: 'Sorry, image generation failed.' + (err instanceof Error ? `\n${err.message}` : ''),
         timestamp: new Date(),
       }]);
     } finally {
       setIsImageLoading(false);
       setImagePrompt('');
+    }
+  };
+  const handleRegenerateImage = () => {
+    if (lastImagePrompt) {
+      setShowImageDialog(true);
+      setImagePrompt(lastImagePrompt);
     }
   };
 
@@ -189,6 +233,17 @@ export default function Grok420Page() {
   const cancelResetContext = () => {
     setShowResetDialog(false);
   };
+
+  const samplePrompts = [
+    'Bitcoin city skyline at sunset, digital art',
+    'Satoshi Nakamoto as a renaissance painting',
+    'Futuristic Bitcoin mining farm, neon colors',
+    'Bitcoin logo in Van Gogh style',
+    'A golden Bitcoin in outer space',
+    'A cyberpunk trader with Bitcoin glasses',
+    'Bitcoin as a physical coin on a treasure map',
+    'A surreal landscape with Bitcoin-shaped mountains',
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col justify-center items-center">
@@ -352,8 +407,20 @@ export default function Grok420Page() {
               {/* Image Prompt Dialog */}
               {showImageDialog && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
-                  <form onSubmit={handleImageGenerate} className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center w-full max-w-md">
+                  <form onSubmit={e => handleImageGenerate(e)} className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center w-full max-w-md">
                     <h2 className="text-xl font-bold text-yellow-500 mb-4">Generate Art</h2>
+                    <div className="flex flex-wrap gap-2 mb-4 w-full">
+                      {samplePrompts.map((prompt, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setImagePrompt(prompt)}
+                          className="px-3 py-1 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg text-xs hover:bg-yellow-500/40 transition-colors"
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
                     <textarea
                       value={imagePrompt}
                       onChange={e => setImagePrompt(e.target.value)}
@@ -361,6 +428,41 @@ export default function Grok420Page() {
                       placeholder="Describe the art direction..."
                       autoFocus
                     />
+                    <div className="flex gap-4 w-full mb-4">
+                      <label className="text-yellow-400 text-sm flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="size"
+                          value="1024x1024"
+                          checked={imageSize === '1024x1024'}
+                          onChange={() => setImageSize('1024x1024')}
+                          className="accent-yellow-500"
+                        />
+                        Square
+                      </label>
+                      <label className="text-yellow-400 text-sm flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="size"
+                          value="1024x1792"
+                          checked={imageSize === '1024x1792'}
+                          onChange={() => setImageSize('1024x1792')}
+                          className="accent-yellow-500"
+                        />
+                        Portrait
+                      </label>
+                      <label className="text-yellow-400 text-sm flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="size"
+                          value="1792x1024"
+                          checked={imageSize === '1792x1024'}
+                          onChange={() => setImageSize('1792x1024')}
+                          className="accent-yellow-500"
+                        />
+                        Landscape
+                      </label>
+                    </div>
                     <div className="flex gap-4 w-full justify-end">
                       <button
                         type="button"
@@ -386,6 +488,42 @@ export default function Grok420Page() {
                   <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center">
                     <Loader2 className="h-8 w-8 text-yellow-500 animate-spin mb-4" />
                     <p className="text-yellow-400">Generating image...</p>
+                  </div>
+                </div>
+              )}
+              {/* Regenerate and History */}
+              {imageHistory.length > 0 && (
+                <div className="mt-8 w-full max-w-2xl mx-auto">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-yellow-400 font-bold">Image History</span>
+                    <button
+                      onClick={handleRegenerateImage}
+                      className="px-4 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors text-sm"
+                      title="Regenerate last image"
+                    >
+                      Regenerate Last
+                    </button>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {imageHistory.map(img => (
+                      <div key={img.id} className="bg-[#1c1f26] border-2 border-yellow-500 rounded-lg p-4 flex flex-col items-center">
+                        <img
+                          src={img.url}
+                          alt={img.prompt}
+                          className={`rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto ${img.moderation ? 'blur-md' : ''}`}
+                        />
+                        <div className="text-yellow-400 text-sm mt-2 text-center">{img.prompt}</div>
+                        <div className="text-xs text-yellow-400 mt-1">{img.size.replace('x', ' × ')}</div>
+                        <div className="flex gap-2 mt-2">
+                          <a href={img.url} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors">Open</a>
+                          <a href={img.url} download className="px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors">Download</a>
+                        </div>
+                        {img.moderation && (
+                          <div className="text-red-400 text-xs mt-2">NSFW/Moderation: This image may contain sensitive content.</div>
+                        )}
+                        <div className="text-yellow-400 text-xs mt-2">{img.timestamp.toLocaleString()}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
