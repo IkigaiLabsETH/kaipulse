@@ -612,97 +612,89 @@ export default function Grok420Page() {
               )}
 
               {/* Image Preview Dialog */}
-              <AnimatePresence>
-                {showImagePreview && modalIdx !== null && imageHistory[modalIdx] && (
-                  <motion.div
-                    key={`modal-${modalIdx}`}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="fixed inset-0 flex items-center justify-center z-50 bg-black/90"
-                    style={{ touchAction: 'none' }}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                  >
+              {showImagePreview && modalIdx !== null && imageHistory[modalIdx] && (
+                <div
+                  className="fixed inset-0 flex items-center justify-center z-50 bg-black/90"
+                  style={{ touchAction: 'none' }}
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  <div className="bg-[#222] border-2 border-yellow-500 rounded-2xl p-6 shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto relative flex flex-col items-center">
+                    <button
+                      onClick={() => setShowImagePreview(false)}
+                      className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-200 text-3xl font-bold z-10"
+                      title="Close"
+                    >×</button>
                     <div
-                      className="bg-[#222] border-2 border-yellow-500 rounded-2xl p-6 shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto relative flex flex-col items-center"
+                      className="flex-1 flex items-center justify-center w-full h-full relative overflow-hidden"
+                      style={{ minHeight: 400 }}
+                      onWheel={handleWheel}
+                      onMouseDown={handleMouseDown}
+                      onMouseUp={handleMouseUp}
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={handleMouseUp}
                     >
-                      <button
-                        onClick={() => setShowImagePreview(false)}
-                        className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-200 text-3xl font-bold z-10"
-                        title="Close"
-                      >×</button>
-                      <div
-                        className="flex-1 flex items-center justify-center w-full h-full relative overflow-hidden"
-                        style={{ minHeight: 400 }}
-                        onWheel={handleWheel}
-                        onMouseDown={handleMouseDown}
-                        onMouseUp={handleMouseUp}
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={handleMouseUp}
-                      >
-                        <Image
-                          src={imageHistory[modalIdx]?.url || ''}
-                          alt={imageHistory[modalIdx]?.prompt || ''}
-                          width={1024}
-                          height={1024}
-                          style={{
-                            transform: `scale(${zoom}) translate(${offset.x / zoom}px, ${offset.y / zoom}px)`,
-                            transition: dragging ? 'none' : 'transform 0.2s',
-                            cursor: zoom > 1 ? 'grab' : 'zoom-in',
-                            maxWidth: '90vw',
-                            maxHeight: '80vh',
-                            borderRadius: 16,
-                            boxShadow: '0 8px 32px 0 rgba(247,181,0,0.25)',
-                            border: '2px solid #F7B500',
-                            background: '#111',
-                          }}
-                          draggable={false}
-                          onDoubleClick={() => { setZoom(zoom === 1 ? 2 : 1); setOffset({ x: 0, y: 0 }); }}
-                          unoptimized
-                        />
-                      </div>
-                      <div className="flex gap-4 mt-4 items-center">
-                        <button
-                          onClick={() => modalIdx > 0 && setModalIdx(modalIdx - 1)}
-                          disabled={modalIdx === 0}
-                          className="px-3 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-lg disabled:opacity-40"
-                          title="Previous image"
-                        >←</button>
-                        <span className="text-yellow-400 text-xs">{modalIdx + 1} / {imageHistory.length}</span>
-                        <button
-                          onClick={() => modalIdx < imageHistory.length - 1 && setModalIdx(modalIdx + 1)}
-                          disabled={modalIdx === imageHistory.length - 1}
-                          className="px-3 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-lg disabled:opacity-40"
-                          title="Next image"
-                        >→</button>
-                      </div>
-                      <div className="w-full flex flex-col md:flex-row gap-6 mt-6">
-                        <div className="flex-1">
-                          <div className="font-bold text-yellow-400 mb-1">Original Prompt:</div>
-                          <div className="text-xs text-yellow-400/80 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[modalIdx]?.prompt}</div>
-                        </div>
-                        {imageHistory[modalIdx]?.revisedPrompt && (
-                          <div className="flex-1">
-                            <div className="font-bold text-yellow-400 mb-1">Revised Prompt:</div>
-                            <div className="text-xs text-yellow-400/60 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[modalIdx]?.revisedPrompt}</div>
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex gap-3 mt-6 flex-wrap justify-center">
-                        <a href={imageHistory[modalIdx]?.url || '#'} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Open</a>
-                        <a href={imageHistory[modalIdx]?.url || '#'} download className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Download</a>
-                      </div>
-                      <div className="text-xs text-yellow-400/60 mt-4 text-center">
-                        Size: {imageHistory[modalIdx]?.size?.replace('x', ' × ')} | Created: {imageHistory[modalIdx]?.timestamp?.toLocaleString()}
-                        {imageHistory[modalIdx]?.moderation && (
-                          <span className="text-red-400 ml-2">• NSFW/Moderation</span>
-                        )}
-                      </div>
+                      <Image
+                        src={imageHistory[modalIdx]?.url || ''}
+                        alt={imageHistory[modalIdx]?.prompt || ''}
+                        width={1024}
+                        height={1024}
+                        style={{
+                          transform: `scale(${zoom}) translate(${offset.x / zoom}px, ${offset.y / zoom}px)`,
+                          transition: dragging ? 'none' : 'transform 0.2s',
+                          cursor: zoom > 1 ? 'grab' : 'zoom-in',
+                          maxWidth: '90vw',
+                          maxHeight: '80vh',
+                          borderRadius: 16,
+                          boxShadow: '0 8px 32px 0 rgba(247,181,0,0.25)',
+                          border: '2px solid #F7B500',
+                          background: '#111',
+                        }}
+                        draggable={false}
+                        onDoubleClick={() => { setZoom(zoom === 1 ? 2 : 1); setOffset({ x: 0, y: 0 }); }}
+                        unoptimized
+                      />
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    <div className="flex gap-4 mt-4 items-center">
+                      <button
+                        onClick={() => modalIdx > 0 && setModalIdx(modalIdx - 1)}
+                        disabled={modalIdx === 0}
+                        className="px-3 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-lg disabled:opacity-40"
+                        title="Previous image"
+                      >←</button>
+                      <span className="text-yellow-400 text-xs">{modalIdx + 1} / {imageHistory.length}</span>
+                      <button
+                        onClick={() => modalIdx < imageHistory.length - 1 && setModalIdx(modalIdx + 1)}
+                        disabled={modalIdx === imageHistory.length - 1}
+                        className="px-3 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded font-bold hover:bg-yellow-500/40 transition-colors text-lg disabled:opacity-40"
+                        title="Next image"
+                      >→</button>
+                    </div>
+                    <div className="w-full flex flex-col md:flex-row gap-6 mt-6">
+                      <div className="flex-1">
+                        <div className="font-bold text-yellow-400 mb-1">Original Prompt:</div>
+                        <div className="text-xs text-yellow-400/80 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[modalIdx]?.prompt}</div>
+                      </div>
+                      {imageHistory[modalIdx]?.revisedPrompt && (
+                        <div className="flex-1">
+                          <div className="font-bold text-yellow-400 mb-1">Revised Prompt:</div>
+                          <div className="text-xs text-yellow-400/60 bg-black/40 p-2 rounded border border-yellow-500/20 break-words">{imageHistory[modalIdx]?.revisedPrompt}</div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex gap-3 mt-6 flex-wrap justify-center">
+                      <a href={imageHistory[modalIdx]?.url || '#'} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Open</a>
+                      <a href={imageHistory[modalIdx]?.url || '#'} download className="px-4 py-2 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors text-xs">Download</a>
+                    </div>
+                    <div className="text-xs text-yellow-400/60 mt-4 text-center">
+                      Size: {imageHistory[modalIdx]?.size?.replace('x', ' × ')} | Created: {imageHistory[modalIdx]?.timestamp?.toLocaleString()}
+                      {imageHistory[modalIdx]?.moderation && (
+                        <span className="text-red-400 ml-2">• NSFW/Moderation</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
               {/* Regenerate and History */}
               {imageHistory.length > 0 && (
                 <div className="w-full flex flex-col items-center mb-12">
