@@ -135,39 +135,18 @@ export default function Grok420Page() {
             const chunk = new TextDecoder().decode(value);
             assistantContent += chunk;
             
-            // Try to parse as JSON and extract content
-            let displayContent = assistantContent;
-            try {
-              const parsed = JSON.parse(assistantContent);
-              if (parsed.content) {
-                displayContent = parsed.content;
-              }
-            } catch {
-              // Not JSON, use as-is
-            }
-            
+            // Update the message with the accumulated content
             setMessages(prev => prev.map(m =>
-              m.id === assistantMessage.id ? { ...m, content: displayContent } : m
+              m.id === assistantMessage.id ? { ...m, content: assistantContent } : m
             ));
           }
         }
-        // After streaming, check for empty content and try to parse final result
+        
+        // After streaming, check for empty content
         if (!assistantContent.trim()) {
           setMessages(prev => prev.map(m =>
-            m.id === assistantMessage.id ? { ...m, content: 'No response from Grok4 (empty or unexpected error).' } : m
+            m.id === assistantMessage.id ? { ...m, content: 'No response from Grok4. Please try again.' } : m
           ));
-        } else {
-          // Try to parse the final content as JSON
-          try {
-            const parsed = JSON.parse(assistantContent);
-            if (parsed.content) {
-              setMessages(prev => prev.map(m =>
-                m.id === assistantMessage.id ? { ...m, content: parsed.content } : m
-              ));
-            }
-          } catch {
-            // Not JSON, keep as-is
-          }
         }
       } else {
         // Fallback: non-streaming

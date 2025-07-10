@@ -97,26 +97,56 @@ async function getFastBTCPrice(): Promise<number | null> {
   if (cachedBTCPrice && (now - cachedBTCPrice.timestamp) < BTC_CACHE_TTL) {
     return cachedBTCPrice.price;
   }
+  
   try {
     const resp = await Promise.race([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'),
       new Promise((_, reject) => setTimeout(() => reject(new Error('BTC price fetch timeout')), 3000))
     ]) as Response;
-    if (!resp.ok) throw new Error('BTC price API error');
+    
+    if (!resp.ok) {
+      logger.error('BTC price API error:', resp.status, resp.statusText);
+      throw new Error('BTC price API error');
+    }
+    
     const data = await resp.json();
     const price = data.bitcoin?.usd;
-    if (typeof price === 'number') {
+    
+    if (typeof price === 'number' && price > 0) {
       cachedBTCPrice = { price, timestamp: now };
+      logger.info('BTC price fetched successfully:', price);
       return price;
+    } else {
+      logger.error('Invalid BTC price data:', data);
+      throw new Error('Invalid BTC price data');
     }
-    return null;
-  } catch {
+  } catch (error) {
+    logger.error('BTC price fetch error:', error);
+    // Return cached price if available, otherwise null
     return cachedBTCPrice ? cachedBTCPrice.price : null;
   }
 }
 
 function isPricePredictionQuery(q: string): boolean {
-  return /price target|prediction|end of q4|end of year|forecast|btc price/i.test(q);
+  const priceKeywords = [
+    'price', 'value', 'worth', 'cost', 'how much',
+    'current price', 'current value', 'price of', 'value of',
+    'bitcoin price', 'btc price', 'eth price', 'ethereum price'
+  ];
+  
+  const queryLower = q.toLowerCase();
+  
+  // Check for price-related keywords
+  const hasPriceKeyword = priceKeywords.some(keyword => queryLower.includes(keyword));
+  
+  // Check for specific prediction/forecast keywords
+  const hasPredictionKeyword = /price target|prediction|end of q4|end of year|forecast|target/i.test(q);
+  
+  // Check for crypto/bitcoin mentions
+  const hasCryptoMention = /bitcoin|btc|ethereum|eth|crypto|cryptocurrency/i.test(q);
+  
+  // Return true if it's a price query with crypto mention, or a prediction query
+  return (hasPriceKeyword && hasCryptoMention) || hasPredictionKeyword;
 }
 
 export async function POST(request: Request) {
@@ -167,31 +197,61 @@ export async function POST(request: Request) {
 
     // Price prediction shortcut (run before knowledge base, etc)
     if (isPricePredictionQuery(message)) {
+      logger.info('Price prediction shortcut triggered for query:', message);
       // Step 1: Fast price fetch
       const btcPrice = await getFastBTCPrice();
-      // Step 2: Ask LLM for prediction, but with a 5s timeout
-      let prediction = '';
-      try {
-        const predictionPrompt = `Bitcoin is currently priced at $${btcPrice ? btcPrice.toLocaleString() : 'unknown'}. What is your price target for the end of Q4? Please answer in 2 sentences, and add a witty Satoshi-style remark.`;
-        const predictionResp = await Promise.race([
-          Grok4Service.chatCompletion({
-            messages: [
-              { role: 'system', content: systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV.' },
-              { role: 'user', content: predictionPrompt }
-            ],
-            temperature: temperature || 0.7,
-            max_tokens: 120,
-          }),
-          new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Prediction timeout')), 5000))
-        ]) as ChatCompletion;
-        prediction = predictionResp.choices && predictionResp.choices[0]?.message?.content ? predictionResp.choices[0].message.content : '';
-      } catch {
-        prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
+      
+      // Step 2: Determine if this is a prediction query or just a price query
+      const isPredictionQuery = /price target|prediction|end of q4|end of year|forecast|target/i.test(message);
+      
+      let response = '';
+      
+      if (isPredictionQuery) {
+        logger.info('Handling as prediction query');
+        // Handle prediction queries
+        let prediction = '';
+        try {
+          const predictionPrompt = `Bitcoin is currently priced at $${btcPrice ? btcPrice.toLocaleString() : 'unknown'}. What is your price target for the end of Q4? Please answer in 2 sentences, and add a witty Satoshi-style remark.`;
+          const predictionResp = await Promise.race([
+            Grok4Service.chatCompletion({
+              messages: [
+                { role: 'system', content: systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV.' },
+                { role: 'user', content: predictionPrompt }
+              ],
+              temperature: temperature || 0.7,
+              max_tokens: 120,
+            }),
+            new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Prediction timeout')), 5000))
+          ]) as ChatCompletion;
+          
+          // Extract content with better error handling
+          prediction = predictionResp.choices?.[0]?.message?.content || '';
+          
+          // If still empty, use fallback
+          if (!prediction || !prediction.trim()) {
+            prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
+          }
+        } catch (error) {
+          logger.error('Price prediction error:', error);
+          prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
+        }
+        
+        response = `Current BTC price: $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n${prediction}`;
+      } else {
+        logger.info('Handling as simple price query');
+        // Handle simple price queries
+        if (btcPrice) {
+          response = `Current Bitcoin price: $${btcPrice.toLocaleString()}\n\nAs Satoshi would say: "The price is what the market decides!"`;
+        } else {
+          response = `I'm having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"`;
+        }
       }
-      // Step 3: Respond quickly
+      
       return NextResponse.json({
-        content: `Current BTC price: $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n${prediction}`
+        content: response
       });
+    } else {
+      logger.info('Query did not match price prediction shortcut:', message);
     }
 
     // Validate API key
@@ -422,16 +482,21 @@ export async function POST(request: Request) {
 
     // Extract content from final response with improved error handling
     let content = completion.choices?.[0]?.message?.content;
+    
     // Add detailed logging to debug the empty response
     logger.info('Grok4 completion object:', JSON.stringify(completion, null, 2));
     logger.info('Grok4 content field:', content);
     logger.info('Grok4 content type:', typeof content);
     logger.info('Grok4 content length:', content?.length);
+    
     // Improved empty content handling with specific fallback messages
     if (!content || !content.trim()) {
       logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
-      // Provide context-aware fallback message
-      if (relevantKnowledge.length > 0) {
+      
+      // Provide context-aware fallback message based on the query
+      if (message.toLowerCase().includes('price') || message.toLowerCase().includes('btc') || message.toLowerCase().includes('bitcoin')) {
+        content = 'I\'m having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"';
+      } else if (relevantKnowledge.length > 0) {
         content = 'I found some relevant information in my knowledge base, but I couldn\'t generate a proper response. Please try rephrasing your question.';
       } else {
         content = 'I don\'t have information about that in my knowledge base. Please try asking something else or rephrasing your question.';
