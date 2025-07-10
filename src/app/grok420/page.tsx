@@ -87,7 +87,11 @@ export default function Grok420Page() {
           if (errorData.details) {
             errorMsg += `\n${errorData.details}`;
           }
-        } catch {}
+          // Show the full error object for debugging
+          errorMsg += `\n${JSON.stringify(errorData)}`;
+        } catch (e) {
+          errorMsg += `\n${e}`;
+        }
         throw new Error(errorMsg);
       }
 

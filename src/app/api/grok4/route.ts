@@ -141,11 +141,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ content });
   } catch (error) {
     logger.error('Grok4 API route error:', error);
-    const isDev = process.env.NODE_ENV !== 'production';
     return NextResponse.json(
       { 
         error: 'Failed to generate response from Grok4',
-        details: isDev && error instanceof Error ? error.message : undefined
+        details: error instanceof Error ? error.message : String(error)
       },
       { status: 500 }
     );
