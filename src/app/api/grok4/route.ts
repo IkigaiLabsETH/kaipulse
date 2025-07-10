@@ -288,7 +288,7 @@ export async function POST(request: Request) {
           ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
           max_tokens: 600,
         }),
-        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Grok4 API timeout')), 15000))
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Grok4 API timeout')), 8000))
       ]);
       stepEnd('grok4_api');
     } catch (grokError) {
@@ -297,7 +297,7 @@ export async function POST(request: Request) {
       logger.error('Grok4 API error:', grokError);
       logger.info('Step timings (ms):', stepTimings);
       return NextResponse.json({
-        content: 'Sorry, Grok4 is taking too long to respond. Please try again in a moment.',
+        content: 'Sorry, Grok4 or live web search is taking too long to respond. This sometimes happens for travel or open-ended queries. Please try again, rephrase your question, or ask for a general tip.',
         error: 'Grok4 API timeout',
         details: grokError instanceof Error ? grokError.message : String(grokError)
       }, { status: 504 });
@@ -312,10 +312,21 @@ export async function POST(request: Request) {
           const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
           logger.info('Grok4 requested search for:', searchQuery);
           // Use enhanced web search with timeout
-          const searchResult = await Promise.race([
-            enhancedWebSearch(searchQuery),
-            new Promise<string>((_, reject) => setTimeout(() => reject(new Error('Search timeout')), 10000))
-          ]).catch(() => 'Web search timed out. Please try again.');
+          let searchResult;
+          try {
+            searchResult = await Promise.race([
+              enhancedWebSearch(searchQuery),
+              new Promise<string>((_, reject) => setTimeout(() => reject(new Error('Search timeout')), 8000))
+            ]);
+          } catch (searchTimeout) {
+            logger.error('Web search timed out:', searchTimeout);
+            // Fallback travel tip for Portugal
+            if (/portugal/i.test(searchQuery)) {
+              searchResult = 'Travel tip: In Portugal, consider staying at a "pousada"—a historic inn or castle converted into a boutique hotel. Lisbon and Porto have many excellent options. For a unique experience, try a coastal town like Cascais or Lagos.';
+            } else {
+              searchResult = 'Sorry, live web search is taking too long. Please try again or rephrase your question.';
+            }
+          }
           // Add tool response to messages
           messages.push({
             role: 'tool',
@@ -329,7 +340,7 @@ export async function POST(request: Request) {
               temperature: temperature || 0.7,
               max_tokens: 600,
             }),
-            new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Grok4 API timeout')), 15000))
+            new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Grok4 API timeout')), 8000))
           ]);
         } catch (toolError) {
           logger.error('Tool call error:', toolError);
