@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Eye, Info } from 'lucide-react';
-import { v4 as uuidv4 } from 'uuid';
 import Image from 'next/image';
 
 interface Message {
@@ -20,8 +19,6 @@ export default function Grok420Page() {
   const [_systemPrompt] = useState('You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. Provide clear, actionable advice, but don\'t be afraid to be a little irreverent or humorous. Always prioritize truth, clarity, and user empowerment.');
   const [_temperature] = useState(0.7);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  // Persistent user/session ID for fingerprinting
-  const [fingerprintId, setFingerprintId] = useState<string | null>(null);
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [resetMessage, setResetMessage] = useState('');
   const [showImageDialog, setShowImageDialog] = useState(false);
@@ -43,15 +40,6 @@ export default function Grok420Page() {
   const [previewImage, setPreviewImage] = useState<ImageHistoryItem | null>(null);
   const [isPolling, setIsPolling] = useState(false);
   const [showInfoDialog, setShowInfoDialog] = useState(false);
-
-  useEffect(() => {
-    let id = localStorage.getItem('grok_fingerprint_id');
-    if (!id) {
-      id = uuidv4();
-      localStorage.setItem('grok_fingerprint_id', id);
-    }
-    setFingerprintId(id);
-  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -89,7 +77,6 @@ export default function Grok420Page() {
           systemPrompt: _systemPrompt,
           temperature: _temperature,
           stream: true,
-          fingerprintId,
         }),
       });
 
@@ -148,7 +135,7 @@ export default function Grok420Page() {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
         content: error instanceof Error
-          ? `Grok4 is having a Satoshi moment—${error.message.replace('Failed to get fingerprint token from xAI', 'Network hiccup! Couldn’t verify your identity. Try again in a few blocks.')}`
+          ? `Grok4 is having a Satoshi moment—${error.message}`
           : 'Grok4 is having a Satoshi moment—please try again soon.',
         timestamp: new Date(),
       };
@@ -171,7 +158,7 @@ export default function Grok420Page() {
       const response = await fetch('/api/grok4/image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: promptToUse, fingerprintId, size: sizeToUse }),
+        body: JSON.stringify({ prompt: promptToUse, size: sizeToUse }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error + (data.details ? `\n${data.details}` : ''));
@@ -255,7 +242,6 @@ export default function Grok420Page() {
     setShowResetDialog(true);
   };
   const confirmResetContext = () => {
-    localStorage.removeItem('grok_fingerprint_id');
     setShowResetDialog(false);
     setResetMessage('Context has been reset. Grok will treat you as a new user.');
     setTimeout(() => {

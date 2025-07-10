@@ -25,6 +25,9 @@ export async function POST(request: Request) {
     });
     if (!res.ok) {
       const err = await res.text();
+      // Log the error status and body for debugging
+      // eslint-disable-next-line no-console
+      console.error('xAI image error:', res.status, err);
       return NextResponse.json({ error: 'xAI image generation failed', details: err }, { status: 500 });
     }
     const data = await res.json();
