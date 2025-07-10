@@ -64,7 +64,7 @@ export class Grok4Service {
   static async chatCompletion(request: Grok4Request): Promise<ChatCompletion> {
     try {
       const completion = await client.chat.completions.create({
-        model: "grok-4-0709",
+        model: "grok-4", // Fixed: use correct model name
         messages: request.messages,
         temperature: request.temperature || 0.7,
         max_tokens: request.max_tokens || 1000,

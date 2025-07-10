@@ -1,15 +1,7 @@
 import { NextResponse } from 'next/server';
-import { Grok4Service, enhancedWebSearch } from './grok4';
+import { Grok4Service } from './grok4';
 import { logger } from '@/lib/logger';
-import type { ChatCompletionTool } from "openai/resources/chat/completions";
 import type { ChatCompletionMessageParam } from "openai/resources/index";
-
-// Type for tool response message
-type ToolMessage = {
-  role: 'tool';
-  tool_call_id: string;
-  content: string;
-};
 
 export async function POST(request: Request) {
   try {
@@ -23,28 +15,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Define the Live Search tool
-    const tools: ChatCompletionTool[] = [
-      {
-        type: 'function',
-        function: {
-          name: 'search',
-          description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices and market data.',
-          parameters: {
-            type: 'object',
-            properties: {
-              query: {
-                type: 'string',
-                description: 'The search query'
-              }
-            },
-            required: ['query']
-          }
-        }
-      }
-    ];
-
-    // Step 1: Prepare initial messages
+    // Prepare messages
     const messages: ChatCompletionMessageParam[] = [];
     if (systemPrompt) {
       messages.push({ role: 'system', content: systemPrompt });
@@ -53,17 +24,14 @@ export async function POST(request: Request) {
 
     // --- Streaming logic ---
     if (stream) {
-      // Streaming response using OpenAI SDK
       const OpenAI = (await import('openai')).default;
       const completionStream = await new OpenAI({
         apiKey: process.env.XAI_API_KEY,
         baseURL: 'https://api.x.ai/v1',
       }).chat.completions.create({
-        model: 'grok-4-0709',
+        model: 'grok-4', // Fixed: use correct model name
         messages,
-        temperature,
-        tools,
-        tool_choice: 'auto',
+        temperature: temperature || 0.7,
         stream: true,
       });
 
@@ -86,61 +54,28 @@ export async function POST(request: Request) {
         },
       });
     }
-    // --- End streaming logic ---
 
-    // Step 2: Call Grok4 with tool-calling enabled (non-streaming fallback)
-    let completion = await Grok4Service.chatCompletion({
+    // --- Non-streaming logic ---
+    // Simple chat completion without tools for now
+    const completion = await Grok4Service.chatCompletion({
       messages,
-      temperature,
-      tools,
-      tool_choice: 'auto',
+      temperature: temperature || 0.7,
     });
 
-    // Handle deferred completion (initial)
-    // @ts-expect-error: xAI API may return 'deferred.completion' object
-    if (completion && typeof completion === 'object' && 'object' in completion && completion.object === 'deferred.completion' && 'id' in completion && completion.id) {
-      const deferred = await Grok4Service.pollDeferredCompletion(completion.id);
-      if (deferred.object === 'chat.completion') {
-        completion = deferred as import("openai/resources/chat/completions").ChatCompletion;
-      } else {
-        throw new Error('Deferred completion did not resolve to a chat.completion object.');
-      }
-    }
-
-    // Step 3: Loop for multiple tool calls
-    while (true) {
-      const toolCall = Grok4Service.extractToolCall(completion);
-      if (!toolCall || toolCall.function?.name !== 'search') break;
-      const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
-      const searchResult = await enhancedWebSearch(searchQuery);
-      // Add tool response to messages
-      messages.push({
-        role: 'tool',
-        tool_call_id: toolCall.id,
-        content: searchResult,
-      } as ToolMessage);
-      // Get next Grok4 response
-      completion = await Grok4Service.chatCompletion({
-        messages,
-        temperature,
-      });
-      // Handle deferred completion (tool call)
-      // @ts-expect-error: xAI API may return 'deferred.completion' object
-      if (completion && typeof completion === 'object' && 'object' in completion && completion.object === 'deferred.completion' && 'id' in completion && completion.id) {
-        const deferred = await Grok4Service.pollDeferredCompletion(completion.id);
-        if (deferred.object === 'chat.completion') {
-          completion = deferred as import("openai/resources/chat/completions").ChatCompletion;
-        } else {
-          throw new Error('Deferred completion did not resolve to a chat.completion object.');
-        }
-      }
-    }
-
-    // Return Grok4's final answer
+    // Extract content from response
     let content = completion.choices?.[0]?.message?.content;
+    
+    // Add detailed logging to debug the empty response
+    logger.info('Grok4 completion object:', JSON.stringify(completion, null, 2));
+    logger.info('Grok4 content field:', content);
+    logger.info('Grok4 content type:', typeof content);
+    logger.info('Grok4 content length:', content?.length);
+    
     if (!content || !content.trim()) {
+      logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
       content = 'No response from Grok4 (empty or unexpected error).';
     }
+    
     return NextResponse.json({ content });
   } catch (error) {
     logger.error('Grok4 API route error:', error);
