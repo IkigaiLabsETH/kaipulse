@@ -100,14 +100,30 @@ export async function duckDuckGoSearch(query: string): Promise<string> {
     if (!res.ok) throw new Error('DuckDuckGo API error');
     const data = await res.json();
     // Prefer Abstract, then RelatedTopics, then fallback
-    if (data.AbstractText) {
-      return data.AbstractText;
-    } else if (Array.isArray(data.RelatedTopics) && data.RelatedTopics.length > 0) {
+    let title = data.Heading || '';
+    let snippet = data.AbstractText || '';
+    let link = data.AbstractURL || '';
+    if (!snippet && Array.isArray(data.RelatedTopics) && data.RelatedTopics.length > 0) {
       const topic = data.RelatedTopics[0];
-      if (typeof topic.Text === 'string') return topic.Text;
-      if (topic.Topics && topic.Topics[0] && topic.Topics[0].Text) return topic.Topics[0].Text;
+      if (typeof topic.Text === 'string') snippet = topic.Text;
+      if (topic.FirstURL) link = topic.FirstURL;
+      if (topic.Name) title = topic.Name;
+      if (topic.Topics && topic.Topics[0]) {
+        if (topic.Topics[0].Text) snippet = topic.Topics[0].Text;
+        if (topic.Topics[0].FirstURL) link = topic.Topics[0].FirstURL;
+        if (topic.Topics[0].Name) title = topic.Topics[0].Name;
+      }
     }
-    return 'No relevant web search results found.';
+    // Fallbacks
+    if (!snippet && data.Answer) snippet = data.Answer;
+    if (!title && query) title = query;
+    // Format result
+    let result = '';
+    if (title) result += `Title: ${title}\n`;
+    if (snippet) result += `Snippet: ${snippet}\n`;
+    if (link) result += `URL: ${link}`;
+    if (!result) result = 'No relevant web search results found.';
+    return result.trim();
   } catch {
     return 'Web search failed.';
   }

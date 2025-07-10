@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Message {
   id: string;
@@ -18,6 +19,19 @@ export default function Grok420Page() {
   const [_systemPrompt] = useState('You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. Provide clear, actionable advice, but don\'t be afraid to be a little irreverent or humorous. Always prioritize truth, clarity, and user empowerment.');
   const [_temperature] = useState(0.7);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  // Persistent user/session ID for fingerprinting
+  const [fingerprintId, setFingerprintId] = useState<string | null>(null);
+  const [showResetDialog, setShowResetDialog] = useState(false);
+  const [resetMessage, setResetMessage] = useState('');
+
+  useEffect(() => {
+    let id = localStorage.getItem('grok_fingerprint_id');
+    if (!id) {
+      id = uuidv4();
+      localStorage.setItem('grok_fingerprint_id', id);
+    }
+    setFingerprintId(id);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -43,6 +57,7 @@ export default function Grok420Page() {
     setIsLoading(true);
 
     try {
+      // Streaming support
       const response = await fetch('/api/grok4', {
         method: 'POST',
         headers: {
@@ -52,30 +67,63 @@ export default function Grok420Page() {
           message: userMessage.content,
           systemPrompt: _systemPrompt,
           temperature: _temperature,
+          stream: true,
+          fingerprintId,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response from Grok4');
+        let errorMsg = 'Failed to get response from Grok4';
+        try {
+          const errorData = await response.json();
+          if (errorData.details) {
+            errorMsg += `\n${errorData.details}`;
+          }
+        } catch {}
+        throw new Error(errorMsg);
       }
 
-      const data = await response.json();
-      
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: data.content,
-        timestamp: new Date(),
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
+      // Stream the response
+      const reader = response.body?.getReader();
+      if (reader) {
+        let assistantContent = '';
+        const assistantMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: '',
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, assistantMessage]);
+        let done = false;
+        while (!done) {
+          const { value, done: doneReading } = await reader.read();
+          done = doneReading;
+          if (value) {
+            const chunk = new TextDecoder().decode(value);
+            assistantContent += chunk;
+            setMessages(prev => prev.map(m =>
+              m.id === assistantMessage.id ? { ...m, content: assistantContent } : m
+            ));
+          }
+        }
+      } else {
+        // Fallback: non-streaming
+        const data = await response.json();
+        const assistantMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: data.content,
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, assistantMessage]);
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Error:', error);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: error instanceof Error ? error.message : 'Sorry, I encountered an error. Please try again.',
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -88,6 +136,21 @@ export default function Grok420Page() {
     setMessages([]);
   };
 
+  const handleResetContext = () => {
+    setShowResetDialog(true);
+  };
+  const confirmResetContext = () => {
+    localStorage.removeItem('grok_fingerprint_id');
+    setShowResetDialog(false);
+    setResetMessage('Context has been reset. Grok will treat you as a new user.');
+    setTimeout(() => {
+      window.location.reload();
+    }, 1200);
+  };
+  const cancelResetContext = () => {
+    setShowResetDialog(false);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col justify-center items-center">
       {/* Background with DNA yellow accent */}
@@ -95,7 +158,7 @@ export default function Grok420Page() {
       
       <div className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center flex-grow mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,11 +170,43 @@ export default function Grok420Page() {
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
               Grok420
             </h1>
+            <button
+              onClick={handleResetContext}
+              className="ml-4 px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/30 transition-colors text-sm"
+              title="Reset Grok context"
+            >
+              Reset Context
+            </button>
           </motion.div>
           <p className="text-yellow-400/80 text-lg max-w-2xl mx-auto">
             Chat with Grok4, powered by xAI. Experience the future of AI conversation.
           </p>
+          {resetMessage && (
+            <div className="mt-4 text-green-400 font-medium">{resetMessage}</div>
+          )}
         </div>
+        {/* Confirmation Dialog */}
+        {showResetDialog && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
+            <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center">
+              <p className="text-lg text-yellow-400 mb-6">Are you sure you want to reset your Grok context?<br/>This will make Grok treat you as a new user.</p>
+              <div className="flex gap-4">
+                <button
+                  onClick={confirmResetContext}
+                  className="px-6 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors"
+                >
+                  Yes, Reset
+                </button>
+                <button
+                  onClick={cancelResetContext}
+                  className="px-6 py-2 bg-gray-700 text-yellow-400 rounded-lg font-medium hover:bg-gray-600 transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="w-full flex justify-center">
           {/* Settings Panel is hidden, but state is preserved for systemPrompt and temperature */}
