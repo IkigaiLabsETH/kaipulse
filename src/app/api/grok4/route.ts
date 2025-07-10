@@ -112,6 +112,10 @@ export async function POST(request: Request) {
         relevantKnowledge.map((chunk, i) => `[Knowledge ${i + 1}]:\n${chunk}`).join('\n\n');
     }
 
+    // Log the full prompt and user message for debugging
+    logger.info('Grok4 SYSTEM PROMPT:', enhancedSystemPrompt);
+    logger.info('Grok4 USER MESSAGE:', message);
+
     // Only add search tool if query needs web search
     const tools: ChatCompletionTool[] = [];
     if (needsWebSearch(message)) {
