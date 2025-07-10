@@ -56,24 +56,16 @@ async function loadKnowledgeFiles(): Promise<string[]> {
 }
 
 async function findRelevantKnowledge(query: string, chunks: string[]): Promise<string[]> {
-  // Simple keyword matching for now
-  const queryLower = query.toLowerCase();
+  // Improved: Only return chunks that contain any significant word from the query
+  const queryWords = query.toLowerCase().split(/\W+/).filter(w => w.length > 2);
   const relevantChunks: string[] = [];
-  
   for (const chunk of chunks) {
     const chunkLower = chunk.toLowerCase();
-    // Check if chunk contains any words from the query
-    const queryWords = queryLower.split(/\s+/);
-    const matches = queryWords.filter(word => 
-      word.length > 2 && chunkLower.includes(word)
-    );
-    
-    if (matches.length > 0) {
+    if (queryWords.some(word => chunkLower.includes(word))) {
       relevantChunks.push(chunk);
     }
   }
-  
-  // Return top 2 most relevant chunks (reduced from 3)
+  // Return up to 2 most relevant chunks
   return relevantChunks.slice(0, 2);
 }
 
