@@ -157,18 +157,18 @@ export async function POST(request: Request) {
     stepStart('total');
     // Validate request method
     if (request.method !== 'POST') {
-      return NextResponse.json(
-        { error: 'Method not allowed' },
-        { status: 405 }
+      return new Response(
+        'Method not allowed',
+        { status: 405, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
       );
     }
 
     // Validate content type
     const contentType = request.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
-      return NextResponse.json(
-        { error: 'Content-Type must be application/json' },
-        { status: 400 }
+      return new Response(
+        'Content-Type must be application/json',
+        { status: 400, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
       );
     }
 
@@ -177,21 +177,18 @@ export async function POST(request: Request) {
       body = await request.json();
     } catch (parseError) {
       logger.error('Failed to parse request body:', parseError);
-      return NextResponse.json(
-        { error: 'Invalid JSON in request body' },
-        { status: 400 }
+      return new Response(
+        'Invalid JSON in request body',
+        { status: 400, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
       );
     }
 
     const { message, systemPrompt, temperature, stream } = body;
 
     if (!message || typeof message !== 'string') {
-      return NextResponse.json(
-        { 
-          error: 'Message is required and must be a string',
-          content: 'Please provide a valid message to chat with Grok4.'
-        },
-        { status: 400 }
+      return new Response(
+        'Message is required and must be a string. Please provide a valid message to chat with Grok4.',
+        { status: 400, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
       );
     }
 
@@ -394,18 +391,18 @@ export async function POST(request: Request) {
             'Cache-Control': 'no-cache',
           },
         });
-      } catch (streamError) {
-        stepEnd('total');
-        logger.error('Failed to create streaming response:', streamError);
-        logger.info('Step timings (ms):', stepTimings);
-        return NextResponse.json(
-          { 
-            content: 'Sorry, I\'m having trouble with the streaming response. Please try again.',
-            error: 'Streaming failed'
-          },
-          { status: 500 }
-        );
-      }
+              } catch (streamError) {
+          stepEnd('total');
+          logger.error('Failed to create streaming response:', streamError);
+          logger.info('Step timings (ms):', stepTimings);
+          return new Response(
+            'Sorry, I\'m having trouble with the streaming response. Please try again.',
+            { 
+              status: 500,
+              headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+            }
+          );
+        }
     }
 
     // --- Non-streaming logic with tool calling ---
@@ -427,11 +424,13 @@ export async function POST(request: Request) {
       stepEnd('total');
       logger.error('Grok4 API error:', grokError);
       logger.info('Step timings (ms):', stepTimings);
-      return NextResponse.json({
-        content: 'Sorry, Grok4 or live web search is taking too long to respond. This sometimes happens for travel or open-ended queries. Please try again, rephrase your question, or ask for a general tip.',
-        error: 'Grok4 API timeout',
-        details: grokError instanceof Error ? grokError.message : String(grokError)
-      }, { status: 504 });
+      return new Response(
+        'Sorry, Grok4 or live web search is taking too long to respond. This sometimes happens for travel or open-ended queries. Please try again, rephrase your question, or ask for a general tip.',
+        { 
+          status: 504,
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+        }
+      );
     }
 
     // Step 2: Handle tool calls (search) - only if tools were provided
@@ -504,18 +503,24 @@ export async function POST(request: Request) {
     }
     stepEnd('total');
     logger.info('Step timings (ms):', stepTimings);
-    return NextResponse.json({ content });
+    return new Response(content, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache',
+      },
+    });
   } catch (apiError) {
     stepEnd('total');
     logger.error('Grok4 API call failed:', apiError);
     logger.info('Step timings (ms):', stepTimings);
-    return NextResponse.json(
+    return new Response(
+      'Sorry, I\'m having trouble connecting to Grok4 right now. Please try again in a moment.',
       { 
-        content: 'Sorry, I\'m having trouble connecting to Grok4 right now. Please try again in a moment.',
-        error: 'Grok4 API call failed',
-        details: apiError instanceof Error ? apiError.message : String(apiError)
-      },
-      { status: 500 }
+        status: 500,
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+        },
+      }
     );
   }
 } 
