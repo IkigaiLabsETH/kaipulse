@@ -82,7 +82,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ 
       imageUrl, 
       prompt, 
-      revised_prompt: revisedPrompt,
+      revisedPrompt, // camelCase only
       moderation 
     });
 

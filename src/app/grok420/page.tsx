@@ -166,7 +166,7 @@ export default function Grok420Page() {
         id,
         url: data.imageUrl,
         prompt: data.prompt,
-        revisedPrompt: data.revised_prompt,
+        revisedPrompt: data.revisedPrompt, // camelCase only
         size: '1024x1024', // Default size since xAI doesn't support size selection
         moderation: !!data.moderation,
         timestamp: new Date(),
