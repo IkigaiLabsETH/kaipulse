@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { Grok4Service, enhancedWebSearch } from './grok4';
 import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
+import type { ChatCompletion } from "openai/resources/chat/completions";
 import fs from 'fs';
 import path from 'path';
 import { performance } from 'perf_hooks';
@@ -86,6 +87,37 @@ function needsWebSearch(query: string): boolean {
   return webSearchKeywords.some(keyword => queryLower.includes(keyword));
 }
 
+// Add a simple in-memory cache for BTC price
+let cachedBTCPrice: { price: number, timestamp: number } | null = null;
+const BTC_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
+
+async function getFastBTCPrice(): Promise<number | null> {
+  const now = Date.now();
+  if (cachedBTCPrice && (now - cachedBTCPrice.timestamp) < BTC_CACHE_TTL) {
+    return cachedBTCPrice.price;
+  }
+  try {
+    const resp = await Promise.race([
+      fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('BTC price fetch timeout')), 3000))
+    ]) as Response;
+    if (!resp.ok) throw new Error('BTC price API error');
+    const data = await resp.json();
+    const price = data.bitcoin?.usd;
+    if (typeof price === 'number') {
+      cachedBTCPrice = { price, timestamp: now };
+      return price;
+    }
+    return null;
+  } catch {
+    return cachedBTCPrice ? cachedBTCPrice.price : null;
+  }
+}
+
+function isPricePredictionQuery(q: string): boolean {
+  return /price target|prediction|end of q4|end of year|forecast|btc price/i.test(q);
+}
+
 export async function POST(request: Request) {
   const stepTimings: Record<string, number> = {};
   const stepStart = (label: string) => stepTimings[label] = performance.now();
@@ -127,6 +159,35 @@ export async function POST(request: Request) {
         { error: 'Message is required and must be a string' },
         { status: 400 }
       );
+    }
+
+    // Price prediction shortcut (run before knowledge base, etc)
+    if (isPricePredictionQuery(message)) {
+      // Step 1: Fast price fetch
+      const btcPrice = await getFastBTCPrice();
+      // Step 2: Ask LLM for prediction, but with a 5s timeout
+      let prediction = '';
+      try {
+        const predictionPrompt = `Bitcoin is currently priced at $${btcPrice ? btcPrice.toLocaleString() : 'unknown'}. What is your price target for the end of Q4? Please answer in 2 sentences, and add a witty Satoshi-style remark.`;
+        const predictionResp = await Promise.race([
+          Grok4Service.chatCompletion({
+            messages: [
+              { role: 'system', content: systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV.' },
+              { role: 'user', content: predictionPrompt }
+            ],
+            temperature: temperature || 0.7,
+            max_tokens: 120,
+          }),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Prediction timeout')), 5000))
+        ]) as ChatCompletion;
+        prediction = predictionResp.choices && predictionResp.choices[0]?.message?.content ? predictionResp.choices[0].message.content : '';
+      } catch {
+        prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
+      }
+      // Step 3: Respond quickly
+      return NextResponse.json({
+        content: `Current BTC price: $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n${prediction}`
+      });
     }
 
     // Validate API key
