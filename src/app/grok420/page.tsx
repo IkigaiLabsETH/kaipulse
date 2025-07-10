@@ -82,16 +82,32 @@ export default function Grok420Page() {
 
       if (!response.ok) {
         let errorMsg = 'Failed to get response from Grok4';
+        let errorDetails = '';
+        
         try {
-          const errorData = await response.json();
-          if (errorData.details) {
-            errorMsg += `\n${errorData.details}`;
+          // Check if response is JSON
+          const contentType = response.headers.get('content-type');
+          if (contentType && contentType.includes('application/json')) {
+            const errorData = await response.json();
+            if (errorData.details) {
+              errorDetails += `\n${errorData.details}`;
+            }
+            if (errorData.error) {
+              errorDetails += `\n${errorData.error}`;
+            }
+            errorMsg += errorDetails;
+          } else {
+            // Handle HTML or text responses
+            const textResponse = await response.text();
+            errorMsg += `\nServer returned: ${response.status} ${response.statusText}`;
+            if (textResponse.length < 500) { // Only show short responses
+              errorMsg += `\nResponse: ${textResponse}`;
+            }
           }
-          // Show the full error object for debugging
-          errorMsg += `\n${JSON.stringify(errorData)}`;
-        } catch (e) {
-          errorMsg += `\n${e}`;
+        } catch (parseError) {
+          errorMsg += `\nFailed to parse error response: ${parseError}`;
         }
+        
         throw new Error(errorMsg);
       }
 
@@ -126,15 +142,27 @@ export default function Grok420Page() {
         }
       } else {
         // Fallback: non-streaming
-        const data = await response.json();
-        const content = data.content && data.content.trim() ? data.content : (data.error || 'Grok4 did not return a response.');
-        const assistantMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content,
-          timestamp: new Date(),
-        };
-        setMessages(prev => [...prev, assistantMessage]);
+        try {
+          const data = await response.json();
+          const content = data.content && data.content.trim() ? data.content : (data.error || 'Grok4 did not return a response.');
+          const assistantMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content,
+            timestamp: new Date(),
+          };
+          setMessages(prev => [...prev, assistantMessage]);
+        } catch {
+          // Handle case where response is not JSON
+          await response.text(); // Consume the response
+          const errorMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content: `Grok4 returned an invalid response format. Please try again.`,
+            timestamp: new Date(),
+          };
+          setMessages(prev => [...prev, errorMessage]);
+        }
       }
     } catch (error) {
       // eslint-disable-next-line no-console
