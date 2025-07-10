@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Eye } from 'lucide-react';
+import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Eye, Info } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import Image from 'next/image';
 
@@ -42,6 +42,7 @@ export default function Grok420Page() {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [previewImage, setPreviewImage] = useState<ImageHistoryItem | null>(null);
   const [isPolling, setIsPolling] = useState(false);
+  const [showInfoDialog, setShowInfoDialog] = useState(false);
 
   useEffect(() => {
     let id = localStorage.getItem('grok_fingerprint_id');
@@ -296,6 +297,13 @@ export default function Grok420Page() {
               Grok420
             </h1>
             <button
+              onClick={() => setShowInfoDialog(true)}
+              className="ml-2 p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 transition-colors"
+              title="WTF is Grok 4?"
+            >
+              <Info className="h-6 w-6 text-yellow-400" />
+            </button>
+            <button
               onClick={handleResetContext}
               className="ml-4 px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/30 transition-colors text-sm"
               title="Reset Grok context"
@@ -328,6 +336,41 @@ export default function Grok420Page() {
                 >
                   Cancel
                 </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {showInfoDialog && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/80">
+            <div className="bg-[#181818] border-2 border-yellow-500 rounded-xl p-8 shadow-2xl max-w-lg w-full relative">
+              <button
+                onClick={() => setShowInfoDialog(false)}
+                className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-200 text-2xl font-bold"
+                title="Close"
+              >×</button>
+              <div className="flex items-center gap-3 mb-4">
+                <Info className="h-7 w-7 text-yellow-400" />
+                <span className="text-2xl font-bold text-yellow-400">What is Grok 4?</span>
+              </div>
+              <div className="text-yellow-300 text-md leading-relaxed space-y-3">
+                <div className="font-bold text-yellow-400 text-lg mb-2">🚀 Insane AI DeFi Energy 🚀</div>
+                <div>
+                  <span className="font-bold text-yellow-500">Elon did it again.</span> Grok 4 just absolutely <span className="font-bold text-yellow-400">nuked</span> the AI leaderboard. This isn’t just another LLM—this is the giga-brain, meme-fueled, degen-coded, Satoshi-approved AI that’s here to <span className="underline">liquidate the competition</span>.
+                </div>
+                <ul className="list-disc pl-6 text-yellow-200 text-sm space-y-1">
+                  <li>🧠 <b>Post-training RL spend = pretraining spend</b> (Elon just YOLO’d the budget)</li>
+                  <li>💸 <b>$3/M input toks, $15/M output toks</b> (256k context, 2x price after 128k—max bag size)</li>
+                  <li>🏆 <b>#1 on Humanity’s Last Exam</b> (44.4%—next best is 26.9%)</li>
+                  <li>🎓 <b>#1 on GPQA (grad problems)</b> 88.9% (next best 86.4%)</li>
+                  <li>🧮 <b>#1 on AIME 2025 (Math)</b> 100% (next best 98.4%)</li>
+                  <li>🧑‍🎓 <b>#1 on Harvard MIT Math</b> 96.7% (next best 82.5%)</li>
+                  <li>🇺🇸 <b>#1 on USAMO25 (Math)</b> 61.9% (next best 49.4%)</li>
+                  <li>🤖 <b>#1 on ARC-AGI-2</b> (15.9%—next best 8.6%)</li>
+                  <li>💻 <b>#1 on LiveCodeBench</b> (79.4%—next best 75.8%)</li>
+                </ul>
+                <div className="mt-3 text-yellow-400 text-sm">
+                  Grok 4 is <span className="font-bold">potentially better than PhD level in every subject</span>—no exceptions. It’s fast, it’s cheap, and it’s here to <span className="font-bold">wreak havoc</span> in the AI wars. <span className="italic">Elon has entered the chat.</span>
+                </div>
               </div>
             </div>
           </div>
