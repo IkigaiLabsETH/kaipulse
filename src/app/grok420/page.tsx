@@ -183,8 +183,12 @@ export default function Grok420Page() {
           ? {
               ...m,
               content: `<div class='flex flex-col items-center gap-2'>
-                <img src='${data.imageUrl}' alt='Generated art' class='rounded-lg border-2 border-yellow-500 max-w-full h-auto mx-auto ${data.moderation ? 'blur-md' : ''}' />
-                <div class='text-yellow-400 text-sm mt-2'>${data.prompt}</div>
+                <div class='w-full max-w-full px-2 flex justify-center'>
+                  <img src='${data.imageUrl}' alt='Generated art' class='rounded-lg border-2 border-yellow-500 max-w-full w-full h-auto mx-auto ${data.moderation ? 'blur-md' : ''}' />
+                </div>
+                <div class='text-yellow-400 text-sm mt-2 font-bold'>Original Prompt:</div>
+                <div class='text-yellow-400 text-xs mb-1'>${data.prompt}</div>
+                ${data.revisedPrompt ? `<div class='text-yellow-300 text-sm font-bold mt-1'>Revised Prompt:</div><div class='text-yellow-300 text-xs mb-2'>${data.revisedPrompt}</div>` : ''}
                 <div class='flex gap-2 mt-2'>
                   <a href='${data.imageUrl}' target='_blank' rel='noopener noreferrer' class='px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors'>Open</a>
                   <a href='${data.imageUrl}' download class='px-3 py-1 bg-yellow-500 text-black rounded font-bold hover:bg-yellow-400 transition-colors'>Download</a>
