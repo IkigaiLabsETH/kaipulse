@@ -56,17 +56,26 @@ async function loadKnowledgeFiles(): Promise<string[]> {
 }
 
 async function findRelevantKnowledge(query: string, chunks: string[]): Promise<string[]> {
-  // Improved: Only return chunks that contain any significant word from the query
+  // Improved: Only return the single most relevant chunk, truncated for brevity
   const queryWords = query.toLowerCase().split(/\W+/).filter(w => w.length > 2);
-  const relevantChunks: string[] = [];
+  let bestChunk = '';
+  let bestScore = 0;
   for (const chunk of chunks) {
     const chunkLower = chunk.toLowerCase();
-    if (queryWords.some(word => chunkLower.includes(word))) {
-      relevantChunks.push(chunk);
+    let score = 0;
+    for (const word of queryWords) {
+      if (chunkLower.includes(word)) score++;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      bestChunk = chunk;
     }
   }
-  // Return up to 2 most relevant chunks
-  return relevantChunks.slice(0, 2);
+  if (bestScore > 0) {
+    // Truncate to 300 chars for safety
+    return [bestChunk.slice(0, 300)];
+  }
+  return [];
 }
 
 // Check if query needs web search
@@ -101,7 +110,10 @@ export async function POST(request: Request) {
     
     if (relevantKnowledge.length > 0) {
       enhancedSystemPrompt += '\n\nYou have access to the following knowledge base information:\n' + 
-        relevantKnowledge.map((chunk, i) => `[Knowledge ${i + 1}]:\n${chunk}`).join('\n\n');
+        `[Knowledge]:\n${relevantKnowledge[0]}` +
+        '\nIf you cannot answer from the above knowledge, say so explicitly.';
+    } else {
+      enhancedSystemPrompt += '\nIf you do not know the answer, say \'I don\'t know based on my current knowledge base.\'';
     }
 
     // Log the full prompt and user message for debugging
