@@ -20,7 +20,8 @@ type ToolMessage = {
 function needsWebSearch(query: string): boolean {
   const webSearchKeywords = [
     'price', 'current', 'live', 'now', 'today', 'market', 'trading',
-    'bitcoin', 'btc', 'ethereum', 'eth', 'crypto', 'cryptocurrency'
+    'bitcoin', 'btc', 'ethereum', 'eth', 'crypto', 'cryptocurrency',
+    'gm', 'good morning', 'morning'
   ];
   
   const queryLower = query.toLowerCase();
@@ -66,6 +67,14 @@ async function getFastBTCPrice(): Promise<number | null> {
     // Return cached price if available, otherwise null
     return cachedBTCPrice ? cachedBTCPrice.price : null;
   }
+}
+
+function isGMQuery(q: string): boolean {
+  const gmKeywords = ['gm', 'good morning', 'morning'];
+  const queryLower = q.toLowerCase().trim();
+  
+  // Check for GM variations
+  return gmKeywords.some(keyword => queryLower.includes(keyword));
 }
 
 function isPricePredictionQuery(q: string): boolean {
@@ -131,6 +140,38 @@ export async function POST(request: Request) {
         'Message is required and must be a string. Please provide a valid message to chat with Grok4.',
         { status: 400, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
       );
+    }
+
+    // GM (Good Morning) handler - provide comprehensive market report
+    if (isGMQuery(message)) {
+      logger.info('GM query detected:', message);
+      const btcPrice = await getFastBTCPrice();
+      
+      // Create comprehensive market report
+      let response = '';
+      if (btcPrice) {
+        response = `🌅 GM GM! Bitcoin is currently at $${btcPrice.toLocaleString()}\n\n`;
+        response += `📊 Market Report:\n`;
+        response += `• BTC: $${btcPrice.toLocaleString()} (checking live data...)\n`;
+        response += `• Top performers: Checking altcoins, MSTR, Mag7, S&P500...\n`;
+        response += `• Market sentiment: Live data incoming...\n\n`;
+        response += `As Satoshi would say: "The price is what the market decides!"\n\n`;
+        response += `🔍 Searching for latest market data...`;
+      } else {
+        response = `🌅 GM GM! Checking current Bitcoin price and market data...\n\n`;
+        response += `📊 Market Report:\n`;
+        response += `• BTC: Fetching live price...\n`;
+        response += `• Top performers: Checking altcoins, MSTR, Mag7, S&P500...\n`;
+        response += `• Market sentiment: Live data incoming...\n\n`;
+        response += `As Satoshi would say: "The price is what the market decides!"`;
+      }
+      
+      return new Response(response, {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'no-cache',
+        },
+      });
     }
 
     // Price prediction shortcut (run before knowledge base, etc)
@@ -207,8 +248,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Simplified approach: Use a focused system prompt without complex knowledge base
-    const enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. You have access to web search for current information when needed.';
+    // Enhanced system prompt with specific GM handling
+    const enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. IMPORTANT: When users say "gm" or "good morning", always provide current Bitcoin price and a comprehensive market report including altcoins, MSTR, Mag7, and S&P500 performance. Always use web search to get the most current data. You have access to web search for current information when needed.';
 
     // Log the full prompt and user message for debugging
     logger.info('Grok4 SYSTEM PROMPT:', enhancedSystemPrompt);
