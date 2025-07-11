@@ -39,27 +39,36 @@ GROK420 is a sophisticated AI-powered crypto market intelligence system that lev
 
 ```mermaid
 graph TB
-    subgraph "Frontend Layer"
-        UI[Chat UI]
-        Stream[Streaming Response]
-        Components[React Components]
+    %% User Interface Layer
+    subgraph "🎨 Frontend Layer"
+        UI[Chat UI - React/Next.js]
+        Stream[Streaming Response Handler]
+        Error[Error & Timeout Handling]
+        Copy[Copy-to-Clipboard]
+        Session[Session Management]
+        Accessibility[Accessibility Features]
     end
     
-    subgraph "API Gateway"
+    %% API Gateway & Security
+    subgraph "🔒 API Gateway"
         Route[/api/grok4]
         RateLimit[Rate Limiting]
         Auth[Authentication]
         CORS[CORS Handling]
+        Validation[Input Validation]
     end
     
-    subgraph "Grok 4 Core"
+    %% Grok 4 Core System
+    subgraph "🤖 Grok 4 Core"
         Grok4[Grok 4 API]
-        Tools[Tool Functions]
+        Tools[Tool Functions Registry]
         Prompt[System Prompts]
         Streaming[Streaming Logic]
+        Fallback[Fallback Handler]
     end
     
-    subgraph "Data Sources"
+    %% Data Sources & APIs
+    subgraph "📊 Data Sources"
         CoinGecko[CoinGecko API]
         Finnhub[Finnhub API]
         TwitterAPI[X/Twitter API]
@@ -67,26 +76,72 @@ graph TB
         Mempool[Mempool.space]
     end
     
-    subgraph "Tool Functions"
+    %% Tool Functions
+    subgraph "🛠️ Tool Functions"
         PriceTool[get_crypto_price]
         SentimentTool[get_x_sentiment]
         SearchTool[search]
-        MarketTool[Market Data]
+        MarketTool[get_market_data]
         StockTool[get_stock_price]
         GMHandler[GM Handler]
     end
     
-    subgraph "Caching & Monitoring"
+    %% GM Handler Components
+    subgraph "📈 GM Handler System"
+        BTCPrice[Bitcoin Price]
+        Altcoins[24 Altcoins]
+        CryptoStocks[17 Crypto Stocks]
+        MacroContext[S&P 500 + Mag 7]
+        XSentiment[X Sentiment Analysis]
+        Narrative[Narrative Generation]
+    end
+    
+    %% Asset Tracking
+    subgraph "🎯 Asset Tracking"
+        Layer1s[BTC, ETH, SOL, SUI]
+        DeFi[AAVE, MKR, UNI, PENDLE]
+        Emerging[HYPER, STX, INJ, SEI]
+        Memes[DOGE, PEPE, MOG, WIF]
+        AICompute[TAO, RNDR, RAIL]
+        Stablecoins[ONDO, USDe]
+    end
+    
+    %% Crypto Stocks
+    subgraph "📈 Crypto Stocks"
+        BitcoinHoldings[MSTR, MSTY, STRF, STRK]
+        Exchanges[COIN, HOOD, CRCL]
+        Mining[MARA, RIOT]
+        Payments[PYPL]
+        TechGiants[NVDA, TSLA, BMNR]
+        Specialized[HODL, XYZ, MTPLF]
+    end
+    
+    %% Caching & Performance
+    subgraph "⚡ Performance & Caching"
         Cache[Redis Cache]
         Logger[Performance Logger]
         Tracker[Request Tracker]
         Metrics[Performance Metrics]
+        Timeout[Timeout Management]
     end
     
+    %% Error Handling & Reliability
+    subgraph "🛡️ Reliability"
+        CircuitBreaker[Circuit Breakers]
+        RetryLogic[Retry Logic]
+        FallbackData[Fallback Data Sources]
+        ErrorHandling[Error Handling]
+        HealthChecks[Health Checks]
+    end
+    
+    %% Data Flow Connections
     UI --> Route
     Route --> RateLimit
     RateLimit --> Auth
-    Auth --> Grok4
+    Auth --> Validation
+    Validation --> Grok4
+    
+    %% Grok 4 to Tools
     Grok4 --> Tools
     Tools --> PriceTool
     Tools --> SentimentTool
@@ -94,17 +149,78 @@ graph TB
     Tools --> MarketTool
     Tools --> StockTool
     Tools --> GMHandler
+    
+    %% Tool to Data Sources
     PriceTool --> CoinGecko
-    MarketTool --> Finnhub
+    MarketTool --> CoinGecko
     StockTool --> Finnhub
     SentimentTool --> TwitterAPI
     SearchTool --> WebSearch
     GMHandler --> CoinGecko
     GMHandler --> Finnhub
+    GMHandler --> Mempool
+    
+    %% GM Handler Components
+    GMHandler --> BTCPrice
+    GMHandler --> Altcoins
+    GMHandler --> CryptoStocks
+    GMHandler --> MacroContext
+    GMHandler --> XSentiment
+    GMHandler --> Narrative
+    
+    %% Asset Tracking
+    Altcoins --> Layer1s
+    Altcoins --> DeFi
+    Altcoins --> Emerging
+    Altcoins --> Memes
+    Altcoins --> AICompute
+    Altcoins --> Stablecoins
+    
+    %% Crypto Stocks
+    CryptoStocks --> BitcoinHoldings
+    CryptoStocks --> Exchanges
+    CryptoStocks --> Mining
+    CryptoStocks --> Payments
+    CryptoStocks --> TechGiants
+    CryptoStocks --> Specialized
+    
+    %% Performance & Reliability
     Grok4 --> Cache
-    Route --> Logger
+    Grok4 --> Logger
     Route --> Tracker
     Route --> Metrics
+    Grok4 --> Timeout
+    
+    %% Error Handling
+    Grok4 --> CircuitBreaker
+    Grok4 --> RetryLogic
+    Grok4 --> FallbackData
+    Grok4 --> ErrorHandling
+    Route --> HealthChecks
+    
+    %% Frontend Features
+    UI --> Stream
+    UI --> Error
+    UI --> Copy
+    UI --> Session
+    UI --> Accessibility
+    
+    %% Styling
+    classDef frontend fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef api fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef grok fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef tools fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef data fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef performance fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef reliability fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+    
+    class UI,Stream,Error,Copy,Session,Accessibility frontend
+    class Route,RateLimit,Auth,CORS,Validation api
+    class Grok4,Tools,Prompt,Streaming,Fallback grok
+    class PriceTool,SentimentTool,SearchTool,MarketTool,StockTool,GMHandler tools
+    class CoinGecko,Finnhub,TwitterAPI,WebSearch,Mempool,BTCPrice,Altcoins,CryptoStocks,MacroContext,XSentiment,Narrative,Layer1s,DeFi,Emerging,Memes,AICompute,Stablecoins,BitcoinHoldings,Exchanges,Mining,Payments,TechGiants,Specialized data
+    class Cache,Logger,Tracker,Metrics,Timeout performance
+    class CircuitBreaker,RetryLogic,FallbackData,ErrorHandling,HealthChecks reliability
 ```
 
 ## Core Architecture
@@ -124,196 +240,6 @@ The system uses function calling to enhance Grok 4's capabilities:
 - `get_crypto_price`: Real-time cryptocurrency prices (24+ coins supported)
 - `get_x_sentiment`: X (Twitter) sentiment analysis and key points extraction
 - `get_stock_price`: Real-time stock and crypto stock prices (via Finnhub)
-- `get_market_data`: Comprehensive market data for multiple cryptocurrencies
-
-### 3. **Fine-Tuned Asset Tracking (IMPLEMENTED)**
-
-#### **🎯 Most Tracked Altcoins (Fully Implemented):**
-- **Major Layer 1s**: BTC, ETH, SOL, SUI
-- **DeFi Protocols**: AAVE, MKR, UNI, PENDLE, LQTY, SYRUP, EIGEN, LINK
-- **Emerging Tokens**: HYPER, STX, INJ, SEI
-- **Meme Coins**: DOGE, PEPE, MOG, WIF, REKT, SPX6900, FART
-- **AI/Compute**: TAO, RNDR, RAIL
-- **Stablecoins**: ONDO, USDe
-
-#### **📈 Most Tracked Crypto Stocks (Fully Implemented):**
-- **Bitcoin Holdings**: MSTR (MicroStrategy), MSTY, STRF, STRK
-- **Exchanges**: COIN (Coinbase), HOOD (Robinhood), CRCL (Circle)
-- **Mining**: MARA (Marathon), RIOT (Riot Platforms)
-- **Payments**: PYPL (PayPal)
-- **Tech Giants**: NVDA (NVIDIA), TSLA (Tesla), BMNR
-- **Specialized**: HODL, XYZ, MTPLF, SBET, SQNS, MBAV
-
-#### **🏢 Magnificent 7 + S&P 500 (IMPLEMENTED):**
-- **Mag 7**: MSFT, AMZN, META, AAPL, GOOGL, NVDA, TSLA, AVGO
-- **Crypto Exposure**: MSTR, COIN, CRCL, HOOD, GLXY
-
-## Key Features
-
-### **1. "GM" Market Report (ENHANCED)**
-When users say "gm" or "good morning", the system provides:
-
-#### **Bitcoin Analysis (SIMPLIFIED):**
-- Real-time BTC price from CoinGecko
-- **Current Price Only**: Simplified display focusing on the essential price information
-- X sentiment analysis using Grok 4 and the `getXSentiment` tool
-- Key narratives and market trends
-
-#### **Altcoin Performance (ENHANCED):**
-- Top 15 altcoins by 24h change (curated and symbol-mapped)
-- **Market Cap Data**: Added market capitalization to the display
-- Visual indicators (🟢/🔴) for performance
-- Focus on emerging tokens and DeFi protocols
-- Market cap and volume data
-
-#### **Crypto Stock Tracking (ENHANCED):**
-- 17 most tracked crypto-related stocks (fully implemented)
-- Real-time prices via Finnhub (reliable API with free access)
-- **Enhanced Display**: Price, 24h change, and market cap
-- Performance across exchanges, mining, and payments
-- Earnings dates and IV rank data
-
-#### **Macro Market Context (ENHANCED):**
-- **Real-time S&P 500**: Current price and 24h change
-- **Magnificent 7 Performance**: Average performance calculation
-- Market sentiment and macro trends
-- Fear & Greed Index integration (placeholder for future API)
-
-### **2. X Sentiment Analysis**
-- **Tool Function:** `getXSentiment` (backend tool, registered for Grok 4)
-- **Input:** Tweet URL
-- **Output:** Key points, sentiment, and actionable insights
-- **Use Cases:** Market analysis, trend detection, narrative tracking
-- **Integration:** Uses `TwitterService` and `TweetAnalyzer` for comprehensive analysis
-
-### **3. Real-Time Price Intelligence**
-- **Supported Coins:** 24+ cryptocurrencies (curated list, matches frontend)
-- **Data Source:** CoinGecko API
-- **Features:** Price, 24h change, market cap, volume
-- **Caching:** 5-minute cache for performance
-- **Error Handling:** Graceful fallbacks and retry logic
-
-### **4. Advanced Market Data (ENHANCED)**
-- **Bitcoin Network:** Hash rate, difficulty, block height, mempool size
-- **Mempool Analysis:** Transaction fees and congestion
-- **Lightning Network:** Capacity and channel data
-- **Mining Revenue:** 24h and historical data
-
----
-
-## Implementation Details
-
-### **System Prompts & Prompt Engineering Best Practices (ENHANCED)**
-```typescript
-const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, concise style, pulling insights from real-time X (Twitter) data and technical indicators. Always:
-- Analyze sentiment and trends from X posts, especially from high-profile accounts (e.g., Whale Alert, Michael Saylor)
-- Detect emerging tokens, memecoins, and macro events
-- Combine X sentiment with technical analysis (RSI, MACD, etc.)
-- Provide actionable, context-rich, and concise responses
-- Use the latest X data for all crypto and Bitcoin queries
-- Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.
-- For GM queries: Provide comprehensive market analysis with Bitcoin, altcoins, crypto stocks, and macro context
-- Include specific X narratives and key events to watch
-`;
-```
-
-#### **Prompt Engineering Best Practices:**
-- Use clear, concise prompts that specify the need for X sentiment and technical analysis.
-- Always request actionable insights and narrative detection.
-- For "gm" or market summary queries, instruct Grok 4 to use all available tools and data sources.
-- Encourage the model to focus on curated asset lists and macro context.
-
----
-
-## System Architecture
-
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        UI[Chat UI]
-        Stream[Streaming Response]
-        Components[React Components]
-    end
-    
-    subgraph "API Gateway"
-        Route[/api/grok4]
-        RateLimit[Rate Limiting]
-        Auth[Authentication]
-        CORS[CORS Handling]
-    end
-    
-    subgraph "Grok 4 Core"
-        Grok4[Grok 4 API]
-        Tools[Tool Functions]
-        Prompt[System Prompts]
-        Streaming[Streaming Logic]
-    end
-    
-    subgraph "Data Sources"
-        CoinGecko[CoinGecko API]
-        YahooFinance[Yahoo Finance]
-        TwitterAPI[X/Twitter API]
-        WebSearch[Web Search]
-        Mempool[Mempool.space]
-    end
-    
-    subgraph "Tool Functions"
-        PriceTool[get_crypto_price]
-        SentimentTool[get_x_sentiment]
-        SearchTool[search]
-        MarketTool[Market Data]
-        StockTool[get_stock_price]
-        GMHandler[GM Handler]
-    end
-    
-    subgraph "Caching & Monitoring"
-        Cache[Redis Cache]
-        Logger[Performance Logger]
-        Tracker[Request Tracker]
-        Metrics[Performance Metrics]
-    end
-    
-    UI --> Route
-    Route --> RateLimit
-    RateLimit --> Auth
-    Auth --> Grok4
-    Grok4 --> Tools
-    Tools --> PriceTool
-    Tools --> SentimentTool
-    Tools --> SearchTool
-    Tools --> MarketTool
-    Tools --> StockTool
-    Tools --> GMHandler
-    PriceTool --> CoinGecko
-    MarketTool --> YahooFinance
-    StockTool --> YahooFinance
-    SentimentTool --> TwitterAPI
-    SearchTool --> WebSearch
-    GMHandler --> CoinGecko
-    GMHandler --> YahooFinance
-    Grok4 --> Cache
-    Route --> Logger
-    Route --> Tracker
-    Route --> Metrics
-```
-
-## Core Architecture
-
-### 1. **Grok 4 API Integration**
-- **Base URL**: `https://api.x.ai/v1`
-- **Model**: `grok-4` (latest XAI model)
-- **Authentication**: Bearer token via `XAI_API_KEY`
-- **Streaming Support**: Real-time responses with tool calling
-- **Tool Integration**: Function calling for enhanced capabilities
-
-### 2. **Tool-Augmented Intelligence**
-The system uses function calling to enhance Grok 4's capabilities:
-
-#### **Available Tools:**
-- `search`: Web search for real-time information
-- `get_crypto_price`: Real-time cryptocurrency prices (24+ coins supported)
-- `get_x_sentiment`: X (Twitter) sentiment analysis and key points extraction
-- `get_stock_price`: Real-time stock and crypto stock prices (via Yahoo Finance)
 - `get_market_data`: Comprehensive market data for multiple cryptocurrencies
 
 ### 3. **Fine-Tuned Asset Tracking (IMPLEMENTED)**
