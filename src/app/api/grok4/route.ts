@@ -5,18 +5,23 @@ import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/reso
 import type { ChatCompletion } from "openai/resources/chat/completions";
 import { performance } from 'perf_hooks';
 
-// Types
-type ToolMessage = {
-  role: 'tool';
-  tool_call_id: string;
-  content: string;
-};
-
+// Enhanced types for multi-modal support
 type RequestBody = {
   message: string;
   systemPrompt?: string;
   temperature?: number;
   stream?: boolean;
+  imageUrl?: string; // For vision capabilities
+  generateImage?: boolean; // For image generation
+  imagePrompt?: string; // For image generation prompts
+};
+
+type ImageGenerationRequest = {
+  prompt: string;
+  model?: string;
+  size?: '1024x1024' | '1792x1024' | '1024x1792';
+  quality?: 'standard' | 'hd';
+  style?: 'vivid' | 'natural';
 };
 
 type BTCPriceCache = {
@@ -212,18 +217,18 @@ function createSuccessResponse(content: string): Response {
 
 // Enhanced request validation
 async function validateRequest(request: Request): Promise<RequestBody> {
-  if (request.method !== 'POST') {
+    if (request.method !== 'POST') {
     throw new Error('Method not allowed');
-  }
+    }
 
-  const contentType = request.headers.get('content-type');
-  if (!contentType || !contentType.includes('application/json')) {
+    const contentType = request.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
     throw new Error('Content-Type must be application/json');
-  }
+    }
 
   let body: RequestBody;
-  try {
-    body = await request.json();
+    try {
+      body = await request.json();
   } catch {
     throw new Error('Invalid JSON in request body');
   }
@@ -251,44 +256,230 @@ async function validateRequest(request: Request): Promise<RequestBody> {
 
 // Price prediction handler with improved prompts
 async function handlePricePrediction(message: string, systemPrompt?: string, temperature?: number): Promise<string> {
-  const btcPrice = await getFastBTCPrice();
-  const isPredictionQuery = /price target|prediction|end of q4|end of year|forecast|target/i.test(message);
-  
-  if (isPredictionQuery) {
-    let prediction = '';
-    try {
-      const predictionPrompt = `Bitcoin is currently priced at $${btcPrice ? btcPrice.toLocaleString() : 'unknown'}. What is your price target for the end of Q4? Please answer in 2 sentences, and add a witty Satoshi-style remark.`;
-      const predictionResp = await Promise.race([
-        Grok4Service.chatCompletion({
-          messages: [
-            { role: 'system', content: systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV.' },
-            { role: 'user', content: predictionPrompt }
-          ],
-          temperature: temperature || 0.7,
-          max_tokens: 120,
-        }),
+      const btcPrice = await getFastBTCPrice();
+      const isPredictionQuery = /price target|prediction|end of q4|end of year|forecast|target/i.test(message);
+      
+      if (isPredictionQuery) {
+        let prediction = '';
+        try {
+          const predictionPrompt = `Bitcoin is currently priced at $${btcPrice ? btcPrice.toLocaleString() : 'unknown'}. What is your price target for the end of Q4? Please answer in 2 sentences, and add a witty Satoshi-style remark.`;
+          const predictionResp = await Promise.race([
+            Grok4Service.chatCompletion({
+              messages: [
+                { role: 'system', content: systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV.' },
+                { role: 'user', content: predictionPrompt }
+              ],
+              temperature: temperature || 0.7,
+              max_tokens: 120,
+            }),
         new Promise<never>((_, reject) => 
           setTimeout(() => reject(new Error('Prediction timeout')), PREDICTION_TIMEOUT)
         )
-      ]) as ChatCompletion;
-      
-      prediction = predictionResp.choices?.[0]?.message?.content || '';
-      
-      if (!prediction || !prediction.trim()) {
-        prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
-      }
-    } catch (error) {
-      logger.error('Price prediction error:', error);
-      prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
-    }
-    
+          ]) as ChatCompletion;
+          
+          prediction = predictionResp.choices?.[0]?.message?.content || '';
+          
+          if (!prediction || !prediction.trim()) {
+            prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
+          }
+        } catch (error) {
+          logger.error('Price prediction error:', error);
+          prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
+        }
+        
     return `Current BTC price: $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n${prediction}`;
-  } else {
-    if (btcPrice) {
+      } else {
+        if (btcPrice) {
       return `Current Bitcoin price: $${btcPrice.toLocaleString()}\n\nAs Satoshi would say: "The price is what the market decides!"`;
-    } else {
+        } else {
       return `I'm having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"`;
     }
+  }
+}
+
+// Image generation handler
+async function generateImageWithXAI(request: ImageGenerationRequest): Promise<string> {
+  try {
+    const response = await fetch('https://api.x.ai/v1/images/generations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.XAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        prompt: request.prompt,
+        model: request.model || 'grok-2-image',
+        n: 1,
+        size: request.size || '1024x1024',
+        quality: request.quality || 'standard',
+        style: request.style || 'vivid',
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Image generation failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.data?.[0]?.url || '';
+  } catch (error) {
+    logger.error('Image generation error:', error);
+    throw error;
+  }
+}
+
+// Vision analysis handler
+async function analyzeImage(imageUrl: string, query: string): Promise<string> {
+  try {
+    const response = await fetch('https://api.x.ai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.XAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'grok-4',
+        messages: [
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: query },
+              { type: 'image_url', image_url: { url: imageUrl } }
+            ]
+          }
+        ],
+        max_tokens: 1000,
+        temperature: 0.7,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Vision analysis failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || '';
+  } catch (error) {
+    logger.error('Vision analysis error:', error);
+    throw error;
+  }
+}
+
+// Enhanced tool functions for Grok4
+const ENHANCED_TOOLS: ChatCompletionTool[] = [
+  {
+    type: 'function',
+    function: {
+      name: 'search',
+      description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices, market data, and financial news. Use this for current prices, market trends, and real-time information.',
+      parameters: {
+        type: 'object',
+        properties: {
+          query: {
+            type: 'string',
+            description: 'The search query - be specific and include relevant keywords for better results'
+          }
+        },
+        required: ['query']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_crypto_price',
+      description: 'Get real-time cryptocurrency prices from multiple sources. Use this for accurate, up-to-date price information.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The cryptocurrency symbol (e.g., BTC, ETH, SOL)'
+          },
+          currency: {
+            type: 'string',
+            description: 'The currency to display price in (default: USD)',
+            default: 'USD'
+          }
+        },
+        required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_market_data',
+      description: 'Get comprehensive market data including price, volume, market cap, and 24h change for cryptocurrencies.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbols: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Array of cryptocurrency symbols to get data for'
+          }
+        },
+        required: ['symbols']
+      }
+    }
+  }
+];
+
+// Conversation memory (in-memory for now, could be moved to Redis/database)
+const conversationMemory = new Map<string, ChatCompletionMessageParam[]>();
+
+// Get conversation history
+function getConversationHistory(clientId: string): ChatCompletionMessageParam[] {
+  return conversationMemory.get(clientId) || [];
+}
+
+// Add message to conversation history
+function addToConversationHistory(clientId: string, message: ChatCompletionMessageParam) {
+  const history = getConversationHistory(clientId);
+  history.push(message);
+  
+  // Keep only last 10 messages to prevent context overflow
+  if (history.length > 10) {
+    history.splice(0, history.length - 10);
+  }
+  
+  conversationMemory.set(clientId, history);
+}
+
+// Market data type for CoinGecko response
+interface MarketData {
+  id: string;
+  symbol: string;
+  name: string;
+  current_price: number;
+  market_cap: number;
+  total_volume: number;
+  price_change_percentage_24h: number;
+  [key: string]: string | number | boolean | undefined;
+}
+
+// Enhanced crypto price fetching
+async function getCryptoPrice(symbol: string, currency: string = 'USD'): Promise<number | null> {
+  try {
+    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol.toLowerCase()}&vs_currencies=${currency.toLowerCase()}`);
+    const data = await response.json();
+    return data[symbol.toLowerCase()]?.[currency.toLowerCase()] ?? null;
+  } catch (error) {
+    logger.error('Crypto price fetch error:', error);
+    return null;
+  }
+}
+
+// Enhanced market data fetching
+async function getMarketData(symbols: string[]): Promise<MarketData[] | null> {
+  try {
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${symbols.join(',')}&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
+    const data = await response.json();
+    return Array.isArray(data) ? data as MarketData[] : null;
+  } catch (error) {
+    logger.error('Market data fetch error:', error);
+    return null;
   }
 }
 
@@ -303,6 +494,22 @@ export async function OPTIONS(_request: Request) {
       'Access-Control-Max-Age': '86400',
     },
   });
+}
+
+// Helper to build Grok 4 prompt with Human/Assistant format
+function buildGrok4Prompt(history: ChatCompletionMessageParam[], userMessage: string): string {
+  // Only include user/assistant turns (ignore system/tool)
+  const turns = history.filter(
+    m => m.role === 'user' || m.role === 'assistant'
+  ) as { role: 'user' | 'assistant'; content: string }[];
+  let prompt = '';
+  for (const turn of turns) {
+    prompt += `${turn.role === 'user' ? 'Human' : 'Assistant'}: ${turn.content.trim()}
+`;
+  }
+  prompt += `Human: ${userMessage.trim()}
+Assistant:`;
+  return prompt;
 }
 
 // Main route handler with enhanced security and monitoring
@@ -321,7 +528,7 @@ export async function POST(request: Request) {
     tracker.start('total');
     
     // Validate request
-    const { message, systemPrompt, temperature, stream } = await validateRequest(request);
+    const { message, systemPrompt, temperature, stream, imageUrl, generateImage, imagePrompt } = await validateRequest(request);
 
     // Log request details for monitoring
     logger.info('Request details:', {
@@ -331,6 +538,54 @@ export async function POST(request: Request) {
       temperature,
       timestamp: new Date().toISOString()
     });
+
+    // Handle image generation requests
+    if (generateImage && imagePrompt) {
+      logger.info('Image generation requested:', imagePrompt);
+      try {
+        const generatedImageUrl = await generateImageWithXAI({
+          prompt: imagePrompt,
+          model: 'grok-2-image',
+          size: '1024x1024',
+          quality: 'standard',
+          style: 'vivid'
+        });
+        
+        tracker.end('total');
+        tracker.logTimings();
+        
+        logger.info('Image generation completed:', {
+          duration: Date.now() - startTime,
+          imageUrl: generatedImageUrl.substring(0, 100) + '...'
+        });
+        
+        return createSuccessResponse(`Generated image: ${generatedImageUrl}`);
+      } catch (error) {
+        logger.error('Image generation failed:', error);
+        return createErrorResponse('Failed to generate image. Please try again.');
+      }
+    }
+
+    // Handle vision analysis requests
+    if (imageUrl) {
+      logger.info('Vision analysis requested:', { imageUrl: imageUrl.substring(0, 100) + '...', query: message });
+      try {
+        const analysis = await analyzeImage(imageUrl, message);
+        
+        tracker.end('total');
+        tracker.logTimings();
+        
+        logger.info('Vision analysis completed:', {
+          duration: Date.now() - startTime,
+          analysisLength: analysis.length
+        });
+        
+        return createSuccessResponse(analysis);
+      } catch (error) {
+        logger.error('Vision analysis failed:', error);
+        return createErrorResponse('Failed to analyze image. Please try again.');
+      }
+    }
 
     // Log GM detection
     if (isGMQuery(message)) {
@@ -374,41 +629,32 @@ You have access to web search for current information when needed.`;
     logger.info('Grok4 SYSTEM PROMPT:', enhancedSystemPrompt);
     logger.info('Grok4 USER MESSAGE:', message);
 
-    // Prepare tools with enhanced descriptions
+    // Prepare tools with enhanced capabilities
     const tools: ChatCompletionTool[] = [];
     if (needsWebSearch(message)) {
-      tools.push({
-        type: 'function',
-        function: {
-          name: 'search',
-          description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices, market data, and financial news. Use this for current prices, market trends, and real-time information.',
-          parameters: {
-            type: 'object',
-            properties: {
-              query: {
-                type: 'string',
-                description: 'The search query - be specific and include relevant keywords for better results'
-              }
-            },
-            required: ['query']
-          }
-        }
-      });
+      tools.push(...ENHANCED_TOOLS);
     }
 
-    // Prepare messages with conversation context
-    const messages: ChatCompletionMessageParam[] = [
-      { role: 'system', content: enhancedSystemPrompt },
-      { role: 'user', content: message }
-    ];
+    // Prepare messages with conversation context and history
+    const conversationHistory = getConversationHistory(clientId);
+    // const messages: ChatCompletionMessageParam[] = [
+    //   { role: 'system', content: enhancedSystemPrompt },
+    //   ...conversationHistory,
+    //   { role: 'user', content: message }
+    // ];
+    // Add current message to conversation history
+    addToConversationHistory(clientId, { role: 'user', content: message });
+
+    // Build Grok 4 prompt string
+    const grok4Prompt = buildGrok4Prompt(conversationHistory, message);
 
     // Handle streaming
     if (stream) {
-      return await handleStreamingResponse(messages, tools, temperature, tracker);
+      return await handleStreamingResponse(tools, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
     }
 
     // Handle non-streaming
-    return await handleNonStreamingResponse(messages, tools, temperature, tracker);
+    return await handleNonStreamingResponse(tools, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
     
   } catch (error) {
     tracker.end('total');
@@ -432,86 +678,90 @@ You have access to web search for current information when needed.`;
 
 // Streaming response handler with enhanced error handling
 async function handleStreamingResponse(
-  messages: ChatCompletionMessageParam[],
   tools: ChatCompletionTool[],
   temperature: number | undefined,
-  tracker: PerformanceTracker
+  tracker: PerformanceTracker,
+  clientId: string,
+  enhancedSystemPrompt: string,
+  grok4Prompt: string
 ): Promise<Response> {
   try {
     tracker.start('streaming');
-    const OpenAI = (await import('openai')).default;
-    const completionStream = await new OpenAI({
-      apiKey: process.env.XAI_API_KEY,
-      baseURL: 'https://api.x.ai/v1',
-    }).chat.completions.create({
-      model: 'grok-4',
-      messages,
-      temperature: temperature || 0.7,
-      ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
-      stream: true,
-      max_tokens: 800,
-    });
+        const OpenAI = (await import('openai')).default;
+        const completionStream = await new OpenAI({
+          apiKey: process.env.XAI_API_KEY,
+          baseURL: 'https://api.x.ai/v1',
+        }).chat.completions.create({
+          model: 'grok-4',
+          messages: [
+            { role: 'system', content: enhancedSystemPrompt },
+            { role: 'user', content: grok4Prompt }
+          ],
+          temperature: temperature || 0.7,
+          ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
+          stream: true,
+          max_tokens: 800,
+        });
 
-    const encoder = new TextEncoder();
-    const streamResponse = new ReadableStream({
-      async start(controller) {
-        try {
+        const encoder = new TextEncoder();
+        const streamResponse = new ReadableStream({
+          async start(controller) {
+            try {
           let toolCallId = '';
           let toolCallFunction = '';
           let toolCallArguments = '';
           let contentLength = 0;
         
-          for await (const chunk of completionStream) {
-            const content = chunk.choices?.[0]?.delta?.content;
-            if (content) {
-              controller.enqueue(encoder.encode(content));
+              for await (const chunk of completionStream) {
+                const content = chunk.choices?.[0]?.delta?.content;
+                if (content) {
+                  controller.enqueue(encoder.encode(content));
               contentLength += content.length;
-            }
+                }
             
-            // Handle tool calls in streaming
-            const toolCalls = chunk.choices?.[0]?.delta?.tool_calls;
-            if (toolCalls) {
+                // Handle tool calls in streaming
+                const toolCalls = chunk.choices?.[0]?.delta?.tool_calls;
+                if (toolCalls) {
               for (const toolCall of toolCalls) {
                 if (toolCall.id) toolCallId = toolCall.id;
                 if (toolCall.function?.name) toolCallFunction = toolCall.function.name;
                 if (toolCall.function?.arguments) toolCallArguments += toolCall.function.arguments;
-                
-                if (toolCallFunction === 'search' && toolCallArguments) {
-                  try {
+
+                if (toolCallFunction && toolCallArguments) {
+                  let toolResult = '';
+                  if (toolCallFunction === 'search') {
                     const { query } = JSON.parse(toolCallArguments);
-                    logger.info('Streaming search request:', query);
-                    
-                    // Perform search with timeout
-                    const searchResult = await Promise.race([
-                      enhancedWebSearch(query),
-                      new Promise<string>((_, reject) => 
-                        setTimeout(() => reject(new Error('Search timeout')), 8000)
-                      )
-                    ]);
-                    
-                    // Add tool response to messages
-                    messages.push({
-                      role: 'tool',
-                      tool_call_id: toolCallId,
-                      content: searchResult,
-                    } as ToolMessage);
-                    
-                    // Get final response
-                    const finalCompletion = await Grok4Service.chatCompletion({
-                      messages,
-                      temperature: temperature || 0.7,
-                      max_tokens: 600,
-                    });
-                    
-                    const finalContent = finalCompletion.choices?.[0]?.message?.content;
-                    if (finalContent) {
-                      controller.enqueue(encoder.encode(finalContent));
-                      contentLength += finalContent.length;
-                    }
-                    
-                  } catch (searchError) {
-                    logger.error('Streaming search error:', searchError);
-                    controller.enqueue(encoder.encode('Sorry, there was an error with the web search.'));
+                    toolResult = await enhancedWebSearch(query);
+                  } else if (toolCallFunction === 'get_crypto_price') {
+                    const { symbol, currency = 'USD' } = JSON.parse(toolCallArguments);
+                    const price = await getCryptoPrice(symbol, currency);
+                    toolResult = price ? `${symbol.toUpperCase()}: $${price} ${currency}` : `Unable to get price for ${symbol}`;
+                  } else if (toolCallFunction === 'get_market_data') {
+                    const { symbols } = JSON.parse(toolCallArguments);
+                    const marketData = await getMarketData(symbols);
+                    toolResult = marketData ? JSON.stringify(marketData, null, 2) : `Unable to get market data for ${symbols.join(', ')}`;
+                  }
+                  // Push tool response message
+                  const toolResponseMsg: ChatCompletionMessageParam = {
+                    role: 'tool',
+                    tool_call_id: toolCallId,
+                    content: toolResult,
+                  };
+                  // Add to conversation and call model again
+                  const updatedMessages: ChatCompletionMessageParam[] = [
+                    { role: 'system', content: enhancedSystemPrompt },
+                    { role: 'user', content: grok4Prompt },
+                    toolResponseMsg
+                  ];
+                  const finalCompletion = await Grok4Service.chatCompletion({
+                    messages: updatedMessages,
+                    temperature: temperature || 0.7,
+                    max_tokens: 600,
+                  });
+                  const finalContent = finalCompletion.choices?.[0]?.message?.content;
+                  if (finalContent) {
+                    controller.enqueue(encoder.encode(finalContent));
+                    contentLength += finalContent.length;
                   }
                 }
               }
@@ -524,32 +774,32 @@ async function handleStreamingResponse(
             toolCalls: tools.length > 0 ? 'yes' : 'no'
           });
           
-        } catch (streamError) {
-          logger.error('Streaming error:', streamError);
-          controller.enqueue(encoder.encode('Sorry, there was an error with the streaming response.'));
-        } finally {
-          controller.close();
-        }
-      }
-    });
+            } catch (streamError) {
+              logger.error('Streaming error:', streamError);
+              controller.enqueue(encoder.encode('Sorry, there was an error with the streaming response.'));
+            } finally {
+              controller.close();
+            }
+          }
+        });
     
     tracker.end('streaming');
     tracker.end('total');
     tracker.logTimings();
     
-    return new Response(streamResponse, {
-      headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'Cache-Control': 'no-cache',
+        return new Response(streamResponse, {
+          headers: {
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Cache-Control': 'no-cache',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type'
-      },
-    });
-  } catch (streamError) {
+          },
+        });
+      } catch (streamError) {
     tracker.end('streaming');
     tracker.end('total');
-    logger.error('Failed to create streaming response:', streamError);
+        logger.error('Failed to create streaming response:', streamError);
     tracker.logTimings();
     return createErrorResponse('Sorry, I\'m having trouble with the streaming response. Please try again.');
   }
@@ -557,23 +807,30 @@ async function handleStreamingResponse(
 
 // Non-streaming response handler with enhanced monitoring
 async function handleNonStreamingResponse(
-  messages: ChatCompletionMessageParam[],
   tools: ChatCompletionTool[],
   temperature: number | undefined,
-  tracker: PerformanceTracker
+  tracker: PerformanceTracker,
+  clientId: string,
+  enhancedSystemPrompt: string,
+  grok4Prompt: string
 ): Promise<Response> {
   tracker.start('grok4_api');
   let completion;
-  
+  let content: string | undefined;
+  let toolCallCount = 0;
+
   try {
     completion = await Promise.race([
       Grok4Service.chatCompletion({
-        messages,
+        messages: [
+          { role: 'system', content: enhancedSystemPrompt },
+          { role: 'user', content: grok4Prompt }
+        ],
         temperature: temperature || 0.7,
         ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
         max_tokens: 600,
       }),
-      new Promise<never>((_, reject) => 
+      new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('Grok4 API timeout')), 8000)
       )
     ]);
@@ -590,56 +847,52 @@ async function handleNonStreamingResponse(
   }
 
   // Handle tool calls (search) - only if tools were provided
-  let toolCallCount = 0;
   if (tools.length > 0) {
     while (true) {
       const toolCall = Grok4Service.extractToolCall(completion);
-      if (!toolCall || toolCall.function?.name !== 'search') break;
-      
+      if (!toolCall || !toolCall.function?.name) break;
       toolCallCount++;
       if (toolCallCount > 3) {
         logger.warn('Too many tool calls, stopping to prevent infinite loops');
         break;
       }
-      
       try {
-        const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
-        logger.info('Grok4 requested search for:', searchQuery);
-        
-        // Use enhanced web search with timeout
-        let searchResult;
-        try {
-          searchResult = await Promise.race([
-            enhancedWebSearch(searchQuery),
-            new Promise<string>((_, reject) => 
-              setTimeout(() => reject(new Error('Search timeout')), 8000)
-            )
-          ]);
-        } catch (searchTimeout) {
-          logger.error('Web search timed out:', searchTimeout);
-          // Fallback travel tip for Portugal
-          if (/portugal/i.test(searchQuery)) {
-            searchResult = 'Travel tip: In Portugal, consider staying at a "pousada"—a historic inn or castle converted into a boutique hotel. Lisbon and Porto have many excellent options. For a unique experience, try a coastal town like Cascais or Lagos.';
-          } else {
-            searchResult = 'Sorry, live web search is taking too long. Please try again or rephrase your question.';
-          }
+        const toolCallId = toolCall.id;
+        const toolCallFunction = toolCall.function.name;
+        const toolCallArguments = toolCall.function.arguments;
+        let toolResult = '';
+        if (toolCallFunction === 'search') {
+          const { query } = JSON.parse(toolCallArguments);
+          toolResult = await enhancedWebSearch(query);
+        } else if (toolCallFunction === 'get_crypto_price') {
+          const { symbol, currency = 'USD' } = JSON.parse(toolCallArguments);
+          const price = await getCryptoPrice(symbol, currency);
+          toolResult = price ? `${symbol.toUpperCase()}: $${price} ${currency}` : `Unable to get price for ${symbol}`;
+        } else if (toolCallFunction === 'get_market_data') {
+          const { symbols } = JSON.parse(toolCallArguments);
+          const marketData = await getMarketData(symbols);
+          toolResult = marketData ? JSON.stringify(marketData, null, 2) : `Unable to get market data for ${symbols.join(', ')}`;
+        } else {
+          toolResult = `Unknown tool: ${toolCallFunction}`;
         }
-        
-        // Add tool response to messages
-        messages.push({
+        // Push tool response message
+        const toolResponseMsg: ChatCompletionMessageParam = {
           role: 'tool',
-          tool_call_id: toolCall.id,
-          content: searchResult,
-        } as ToolMessage);
-        
-        // Get next Grok4 response with timeout
+          tool_call_id: toolCallId,
+          content: toolResult,
+        };
+        const updatedMessages: ChatCompletionMessageParam[] = [
+          { role: 'system', content: enhancedSystemPrompt },
+          { role: 'user', content: grok4Prompt },
+          toolResponseMsg
+        ];
         completion = await Promise.race([
           Grok4Service.chatCompletion({
-            messages,
+            messages: updatedMessages,
             temperature: temperature || 0.7,
             max_tokens: 600,
           }),
-          new Promise<never>((_, reject) => 
+          new Promise<never>((_, reject) =>
             setTimeout(() => reject(new Error('Grok4 API timeout')), 8000)
           )
         ]);
@@ -651,37 +904,40 @@ async function handleNonStreamingResponse(
   }
 
   // Extract content from final response with improved error handling
-  let content = completion.choices?.[0]?.message?.content;
-  
+  content = (completion.choices?.[0]?.message?.content ?? undefined);
+
   // Add detailed logging to debug the empty response
   logger.info('Grok4 completion object:', JSON.stringify(completion, null, 2));
   logger.info('Grok4 content field:', content);
   logger.info('Grok4 content type:', typeof content);
   logger.info('Grok4 content length:', content?.length);
   logger.info('Tool calls made:', toolCallCount);
-  
+
   // Improved empty content handling with specific fallback messages
   if (!content || !content.trim()) {
     logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
-    
-    // Provide context-aware fallback message based on the query
-    const userMessage = messages[messages.length - 1]?.content as string || '';
-    if (userMessage.toLowerCase().includes('price') || userMessage.toLowerCase().includes('btc') || userMessage.toLowerCase().includes('bitcoin')) {
+    // Use the last user message for context
+    if (grok4Prompt.toLowerCase().includes('price') || grok4Prompt.toLowerCase().includes('btc') || grok4Prompt.toLowerCase().includes('bitcoin')) {
       content = 'I\'m having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"';
     } else {
       content = 'I couldn\'t generate a proper response. Please try rephrasing your question.';
     }
   }
-  
+
   tracker.end('total');
   tracker.logTimings();
-  
+
+  // Add assistant response to conversation history
+  if (content) {
+    addToConversationHistory(clientId, { role: 'assistant', content });
+  }
+
   // Log successful completion
   logger.info('Non-streaming response completed:', {
     contentLength: content?.length || 0,
     toolCalls: toolCallCount,
     hasTools: tools.length > 0
   });
-  
+
   return createSuccessResponse(content);
 } 
