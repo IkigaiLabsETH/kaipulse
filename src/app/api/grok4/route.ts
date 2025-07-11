@@ -797,8 +797,10 @@ export async function POST(request: Request) {
     // Handle GM queries with comprehensive market analysis
     if (isGMQuery(message)) {
       logger.info('Comprehensive GM market analysis requested:', message);
-      
       try {
+        // Log before fetching
+        logger.info('Starting parallel fetches for GM data...');
+        const fetchStart = Date.now();
         // Fetch all market data in parallel
         const [btcPrice, btcNetworkData, altcoins, cryptoStocks, macroData] = await Promise.all([
           getFastBTCPrice(),
@@ -807,10 +809,9 @@ export async function POST(request: Request) {
           getCryptoStocksData(),
           getMacroMarketData()
         ]);
-        
+        logger.info('All GM data fetched in', Date.now() - fetchStart, 'ms');
         // Build comprehensive market summary
         let marketSummary = `🌅 **Good Morning! Here's your comprehensive market report:**\n\n---\n\n`;
-        
         // Bitcoin section with network data
         marketSummary += `**💰 BITCOIN**\n`;
         marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
@@ -821,13 +822,10 @@ export async function POST(request: Request) {
           marketSummary += `- **Mempool Size:** ${btcNetworkData.mempoolSize || 'N/A'} transactions\n`;
         }
         marketSummary += `\n---\n\n`;
-        
         // Altcoins section
         marketSummary += `${altcoins}\n\n---\n\n`;
-        
         // Crypto stocks section
         marketSummary += `${cryptoStocks}\n\n---\n\n`;
-        
         // Macro context
         marketSummary += `**📊 Macro Market Context**\n`;
         if (macroData) {
@@ -841,7 +839,6 @@ export async function POST(request: Request) {
           marketSummary += `- Regulatory developments\n`;
         }
         marketSummary += `\n---\n\n`;
-        
         // Enhanced analysis prompt
         const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
 1. Bitcoin sentiment and key narratives on X (Twitter) - use the get_x_sentiment tool if available
@@ -851,23 +848,18 @@ export async function POST(request: Request) {
 5. Key events to watch today
 
 Keep it concise, actionable, and include specific X sentiment insights. Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.`;
-
         // Use streaming response for GM queries to match frontend expectations
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         const grok4Prompt = `${marketSummary}\n\n${analysisPrompt}`;
-        
         tracker.end('total');
         tracker.logTimings();
-        
         // Log successful response
         logger.info('Comprehensive GM analysis completed:', {
           duration: Date.now() - startTime,
           responseLength: 'streaming'
         });
-        
         return await handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
-        
       } catch (error) {
         logger.error('GM handler error:', error);
         return createErrorResponse('Good morning! Having trouble fetching market data. Check CoinGecko for live prices.');
