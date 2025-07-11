@@ -8,16 +8,19 @@ GROK420 is a sophisticated AI-powered crypto market intelligence system that lev
 
 ## Recent Developments (May 2024)
 
-- **Backend/Frontend Asset List Alignment:**
-  - The backend asset lists for altcoins and crypto stocks are now perfectly aligned with the frontend UI. This was achieved by analyzing all relevant frontend components and curating the backend lists to match exactly, including symbol mapping and removal of irrelevant tokens (e.g., MATIC, ATOM, ADA, DOT). New tokens from the dashboard (e.g., KAIA, INJ, SEI, SPX6900, WIF, REKT) were added for full parity.
+- **Enhanced GM Handler Implementation:**
+  - **Comprehensive Market Data Integration:** The GM handler now fetches and displays real-time Bitcoin price, network statistics (hash rate, difficulty, block height, mempool size), curated altcoins with market cap data, crypto stocks via Yahoo Finance, and macro market context (S&P 500, Magnificent 7).
+  - **Beautiful Markdown Formatting:** GM reports now display with clean markdown tables, bold headers, horizontal rules, and professional formatting for optimal readability.
+  - **Streaming Response Support:** GM queries now use streaming responses to match frontend expectations, eliminating truncation issues and providing real-time updates.
 
-- **Comprehensive “gm” Handler:**
-  - The API now features a robust "gm" handler that, on receiving a "gm" or "good morning" message, returns a comprehensive market report. This includes:
-    - Real-time Bitcoin price (CoinGecko)
-    - Curated altcoins (top 12–15 by 24h change, with symbol mapping)
-    - Curated crypto stocks (from Yahoo Finance, matching frontend usage)
-    - Macro context (S&P 500, Magnificent 7, macro trends)
-    - Market sentiment and narrative analysis from X via Grok 4 prompt/tool-calling
+- **Curated Asset Lists (Fully Implemented):**
+  - **Altcoins:** 24 carefully curated cryptocurrencies including major Layer 1s (BTC, ETH, SOL, SUI), DeFi protocols (AAVE, MKR, UNI, PENDLE, LQTY, SYRUP, EIGEN, LINK), emerging tokens (HYPER, STX, INJ, SEI), meme coins (DOGE, PEPE, MOG, WIF, REKT, SPX6900, FART), AI/compute tokens (TAO, RNDR, RAIL), and stablecoins (ONDO, USDe).
+  - **Crypto Stocks:** 17 most tracked crypto-related stocks including Bitcoin holdings (MSTR, MSTY, STRF, STRK), exchanges (COIN, HOOD, CRCL), mining (MARA, RIOT), payments (PYPL), tech giants (NVDA, TSLA, BMNR), and specialized stocks (HODL, XYZ, MTPLF, SBET, SQNS, MBAV).
+
+- **Enhanced Tool Definitions:**
+  - **Improved Descriptions:** All tool functions now have detailed descriptions that reference the most tracked assets and provide clear usage guidance.
+  - **New Stock Price Tool:** Added `get_stock_price` tool for real-time stock and crypto stock prices via Yahoo Finance.
+  - **Better Parameter Definitions:** Enhanced parameter descriptions with examples and specific asset references.
 
 - **Stock Data Provider Migration:**
   - **Alpha Vantage has been fully replaced by Yahoo Finance** for all stock and crypto stock price data. The backend now uses Yahoo Finance's public API, which requires no paid API key, for all US and crypto-related stocks (e.g., MSTR, COIN, TSLA, etc.).
@@ -28,8 +31,8 @@ GROK420 is a sophisticated AI-powered crypto market intelligence system that lev
 
 - **Prompt Engineering Best Practices:**
   - Prompts for Grok 4 are now engineered to maximize the use of X data, focusing on:
-    - Analyzing sentiment and trends from high-profile X accounts
-    - Detecting emerging tokens, memecoins, and macro events
+    - Analyze sentiment and trends from high-profile X accounts
+    - Detect emerging tokens, memecoins, and macro events
     - Combining X sentiment with technical analysis
     - Providing concise, actionable, and context-rich responses
 
@@ -84,6 +87,7 @@ graph TB
         SentimentTool[get_x_sentiment]
         SearchTool[search]
         MarketTool[Market Data]
+        StockTool[get_stock_price]
         GMHandler[GM Handler]
     end
     
@@ -103,9 +107,11 @@ graph TB
     Tools --> SentimentTool
     Tools --> SearchTool
     Tools --> MarketTool
+    Tools --> StockTool
     Tools --> GMHandler
     PriceTool --> CoinGecko
     MarketTool --> YahooFinance
+    StockTool --> YahooFinance
     SentimentTool --> TwitterAPI
     SearchTool --> WebSearch
     GMHandler --> CoinGecko
@@ -130,60 +136,64 @@ The system uses function calling to enhance Grok 4's capabilities:
 
 #### **Available Tools:**
 - `search`: Web search for real-time information
-- `get_crypto_price`: Real-time cryptocurrency prices (50+ coins supported)
+- `get_crypto_price`: Real-time cryptocurrency prices (24+ coins supported)
 - `get_x_sentiment`: X (Twitter) sentiment analysis and key points extraction
 - `get_stock_price`: Real-time stock and crypto stock prices (via Yahoo Finance)
+- `get_market_data`: Comprehensive market data for multiple cryptocurrencies
 
-### 3. **Fine-Tuned Asset Tracking**
+### 3. **Fine-Tuned Asset Tracking (IMPLEMENTED)**
 
-#### **🎯 Most Tracked Altcoins (Based on Frontend Components):**
-- **Major Layer 1s**: BTC, ETH, SOL, SUI, AVAX
+#### **🎯 Most Tracked Altcoins (Fully Implemented):**
+- **Major Layer 1s**: BTC, ETH, SOL, SUI
 - **DeFi Protocols**: AAVE, MKR, UNI, PENDLE, LQTY, SYRUP, EIGEN, LINK
-- **Emerging Tokens**: HYPER, BERA, INFRARED, STX, FART, KAIA, INJ, SEI, SPX6900
-- **Meme Coins**: DOGE, PEPE, MOG, WIF, REKT
+- **Emerging Tokens**: HYPER, STX, INJ, SEI
+- **Meme Coins**: DOGE, PEPE, MOG, WIF, REKT, SPX6900, FART
 - **AI/Compute**: TAO, RNDR, RAIL
 - **Stablecoins**: ONDO, USDe
 
-#### **📈 Most Tracked Crypto Stocks:**
+#### **📈 Most Tracked Crypto Stocks (Fully Implemented):**
 - **Bitcoin Holdings**: MSTR (MicroStrategy), MSTY, STRF, STRK
 - **Exchanges**: COIN (Coinbase), HOOD (Robinhood), CRCL (Circle)
 - **Mining**: MARA (Marathon), RIOT (Riot Platforms)
-- **Payments**: PYPL (PayPal), MTPLF, SBET, SQNS, MBAV
+- **Payments**: PYPL (PayPal)
 - **Tech Giants**: NVDA (NVIDIA), TSLA (Tesla), BMNR
-- **Specialized**: HODL, XYZ
+- **Specialized**: HODL, XYZ, MTPLF, SBET, SQNS, MBAV
 
-#### **🏢 Magnificent 7 + S&P 500:**
+#### **🏢 Magnificent 7 + S&P 500 (IMPLEMENTED):**
 - **Mag 7**: MSFT, AMZN, META, AAPL, GOOGL, NVDA, TSLA, AVGO
 - **Crypto Exposure**: MSTR, COIN, CRCL, HOOD, GLXY
 
 ## Key Features
 
-### **1. "GM" Market Report**
+### **1. "GM" Market Report (ENHANCED)**
 When users say "gm" or "good morning", the system provides:
 
-#### **Bitcoin Analysis:**
+#### **Bitcoin Analysis (ENHANCED):**
 - Real-time BTC price from CoinGecko
+- **Network Statistics**: Hash rate, difficulty, block height, mempool size
 - X sentiment analysis using Grok 4 and the `getXSentiment` tool
 - Key narratives and market trends
 - Network statistics and mempool data
 
-#### **Altcoin Performance:**
-- Top 12–15 altcoins by 24h absolute change (curated and symbol-mapped to match frontend)
+#### **Altcoin Performance (ENHANCED):**
+- Top 15 altcoins by 24h change (curated and symbol-mapped)
+- **Market Cap Data**: Added market capitalization to the display
 - Visual indicators (🟢/🔴) for performance
 - Focus on emerging tokens and DeFi protocols
 - Market cap and volume data
 
-#### **Crypto Stock Tracking:**
-- 17 most tracked crypto-related stocks (fully aligned with frontend)
+#### **Crypto Stock Tracking (ENHANCED):**
+- 17 most tracked crypto-related stocks (fully implemented)
 - Real-time prices via Yahoo Finance (no paid API or API key required)
+- **Enhanced Display**: Price, 24h change, and market cap
 - Performance across exchanges, mining, and payments
 - Earnings dates and IV rank data
 
-#### **Macro Market Context:**
-- Magnificent 7 performance
-- S&P 500 correlation
+#### **Macro Market Context (ENHANCED):**
+- **Real-time S&P 500**: Current price and 24h change
+- **Magnificent 7 Performance**: Average performance calculation
 - Market sentiment and macro trends
-- Fear & Greed Index integration
+- Fear & Greed Index integration (placeholder for future API)
 
 ### **2. X Sentiment Analysis**
 - **Tool Function:** `getXSentiment` (backend tool, registered for Grok 4)
@@ -193,14 +203,14 @@ When users say "gm" or "good morning", the system provides:
 - **Integration:** Uses `TwitterService` and `TweetAnalyzer` for comprehensive analysis
 
 ### **3. Real-Time Price Intelligence**
-- **Supported Coins:** 50+ cryptocurrencies (curated list, matches frontend)
+- **Supported Coins:** 24+ cryptocurrencies (curated list, matches frontend)
 - **Data Source:** CoinGecko API
 - **Features:** Price, 24h change, market cap, volume
 - **Caching:** 5-minute cache for performance
 - **Error Handling:** Graceful fallbacks and retry logic
 
-### **4. Advanced Market Data**
-- **Bitcoin Network:** Hash rate, difficulty, block height
+### **4. Advanced Market Data (ENHANCED)**
+- **Bitcoin Network:** Hash rate, difficulty, block height, mempool size
 - **Mempool Analysis:** Transaction fees and congestion
 - **Lightning Network:** Capacity and channel data
 - **Mining Revenue:** 24h and historical data
@@ -209,16 +219,17 @@ When users say "gm" or "good morning", the system provides:
 
 ## Implementation Details
 
-### **System Prompts & Prompt Engineering Best Practices**
+### **System Prompts & Prompt Engineering Best Practices (ENHANCED)**
 ```typescript
 const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, concise style, pulling insights from real-time X (Twitter) data and technical indicators. Always:
-- Analyze sentiment and trends from X posts, especially from high-profile accounts
+- Analyze sentiment and trends from X posts, especially from high-profile accounts (e.g., Whale Alert, Michael Saylor)
 - Detect emerging tokens, memecoins, and macro events
-- Combine X sentiment with technical analysis
+- Combine X sentiment with technical analysis (RSI, MACD, etc.)
 - Provide actionable, context-rich, and concise responses
 - Use the latest X data for all crypto and Bitcoin queries
 - Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.
 - For GM queries: Provide comprehensive market analysis with Bitcoin, altcoins, crypto stocks, and macro context
+- Include specific X narratives and key events to watch
 `;
 ```
 
@@ -228,46 +239,50 @@ const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, con
 - For "gm" or market summary queries, instruct Grok 4 to use all available tools and data sources.
 - Encourage the model to focus on curated asset lists and macro context.
 
-### **Tool Definitions & Registration**
+### **Tool Definitions & Registration (ENHANCED)**
 ```typescript
 const ENHANCED_TOOLS: ChatCompletionTool[] = [
   {
     type: 'function',
     function: {
       name: 'get_crypto_price',
-      description: 'Get real-time cryptocurrency prices and market data',
+      description: 'Get real-time cryptocurrency prices from multiple sources. Use this for accurate, up-to-date price information for the most tracked assets: BTC, ETH, SOL, AAVE, MKR, UNI, etc.',
       parameters: {
         type: 'object',
         properties: {
-          cryptoName: {
+          symbol: {
             type: 'string',
-            description: 'Name or symbol of the cryptocurrency'
+            description: 'The cryptocurrency symbol (e.g., BTC, ETH, SOL, AAVE, MKR, UNI)'
+          },
+          currency: {
+            type: 'string',
+            description: 'The currency to display price in (default: USD)',
+            default: 'USD'
           }
         },
-        required: ['cryptoName']
+        required: ['symbol']
       }
     }
   },
   {
     type: 'function',
     function: {
-      name: 'get_x_sentiment',
-      description: 'Analyze sentiment and key points from a specific X (Twitter) post',
+      name: 'get_stock_price',
+      description: 'Get real-time stock and crypto stock prices via Yahoo Finance. Track the most important crypto-related stocks: MSTR, COIN, HOOD, MARA, RIOT, NVDA, TSLA, etc.',
       parameters: {
         type: 'object',
         properties: {
-          tweetUrl: {
+          symbol: {
             type: 'string',
-            description: 'The URL of the tweet to analyze'
+            description: 'The stock symbol (e.g., MSTR, COIN, HOOD, MARA, RIOT, NVDA, TSLA)'
           }
         },
-        required: ['tweetUrl']
+        required: ['symbol']
       }
     }
   }
 ];
 ```
-- `get_x_sentiment` is now a registered backend tool, callable by Grok 4 for tweet-level sentiment analysis.
 
 ---
 
@@ -521,7 +536,6 @@ const RequestSchema = z.object({
 # Required
 XAI_API_KEY=your_xai_api_key
 TWITTER_BEARER_TOKEN=your_twitter_bearer_token
-ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key
 
 # Optional
 OPENAI_API_KEY=your_openai_key_for_fallback
@@ -540,9 +554,8 @@ vercel --prod
 ### **Environment Setup**
 1. Configure XAI API key
 2. Set up Twitter API credentials
-3. Configure Alpha Vantage API key
-4. Set up rate limiting
-5. Configure monitoring and logging
+3. Set up rate limiting
+4. Configure monitoring and logging
 
 ## API Endpoints
 
@@ -607,11 +620,14 @@ The fine-tuned asset tracking ensures users get insights on the most relevant cr
 ### **Key Achievements:**
 - ✅ **Real-time Market Data**: Bitcoin, 24 altcoins, 17 crypto stocks
 - ✅ **X Sentiment Analysis**: Tweet analysis and key points extraction
-- ✅ **Comprehensive GM Reports**: Morning market briefings
+- ✅ **Comprehensive GM Reports**: Morning market briefings with network stats
 - ✅ **Performance Optimization**: Caching, rate limiting, error handling
 - ✅ **Security & Compliance**: Input sanitization, authentication, GDPR
 - ✅ **Monitoring & Analytics**: Performance tracking and logging
 - ✅ **Scalable Architecture**: Microservices-ready design
+- ✅ **Enhanced Tool Definitions**: Improved descriptions and parameter definitions
+- ✅ **Streaming Response Support**: Real-time updates without truncation
+- ✅ **Curated Asset Lists**: Perfect alignment with frontend components
 
 ### **Next Steps:**
 - 🚀 **Technical Analysis Tools**: RSI, MACD, Bollinger Bands
