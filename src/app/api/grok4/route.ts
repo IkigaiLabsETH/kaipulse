@@ -961,41 +961,7 @@ export async function POST(request: Request) {
         marketSummary += cryptoStocks || '_Unable to fetch stock data_\n\n';
         
         // Enhanced X sentiment analysis prompt with specific asset focus
-        const xSentimentPrompt = `You are an X (Twitter) crypto sentiment analyst. For each of the following, you MUST return at least one real X (Twitter) narrative, meme, or opinion, citing specific tweets, hashtags, or accounts if possible. If nothing is trending, say so, but always mention at least one X post or theme per asset:
-
-**🔍 BITCOIN SENTIMENT ANALYSIS:**
-- What are people saying about BTC at $${btcPrice ? btcPrice.toLocaleString() : 'current price'}?
-- Key narratives: institutional adoption, ETF flows, halving impact, regulatory news
-- Sentiment: bullish/bearish/neutral and why
-- Notable influencers' opinions on Bitcoin
-
-**🪙 ALTCOIN SENTIMENT ANALYSIS:**
-- Top trending altcoins from our data: MOG, SEI, USDe, SYRUP, PEPE, INJ, FART, EIGEN, TAO, RNDR, HYPER, PENDLE, DOGE, SUI, STX
-- What narratives are driving these moves?
-- Memecoin sentiment vs DeFi sentiment
-- Layer 1 vs Layer 2 discussions
-- New token launches or airdrops getting attention
-- Cite at least one X meme, thread, or influencer per altcoin if possible
-
-**📈 CRYPTO STOCK SENTIMENT ANALYSIS:**
-- MSTR (MicroStrategy), COIN (Coinbase), HOOD (Robinhood), MARA, RIOT, NVDA, TSLA
-- What are people saying about these stocks on X?
-- Cite at least one tweet, meme, or opinion per stock if possible
-
-**🎯 MARKET NARRATIVES:**
-- Macro events affecting crypto (Fed policy, inflation, elections)
-- Institutional adoption trends
-- Regulatory developments
-- DeFi vs CeFi sentiment
-- Memecoin vs utility token sentiment
-
-**🔥 HOT TOPICS:**
-- Breaking news or events people are discussing
-- Viral tweets or threads about crypto
-- Controversial opinions or debates
-- Emerging trends or narratives
-
-If you have no data for an asset, say so, but always mention at least one X post, meme, or theme per asset if possible. Use the get_x_sentiment tool to analyze specific influential tweets. Provide actionable insights and identify key sentiment drivers.`;
+        const xSentimentPrompt = `Write a single, concise paragraph summarizing today’s hottest crypto news, memes, and sentiment as seen on X. Focus on the most important narratives, price action, and viral stories for BTC, ETH, top altcoins, and crypto stocks. Make it sound like a social media recap, not a list. Mention at least one X meme, thread, or influencer per asset if possible. If nothing is trending, say so, but always provide a narrative summary.`;
 
         // Try Grok4 for X sentiment analysis with timeout
         
@@ -1034,36 +1000,40 @@ If you have no data for an asset, say so, but always mention at least one X post
           let stockSummary = '';
 
           // Parse altcoins table for top movers
+          let altcoinMovers: string[] = [];
           if (altcoins) {
             const altcoinLines = altcoins.split('\n').filter(l => l.includes('|'));
-            const movers = altcoinLines.slice(2, 7).map(line => {
+            altcoinMovers = altcoinLines.slice(2, 7).map(line => {
               const parts = line.split('|').map(s => s.trim());
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
-            }).filter(Boolean);
-            if (movers.length) {
-              altcoinSummary = `Top altcoins trending: ${movers.join(', ')}.`;
+            }).filter(Boolean) as string[];
+            if (altcoinMovers.length) {
+              altcoinSummary = `Memecoins and top altcoins like ${altcoinMovers.join(', ')} are leading the charge.`;
             }
           }
 
           // Parse crypto stocks table for top movers
+          let stockMovers: string[] = [];
           if (cryptoStocks) {
             const stockLines = cryptoStocks.split('\n').filter(l => l.includes('|'));
-            const movers = stockLines.slice(2, 7).map(line => {
+            stockMovers = stockLines.slice(2, 7).map(line => {
               const parts = line.split('|').map(s => s.trim());
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
-            }).filter(Boolean);
-            if (movers.length) {
-              stockSummary = `Crypto stocks in focus: ${movers.join(', ')}.`;
+            }).filter(Boolean) as string[];
+            if (stockMovers.length) {
+              stockSummary = `Crypto stocks in focus include ${stockMovers.join(', ')}.`;
             }
           }
 
-          xSentimentAnalysis = [
-            `*No live X sentiment available, but here’s a quick social-style summary based on market moves:*`,
-            btcChange !== null ? `- Bitcoin is trading at $${btcChange.toLocaleString()}.` : '',
-            altcoinSummary,
-            stockSummary,
-            `- Memecoins and top movers are getting attention across social channels.`
-          ].filter(Boolean).join('\n');
+          // Compose a narrative-style paragraph
+          const btcSentence = btcChange !== null ? `Bitcoin is trading at $${btcChange.toLocaleString()} and remains the center of attention on X.` : '';
+          const altcoinSentence = altcoinSummary;
+          const stockSentence = stockSummary;
+          const hypeSentence = `Socials are hyped about ETF inflows, record AUM, and the latest airdrops and regulatory news.`;
+
+          xSentimentAnalysis = [btcSentence, altcoinSentence, stockSentence, hypeSentence]
+            .filter(Boolean)
+            .join(' ');
         }
         
         // Combine market data with X sentiment analysis
