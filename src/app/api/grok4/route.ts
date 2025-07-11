@@ -526,8 +526,24 @@ Assistant:`;
   return prompt;
 }
 
+// Bitcoin network data interface
+interface BitcoinNetworkData {
+  hashRate?: number;
+  difficulty?: number;
+  blockHeight?: number;
+  mempoolSize?: number;
+}
+
+// CoinGecko API response interface
+interface CoinGeckoCoin {
+  usd?: number;
+  usd_24h_change?: number;
+  usd_market_cap?: number;
+  usd_24h_vol?: number;
+}
+
 // Bitcoin network data fetching
-async function getBitcoinNetworkData(): Promise<any> {
+async function getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
   try {
     const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false');
     if (!response.ok) return null;
@@ -572,12 +588,12 @@ async function getAltcoinsData(): Promise<string> {
       return '_Unable to fetch altcoins data_';
     }
 
-    const data: Record<string, any> = await response.json();
+    const data: Record<string, CoinGeckoCoin> = await response.json();
     
     // Sort by 24h change (descending)
     const sortedAltcoins = Object.entries(data)
       .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
-      .sort(([, a], [, b]) => (b.usd_24h_change as number) - (a.usd_24h_change as number))
+      .sort(([, a], [, b]) => (b.usd_24h_change || 0) - (a.usd_24h_change || 0))
       .slice(0, 15);
 
     const symbolMap: { [key: string]: string } = {
@@ -593,12 +609,12 @@ async function getAltcoinsData(): Promise<string> {
 
     let table = '| Symbol | 24h Change | Market Cap |\n|--------|------------|------------|\n';
     sortedAltcoins.forEach(([id, coinData]) => {
-      const change = coinData.usd_24h_change as number;
+      const change = coinData.usd_24h_change || 0;
       const emoji = change >= 0 ? '🟢' : '🔴';
       const symbol = symbolMap[id] || id.toUpperCase();
       const marketCap = coinData.usd_market_cap ? 
         new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(coinData.usd_market_cap) : 'N/A';
-      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}% | $${marketCap} |\n`;
+      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
     });
 
     return `**🪙 Top Altcoins (24h):**\n${table}`;
@@ -638,18 +654,18 @@ async function getCryptoStocksData(): Promise<string> {
 
     // Sort by 24h change
     const sortedStocks = quotes
-      .filter((quote: any) => quote.regularMarketChangePercent)
-      .sort((a: any, b: any) => Math.abs(b.regularMarketChangePercent) - Math.abs(a.regularMarketChangePercent))
+      .filter((quote: StockQuote) => quote.regularMarketChangePercent)
+      .sort((a: StockQuote, b: StockQuote) => Math.abs(b.regularMarketChangePercent || 0) - Math.abs(a.regularMarketChangePercent || 0))
       .slice(0, 10);
 
     let table = '| Symbol | Price | 24h Change | Market Cap |\n|--------|-------|------------|------------|\n';
-    sortedStocks.forEach((quote: any) => {
-      const change = quote.regularMarketChangePercent;
+    sortedStocks.forEach((quote: StockQuote) => {
+      const change = quote.regularMarketChangePercent || 0;
       const emoji = change >= 0 ? '🟢' : '🔴';
       const price = quote.regularMarketPrice?.toFixed(2) || 'N/A';
       const marketCap = quote.marketCap ? 
         new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(quote.marketCap) : 'N/A';
-      table += `| ${emoji} ${quote.symbol} | $${price} | ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}% | $${marketCap} |\n`;
+      table += `| ${emoji} ${quote.symbol} | $${price} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
     });
 
     return `**📈 Crypto Stocks:**\n${table}`;
@@ -658,8 +674,23 @@ async function getCryptoStocksData(): Promise<string> {
   }
 }
 
+// Stock quote interface
+interface StockQuote {
+  symbol: string;
+  regularMarketPrice?: number;
+  regularMarketChangePercent?: number;
+  marketCap?: number;
+}
+
+// Macro market data interface
+interface MacroMarketData {
+  sp500?: string;
+  mag7?: string;
+  fearGreed?: string;
+}
+
 // Macro market data
-async function getMacroMarketData(): Promise<any> {
+async function getMacroMarketData(): Promise<MacroMarketData | null> {
   try {
     // Fetch S&P 500 and Magnificent 7 data
     const mag7Symbols = 'MSFT,AAPL,GOOGL,AMZN,NVDA,META,TSLA,AVGO';
@@ -670,10 +701,10 @@ async function getMacroMarketData(): Promise<any> {
     const data = await response.json();
     const quotes = data?.quoteResponse?.result || [];
     
-    const sp500 = quotes.find((q: any) => q.symbol === '^GSPC');
+    const sp500 = quotes.find((q: StockQuote) => q.symbol === '^GSPC');
     const mag7Avg = quotes
-      .filter((q: any) => q.symbol !== '^GSPC')
-      .reduce((sum: number, q: any) => sum + (q.regularMarketChangePercent || 0), 0) / 8;
+      .filter((q: StockQuote) => q.symbol !== '^GSPC')
+      .reduce((sum: number, q: StockQuote) => sum + (q.regularMarketChangePercent || 0), 0) / 8;
     
     return {
       sp500: sp500 ? `${sp500.regularMarketPrice?.toFixed(2)} (${sp500.regularMarketChangePercent >= 0 ? '+' : ''}${sp500.regularMarketChangePercent?.toFixed(2)}%)` : 'N/A',
