@@ -962,7 +962,7 @@ export async function POST(request: Request) {
         marketSummary += cryptoStocks || '_Unable to fetch stock data_\n\n';
         
         // Enhanced X sentiment analysis prompt with specific asset focus
-        const xSentimentPrompt = `Analyze X (Twitter) sentiment and provide insights about thoughts, ideas, and opinions on crypto markets. Focus on:
+        const xSentimentPrompt = `You are an X (Twitter) crypto sentiment analyst. For each of the following, you MUST return at least one real X (Twitter) narrative, meme, or opinion, citing specific tweets, hashtags, or accounts if possible. If nothing is trending, say so, but always mention at least one X post or theme per asset:
 
 **🔍 BITCOIN SENTIMENT ANALYSIS:**
 - What are people saying about BTC at $${btcPrice ? btcPrice.toLocaleString() : 'current price'}?
@@ -971,18 +971,17 @@ export async function POST(request: Request) {
 - Notable influencers' opinions on Bitcoin
 
 **🪙 ALTCOIN SENTIMENT ANALYSIS:**
-- Top trending altcoins from our data: MOG (+31%), SEI (+29%), USDe (+26%), SYRUP (+18%), PEPE (+16%), INJ (+16%), FART (+15%), EIGEN (+14%), TAO (+13%), RNDR (+12%), HYPER (+12%), PENDLE (+11%), DOGE (+10%), SUI (+10%), STX (+9%)
+- Top trending altcoins from our data: MOG, SEI, USDe, SYRUP, PEPE, INJ, FART, EIGEN, TAO, RNDR, HYPER, PENDLE, DOGE, SUI, STX
 - What narratives are driving these moves?
 - Memecoin sentiment vs DeFi sentiment
 - Layer 1 vs Layer 2 discussions
 - New token launches or airdrops getting attention
+- Cite at least one X meme, thread, or influencer per altcoin if possible
 
 **📈 CRYPTO STOCK SENTIMENT ANALYSIS:**
-- MSTR (MicroStrategy) - Bitcoin accumulation strategy sentiment
-- COIN (Coinbase) - Exchange performance and regulatory sentiment
-- HOOD (Robinhood) - Retail trading sentiment
-- MARA/RIOT - Mining stock sentiment
-- NVDA/TSLA - Tech stock correlation with crypto
+- MSTR (MicroStrategy), COIN (Coinbase), HOOD (Robinhood), MARA, RIOT, NVDA, TSLA
+- What are people saying about these stocks on X?
+- Cite at least one tweet, meme, or opinion per stock if possible
 
 **🎯 MARKET NARRATIVES:**
 - Macro events affecting crypto (Fed policy, inflation, elections)
@@ -997,12 +996,12 @@ export async function POST(request: Request) {
 - Controversial opinions or debates
 - Emerging trends or narratives
 
-Use the get_x_sentiment tool to analyze specific influential tweets. Provide actionable insights and identify key sentiment drivers.`;
+If you have no data for an asset, say so, but always mention at least one X post, meme, or theme per asset if possible. Use the get_x_sentiment tool to analyze specific influential tweets. Provide actionable insights and identify key sentiment drivers.`;
 
         // Try Grok4 for X sentiment analysis with timeout
         
         // Start Grok4 call in background with very aggressive timeout
-        const grok4Timeout = 4000; // 4 second timeout
+        const grok4Timeout = 8000; // 8 second timeout
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         
@@ -1024,6 +1023,7 @@ Use the get_x_sentiment tool to analyze specific influential tweets. Provide act
               setTimeout(() => reject(new Error('Grok4 X sentiment timeout')), grok4Timeout)
             )
           ]);
+          logger.info('Raw Grok4 X sentiment output:', grok4Response);
           
           xSentimentAnalysis = grok4Response.choices?.[0]?.message?.content || '';
           logger.info('Grok4 X sentiment analysis completed successfully');
