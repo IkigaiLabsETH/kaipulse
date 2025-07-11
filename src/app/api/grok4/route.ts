@@ -981,7 +981,7 @@ export async function POST(request: Request) {
               temperature: temperature || 0.7,
               tools: ENHANCED_TOOLS,
               tool_choice: 'auto',
-              max_tokens: 800,
+              max_tokens: 2000,
             }),
             new Promise<never>((_, reject) => 
               setTimeout(() => reject(new Error('Grok4 X sentiment timeout')), grok4Timeout)
@@ -1170,8 +1170,8 @@ async function handleStreamingResponse(
           ],
           temperature: temperature || 0.7,
           ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
-          stream: true,
-          max_tokens: 600,
+                  stream: true,
+        max_tokens: 2000,
         });
         
         const completionStream = await Promise.race([
@@ -1262,7 +1262,7 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
                   const finalCompletion = await Grok4Service.chatCompletion({
                     messages: updatedMessages,
                     temperature: temperature || 0.7,
-                    max_tokens: 600,
+                    max_tokens: 2000,
                   });
                   const finalContent = finalCompletion.choices?.[0]?.message?.content;
                   if (finalContent) {
@@ -1334,7 +1334,7 @@ async function handleNonStreamingResponse(
         ],
         temperature: temperature || 0.7,
         ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
-        max_tokens: 600,
+        max_tokens: 2000,
       }),
       new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('Grok4 API timeout')), 6000)
@@ -1424,7 +1424,7 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
           Grok4Service.chatCompletion({
             messages: updatedMessages,
             temperature: temperature || 0.7,
-            max_tokens: 600,
+            max_tokens: 2000,
           }),
           new Promise<never>((_, reject) =>
             setTimeout(() => reject(new Error('Grok4 API timeout')), 6000)
