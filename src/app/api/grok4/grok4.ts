@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import { env } from "@/env.mjs";
 import { logger } from "@/lib/logger";
 import type { ChatCompletion, ChatCompletionMessageParam, ChatCompletionTool, ChatCompletionToolChoiceOption } from "openai/resources/chat/completions";
+import { TweetAnalyzer } from '@/services/twitter/tweetAnalyzer';
 
 // Initialize OpenAI client for XAI (Grok4)
 const client = new OpenAI({
@@ -302,6 +303,39 @@ export async function enhancedWebSearch(query: string): Promise<string> {
 
   // Fallback to DuckDuckGo for non-crypto queries
   return await duckDuckGoSearch(query);
+}
+
+/**
+ * Fetches and summarizes sentiment/key points from a specific X (Twitter) post.
+ * @param tweetUrl - The URL of the tweet to analyze
+ * @returns A formatted string with key points, title, and tags
+ */
+export async function getXSentiment(tweetUrl: string): Promise<string> {
+  if (!tweetUrl || typeof tweetUrl !== 'string') {
+    return 'Please provide a valid X (Twitter) post URL.';
+  }
+  try {
+    const analysis = await TweetAnalyzer.analyzeTweet(tweetUrl);
+    let result = '';
+    if (analysis.suggestedTitle) {
+      result += `Title: ${analysis.suggestedTitle}\n`;
+    }
+    if (analysis.keyPoints && analysis.keyPoints.length > 0) {
+      result += 'Key Points:\n';
+      for (const point of analysis.keyPoints) {
+        result += `- ${point}\n`;
+      }
+    }
+    if (analysis.suggestedTags && analysis.suggestedTags.length > 0) {
+      result += `Tags: ${analysis.suggestedTags.map(t => `#${t}`).join(' ')}\n`;
+    }
+    return result.trim() || 'No analysis available.';
+  } catch (error) {
+    if (error instanceof Error) {
+      return `Failed to analyze X post: ${error.message}`;
+    }
+    return 'Failed to analyze X post.';
+  }
 }
 
 // Simple DuckDuckGo web search utility (kept for non-crypto queries)

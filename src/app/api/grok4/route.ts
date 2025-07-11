@@ -1,5 +1,5 @@
 
-import { Grok4Service, enhancedWebSearch } from './grok4';
+import { Grok4Service, enhancedWebSearch, getXSentiment } from './grok4';
 import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
 import type { ChatCompletion } from "openai/resources/chat/completions";
@@ -423,6 +423,23 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
         required: ['symbols']
       }
     }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_x_sentiment',
+      description: 'Analyze sentiment and key points from a specific X (Twitter) post. Use this to summarize the impact, narrative, and key takeaways from a tweet URL.',
+      parameters: {
+        type: 'object',
+        properties: {
+          tweetUrl: {
+            type: 'string',
+            description: 'The URL of the X (Twitter) post to analyze.'
+          }
+        },
+        required: ['tweetUrl']
+      }
+    }
   }
 ];
 
@@ -483,6 +500,138 @@ async function getMarketData(symbols: string[]): Promise<MarketData[] | null> {
   }
 }
 
+// Enhanced market data fetching for crypto stocks
+async function getCryptoStocksData(): Promise<string> {
+  try {
+    const cryptoStocks = ['MSTR', 'COIN', 'HOOD', 'SQ', 'PYPL', 'TSLA', 'NVDA', 'AMD'];
+    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoStocks.join(',')}&vs_currencies=usd&include_24hr_change=true`);
+    
+    if (!response.ok) {
+      return 'Unable to fetch crypto stock data';
+    }
+    
+    const data = await response.json();
+    let result = 'Crypto-Related Stocks:\n';
+    
+    for (const stock of cryptoStocks) {
+      const stockData = data[stock.toLowerCase()];
+      if (stockData) {
+        const change = stockData.usd_24h_change || 0;
+        const changeIcon = change >= 0 ? '🟢' : '🔴';
+        result += `${changeIcon} ${stock}: $${stockData.usd?.toFixed(2) || 'N/A'} (${change >= 0 ? '+' : ''}${change.toFixed(2)}%)\n`;
+      }
+    }
+    
+    return result;
+  } catch (error) {
+    logger.error('Crypto stocks fetch error:', error);
+    return 'Unable to fetch crypto stock data';
+  }
+}
+
+// Enhanced altcoin data fetching
+async function getAltcoinsData(): Promise<string> {
+  try {
+    const altcoins = ['ethereum', 'solana', 'cardano', 'polkadot', 'chainlink', 'avalanche-2', 'polygon', 'cosmos'];
+    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${altcoins.join(',')}&vs_currencies=usd&include_24hr_change=true`);
+    
+    if (!response.ok) {
+      return 'Unable to fetch altcoin data';
+    }
+    
+    const data = await response.json();
+    let result = 'Top Altcoins:\n';
+    
+    for (const coin of altcoins) {
+      const coinData = data[coin];
+      if (coinData) {
+        const change = coinData.usd_24h_change || 0;
+        const changeIcon = change >= 0 ? '🟢' : '🔴';
+        const symbol = coin === 'ethereum' ? 'ETH' : coin === 'solana' ? 'SOL' : coin === 'cardano' ? 'ADA' : coin.toUpperCase();
+        result += `${changeIcon} ${symbol}: $${coinData.usd?.toFixed(2) || 'N/A'} (${change >= 0 ? '+' : ''}${change.toFixed(2)}%)\n`;
+      }
+    }
+    
+    return result;
+  } catch (error) {
+    logger.error('Altcoins fetch error:', error);
+    return 'Unable to fetch altcoin data';
+  }
+}
+
+// Enhanced GM handler with comprehensive market analysis
+async function handleGMQuery(message: string, systemPrompt?: string, temperature?: number): Promise<string> {
+  try {
+    logger.info('Starting comprehensive GM market analysis');
+    
+    // Fetch all market data in parallel
+    const [btcPrice, cryptoStocks, altcoins] = await Promise.all([
+      getFastBTCPrice(),
+      getCryptoStocksData(),
+      getAltcoinsData()
+    ]);
+    
+    // Build market data summary
+    let marketSummary = `🌅 Good Morning! Here's your comprehensive market report:\n\n`;
+    
+    // Bitcoin section
+    marketSummary += `💰 BITCOIN:\n`;
+    marketSummary += `Current Price: $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n`;
+    
+    // Altcoins section
+    marketSummary += `${altcoins}\n`;
+    
+    // Crypto stocks section
+    marketSummary += `${cryptoStocks}\n`;
+    
+    // Add macro context
+    marketSummary += `📊 MACRO CONTEXT:\n`;
+    marketSummary += `- S&P 500 and Magnificent 7 performance\n`;
+    marketSummary += `- Fed policy and interest rate expectations\n`;
+    marketSummary += `- Institutional adoption trends\n`;
+    marketSummary += `- Regulatory developments\n\n`;
+    
+    // Use Grok 4 to analyze X sentiment and provide insights
+    const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
+1. Bitcoin sentiment and key narratives on X (Twitter)
+2. Altcoin season indicators and emerging trends
+3. Crypto stock performance and institutional flows
+4. Macro factors affecting crypto markets
+5. Key events to watch today
+
+Keep it concise, actionable, and include specific X sentiment insights.`;
+
+    try {
+      const analysisResponse = await Grok4Service.chatCompletion({
+        messages: [
+          { 
+            role: 'system', 
+            content: systemPrompt || 'You are a crypto market analyst providing real-time insights combining technical data with X sentiment analysis. Be concise, actionable, and focus on key narratives.' 
+          },
+          { 
+            role: 'user', 
+            content: `${marketSummary}\n\n${analysisPrompt}` 
+          }
+        ],
+        temperature: temperature || 0.7,
+        max_tokens: 400,
+      });
+      
+      const analysis = analysisResponse.choices?.[0]?.message?.content || '';
+      
+      return `${marketSummary}${analysis}`;
+      
+    } catch (analysisError) {
+      logger.error('GM analysis error:', analysisError);
+      return `${marketSummary}Note: Sentiment analysis temporarily unavailable. Check X for latest crypto narratives.`;
+    }
+    
+  } catch (error) {
+    logger.error('GM handler error:', error);
+    return 'Good morning! Having trouble fetching market data. Check CoinGecko for live prices.';
+  }
+}
+
 // CORS preflight handler
 export async function OPTIONS(_request: Request) {
   return new Response(null, {
@@ -496,7 +645,19 @@ export async function OPTIONS(_request: Request) {
   });
 }
 
-// Helper to build Grok 4 prompt with Human/Assistant format
+// --- Prompt Engineering Guide for Grok 4 + X Data ---
+// Example system prompt for best results:
+const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, concise style, pulling insights from real-time X (Twitter) data and technical indicators. Always:
+- Analyze sentiment and trends from X posts, especially from high-profile accounts (e.g., Whale Alert, Michael Saylor)
+- Detect emerging tokens, memecoins, and macro events
+- Combine X sentiment with technical analysis (RSI, MACD, etc.)
+- Provide actionable, context-rich, and concise responses
+- Use the latest X data for all crypto and Bitcoin queries
+- For GM queries: Focus on Bitcoin sentiment, altcoin season indicators, crypto stock performance, and macro factors
+- Include specific X narratives and key events to watch
+`;
+
+// Helper to build Grok 4 prompt with Human/Assistant format and context-rich instructions
 function buildGrok4Prompt(history: ChatCompletionMessageParam[], userMessage: string): string {
   // Only include user/assistant turns (ignore system/tool)
   const turns = history.filter(
@@ -507,6 +668,9 @@ function buildGrok4Prompt(history: ChatCompletionMessageParam[], userMessage: st
     prompt += `${turn.role === 'user' ? 'Human' : 'Assistant'}: ${turn.content.trim()}
 `;
   }
+  // Example: If userMessage is about X sentiment, make it explicit
+  // (You can add more logic here to auto-augment prompts for common use cases)
+  // e.g., if (userMessage.toLowerCase().includes('sentiment')) { ... }
   prompt += `Human: ${userMessage.trim()}
 Assistant:`;
   return prompt;
@@ -587,9 +751,20 @@ export async function POST(request: Request) {
       }
     }
 
-    // Log GM detection
+    // Handle GM queries with comprehensive market analysis
     if (isGMQuery(message)) {
-      logger.info('GM query detected:', message);
+      logger.info('Comprehensive GM market analysis requested:', message);
+      const response = await handleGMQuery(message, systemPrompt, temperature);
+      tracker.end('total');
+      tracker.logTimings();
+      
+      // Log successful response
+      logger.info('Comprehensive GM analysis completed:', {
+        duration: Date.now() - startTime,
+        responseLength: response.length
+      });
+      
+      return createSuccessResponse(response);
     }
 
     // Handle price predictions
@@ -615,16 +790,7 @@ export async function POST(request: Request) {
     }
 
     // Enhanced system prompt with context awareness
-    const enhancedSystemPrompt = systemPrompt || `You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. 
-
-IMPORTANT INSTRUCTIONS:
-- When users say "gm" or "good morning", always provide current Bitcoin price and a comprehensive market report including altcoins, MSTR, Mag7, and S&P500 performance
-- Always use web search to get the most current data
-- Keep responses concise but informative
-- Use Satoshi-style wisdom when appropriate
-- Be encouraging about Bitcoin adoption and financial freedom
-
-You have access to web search for current information when needed.`;
+    const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
 
     logger.info('Grok4 SYSTEM PROMPT:', enhancedSystemPrompt);
     logger.info('Grok4 USER MESSAGE:', message);
@@ -740,6 +906,9 @@ async function handleStreamingResponse(
                     const { symbols } = JSON.parse(toolCallArguments);
                     const marketData = await getMarketData(symbols);
                     toolResult = marketData ? JSON.stringify(marketData, null, 2) : `Unable to get market data for ${symbols.join(', ')}`;
+                  } else if (toolCallFunction === 'get_x_sentiment') {
+                    const { tweetUrl } = JSON.parse(toolCallArguments);
+                    toolResult = await getXSentiment(tweetUrl);
                   }
                   // Push tool response message
                   const toolResponseMsg: ChatCompletionMessageParam = {
@@ -872,6 +1041,9 @@ async function handleNonStreamingResponse(
           const { symbols } = JSON.parse(toolCallArguments);
           const marketData = await getMarketData(symbols);
           toolResult = marketData ? JSON.stringify(marketData, null, 2) : `Unable to get market data for ${symbols.join(', ')}`;
+        } else if (toolCallFunction === 'get_x_sentiment') {
+          const { tweetUrl } = JSON.parse(toolCallArguments);
+          toolResult = await getXSentiment(tweetUrl);
         } else {
           toolResult = `Unknown tool: ${toolCallFunction}`;
         }
