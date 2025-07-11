@@ -947,8 +947,32 @@ export async function POST(request: Request) {
         
         logger.info('Market data fetched in', Date.now() - fetchStart, 'ms');
         
-        // Build market summary for Grok4 context
-        let marketSummary = `🌅 **GOOD MORNING CRYPTO MARKETS**\n\n`;
+        // Generate dynamic GM greeting
+        const gmGreetings = [
+          "🌅 **GOOD MORNING CRYPTO MARKETS**",
+          "🌞 **RISE AND GRIND, DEGENS**",
+          "🚀 **WAKE UP, IT'S MOON TIME**",
+          "⚡ **MORNING VOLTAGE: CRYPTO MARKETS LIVE**",
+          "🔥 **GOOD MORNING, BULLS**",
+          "💎 **DIAMOND HANDS MORNING REPORT**",
+          "🌊 **TIDAL WAVES OF CRYPTO MARKETS**",
+          "⚔️ **BATTLE STATIONS: MARKET UPDATE**",
+          "🎯 **PRECISION STRIKE: CRYPTO MORNING**",
+          "🌪️ **WHIRLWIND OF OPPORTUNITY**",
+          "🏆 **CHAMPIONS OF CRYPTO MARKETS**",
+          "🎪 **CIRCUS MAXIMUS: CRYPTO EDITION**",
+          "⚡ **LIGHTNING ROUND: MARKET PULSE**",
+          "🌋 **VOLCANIC CRYPTO MORNING**",
+          "🎭 **THEATER OF CRYPTO MARKETS**",
+          "🦅 **EAGLE EYE: MARKET OVERVIEW**",
+          "🎪 **CARNIVAL OF CRYPTO MARKETS**",
+          "⚡ **ENERGY SURGE: CRYPTO MORNING**",
+          "🌊 **TSUNAMI OF CRYPTO MARKETS**",
+          "🎯 **BULLSEYE: MARKET FOCUS**"
+        ];
+        
+        const randomGreeting = gmGreetings[Math.floor(Math.random() * gmGreetings.length)];
+        let marketSummary = `${randomGreeting}\n\n`;
         
         // Bitcoin section
         marketSummary += `**💰 BITCOIN**\n`;
