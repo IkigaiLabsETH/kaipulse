@@ -950,8 +950,7 @@ export async function POST(request: Request) {
         // Bitcoin section
         marketSummary += `**💰 BITCOIN**\n`;
         marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
-        marketSummary += `- **Network:** Hash rate, difficulty, block height\n`;
-        marketSummary += `- **Mempool:** Transaction volume and fees\n\n`;
+        marketSummary += `\n`;
         
         // Altcoins section
         marketSummary += `**🪙 TOP ALTCOINS (24h Change)**\n`;
