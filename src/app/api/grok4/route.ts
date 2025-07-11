@@ -866,7 +866,7 @@ Use the get_x_sentiment tool if you have specific tweet URLs to analyze. Keep it
         return new Response(
           new ReadableStream({
             start(controller) {
-              controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({ content: marketDataResponse })}\n\n`));
+              controller.enqueue(new TextEncoder().encode(`data: ${marketDataResponse}\n\n`));
               controller.close();
             }
           }),
