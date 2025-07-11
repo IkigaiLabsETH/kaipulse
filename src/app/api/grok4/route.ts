@@ -3,8 +3,7 @@ import { Grok4Service, enhancedWebSearch } from './grok4';
 import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
 import type { ChatCompletion } from "openai/resources/chat/completions";
-import fs from 'fs';
-import path from 'path';
+
 import { performance } from 'perf_hooks';
 
 // Type for tool response message
@@ -15,62 +14,7 @@ type ToolMessage = {
 };
 
 // Knowledge base functions with caching
-async function loadKnowledgeFiles(): Promise<string[]> {
-  // Return cached chunks if recent
-  const now = Date.now();
-  if (cachedKnowledgeChunks && (now - lastCacheTime) < CACHE_DURATION) {
-    return cachedKnowledgeChunks;
-  }
-  
-  const knowledgeDir = path.join(process.cwd(), 'knowledge');
-  const chunks: string[] = [];
-  
-  try {
-    const files = fs.readdirSync(knowledgeDir, { recursive: true });
-    
-    for (const file of files) {
-      if (typeof file === 'string' && file.endsWith('.md')) {
-        const filePath = path.join(knowledgeDir, file);
-        const content = fs.readFileSync(filePath, 'utf-8');
-        
-        // Split content into chunks (by headers or paragraphs)
-        const sections = content.split(/(?=^#)/m); // Split by markdown headers
-        for (const section of sections) {
-          if (section.trim()) {
-            chunks.push(section.trim());
-          }
-        }
-      }
-    }
-    
-    // Cache the results
-    cachedKnowledgeChunks = chunks;
-    lastCacheTime = now;
-  } catch (error) {
-    logger.error('Error loading knowledge files:', error);
-  }
-  
-  return chunks;
-}
 
-async function findRelevantKnowledge(query: string, chunks: string[]): Promise<string[]> {
-  // Improved: Return top 2 most relevant chunks, but limit each to 400 chars
-  const queryWords = query.toLowerCase().split(/\W+/).filter(w => w.length > 2);
-  const scoredChunks = chunks.map(chunk => {
-    const chunkLower = chunk.toLowerCase();
-    let score = 0;
-    for (const word of queryWords) {
-      if (chunkLower.includes(word)) score++;
-    }
-    return { chunk, score };
-  }).filter(item => item.score > 0);
-  
-  // Sort by score and take top 2, truncate each
-  return scoredChunks
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 2)
-    .map(item => item.chunk.slice(0, 400));
-}
 
 // Check if query needs web search
 function needsWebSearch(query: string): boolean {
@@ -87,10 +31,7 @@ function needsWebSearch(query: string): boolean {
 let cachedBTCPrice: { price: number, timestamp: number } | null = null;
 const BTC_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
 
-// Add cache for knowledge chunks with better error handling
-let cachedKnowledgeChunks: string[] | null = null;
-let lastCacheTime = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 
 async function getFastBTCPrice(): Promise<number | null> {
   const now = Date.now();
@@ -266,58 +207,8 @@ export async function POST(request: Request) {
       );
     }
 
-    stepStart('knowledge_load');
-    let knowledgeChunks: string[] = [];
-    try {
-      knowledgeChunks = await Promise.race([
-        loadKnowledgeFiles(),
-        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Knowledge base load timeout')), 5000))
-      ]);
-      stepEnd('knowledge_load');
-    } catch (kbError) {
-      stepEnd('knowledge_load');
-      stepEnd('total');
-      logger.error('Knowledge base load error:', kbError);
-      logger.info('Step timings (ms):', stepTimings);
-      return new Response(
-        'Sorry, the knowledge base is currently unavailable. Please try again later.',
-        { 
-          status: 504,
-          headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-        }
-      );
-    }
-    stepStart('find_relevant_knowledge');
-    let relevantKnowledge: string[] = [];
-    try {
-      relevantKnowledge = await findRelevantKnowledge(message, knowledgeChunks);
-      stepEnd('find_relevant_knowledge');
-    } catch (relError) {
-      stepEnd('find_relevant_knowledge');
-      stepEnd('total');
-      logger.error('Relevant knowledge search error:', relError);
-      logger.info('Step timings (ms):', stepTimings);
-      return new Response(
-        'Sorry, there was an error searching the knowledge base.',
-        { 
-          status: 500,
-          headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-        }
-      );
-    }
-    
-    // Build enhanced system prompt with improved knowledge injection
-    let enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto.';
-    
-    if (relevantKnowledge.length > 0) {
-      enhancedSystemPrompt += '\n\nYou have access to the following knowledge base information:\n';
-      relevantKnowledge.forEach((chunk, index) => {
-        enhancedSystemPrompt += `[Knowledge ${index + 1}]:\n${chunk}\n\n`;
-      });
-      enhancedSystemPrompt += 'IMPORTANT: If you cannot answer from the above knowledge, say so explicitly. Do not leave your response blank.';
-    } else {
-      enhancedSystemPrompt += '\n\nIMPORTANT: No relevant knowledge base entries were found for this query. If you do not know the answer, say "I don\'t have information about that in my knowledge base." Do not leave your response blank.';
-    }
+    // Simplified approach: Use a focused system prompt without complex knowledge base
+    const enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. You have access to web search for current information when needed.';
 
     // Log the full prompt and user message for debugging
     logger.info('Grok4 SYSTEM PROMPT:', enhancedSystemPrompt);
@@ -502,10 +393,8 @@ export async function POST(request: Request) {
       // Provide context-aware fallback message based on the query
       if (message.toLowerCase().includes('price') || message.toLowerCase().includes('btc') || message.toLowerCase().includes('bitcoin')) {
         content = 'I\'m having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"';
-      } else if (relevantKnowledge.length > 0) {
-        content = 'I found some relevant information in my knowledge base, but I couldn\'t generate a proper response. Please try rephrasing your question.';
       } else {
-        content = 'I don\'t have information about that in my knowledge base. Please try asking something else or rephrasing your question.';
+        content = 'I couldn\'t generate a proper response. Please try rephrasing your question.';
       }
     }
     stepEnd('total');
