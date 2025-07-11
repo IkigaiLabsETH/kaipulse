@@ -852,14 +852,43 @@ Keep it concise, actionable, and include specific X sentiment insights. Focus on
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         const grok4Prompt = `${marketSummary}\n\n${analysisPrompt}`;
-        tracker.end('total');
-        tracker.logTimings();
-        // Log successful response
-        logger.info('Comprehensive GM analysis completed:', {
-          duration: Date.now() - startTime,
-          responseLength: 'streaming'
-        });
-        return await handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
+        
+        // Add timeout wrapper for Grok4 call
+        const grok4Timeout = 8000; // 8 second timeout for Grok4
+        const grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
+        
+        try {
+          const response = await Promise.race([
+            grok4Promise,
+            new Promise<Response>((_, reject) => 
+              setTimeout(() => reject(new Error('Grok4 timeout')), grok4Timeout)
+            )
+          ]);
+          
+          tracker.end('total');
+          tracker.logTimings();
+          
+          logger.info('Comprehensive GM analysis completed:', {
+            duration: Date.now() - startTime,
+            responseLength: 'streaming'
+          });
+          
+          return response;
+        } catch (error) {
+          logger.error('Grok4 timeout or error in GM handler:', error);
+          // Return a fallback response with just the market data
+          tracker.end('total');
+          tracker.logTimings();
+          
+          const fallbackResponse = `${marketSummary}\n\n**🤖 AI Analysis Temporarily Unavailable**\n\nBased on the market data above:\n- Bitcoin is currently at $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n- Check the altcoin and stock data for current trends\n- Monitor X (Twitter) for real-time sentiment\n- Key events to watch: Fed meetings, institutional flows, regulatory news\n\n*Note: AI analysis is temporarily unavailable. Please check CoinGecko and X for live updates.*`;
+          
+          logger.info('GM fallback response sent:', {
+            duration: Date.now() - startTime,
+            responseLength: fallbackResponse.length
+          });
+          
+          return createSuccessResponse(fallbackResponse);
+        }
       } catch (error) {
         logger.error('GM handler error:', error);
         return createErrorResponse('Good morning! Having trouble fetching market data. Check CoinGecko for live prices.');
@@ -953,7 +982,10 @@ async function handleStreamingResponse(
   try {
     tracker.start('streaming');
         const OpenAI = (await import('openai')).default;
-        const completionStream = await new OpenAI({
+        
+        // Add timeout to Grok4 API call
+        const grok4Timeout = 10000; // 10 second timeout
+        const grok4Promise = new OpenAI({
           apiKey: process.env.XAI_API_KEY,
           baseURL: 'https://api.x.ai/v1',
         }).chat.completions.create({
@@ -967,6 +999,13 @@ async function handleStreamingResponse(
           stream: true,
           max_tokens: 800,
         });
+        
+        const completionStream = await Promise.race([
+          grok4Promise,
+          new Promise<never>((_, reject) => 
+            setTimeout(() => reject(new Error('Grok4 API timeout')), grok4Timeout)
+          )
+        ]);
 
         const encoder = new TextEncoder();
         const streamResponse = new ReadableStream({
