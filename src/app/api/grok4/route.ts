@@ -839,62 +839,45 @@ export async function POST(request: Request) {
 
 Use the get_x_sentiment tool if you have specific tweet URLs to analyze. Keep it concise and actionable.`;
 
-        // Use Grok4 for X sentiment analysis with market context
+        // Return market data immediately, then try Grok4 for X sentiment as bonus
+        const marketDataResponse = `${marketSummary}\n\n**🤖 X SENTIMENT ANALYSIS**\n\n*Loading X sentiment analysis...*`;
+        
+        // Start Grok4 call in background with very aggressive timeout
+        const _grok4Timeout = 3000; // 3 second timeout (very aggressive)
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         
-        // Add timeout wrapper for Grok4 call
-        const grok4Timeout = 5000; // 5 second timeout for Grok4
-        const grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, xSentimentPrompt);
+        // Try Grok4 in background with very short timeout
+        const _grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, xSentimentPrompt)
+          .catch(error => {
+            logger.warn('Grok4 failed for GM query:', error);
+            return null; // Return null if Grok4 fails
+          });
         
-        try {
-          const response = await Promise.race([
-            grok4Promise,
-            new Promise<Response>((_, reject) => 
-              setTimeout(() => reject(new Error('Grok4 timeout - using market data fallback')), grok4Timeout)
-            )
-          ]);
-          
-          tracker.end('total');
-          tracker.logTimings();
-          
-          logger.info('GM market data + X sentiment analysis completed:', {
-            duration: Date.now() - startTime,
-            responseLength: 'streaming'
-          });
-          
-          return response;
-        } catch (grok4Error) {
-          // Fallback with market data if Grok4 times out
-          logger.warn('Grok4 timeout, using market data fallback:', grok4Error);
-          
-          const fallbackResponse = `${marketSummary}\n\n**🤖 X Sentiment Analysis**\n\n*Note: X sentiment analysis temporarily unavailable. Check X (Twitter) directly for real-time crypto sentiment and breaking news.*\n\n**Quick Market Check:**\n- Monitor Bitcoin sentiment on X\n- Track trending altcoin narratives\n- Watch crypto stock sentiment (MSTR, COIN, HOOD)\n- Stay alert for breaking news and events`;
-          
-          tracker.end('total');
-          tracker.logTimings();
-          
-          logger.info('GM analysis completed with market data fallback:', {
-            duration: Date.now() - startTime,
-            responseLength: fallbackResponse.length
-          });
-          
-          // Return streaming response with market data fallback
-          return new Response(
-            new ReadableStream({
-              start(controller) {
-                controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({ content: fallbackResponse })}\n\n`));
-                controller.close();
-              }
-            }),
-            {
-              headers: {
-                'Content-Type': 'text/plain; charset=utf-8',
-                'Cache-Control': 'no-cache',
-                'Connection': 'keep-alive',
-              },
+        // Return market data immediately
+        tracker.end('total');
+        tracker.logTimings();
+        
+        logger.info('GM market data response completed:', {
+          duration: Date.now() - startTime,
+          responseLength: marketDataResponse.length
+        });
+        
+        return new Response(
+          new ReadableStream({
+            start(controller) {
+              controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({ content: marketDataResponse })}\n\n`));
+              controller.close();
             }
-          );
-        }
+          }),
+          {
+            headers: {
+              'Content-Type': 'text/plain; charset=utf-8',
+              'Cache-Control': 'no-cache',
+              'Connection': 'keep-alive',
+            },
+          }
+        );
       } catch (error) {
         logger.error('GM handler error:', error);
         return createErrorResponse('Good morning! Having trouble fetching market data. Check CoinGecko for live prices.');
