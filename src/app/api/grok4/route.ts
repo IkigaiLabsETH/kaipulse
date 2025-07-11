@@ -831,7 +831,7 @@ export async function POST(request: Request) {
         marketSummary += `- Institutional adoption trends\n`;
         marketSummary += `- Regulatory developments\n`;
         marketSummary += `\n---\n\n`;
-        // Enhanced analysis prompt
+        // Enhanced analysis prompt for X sentiment analysis
         const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
 1. Bitcoin sentiment and key narratives on X (Twitter) - use the get_x_sentiment tool if available
 2. Altcoin season indicators and emerging trends
@@ -840,46 +840,63 @@ export async function POST(request: Request) {
 5. Key events to watch today
 
 Keep it concise, actionable, and include specific X sentiment insights. Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.`;
-        // Use streaming response for GM queries to match frontend expectations
+
+        // Use Grok4 for X sentiment analysis with optimized timeout
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         const grok4Prompt = `${marketSummary}\n\n${analysisPrompt}`;
         
-        // Add timeout wrapper for Grok4 call
-        const grok4Timeout = 8000; // 8 second timeout for Grok4
+        // Add aggressive timeout wrapper for Grok4 call
+        const grok4Timeout = 5000; // 5 second timeout for Grok4
         const grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
         
         try {
           const response = await Promise.race([
             grok4Promise,
             new Promise<Response>((_, reject) => 
-              setTimeout(() => reject(new Error('Grok4 timeout')), grok4Timeout)
+              setTimeout(() => reject(new Error('Grok4 timeout - using fallback')), grok4Timeout)
             )
           ]);
           
           tracker.end('total');
           tracker.logTimings();
           
-          logger.info('Comprehensive GM analysis completed:', {
+          logger.info('GM analysis completed with Grok4 X sentiment:', {
             duration: Date.now() - startTime,
             responseLength: 'streaming'
           });
           
           return response;
-        } catch (error) {
-          logger.error('Grok4 timeout or error in GM handler:', error);
-          // Return a fallback response with just the market data
+        } catch (grok4Error) {
+          // Fallback to formatted data if Grok4 times out
+          logger.warn('Grok4 timeout, using fallback response:', grok4Error);
+          
+          const fallbackResponse = `${marketSummary}\n\n**🤖 AI Market Analysis**\n\n*Note: X sentiment analysis temporarily unavailable. Market data above is real-time and accurate.*\n\n**Key Insights:**\n- Monitor Bitcoin's price action around key support/resistance levels\n- Track altcoin momentum for potential rotation opportunities\n- Stay informed on macro developments affecting crypto markets\n- Consider portfolio diversification across different asset classes\n\n**Market Sentiment:**\n- Check X (Twitter) for real-time crypto sentiment and breaking news\n- Monitor institutional flows and regulatory developments\n- Watch for key events: Fed meetings, ETF flows, halving cycles`;
+          
           tracker.end('total');
           tracker.logTimings();
           
-          const fallbackResponse = `${marketSummary}\n\n**🤖 AI Analysis Temporarily Unavailable**\n\nBased on the market data above:\n- Bitcoin is currently at $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n- Check the altcoin and stock data for current trends\n- Monitor X (Twitter) for real-time sentiment\n- Key events to watch: Fed meetings, institutional flows, regulatory news\n\n*Note: AI analysis is temporarily unavailable. Please check CoinGecko and X for live updates.*`;
-          
-          logger.info('GM fallback response sent:', {
+          logger.info('GM analysis completed with fallback:', {
             duration: Date.now() - startTime,
             responseLength: fallbackResponse.length
           });
           
-          return createSuccessResponse(fallbackResponse);
+          // Return streaming response with fallback data
+          return new Response(
+            new ReadableStream({
+              start(controller) {
+                controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({ content: fallbackResponse })}\n\n`));
+                controller.close();
+              }
+            }),
+            {
+              headers: {
+                'Content-Type': 'text/plain; charset=utf-8',
+                'Cache-Control': 'no-cache',
+                'Connection': 'keep-alive',
+              },
+            }
+          );
         }
       } catch (error) {
         logger.error('GM handler error:', error);
@@ -976,7 +993,7 @@ async function handleStreamingResponse(
         const OpenAI = (await import('openai')).default;
         
         // Add timeout to Grok4 API call
-        const grok4Timeout = 6000; // 6 second timeout (reduced from 10s)
+        const grok4Timeout = 5000; // 5 second timeout (reduced from 6s)
         const grok4Promise = new OpenAI({
           apiKey: process.env.XAI_API_KEY,
           baseURL: 'https://api.x.ai/v1',
@@ -989,7 +1006,7 @@ async function handleStreamingResponse(
           temperature: temperature || 0.7,
           ...(tools.length > 0 && { tools, tool_choice: 'auto' }),
           stream: true,
-          max_tokens: 800,
+          max_tokens: 600,
         });
         
         const completionStream = await Promise.race([
