@@ -473,213 +473,71 @@ function addToConversationHistory(clientId: string, message: ChatCompletionMessa
 // Enhanced altcoins data fetching
 async function getAltcoinsData(): Promise<string> {
   try {
-    // Updated based on frontend components analysis - exact altcoins from UI
     const altcoins = [
-      // From AltCoins.tsx - BTC outperformers and default tickers
       'bitcoin', 'ethereum', 'solana', 'sui', 'aave', 'blockstack', 'dogecoin', 'fartcoin',
-      // From AltCoinsBeta.tsx - DeFi and emerging tokens
       'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer',
-      // Additional major altcoins from crypto-prices API
       'chainlink', 'avalanche-2',
-      // From crypto page AltcoinInfoCard components
       'hyperliquid', 'render-token', 'kaia', 'injective-protocol', 'sei-network', 'spx6900', 
       'dogwifcoin', 'rekt-4', 'mog-coin', 'pepe',
-      // Emerging tokens and meme coins
       'berachain-bera', 'infrafred-bgt', 'bittensor', 'railgun', 'ondo-finance', 'ethena'
     ];
-
     const idsParam = altcoins.join(',');
     const response = await fetch(
       `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
     );
-
     if (!response.ok) {
-      return 'Unable to fetch altcoins data';
+      return '_Unable to fetch altcoins data_';
     }
-
     const data: Record<string, CoinGeckoCoin> = await response.json();
-    let result = 'Top Altcoins (24h):\\n';
-
-    // Sort by 24h change for most interesting performance
+    // Sort by 24h change (descending)
     const sortedAltcoins = Object.entries(data)
       .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
-      .sort(([, a], [, b]) => Math.abs((a.usd_24h_change as number)) - Math.abs((b.usd_24h_change as number)))
-      .slice(0, 15); // Top 15 by absolute change
-
+      .sort(([, a], [, b]) => (b.usd_24h_change as number) - (a.usd_24h_change as number))
+      .slice(0, 15);
+    const symbolMap: { [key: string]: string } = {
+      'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI', 'aave': 'AAVE',
+      'blockstack': 'STX', 'dogecoin': 'DOGE', 'fartcoin': 'FART', 'maker': 'MKR',
+      'uniswap': 'UNI', 'pendle': 'PENDLE', 'liquity': 'LQTY', 'syrup': 'SYRUP',
+      'eigenlayer': 'EIGEN', 'chainlink': 'LINK', 'avalanche-2': 'AVAX', 'hyperliquid': 'HYPER',
+      'render-token': 'RNDR', 'kaia': 'KAIA', 'injective-protocol': 'INJ', 'sei-network': 'SEI',
+      'spx6900': 'SPX6900', 'dogwifcoin': 'WIF', 'rekt-4': 'REKT', 'mog-coin': 'MOG',
+      'pepe': 'PEPE', 'berachain-bera': 'BERA', 'infrafred-bgt': 'INFRARED', 'bittensor': 'TAO',
+      'railgun': 'RAIL', 'ondo-finance': 'ONDO', 'ethena': 'USDe'
+    };
+    let table = '| Symbol | 24h Change |\n|--------|------------|\n';
     sortedAltcoins.forEach(([id, coinData]) => {
       const change = coinData.usd_24h_change as number;
       const emoji = change >= 0 ? '🟢' : '🔴';
-      // Map CoinGecko IDs to readable symbols
-      const symbolMap: { [key: string]: string } = {
-        'bitcoin': 'BTC',
-        'ethereum': 'ETH',
-        'solana': 'SOL',
-        'sui': 'SUI',
-        'aave': 'AAVE',
-        'blockstack': 'STX',
-        'dogecoin': 'DOGE',
-        'fartcoin': 'FART',
-        'maker': 'MKR',
-        'uniswap': 'UNI',
-        'pendle': 'PENDLE',
-        'liquity': 'LQTY',
-        'syrup': 'SYRUP',
-        'eigenlayer': 'EIGEN',
-        'chainlink': 'LINK',
-        'avalanche-2': 'AVAX',
-        'hyperliquid': 'HYPER',
-        'render-token': 'RNDR',
-        'kaia': 'KAIA',
-        'injective-protocol': 'INJ',
-        'sei-network': 'SEI',
-        'spx6900': 'SPX6900',
-        'dogwifcoin': 'WIF',
-        'rekt-4': 'REKT',
-        'mog-coin': 'MOG',
-        'pepe': 'PEPE',
-        'berachain-bera': 'BERA',
-        'infrafred-bgt': 'INFRARED',
-        'bittensor': 'TAO',
-        'railgun': 'RAIL',
-        'ondo-finance': 'ONDO',
-        'ethena': 'USDe'
-      };
       const symbol = symbolMap[id] || id.toUpperCase();
-      result += `${emoji} ${symbol}: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%\\n`;
+      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}% |\n`;
     });
-
-    return result;
+    return `**🪙 Top Altcoins (24h):**\n${table}`;
   } catch {
-    return 'Unable to fetch altcoins data';
+    return '_Unable to fetch altcoins data_';
   }
 }
 
-// Enhanced market data fetching for crypto stocks
+// If getCryptoStocksData lists stocks, format as a markdown table. Otherwise, format as a markdown section.
 async function getCryptoStocksData(): Promise<string> {
-  try {
-    // Updated based on frontend components analysis - exact altcoins from UI
-    const altcoins = [
-      // From AltCoins.tsx - BTC outperformers and default tickers
-      'bitcoin', 'ethereum', 'solana', 'sui', 'aave', 'blockstack', 'dogecoin', 'fartcoin',
-      // From AltCoinsBeta.tsx - DeFi and emerging tokens
-      'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer',
-      // Additional major altcoins from crypto-prices API
-      'chainlink', 'avalanche-2',
-      // From crypto page AltcoinInfoCard components
-      'hyperliquid', 'render-token', 'kaia', 'injective-protocol', 'sei-network', 'spx6900', 
-      'dogwifcoin', 'rekt-4', 'mog-coin', 'pepe',
-      // Emerging tokens and meme coins
-      'berachain-bera', 'infrafred-bgt', 'bittensor', 'railgun', 'ondo-finance', 'ethena'
-    ];
-
-    const idsParam = altcoins.join(',');
-    const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
-    );
-
-    if (!response.ok) {
-      return 'Unable to fetch altcoins data';
-    }
-
-    const data: Record<string, CoinGeckoCoin> = await response.json();
-    let result = 'Top Altcoins (24h):\\n';
-
-    // Sort by 24h change for most interesting performance
-    const sortedAltcoins = Object.entries(data)
-      .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
-      .sort(([, a], [, b]) => Math.abs((a.usd_24h_change as number)) - Math.abs((b.usd_24h_change as number)))
-      .slice(0, 15); // Top 15 by absolute change
-
-    sortedAltcoins.forEach(([id, coinData]) => {
-      const change = coinData.usd_24h_change as number;
-      const emoji = change >= 0 ? '🟢' : '🔴';
-      // Map CoinGecko IDs to readable symbols
-      const symbolMap: { [key: string]: string } = {
-        'bitcoin': 'BTC',
-        'ethereum': 'ETH',
-        'solana': 'SOL',
-        'sui': 'SUI',
-        'aave': 'AAVE',
-        'blockstack': 'STX',
-        'dogecoin': 'DOGE',
-        'fartcoin': 'FART',
-        'maker': 'MKR',
-        'uniswap': 'UNI',
-        'pendle': 'PENDLE',
-        'liquity': 'LQTY',
-        'syrup': 'SYRUP',
-        'eigenlayer': 'EIGEN',
-        'chainlink': 'LINK',
-        'avalanche-2': 'AVAX',
-        'hyperliquid': 'HYPER',
-        'render-token': 'RNDR',
-        'kaia': 'KAIA',
-        'injective-protocol': 'INJ',
-        'sei-network': 'SEI',
-        'spx6900': 'SPX6900',
-        'dogwifcoin': 'WIF',
-        'rekt-4': 'REKT',
-        'mog-coin': 'MOG',
-        'pepe': 'PEPE',
-        'berachain-bera': 'BERA',
-        'infrafred-bgt': 'INFRARED',
-        'bittensor': 'TAO',
-        'railgun': 'RAIL',
-        'ondo-finance': 'ONDO',
-        'ethena': 'USDe'
-      };
-      const symbol = symbolMap[id] || id.toUpperCase();
-      result += `${emoji} ${symbol}: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%\\n`;
-    });
-
-    return result;
-  } catch {
-    return 'Unable to fetch altcoins data';
-  }
+  // Placeholder: Replace with actual stock fetching logic if needed
+  // For now, just return a markdown section header
+  return '**📈 Crypto Stocks:**\n_Market data coming soon..._';
 }
 
-// Enhanced GM handler with comprehensive market analysis
 async function handleGMQuery(message: string, systemPrompt?: string, temperature?: number): Promise<string> {
   try {
     logger.info('Starting comprehensive GM market analysis');
-    
-    // Fetch all market data in parallel
     const [btcPrice, cryptoStocks, altcoins] = await Promise.all([
       getFastBTCPrice(),
       getCryptoStocksData(),
       getAltcoinsData()
     ]);
-    
-    // Build market data summary
-    let marketSummary = `🌅 Good Morning! Here's your comprehensive market report:\n\n`;
-    
-    // Bitcoin section
-    marketSummary += `💰 BITCOIN:\n`;
-    marketSummary += `Current Price: $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n`;
-    
-    // Altcoins section
-    marketSummary += `${altcoins}\n`;
-    
-    // Crypto stocks section
-    marketSummary += `${cryptoStocks}\n`;
-    
-    // Add macro context
-    marketSummary += `📊 MACRO CONTEXT:\n`;
-    marketSummary += `- S&P 500 and Magnificent 7 performance\n`;
-    marketSummary += `- Fed policy and interest rate expectations\n`;
-    marketSummary += `- Institutional adoption trends\n`;
-    marketSummary += `- Regulatory developments\n\n`;
-    
-    // Use Grok 4 to analyze X sentiment and provide insights
-    const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
-1. Bitcoin sentiment and key narratives on X (Twitter)
-2. Altcoin season indicators and emerging trends
-3. Crypto stock performance and institutional flows
-4. Macro factors affecting crypto markets
-5. Key events to watch today
-
-Keep it concise, actionable, and include specific X sentiment insights.`;
-
+    let marketSummary = `🌅 **Good Morning! Here’s your comprehensive market report:**\n\n---\n\n`;
+    marketSummary += `**💰 BITCOIN**\n- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n---\n\n`;
+    marketSummary += `${altcoins}\n\n---\n\n`;
+    marketSummary += `${cryptoStocks}\n\n---\n\n`;
+    marketSummary += `**📊 Macro Context**\n- S&P 500 and Magnificent 7 performance\n- Fed policy and interest rate expectations\n- Institutional adoption trends\n- Regulatory developments\n\n---\n\n`;
+    const analysisPrompt = `Based on the current market data above, provide a concise analysis of:\n1. Bitcoin sentiment and key narratives on X (Twitter)\n2. Altcoin season indicators and emerging trends\n3. Crypto stock performance and institutional flows\n4. Macro factors affecting crypto markets\n5. Key events to watch today\n\nKeep it concise, actionable, and include specific X sentiment insights.`;
     try {
       const analysisResponse = await Grok4Service.chatCompletion({
         messages: [
@@ -695,16 +553,12 @@ Keep it concise, actionable, and include specific X sentiment insights.`;
         temperature: temperature || 0.7,
         max_tokens: 400,
       });
-      
       const analysis = analysisResponse.choices?.[0]?.message?.content || '';
-      
       return `${marketSummary}${analysis}`;
-      
     } catch (analysisError) {
       logger.error('GM analysis error:', analysisError);
-      return `${marketSummary}Note: Sentiment analysis temporarily unavailable. Check X for latest crypto narratives.`;
+      return `${marketSummary}_Note: Sentiment analysis temporarily unavailable. Check X for latest crypto narratives._`;
     }
-    
   } catch (error) {
     logger.error('GM handler error:', error);
     return 'Good morning! Having trouble fetching market data. Check CoinGecko for live prices.';
