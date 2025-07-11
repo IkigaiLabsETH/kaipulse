@@ -503,60 +503,86 @@ async function getMarketData(symbols: string[]): Promise<MarketData[] | null> {
 // Enhanced market data fetching for crypto stocks
 async function getCryptoStocksData(): Promise<string> {
   try {
-    const cryptoStocks = ['MSTR', 'COIN', 'HOOD', 'SQ', 'PYPL', 'TSLA', 'NVDA', 'AMD'];
-    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoStocks.join(',')}&vs_currencies=usd&include_24hr_change=true`);
+    // Updated based on codebase analysis - most tracked crypto stocks
+    const cryptoStocks = [
+      'MSTR', 'COIN', 'HOOD', 'CRCL', 'MARA', 'RIOT', 'PYPL', 'SQ', 
+      'NVDA', 'TSLA', 'MSTY', 'STRF', 'STRK', 'BMNR', 'SBET', 'SQNS', 'MBAV'
+    ];
     
-    if (!response.ok) {
+    // Use Alpha Vantage for stock data since we have it configured
+    const stockPromises = cryptoStocks.map(async (symbol) => {
+      try {
+        const response = await fetch(`/api/market-data?ticker=${symbol}`);
+        if (!response.ok) return null;
+        const data = await response.json();
+        return { symbol, price: data.spotPrice };
+      } catch {
+        return null;
+      }
+    });
+
+    const stockResults = await Promise.all(stockPromises);
+    const validStocks = stockResults.filter(Boolean);
+
+    if (validStocks.length === 0) {
       return 'Unable to fetch crypto stock data';
     }
+
+    let result = 'Crypto-Related Stocks:\\n';
     
-    const data = await response.json();
-    let result = 'Crypto-Related Stocks:\n';
-    
-    for (const stock of cryptoStocks) {
-      const stockData = data[stock.toLowerCase()];
-      if (stockData) {
-        const change = stockData.usd_24h_change || 0;
-        const changeIcon = change >= 0 ? '🟢' : '🔴';
-        result += `${changeIcon} ${stock}: $${stockData.usd?.toFixed(2) || 'N/A'} (${change >= 0 ? '+' : ''}${change.toFixed(2)}%)\n`;
+    validStocks.forEach((stock: any) => {
+      if (stock) {
+        result += `• ${stock.symbol}: $${stock.price?.toFixed(2) || 'N/A'}\\n`;
       }
-    }
-    
+    });
+
     return result;
-  } catch (error) {
-    logger.error('Crypto stocks fetch error:', error);
-    return 'Unable to fetch crypto stock data';
-  }
+      } catch {
+      return 'Unable to fetch crypto stock data';
+    }
 }
 
-// Enhanced altcoin data fetching
+// Enhanced altcoins data fetching
 async function getAltcoinsData(): Promise<string> {
   try {
-    const altcoins = ['ethereum', 'solana', 'cardano', 'polkadot', 'chainlink', 'avalanche-2', 'polygon', 'cosmos'];
-    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${altcoins.join(',')}&vs_currencies=usd&include_24hr_change=true`);
-    
+    // Updated based on codebase analysis - most tracked altcoins
+    const altcoins = [
+      'ethereum', 'solana', 'sui', 'aave', 'chainlink', 'uniswap', 
+      'avalanche-2', 'polygon', 'cosmos', 'cardano', 'polkadot',
+      'hyperliquid', 'berachain-bera', 'infrafred-bgt', 'blockstack',
+      'dogecoin', 'pepe', 'mog-coin', 'bittensor', 'render-token',
+      'fartcoin', 'railgun', 'ondo-finance', 'ethena'
+    ];
+
+    const idsParam = altcoins.join(',');
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
+    );
+
     if (!response.ok) {
-      return 'Unable to fetch altcoin data';
+      return 'Unable to fetch altcoins data';
     }
-    
+
     const data = await response.json();
-    let result = 'Top Altcoins:\n';
-    
-    for (const coin of altcoins) {
-      const coinData = data[coin];
-      if (coinData) {
-        const change = coinData.usd_24h_change || 0;
-        const changeIcon = change >= 0 ? '🟢' : '🔴';
-        const symbol = coin === 'ethereum' ? 'ETH' : coin === 'solana' ? 'SOL' : coin === 'cardano' ? 'ADA' : coin.toUpperCase();
-        result += `${changeIcon} ${symbol}: $${coinData.usd?.toFixed(2) || 'N/A'} (${change >= 0 ? '+' : ''}${change.toFixed(2)}%)\n`;
-      }
-    }
-    
+    let result = 'Top Altcoins (24h):\\n';
+
+    // Sort by 24h change for most interesting performance
+    const sortedAltcoins = Object.entries(data)
+      .filter(([_, coinData]: [string, any]) => coinData && coinData.usd_24h_change !== undefined)
+      .sort(([_, a]: [string, any], [__, b]: [string, any]) => Math.abs(b.usd_24h_change) - Math.abs(a.usd_24h_change))
+      .slice(0, 12); // Top 12 by absolute change
+
+    sortedAltcoins.forEach(([id, coinData]: [string, any]) => {
+      const change = coinData.usd_24h_change;
+      const emoji = change >= 0 ? '🟢' : '🔴';
+      const symbol = id.toUpperCase();
+      result += `${emoji} ${symbol}: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%\\n`;
+    });
+
     return result;
-  } catch (error) {
-    logger.error('Altcoins fetch error:', error);
-    return 'Unable to fetch altcoin data';
-  }
+      } catch {
+      return 'Unable to fetch altcoins data';
+    }
 }
 
 // Enhanced GM handler with comprehensive market analysis
