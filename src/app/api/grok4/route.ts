@@ -794,61 +794,28 @@ export async function POST(request: Request) {
       }
     }
 
-    // Handle GM queries with comprehensive market analysis
+    // Handle GM queries - X sentiment analysis only
     if (isGMQuery(message)) {
-      logger.info('Comprehensive GM market analysis requested:', message);
+      logger.info('GM X sentiment analysis requested:', message);
       try {
-        // Log before fetching
-        logger.info('Starting parallel fetches for GM data...');
-        const fetchStart = Date.now();
-        // Fetch only essential market data in parallel (reduced API calls)
-        const [btcPrice, altcoins] = await Promise.all([
-          getFastBTCPrice(),
-          getAltcoinsData()
-        ]);
-        
-        // Skip network data and macro data for now to reduce API calls
-        const _btcNetworkData = null;
-        const cryptoStocks = '**📈 Crypto Stocks:**\n_Data temporarily unavailable_';
-        const _macroData = null;
-        logger.info('All GM data fetched in', Date.now() - fetchStart, 'ms');
-        // Build comprehensive market summary
-        let marketSummary = `🌅 **Good Morning! Here's your comprehensive market report:**\n\n---\n\n`;
-        // Bitcoin section with network data
-        marketSummary += `**💰 BITCOIN**\n`;
-        marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
-        // Network data temporarily disabled to reduce API calls
-        marketSummary += `- **Network Data:** Temporarily unavailable\n`;
-        marketSummary += `\n---\n\n`;
-        // Altcoins section
-        marketSummary += `${altcoins}\n\n---\n\n`;
-        // Crypto stocks section
-        marketSummary += `${cryptoStocks}\n\n---\n\n`;
-        // Macro context
-        marketSummary += `**📊 Macro Market Context**\n`;
-        marketSummary += `- S&P 500 and Magnificent 7 performance\n`;
-        marketSummary += `- Fed policy and interest rate expectations\n`;
-        marketSummary += `- Institutional adoption trends\n`;
-        marketSummary += `- Regulatory developments\n`;
-        marketSummary += `\n---\n\n`;
-        // Enhanced analysis prompt for X sentiment analysis
-        const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
-1. Bitcoin sentiment and key narratives on X (Twitter) - use the get_x_sentiment tool if available
-2. Altcoin season indicators and emerging trends
-3. Crypto stock performance and institutional flows
-4. Macro factors affecting crypto markets
-5. Key events to watch today
+        // Simple prompt focused on X sentiment only
+        const xSentimentPrompt = `Provide a concise X (Twitter) sentiment analysis for crypto markets right now. Focus on:
 
-Keep it concise, actionable, and include specific X sentiment insights. Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.`;
+1. **Bitcoin sentiment** - What's the current narrative on X about BTC?
+2. **Altcoin sentiment** - Any trending altcoins or narratives?
+3. **Crypto stock sentiment** - How are people feeling about MSTR, COIN, HOOD, etc.?
+4. **Market mood** - Bullish or bearish sentiment overall?
+5. **Key events** - Any breaking news or events people are talking about?
 
-        // Use Grok4 for X sentiment analysis with optimized timeout
+Use the get_x_sentiment tool if you have specific tweet URLs to analyze. Keep it concise and actionable.`;
+
+        // Use Grok4 for X sentiment analysis with minimal timeout
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
-        const grok4Prompt = `${marketSummary}\n\n${analysisPrompt}`;
         
         // Add aggressive timeout wrapper for Grok4 call
-        const grok4Timeout = 5000; // 5 second timeout for Grok4
-        const grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
+        const grok4Timeout = 4000; // 4 second timeout for Grok4
+        const grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, xSentimentPrompt);
         
         try {
           const response = await Promise.race([
@@ -861,17 +828,17 @@ Keep it concise, actionable, and include specific X sentiment insights. Focus on
           tracker.end('total');
           tracker.logTimings();
           
-          logger.info('GM analysis completed with Grok4 X sentiment:', {
+          logger.info('GM X sentiment analysis completed:', {
             duration: Date.now() - startTime,
             responseLength: 'streaming'
           });
           
           return response;
         } catch (grok4Error) {
-          // Fallback to formatted data if Grok4 times out
-          logger.warn('Grok4 timeout, using fallback response:', grok4Error);
+          // Simple fallback if Grok4 times out
+          logger.warn('Grok4 timeout, using simple fallback:', grok4Error);
           
-          const fallbackResponse = `${marketSummary}\n\n**🤖 AI Market Analysis**\n\n*Note: X sentiment analysis temporarily unavailable. Market data above is real-time and accurate.*\n\n**Key Insights:**\n- Monitor Bitcoin's price action around key support/resistance levels\n- Track altcoin momentum for potential rotation opportunities\n- Stay informed on macro developments affecting crypto markets\n- Consider portfolio diversification across different asset classes\n\n**Market Sentiment:**\n- Check X (Twitter) for real-time crypto sentiment and breaking news\n- Monitor institutional flows and regulatory developments\n- Watch for key events: Fed meetings, ETF flows, halving cycles`;
+          const fallbackResponse = `**🌅 GOOD MORNING CRYPTO MARKETS**\n\n**🤖 X Sentiment Analysis**\n\n*Note: X sentiment analysis temporarily unavailable. Check X (Twitter) directly for real-time crypto sentiment and breaking news.*\n\n**Quick Market Check:**\n- Monitor Bitcoin sentiment on X\n- Track trending altcoin narratives\n- Watch crypto stock sentiment (MSTR, COIN, HOOD)\n- Stay alert for breaking news and events`;
           
           tracker.end('total');
           tracker.logTimings();
