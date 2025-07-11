@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+
 import { Grok4Service, enhancedWebSearch } from './grok4';
 import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
@@ -244,8 +244,11 @@ export async function POST(request: Request) {
         }
       }
       
-      return NextResponse.json({
-        content: response
+      return new Response(response, {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'no-cache',
+        },
       });
     } else {
       logger.info('Query did not match price prediction shortcut:', message);
@@ -254,12 +257,12 @@ export async function POST(request: Request) {
     // Validate API key
     if (!process.env.XAI_API_KEY) {
       logger.error('XAI_API_KEY is not configured');
-      return NextResponse.json(
+      return new Response(
+        'Grok4 service is not properly configured. Please contact support.',
         { 
-          content: 'Grok4 service is not properly configured. Please contact support.',
-          error: 'Missing API key configuration'
-        },
-        { status: 500 }
+          status: 500,
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+        }
       );
     }
 
@@ -276,11 +279,13 @@ export async function POST(request: Request) {
       stepEnd('total');
       logger.error('Knowledge base load error:', kbError);
       logger.info('Step timings (ms):', stepTimings);
-      return NextResponse.json({
-        content: 'Sorry, the knowledge base is currently unavailable. Please try again later.',
-        error: 'Knowledge base load timeout',
-        details: kbError instanceof Error ? kbError.message : String(kbError)
-      }, { status: 504 });
+      return new Response(
+        'Sorry, the knowledge base is currently unavailable. Please try again later.',
+        { 
+          status: 504,
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+        }
+      );
     }
     stepStart('find_relevant_knowledge');
     let relevantKnowledge: string[] = [];
@@ -292,11 +297,13 @@ export async function POST(request: Request) {
       stepEnd('total');
       logger.error('Relevant knowledge search error:', relError);
       logger.info('Step timings (ms):', stepTimings);
-      return NextResponse.json({
-        content: 'Sorry, there was an error searching the knowledge base.',
-        error: 'Knowledge search error',
-        details: relError instanceof Error ? relError.message : String(relError)
-      }, { status: 500 });
+      return new Response(
+        'Sorry, there was an error searching the knowledge base.',
+        { 
+          status: 500,
+          headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+        }
+      );
     }
     
     // Build enhanced system prompt with improved knowledge injection
