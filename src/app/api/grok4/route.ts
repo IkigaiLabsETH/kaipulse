@@ -526,6 +526,18 @@ Assistant:`;
   return prompt;
 }
 
+// --- Fetch with Timeout Helper ---
+async function fetchWithTimeout(resource: RequestInfo, options: RequestInit = {}, timeout = 5000): Promise<Response> {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  try {
+    const response = await fetch(resource, { ...options, signal: controller.signal });
+    return response;
+  } finally {
+    clearTimeout(id);
+  }
+}
+
 // Bitcoin network data interface
 interface BitcoinNetworkData {
   hashRate?: number;
@@ -545,9 +557,8 @@ interface CoinGeckoCoin {
 // Bitcoin network data fetching
 async function getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
   try {
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false');
+    const response = await fetchWithTimeout('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false', {}, 5000);
     if (!response.ok) return null;
-    
     const data = await response.json();
     return {
       hashRate: data.market_data?.hash_rate_24h,
@@ -561,41 +572,55 @@ async function getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
 }
 
 // Enhanced altcoins data with curated list from GROK420.md
+enum AltcoinId {
+  Bitcoin = 'bitcoin',
+  Ethereum = 'ethereum',
+  Solana = 'solana',
+  Sui = 'sui',
+  Aave = 'aave',
+  Maker = 'maker',
+  Uniswap = 'uniswap',
+  Pendle = 'pendle',
+  Liquity = 'liquity',
+  Syrup = 'syrup',
+  Eigenlayer = 'eigenlayer',
+  Chainlink = 'chainlink',
+  Hyperliquid = 'hyperliquid',
+  Blockstack = 'blockstack',
+  Injective = 'injective-protocol',
+  Sei = 'sei-network',
+  Dogecoin = 'dogecoin',
+  Pepe = 'pepe',
+  Mog = 'mog-coin',
+  Wif = 'dogwifcoin',
+  Rekt = 'rekt-4',
+  Spx6900 = 'spx6900',
+  Fart = 'fartcoin',
+  Tao = 'bittensor',
+  Rndr = 'render-token',
+  Rail = 'railgun',
+  Ondo = 'ondo-finance',
+  USDe = 'ethena'
+}
+
 async function getAltcoinsData(): Promise<string> {
   try {
-    // Curated altcoins list from GROK420.md documentation
-    const altcoins = [
-      // Major Layer 1s
-      'bitcoin', 'ethereum', 'solana', 'sui',
-      // DeFi Protocols
-      'aave', 'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer', 'chainlink',
-      // Emerging Tokens
-      'hyperliquid', 'blockstack', 'injective-protocol', 'sei-network',
-      // Meme Coins
-      'dogecoin', 'pepe', 'mog-coin', 'dogwifcoin', 'rekt-4', 'spx6900', 'fartcoin',
-      // AI/Compute
-      'bittensor', 'render-token', 'railgun',
-      // Stablecoins
-      'ondo-finance', 'ethena'
-    ];
-
+    const altcoins = Object.values(AltcoinId);
     const idsParam = altcoins.join(',');
-    const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
+    const response = await fetchWithTimeout(
+      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`,
+      {},
+      5000
     );
-
     if (!response.ok) {
       return '_Unable to fetch altcoins data_';
     }
-
     const data: Record<string, CoinGeckoCoin> = await response.json();
-    
     // Sort by 24h change (descending)
     const sortedAltcoins = Object.entries(data)
       .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
       .sort(([, a], [, b]) => (b.usd_24h_change || 0) - (a.usd_24h_change || 0))
       .slice(0, 15);
-
     const symbolMap: { [key: string]: string } = {
       'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI',
       'aave': 'AAVE', 'maker': 'MKR', 'uniswap': 'UNI', 'pendle': 'PENDLE',
@@ -606,7 +631,6 @@ async function getAltcoinsData(): Promise<string> {
       'bittensor': 'TAO', 'render-token': 'RNDR', 'railgun': 'RAIL',
       'ondo-finance': 'ONDO', 'ethena': 'USDe'
     };
-
     let table = '| Symbol | 24h Change | Market Cap |\n|--------|------------|------------|\n';
     sortedAltcoins.forEach(([id, coinData]) => {
       const change = coinData.usd_24h_change || 0;
@@ -616,7 +640,6 @@ async function getAltcoinsData(): Promise<string> {
         new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(coinData.usd_market_cap) : 'N/A';
       table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
     });
-
     return `**🪙 Top Altcoins (24h):**\n${table}`;
   } catch {
     return '_Unable to fetch altcoins data_';
@@ -624,40 +647,34 @@ async function getAltcoinsData(): Promise<string> {
 }
 
 // Enhanced crypto stocks data with Yahoo Finance
+interface StockQuote {
+  symbol: string;
+  regularMarketPrice?: number;
+  regularMarketChangePercent?: number;
+  marketCap?: number;
+}
+
 async function getCryptoStocksData(): Promise<string> {
   try {
-    // Curated crypto stocks list from GROK420.md
     const stocks = [
-      // Bitcoin Holdings
       'MSTR', 'MSTY', 'STRF', 'STRK',
-      // Exchanges
       'COIN', 'HOOD', 'CRCL',
-      // Mining
       'MARA', 'RIOT',
-      // Payments
       'PYPL',
-      // Tech Giants
       'NVDA', 'TSLA', 'BMNR',
-      // Specialized
       'HODL', 'XYZ', 'MTPLF', 'SBET', 'SQNS', 'MBAV'
     ];
-
     const symbols = stocks.join(',');
-    const response = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`);
-    
+    const response = await fetchWithTimeout(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`, {}, 5000);
     if (!response.ok) {
       return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
     }
-
     const data = await response.json();
     const quotes = data?.quoteResponse?.result || [];
-
-    // Sort by 24h change
     const sortedStocks = quotes
       .filter((quote: StockQuote) => quote.regularMarketChangePercent)
       .sort((a: StockQuote, b: StockQuote) => Math.abs(b.regularMarketChangePercent || 0) - Math.abs(a.regularMarketChangePercent || 0))
       .slice(0, 10);
-
     let table = '| Symbol | Price | 24h Change | Market Cap |\n|--------|-------|------------|------------|\n';
     sortedStocks.forEach((quote: StockQuote) => {
       const change = quote.regularMarketChangePercent || 0;
@@ -667,19 +684,10 @@ async function getCryptoStocksData(): Promise<string> {
         new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(quote.marketCap) : 'N/A';
       table += `| ${emoji} ${quote.symbol} | $${price} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
     });
-
     return `**📈 Crypto Stocks:**\n${table}`;
   } catch {
     return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
   }
-}
-
-// Stock quote interface
-interface StockQuote {
-  symbol: string;
-  regularMarketPrice?: number;
-  regularMarketChangePercent?: number;
-  marketCap?: number;
 }
 
 // Macro market data interface
@@ -692,24 +700,19 @@ interface MacroMarketData {
 // Macro market data
 async function getMacroMarketData(): Promise<MacroMarketData | null> {
   try {
-    // Fetch S&P 500 and Magnificent 7 data
     const mag7Symbols = 'MSFT,AAPL,GOOGL,AMZN,NVDA,META,TSLA,AVGO';
-    const response = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=^GSPC,${mag7Symbols}`);
-    
+    const response = await fetchWithTimeout(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=^GSPC,${mag7Symbols}`, {}, 5000);
     if (!response.ok) return null;
-    
     const data = await response.json();
     const quotes = data?.quoteResponse?.result || [];
-    
     const sp500 = quotes.find((q: StockQuote) => q.symbol === '^GSPC');
     const mag7Avg = quotes
       .filter((q: StockQuote) => q.symbol !== '^GSPC')
       .reduce((sum: number, q: StockQuote) => sum + (q.regularMarketChangePercent || 0), 0) / 8;
-    
     return {
-      sp500: sp500 ? `${sp500.regularMarketPrice?.toFixed(2)} (${sp500.regularMarketChangePercent >= 0 ? '+' : ''}${sp500.regularMarketChangePercent?.toFixed(2)}%)` : 'N/A',
+      sp500: sp500 ? `${sp500.regularMarketPrice?.toFixed(2)} (${sp500.regularMarketChangePercent && sp500.regularMarketChangePercent >= 0 ? '+' : ''}${sp500.regularMarketChangePercent?.toFixed(2)}%)` : 'N/A',
       mag7: `${mag7Avg >= 0 ? '+' : ''}${mag7Avg.toFixed(2)}%`,
-      fearGreed: 'N/A' // Would need separate API
+      fearGreed: 'N/A'
     };
   } catch {
     return null;
