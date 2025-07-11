@@ -365,7 +365,7 @@ async function analyzeImage(imageUrl: string, query: string): Promise<string> {
   }
 }
 
-// Enhanced tool functions for Grok4
+// Enhanced tool functions for Grok 4 based on GROK420.md documentation
 const ENHANCED_TOOLS: ChatCompletionTool[] = [
   {
     type: 'function',
@@ -388,13 +388,13 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
     type: 'function',
     function: {
       name: 'get_crypto_price',
-      description: 'Get real-time cryptocurrency prices from multiple sources. Use this for accurate, up-to-date price information.',
+      description: 'Get real-time cryptocurrency prices from multiple sources. Use this for accurate, up-to-date price information for the most tracked assets: BTC, ETH, SOL, AAVE, MKR, UNI, etc.',
       parameters: {
         type: 'object',
         properties: {
           symbol: {
             type: 'string',
-            description: 'The cryptocurrency symbol (e.g., BTC, ETH, SOL)'
+            description: 'The cryptocurrency symbol (e.g., BTC, ETH, SOL, AAVE, MKR, UNI)'
           },
           currency: {
             type: 'string',
@@ -410,14 +410,14 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
     type: 'function',
     function: {
       name: 'get_market_data',
-      description: 'Get comprehensive market data including price, volume, market cap, and 24h change for cryptocurrencies.',
+      description: 'Get comprehensive market data including price, volume, market cap, and 24h change for cryptocurrencies. Focus on the most tracked assets from the curated list.',
       parameters: {
         type: 'object',
         properties: {
           symbols: {
             type: 'array',
             items: { type: 'string' },
-            description: 'Array of cryptocurrency symbols to get data for'
+            description: 'Array of cryptocurrency symbols to get data for (e.g., ["BTC", "ETH", "SOL"])'
           }
         },
         required: ['symbols']
@@ -428,7 +428,7 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
     type: 'function',
     function: {
       name: 'get_x_sentiment',
-      description: 'Analyze sentiment and key points from a specific X (Twitter) post. Use this to summarize the impact, narrative, and key takeaways from a tweet URL.',
+      description: 'Analyze sentiment and key points from a specific X (Twitter) post. Use this to summarize the impact, narrative, and key takeaways from a tweet URL. Essential for market sentiment analysis.',
       parameters: {
         type: 'object',
         properties: {
@@ -438,6 +438,23 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
           }
         },
         required: ['tweetUrl']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_stock_price',
+      description: 'Get real-time stock and crypto stock prices via Yahoo Finance. Track the most important crypto-related stocks: MSTR, COIN, HOOD, MARA, RIOT, NVDA, TSLA, etc.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The stock symbol (e.g., MSTR, COIN, HOOD, MARA, RIOT, NVDA, TSLA)'
+          }
+        },
+        required: ['symbol']
       }
     }
   }
@@ -478,14 +495,15 @@ export async function OPTIONS(_request: Request) {
 }
 
 // --- Prompt Engineering Guide for Grok 4 + X Data ---
-// Example system prompt for best results:
+// Enhanced system prompt based on GROK420.md documentation
 const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, concise style, pulling insights from real-time X (Twitter) data and technical indicators. Always:
 - Analyze sentiment and trends from X posts, especially from high-profile accounts (e.g., Whale Alert, Michael Saylor)
 - Detect emerging tokens, memecoins, and macro events
 - Combine X sentiment with technical analysis (RSI, MACD, etc.)
 - Provide actionable, context-rich, and concise responses
 - Use the latest X data for all crypto and Bitcoin queries
-- For GM queries: Focus on Bitcoin sentiment, altcoin season indicators, crypto stock performance, and macro factors
+- Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.
+- For GM queries: Provide comprehensive market analysis with Bitcoin, altcoins, crypto stocks, and macro context
 - Include specific X narratives and key events to watch
 `;
 
@@ -506,6 +524,165 @@ function buildGrok4Prompt(history: ChatCompletionMessageParam[], userMessage: st
   prompt += `Human: ${userMessage.trim()}
 Assistant:`;
   return prompt;
+}
+
+// Bitcoin network data fetching
+async function getBitcoinNetworkData(): Promise<any> {
+  try {
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false');
+    if (!response.ok) return null;
+    
+    const data = await response.json();
+    return {
+      hashRate: data.market_data?.hash_rate_24h,
+      difficulty: data.market_data?.difficulty,
+      blockHeight: data.block_time_in_minutes,
+      mempoolSize: data.community_data?.reddit_subscribers
+    };
+  } catch {
+    return null;
+  }
+}
+
+// Enhanced altcoins data with curated list from GROK420.md
+async function getAltcoinsData(): Promise<string> {
+  try {
+    // Curated altcoins list from GROK420.md documentation
+    const altcoins = [
+      // Major Layer 1s
+      'bitcoin', 'ethereum', 'solana', 'sui',
+      // DeFi Protocols
+      'aave', 'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer', 'chainlink',
+      // Emerging Tokens
+      'hyperliquid', 'blockstack', 'injective-protocol', 'sei-network',
+      // Meme Coins
+      'dogecoin', 'pepe', 'mog-coin', 'dogwifcoin', 'rekt-4', 'spx6900', 'fartcoin',
+      // AI/Compute
+      'bittensor', 'render-token', 'railgun',
+      // Stablecoins
+      'ondo-finance', 'ethena'
+    ];
+
+    const idsParam = altcoins.join(',');
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
+    );
+
+    if (!response.ok) {
+      return '_Unable to fetch altcoins data_';
+    }
+
+    const data: Record<string, any> = await response.json();
+    
+    // Sort by 24h change (descending)
+    const sortedAltcoins = Object.entries(data)
+      .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
+      .sort(([, a], [, b]) => (b.usd_24h_change as number) - (a.usd_24h_change as number))
+      .slice(0, 15);
+
+    const symbolMap: { [key: string]: string } = {
+      'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI',
+      'aave': 'AAVE', 'maker': 'MKR', 'uniswap': 'UNI', 'pendle': 'PENDLE',
+      'liquity': 'LQTY', 'syrup': 'SYRUP', 'eigenlayer': 'EIGEN', 'chainlink': 'LINK',
+      'hyperliquid': 'HYPER', 'blockstack': 'STX', 'injective-protocol': 'INJ', 'sei-network': 'SEI',
+      'dogecoin': 'DOGE', 'pepe': 'PEPE', 'mog-coin': 'MOG', 'dogwifcoin': 'WIF',
+      'rekt-4': 'REKT', 'spx6900': 'SPX6900', 'fartcoin': 'FART',
+      'bittensor': 'TAO', 'render-token': 'RNDR', 'railgun': 'RAIL',
+      'ondo-finance': 'ONDO', 'ethena': 'USDe'
+    };
+
+    let table = '| Symbol | 24h Change | Market Cap |\n|--------|------------|------------|\n';
+    sortedAltcoins.forEach(([id, coinData]) => {
+      const change = coinData.usd_24h_change as number;
+      const emoji = change >= 0 ? '🟢' : '🔴';
+      const symbol = symbolMap[id] || id.toUpperCase();
+      const marketCap = coinData.usd_market_cap ? 
+        new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(coinData.usd_market_cap) : 'N/A';
+      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}% | $${marketCap} |\n`;
+    });
+
+    return `**🪙 Top Altcoins (24h):**\n${table}`;
+  } catch {
+    return '_Unable to fetch altcoins data_';
+  }
+}
+
+// Enhanced crypto stocks data with Yahoo Finance
+async function getCryptoStocksData(): Promise<string> {
+  try {
+    // Curated crypto stocks list from GROK420.md
+    const stocks = [
+      // Bitcoin Holdings
+      'MSTR', 'MSTY', 'STRF', 'STRK',
+      // Exchanges
+      'COIN', 'HOOD', 'CRCL',
+      // Mining
+      'MARA', 'RIOT',
+      // Payments
+      'PYPL',
+      // Tech Giants
+      'NVDA', 'TSLA', 'BMNR',
+      // Specialized
+      'HODL', 'XYZ', 'MTPLF', 'SBET', 'SQNS', 'MBAV'
+    ];
+
+    const symbols = stocks.join(',');
+    const response = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`);
+    
+    if (!response.ok) {
+      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
+    }
+
+    const data = await response.json();
+    const quotes = data?.quoteResponse?.result || [];
+
+    // Sort by 24h change
+    const sortedStocks = quotes
+      .filter((quote: any) => quote.regularMarketChangePercent)
+      .sort((a: any, b: any) => Math.abs(b.regularMarketChangePercent) - Math.abs(a.regularMarketChangePercent))
+      .slice(0, 10);
+
+    let table = '| Symbol | Price | 24h Change | Market Cap |\n|--------|-------|------------|------------|\n';
+    sortedStocks.forEach((quote: any) => {
+      const change = quote.regularMarketChangePercent;
+      const emoji = change >= 0 ? '🟢' : '🔴';
+      const price = quote.regularMarketPrice?.toFixed(2) || 'N/A';
+      const marketCap = quote.marketCap ? 
+        new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(quote.marketCap) : 'N/A';
+      table += `| ${emoji} ${quote.symbol} | $${price} | ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}% | $${marketCap} |\n`;
+    });
+
+    return `**📈 Crypto Stocks:**\n${table}`;
+  } catch {
+    return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
+  }
+}
+
+// Macro market data
+async function getMacroMarketData(): Promise<any> {
+  try {
+    // Fetch S&P 500 and Magnificent 7 data
+    const mag7Symbols = 'MSFT,AAPL,GOOGL,AMZN,NVDA,META,TSLA,AVGO';
+    const response = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=^GSPC,${mag7Symbols}`);
+    
+    if (!response.ok) return null;
+    
+    const data = await response.json();
+    const quotes = data?.quoteResponse?.result || [];
+    
+    const sp500 = quotes.find((q: any) => q.symbol === '^GSPC');
+    const mag7Avg = quotes
+      .filter((q: any) => q.symbol !== '^GSPC')
+      .reduce((sum: number, q: any) => sum + (q.regularMarketChangePercent || 0), 0) / 8;
+    
+    return {
+      sp500: sp500 ? `${sp500.regularMarketPrice?.toFixed(2)} (${sp500.regularMarketChangePercent >= 0 ? '+' : ''}${sp500.regularMarketChangePercent?.toFixed(2)}%)` : 'N/A',
+      mag7: `${mag7Avg >= 0 ? '+' : ''}${mag7Avg.toFixed(2)}%`,
+      fearGreed: 'N/A' // Would need separate API
+    };
+  } catch {
+    return null;
+  }
 }
 
 // Main route handler with enhanced security and monitoring
@@ -587,22 +764,80 @@ export async function POST(request: Request) {
     if (isGMQuery(message)) {
       logger.info('Comprehensive GM market analysis requested:', message);
       
-      // Use streaming response for GM queries to match frontend expectations
-      const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
-      const conversationHistory = getConversationHistory(clientId);
-      addToConversationHistory(clientId, { role: 'user', content: message });
-      const grok4Prompt = buildGrok4Prompt(conversationHistory, message);
-      
-      tracker.end('total');
-      tracker.logTimings();
-      
-      // Log successful response
-      logger.info('Comprehensive GM analysis completed:', {
-        duration: Date.now() - startTime,
-        responseLength: 'streaming'
-      });
-      
-      return await handleStreamingResponse([], temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
+      try {
+        // Fetch all market data in parallel
+        const [btcPrice, btcNetworkData, altcoins, cryptoStocks, macroData] = await Promise.all([
+          getFastBTCPrice(),
+          getBitcoinNetworkData(),
+          getAltcoinsData(),
+          getCryptoStocksData(),
+          getMacroMarketData()
+        ]);
+        
+        // Build comprehensive market summary
+        let marketSummary = `🌅 **Good Morning! Here's your comprehensive market report:**\n\n---\n\n`;
+        
+        // Bitcoin section with network data
+        marketSummary += `**💰 BITCOIN**\n`;
+        marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
+        if (btcNetworkData) {
+          marketSummary += `- **Network Hash Rate:** ${btcNetworkData.hashRate || 'N/A'}\n`;
+          marketSummary += `- **Difficulty:** ${btcNetworkData.difficulty || 'N/A'}\n`;
+          marketSummary += `- **Block Height:** ${btcNetworkData.blockHeight || 'N/A'}\n`;
+          marketSummary += `- **Mempool Size:** ${btcNetworkData.mempoolSize || 'N/A'} transactions\n`;
+        }
+        marketSummary += `\n---\n\n`;
+        
+        // Altcoins section
+        marketSummary += `${altcoins}\n\n---\n\n`;
+        
+        // Crypto stocks section
+        marketSummary += `${cryptoStocks}\n\n---\n\n`;
+        
+        // Macro context
+        marketSummary += `**📊 Macro Market Context**\n`;
+        if (macroData) {
+          marketSummary += `- **S&P 500:** ${macroData.sp500 || 'N/A'}\n`;
+          marketSummary += `- **Magnificent 7:** ${macroData.mag7 || 'N/A'}\n`;
+          marketSummary += `- **Fear & Greed Index:** ${macroData.fearGreed || 'N/A'}\n`;
+        } else {
+          marketSummary += `- S&P 500 and Magnificent 7 performance\n`;
+          marketSummary += `- Fed policy and interest rate expectations\n`;
+          marketSummary += `- Institutional adoption trends\n`;
+          marketSummary += `- Regulatory developments\n`;
+        }
+        marketSummary += `\n---\n\n`;
+        
+        // Enhanced analysis prompt
+        const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
+1. Bitcoin sentiment and key narratives on X (Twitter) - use the get_x_sentiment tool if available
+2. Altcoin season indicators and emerging trends
+3. Crypto stock performance and institutional flows
+4. Macro factors affecting crypto markets
+5. Key events to watch today
+
+Keep it concise, actionable, and include specific X sentiment insights. Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.`;
+
+        // Use streaming response for GM queries to match frontend expectations
+        const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
+        addToConversationHistory(clientId, { role: 'user', content: message });
+        const grok4Prompt = `${marketSummary}\n\n${analysisPrompt}`;
+        
+        tracker.end('total');
+        tracker.logTimings();
+        
+        // Log successful response
+        logger.info('Comprehensive GM analysis completed:', {
+          duration: Date.now() - startTime,
+          responseLength: 'streaming'
+        });
+        
+        return await handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
+        
+      } catch (error) {
+        logger.error('GM handler error:', error);
+        return createErrorResponse('Good morning! Having trouble fetching market data. Check CoinGecko for live prices.');
+      }
     }
 
     // Handle price predictions
@@ -747,6 +982,31 @@ async function handleStreamingResponse(
                   } else if (toolCallFunction === 'get_x_sentiment') {
                     const { tweetUrl } = JSON.parse(toolCallArguments);
                     toolResult = await getXSentiment(tweetUrl);
+                  } else if (toolCallFunction === 'get_stock_price') {
+                    const { symbol } = JSON.parse(toolCallArguments);
+                    try {
+                      const response = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`);
+                      if (response.ok) {
+                        const data = await response.json();
+                        const quote = data?.quoteResponse?.result?.[0];
+                        if (quote) {
+                          const price = quote.regularMarketPrice;
+                          const change = quote.regularMarketChangePercent;
+                          const marketCap = quote.marketCap;
+                          toolResult = `${symbol} Stock Data:
+💰 Price: $${price?.toFixed(2) || 'N/A'}
+${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%
+📊 Market Cap: $${marketCap ? new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(marketCap) : 'N/A'}
+⏰ Updated: ${new Date().toLocaleString()}`;
+                        } else {
+                          toolResult = `No data found for ${symbol}`;
+                        }
+                      } else {
+                        toolResult = `Failed to fetch data for ${symbol}`;
+                      }
+                    } catch (error) {
+                      toolResult = `Error fetching stock data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+                    }
                   }
                   // Push tool response message
                   const toolResponseMsg: ChatCompletionMessageParam = {
@@ -882,6 +1142,31 @@ async function handleNonStreamingResponse(
         } else if (toolCallFunction === 'get_x_sentiment') {
           const { tweetUrl } = JSON.parse(toolCallArguments);
           toolResult = await getXSentiment(tweetUrl);
+        } else if (toolCallFunction === 'get_stock_price') {
+          const { symbol } = JSON.parse(toolCallArguments);
+          try {
+            const response = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`);
+            if (response.ok) {
+              const data = await response.json();
+              const quote = data?.quoteResponse?.result?.[0];
+              if (quote) {
+                const price = quote.regularMarketPrice;
+                const change = quote.regularMarketChangePercent;
+                const marketCap = quote.marketCap;
+                toolResult = `${symbol} Stock Data:
+💰 Price: $${price?.toFixed(2) || 'N/A'}
+${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%
+📊 Market Cap: $${marketCap ? new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(marketCap) : 'N/A'}
+⏰ Updated: ${new Date().toLocaleString()}`;
+              } else {
+                toolResult = `No data found for ${symbol}`;
+              }
+            } else {
+              toolResult = `Failed to fetch data for ${symbol}`;
+            }
+          } catch (error) {
+            toolResult = `Error fetching stock data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+          }
         } else {
           toolResult = `Unknown tool: ${toolCallFunction}`;
         }
