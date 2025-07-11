@@ -495,16 +495,39 @@ export async function OPTIONS(_request: Request) {
 }
 
 // --- Prompt Engineering Guide for Grok 4 + X Data ---
-// Enhanced system prompt based on GROK420.md documentation
-const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, concise style, pulling insights from real-time X (Twitter) data and technical indicators. Always:
-- Analyze sentiment and trends from X posts, especially from high-profile accounts (e.g., Whale Alert, Michael Saylor)
-- Detect emerging tokens, memecoins, and macro events
-- Combine X sentiment with technical analysis (RSI, MACD, etc.)
-- Provide actionable, context-rich, and concise responses
-- Use the latest X data for all crypto and Bitcoin queries
-- Focus on the most tracked assets: BTC, ETH, SOL, MSTR, COIN, HOOD, etc.
-- For GM queries: Provide comprehensive market analysis with Bitcoin, altcoins, crypto stocks, and macro context
-- Include specific X narratives and key events to watch
+// Enhanced system prompt focused on X sentiment analysis
+const DEFAULT_SYSTEM_PROMPT = `You are a crypto market intelligence expert specializing in X (Twitter) sentiment analysis. Your role is to:
+
+**🎯 CORE FOCUS:**
+- Analyze thoughts, ideas, and opinions from X about Bitcoin, altcoins, and crypto stocks
+- Identify key narratives, sentiment shifts, and emerging trends
+- Provide actionable insights based on social sentiment
+
+**📊 SENTIMENT ANALYSIS FRAMEWORK:**
+- **Bitcoin**: Institutional adoption, ETF flows, halving impact, regulatory sentiment
+- **Altcoins**: Memecoin vs DeFi sentiment, Layer 1 vs Layer 2 discussions, airdrop narratives
+- **Crypto Stocks**: MSTR accumulation strategy, COIN exchange performance, HOOD retail sentiment
+- **Macro**: Fed policy impact, inflation concerns, election effects on crypto
+
+**🔍 KEY INFLUENCERS TO MONITOR:**
+- Bitcoin maximalists and institutional voices
+- DeFi protocol founders and developers
+- Crypto exchange CEOs and executives
+- Memecoin creators and community leaders
+- Traditional finance commentators on crypto
+
+**💡 ANALYSIS APPROACH:**
+- Identify sentiment drivers and narrative shifts
+- Highlight controversial opinions and debates
+- Track viral tweets and emerging trends
+- Connect social sentiment to price action
+- Provide context for market movements
+
+**🎪 FOR GM QUERIES:**
+- Comprehensive X sentiment analysis for all tracked assets
+- Focus on thoughts, ideas, and opinions driving market sentiment
+- Identify key narratives and emerging trends
+- Provide actionable insights based on social intelligence
 `;
 
 // Helper to build Grok 4 prompt with Human/Assistant format and context-rich instructions
@@ -828,45 +851,94 @@ export async function POST(request: Request) {
         marketSummary += `**📈 CRYPTO STOCKS**\n`;
         marketSummary += cryptoStocks || '_Unable to fetch stock data_\n\n';
         
-        // X sentiment analysis prompt
-        const xSentimentPrompt = `Based on the current market data above, provide a concise X (Twitter) sentiment analysis for crypto markets right now. Focus on:
+        // Enhanced X sentiment analysis prompt with specific asset focus
+        const xSentimentPrompt = `Analyze X (Twitter) sentiment and provide insights about thoughts, ideas, and opinions on crypto markets. Focus on:
 
-1. **Bitcoin sentiment** - What's the current narrative on X about BTC at $${btcPrice ? btcPrice.toLocaleString() : 'current price'}?
-2. **Altcoin sentiment** - Any trending altcoins or narratives from the data above?
-3. **Crypto stock sentiment** - How are people feeling about MSTR, COIN, HOOD, etc.?
-4. **Market mood** - Bullish or bearish sentiment overall?
-5. **Key events** - Any breaking news or events people are talking about?
+**🔍 BITCOIN SENTIMENT ANALYSIS:**
+- What are people saying about BTC at $${btcPrice ? btcPrice.toLocaleString() : 'current price'}?
+- Key narratives: institutional adoption, ETF flows, halving impact, regulatory news
+- Sentiment: bullish/bearish/neutral and why
+- Notable influencers' opinions on Bitcoin
 
-Use the get_x_sentiment tool if you have specific tweet URLs to analyze. Keep it concise and actionable.`;
+**🪙 ALTCOIN SENTIMENT ANALYSIS:**
+- Top trending altcoins from our data: MOG (+31%), SEI (+29%), USDe (+26%), SYRUP (+18%), PEPE (+16%), INJ (+16%), FART (+15%), EIGEN (+14%), TAO (+13%), RNDR (+12%), HYPER (+12%), PENDLE (+11%), DOGE (+10%), SUI (+10%), STX (+9%)
+- What narratives are driving these moves?
+- Memecoin sentiment vs DeFi sentiment
+- Layer 1 vs Layer 2 discussions
+- New token launches or airdrops getting attention
 
-        // Return market data immediately, then try Grok4 for X sentiment as bonus
-        const marketDataResponse = `${marketSummary}\n\n**🤖 X SENTIMENT ANALYSIS**\n\n*Loading X sentiment analysis...*`;
+**📈 CRYPTO STOCK SENTIMENT ANALYSIS:**
+- MSTR (MicroStrategy) - Bitcoin accumulation strategy sentiment
+- COIN (Coinbase) - Exchange performance and regulatory sentiment
+- HOOD (Robinhood) - Retail trading sentiment
+- MARA/RIOT - Mining stock sentiment
+- NVDA/TSLA - Tech stock correlation with crypto
+
+**🎯 MARKET NARRATIVES:**
+- Macro events affecting crypto (Fed policy, inflation, elections)
+- Institutional adoption trends
+- Regulatory developments
+- DeFi vs CeFi sentiment
+- Memecoin vs utility token sentiment
+
+**🔥 HOT TOPICS:**
+- Breaking news or events people are discussing
+- Viral tweets or threads about crypto
+- Controversial opinions or debates
+- Emerging trends or narratives
+
+Use the get_x_sentiment tool to analyze specific influential tweets. Provide actionable insights and identify key sentiment drivers.`;
+
+        // Try Grok4 for X sentiment analysis with timeout
         
         // Start Grok4 call in background with very aggressive timeout
-        const _grok4Timeout = 3000; // 3 second timeout (very aggressive)
+        const grok4Timeout = 4000; // 4 second timeout
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         
-        // Try Grok4 in background with very short timeout
-        const _grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, xSentimentPrompt)
-          .catch(error => {
-            logger.warn('Grok4 failed for GM query:', error);
-            return null; // Return null if Grok4 fails
-          });
+        // Try Grok4 for X sentiment analysis with timeout
+        let xSentimentAnalysis = '';
+        try {
+          const grok4Response = await Promise.race([
+            Grok4Service.chatCompletion({
+              messages: [
+                { role: 'system', content: enhancedSystemPrompt },
+                { role: 'user', content: xSentimentPrompt }
+              ],
+              temperature: temperature || 0.7,
+              tools: ENHANCED_TOOLS,
+              tool_choice: 'auto',
+              max_tokens: 800,
+            }),
+            new Promise<never>((_, reject) => 
+              setTimeout(() => reject(new Error('Grok4 X sentiment timeout')), grok4Timeout)
+            )
+          ]);
+          
+          xSentimentAnalysis = grok4Response.choices?.[0]?.message?.content || '';
+          logger.info('Grok4 X sentiment analysis completed successfully');
+        } catch (error) {
+          logger.warn('Grok4 X sentiment analysis failed:', error);
+          xSentimentAnalysis = `*X sentiment analysis unavailable - check CoinGecko and social media for live updates*`;
+        }
         
-        // Return market data immediately
+        // Combine market data with X sentiment analysis
+        const fullResponse = `${marketSummary}\n\n**🤖 X SENTIMENT ANALYSIS**\n\n${xSentimentAnalysis}`;
+        
+        // Return combined response
         tracker.end('total');
         tracker.logTimings();
         
-        logger.info('GM market data response completed:', {
+        logger.info('GM full response completed:', {
           duration: Date.now() - startTime,
-          responseLength: marketDataResponse.length
+          responseLength: fullResponse.length,
+          hasXSentiment: xSentimentAnalysis.length > 0
         });
         
         return new Response(
           new ReadableStream({
             start(controller) {
-              controller.enqueue(new TextEncoder().encode(`data: ${marketDataResponse}\n\n`));
+              controller.enqueue(new TextEncoder().encode(`data: ${fullResponse}\n\n`));
               controller.close();
             }
           }),
