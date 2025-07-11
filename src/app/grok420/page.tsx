@@ -90,7 +90,7 @@ export default function Grok420Page() {
         let errorDetails = '';
         
         try {
-          // Check if response is JSON
+          // Check if response is JSON (for backward compatibility)
           const contentType = response.headers.get('content-type');
           if (contentType && contentType.includes('application/json')) {
             const errorData = await response.json();
@@ -102,7 +102,7 @@ export default function Grok420Page() {
             }
             errorMsg += errorDetails;
           } else {
-            // Handle HTML or text responses
+            // Handle plain text responses (new format)
             const textResponse = await response.text();
             errorMsg += `\nServer returned: ${response.status} ${response.statusText}`;
             if (textResponse.length < 500) { // Only show short responses
@@ -149,20 +149,18 @@ export default function Grok420Page() {
           ));
         }
       } else {
-        // Fallback: non-streaming
+        // Fallback: non-streaming - now expecting plain text
         try {
-          const data = await response.json();
-          const content = data.content && data.content.trim() ? data.content : (data.error || 'Grok4 did not return a response.');
+          const content = await response.text();
           const assistantMessage: Message = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
-            content,
+            content: content.trim() || 'Grok4 did not return a response.',
             timestamp: new Date(),
           };
           setMessages(prev => [...prev, assistantMessage]);
         } catch {
-          // Handle case where response is not JSON
-          await response.text(); // Consume the response
+          // Handle case where response is not text
           const errorMessage: Message = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
