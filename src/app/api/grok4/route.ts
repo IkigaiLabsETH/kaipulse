@@ -976,7 +976,7 @@ async function handleStreamingResponse(
         const OpenAI = (await import('openai')).default;
         
         // Add timeout to Grok4 API call
-        const grok4Timeout = 10000; // 10 second timeout
+        const grok4Timeout = 6000; // 6 second timeout (reduced from 10s)
         const grok4Promise = new OpenAI({
           apiKey: process.env.XAI_API_KEY,
           baseURL: 'https://api.x.ai/v1',
@@ -1155,7 +1155,7 @@ async function handleNonStreamingResponse(
         max_tokens: 600,
       }),
       new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('Grok4 API timeout')), 8000)
+        setTimeout(() => reject(new Error('Grok4 API timeout')), 6000)
       )
     ]);
     tracker.end('grok4_api');
@@ -1245,7 +1245,7 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
             max_tokens: 600,
           }),
           new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error('Grok4 API timeout')), 8000)
+            setTimeout(() => reject(new Error('Grok4 API timeout')), 6000)
           )
         ]);
       } catch (toolError) {
