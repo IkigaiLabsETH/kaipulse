@@ -142,36 +142,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // GM (Good Morning) handler - provide comprehensive market report
+    // GM (Good Morning) handler - log detection but let it proceed with web search
     if (isGMQuery(message)) {
       logger.info('GM query detected:', message);
-      const btcPrice = await getFastBTCPrice();
-      
-      // Create comprehensive market report
-      let response = '';
-      if (btcPrice) {
-        response = `🌅 GM GM! Bitcoin is currently at $${btcPrice.toLocaleString()}\n\n`;
-        response += `📊 Market Report:\n`;
-        response += `• BTC: $${btcPrice.toLocaleString()} (checking live data...)\n`;
-        response += `• Top performers: Checking altcoins, MSTR, Mag7, S&P500...\n`;
-        response += `• Market sentiment: Live data incoming...\n\n`;
-        response += `As Satoshi would say: "The price is what the market decides!"\n\n`;
-        response += `🔍 Searching for latest market data...`;
-      } else {
-        response = `🌅 GM GM! Checking current Bitcoin price and market data...\n\n`;
-        response += `📊 Market Report:\n`;
-        response += `• BTC: Fetching live price...\n`;
-        response += `• Top performers: Checking altcoins, MSTR, Mag7, S&P500...\n`;
-        response += `• Market sentiment: Live data incoming...\n\n`;
-        response += `As Satoshi would say: "The price is what the market decides!"`;
-      }
-      
-      return new Response(response, {
-        headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-          'Cache-Control': 'no-cache',
-        },
-      });
+      // Don't return early - let it proceed with web search for live data
     }
 
     // Price prediction shortcut (run before knowledge base, etc)
@@ -300,18 +274,59 @@ export async function POST(request: Request) {
 
         const encoder = new TextEncoder();
         const streamResponse = new ReadableStream({
-          async start(controller) {
-            try {
+                      async start(controller) {
+              try {
+                let toolCallId = '';
+                let toolCallFunction = '';
+                let toolCallArguments = '';
+              
               for await (const chunk of completionStream) {
                 const content = chunk.choices?.[0]?.delta?.content;
                 if (content) {
                   controller.enqueue(encoder.encode(content));
                 }
+                
                 // Handle tool calls in streaming
                 const toolCalls = chunk.choices?.[0]?.delta?.tool_calls;
                 if (toolCalls) {
-                  // For now, we'll handle tool calls in non-streaming mode
-                  // This could be enhanced to stream tool call responses
+                  for (const toolCall of toolCalls) {
+                    if (toolCall.id) toolCallId = toolCall.id;
+                    if (toolCall.function?.name) toolCallFunction = toolCall.function.name;
+                    if (toolCall.function?.arguments) toolCallArguments += toolCall.function.arguments;
+                    
+                    if (toolCallFunction === 'search' && toolCallArguments) {
+                      try {
+                        const { query } = JSON.parse(toolCallArguments);
+                        logger.info('Streaming search request:', query);
+                        
+                        // Perform search
+                        const searchResult = await enhancedWebSearch(query);
+                        
+                        // Add tool response to messages
+                        messages.push({
+                          role: 'tool',
+                          tool_call_id: toolCallId,
+                          content: searchResult,
+                        } as ToolMessage);
+                        
+                        // Get final response
+                        const finalCompletion = await Grok4Service.chatCompletion({
+                          messages,
+                          temperature: temperature || 0.7,
+                          max_tokens: 600,
+                        });
+                        
+                        const finalContent = finalCompletion.choices?.[0]?.message?.content;
+                        if (finalContent) {
+                          controller.enqueue(encoder.encode(finalContent));
+                        }
+                        
+                      } catch (searchError) {
+                        logger.error('Streaming search error:', searchError);
+                        controller.enqueue(encoder.encode('Sorry, there was an error with the web search.'));
+                      }
+                    }
+                  }
                 }
               }
             } catch (streamError) {
@@ -330,18 +345,18 @@ export async function POST(request: Request) {
             'Cache-Control': 'no-cache',
           },
         });
-              } catch (streamError) {
-          stepEnd('total');
-          logger.error('Failed to create streaming response:', streamError);
-          logger.info('Step timings (ms):', stepTimings);
-          return new Response(
-            'Sorry, I\'m having trouble with the streaming response. Please try again.',
-            { 
-              status: 500,
-              headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-            }
-          );
-        }
+      } catch (streamError) {
+        stepEnd('total');
+        logger.error('Failed to create streaming response:', streamError);
+        logger.info('Step timings (ms):', stepTimings);
+        return new Response(
+          'Sorry, I\'m having trouble with the streaming response. Please try again.',
+          { 
+            status: 500,
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+          }
+        );
+      }
     }
 
     // --- Non-streaming logic with tool calling ---
