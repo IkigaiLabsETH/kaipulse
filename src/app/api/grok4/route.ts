@@ -555,7 +555,7 @@ interface CoinGeckoCoin {
 }
 
 // Bitcoin network data fetching
-async function getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
+async function _getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
   try {
     const response = await fetchWithTimeout('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false', {}, 5000);
     if (!response.ok) return null;
@@ -654,7 +654,7 @@ interface StockQuote {
   marketCap?: number;
 }
 
-async function getCryptoStocksData(): Promise<string> {
+async function _getCryptoStocksData(): Promise<string> {
   try {
     const stocks = [
       'MSTR', 'MSTY', 'STRF', 'STRK',
@@ -698,7 +698,7 @@ interface MacroMarketData {
 }
 
 // Macro market data
-async function getMacroMarketData(): Promise<MacroMarketData | null> {
+async function _getMacroMarketData(): Promise<MacroMarketData | null> {
   try {
     const mag7Symbols = 'MSFT,AAPL,GOOGL,AMZN,NVDA,META,TSLA,AVGO';
     const response = await fetchWithTimeout(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=^GSPC,${mag7Symbols}`, {}, 5000);
@@ -801,26 +801,24 @@ export async function POST(request: Request) {
         // Log before fetching
         logger.info('Starting parallel fetches for GM data...');
         const fetchStart = Date.now();
-        // Fetch all market data in parallel
-        const [btcPrice, btcNetworkData, altcoins, cryptoStocks, macroData] = await Promise.all([
+        // Fetch only essential market data in parallel (reduced API calls)
+        const [btcPrice, altcoins] = await Promise.all([
           getFastBTCPrice(),
-          getBitcoinNetworkData(),
-          getAltcoinsData(),
-          getCryptoStocksData(),
-          getMacroMarketData()
+          getAltcoinsData()
         ]);
+        
+        // Skip network data and macro data for now to reduce API calls
+        const _btcNetworkData = null;
+        const cryptoStocks = '**📈 Crypto Stocks:**\n_Data temporarily unavailable_';
+        const _macroData = null;
         logger.info('All GM data fetched in', Date.now() - fetchStart, 'ms');
         // Build comprehensive market summary
         let marketSummary = `🌅 **Good Morning! Here's your comprehensive market report:**\n\n---\n\n`;
         // Bitcoin section with network data
         marketSummary += `**💰 BITCOIN**\n`;
         marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
-        if (btcNetworkData) {
-          marketSummary += `- **Network Hash Rate:** ${btcNetworkData.hashRate || 'N/A'}\n`;
-          marketSummary += `- **Difficulty:** ${btcNetworkData.difficulty || 'N/A'}\n`;
-          marketSummary += `- **Block Height:** ${btcNetworkData.blockHeight || 'N/A'}\n`;
-          marketSummary += `- **Mempool Size:** ${btcNetworkData.mempoolSize || 'N/A'} transactions\n`;
-        }
+        // Network data temporarily disabled to reduce API calls
+        marketSummary += `- **Network Data:** Temporarily unavailable\n`;
         marketSummary += `\n---\n\n`;
         // Altcoins section
         marketSummary += `${altcoins}\n\n---\n\n`;
@@ -828,16 +826,10 @@ export async function POST(request: Request) {
         marketSummary += `${cryptoStocks}\n\n---\n\n`;
         // Macro context
         marketSummary += `**📊 Macro Market Context**\n`;
-        if (macroData) {
-          marketSummary += `- **S&P 500:** ${macroData.sp500 || 'N/A'}\n`;
-          marketSummary += `- **Magnificent 7:** ${macroData.mag7 || 'N/A'}\n`;
-          marketSummary += `- **Fear & Greed Index:** ${macroData.fearGreed || 'N/A'}\n`;
-        } else {
-          marketSummary += `- S&P 500 and Magnificent 7 performance\n`;
-          marketSummary += `- Fed policy and interest rate expectations\n`;
-          marketSummary += `- Institutional adoption trends\n`;
-          marketSummary += `- Regulatory developments\n`;
-        }
+        marketSummary += `- S&P 500 and Magnificent 7 performance\n`;
+        marketSummary += `- Fed policy and interest rate expectations\n`;
+        marketSummary += `- Institutional adoption trends\n`;
+        marketSummary += `- Regulatory developments\n`;
         marketSummary += `\n---\n\n`;
         // Enhanced analysis prompt
         const analysisPrompt = `Based on the current market data above, provide a concise analysis of:
