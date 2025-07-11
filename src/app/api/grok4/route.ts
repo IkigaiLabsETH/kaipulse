@@ -679,25 +679,48 @@ interface StockQuote {
 
 async function _getCryptoStocksData(): Promise<string> {
   try {
+    // Focus on the most important crypto stocks that are likely to have data
     const stocks = [
-      'MSTR', 'MSTY', 'STRF', 'STRK',
-      'COIN', 'HOOD', 'CRCL',
-      'MARA', 'RIOT',
-      'PYPL',
-      'NVDA', 'TSLA', 'BMNR',
-      'HODL', 'XYZ', 'MTPLF', 'SBET', 'SQNS', 'MBAV'
+      'MSTR', 'COIN', 'HOOD', 'MARA', 'RIOT', 'NVDA', 'TSLA'
     ];
     const symbols = stocks.join(',');
-    const response = await fetchWithTimeout(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`, {}, 5000);
+    
+    logger.info('Fetching crypto stocks data for symbols:', symbols);
+    
+    const response = await fetchWithTimeout(
+      `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`, 
+      {}, 
+      5000
+    );
+    
     if (!response.ok) {
+      logger.warn('Yahoo Finance API response not ok:', response.status, response.statusText);
       return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
     }
+    
     const data = await response.json();
+    logger.info('Yahoo Finance API response received:', {
+      hasQuoteResponse: !!data?.quoteResponse,
+      resultCount: data?.quoteResponse?.result?.length || 0
+    });
+    
     const quotes = data?.quoteResponse?.result || [];
+    
+    if (quotes.length === 0) {
+      logger.warn('No quotes returned from Yahoo Finance API');
+      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
+    }
+    
     const sortedStocks = quotes
-      .filter((quote: StockQuote) => quote.regularMarketChangePercent)
+      .filter((quote: StockQuote) => quote.regularMarketChangePercent !== undefined)
       .sort((a: StockQuote, b: StockQuote) => Math.abs(b.regularMarketChangePercent || 0) - Math.abs(a.regularMarketChangePercent || 0))
       .slice(0, 10);
+    
+    if (sortedStocks.length === 0) {
+      logger.warn('No valid stock quotes found after filtering');
+      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
+    }
+    
     let table = '| Symbol | Price | 24h Change | Market Cap |\n|--------|-------|------------|------------|\n';
     sortedStocks.forEach((quote: StockQuote) => {
       const change = quote.regularMarketChangePercent || 0;
@@ -707,8 +730,15 @@ async function _getCryptoStocksData(): Promise<string> {
         new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(quote.marketCap) : 'N/A';
       table += `| ${emoji} ${quote.symbol} | $${price} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
     });
+    
+    logger.info('Crypto stocks data successfully fetched:', {
+      stockCount: sortedStocks.length,
+      symbols: sortedStocks.map((q: StockQuote) => q.symbol)
+    });
+    
     return `**📈 Crypto Stocks:**\n${table}`;
-  } catch {
+  } catch (error) {
+    logger.error('Error fetching crypto stocks data:', error);
     return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
   }
 }
