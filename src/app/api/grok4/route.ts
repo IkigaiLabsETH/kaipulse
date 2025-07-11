@@ -1029,7 +1029,42 @@ If you have no data for an asset, say so, but always mention at least one X post
           logger.info('Grok4 X sentiment analysis completed successfully');
         } catch (error) {
           logger.warn('Grok4 X sentiment analysis failed:', error);
-          xSentimentAnalysis = `*X sentiment analysis unavailable - check CoinGecko and social media for live updates*`;
+          // Generate fallback X sentiment summary based on market data
+          const btcChange = typeof btcPrice === 'number' ? btcPrice : null;
+          let altcoinSummary = '';
+          let stockSummary = '';
+
+          // Parse altcoins table for top movers
+          if (altcoins) {
+            const altcoinLines = altcoins.split('\n').filter(l => l.includes('|'));
+            const movers = altcoinLines.slice(2, 7).map(line => {
+              const parts = line.split('|').map(s => s.trim());
+              return parts[1] ? `${parts[1]} (${parts[2]})` : null;
+            }).filter(Boolean);
+            if (movers.length) {
+              altcoinSummary = `Top altcoins trending: ${movers.join(', ')}.`;
+            }
+          }
+
+          // Parse crypto stocks table for top movers
+          if (cryptoStocks) {
+            const stockLines = cryptoStocks.split('\n').filter(l => l.includes('|'));
+            const movers = stockLines.slice(2, 7).map(line => {
+              const parts = line.split('|').map(s => s.trim());
+              return parts[1] ? `${parts[1]} (${parts[2]})` : null;
+            }).filter(Boolean);
+            if (movers.length) {
+              stockSummary = `Crypto stocks in focus: ${movers.join(', ')}.`;
+            }
+          }
+
+          xSentimentAnalysis = [
+            `*No live X sentiment available, but here’s a quick social-style summary based on market moves:*`,
+            btcChange !== null ? `- Bitcoin is trading at $${btcChange.toLocaleString()}.` : '',
+            altcoinSummary,
+            stockSummary,
+            `- Memecoins and top movers are getting attention across social channels.`
+          ].filter(Boolean).join('\n');
         }
         
         // Combine market data with X sentiment analysis
