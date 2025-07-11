@@ -5,12 +5,6 @@ import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/reso
 import type { ChatCompletion } from "openai/resources/chat/completions";
 import { performance } from 'perf_hooks';
 
-// Add these at the very top of the file
-interface CoinGeckoCoin {
-  usd_24h_change?: number;
-  [key: string]: unknown;
-}
-
 // Enhanced types for multi-modal support
 type RequestBody = {
   message: string;
@@ -470,101 +464,6 @@ function addToConversationHistory(clientId: string, message: ChatCompletionMessa
   conversationMemory.set(clientId, history);
 }
 
-// Enhanced altcoins data fetching
-async function getAltcoinsData(): Promise<string> {
-  try {
-    const altcoins = [
-      'bitcoin', 'ethereum', 'solana', 'sui', 'aave', 'blockstack', 'dogecoin', 'fartcoin',
-      'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer',
-      'chainlink', 'avalanche-2',
-      'hyperliquid', 'render-token', 'kaia', 'injective-protocol', 'sei-network', 'spx6900', 
-      'dogwifcoin', 'rekt-4', 'mog-coin', 'pepe',
-      'berachain-bera', 'infrafred-bgt', 'bittensor', 'railgun', 'ondo-finance', 'ethena'
-    ];
-    const idsParam = altcoins.join(',');
-    const response = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
-    );
-    if (!response.ok) {
-      return '_Unable to fetch altcoins data_';
-    }
-    const data: Record<string, CoinGeckoCoin> = await response.json();
-    // Sort by 24h change (descending)
-    const sortedAltcoins = Object.entries(data)
-      .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
-      .sort(([, a], [, b]) => (b.usd_24h_change as number) - (a.usd_24h_change as number))
-      .slice(0, 15);
-    const symbolMap: { [key: string]: string } = {
-      'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI', 'aave': 'AAVE',
-      'blockstack': 'STX', 'dogecoin': 'DOGE', 'fartcoin': 'FART', 'maker': 'MKR',
-      'uniswap': 'UNI', 'pendle': 'PENDLE', 'liquity': 'LQTY', 'syrup': 'SYRUP',
-      'eigenlayer': 'EIGEN', 'chainlink': 'LINK', 'avalanche-2': 'AVAX', 'hyperliquid': 'HYPER',
-      'render-token': 'RNDR', 'kaia': 'KAIA', 'injective-protocol': 'INJ', 'sei-network': 'SEI',
-      'spx6900': 'SPX6900', 'dogwifcoin': 'WIF', 'rekt-4': 'REKT', 'mog-coin': 'MOG',
-      'pepe': 'PEPE', 'berachain-bera': 'BERA', 'infrafred-bgt': 'INFRARED', 'bittensor': 'TAO',
-      'railgun': 'RAIL', 'ondo-finance': 'ONDO', 'ethena': 'USDe'
-    };
-    let table = '| Symbol | 24h Change |\n|--------|------------|\n';
-    sortedAltcoins.forEach(([id, coinData]) => {
-      const change = coinData.usd_24h_change as number;
-      const emoji = change >= 0 ? '🟢' : '🔴';
-      const symbol = symbolMap[id] || id.toUpperCase();
-      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}% |\n`;
-    });
-    return `**🪙 Top Altcoins (24h):**\n${table}`;
-  } catch {
-    return '_Unable to fetch altcoins data_';
-  }
-}
-
-// If getCryptoStocksData lists stocks, format as a markdown table. Otherwise, format as a markdown section.
-async function getCryptoStocksData(): Promise<string> {
-  // Placeholder: Replace with actual stock fetching logic if needed
-  // For now, just return a markdown section header
-  return '**📈 Crypto Stocks:**\n_Market data coming soon..._';
-}
-
-async function handleGMQuery(message: string, systemPrompt?: string, temperature?: number): Promise<string> {
-  try {
-    logger.info('Starting comprehensive GM market analysis');
-    const [btcPrice, cryptoStocks, altcoins] = await Promise.all([
-      getFastBTCPrice(),
-      getCryptoStocksData(),
-      getAltcoinsData()
-    ]);
-    let marketSummary = `🌅 **Good Morning! Here’s your comprehensive market report:**\n\n---\n\n`;
-    marketSummary += `**💰 BITCOIN**\n- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n\n---\n\n`;
-    marketSummary += `${altcoins}\n\n---\n\n`;
-    marketSummary += `${cryptoStocks}\n\n---\n\n`;
-    marketSummary += `**📊 Macro Context**\n- S&P 500 and Magnificent 7 performance\n- Fed policy and interest rate expectations\n- Institutional adoption trends\n- Regulatory developments\n\n---\n\n`;
-    const analysisPrompt = `Based on the current market data above, provide a concise analysis of:\n1. Bitcoin sentiment and key narratives on X (Twitter)\n2. Altcoin season indicators and emerging trends\n3. Crypto stock performance and institutional flows\n4. Macro factors affecting crypto markets\n5. Key events to watch today\n\nKeep it concise, actionable, and include specific X sentiment insights.`;
-    try {
-      const analysisResponse = await Grok4Service.chatCompletion({
-        messages: [
-          { 
-            role: 'system', 
-            content: systemPrompt || 'You are a crypto market analyst providing real-time insights combining technical data with X sentiment analysis. Be concise, actionable, and focus on key narratives.' 
-          },
-          { 
-            role: 'user', 
-            content: `${marketSummary}\n\n${analysisPrompt}` 
-          }
-        ],
-        temperature: temperature || 0.7,
-        max_tokens: 400,
-      });
-      const analysis = analysisResponse.choices?.[0]?.message?.content || '';
-      return `${marketSummary}${analysis}`;
-    } catch (analysisError) {
-      logger.error('GM analysis error:', analysisError);
-      return `${marketSummary}_Note: Sentiment analysis temporarily unavailable. Check X for latest crypto narratives._`;
-    }
-  } catch (error) {
-    logger.error('GM handler error:', error);
-    return 'Good morning! Having trouble fetching market data. Check CoinGecko for live prices.';
-  }
-}
-
 // CORS preflight handler
 export async function OPTIONS(_request: Request) {
   return new Response(null, {
@@ -687,17 +586,23 @@ export async function POST(request: Request) {
     // Handle GM queries with comprehensive market analysis
     if (isGMQuery(message)) {
       logger.info('Comprehensive GM market analysis requested:', message);
-      const response = await handleGMQuery(message, systemPrompt, temperature);
+      
+      // Use streaming response for GM queries to match frontend expectations
+      const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
+      const conversationHistory = getConversationHistory(clientId);
+      addToConversationHistory(clientId, { role: 'user', content: message });
+      const grok4Prompt = buildGrok4Prompt(conversationHistory, message);
+      
       tracker.end('total');
       tracker.logTimings();
       
       // Log successful response
       logger.info('Comprehensive GM analysis completed:', {
         duration: Date.now() - startTime,
-        responseLength: response.length
+        responseLength: 'streaming'
       });
       
-      return createSuccessResponse(response);
+      return await handleStreamingResponse([], temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
     }
 
     // Handle price predictions
