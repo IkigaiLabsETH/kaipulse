@@ -503,10 +503,13 @@ async function getMarketData(symbols: string[]): Promise<MarketData[] | null> {
 // Enhanced market data fetching for crypto stocks
 async function getCryptoStocksData(): Promise<string> {
   try {
-    // Updated based on codebase analysis - most tracked crypto stocks
+    // Updated based on frontend components analysis - exact stocks from UI
     const cryptoStocks = [
-      'MSTR', 'COIN', 'HOOD', 'CRCL', 'MARA', 'RIOT', 'PYPL', 'SQ', 
-      'NVDA', 'TSLA', 'MSTY', 'STRF', 'STRK', 'BMNR', 'SBET', 'SQNS', 'MBAV'
+      // From StockMarket.tsx - main stock tickers
+      'HOOD', 'CRCL', 'COIN', 'HODL', 'NVDA', 'TSLA', 'MSTR', 'MSTY', 
+      'STRF', 'STRK', 'MARA', 'RIOT', 'PYPL', 'BMNR', 'XYZ',
+      // From PriceTicker.tsx - additional stocks
+      'MTPLF', 'SBET', 'SQNS', 'MBAV'
     ];
     
     // Use Alpha Vantage for stock data since we have it configured
@@ -537,21 +540,25 @@ async function getCryptoStocksData(): Promise<string> {
     });
 
     return result;
-      } catch {
-      return 'Unable to fetch crypto stock data';
-    }
+  } catch {
+    return 'Unable to fetch crypto stock data';
+  }
 }
 
 // Enhanced altcoins data fetching
 async function getAltcoinsData(): Promise<string> {
   try {
-    // Updated based on codebase analysis - most tracked altcoins
+    // Updated based on frontend components analysis - exact altcoins from UI
     const altcoins = [
-      'ethereum', 'solana', 'sui', 'aave', 'chainlink', 'uniswap', 
-      'avalanche-2', 'polygon', 'cosmos', 'cardano', 'polkadot',
-      'hyperliquid', 'berachain-bera', 'infrafred-bgt', 'blockstack',
-      'dogecoin', 'pepe', 'mog-coin', 'bittensor', 'render-token',
-      'fartcoin', 'railgun', 'ondo-finance', 'ethena'
+      // From AltCoins.tsx - BTC outperformers and default tickers
+      'bitcoin', 'ethereum', 'solana', 'sui', 'aave', 'blockstack', 'dogecoin', 'fartcoin',
+      // From AltCoinsBeta.tsx - DeFi and emerging tokens
+      'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer',
+      // Additional major altcoins from crypto-prices API
+      'chainlink', 'avalanche-2', 'polygon', 'cosmos', 'cardano', 'polkadot',
+      // Emerging tokens and meme coins
+      'hyperliquid', 'berachain-bera', 'infrafred-bgt', 'pepe', 'mog-coin', 
+      'bittensor', 'render-token', 'railgun', 'ondo-finance', 'ethena'
     ];
 
     const idsParam = altcoins.join(',');
@@ -570,19 +577,52 @@ async function getAltcoinsData(): Promise<string> {
     const sortedAltcoins = Object.entries(data)
       .filter(([_, coinData]: [string, any]) => coinData && coinData.usd_24h_change !== undefined)
       .sort(([_, a]: [string, any], [__, b]: [string, any]) => Math.abs(b.usd_24h_change) - Math.abs(a.usd_24h_change))
-      .slice(0, 12); // Top 12 by absolute change
+      .slice(0, 15); // Top 15 by absolute change
 
     sortedAltcoins.forEach(([id, coinData]: [string, any]) => {
       const change = coinData.usd_24h_change;
       const emoji = change >= 0 ? '🟢' : '🔴';
-      const symbol = id.toUpperCase();
+      // Map CoinGecko IDs to readable symbols
+      const symbolMap: { [key: string]: string } = {
+        'bitcoin': 'BTC',
+        'ethereum': 'ETH',
+        'solana': 'SOL',
+        'sui': 'SUI',
+        'aave': 'AAVE',
+        'blockstack': 'STX',
+        'dogecoin': 'DOGE',
+        'fartcoin': 'FART',
+        'maker': 'MKR',
+        'uniswap': 'UNI',
+        'pendle': 'PENDLE',
+        'liquity': 'LQTY',
+        'syrup': 'SYRUP',
+        'eigenlayer': 'EIGEN',
+        'chainlink': 'LINK',
+        'avalanche-2': 'AVAX',
+        'polygon': 'MATIC',
+        'cosmos': 'ATOM',
+        'cardano': 'ADA',
+        'polkadot': 'DOT',
+        'hyperliquid': 'HYPER',
+        'berachain-bera': 'BERA',
+        'infrafred-bgt': 'INFRARED',
+        'pepe': 'PEPE',
+        'mog-coin': 'MOG',
+        'bittensor': 'TAO',
+        'render-token': 'RNDR',
+        'railgun': 'RAIL',
+        'ondo-finance': 'ONDO',
+        'ethena': 'USDe'
+      };
+      const symbol = symbolMap[id] || id.toUpperCase();
       result += `${emoji} ${symbol}: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%\\n`;
     });
 
     return result;
-      } catch {
-      return 'Unable to fetch altcoins data';
-    }
+  } catch {
+    return 'Unable to fetch altcoins data';
+  }
 }
 
 // Enhanced GM handler with comprehensive market analysis
