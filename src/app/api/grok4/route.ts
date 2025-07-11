@@ -794,61 +794,91 @@ export async function POST(request: Request) {
       }
     }
 
-    // Handle GM queries - X sentiment analysis only
+    // Handle GM queries - Market data + X sentiment analysis
     if (isGMQuery(message)) {
-      logger.info('GM X sentiment analysis requested:', message);
+      logger.info('GM market data + X sentiment analysis requested:', message);
       try {
-        // Simple prompt focused on X sentiment only
-        const xSentimentPrompt = `Provide a concise X (Twitter) sentiment analysis for crypto markets right now. Focus on:
+        // Fetch market data first (fast APIs)
+        logger.info('Fetching market data for GM...');
+        const fetchStart = Date.now();
+        
+        // Fetch essential market data in parallel
+        const [btcPrice, altcoins, cryptoStocks] = await Promise.all([
+          getFastBTCPrice(),
+          getAltcoinsData(),
+          _getCryptoStocksData()
+        ]);
+        
+        logger.info('Market data fetched in', Date.now() - fetchStart, 'ms');
+        
+        // Build market summary for Grok4 context
+        let marketSummary = `🌅 **GOOD MORNING CRYPTO MARKETS**\n\n`;
+        
+        // Bitcoin section
+        marketSummary += `**💰 BITCOIN**\n`;
+        marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
+        marketSummary += `- **Network:** Hash rate, difficulty, block height\n`;
+        marketSummary += `- **Mempool:** Transaction volume and fees\n\n`;
+        
+        // Altcoins section
+        marketSummary += `**🪙 TOP ALTCOINS (24h Change)**\n`;
+        marketSummary += altcoins || '_Unable to fetch altcoin data_\n\n';
+        
+        // Crypto stocks section
+        marketSummary += `**📈 CRYPTO STOCKS**\n`;
+        marketSummary += cryptoStocks || '_Unable to fetch stock data_\n\n';
+        
+        // X sentiment analysis prompt
+        const xSentimentPrompt = `Based on the current market data above, provide a concise X (Twitter) sentiment analysis for crypto markets right now. Focus on:
 
-1. **Bitcoin sentiment** - What's the current narrative on X about BTC?
-2. **Altcoin sentiment** - Any trending altcoins or narratives?
+1. **Bitcoin sentiment** - What's the current narrative on X about BTC at $${btcPrice ? btcPrice.toLocaleString() : 'current price'}?
+2. **Altcoin sentiment** - Any trending altcoins or narratives from the data above?
 3. **Crypto stock sentiment** - How are people feeling about MSTR, COIN, HOOD, etc.?
 4. **Market mood** - Bullish or bearish sentiment overall?
 5. **Key events** - Any breaking news or events people are talking about?
 
 Use the get_x_sentiment tool if you have specific tweet URLs to analyze. Keep it concise and actionable.`;
 
-        // Use Grok4 for X sentiment analysis with minimal timeout
+        // Use Grok4 for X sentiment analysis with market context
         const enhancedSystemPrompt = systemPrompt || DEFAULT_SYSTEM_PROMPT;
         addToConversationHistory(clientId, { role: 'user', content: message });
         
-        // Add aggressive timeout wrapper for Grok4 call
-        const grok4Timeout = 4000; // 4 second timeout for Grok4
+        // Add timeout wrapper for Grok4 call
+        const grok4Timeout = 5000; // 5 second timeout for Grok4
         const grok4Promise = handleStreamingResponse(ENHANCED_TOOLS, temperature, tracker, clientId, enhancedSystemPrompt, xSentimentPrompt);
         
         try {
           const response = await Promise.race([
             grok4Promise,
             new Promise<Response>((_, reject) => 
-              setTimeout(() => reject(new Error('Grok4 timeout - using fallback')), grok4Timeout)
+              setTimeout(() => reject(new Error('Grok4 timeout - using market data fallback')), grok4Timeout)
             )
           ]);
           
           tracker.end('total');
           tracker.logTimings();
           
-          logger.info('GM X sentiment analysis completed:', {
+          logger.info('GM market data + X sentiment analysis completed:', {
             duration: Date.now() - startTime,
             responseLength: 'streaming'
           });
           
           return response;
         } catch (grok4Error) {
-          // Simple fallback if Grok4 times out
-          logger.warn('Grok4 timeout, using simple fallback:', grok4Error);
+          // Fallback with market data if Grok4 times out
+          logger.warn('Grok4 timeout, using market data fallback:', grok4Error);
           
-          const fallbackResponse = `**🌅 GOOD MORNING CRYPTO MARKETS**\n\n**🤖 X Sentiment Analysis**\n\n*Note: X sentiment analysis temporarily unavailable. Check X (Twitter) directly for real-time crypto sentiment and breaking news.*\n\n**Quick Market Check:**\n- Monitor Bitcoin sentiment on X\n- Track trending altcoin narratives\n- Watch crypto stock sentiment (MSTR, COIN, HOOD)\n- Stay alert for breaking news and events`;
+          const fallbackResponse = `${marketSummary}\n\n**🤖 X Sentiment Analysis**\n\n*Note: X sentiment analysis temporarily unavailable. Check X (Twitter) directly for real-time crypto sentiment and breaking news.*\n\n**Quick Market Check:**\n- Monitor Bitcoin sentiment on X\n- Track trending altcoin narratives\n- Watch crypto stock sentiment (MSTR, COIN, HOOD)\n- Stay alert for breaking news and events`;
           
           tracker.end('total');
           tracker.logTimings();
           
-          logger.info('GM analysis completed with fallback:', {
+          logger.info('GM analysis completed with market data fallback:', {
             duration: Date.now() - startTime,
             responseLength: fallbackResponse.length
           });
           
-          // Return streaming response with fallback data
+          // Return streaming response with market data fallback
           return new Response(
             new ReadableStream({
               start(controller) {
