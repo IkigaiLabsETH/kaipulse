@@ -7,7 +7,7 @@ type StaticData = {
     };
 };
 
-// Mock data for fields not available in Alpha Vantage Free Tier
+// Mock data for fields not available in Yahoo Finance
 const staticData: StaticData = {
   TSLA: {
     ivRank: 27,
@@ -22,30 +22,25 @@ const staticData: StaticData = {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const ticker = searchParams.get('ticker')?.toUpperCase();
-  const apiKey = process.env.ALPHA_VANTAGE_API_KEY;
-
-  if (!apiKey) {
-      return NextResponse.json({ error: 'API key is missing' }, { status: 500 });
-  }
 
   if (!ticker) {
     return NextResponse.json({ error: 'Ticker is required' }, { status: 400 });
   }
 
   try {
-    const response = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${apiKey}`);
+    // Yahoo Finance public API endpoint (no API key required)
+    const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${ticker}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      return NextResponse.json({ error: `Yahoo Finance API error: ${response.status}` }, { status: 502 });
+    }
     const data = await response.json();
-
-    const quote = data['Global Quote'];
-    if (!quote || Object.keys(quote).length === 0) {
-      if (data['Information']) {
-        // This will catch rate-limit errors or invalid key messages from Alpha Vantage
-        return NextResponse.json({ error: `Alpha Vantage Error: ${data['Information']}` }, { status: 400 });
-      }
-      return NextResponse.json({ error: `No data found. Full API response: ${JSON.stringify(data)}` }, { status: 404 });
+    const quote = data?.quoteResponse?.result?.[0];
+    if (!quote) {
+      return NextResponse.json({ error: `No data found for ticker: ${ticker}` }, { status: 404 });
     }
 
-    const spotPrice = parseFloat(quote['05. price']);
+    const spotPrice = typeof quote.regularMarketPrice === 'number' ? quote.regularMarketPrice : null;
 
     const finalData = {
       spotPrice,
@@ -53,8 +48,7 @@ export async function GET(request: Request) {
     };
 
     return NextResponse.json(finalData);
-
-  } catch {
-    return NextResponse.json({ error: 'Failed to fetch market data' }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch market data', details: String(error) }, { status: 500 });
   }
 } 

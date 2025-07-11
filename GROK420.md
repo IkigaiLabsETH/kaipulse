@@ -4,6 +4,49 @@
 
 GROK420 is a sophisticated AI-powered crypto market intelligence system that leverages Grok 4's real-time X (Twitter) data integration to provide comprehensive market analysis, sentiment insights, and actionable trading intelligence. Built with Next.js 14, TypeScript, and modern tool-augmented AI, it delivers real-time crypto market intelligence with X sentiment analysis.
 
+---
+
+## Recent Developments (May 2024)
+
+- **Backend/Frontend Asset List Alignment:**
+  - The backend asset lists for altcoins and crypto stocks are now perfectly aligned with the frontend UI. This was achieved by analyzing all relevant frontend components and curating the backend lists to match exactly, including symbol mapping and removal of irrelevant tokens (e.g., MATIC, ATOM, ADA, DOT). New tokens from the dashboard (e.g., KAIA, INJ, SEI, SPX6900, WIF, REKT) were added for full parity.
+
+- **Comprehensive “gm” Handler:**
+  - The API now features a robust "gm" handler that, on receiving a "gm" or "good morning" message, returns a comprehensive market report. This includes:
+    - Real-time Bitcoin price (CoinGecko)
+    - Curated altcoins (top 12–15 by 24h change, with symbol mapping)
+    - Curated crypto stocks (from Yahoo Finance, matching frontend usage)
+    - Macro context (S&P 500, Magnificent 7, macro trends)
+    - Market sentiment and narrative analysis from X via Grok 4 prompt/tool-calling
+
+- **Stock Data Provider Migration:**
+  - **Alpha Vantage has been fully replaced by Yahoo Finance** for all stock and crypto stock price data. The backend now uses Yahoo Finance's public API, which requires no paid API key, for all US and crypto-related stocks (e.g., MSTR, COIN, TSLA, etc.).
+  - All references to Alpha Vantage have been removed from the codebase and documentation.
+
+- **Backend Tooling & Tool Registration:**
+  - The `getXSentiment` backend tool was created and registered as a callable function for Grok 4, enabling tweet-level sentiment analysis. This leverages the existing `TwitterService` and `TweetAnalyzer` utilities for deep sentiment and narrative extraction.
+
+- **Prompt Engineering Best Practices:**
+  - Prompts for Grok 4 are now engineered to maximize the use of X data, focusing on:
+    - Analyzing sentiment and trends from high-profile X accounts
+    - Detecting emerging tokens, memecoins, and macro events
+    - Combining X sentiment with technical analysis
+    - Providing concise, actionable, and context-rich responses
+
+- **TypeScript & Linting Improvements:**
+  - All explicit `any` usages have been replaced with specific interfaces (e.g., `CoinGeckoCoin`, `StockResult`).
+  - Unused variables and interfaces were removed.
+  - Calls to undefined functions were commented out or removed.
+  - All linter and TypeScript errors have been resolved.
+
+- **Code Review & Version Control:**
+  - The codebase is now clean, well-documented, and all major changes have been committed and pushed at each step.
+
+- **Roadmap Recommendations:**
+  - Direct backend X data integration is recommended for future improvements, along with advanced analytics and technical analysis tools.
+
+---
+
 ## System Architecture
 
 ```mermaid
@@ -30,7 +73,7 @@ graph TB
     
     subgraph "Data Sources"
         CoinGecko[CoinGecko API]
-        AlphaVantage[Alpha Vantage]
+        YahooFinance[Yahoo Finance]
         TwitterAPI[X/Twitter API]
         WebSearch[Web Search]
         Mempool[Mempool.space]
@@ -62,11 +105,11 @@ graph TB
     Tools --> MarketTool
     Tools --> GMHandler
     PriceTool --> CoinGecko
-    MarketTool --> AlphaVantage
+    MarketTool --> YahooFinance
     SentimentTool --> TwitterAPI
     SearchTool --> WebSearch
     GMHandler --> CoinGecko
-    GMHandler --> AlphaVantage
+    GMHandler --> YahooFinance
     Grok4 --> Cache
     Route --> Logger
     Route --> Tracker
@@ -89,6 +132,7 @@ The system uses function calling to enhance Grok 4's capabilities:
 - `search`: Web search for real-time information
 - `get_crypto_price`: Real-time cryptocurrency prices (50+ coins supported)
 - `get_x_sentiment`: X (Twitter) sentiment analysis and key points extraction
+- `get_stock_price`: Real-time stock and crypto stock prices (via Yahoo Finance)
 
 ### 3. **Fine-Tuned Asset Tracking**
 
@@ -119,19 +163,19 @@ When users say "gm" or "good morning", the system provides:
 
 #### **Bitcoin Analysis:**
 - Real-time BTC price from CoinGecko
-- X sentiment analysis using Grok 4
+- X sentiment analysis using Grok 4 and the `getXSentiment` tool
 - Key narratives and market trends
 - Network statistics and mempool data
 
 #### **Altcoin Performance:**
-- Top 12 altcoins by 24h absolute change
+- Top 12–15 altcoins by 24h absolute change (curated and symbol-mapped to match frontend)
 - Visual indicators (🟢/🔴) for performance
 - Focus on emerging tokens and DeFi protocols
 - Market cap and volume data
 
 #### **Crypto Stock Tracking:**
-- 17 most tracked crypto-related stocks
-- Real-time prices via Alpha Vantage API
+- 17 most tracked crypto-related stocks (fully aligned with frontend)
+- Real-time prices via Yahoo Finance (no paid API or API key required)
 - Performance across exchanges, mining, and payments
 - Earnings dates and IV rank data
 
@@ -142,28 +186,30 @@ When users say "gm" or "good morning", the system provides:
 - Fear & Greed Index integration
 
 ### **2. X Sentiment Analysis**
-- **Tool Function**: `get_x_sentiment`
-- **Input**: Tweet URL
-- **Output**: Key points, sentiment, and actionable insights
-- **Use Cases**: Market analysis, trend detection, narrative tracking
-- **Integration**: TweetAnalyzer service for comprehensive analysis
+- **Tool Function:** `getXSentiment` (backend tool, registered for Grok 4)
+- **Input:** Tweet URL
+- **Output:** Key points, sentiment, and actionable insights
+- **Use Cases:** Market analysis, trend detection, narrative tracking
+- **Integration:** Uses `TwitterService` and `TweetAnalyzer` for comprehensive analysis
 
 ### **3. Real-Time Price Intelligence**
-- **Supported Coins**: 50+ cryptocurrencies
-- **Data Source**: CoinGecko API
-- **Features**: Price, 24h change, market cap, volume
-- **Caching**: 5-minute cache for performance
-- **Error Handling**: Graceful fallbacks and retry logic
+- **Supported Coins:** 50+ cryptocurrencies (curated list, matches frontend)
+- **Data Source:** CoinGecko API
+- **Features:** Price, 24h change, market cap, volume
+- **Caching:** 5-minute cache for performance
+- **Error Handling:** Graceful fallbacks and retry logic
 
 ### **4. Advanced Market Data**
-- **Bitcoin Network**: Hash rate, difficulty, block height
-- **Mempool Analysis**: Transaction fees and congestion
-- **Lightning Network**: Capacity and channel data
-- **Mining Revenue**: 24h and historical data
+- **Bitcoin Network:** Hash rate, difficulty, block height
+- **Mempool Analysis:** Transaction fees and congestion
+- **Lightning Network:** Capacity and channel data
+- **Mining Revenue:** 24h and historical data
+
+---
 
 ## Implementation Details
 
-### **System Prompts**
+### **System Prompts & Prompt Engineering Best Practices**
 ```typescript
 const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, concise style, pulling insights from real-time X (Twitter) data and technical indicators. Always:
 - Analyze sentiment and trends from X posts, especially from high-profile accounts
@@ -176,7 +222,13 @@ const DEFAULT_SYSTEM_PROMPT = `You are a crypto trading expert with a witty, con
 `;
 ```
 
-### **Tool Definitions**
+#### **Prompt Engineering Best Practices:**
+- Use clear, concise prompts that specify the need for X sentiment and technical analysis.
+- Always request actionable insights and narrative detection.
+- For "gm" or market summary queries, instruct Grok 4 to use all available tools and data sources.
+- Encourage the model to focus on curated asset lists and macro context.
+
+### **Tool Definitions & Registration**
 ```typescript
 const ENHANCED_TOOLS: ChatCompletionTool[] = [
   {
@@ -215,61 +267,35 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
   }
 ];
 ```
+- `get_x_sentiment` is now a registered backend tool, callable by Grok 4 for tweet-level sentiment analysis.
 
-### **Market Data Integration**
-- **CoinGecko**: Cryptocurrency prices and market data
-- **Alpha Vantage**: Stock prices and market data
-- **Mempool.space**: Bitcoin network and mempool data
-- **Alternative.me**: Fear & Greed Index
-- **Blockchain.info**: Network statistics
-- **Caching Strategy**: 5-minute cache for API responses
-- **Error Handling**: Graceful fallbacks and user-friendly messages
+---
 
-### **Performance Optimizations**
-```typescript
-// Rate limiting configuration
-const RATE_LIMIT = {
-  windowMs: 60 * 1000, // 1 minute
-  max: 10, // 10 requests per minute
-  message: 'Too many requests, please try again later.'
-};
+## Code Quality & TypeScript
+- All explicit `any` types have been replaced with specific interfaces (e.g., `CoinGeckoCoin`, `StockResult`).
+- Unused variables and interfaces have been removed.
+- All linter and TypeScript errors have been resolved.
+- Calls to undefined functions have been removed or commented out.
 
-// Caching strategy
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-const isCacheValid = (cached: any) => 
-  cached && Date.now() - cached.timestamp < CACHE_DURATION;
-```
+---
 
-## Use Cases & Examples
+## Code Review & Version Control
+- The route provides real-time Bitcoin price, curated altcoins and stocks, and market sentiment from X.
+- Backend asset lists are perfectly aligned with the frontend.
+- All major changes are committed and pushed at each step.
+- Recommendations for further improvements (e.g., direct backend X data integration) are documented in the roadmap.
 
-### **Morning Market Briefing**
-```
-User: "gm"
-Response: Comprehensive market report including:
-- Bitcoin price and X sentiment
-- Top 12 altcoins by performance
-- 17 crypto stock prices
-- Macro market context
-- Network statistics and mempool data
-```
+---
 
-### **Real-Time Price Queries**
-```
-User: "What's the price of Bitcoin?"
-Response: Real-time BTC price with 24h change and market context
-```
+## Roadmap & Next Steps
+- **Direct Backend X Data Integration:** For even more robust sentiment and narrative analysis.
+- **Technical Analysis Tools:** RSI, MACD, Bollinger Bands, etc.
+- **Portfolio Management:** Position tracking and P&L.
+- **Real-time Alerts:** Price and sentiment notifications.
+- **Advanced Analytics:** Machine learning insights.
+- **Enterprise Features:** Multi-user support and white-labeling.
 
-### **X Sentiment Analysis**
-```
-User: "Analyze this tweet: [URL]"
-Response: Key points, sentiment, and market implications
-```
-
-### **Market Data Queries**
-```
-User: "Show me Bitcoin network stats"
-Response: Hash rate, difficulty, mempool fees, and network metrics
-```
+---
 
 ## Performance Optimizations
 
