@@ -5,6 +5,9 @@ import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/reso
 import type { ChatCompletion } from "openai/resources/chat/completions";
 import { performance } from 'perf_hooks';
 
+// Configure API route timeout for Grok4 API calls
+export const maxDuration = 60; // 60 seconds timeout
+
 // Enhanced types for multi-modal support
 type RequestBody = {
   message: string;
@@ -1158,7 +1161,7 @@ async function handleStreamingResponse(
         const OpenAI = (await import('openai')).default;
         
         // Add timeout to Grok4 API call
-        const grok4Timeout = 5000; // 5 second timeout (reduced from 6s)
+        const grok4Timeout = 15000; // 15 second timeout (increased from 5s)
         const grok4Promise = new OpenAI({
           apiKey: process.env.XAI_API_KEY,
           baseURL: 'https://api.x.ai/v1',
@@ -1337,7 +1340,7 @@ async function handleNonStreamingResponse(
         max_tokens: 2000,
       }),
       new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('Grok4 API timeout')), 6000)
+        setTimeout(() => reject(new Error('Grok4 API timeout')), 15000)
       )
     ]);
     tracker.end('grok4_api');
@@ -1427,7 +1430,7 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
             max_tokens: 2000,
           }),
           new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error('Grok4 API timeout')), 6000)
+            setTimeout(() => reject(new Error('Grok4 API timeout')), 15000)
           )
         ]);
       } catch (toolError) {
@@ -1450,11 +1453,29 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
   // Improved empty content handling with specific fallback messages
   if (!content || !content.trim()) {
     logger.error('Grok4 returned empty content. Full response:', JSON.stringify(completion, null, 2));
-    // Use the last user message for context
-    if (grok4Prompt.toLowerCase().includes('price') || grok4Prompt.toLowerCase().includes('btc') || grok4Prompt.toLowerCase().includes('bitcoin')) {
-      content = 'I\'m having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"';
-    } else {
+    // Fallback: Try a direct Grok4 completion with a special prompt
+    try {
+      const fallbackPrompt = `${grok4Prompt}\n\nIf you can't access live data, give your best witty, helpful answer anyway.`;
+      const fallbackCompletion = await Grok4Service.chatCompletion({
+        messages: [
+          { role: 'system', content: enhancedSystemPrompt },
+          { role: 'user', content: fallbackPrompt }
+        ],
+        temperature: temperature || 0.7,
+        max_tokens: 2000,
+      });
+      content = fallbackCompletion.choices?.[0]?.message?.content || '';
+    } catch (fallbackError) {
+      logger.error('Grok4 fallback completion error:', fallbackError);
       content = 'I couldn\'t generate a proper response. Please try rephrasing your question.';
+    }
+    // If still empty, use a generic fallback
+    if (!content || !content.trim()) {
+      if (grok4Prompt.toLowerCase().includes('price') || grok4Prompt.toLowerCase().includes('btc') || grok4Prompt.toLowerCase().includes('bitcoin')) {
+        content = 'I\'m having trouble getting the current Bitcoin price right now. You can check live prices on CoinGecko or CoinMarketCap. As Satoshi would say: "The price is what the market decides!"';
+      } else {
+        content = 'I couldn\'t generate a proper response. Please try rephrasing your question.';
+      }
     }
   }
 
