@@ -953,11 +953,10 @@ export async function POST(request: Request) {
         marketSummary += `\n`;
         
         // Altcoins section
-        marketSummary += `**🪙 TOP ALTCOINS (24h Change)**\n`;
         marketSummary += altcoins || '_Unable to fetch altcoin data_\n\n';
         
         // Crypto stocks section
-        marketSummary += `**📈 CRYPTO STOCKS**\n`;
+        marketSummary += `\n`;
         marketSummary += cryptoStocks || '_Unable to fetch stock data_\n\n';
         
         // Enhanced X sentiment analysis prompt with specific asset focus
