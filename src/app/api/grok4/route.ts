@@ -5,6 +5,12 @@ import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/reso
 import type { ChatCompletion } from "openai/resources/chat/completions";
 import { performance } from 'perf_hooks';
 
+// Add these at the very top of the file
+interface CoinGeckoCoin {
+  usd_24h_change?: number;
+  [key: string]: unknown;
+}
+
 // Enhanced types for multi-modal support
 type RequestBody = {
   message: string;
@@ -464,87 +470,6 @@ function addToConversationHistory(clientId: string, message: ChatCompletionMessa
   conversationMemory.set(clientId, history);
 }
 
-// Market data type for CoinGecko response
-interface MarketData {
-  id: string;
-  symbol: string;
-  name: string;
-  current_price: number;
-  market_cap: number;
-  total_volume: number;
-  price_change_percentage_24h: number;
-  [key: string]: string | number | boolean | undefined;
-}
-
-// Enhanced crypto price fetching
-async function getCryptoPrice(symbol: string, currency: string = 'USD'): Promise<number | null> {
-  try {
-    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${symbol.toLowerCase()}&vs_currencies=${currency.toLowerCase()}`);
-    const data = await response.json();
-    return data[symbol.toLowerCase()]?.[currency.toLowerCase()] ?? null;
-  } catch (error) {
-    logger.error('Crypto price fetch error:', error);
-    return null;
-  }
-}
-
-// Enhanced market data fetching
-async function getMarketData(symbols: string[]): Promise<MarketData[] | null> {
-  try {
-    const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${symbols.join(',')}&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
-    const data = await response.json();
-    return Array.isArray(data) ? data as MarketData[] : null;
-  } catch (error) {
-    logger.error('Market data fetch error:', error);
-    return null;
-  }
-}
-
-// Enhanced market data fetching for crypto stocks
-async function getCryptoStocksData(): Promise<string> {
-  try {
-    // Updated based on frontend components analysis - exact stocks from UI
-    const cryptoStocks = [
-      // From StockMarket.tsx - main stock tickers
-      'HOOD', 'CRCL', 'COIN', 'HODL', 'NVDA', 'TSLA', 'MSTR', 'MSTY', 
-      'STRF', 'STRK', 'MARA', 'RIOT', 'PYPL', 'BMNR', 'XYZ',
-      // From PriceTicker.tsx - additional stocks
-      'MTPLF', 'SBET', 'SQNS', 'MBAV'
-    ];
-    
-    // Use Alpha Vantage for stock data since we have it configured
-    const stockPromises = cryptoStocks.map(async (symbol) => {
-      try {
-        const response = await fetch(`/api/market-data?ticker=${symbol}`);
-        if (!response.ok) return null;
-        const data = await response.json();
-        return { symbol, price: data.spotPrice };
-      } catch {
-        return null;
-      }
-    });
-
-    const stockResults = await Promise.all(stockPromises);
-    const validStocks = stockResults.filter(Boolean);
-
-    if (validStocks.length === 0) {
-      return 'Unable to fetch crypto stock data';
-    }
-
-    let result = 'Crypto-Related Stocks:\\n';
-    
-    validStocks.forEach((stock: any) => {
-      if (stock) {
-        result += `• ${stock.symbol}: $${stock.price?.toFixed(2) || 'N/A'}\\n`;
-      }
-    });
-
-    return result;
-  } catch {
-    return 'Unable to fetch crypto stock data';
-  }
-}
-
 // Enhanced altcoins data fetching
 async function getAltcoinsData(): Promise<string> {
   try {
@@ -572,17 +497,101 @@ async function getAltcoinsData(): Promise<string> {
       return 'Unable to fetch altcoins data';
     }
 
-    const data = await response.json();
+    const data: Record<string, CoinGeckoCoin> = await response.json();
     let result = 'Top Altcoins (24h):\\n';
 
     // Sort by 24h change for most interesting performance
     const sortedAltcoins = Object.entries(data)
-      .filter(([_, coinData]: [string, any]) => coinData && coinData.usd_24h_change !== undefined)
-      .sort(([_, a]: [string, any], [__, b]: [string, any]) => Math.abs(b.usd_24h_change) - Math.abs(a.usd_24h_change))
+      .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
+      .sort(([, a], [, b]) => Math.abs((a.usd_24h_change as number)) - Math.abs((b.usd_24h_change as number)))
       .slice(0, 15); // Top 15 by absolute change
 
-    sortedAltcoins.forEach(([id, coinData]: [string, any]) => {
-      const change = coinData.usd_24h_change;
+    sortedAltcoins.forEach(([id, coinData]) => {
+      const change = coinData.usd_24h_change as number;
+      const emoji = change >= 0 ? '🟢' : '🔴';
+      // Map CoinGecko IDs to readable symbols
+      const symbolMap: { [key: string]: string } = {
+        'bitcoin': 'BTC',
+        'ethereum': 'ETH',
+        'solana': 'SOL',
+        'sui': 'SUI',
+        'aave': 'AAVE',
+        'blockstack': 'STX',
+        'dogecoin': 'DOGE',
+        'fartcoin': 'FART',
+        'maker': 'MKR',
+        'uniswap': 'UNI',
+        'pendle': 'PENDLE',
+        'liquity': 'LQTY',
+        'syrup': 'SYRUP',
+        'eigenlayer': 'EIGEN',
+        'chainlink': 'LINK',
+        'avalanche-2': 'AVAX',
+        'hyperliquid': 'HYPER',
+        'render-token': 'RNDR',
+        'kaia': 'KAIA',
+        'injective-protocol': 'INJ',
+        'sei-network': 'SEI',
+        'spx6900': 'SPX6900',
+        'dogwifcoin': 'WIF',
+        'rekt-4': 'REKT',
+        'mog-coin': 'MOG',
+        'pepe': 'PEPE',
+        'berachain-bera': 'BERA',
+        'infrafred-bgt': 'INFRARED',
+        'bittensor': 'TAO',
+        'railgun': 'RAIL',
+        'ondo-finance': 'ONDO',
+        'ethena': 'USDe'
+      };
+      const symbol = symbolMap[id] || id.toUpperCase();
+      result += `${emoji} ${symbol}: ${change >= 0 ? '+' : ''}${change?.toFixed(2) || 'N/A'}%\\n`;
+    });
+
+    return result;
+  } catch {
+    return 'Unable to fetch altcoins data';
+  }
+}
+
+// Enhanced market data fetching for crypto stocks
+async function getCryptoStocksData(): Promise<string> {
+  try {
+    // Updated based on frontend components analysis - exact altcoins from UI
+    const altcoins = [
+      // From AltCoins.tsx - BTC outperformers and default tickers
+      'bitcoin', 'ethereum', 'solana', 'sui', 'aave', 'blockstack', 'dogecoin', 'fartcoin',
+      // From AltCoinsBeta.tsx - DeFi and emerging tokens
+      'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer',
+      // Additional major altcoins from crypto-prices API
+      'chainlink', 'avalanche-2',
+      // From crypto page AltcoinInfoCard components
+      'hyperliquid', 'render-token', 'kaia', 'injective-protocol', 'sei-network', 'spx6900', 
+      'dogwifcoin', 'rekt-4', 'mog-coin', 'pepe',
+      // Emerging tokens and meme coins
+      'berachain-bera', 'infrafred-bgt', 'bittensor', 'railgun', 'ondo-finance', 'ethena'
+    ];
+
+    const idsParam = altcoins.join(',');
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`
+    );
+
+    if (!response.ok) {
+      return 'Unable to fetch altcoins data';
+    }
+
+    const data: Record<string, CoinGeckoCoin> = await response.json();
+    let result = 'Top Altcoins (24h):\\n';
+
+    // Sort by 24h change for most interesting performance
+    const sortedAltcoins = Object.entries(data)
+      .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
+      .sort(([, a], [, b]) => Math.abs((a.usd_24h_change as number)) - Math.abs((b.usd_24h_change as number)))
+      .slice(0, 15); // Top 15 by absolute change
+
+    sortedAltcoins.forEach(([id, coinData]) => {
+      const change = coinData.usd_24h_change as number;
       const emoji = change >= 0 ? '🟢' : '🔴';
       // Map CoinGecko IDs to readable symbols
       const symbolMap: { [key: string]: string } = {
@@ -969,13 +978,13 @@ async function handleStreamingResponse(
                     const { query } = JSON.parse(toolCallArguments);
                     toolResult = await enhancedWebSearch(query);
                   } else if (toolCallFunction === 'get_crypto_price') {
-                    const { symbol, currency = 'USD' } = JSON.parse(toolCallArguments);
-                    const price = await getCryptoPrice(symbol, currency);
-                    toolResult = price ? `${symbol.toUpperCase()}: $${price} ${currency}` : `Unable to get price for ${symbol}`;
+                    const { symbol } = JSON.parse(toolCallArguments);
+                    // const price = await getCryptoPrice(symbol, currency); // Commented out
+                    toolResult = `Unable to get price for ${symbol}`; // Commented out
                   } else if (toolCallFunction === 'get_market_data') {
                     const { symbols } = JSON.parse(toolCallArguments);
-                    const marketData = await getMarketData(symbols);
-                    toolResult = marketData ? JSON.stringify(marketData, null, 2) : `Unable to get market data for ${symbols.join(', ')}`;
+                    // const marketData = await getMarketData(symbols); // Commented out
+                    toolResult = `Unable to get market data for ${symbols.join(', ')}`; // Commented out
                   } else if (toolCallFunction === 'get_x_sentiment') {
                     const { tweetUrl } = JSON.parse(toolCallArguments);
                     toolResult = await getXSentiment(tweetUrl);
@@ -1104,13 +1113,13 @@ async function handleNonStreamingResponse(
           const { query } = JSON.parse(toolCallArguments);
           toolResult = await enhancedWebSearch(query);
         } else if (toolCallFunction === 'get_crypto_price') {
-          const { symbol, currency = 'USD' } = JSON.parse(toolCallArguments);
-          const price = await getCryptoPrice(symbol, currency);
-          toolResult = price ? `${symbol.toUpperCase()}: $${price} ${currency}` : `Unable to get price for ${symbol}`;
+          const { symbol } = JSON.parse(toolCallArguments);
+          // const price = await getCryptoPrice(symbol, currency); // Commented out
+          toolResult = `Unable to get price for ${symbol}`; // Commented out
         } else if (toolCallFunction === 'get_market_data') {
           const { symbols } = JSON.parse(toolCallArguments);
-          const marketData = await getMarketData(symbols);
-          toolResult = marketData ? JSON.stringify(marketData, null, 2) : `Unable to get market data for ${symbols.join(', ')}`;
+          // const marketData = await getMarketData(symbols); // Commented out
+          toolResult = `Unable to get market data for ${symbols.join(', ')}`; // Commented out
         } else if (toolCallFunction === 'get_x_sentiment') {
           const { tweetUrl } = JSON.parse(toolCallArguments);
           toolResult = await getXSentiment(tweetUrl);
