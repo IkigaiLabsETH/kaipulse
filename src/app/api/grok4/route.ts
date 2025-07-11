@@ -670,75 +670,94 @@ async function getAltcoinsData(): Promise<string> {
 }
 
 // Enhanced crypto stocks data with Yahoo Finance
-interface StockQuote {
-  symbol: string;
-  regularMarketPrice?: number;
-  regularMarketChangePercent?: number;
-  marketCap?: number;
-}
+
 
 async function _getCryptoStocksData(): Promise<string> {
   try {
-    // Focus on the most important crypto stocks that are likely to have data
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured');
+      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data - API key not configured_';
+    }
+
+    // Focus on the most important crypto stocks
     const stocks = [
       'MSTR', 'COIN', 'HOOD', 'MARA', 'RIOT', 'NVDA', 'TSLA'
     ];
-    const symbols = stocks.join(',');
     
-    logger.info('Fetching crypto stocks data for symbols:', symbols);
+    logger.info('Fetching crypto stocks data for symbols:', stocks);
     
-    const response = await fetchWithTimeout(
-      `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols}`, 
-      {}, 
-      5000
-    );
-    
-    if (!response.ok) {
-      logger.warn('Yahoo Finance API response not ok:', response.status, response.statusText);
-      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
-    }
-    
-    const data = await response.json();
-    logger.info('Yahoo Finance API response received:', {
-      hasQuoteResponse: !!data?.quoteResponse,
-      resultCount: data?.quoteResponse?.result?.length || 0
+    // Fetch each stock individually (Finnhub free tier limitation)
+    const stockPromises = stocks.map(async (symbol) => {
+      try {
+        const response = await fetchWithTimeout(
+          `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
+          {},
+          3000 // 3 second timeout per stock
+        );
+        
+        if (!response.ok) {
+          logger.warn(`Finnhub API error for ${symbol}:`, response.status, response.statusText);
+          return null;
+        }
+        
+        const data = await response.json();
+        
+        // Validate Finnhub response structure
+        if (!data || typeof data.c !== 'number' || typeof data.dp !== 'number') {
+          logger.warn(`Invalid Finnhub data for ${symbol}:`, data);
+          return null;
+        }
+        
+        return {
+          symbol,
+          currentPrice: data.c,
+          previousClose: data.pc,
+          change: data.d,
+          changePercent: data.dp,
+          high: data.h,
+          low: data.l,
+          open: data.o
+        };
+      } catch (error) {
+        logger.warn(`Error fetching ${symbol} from Finnhub:`, error);
+        return null;
+      }
     });
     
-    const quotes = data?.quoteResponse?.result || [];
-    
-    if (quotes.length === 0) {
-      logger.warn('No quotes returned from Yahoo Finance API');
-      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
-    }
-    
-    const sortedStocks = quotes
-      .filter((quote: StockQuote) => quote.regularMarketChangePercent !== undefined)
-      .sort((a: StockQuote, b: StockQuote) => Math.abs(b.regularMarketChangePercent || 0) - Math.abs(a.regularMarketChangePercent || 0))
+    const results = await Promise.allSettled(stockPromises);
+    const validStocks = results
+      .filter((result): result is PromiseFulfilledResult<CryptoStockQuote> => 
+        result.status === 'fulfilled' && result.value !== null
+      )
+      .map(result => result.value)
+      .sort((a, b) => Math.abs(b.changePercent) - Math.abs(a.changePercent))
       .slice(0, 10);
     
-    if (sortedStocks.length === 0) {
-      logger.warn('No valid stock quotes found after filtering');
+    if (validStocks.length === 0) {
+      logger.warn('No valid stock quotes found from Finnhub');
       return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
     }
     
-    let table = '| Symbol | Price | 24h Change | Market Cap |\n|--------|-------|------------|------------|\n';
-    sortedStocks.forEach((quote: StockQuote) => {
-      const change = quote.regularMarketChangePercent || 0;
-      const emoji = change >= 0 ? '🟢' : '🔴';
-      const price = quote.regularMarketPrice?.toFixed(2) || 'N/A';
-      const marketCap = quote.marketCap ? 
-        new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(quote.marketCap) : 'N/A';
-      table += `| ${emoji} ${quote.symbol} | $${price} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
+    let table = '| Symbol | Price | 24h Change |\n|--------|-------|------------|\n';
+    validStocks.forEach((stock) => {
+      const emoji = stock.changePercent >= 0 ? '🟢' : '🔴';
+      const price = stock.currentPrice.toFixed(2);
+      const changePercent = stock.changePercent >= 0 ? 
+        `+${stock.changePercent.toFixed(2)}%` : 
+        `${stock.changePercent.toFixed(2)}%`;
+      
+      table += `| ${emoji} ${stock.symbol} | $${price} | ${changePercent} |\n`;
     });
     
-    logger.info('Crypto stocks data successfully fetched:', {
-      stockCount: sortedStocks.length,
-      symbols: sortedStocks.map((q: StockQuote) => q.symbol)
+    logger.info('Crypto stocks data successfully fetched from Finnhub:', {
+      stockCount: validStocks.length,
+      symbols: validStocks.map(s => s.symbol)
     });
     
     return `**📈 Crypto Stocks:**\n${table}`;
   } catch (error) {
-    logger.error('Error fetching crypto stocks data:', error);
+    logger.error('Error fetching crypto stocks data from Finnhub:', error);
     return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
   }
 }
@@ -750,24 +769,85 @@ interface MacroMarketData {
   fearGreed?: string;
 }
 
-// Macro market data
+// Add explicit interfaces for stock results
+interface CryptoStockQuote {
+  symbol: string;
+  currentPrice: number;
+  previousClose: number;
+  change: number;
+  changePercent: number;
+  high: number;
+  low: number;
+  open: number;
+}
+
+interface MacroStockQuote {
+  symbol: string;
+  currentPrice: number;
+  changePercent: number;
+}
+// Macro market data using Finnhub
 async function _getMacroMarketData(): Promise<MacroMarketData | null> {
   try {
-    const mag7Symbols = 'MSFT,AAPL,GOOGL,AMZN,NVDA,META,TSLA,AVGO';
-    const response = await fetchWithTimeout(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=^GSPC,${mag7Symbols}`, {}, 5000);
-    if (!response.ok) return null;
-    const data = await response.json();
-    const quotes = data?.quoteResponse?.result || [];
-    const sp500 = quotes.find((q: StockQuote) => q.symbol === '^GSPC');
-    const mag7Avg = quotes
-      .filter((q: StockQuote) => q.symbol !== '^GSPC')
-      .reduce((sum: number, q: StockQuote) => sum + (q.regularMarketChangePercent || 0), 0) / 8;
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for macro data');
+      return null;
+    }
+
+    // Fetch S&P 500 and Magnificent 7 stocks individually
+    const symbols = ['SPY', 'MSFT', 'AAPL', 'GOOGL', 'AMZN', 'NVDA', 'META', 'TSLA', 'AVGO'];
+    
+    const stockPromises = symbols.map(async (symbol) => {
+      try {
+        const response = await fetchWithTimeout(
+          `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
+          {},
+          3000
+        );
+        
+        if (!response.ok) {
+          logger.warn(`Finnhub macro API error for ${symbol}:`, response.status);
+          return null;
+        }
+        
+        const data = await response.json();
+        
+        if (!data || typeof data.c !== 'number' || typeof data.dp !== 'number') {
+          logger.warn(`Invalid Finnhub macro data for ${symbol}:`, data);
+          return null;
+        }
+        
+        return {
+          symbol,
+          currentPrice: data.c,
+          changePercent: data.dp
+        };
+      } catch (error) {
+        logger.warn(`Error fetching ${symbol} macro data from Finnhub:`, error);
+        return null;
+      }
+    });
+    
+    const results = await Promise.allSettled(stockPromises);
+    const validStocks = results
+      .filter((result): result is PromiseFulfilledResult<MacroStockQuote> => 
+        result.status === 'fulfilled' && result.value !== null
+      )
+      .map(result => result.value);
+    
+    const sp500 = validStocks.find(s => s.symbol === 'SPY');
+    const mag7Stocks = validStocks.filter(s => s.symbol !== 'SPY');
+    const mag7Avg = mag7Stocks.length > 0 ? 
+      mag7Stocks.reduce((sum, stock) => sum + stock.changePercent, 0) / mag7Stocks.length : 0;
+    
     return {
-      sp500: sp500 ? `${sp500.regularMarketPrice?.toFixed(2)} (${sp500.regularMarketChangePercent && sp500.regularMarketChangePercent >= 0 ? '+' : ''}${sp500.regularMarketChangePercent?.toFixed(2)}%)` : 'N/A',
+      sp500: sp500 ? `${sp500.currentPrice.toFixed(2)} (${sp500.changePercent >= 0 ? '+' : ''}${sp500.changePercent.toFixed(2)}%)` : 'N/A',
       mag7: `${mag7Avg >= 0 ? '+' : ''}${mag7Avg.toFixed(2)}%`,
       fearGreed: 'N/A'
     };
-  } catch {
+  } catch (error) {
+    logger.error('Error fetching macro market data from Finnhub:', error);
     return null;
   }
 }
