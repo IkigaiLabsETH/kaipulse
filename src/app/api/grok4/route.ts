@@ -24,13 +24,22 @@ type BTCPriceCache = {
   timestamp: number;
 };
 
+type RateLimitEntry = {
+  count: number;
+  resetTime: number;
+};
+
 // Constants
 const BTC_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
 const PREDICTION_TIMEOUT = 5000;
 const BTC_FETCH_TIMEOUT = 3000;
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 10; // 10 requests per minute
+const MAX_MESSAGE_LENGTH = 2000; // Prevent extremely long messages
 
-// Cache
+// Caches
 let cachedBTCPrice: BTCPriceCache | null = null;
+const rateLimitCache = new Map<string, RateLimitEntry>();
 
 // Performance tracking
 class PerformanceTracker {
@@ -53,6 +62,47 @@ class PerformanceTracker {
   logTimings() {
     logger.info('Step timings (ms):', this.timings);
   }
+}
+
+// Rate limiting
+function checkRateLimit(clientId: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitCache.get(clientId);
+  
+  if (!entry || now > entry.resetTime) {
+    rateLimitCache.set(clientId, {
+      count: 1,
+      resetTime: now + RATE_LIMIT_WINDOW
+    });
+    return true;
+  }
+  
+  if (entry.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return false;
+  }
+  
+  entry.count++;
+  return true;
+}
+
+function getClientId(request: Request): string {
+  // Use IP address or user agent as client identifier
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const realIp = request.headers.get('x-real-ip');
+  const userAgent = request.headers.get('user-agent') || 'unknown';
+  
+  return forwardedFor || realIp || userAgent.substring(0, 50);
+}
+
+// Input sanitization
+function sanitizeMessage(message: string): string {
+  // Remove potential XSS and limit length
+  return message
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+\s*=/gi, '')
+    .substring(0, MAX_MESSAGE_LENGTH)
+    .trim();
 }
 
 // Query classification functions
@@ -88,8 +138,8 @@ function isPricePredictionQuery(q: string): boolean {
   return (hasPriceKeyword && hasCryptoMention) || hasPredictionKeyword;
 }
 
-// BTC Price fetching with better error handling
-async function getFastBTCPrice(): Promise<number | null> {
+// BTC Price fetching with better error handling and retry logic
+async function getFastBTCPrice(retryCount = 0): Promise<number | null> {
   const now = Date.now();
   if (cachedBTCPrice && (now - cachedBTCPrice.timestamp) < BTC_CACHE_TTL) {
     return cachedBTCPrice.price;
@@ -97,7 +147,12 @@ async function getFastBTCPrice(): Promise<number | null> {
   
   try {
     const resp = await Promise.race([
-      fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'),
+      fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', {
+        headers: {
+          'User-Agent': 'LiveTheLifeTV-Grok4/1.0',
+          'Accept': 'application/json'
+        }
+      }),
       new Promise<never>((_, reject) => 
         setTimeout(() => reject(new Error('BTC price fetch timeout')), BTC_FETCH_TIMEOUT)
       )
@@ -119,15 +174,27 @@ async function getFastBTCPrice(): Promise<number | null> {
     }
   } catch (error) {
     logger.error('BTC price fetch error:', error);
+    
+    // Retry once if it's a network error
+    if (retryCount === 0 && error instanceof Error && error.message.includes('timeout')) {
+      logger.info('Retrying BTC price fetch...');
+      return getFastBTCPrice(1);
+    }
+    
     return cachedBTCPrice ? cachedBTCPrice.price : null;
   }
 }
 
-// Response helpers
+// Response helpers with CORS support
 function createErrorResponse(message: string, status: number = 500): Response {
   return new Response(message, {
     status,
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+    headers: { 
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    }
   });
 }
 
@@ -136,11 +203,14 @@ function createSuccessResponse(content: string): Response {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'no-cache',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
     },
   });
 }
 
-// Request validation
+// Enhanced request validation
 async function validateRequest(request: Request): Promise<RequestBody> {
   if (request.method !== 'POST') {
     throw new Error('Method not allowed');
@@ -162,10 +232,24 @@ async function validateRequest(request: Request): Promise<RequestBody> {
     throw new Error('Message is required and must be a string');
   }
 
-  return body;
+  // Sanitize and validate message
+  const sanitizedMessage = sanitizeMessage(body.message);
+  if (!sanitizedMessage) {
+    throw new Error('Message cannot be empty after sanitization');
+  }
+
+  // Validate temperature range
+  if (body.temperature !== undefined && (body.temperature < 0 || body.temperature > 2)) {
+    throw new Error('Temperature must be between 0 and 2');
+  }
+
+  return {
+    ...body,
+    message: sanitizedMessage
+  };
 }
 
-// Price prediction handler
+// Price prediction handler with improved prompts
 async function handlePricePrediction(message: string, systemPrompt?: string, temperature?: number): Promise<string> {
   const btcPrice = await getFastBTCPrice();
   const isPredictionQuery = /price target|prediction|end of q4|end of year|forecast|target/i.test(message);
@@ -208,15 +292,45 @@ async function handlePricePrediction(message: string, systemPrompt?: string, tem
   }
 }
 
-// Main route handler
+// CORS preflight handler
+export async function OPTIONS(_request: Request) {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
+    },
+  });
+}
+
+// Main route handler with enhanced security and monitoring
 export async function POST(request: Request) {
   const tracker = new PerformanceTracker();
-  
+  const clientId = getClientId(request);
+  const startTime = Date.now();
+
+  // Rate limiting
+  if (!checkRateLimit(clientId)) {
+    logger.warn(`Rate limit exceeded for client: ${clientId}`);
+    return createErrorResponse('Rate limit exceeded. Please try again later.', 429);
+  }
+
   try {
     tracker.start('total');
     
     // Validate request
     const { message, systemPrompt, temperature, stream } = await validateRequest(request);
+
+    // Log request details for monitoring
+    logger.info('Request details:', {
+      clientId,
+      messageLength: message.length,
+      hasStream: stream,
+      temperature,
+      timestamp: new Date().toISOString()
+    });
 
     // Log GM detection
     if (isGMQuery(message)) {
@@ -229,6 +343,13 @@ export async function POST(request: Request) {
       const response = await handlePricePrediction(message, systemPrompt, temperature);
       tracker.end('total');
       tracker.logTimings();
+      
+      // Log successful response
+      logger.info('Price prediction completed:', {
+        duration: Date.now() - startTime,
+        responseLength: response.length
+      });
+      
       return createSuccessResponse(response);
     }
 
@@ -238,26 +359,35 @@ export async function POST(request: Request) {
       return createErrorResponse('Grok4 service is not properly configured. Please contact support.', 500);
     }
 
-    // Enhanced system prompt
-    const enhancedSystemPrompt = systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. IMPORTANT: When users say "gm" or "good morning", always provide current Bitcoin price and a comprehensive market report including altcoins, MSTR, Mag7, and S&P500 performance. Always use web search to get the most current data. You have access to web search for current information when needed.';
+    // Enhanced system prompt with context awareness
+    const enhancedSystemPrompt = systemPrompt || `You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. 
+
+IMPORTANT INSTRUCTIONS:
+- When users say "gm" or "good morning", always provide current Bitcoin price and a comprehensive market report including altcoins, MSTR, Mag7, and S&P500 performance
+- Always use web search to get the most current data
+- Keep responses concise but informative
+- Use Satoshi-style wisdom when appropriate
+- Be encouraging about Bitcoin adoption and financial freedom
+
+You have access to web search for current information when needed.`;
 
     logger.info('Grok4 SYSTEM PROMPT:', enhancedSystemPrompt);
     logger.info('Grok4 USER MESSAGE:', message);
 
-    // Prepare tools
+    // Prepare tools with enhanced descriptions
     const tools: ChatCompletionTool[] = [];
     if (needsWebSearch(message)) {
       tools.push({
         type: 'function',
         function: {
           name: 'search',
-          description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices and market data.',
+          description: 'Search the web for up-to-date information, with enhanced accuracy for cryptocurrency prices, market data, and financial news. Use this for current prices, market trends, and real-time information.',
           parameters: {
             type: 'object',
             properties: {
               query: {
                 type: 'string',
-                description: 'The search query'
+                description: 'The search query - be specific and include relevant keywords for better results'
               }
             },
             required: ['query']
@@ -266,7 +396,7 @@ export async function POST(request: Request) {
       });
     }
 
-    // Prepare messages
+    // Prepare messages with conversation context
     const messages: ChatCompletionMessageParam[] = [
       { role: 'system', content: enhancedSystemPrompt },
       { role: 'user', content: message }
@@ -286,11 +416,21 @@ export async function POST(request: Request) {
     tracker.logTimings();
     
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const duration = Date.now() - startTime;
+    
+    // Log error details for debugging
+    logger.error('Error details:', {
+      clientId,
+      duration,
+      error: errorMessage,
+      timestamp: new Date().toISOString()
+    });
+    
     return createErrorResponse(`Sorry, I'm having trouble connecting to Grok4 right now. Please try again in a moment. (${errorMessage})`);
   }
 }
 
-// Streaming response handler
+// Streaming response handler with enhanced error handling
 async function handleStreamingResponse(
   messages: ChatCompletionMessageParam[],
   tools: ChatCompletionTool[],
@@ -319,11 +459,13 @@ async function handleStreamingResponse(
           let toolCallId = '';
           let toolCallFunction = '';
           let toolCallArguments = '';
+          let contentLength = 0;
         
           for await (const chunk of completionStream) {
             const content = chunk.choices?.[0]?.delta?.content;
             if (content) {
               controller.enqueue(encoder.encode(content));
+              contentLength += content.length;
             }
             
             // Handle tool calls in streaming
@@ -339,8 +481,13 @@ async function handleStreamingResponse(
                     const { query } = JSON.parse(toolCallArguments);
                     logger.info('Streaming search request:', query);
                     
-                    // Perform search
-                    const searchResult = await enhancedWebSearch(query);
+                    // Perform search with timeout
+                    const searchResult = await Promise.race([
+                      enhancedWebSearch(query),
+                      new Promise<string>((_, reject) => 
+                        setTimeout(() => reject(new Error('Search timeout')), 8000)
+                      )
+                    ]);
                     
                     // Add tool response to messages
                     messages.push({
@@ -359,6 +506,7 @@ async function handleStreamingResponse(
                     const finalContent = finalCompletion.choices?.[0]?.message?.content;
                     if (finalContent) {
                       controller.enqueue(encoder.encode(finalContent));
+                      contentLength += finalContent.length;
                     }
                     
                   } catch (searchError) {
@@ -369,6 +517,13 @@ async function handleStreamingResponse(
               }
             }
           }
+          
+          // Log streaming completion
+          logger.info('Streaming completed:', {
+            contentLength,
+            toolCalls: tools.length > 0 ? 'yes' : 'no'
+          });
+          
         } catch (streamError) {
           logger.error('Streaming error:', streamError);
           controller.enqueue(encoder.encode('Sorry, there was an error with the streaming response.'));
@@ -386,6 +541,9 @@ async function handleStreamingResponse(
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
       },
     });
   } catch (streamError) {
@@ -397,7 +555,7 @@ async function handleStreamingResponse(
   }
 }
 
-// Non-streaming response handler
+// Non-streaming response handler with enhanced monitoring
 async function handleNonStreamingResponse(
   messages: ChatCompletionMessageParam[],
   tools: ChatCompletionTool[],
@@ -432,10 +590,17 @@ async function handleNonStreamingResponse(
   }
 
   // Handle tool calls (search) - only if tools were provided
+  let toolCallCount = 0;
   if (tools.length > 0) {
     while (true) {
       const toolCall = Grok4Service.extractToolCall(completion);
       if (!toolCall || toolCall.function?.name !== 'search') break;
+      
+      toolCallCount++;
+      if (toolCallCount > 3) {
+        logger.warn('Too many tool calls, stopping to prevent infinite loops');
+        break;
+      }
       
       try {
         const { query: searchQuery } = JSON.parse(toolCall.function.arguments);
@@ -493,6 +658,7 @@ async function handleNonStreamingResponse(
   logger.info('Grok4 content field:', content);
   logger.info('Grok4 content type:', typeof content);
   logger.info('Grok4 content length:', content?.length);
+  logger.info('Tool calls made:', toolCallCount);
   
   // Improved empty content handling with specific fallback messages
   if (!content || !content.trim()) {
@@ -509,5 +675,13 @@ async function handleNonStreamingResponse(
   
   tracker.end('total');
   tracker.logTimings();
+  
+  // Log successful completion
+  logger.info('Non-streaming response completed:', {
+    contentLength: content?.length || 0,
+    toolCalls: toolCallCount,
+    hasTools: tools.length > 0
+  });
+  
   return createSuccessResponse(content);
 } 
