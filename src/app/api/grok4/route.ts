@@ -555,10 +555,12 @@ async function getAltcoinsData(): Promise<string> {
       // From AltCoinsBeta.tsx - DeFi and emerging tokens
       'maker', 'uniswap', 'pendle', 'liquity', 'syrup', 'eigenlayer',
       // Additional major altcoins from crypto-prices API
-      'chainlink', 'avalanche-2', 'polygon', 'cosmos', 'cardano', 'polkadot',
+      'chainlink', 'avalanche-2',
+      // From crypto page AltcoinInfoCard components
+      'hyperliquid', 'render-token', 'kaia', 'injective-protocol', 'sei-network', 'spx6900', 
+      'dogwifcoin', 'rekt-4', 'mog-coin', 'pepe',
       // Emerging tokens and meme coins
-      'hyperliquid', 'berachain-bera', 'infrafred-bgt', 'pepe', 'mog-coin', 
-      'bittensor', 'render-token', 'railgun', 'ondo-finance', 'ethena'
+      'berachain-bera', 'infrafred-bgt', 'bittensor', 'railgun', 'ondo-finance', 'ethena'
     ];
 
     const idsParam = altcoins.join(',');
@@ -600,17 +602,19 @@ async function getAltcoinsData(): Promise<string> {
         'eigenlayer': 'EIGEN',
         'chainlink': 'LINK',
         'avalanche-2': 'AVAX',
-        'polygon': 'MATIC',
-        'cosmos': 'ATOM',
-        'cardano': 'ADA',
-        'polkadot': 'DOT',
         'hyperliquid': 'HYPER',
+        'render-token': 'RNDR',
+        'kaia': 'KAIA',
+        'injective-protocol': 'INJ',
+        'sei-network': 'SEI',
+        'spx6900': 'SPX6900',
+        'dogwifcoin': 'WIF',
+        'rekt-4': 'REKT',
+        'mog-coin': 'MOG',
+        'pepe': 'PEPE',
         'berachain-bera': 'BERA',
         'infrafred-bgt': 'INFRARED',
-        'pepe': 'PEPE',
-        'mog-coin': 'MOG',
         'bittensor': 'TAO',
-        'render-token': 'RNDR',
         'railgun': 'RAIL',
         'ondo-finance': 'ONDO',
         'ethena': 'USDe'

@@ -93,10 +93,10 @@ The system uses function calling to enhance Grok 4's capabilities:
 ### 3. **Fine-Tuned Asset Tracking**
 
 #### **🎯 Most Tracked Altcoins (Based on Frontend Components):**
-- **Major Layer 1s**: BTC, ETH, SOL, SUI, AVAX, MATIC, ATOM, ADA, DOT
+- **Major Layer 1s**: BTC, ETH, SOL, SUI, AVAX
 - **DeFi Protocols**: AAVE, MKR, UNI, PENDLE, LQTY, SYRUP, EIGEN, LINK
-- **Emerging Tokens**: HYPER, BERA, INFRARED, STX, FART
-- **Meme Coins**: DOGE, PEPE, MOG
+- **Emerging Tokens**: HYPER, BERA, INFRARED, STX, FART, KAIA, INJ, SEI, SPX6900
+- **Meme Coins**: DOGE, PEPE, MOG, WIF, REKT
 - **AI/Compute**: TAO, RNDR, RAIL
 - **Stablecoins**: ONDO, USDe
 
