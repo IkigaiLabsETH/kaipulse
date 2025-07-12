@@ -436,7 +436,7 @@ export default function Grok420Page() {
             </button>
           </motion.div>
           <p className="text-yellow-400/80 text-lg max-w-2xl mx-auto">
-            Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding HYPE & BTC? This is for the silly part of your portfolio.
+            Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding BTC? This is for the silly part of your portfolio. Say GM.
           </p>
           {resetMessage && (
             <div className="mt-4 text-green-400 font-medium">{resetMessage}</div>
@@ -477,7 +477,7 @@ export default function Grok420Page() {
                 <span className="text-2xl font-bold text-yellow-400">What is Grok 4?</span>
               </div>
               <div className="text-yellow-300 text-md leading-relaxed space-y-3">
-                <div className="font-bold text-yellow-400 text-lg mb-2">🚀 Insane AI DeFi Energy 🚀</div>
+                <div className="font-bold text-yellow-400 text-lg mb-2">🚀 Grok 4 is the new Grok 3 🚀</div>
                 <div>
                   <span className="font-bold text-yellow-500">Grok 4 is not your average AI.</span> It’s meme-fueled, Satoshi-approved, and degen-coded for the new era of market intelligence. Built for crypto, stocks, and macro, Grok4 is your edge for outsmarting the market, catching the next narrative, and never missing a moonshot.
                 </div>
