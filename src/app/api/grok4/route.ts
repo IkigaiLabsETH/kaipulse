@@ -672,6 +672,118 @@ async function getAltcoinsData(): Promise<string> {
   }
 }
 
+// New function to check for assets outperforming Bitcoin for a given period
+async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): Promise<string> {
+  try {
+    let btcChange = 0;
+    let data: Record<string, any> = {};
+    let changeKey = '';
+    let label = '';
+    if (period === "24h") {
+      // Use current logic
+      const btcResponse = await fetchWithTimeout(
+        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true',
+        {},
+        3000
+      );
+      if (!btcResponse.ok) return '**🚀 BTC OUTPERFORMERS:**\n_Unable to fetch Bitcoin data_';
+      const btcData = await btcResponse.json();
+      btcChange = btcData.bitcoin?.usd_24h_change || 0;
+      changeKey = 'usd_24h_change';
+      label = '24h';
+      // Get all tracked assets performance
+      const altcoins = Object.values(AltcoinId);
+      const idsParam = altcoins.join(',');
+      const response = await fetchWithTimeout(
+        `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true`,
+        {},
+        5000
+      );
+      if (!response.ok) return '**🚀 BTC OUTPERFORMERS:**\n_Unable to fetch altcoin data_';
+      data = await response.json();
+    } else if (period === "7d") {
+      // Use CoinGecko's markets endpoint for 7d change
+      const altcoins = Object.values(AltcoinId);
+      const idsParam = altcoins.join(',');
+      const response = await fetchWithTimeout(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${idsParam}&price_change_percentage=7d`,
+        {},
+        5000
+      );
+      if (!response.ok) return '**🚀 BTC OUTPERFORMERS (7d):**\n_Unable to fetch data_';
+      const arr = await response.json();
+      data = {};
+      arr.forEach((coin: any) => {
+        data[coin.id] = coin;
+      });
+      btcChange = data['bitcoin']?.price_change_percentage_7d_in_currency || 0;
+      changeKey = 'price_change_percentage_7d_in_currency';
+      label = '7d';
+    } else if (period === "ytd") {
+      // YTD: fetch daily prices, calculate YTD change
+      const year = new Date().getFullYear();
+      const jan1 = new Date(`${year}-01-01T00:00:00Z`).getTime() / 1000;
+      const now = Math.floor(Date.now() / 1000);
+      const altcoins = Object.values(AltcoinId);
+      // Only fetch for BTC and each altcoin one by one (API rate limit risk!)
+      // So, only do this if explicitly requested
+      const getYTD = async (id: string) => {
+        const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range?vs_currency=usd&from=${jan1}&to=${now}`;
+        const resp = await fetchWithTimeout(url, {}, 7000);
+        if (!resp.ok) return null;
+        const prices = (await resp.json()).prices;
+        if (!prices || prices.length < 2) return null;
+        const start = prices[0][1];
+        const end = prices[prices.length - 1][1];
+        return ((end - start) / start) * 100;
+      };
+      // Fetch BTC YTD
+      btcChange = await getYTD('bitcoin') || 0;
+      // Fetch all altcoins YTD
+      data = {};
+      for (const id of altcoins) {
+        const ytd = await getYTD(id);
+        if (ytd !== null) data[id] = { ytd_change: ytd };
+      }
+      changeKey = 'ytd_change';
+      label = 'YTD';
+    }
+    // Filter for outperformers
+    const outperformers = Object.entries(data)
+      .filter(([id, coinData]) => {
+        const change = coinData[changeKey] || 0;
+        return change > btcChange && id !== 'bitcoin';
+      })
+      .sort(([, a], [, b]) => ((b[changeKey] || 0) - (a[changeKey] || 0)))
+      .slice(0, 10);
+    if (outperformers.length === 0) {
+      return `**🚀 BTC OUTPERFORMERS (${label}):**\n_No assets currently outperforming Bitcoin (${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)_`;
+    }
+    const symbolMap: { [key: string]: string } = {
+      'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI',
+      'aave': 'AAVE', 'maker': 'MKR', 'uniswap': 'UNI', 'pendle': 'PENDLE',
+      'liquity': 'LQTY', 'syrup': 'SYRUP', 'eigenlayer': 'EIGEN', 'chainlink': 'LINK',
+      'hyperliquid': 'HYPER', 'blockstack': 'STX', 'injective-protocol': 'INJ', 'sei-network': 'SEI',
+      'dogecoin': 'DOGE', 'pepe': 'PEPE', 'mog-coin': 'MOG', 'dogwifcoin': 'WIF',
+      'rekt-4': 'REKT', 'spx6900': 'SPX6900', 'fartcoin': 'FART',
+      'bittensor': 'TAO', 'render-token': 'RNDR', 'railgun': 'RAIL',
+      'ondo-finance': 'ONDO', 'ethena': 'USDe'
+    };
+    let table = `| Symbol | ${label} Change | vs BTC |\n|--------|--------------|--------|\n`;
+    outperformers.forEach(([id, coinData]) => {
+      const change = coinData[changeKey] || 0;
+      const vsBTC = change - btcChange;
+      const emoji = change >= 0 ? '🟢' : '🔴';
+      const symbol = symbolMap[id] || id.toUpperCase();
+      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | +${vsBTC.toFixed(2)}% |\n`;
+    });
+    return `**🚀 BTC OUTPERFORMERS (${label}: ${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)**\n${table}`;
+  } catch (error) {
+    logger.error('Error fetching BTC outperformers:', error);
+    return `**🚀 BTC OUTPERFORMERS (${period}):**\n_Unable to fetch outperformance data_`;
+  }
+}
+
 // Enhanced crypto stocks data with Yahoo Finance
 
 
@@ -934,41 +1046,90 @@ export async function POST(request: Request) {
     if (isGMQuery(message)) {
       logger.info('GM market data + X sentiment analysis requested:', message);
       try {
+        // Extract period from message if present
+        let period: "24h" | "7d" | "ytd" = "24h";
+        let additionalPeriods: ("7d" | "ytd")[] = [];
+        
+        const messageLower = message.toLowerCase();
+        
+        // Check for specific period requests
+        if (messageLower.includes('7d') || messageLower.includes('7 day') || messageLower.includes('week')) {
+          if (messageLower.includes('7d') || messageLower.includes('7 day') || messageLower.includes('week')) {
+            period = "7d";
+          }
+        } else if (messageLower.includes('ytd') || messageLower.includes('year to date') || messageLower.includes('year-to-date') || messageLower.includes('this year')) {
+          period = "ytd";
+        }
+        
+        // Check for multiple period requests
+        if (messageLower.includes('both') || messageLower.includes('all') || messageLower.includes('multiple')) {
+          if (messageLower.includes('7d') || messageLower.includes('week')) {
+            additionalPeriods.push("7d");
+          }
+          if (messageLower.includes('ytd') || messageLower.includes('year')) {
+            additionalPeriods.push("ytd");
+          }
+        }
+        
+        // Check for specific outperformance keywords
+        const outperformanceKeywords = [
+          'outperform', 'outperforming', 'beating', 'beats', 'better than', 'stronger than',
+          'winners', 'top performers', 'leading', 'ahead of', 'above', 'higher than'
+        ];
+        
+        const hasOutperformanceRequest = outperformanceKeywords.some(keyword => 
+          messageLower.includes(keyword)
+        );
+        
+        // If no specific period mentioned but outperformance is requested, default to 24h
+        if (hasOutperformanceRequest && period === "24h" && additionalPeriods.length === 0) {
+          // Keep default 24h
+        }
+
         // Fetch market data first (fast APIs)
         logger.info('Fetching market data for GM...');
         const fetchStart = Date.now();
-        
+
         // Fetch essential market data in parallel
-        const [btcPrice, altcoins, cryptoStocks] = await Promise.all([
+        const [btcPrice, altcoins, cryptoStocks, btcOutperformers] = await Promise.all([
           getFastBTCPrice(),
           getAltcoinsData(),
-          _getCryptoStocksData()
+          _getCryptoStocksData(),
+          getBTCOutperformersPeriod(period)
         ]);
+        
+        // Fetch additional periods if requested
+        let additionalOutperformers = '';
+        if (additionalPeriods.length > 0) {
+          const additionalPromises = additionalPeriods.map(p => getBTCOutperformersPeriod(p));
+          const additionalResults = await Promise.all(additionalPromises);
+          additionalOutperformers = '\n\n' + additionalResults.join('\n\n');
+        }
         
         logger.info('Market data fetched in', Date.now() - fetchStart, 'ms');
         
         // Generate dynamic GM greeting
         const gmGreetings = [
-          "🌅 **GOOD MORNING CRYPTO MARKETS**",
+          "🌅 **GOOD MORNING CRYPTO**",
           "🌞 **RISE AND GRIND, DEGENS**",
           "🚀 **WAKE UP, IT'S MOON TIME**",
-          "⚡ **MORNING VOLTAGE: CRYPTO MARKETS LIVE**",
+          "⚡ **MORNING VOLTAGE**",
           "🔥 **GOOD MORNING, BULLS**",
-          "💎 **DIAMOND HANDS MORNING REPORT**",
-          "🌊 **TIDAL WAVES OF CRYPTO MARKETS**",
-          "⚔️ **BATTLE STATIONS: MARKET UPDATE**",
-          "🎯 **PRECISION STRIKE: CRYPTO MORNING**",
+          "💎 **DIAMOND HANDS MORNING**",
+          "🌊 **TIDAL WAVES**",
+          "⚔️ **BATTLE STATIONS**",
+          "🎯 **PRECISION STRIKE**",
           "🌪️ **WHIRLWIND OF OPPORTUNITY**",
-          "🏆 **CHAMPIONS OF CRYPTO MARKETS**",
-          "🎪 **CIRCUS MAXIMUS: CRYPTO EDITION**",
-          "⚡ **LIGHTNING ROUND: MARKET PULSE**",
-          "🌋 **VOLCANIC CRYPTO MORNING**",
-          "🎭 **THEATER OF CRYPTO MARKETS**",
-          "🦅 **EAGLE EYE: MARKET OVERVIEW**",
-          "🎪 **CARNIVAL OF CRYPTO MARKETS**",
-          "⚡ **ENERGY SURGE: CRYPTO MORNING**",
-          "🌊 **TSUNAMI OF CRYPTO MARKETS**",
-          "🎯 **BULLSEYE: MARKET FOCUS**"
+          "🏆 **CHAMPIONS**",
+          "🎪 **CIRCUS MAXIMUS**",
+          "⚡ **LIGHTNING ROUND**",
+          "🌋 **VOLCANIC MORNING**",
+          "🎭 **THEATER OF CRYPTO**",
+          "🦅 **EAGLE EYE**",
+          "🎪 **CARNIVAL**",
+          "⚡ **ENERGY SURGE**",
+          "🌊 **TSUNAMI**",
+          "🎯 **BULLSEYE**"
         ];
         
         const randomGreeting = gmGreetings[Math.floor(Math.random() * gmGreetings.length)];
@@ -978,6 +1139,9 @@ export async function POST(request: Request) {
         marketSummary += `**💰 BITCOIN**\n`;
         marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
         marketSummary += `\n`;
+        
+        // BTC Outperformers section (CORE LOGIC)
+        marketSummary += btcOutperformers || '_Unable to fetch BTC outperformers_\n\n';
         
         // Altcoins section
         marketSummary += altcoins || '_Unable to fetch altcoin data_\n\n';
@@ -1025,6 +1189,16 @@ export async function POST(request: Request) {
           let altcoinSummary = '';
           let stockSummary = '';
 
+          // Parse BTC outperformers for top movers
+          let btcOutperformersList: string[] = [];
+          if (btcOutperformers && !btcOutperformers.includes('_Unable to fetch')) {
+            const outperformerLines = btcOutperformers.split('\n').filter(l => l.includes('|'));
+            btcOutperformersList = outperformerLines.slice(2, 7).map(line => {
+              const parts = line.split('|').map(s => s.trim());
+              return parts[1] ? `${parts[1]} (${parts[2]})` : null;
+            }).filter(Boolean) as string[];
+          }
+
           // Parse altcoins table for top movers
           let altcoinMovers: string[] = [];
           if (altcoins) {
@@ -1053,11 +1227,13 @@ export async function POST(request: Request) {
 
           // Compose a narrative-style paragraph
           const btcSentence = btcChange !== null ? `Bitcoin is trading at $${btcChange.toLocaleString()} and remains the center of attention on X.` : '';
+          const outperformerSentence = btcOutperformersList.length > 0 ? 
+            `Assets outperforming BTC today include ${btcOutperformersList.slice(0, 3).join(', ')} - these are the real winners on socials.` : '';
           const altcoinSentence = altcoinSummary;
           const stockSentence = stockSummary;
           const hypeSentence = `Socials are hyped about ETF inflows, record AUM, and the latest airdrops and regulatory news.`;
 
-          xSentimentAnalysis = [btcSentence, altcoinSentence, stockSentence, hypeSentence]
+          xSentimentAnalysis = [btcSentence, outperformerSentence, altcoinSentence, stockSentence, hypeSentence]
             .filter(Boolean)
             .join(' ');
         }
