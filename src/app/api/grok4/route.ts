@@ -1274,7 +1274,6 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
     // Determine overall sentiment
     let sentiment: 'bullish' | 'bearish' | 'neutral';
     let sentimentEmoji: string;
-
     if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow > 1000000) { // $1M threshold
       sentiment = 'bullish';
       sentimentEmoji = '🟢';
@@ -1286,24 +1285,30 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
       sentimentEmoji = '🟡';
     }
 
-    // Format the response
-    let result = `**${symbol} Insider Transactions Analysis**\n\n`;
-    result += `${sentimentEmoji} **Overall Sentiment:** ${sentiment.toUpperCase()}\n`;
-    if (netFlow != null && typeof netFlow === 'number' && !isNaN(netFlow)) {
-      const safeNetFlow: number = netFlow as number;
-      result += `📊 **Net Flow:** $${(safeNetFlow / 1_000_000).toFixed(2)}M\n`;
+    // Humanized, crypto-native summary
+    let result = '';
+    if (sentiment === 'bullish') {
+      result += `Insiders are loading up—looks like the suits want more skin in the game. ${sentimentEmoji}\n`;
+    } else if (sentiment === 'bearish') {
+      result += `Insiders are cashing out—maybe they're rotating into memecoins? ${sentimentEmoji}\n`;
+    } else {
+      result += `Insider flows are neutral—nobody's aping in or rage-quitting. ${sentimentEmoji}\n`;
     }
-    if (isValidNumber(totalBuyValue)) result += `💰 **Total Buy Value:** $${(totalBuyValue / 1_000_000).toFixed(2)}M\n`;
-    if (isValidNumber(totalSellValue)) result += `💸 **Total Sell Value:** $${(totalSellValue / 1_000_000).toFixed(2)}M\n`;
-    result += `📅 **Period:** ${fromDate} to ${toDate}\n`;
-    result += `👥 **Unique Insiders:** ${uniqueInsiders}\n`;
-    result += `📋 **Total Transactions:** ${totalTransactions}\n\n`;
+    result += `\n`;
+    if (typeof netFlow === 'number' && !isNaN(netFlow)) {
+      result += `- **Net Flow:** $${(netFlow / 1_000_000).toFixed(2)}M\n`;
+    }
+    if (isValidNumber(totalBuyValue)) result += `- **Total Buy Value:** $${(totalBuyValue / 1_000_000).toFixed(2)}M\n`;
+    if (isValidNumber(totalSellValue)) result += `- **Total Sell Value:** $${(totalSellValue / 1_000_000).toFixed(2)}M\n`;
+    result += `- **Period:** ${fromDate} to ${toDate}\n`;
+    result += `- **Unique Insiders:** ${uniqueInsiders}\n`;
+    result += `- **Total Transactions:** ${totalTransactions}\n\n`;
     
     // Filter valid transactions for the table
     const validTransactions = transactions
       .filter(t => isValidNumber(t.transactionValue) && isValidNumber(t.change));
     if (validTransactions.length > 0) {
-      result += `**📋 Recent Transactions (Top 5):**\n`;
+      result += `**Top Recent Insider Moves:**\n`;
       result += `| Insider | Type | Shares | Value | Date |\n`;
       result += `|---------|------|--------|-------|------|\n`;
       validTransactions.slice(0, 5).forEach(transaction => {
@@ -1316,20 +1321,17 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
       result += `\n`;
     }
 
-    // Add interpretation
-    result += `**💡 Investment Insight:**\n`;
+    // Human, crypto-native insight
     if (sentiment === 'bullish') {
-      result += `Executives are showing strong confidence in ${symbol} with significant buying activity. This could signal positive future developments.`;
+      result += `💡 **Takeaway:** Execs are showing conviction—could be prepping for a big move or just stacking shares for the next bull run.`;
     } else if (sentiment === 'bearish') {
-      result += `Executives are reducing their positions in ${symbol}. Monitor for potential negative developments or strategic changes.`;
+      result += `💡 **Takeaway:** Execs are heading for the exit—watch for volatility or a change in narrative.`;
     } else {
-      result += `Insider activity is mixed for ${symbol}. Monitor for clearer signals in upcoming transactions.`;
+      result += `💡 **Takeaway:** No strong signal from insiders. Stay nimble and watch for the next big buy or sell.`;
     }
 
     // Add transaction code explanations
-    result += `\n**📖 Transaction Codes:**\n`;
-    result += `• P: Purchase | S: Sale | A: Acquisition | D: Disposition\n`;
-    result += `• G: Gift | M: Merger | X: Exercise | W: Warrant\n`;
+    result += `\n\n_P: Purchase | S: Sale | A: Acquisition | D: Disposition | G: Gift | M: Merger | X: Exercise | W: Warrant_\n`;
 
     logger.info(`Insider transactions analysis completed for ${symbol}:`, {
       sentiment,
@@ -1563,63 +1565,54 @@ async function getCompanyEarnings(symbol: string): Promise<string> {
       surpriseDescription = 'Met estimates';
     }
 
-    // Format the response
-    let result = `**📊 ${symbol} Earnings Analysis**\n\n`;
-    result += `**Latest Earnings (Q${latest.quarter} ${latest.year})**\n`;
-    result += `${surpriseEmoji} **EPS:** $${latest.actual.toFixed(2)} (Estimate: $${latest.estimate.toFixed(2)})\n`;
-    result += `📈 **Surprise:** ${surprise >= 0 ? '+' : ''}${surprise.toFixed(1)}%\n`;
-    result += `📋 **Description:** ${surpriseDescription}\n\n`;
-
-    // Show earnings history
+    // Humanized, crypto-native summary
+    let result = '';
+    if (surprise > 10) {
+      result += `Earnings just dropped a giga-candle—massive beat! ${surpriseEmoji}\n`;
+    } else if (surprise > 5) {
+      result += `Solid earnings beat—analysts are scrambling to update their models. ${surpriseEmoji}\n`;
+    } else if (surprise < -10) {
+      result += `Earnings miss so big, even the bears are surprised. ${surpriseEmoji}\n`;
+    } else if (surprise < -5) {
+      result += `Missed estimates—time to check if the CFO is still HODLing. ${surpriseEmoji}\n`;
+    } else {
+      result += `Earnings in line with expectations—steady as she goes. ${surpriseEmoji}\n`;
+    }
+    result += `\n`;
+    result += `- **Latest EPS (Q${latest.quarter} ${latest.year}):** $${latest.actual.toFixed(2)} (Est: $${latest.estimate.toFixed(2)})\n`;
+    result += `- **Surprise:** ${surprise >= 0 ? '+' : ''}${surprise.toFixed(1)}%\n`;
+    result += `- **Description:** ${surpriseDescription}\n`;
     if (earnings.length > 1) {
-      result += `**📈 Earnings History (Last 4 Quarters):**\n`;
+      result += `\n**Earnings History (Last 4 Quarters):**\n`;
       result += `| Quarter | EPS | Estimate | Surprise |\n`;
       result += `|---------|-----|----------|----------|\n`;
-      
       earnings.slice(0, 4).forEach(earning => {
-        const surpriseEmoji = earning.surprisePercent > 5 ? '🟢' : 
-                             earning.surprisePercent < -5 ? '🔴' : '⚪';
-        const surprise = earning.surprisePercent >= 0 ? 
-          `+${earning.surprisePercent.toFixed(1)}%` : 
-          `${earning.surprisePercent.toFixed(1)}%`;
-        
-        result += `| Q${earning.quarter} ${earning.year} | $${earning.actual.toFixed(2)} | $${earning.estimate.toFixed(2)} | ${surpriseEmoji} ${surprise} |\n`;
+        const emoji = earning.surprisePercent > 5 ? '🟢' : earning.surprisePercent < -5 ? '🔴' : '⚪';
+        const surprise = earning.surprisePercent >= 0 ? `+${earning.surprisePercent.toFixed(1)}%` : `${earning.surprisePercent.toFixed(1)}%`;
+        result += `| Q${earning.quarter} ${earning.year} | $${earning.actual.toFixed(2)} | $${earning.estimate.toFixed(2)} | ${emoji} ${surprise} |\n`;
       });
       result += `\n`;
     }
-
-    // Calculate trends
-    const recentEarnings = earnings.slice(0, 4);
-    const avgSurprise = recentEarnings.reduce((sum, e) => sum + e.surprisePercent, 0) / recentEarnings.length;
-    const beatRate = recentEarnings.filter(e => e.surprisePercent > 0).length / recentEarnings.length * 100;
-
-    result += `**📊 Performance Trends:**\n`;
-    result += `• **Average Surprise:** ${avgSurprise >= 0 ? '+' : ''}${avgSurprise.toFixed(1)}%\n`;
-    result += `• **Beat Rate:** ${beatRate.toFixed(0)}% of quarters\n`;
-    result += `• **Consistency:** ${avgSurprise > 5 ? 'Consistent beats' : avgSurprise < -5 ? 'Consistent misses' : 'Mixed results'}\n\n`;
-
-    // Add investment insights
-    result += `**💡 Investment Insights:**\n`;
+    // Human, crypto-native insight
     if (surprise > 10) {
-      result += `Strong earnings performance suggests positive momentum. Consider this a bullish signal.`;
+      result += `\n💡 **Takeaway:** The company is crushing it—momentum could attract more FOMO buyers.`;
     } else if (surprise > 5) {
-      result += `Solid earnings beat indicates good execution. Monitor for continued strength.`;
+      result += `\n💡 **Takeaway:** Solid execution—watch for upgrades and bullish threads on X.`;
     } else if (surprise < -10) {
-      result += `Significant earnings miss may indicate challenges. Monitor for improvement.`;
+      result += `\n💡 **Takeaway:** Big miss—watch for volatility and possible narrative shifts.`;
     } else if (surprise < -5) {
-      result += `Earnings miss suggests some weakness. Watch for turnaround signs.`;
+      result += `\n💡 **Takeaway:** Missed, but not a disaster. Stay alert for the next catalyst.`;
     } else {
-      result += `Earnings in line with estimates. Monitor for future catalysts.`;
+      result += `\n💡 **Takeaway:** No fireworks, but no red flags either. Sometimes boring is bullish.`;
     }
 
     logger.info(`Company earnings analysis completed for ${symbol}:`, {
       latestQuarter: `Q${latest.quarter} ${latest.year}`,
       surprise: surprise,
-      beatRate: beatRate
+      beatRate: null
     });
 
     return result;
-
   } catch (error) {
     logger.error(`Error fetching company earnings for ${symbol}:`, error);
     return `Error analyzing earnings for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -1701,67 +1694,46 @@ async function getCompanyNews(symbol: string, from?: string, to?: string): Promi
     // Determine overall sentiment
     let overallSentiment: 'positive' | 'negative' | 'neutral';
     let sentimentEmoji: string;
-    let sentimentDescription: string;
-
     if (positiveCount > negativeCount && positiveCount > neutralCount) {
       overallSentiment = 'positive';
       sentimentEmoji = '🟢';
-      sentimentDescription = 'Positive news sentiment';
     } else if (negativeCount > positiveCount && negativeCount > neutralCount) {
       overallSentiment = 'negative';
       sentimentEmoji = '🔴';
-      sentimentDescription = 'Negative news sentiment';
     } else {
       overallSentiment = 'neutral';
       sentimentEmoji = '🟡';
-      sentimentDescription = 'Mixed news sentiment';
     }
 
-    // Format the response
-    let result = `**📰 ${symbol} News Analysis**\n\n`;
-    result += `📅 **Period:** ${fromDate} to ${toDate}\n`;
-    result += `${sentimentEmoji} **Overall Sentiment:** ${sentimentDescription}\n`;
-    result += `📊 **News Breakdown:** ${positiveCount} positive, ${negativeCount} negative, ${neutralCount} neutral\n`;
-    result += `📈 **Total Articles:** ${news.length}\n\n`;
-
-    // Show top news items
-    result += `**📋 Top News Headlines:**\n`;
+    // Humanized, crypto-native summary
+    let result = '';
+    if (overallSentiment === 'positive') {
+      result += `News flow is bullish—analysts and CT are probably cooking up new price targets. ${sentimentEmoji}\n`;
+    } else if (overallSentiment === 'negative') {
+      result += `News is bearish—watch for FUD and knee-jerk reactions. ${sentimentEmoji}\n`;
+    } else {
+      result += `News is mixed—narrative is up for grabs. ${sentimentEmoji}\n`;
+    }
+    result += `\n`;
+    result += `- **Period:** ${fromDate} to ${toDate}\n`;
+    result += `- **Top Headlines:**\n`;
     topNews.forEach((item, index) => {
       const sentiment = categorizeNews(item.headline, item.summary);
       const sentimentEmoji = sentiment === 'positive' ? '🟢' : 
                              sentiment === 'negative' ? '🔴' : '🟡';
       const date = new Date(item.datetime * 1000).toLocaleDateString();
       const source = item.source;
-      
-      result += `${index + 1}. ${sentimentEmoji} **${item.headline}**\n`;
-      result += `   📅 ${date} | 📰 ${source}\n`;
-      if (item.summary && item.summary.length > 100) {
-        result += `   📝 ${item.summary.substring(0, 100)}...\n`;
-      } else if (item.summary) {
-        result += `   📝 ${item.summary}\n`;
-      }
-      result += `\n`;
+      result += `${index + 1}. ${sentimentEmoji} [${item.headline}](${item.url}) (${date}, ${source})\n`;
     });
-
-    // Add market insights
-    result += `**💡 Market Insights:**\n`;
+    result += `\n`;
+    // Human, crypto-native insight
     if (overallSentiment === 'positive') {
-      result += `• Recent news flow is positive, which may support stock performance\n`;
-      result += `• Monitor for continued positive developments\n`;
+      result += `💡 **Takeaway:** Positive news could fuel momentum—watch for breakouts and bullish threads on X.`;
     } else if (overallSentiment === 'negative') {
-      result += `• Recent news flow is negative, which may pressure stock performance\n`;
-      result += `• Watch for potential catalysts or positive developments\n`;
+      result += `💡 **Takeaway:** Negative news may trigger volatility—stay sharp and don't get shaken out by FUD.`;
     } else {
-      result += `• News sentiment is mixed, suggesting balanced market view\n`;
-      result += `• Monitor for clearer directional signals\n`;
+      result += `💡 **Takeaway:** Mixed news—wait for a clear narrative before aping in.`;
     }
-
-    // Add investment considerations
-    result += `\n**🎯 Investment Considerations:**\n`;
-    result += `• News sentiment can impact short-term price movements\n`;
-    result += `• Consider news in context of broader market trends\n`;
-    result += `• Monitor for earnings announcements and corporate events\n`;
-    result += `• Watch for regulatory or industry-specific news\n`;
 
     logger.info(`Company news analysis completed for ${symbol}:`, {
       totalNews: news.length,
@@ -1772,7 +1744,6 @@ async function getCompanyNews(symbol: string, from?: string, to?: string): Promi
     });
 
     return result;
-
   } catch (error) {
     logger.error(`Error fetching company news for ${symbol}:`, error);
     return `Error analyzing news for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
