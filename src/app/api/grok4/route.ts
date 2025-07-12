@@ -894,20 +894,23 @@ async function getBTCOutperformersAndAltcoinTables(period: "24h" | "7d" | "ytd" 
     
     const btcChange = typeof btcData[changeKey] === 'number' ? btcData[changeKey] as number : 0;
     
+    // Preferred altcoins (curated list)
+    const preferredAlts = [
+      'ETH', 'SOL', 'LINK', 'AVAX', 'AAVE', 'UNI', 'MKR', 'SNX', 'ARB', 'OP', 'LDO', 'INJ', 'TIA', 'JUP', 'PYTH', 'RUNE', 'STX', 'DOGE', 'PEPE', 'WIF', 'BONK'
+    ];
     // Filter and sort outperformers
     const outperformers = data
       .filter((coin: CoinGeckoMarket) => {
         const change = typeof coin[changeKey] === 'number' ? coin[changeKey] as number : undefined;
         return typeof change === 'number' && change > btcChange && coin.id !== 'bitcoin';
-      })
-      .sort((a: CoinGeckoMarket, b: CoinGeckoMarket) => {
-        const aChange = typeof a[changeKey] === 'number' ? a[changeKey] as number : -Infinity;
-        const bChange = typeof b[changeKey] === 'number' ? b[changeKey] as number : -Infinity;
-        return bChange - aChange; // Sort by change descending
-      })
-      .slice(0, 10); // Top 10 outperformers
+      });
+    // Preferred first, then others
+    const preferredOutperformers = outperformers.filter(coin => preferredAlts.includes(coin.symbol.toUpperCase()));
+    const otherOutperformers = outperformers.filter(coin => !preferredAlts.includes(coin.symbol.toUpperCase()));
+    // Final list: preferred first, then others, max 10
+    const finalOutperformers = [...preferredOutperformers, ...otherOutperformers].slice(0, 10);
     
-    if (outperformers.length === 0) {
+    if (finalOutperformers.length === 0) {
       return {
         btcOutperformersTable: `No assets outperforming BTC (${label}: ${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)`,
         btcChange,
@@ -920,7 +923,7 @@ async function getBTCOutperformersAndAltcoinTables(period: "24h" | "7d" | "ytd" 
     table += `| Symbol | ${label} Change | vs BTC | Market Cap |\n`;
     table += `|--------|----------------|--------|------------|\n`;
     
-    outperformers.forEach((coin: CoinGeckoMarket) => {
+    finalOutperformers.forEach((coin: CoinGeckoMarket) => {
       const change = typeof coin[changeKey] === 'number' ? coin[changeKey] as number : 0;
       const vsBTC = change - btcChange;
       const marketCap = coin.market_cap ? new Intl.NumberFormat('en-US', {
@@ -935,9 +938,16 @@ async function getBTCOutperformersAndAltcoinTables(period: "24h" | "7d" | "ytd" 
       
       table += `| ${coin.symbol.toUpperCase()} | ${changeEmoji} ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | ${vsBTCEmoji} ${vsBTC >= 0 ? '+' : ''}${vsBTC.toFixed(2)}% | ${marketCap} |\n`;
     });
+    // Narrative: mention which preferred alts are outperforming
+    const preferredWinners = preferredOutperformers.map(c => c.symbol.toUpperCase());
+    let narrative = '';
+    if (preferredWinners.length > 0) {
+      narrative = `Your favorite alts outperforming BTC: ${preferredWinners.join(', ')}.`;
+    } else {
+      narrative = `None of your favorite alts are outperforming BTC right now, but here are the top movers.`;
+    }
     
-    return { btcOutperformersTable: table, btcChange, label };
-    
+    return { btcOutperformersTable: `${narrative}\n\n${table}`, btcChange, label };
   } catch (error) {
     logger.error('Error fetching BTC outperformers:', error);
     return {
