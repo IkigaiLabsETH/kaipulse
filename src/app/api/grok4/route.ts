@@ -1612,7 +1612,7 @@ export async function POST(request: Request) {
       // For now, handle only the first matched stock for simplicity
       const symbol = matchedStocks[0];
       const finnhubErrors: string[] = [];
-      let sentiment = '', transactions = '', earnings = '', news = '', profile = '';
+      let sentiment = '', transactions = '', earnings = '', news = '';
       try {
         // Fetch all Finnhub data in parallel, but catch errors per section
         const results = await Promise.allSettled([
@@ -1620,13 +1620,13 @@ export async function POST(request: Request) {
           getInsiderTransactions(symbol),
           getCompanyEarnings(symbol),
           getCompanyNews(symbol),
-          getCompanyProfile(symbol),
+          // getCompanyProfile(symbol), // No longer needed
         ]);
         sentiment = results[0].status === 'fulfilled' ? results[0].value : (finnhubErrors.push('Insider Sentiment'), '');
         transactions = results[1].status === 'fulfilled' ? results[1].value : (finnhubErrors.push('Insider Transactions'), '');
         earnings = results[2].status === 'fulfilled' ? results[2].value : (finnhubErrors.push('Earnings'), '');
         news = results[3].status === 'fulfilled' ? results[3].value : (finnhubErrors.push('News'), '');
-        profile = results[4].status === 'fulfilled' ? results[4].value : (finnhubErrors.push('Profile'), '');
+        // profile = results[4].status === 'fulfilled' ? results[4].value : (finnhubErrors.push('Profile'), ''); // No longer needed
       } catch (finnhubError) {
         logger.error('Finnhub prioritized stock fetch failed, falling back to LLM:', finnhubError);
         // Fallback to LLM/narrative below
@@ -1638,17 +1638,10 @@ export async function POST(request: Request) {
       }
       // Only include sections with valid data
       const sections = [];
-      // Only include Company Profile if it contains at least one of: meaningful industry, market cap > $1B, or a non-generic narrative
-      const hasValuableProfile = profile &&
-        !profile.includes('No company profile data available') &&
-        !profile.includes('Unable to fetch') &&
-        (
-          /Industry: (?!unknown|Automobiles)/i.test(profile) ||
-          /Market Cap: \$[1-9][0-9]{0,2}\.\d{2}B/.test(profile) // Market Cap > $1B
-        );
-      if (hasValuableProfile) {
-        sections.push({ title: '🏢 **Company Profile**', content: profile });
-      }
+      // Company Profile section removed entirely due to low value and frequent inaccuracies
+      // if (hasValuableProfile) {
+      //   sections.push({ title: '🏢 **Company Profile**', content: profile });
+      // }
       
       if (sentiment && !sentiment.includes('No insider sentiment data available') && !sentiment.includes('Unable to fetch')) {
         sections.push({ title: '📊 **Insider Sentiment**', content: sentiment });
