@@ -222,13 +222,58 @@ ${changeColor} 24h Change: ${formattedChange}
 export async function enhancedWebSearch(query: string): Promise<string> {
   // Check if this is a crypto price query
   const cryptoPricePattern = /(bitcoin|btc|ethereum|eth|cardano|ada|solana|sol|binance|bnb|ripple|xrp|polkadot|dot|chainlink|link|litecoin|ltc|bitcoin cash|bch|stellar|xlm|vechain|vet|filecoin|fil|tron|trx|avalanche|avax|polygon|matic|cosmos|atom|algorand|algo|monero|xmr|tezos|xtz|neo|dash|zcash|zec|decred|dcr|digibyte|dgb|ravencoin|rvn|groestlcoin|grs|vertcoin|vtc|namecoin|nmc|peercoin|ppc|novacoin|nvc|feathercoin|ftc|ixcoin|ixc|terra|luna|uniswap|uni|aave|sushi|curve|crv|yearn|yfi|compound|comp|maker|mkr|synthetix|snx|balancer|bal|1inch|pancakeswap|cake).*(price|value|worth|cost|market|trading)/i;
-  
   if (cryptoPricePattern.test(query)) {
     return await getCryptoPrice(query);
   }
 
+  // Special handling for travel/hotel/restaurant/surf queries
+  const travelPattern = /(hotel|restaurant|dining|eat|surf|beach|stay|accommodation|where to eat|where to stay|where to surf).*biarritz/i;
+  if (travelPattern.test(query)) {
+    const raw = await duckDuckGoSearch(query);
+    return postProcessBiarritzTravelResult(query, raw);
+  }
+
   // Fallback to DuckDuckGo for non-crypto queries
   return await duckDuckGoSearch(query);
+}
+
+// Post-process Biarritz travel/hotel/restaurant/surf results
+function postProcessBiarritzTravelResult(query: string, raw: string): string {
+  // Only recommend 5-star hotels, Michelin-starred restaurants, fine dining, and well-known surf spots
+  // Never mention BTC payment
+  let result = raw;
+  // Remove any mention of bitcoin, btc, or crypto payment
+  result = result.replace(/(bitcoin|btc|crypto( currency)?|pay in btc|accepts btc|accepts bitcoin)/gi, '');
+
+  // Focus on 5-star hotels
+  if (/hotel|stay|accommodation/i.test(query)) {
+    // Try to extract only 5-star hotels
+    const fiveStarPattern = /(\b5[- ]star\b.*?)(\.|\n|$)/gi;
+    const matches = result.match(fiveStarPattern);
+    if (matches && matches.length > 0) {
+      result = 'Top 5-star hotels in Biarritz:\n' + matches.join('\n');
+    } else {
+      result = 'No 5-star hotels found in the search result. Try Hotel du Palais, the iconic 5-star palace in Biarritz.';
+    }
+  }
+  // Focus on Michelin/fine dining
+  if (/restaurant|dining|eat/i.test(query)) {
+    const michelinPattern = /(Michelin[- ]star(?:red)?|fine dining|gourmet|chef|\b1[- ]star\b|\b2[- ]star\b|\b3[- ]star\b).*?(\.|\n|$)/gi;
+    const matches = result.match(michelinPattern);
+    if (matches && matches.length > 0) {
+      result = 'Michelin-starred and fine dining in Biarritz:\n' + matches.join('\n');
+    } else {
+      result = 'No Michelin-starred restaurants found in the search result. Try L\'Impertinent (1 Michelin star) or Les Rosiers (1 Michelin star) in Biarritz.';
+    }
+  }
+  // Focus on surf spots
+  if (/surf|beach/i.test(query)) {
+    // List only well-known surf spots
+    result = 'Top surf spots in Biarritz:\n- Grande Plage\n- Côte des Basques\n- Plage de Marbella\n- Plage de la Milady';
+  }
+  // Always remove any generic payment or crypto hallucination
+  result = result.replace(/(accepts.*payment|pay with.*|crypto.*accepted)/gi, '');
+  return result.trim();
 }
 
 /**

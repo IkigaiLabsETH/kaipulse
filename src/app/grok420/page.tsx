@@ -436,7 +436,7 @@ export default function Grok420Page() {
             </button>
           </motion.div>
           <p className="text-yellow-400/80 text-lg max-w-2xl mx-auto">
-            Chat with Grok4, powered by xAI. Experience the future of AI conversation.
+            Bitcoin is the signal. Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding HYPE & BTC? This is for the silly part of your portfolio. Outperform the maxis, catch the next meme, and never miss a moonshot.
           </p>
           {resetMessage && (
             <div className="mt-4 text-green-400 font-medium">{resetMessage}</div>
