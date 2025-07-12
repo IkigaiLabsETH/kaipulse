@@ -961,34 +961,26 @@ async function _getCryptoStocksData(btcChange: number): Promise<string> {
 
     // Focus on prioritized stocks from @/stocks components
     const stocks = PRIORITIZED_STOCK_LIST.slice(0, 12); // Limit to 12 for API efficiency
-    
     logger.info('Fetching crypto stocks data for symbols:', stocks);
-    
+
     // Fetch each stock individually (Finnhub free tier limitation)
     const stockPromises = stocks.map(async (symbol) => {
       try {
-        // Wait for Finnhub rate limit before each request
         await waitForFinnhubRateLimit();
-        
         const response = await fetchWithTimeout(
           `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
           {},
-          3000 // 3 second timeout per stock
+          3000
         );
-        
         if (!response.ok) {
           logger.warn(`Finnhub API error for ${symbol}:`, response.status, response.statusText);
           return null;
         }
-        
         const data = await response.json();
-        
-        // Validate Finnhub response structure
         if (!data || typeof data.c !== 'number' || typeof data.dp !== 'number') {
           logger.warn(`Invalid Finnhub data for ${symbol}:`, data);
           return null;
         }
-        
         return {
           symbol,
           currentPrice: data.c,
@@ -1004,23 +996,42 @@ async function _getCryptoStocksData(btcChange: number): Promise<string> {
         return null;
       }
     });
-    
+
     const results = await Promise.allSettled(stockPromises);
     const validStocks = results
       .filter((result): result is PromiseFulfilledResult<CryptoStockQuote> => 
         result.status === 'fulfilled' && result.value !== null
       )
       .map(result => result.value)
-      // Only show stocks outperforming BTC
       .filter(stock => typeof stock.changePercent === 'number' && stock.changePercent > btcChange)
       .sort((a, b) => b.changePercent - a.changePercent)
       .slice(0, 10);
-    
+
     if (validStocks.length === 0) {
       logger.info('No crypto stocks are outperforming BTC today');
       return '**📈 Crypto Stocks:**\n_No crypto stocks are outperforming BTC today_';
     }
-    
+
+    // --- Human, crypto-native narrative intro ---
+    const openers = [
+      "Wall Street's crypto darlings are making noise again.",
+      "The degen stocks are back in the spotlight—here's who's flexing.",
+      "If you thought only memecoins could moon, check out these equities.",
+      "TradFi meets degen: these stocks are outpacing even the OG orange coin.",
+      "When stocks start outperforming BTC, you know the market's getting spicy."
+    ];
+    const opener = openers[Math.floor(Math.random() * openers.length)];
+
+    // Weave in key data points
+    const top = validStocks[0];
+    const topLine = top
+      ? `Top performer: **${top.symbol}** up ${top.changePercent >= 0 ? '+' : ''}${top.changePercent.toFixed(2)}% in the last 24h—leaving BTC maxis scratching their heads.`
+      : '';
+
+    // Table intro
+    const tableIntro = `Here's the leaderboard for crypto-native equities beating BTC today:`;
+
+    // Table
     let table = '| Symbol | Price | 24h Change | vs BTC |\n|--------|-------|------------|--------|\n';
     validStocks.forEach((stock) => {
       const emoji = stock.changePercent >= 0 ? '🟢' : '🔴';
@@ -1028,22 +1039,30 @@ async function _getCryptoStocksData(btcChange: number): Promise<string> {
       const changePercent = stock.changePercent >= 0 ? 
         `+${stock.changePercent.toFixed(2)}%` : 
         `${stock.changePercent.toFixed(2)}%`;
-      
-      // Calculate vs BTC performance
       const vsBTC = stock.changePercent - btcChange;
       const vsBTCFormatted = vsBTC >= 0 ? 
         `+${vsBTC.toFixed(2)}%` : 
         `${vsBTC.toFixed(2)}%`;
-      
       table += `| ${emoji} ${stock.symbol} | $${price} | ${changePercent} | ${vsBTCFormatted} |\n`;
     });
-    
+
+    // Witty, opinionated closer
+    const closers = [
+      "Remember: in this market, conviction is good, but exit liquidity is better.",
+      "If you're not outperforming BTC, at least outperform your own FOMO.",
+      "Diamond hands or paper hands, these stocks are moving—just don't get rekt.",
+      "Stay sharp, stay caffeinated, and don't get left holding the bag.",
+      "The only thing more volatile than these stocks is the meme feed on X."
+    ];
+    const closer = closers[Math.floor(Math.random() * closers.length)];
+
+    // Compose the final output
+    const result = `**📈 Crypto Stocks:**\n\n${opener}\n${topLine}\n\n${tableIntro}\n${table}\n\n${closer}`;
     logger.info('Crypto stocks data successfully fetched from Finnhub:', {
       stockCount: validStocks.length,
       symbols: validStocks.map(s => s.symbol)
     });
-    
-    return `**📈 Crypto Stocks:**\n${table}`;
+    return result;
   } catch (error) {
     logger.error('Error fetching crypto stocks data from Finnhub:', error);
     return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
@@ -1085,95 +1104,66 @@ async function getInsiderSentiment(symbol: string, from?: string, to?: string): 
       logger.warn('Finnhub API key not configured for insider sentiment');
       return `Unable to fetch insider sentiment for ${symbol} - API key not configured`;
     }
-
-    // Set default date range if not provided
-    const fromDate = from || new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 3 months ago
-    const toDate = to || new Date().toISOString().split('T')[0]; // today
-
-    // Check cache first
+    const fromDate = from || new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const toDate = to || new Date().toISOString().split('T')[0];
     const cacheKey = `insider_sentiment_${symbol}_${fromDate}_${toDate}`;
     const cachedData = getCachedFinnhubData(cacheKey);
     if (typeof cachedData === 'string') {
       logger.info(`Using cached insider sentiment data for ${symbol}`);
       return cachedData;
     }
-
-    // Wait for Finnhub rate limit
     await waitForFinnhubRateLimit();
-
     logger.info(`Fetching insider sentiment for ${symbol} from ${fromDate} to ${toDate}`);
-
     const response = await fetchWithTimeout(
       `https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${FINNHUB_API_KEY}`,
       {},
-      5000 // 5 second timeout
+      5000
     );
-
     if (!response.ok) {
       logger.warn(`Finnhub insider sentiment API error for ${symbol}:`, response.status, response.statusText);
       return `Unable to fetch insider sentiment data for ${symbol} - API error ${response.status}`;
     }
-
     const data = await response.json();
-    
     if (!data || !Array.isArray(data.data) || data.data.length === 0) {
       return `No insider sentiment data available for ${symbol} in the specified date range`;
     }
-
-    // Process the insider sentiment data
-    const sentimentData = data.data as Array<{
-      symbol: string;
-      year: number;
-      month: number;
-      mspr: number;
-      change: number;
-    }>;
-
-    // Sort by date (most recent first)
-    sentimentData.sort((a, b) => {
-      if (a.year !== b.year) return b.year - a.year;
-      return b.month - a.month;
-    });
-
-    // Get the most recent data point
+    const sentimentData = data.data as Array<{ symbol: string; year: number; month: number; mspr: number; change: number; }>;
+    sentimentData.sort((a, b) => (a.year !== b.year ? b.year - a.year : b.month - a.month));
     const latest = sentimentData[0];
-    
-    // Determine sentiment based on MSPR value
     let sentiment: 'bullish' | 'bearish' | 'neutral';
     let sentimentEmoji: string;
-    if (latest.mspr > 0.5) {
-      sentiment = 'bullish';
-      sentimentEmoji = '🟢';
-    } else if (latest.mspr < -0.5) {
-      sentiment = 'bearish';
-      sentimentEmoji = '🔴';
-    } else {
-      sentiment = 'neutral';
-      sentimentEmoji = '🟡';
-    }
-
-    // Calculate average MSPR for context
+    if (latest.mspr > 0.5) { sentiment = 'bullish'; sentimentEmoji = '🟢'; }
+    else if (latest.mspr < -0.5) { sentiment = 'bearish'; sentimentEmoji = '🔴'; }
+    else { sentiment = 'neutral'; sentimentEmoji = '🟡'; }
     const avgMspr = sentimentData.reduce((sum, item) => sum + item.mspr, 0) / sentimentData.length;
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-    // --- Humanized Narrative ---
-    let result = '';
+    // --- Human, crypto-native narrative ---
+    const openers = [
+      `Insiders at ${symbol} are playing their cards in the open—let's see if they're stacking or slacking.`,
+      `When the C-suite moves, the market listens. Here's the inside scoop on ${symbol}.`,
+      `Forget the rumor mill—here's what the execs at ${symbol} are actually doing.`,
+      `Insider sentiment is the ultimate alpha. Let's decode what ${symbol}'s top brass are signaling.`,
+      `If you want to front-run the suits, watch the insider flows at ${symbol}.`
+    ];
+    const opener = openers[Math.floor(Math.random() * openers.length)];
+    let result = `${opener}\n\n`;
     if (sentiment === 'bullish') {
-      result += `Insiders at ${symbol} have been quietly stacking shares over the last few months, signaling growing conviction from the top. The latest MSPR for ${monthNames[latest.month - 1]} ${latest.year} is ${latest.mspr.toFixed(2)}, which is a clear bullish read.\n`;
+      result += `The C-suite has been quietly stacking shares—MSPR for ${monthNames[latest.month - 1]} ${latest.year} is ${latest.mspr.toFixed(2)}. That's a bullish tell, and the smart money is watching.\n`;
     } else if (sentiment === 'bearish') {
-      result += `Insiders at ${symbol} have been offloading shares, with the latest MSPR at ${latest.mspr.toFixed(2)} (${monthNames[latest.month - 1]} ${latest.year}). This kind of selling can sometimes foreshadow turbulence ahead.\n`;
+      result += `Insiders are heading for the exits—MSPR at ${latest.mspr.toFixed(2)} (${monthNames[latest.month - 1]} ${latest.year}). Sometimes, execs know when to take chips off the table.\n`;
     } else {
-      result += `Insider sentiment at ${symbol} is pretty neutral right now—no big buying or selling waves from the C-suite. The latest MSPR is ${latest.mspr.toFixed(2)} (${monthNames[latest.month - 1]} ${latest.year}).\n`;
+      result += `No big moves from the C-suite—MSPR is ${latest.mspr.toFixed(2)} (${monthNames[latest.month - 1]} ${latest.year}). Sometimes, no news is good news.\n`;
     }
-    result += `\nLooking at the numbers: average MSPR over the last ${sentimentData.length} months is ${avgMspr.toFixed(2)}. Price change for the latest month: ${latest.change >= 0 ? '+' : ''}${latest.change.toFixed(2)}%.\n`;
-    result += `\nMSPR closer to 1 means execs are buying; closer to -1 means they're selling.\n`;
-    if (sentiment === 'bullish') {
-      result += `\n**Takeaway:** When insiders are buying, it's usually a good sign for long-term holders. Might be worth keeping an eye on accumulation trends here. ${sentimentEmoji}`;
-    } else if (sentiment === 'bearish') {
-      result += `\n**Takeaway:** Heavy insider selling can be a red flag—stay alert for any shifts in company narrative or fundamentals. ${sentimentEmoji}`;
-    } else {
-      result += `\n**Takeaway:** No strong signal from insiders. Sometimes, no news is good news. ${sentimentEmoji}`;
-    }
+    result += `\nAverage MSPR (last ${sentimentData.length} months): ${avgMspr.toFixed(2)}. Latest price change: ${latest.change >= 0 ? '+' : ''}${latest.change.toFixed(2)}%.\n`;
+    result += `MSPR closer to 1 = execs buying; closer to -1 = selling.\n`;
+    const closers = [
+      `If you're front-running the suits, this is your signal. ${sentimentEmoji}`,
+      `Insider conviction is the ultimate edge. ${sentimentEmoji}`,
+      `Don't fade the C-suite—unless you like living dangerously. ${sentimentEmoji}`,
+      `Sometimes, the best alpha is just following the money. ${sentimentEmoji}`,
+      `Remember: execs buy for one reason—up only. ${sentimentEmoji}`
+    ];
+    result += `\n${closers[Math.floor(Math.random() * closers.length)]}`;
     return result;
   } catch (error) {
     logger.error(`Error fetching insider sentiment for ${symbol}:`, error);
@@ -1189,93 +1179,57 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
       logger.warn('Finnhub API key not configured for insider transactions');
       return `Unable to fetch insider transactions for ${symbol} - API key not configured`;
     }
-
-    // Wait for Finnhub rate limit
     await waitForFinnhubRateLimit();
-
-    // Set default date range if not provided
-    const fromDate = from || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 1 month ago
-    const toDate = to || new Date().toISOString().split('T')[0]; // today
-
+    const fromDate = from || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    const toDate = to || new Date().toISOString().split('T')[0];
     logger.info(`Fetching insider transactions for ${symbol} from ${fromDate} to ${toDate}`);
-
     const response = await fetchWithTimeout(
       `https://finnhub.io/api/v1/stock/insider-transactions?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${FINNHUB_API_KEY}`,
       {},
-      5000 // 5 second timeout
+      5000
     );
-
     if (!response.ok) {
       logger.warn(`Finnhub insider transactions API error for ${symbol}:`, response.status, response.statusText);
       return `Unable to fetch insider transactions data for ${symbol} - API error ${response.status}`;
     }
-
     const data = await response.json();
-    
     if (!data || !Array.isArray(data.data) || data.data.length === 0) {
       return `No insider transactions data available for ${symbol} in the specified date range`;
     }
-
-    // Process the insider transactions data
-    const transactions = data.data as Array<{
-      name: string;
-      share: number;
-      change: number;
-      filingDate: string;
-      transactionDate: string;
-      transactionCode: string;
-      transactionPrice: number;
-      transactionValue: number;
-      transactionType: string;
-    }>;
-
-    // Helper to check for valid numbers
+    const transactions = data.data as Array<{ name: string; share: number; change: number; filingDate: string; transactionDate: string; transactionCode: string; transactionPrice: number; transactionValue: number; transactionType: string; }>;
     const isValidNumber = (n: unknown) => typeof n === 'number' && !isNaN(n) && isFinite(n);
-
-    // Sort by transaction date (most recent first)
     transactions.sort((a, b) => new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime());
-
-    // Calculate summary statistics
-    const totalBuyValue = transactions
-      .filter(t => t.transactionType === 'P' || t.change > 0)
-      .reduce((sum, t) => isValidNumber(t.transactionValue) ? sum + Math.abs(t.transactionValue) : sum, 0);
-    
-    const totalSellValue = transactions
-      .filter(t => t.transactionType === 'S' || t.change < 0)
-      .reduce((sum, t) => isValidNumber(t.transactionValue) ? sum + Math.abs(t.transactionValue) : sum, 0);
-    
+    const totalBuyValue = transactions.filter(t => t.transactionType === 'P' || t.change > 0).reduce((sum, t) => isValidNumber(t.transactionValue) ? sum + Math.abs(t.transactionValue) : sum, 0);
+    const totalSellValue = transactions.filter(t => t.transactionType === 'S' || t.change < 0).reduce((sum, t) => isValidNumber(t.transactionValue) ? sum + Math.abs(t.transactionValue) : sum, 0);
     let netFlow: number | null = null;
     if (isValidNumber(totalBuyValue) && isValidNumber(totalSellValue)) {
       netFlow = totalBuyValue - totalSellValue;
     }
     const totalTransactions = transactions.length;
     const uniqueInsiders = new Set(transactions.map(t => t.name)).size;
-
-    // Determine overall sentiment
     let sentiment: 'bullish' | 'bearish' | 'neutral';
     let sentimentEmoji: string;
-    if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow > 1000000) { // $1M threshold
-      sentiment = 'bullish';
-      sentimentEmoji = '🟢';
-    } else if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow < -1000000) {
-      sentiment = 'bearish';
-      sentimentEmoji = '🔴';
-    } else {
-      sentiment = 'neutral';
-      sentimentEmoji = '🟡';
-    }
-
-    // --- Humanized Narrative ---
-    let result = '';
+    if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow > 1000000) { sentiment = 'bullish'; sentimentEmoji = '🟢'; }
+    else if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow < -1000000) { sentiment = 'bearish'; sentimentEmoji = '🔴'; }
+    else { sentiment = 'neutral'; sentimentEmoji = '🟡'; }
+    // --- Human, crypto-native narrative ---
+    const openers = [
+      `Want to know what the smart money is doing? Watch the insider tape at ${symbol}.`,
+      `Insider transactions are the market's tell—here's what ${symbol}'s execs are up to.`,
+      `Forget the headlines—follow the money. Here's the latest from ${symbol}'s C-suite.`,
+      `When insiders move size, the market pays attention. Let's break down ${symbol}.`,
+      `The best alpha? Tracking who's buying and selling at ${symbol}.`
+    ];
+    const opener = openers[Math.floor(Math.random() * openers.length)];
+    let result = `${opener}\n\n`;
     if (sentiment === 'bullish') {
-      result += `Over the last month, ${uniqueInsiders} insiders at ${symbol} have been buying more than selling, with a net flow of $${(netFlow! / 1_000_000).toFixed(2)}M. Looks like the C-suite is betting on upside.\n`;
+      result += `Over the last month, ${uniqueInsiders} insiders have been net buyers, with a net flow of $${(netFlow! / 1_000_000).toFixed(2)}M. The C-suite is betting on upside.\n`;
     } else if (sentiment === 'bearish') {
-      result += `Insiders at ${symbol} have been net sellers recently (net flow: $${(netFlow! / 1_000_000).toFixed(2)}M). Sometimes, execs know when to take chips off the table.\n`;
+      result += `Insiders have been net sellers (net flow: $${(netFlow! / 1_000_000).toFixed(2)}M). Sometimes, execs know when to take profits.\n`;
     } else {
-      result += `Insider activity at ${symbol} is pretty balanced—no big buyers or sellers.\n`;
+      result += `Insider activity is balanced—no big buyers or sellers.\n`;
     }
-    result += `\nLooking at the numbers: total buy value $${(totalBuyValue / 1_000_000).toFixed(2)}M, total sell value $${(totalSellValue / 1_000_000).toFixed(2)}M, across ${totalTransactions} transactions.\n`;
-    // Show top 3 recent moves in narrative
+    result += `\nTotals: $${(totalBuyValue / 1_000_000).toFixed(2)}M bought, $${(totalSellValue / 1_000_000).toFixed(2)}M sold, across ${totalTransactions} transactions.\n`;
     const validTransactions = transactions.filter(t => isValidNumber(t.transactionValue) && isValidNumber(t.change));
     if (validTransactions.length > 0) {
       const topMoves = validTransactions.slice(0, 3).map(t => {
@@ -1285,15 +1239,16 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
         const date = new Date(t.transactionDate).toLocaleDateString();
         return `${t.name} ${type} ${shares} shares (${value}) on ${date}`;
       });
-      result += `\nNotably: ${topMoves.join('; ')}.\n`;
+      result += `\nNotable moves: ${topMoves.join('; ')}.\n`;
     }
-    if (sentiment === 'bullish') {
-      result += `\n**Takeaway:** When insiders are buying, it's usually a bullish tell. Might be worth following the smart money. ${sentimentEmoji}`;
-    } else if (sentiment === 'bearish') {
-      result += `\n**Takeaway:** Heavy selling from insiders can be a warning sign—stay sharp. ${sentimentEmoji}`;
-    } else {
-      result += `\n**Takeaway:** No clear signal from insiders. Sometimes, patience pays. ${sentimentEmoji}`;
-    }
+    const closers = [
+      `Insiders are the original whales—don't fade their moves. ${sentimentEmoji}`,
+      `If the C-suite is buying, maybe you should be too. ${sentimentEmoji}`,
+      `Heavy selling? Might be time to tighten stops. ${sentimentEmoji}`,
+      `Sometimes, patience pays—especially when insiders are on the sidelines. ${sentimentEmoji}`,
+      `Smart money leaves a trail—follow it. ${sentimentEmoji}`
+    ];
+    result += `\n${closers[Math.floor(Math.random() * closers.length)]}`;
     return result;
   } catch (error) {
     logger.error(`Error fetching insider transactions for ${symbol}:`, error);
@@ -1510,24 +1465,31 @@ async function getCompanyEarnings(symbol: string): Promise<string> {
       surpriseEmoji = '⚪';
     }
 
-    // --- Humanized Narrative ---
-    let result = '';
+    // --- Human, crypto-native narrative ---
+    const openers = [
+      `${symbol} just dropped earnings—let's see if they beat, missed, or just kept the lights on.`,
+      `Earnings season is the real meme war. Here's how ${symbol} stacked up.`,
+      `Quarterly numbers are in for ${symbol}. Did they moon or get rekt?`,
+      `The street was watching—here's how ${symbol} performed this quarter.`,
+      `Earnings roulette: ${symbol} just spun the wheel. Let's check the result.`
+    ];
+    const opener = openers[Math.floor(Math.random() * openers.length)];
+    let result = `${opener}\n\n`;
     if (surprise > 10) {
-      result += `${symbol} just posted a monster quarter, crushing estimates with EPS of $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}). The street loves a big beat, and this one came in at ${surprise.toFixed(1)}% above expectations. ${surpriseEmoji}\n`;
+      result += `Absolute monster quarter—EPS $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), beat by ${surprise.toFixed(1)}%. The street loves a big beat. ${surpriseEmoji}\n`;
     } else if (surprise > 5) {
-      result += `${symbol} beat the street with EPS of $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), surprising to the upside by ${surprise.toFixed(1)}%. ${surpriseEmoji}\n`;
+      result += `Solid beat—EPS $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), up ${surprise.toFixed(1)}%. ${surpriseEmoji}\n`;
     } else if (surprise < -10) {
-      result += `${symbol} missed big this quarter—EPS of $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), a ${surprise.toFixed(1)}% miss. ${surpriseEmoji}\n`;
+      result += `Big miss—EPS $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), missed by ${surprise.toFixed(1)}%. ${surpriseEmoji}\n`;
     } else if (surprise < -5) {
-      result += `${symbol} came in below expectations, with EPS of $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), a ${surprise.toFixed(1)}% miss. ${surpriseEmoji}\n`;
+      result += `Missed—EPS $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}), off by ${surprise.toFixed(1)}%. ${surpriseEmoji}\n`;
     } else {
-      result += `${symbol} reported in line with expectations—EPS of $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}). ${surpriseEmoji}\n`;
+      result += `In line with expectations—EPS $${latest.actual.toFixed(2)} (est: $${latest.estimate.toFixed(2)}). ${surpriseEmoji}\n`;
     }
     // Show last 4 quarters in a readable table
     if (earnings.length > 1) {
-      result += `\nRecent earnings history:\n`;
-      result += `| Quarter | EPS | Estimate | Surprise |\n`;
-      result += `|---------|-----|----------|----------|\n`;
+      result += `\nRecent earnings history (last 4 quarters):\n`;
+      result += `| Quarter | EPS | Estimate | Surprise |\n|---------|-----|----------|----------|\n`;
       earnings.slice(0, 4).forEach(earning => {
         const emoji = earning.surprisePercent > 5 ? '🟢' : earning.surprisePercent < -5 ? '🔴' : '⚪';
         const surprise = earning.surprisePercent >= 0 ? `+${earning.surprisePercent.toFixed(1)}%` : `${earning.surprisePercent.toFixed(1)}%`;
@@ -1535,17 +1497,14 @@ async function getCompanyEarnings(symbol: string): Promise<string> {
       });
       result += `\n`;
     }
-    if (surprise > 10) {
-      result += `\n**Takeaway:** This kind of beat can put a stock on every momentum trader's radar. Watch for follow-through. ${surpriseEmoji}`;
-    } else if (surprise > 5) {
-      result += `\n**Takeaway:** Solid execution—analysts may start raising targets. ${surpriseEmoji}`;
-    } else if (surprise < -10) {
-      result += `\n**Takeaway:** Big miss—expect some volatility and maybe a narrative reset. ${surpriseEmoji}`;
-    } else if (surprise < -5) {
-      result += `\n**Takeaway:** Missed, but not a disaster. Could be a buying opportunity if the story is intact. ${surpriseEmoji}`;
-    } else {
-      result += `\n**Takeaway:** No fireworks, but no red flags either. Sometimes, boring is bullish. ${surpriseEmoji}`;
-    }
+    const closers = [
+      `Momentum traders are watching for follow-through.`,
+      `Analysts may start raising targets if this keeps up.`,
+      `Big miss? Expect some volatility and maybe a narrative reset.`,
+      `No fireworks, but no red flags either. Sometimes, boring is bullish.`,
+      `Earnings are the ultimate reality check—trade accordingly.`
+    ];
+    result += `\n${closers[Math.floor(Math.random() * closers.length)]}`;
     return result;
   } catch (error) {
     logger.error(`Error fetching company earnings for ${symbol}:`, error);
@@ -1639,14 +1598,22 @@ async function getCompanyNews(symbol: string, from?: string, to?: string): Promi
       sentimentEmoji = '🟡';
     }
 
-    // --- Humanized Narrative ---
-    let result = '';
+    // --- Human, crypto-native narrative ---
+    const openers = [
+      `The news cycle for ${symbol} is as wild as a memecoin chart.`,
+      `If you want to know the vibe, just read the headlines for ${symbol}.`,
+      `News moves markets—here's what's buzzing for ${symbol}.`,
+      `The rumor mill is spinning—let's see what the press is saying about ${symbol}.`,
+      `Every headline is a narrative—here's the latest for ${symbol}.`
+    ];
+    const opener = openers[Math.floor(Math.random() * openers.length)];
+    let result = `${opener}\n\n`;
     if (overallSentiment === 'positive') {
-      result += `The news cycle for ${symbol} has been mostly bullish lately, with headlines focusing on growth and positive developments.\n`;
+      result += `Mostly bullish headlines—growth, gains, and positive vibes.\n`;
     } else if (overallSentiment === 'negative') {
-      result += `Recent news for ${symbol} has been on the bearish side—watch out for FUD and negative headlines.\n`;
+      result += `Bearish news flow—watch out for FUD and negative headlines.\n`;
     } else {
-      result += `The news for ${symbol} is a mixed bag—no clear narrative dominating the headlines.\n`;
+      result += `Mixed bag—no single narrative is dominating the headlines.\n`;
     }
     // Mention a couple of headlines in prose
     if (topNews.length > 0) {
@@ -1658,14 +1625,15 @@ async function getCompanyNews(symbol: string, from?: string, to?: string): Promi
       }
       result += `.\n`;
     }
-    result += `\nLooking at the last week: ${positiveCount} positive, ${negativeCount} negative, ${neutralCount} neutral headlines.\n`;
-    if (overallSentiment === 'positive') {
-      result += `\n**Takeaway:** Positive news flow could be a tailwind—watch for breakouts if the narrative sticks. ${sentimentEmoji}`;
-    } else if (overallSentiment === 'negative') {
-      result += `\n**Takeaway:** Negative news may bring volatility—don't get shaken out by the headlines. ${sentimentEmoji}`;
-    } else {
-      result += `\n**Takeaway:** Mixed news—wait for a clear story before making moves. ${sentimentEmoji}`;
-    }
+    result += `\nLast week: ${positiveCount} positive, ${negativeCount} negative, ${neutralCount} neutral headlines.\n`;
+    const closers = [
+      `Positive news could be a tailwind—watch for breakouts. ${sentimentEmoji}`,
+      `Negative news may bring volatility—don't get shaken out. ${sentimentEmoji}`,
+      `Mixed news—wait for a clear story before making moves. ${sentimentEmoji}`,
+      `The only thing moving faster than the news is the meme cycle. ${sentimentEmoji}`,
+      `Remember: narratives change fast—trade the trend, not the headline. ${sentimentEmoji}`
+    ];
+    result += `\n${closers[Math.floor(Math.random() * closers.length)]}`;
     return result;
   } catch (error) {
     logger.error(`Error fetching company news for ${symbol}:`, error);
