@@ -1,3 +1,24 @@
+# GROK420: Outperform Bitcoin with AI-Powered Market Intelligence
+
+## Core Purpose
+
+**GROK420 is an AI-powered crypto market intelligence system with a single mission:**
+> **Help you find assets that outperform Bitcoin (BTC).**
+
+Every feature—real-time X (Twitter) sentiment, curated market reports, and daily “gm” briefings—is designed to surface and highlight altcoins, stocks, and narratives that are beating BTC. The system automatically checks and displays which tracked assets are outperforming Bitcoin over multiple timeframes (24h, 7d, YTD, etc.), making BTC outperformance the centerpiece of your daily crypto intelligence.
+
+**Key Features:**
+- 🏆 **BTC Outperformance Detection:** Instantly see which assets are beating Bitcoin, every day.
+- 📰 **Narrative-Driven Analysis:** X sentiment and news always highlight the “why” behind outperformance.
+- ⏱️ **Flexible Timeframes:** Request 24h, 7d, YTD, or all periods—only fetches extra data if you ask.
+- 📈 **Comprehensive Market Coverage:** Real-time prices, altcoins, crypto stocks, macro context, and more.
+- 🤖 **Modern AI & Tooling:** Built with Next.js, TypeScript, and Grok 4’s real-time X data integration.
+
+**Bottom line:**  
+If your goal is to beat Bitcoin, GROK420 is your daily edge.
+
+---
+
 # LiveTheLifeTV ⚡
 
 > **Living the Bitcoin-first lifestyle with complete sovereignty**
