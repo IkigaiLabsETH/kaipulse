@@ -79,6 +79,79 @@ const PRIORITIZED_STOCKS = {
 // Remove duplicates and create final prioritized list
 const PRIORITIZED_STOCK_LIST = Array.from(new Set(PRIORITIZED_STOCKS.all));
 
+// --- Stock Symbol Extraction Utility ---
+// Map of common company names/aliases to tickers for prioritized stocks
+const STOCK_NAME_MAP: Record<string, string> = {
+  'mstr': 'MSTR', 'microstrategy': 'MSTR',
+  'coin': 'COIN', 'coinbase': 'COIN',
+  'hood': 'HOOD', 'robinhood': 'HOOD',
+  'nvda': 'NVDA', 'nvidia': 'NVDA',
+  'tsla': 'TSLA', 'tesla': 'TSLA',
+  'aapl': 'AAPL', 'apple': 'AAPL',
+  'msft': 'MSFT', 'microsoft': 'MSFT',
+  'googl': 'GOOGL', 'google': 'GOOGL',
+  'amzn': 'AMZN', 'amazon': 'AMZN',
+  'meta': 'META', 'facebook': 'META',
+  'crcl': 'CRCL',
+  'block': 'BLOCK', 'sq': 'BLOCK', 'square': 'BLOCK',
+  'pypl': 'PYPL', 'paypal': 'PYPL',
+  'iren': 'IREN', 'iris': 'IREN',
+  'corz': 'CORZ',
+  'cifr': 'CIFR',
+  'riot': 'RIOT',
+  'clsk': 'CLSK',
+  'wulf': 'WULF',
+  'hut': 'HUT',
+  'mara': 'MARA',
+  'glxy': 'GLXY', 'galaxy': 'GLXY',
+  'qbts': 'QBTS',
+  'crsp': 'CRSP', 'crispr': 'CRSP',
+  'rgti': 'RGTI',
+  'qubt': 'QUBT',
+  'ktos': 'KTOS',
+  'drs': 'DRS',
+  'ionq': 'IONQ',
+  'ibm': 'IBM',
+  'pltr': 'PLTR', 'palantir': 'PLTR',
+  'vrtx': 'VRTX',
+  'regn': 'REGN',
+  'mrna': 'MRNA',
+  'lmt': 'LMT',
+  'rtx': 'RTX',
+  'noc': 'NOC',
+  'gd': 'GD',
+  'ba': 'BA',
+  'tsm': 'TSM',
+  'ccj': 'CCJ',
+  'ceg': 'CEG',
+  'etr': 'ETR',
+  'uec': 'UEC',
+};
+
+// Build a regex for all prioritized tickers and company names
+const STOCK_REGEX = new RegExp(
+  Object.keys(STOCK_NAME_MAP)
+    .concat(PRIORITIZED_STOCK_LIST.map(s => s.toLowerCase()))
+    .sort((a, b) => b.length - a.length) // match longer names first
+    .map(s => `\\b${s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`).join('|'),
+  'gi'
+);
+
+/**
+ * Extracts prioritized stock symbols from a query string.
+ * Returns an array of unique, uppercased tickers.
+ */
+function extractPrioritizedStockSymbols(query: string): string[] {
+  const matches = query.match(STOCK_REGEX);
+  if (!matches) return [];
+  const tickers = matches.map(m => {
+    const key = m.toLowerCase();
+    return STOCK_NAME_MAP[key] || key.toUpperCase();
+  });
+  // Only return tickers that are in the prioritized list
+  return Array.from(new Set(tickers.filter(t => PRIORITIZED_STOCK_LIST.includes(t))));
+}
+
 // Caches
 let cachedBTCPrice: BTCPriceCache | null = null;
 const rateLimitCache = new Map<string, RateLimitEntry>();
@@ -748,39 +821,7 @@ export async function OPTIONS(_request: Request) {
 
 // --- Prompt Engineering Guide for Grok 4 + X Data ---
 // Enhanced system prompt focused on X sentiment analysis
-const DEFAULT_SYSTEM_PROMPT = `You are a crypto market intelligence expert specializing in X (Twitter) sentiment analysis. Your role is to:
-
-**🎯 CORE FOCUS:**
-- Analyze thoughts, ideas, and opinions from X about Bitcoin, altcoins, and crypto stocks
-- Identify key narratives, sentiment shifts, and emerging trends
-- Provide actionable insights based on social sentiment
-
-**📊 SENTIMENT ANALYSIS FRAMEWORK:**
-- **Bitcoin**: Institutional adoption, ETF flows, halving impact, regulatory sentiment
-- **Altcoins**: Memecoin vs DeFi sentiment, Layer 1 vs Layer 2 discussions, airdrop narratives
-- **Crypto Stocks**: MSTR accumulation strategy, COIN exchange performance, HOOD retail sentiment
-- **Macro**: Fed policy impact, inflation concerns, election effects on crypto
-
-**🔍 KEY INFLUENCERS TO MONITOR:**
-- Bitcoin maximalists and institutional voices
-- DeFi protocol founders and developers
-- Crypto exchange CEOs and executives
-- Memecoin creators and community leaders
-- Traditional finance commentators on crypto
-
-**💡 ANALYSIS APPROACH:**
-- Identify sentiment drivers and narrative shifts
-- Highlight controversial opinions and debates
-- Track viral tweets and emerging trends
-- Connect social sentiment to price action
-- Provide context for market movements
-
-**🎪 FOR GM QUERIES:**
-- Comprehensive X sentiment analysis for all tracked assets
-- Focus on thoughts, ideas, and opinions driving market sentiment
-- Identify key narratives and emerging trends
-- Provide actionable insights based on social intelligence
-`;
+const DEFAULT_SYSTEM_PROMPT = `You are a crypto market intelligence expert specializing in X (Twitter) sentiment analysis and live financial data.\n\n**🚨 IMPORTANT INSTRUCTION:**\n- If a user asks about a stock that is tracked (see prioritized stocks), ALWAYS use live Finnhub API data for your answer.\n- Only provide a static or narrative answer if ALL live Finnhub endpoints fail.\n- Do not summarize or speculate if live data is available.\n- For all other assets, use the most up-to-date data and sentiment available.\n\n**🎯 CORE FOCUS:**\n- Analyze thoughts, ideas, and opinions from X about Bitcoin, altcoins, and crypto stocks\n- Identify key narratives, sentiment shifts, and emerging trends\n- Provide actionable insights based on social sentiment and live market data\n\n**📊 SENTIMENT ANALYSIS FRAMEWORK:**\n- **Bitcoin**: Institutional adoption, ETF flows, halving impact, regulatory sentiment\n- **Altcoins**: Memecoin vs DeFi sentiment, Layer 1 vs Layer 2 discussions, airdrop narratives\n- **Crypto Stocks**: MSTR accumulation strategy, COIN exchange performance, HOOD retail sentiment\n- **Macro**: Fed policy impact, inflation concerns, election effects on crypto\n\n**🔍 KEY INFLUENCERS TO MONITOR:**\n- Bitcoin maximalists and institutional voices\n- DeFi protocol founders and developers\n- Crypto exchange CEOs and executives\n- Memecoin creators and community leaders\n- Traditional finance commentators on crypto\n\n**💡 ANALYSIS APPROACH:**\n- Identify sentiment drivers and narrative shifts\n- Highlight controversial opinions and debates\n- Track viral tweets and emerging trends\n- Connect social sentiment to price action\n- Provide context for market movements\n\n**🎪 FOR GM QUERIES:**\n- Comprehensive X sentiment analysis for all tracked assets\n- Focus on thoughts, ideas, and opinions driving market sentiment\n- Identify key narratives and emerging trends\n- Provide actionable insights based on social intelligence\n`;
 
 // Helper to build Grok 4 prompt with Human/Assistant format and context-rich instructions
 function buildGrok4Prompt(history: ChatCompletionMessageParam[], userMessage: string): string {
@@ -2077,6 +2118,72 @@ export async function POST(request: Request) {
     
     // Validate request
     const { message, systemPrompt, temperature, stream, imageUrl, generateImage, imagePrompt } = await validateRequest(request);
+
+    // --- NEW: Stock symbol extraction and Finnhub prioritization ---
+    const matchedStocks = extractPrioritizedStockSymbols(message);
+    if (matchedStocks.length > 0) {
+      logger.info('Prioritized stock(s) detected in query:', matchedStocks);
+      // For now, handle only the first matched stock for simplicity
+      const symbol = matchedStocks[0];
+      const finnhubErrors: string[] = [];
+      let sentiment = '', transactions = '', earnings = '', news = '', profile = '';
+      try {
+        // Fetch all Finnhub data in parallel, but catch errors per section
+        const results = await Promise.allSettled([
+          getInsiderSentiment(symbol),
+          getInsiderTransactions(symbol),
+          getCompanyEarnings(symbol),
+          getCompanyNews(symbol),
+          getCompanyProfile(symbol),
+        ]);
+        sentiment = results[0].status === 'fulfilled' ? results[0].value : (finnhubErrors.push('Insider Sentiment'), '');
+        transactions = results[1].status === 'fulfilled' ? results[1].value : (finnhubErrors.push('Insider Transactions'), '');
+        earnings = results[2].status === 'fulfilled' ? results[2].value : (finnhubErrors.push('Earnings'), '');
+        news = results[3].status === 'fulfilled' ? results[3].value : (finnhubErrors.push('News'), '');
+        profile = results[4].status === 'fulfilled' ? results[4].value : (finnhubErrors.push('Profile'), '');
+      } catch (finnhubError) {
+        logger.error('Finnhub prioritized stock fetch failed, falling back to LLM:', finnhubError);
+        // Fallback to LLM/narrative below
+      }
+      // Format the response
+      let response = `**🔎 ${symbol} Stock Intelligence (Finnhub)**\n\n`;
+      if (finnhubErrors.length > 0) {
+        response += `⚠️ _Some live data could not be loaded: ${finnhubErrors.join(', ')}. Showing available data below._\n\n`;
+      }
+      if (profile) {
+        response += `🏢 **Company Profile**\n${profile}\n`;
+      } else {
+        response += '🏢 **Company Profile**\n_Live profile data unavailable._\n';
+      }
+      response += '\n';
+      if (sentiment) {
+        response += `📊 **Insider Sentiment**\n${sentiment}\n`;
+      } else {
+        response += '📊 **Insider Sentiment**\n_Live sentiment data unavailable._\n';
+      }
+      response += '\n';
+      if (transactions) {
+        response += `💸 **Insider Transactions**\n${transactions}\n`;
+      } else {
+        response += '💸 **Insider Transactions**\n_Live transactions data unavailable._\n';
+      }
+      response += '\n';
+      if (earnings) {
+        response += `💰 **Earnings**\n${earnings}\n`;
+      } else {
+        response += '💰 **Earnings**\n_Live earnings data unavailable._\n';
+      }
+      response += '\n';
+      if (news) {
+        response += `📰 **Recent News**\n${news}\n`;
+      } else {
+        response += '📰 **Recent News**\n_Live news data unavailable._\n';
+      }
+      tracker.end('total');
+      tracker.logTimings();
+      logger.info('Finnhub prioritized stock response completed:', { symbol, duration: Date.now() - startTime });
+      return createSuccessResponse(response);
+    }
 
     // Log request details for monitoring
     logger.info('Request details:', {
