@@ -2,7 +2,7 @@
 
 ## Overview
 
-GROK420 is a sophisticated AI-powered crypto market intelligence system that leverages Grok 4's real-time X (Twitter) data integration to provide comprehensive market analysis, sentiment insights, and actionable trading intelligence. Built with Next.js 14, TypeScript, and modern tool-augmented AI, it delivers real-time crypto market intelligence with X sentiment analysis.
+GROK420 is a sophisticated AI-powered crypto market intelligence system with a core mission: **helping users find assets that outperform Bitcoin (BTC)**. Every feature, from real-time X (Twitter) sentiment analysis to curated market reports, is designed to surface and highlight altcoins, stocks, and narratives that are beating BTC. Built with Next.js 14, TypeScript, and modern tool-augmented AI, it delivers actionable intelligence for those seeking to outperform the king of crypto.
 
 ---
 
@@ -266,55 +266,18 @@ The system uses function calling to enhance Grok 4's capabilities:
 
 ## Key Features
 
-### **1. "GM" Market Report (ENHANCED)**
-When users say "gm" or "good morning", the system provides:
+### **BTC Outperformance Detection (CORE PURPOSE)**
+- **Primary Goal:** All analytics, reports, and sentiment summaries are designed to help users identify assets (altcoins, stocks, etc.) that are outperforming Bitcoin (BTC) over various timeframes (24h, 7d, YTD, etc.).
+- **GM Market Report:** Every "gm" or market summary query automatically checks and displays which tracked assets are beating BTC, making outperformance the centerpiece of the daily briefing.
+- **Flexible Periods:** Users can request outperformance tables for 24h, 7d, YTD, or all periods, and the system will only fetch extra data if explicitly asked, protecting against API rate limits.
+- **Narrative Integration:** X sentiment and narrative analysis always highlight the context and stories behind BTC outperformance, not just price moves.
 
-#### **Bitcoin Analysis (ENHANCED):**
-- Real-time BTC price from CoinGecko
-- **Network Statistics**: Hash rate, difficulty, block height, mempool size
-- X sentiment analysis using Grok 4 and the `getXSentiment` tool
-- Key narratives and market trends
-- Network statistics and mempool data
-
-#### **Altcoin Performance (ENHANCED):**
-- Top 15 altcoins by 24h change (curated and symbol-mapped)
-- **Market Cap Data**: Added market capitalization to the display
-- Visual indicators (🟢/🔴) for performance
-- Focus on emerging tokens and DeFi protocols
-- Market cap and volume data
-
-#### **Crypto Stock Tracking (ENHANCED):**
-- 17 most tracked crypto-related stocks (fully implemented)
-- Real-time prices via Yahoo Finance (no paid API or API key required)
-- **Enhanced Display**: Price, 24h change, and market cap
-- Performance across exchanges, mining, and payments
-- Earnings dates and IV rank data
-
-#### **Macro Market Context (ENHANCED):**
-- **Real-time S&P 500**: Current price and 24h change
-- **Magnificent 7 Performance**: Average performance calculation
-- Market sentiment and macro trends
-- Fear & Greed Index integration (placeholder for future API)
-
-### **2. X Sentiment Analysis**
-- **Tool Function:** `getXSentiment` (backend tool, registered for Grok 4)
-- **Input:** Tweet URL
-- **Output:** Key points, sentiment, and actionable insights
-- **Use Cases:** Market analysis, trend detection, narrative tracking
-- **Integration:** Uses `TwitterService` and `TweetAnalyzer` for comprehensive analysis
-
-### **3. Real-Time Price Intelligence**
-- **Supported Coins:** 24+ cryptocurrencies (curated list, matches frontend)
-- **Data Source:** CoinGecko API
-- **Features:** Price, 24h change, market cap, volume
-- **Caching:** 5-minute cache for performance
-- **Error Handling:** Graceful fallbacks and retry logic
-
-### **4. Advanced Market Data (ENHANCED)**
-- **Bitcoin Network:** Hash rate, difficulty, block height, mempool size
-- **Mempool Analysis:** Transaction fees and congestion
-- **Lightning Network:** Capacity and channel data
-- **Mining Revenue:** 24h and historical data
+### **Other Features**
+- Real-time BTC price and network stats
+- Top altcoin and crypto stock performance
+- X (Twitter) sentiment and narrative analysis
+- Macro context and S&P 500/Mag 7 tracking
+- Robust error handling, caching, and streaming
 
 ---
 

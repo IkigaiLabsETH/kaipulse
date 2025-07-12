@@ -1,11 +1,29 @@
-# GROK420: Outperform Bitcoin with AI-Powered Market Intelligence
+<div align="center">
+  <img src="logo_fur.png" alt="GROK420 Logo" width="120" />
+
+  # GROK420: Outperform Bitcoin with AI-Powered Market Intelligence
+
+  <p>
+    <img src="https://img.shields.io/badge/BTC%20Outperformance-Focused-orange?style=for-the-badge&logo=bitcoin" alt="BTC Outperformance" />
+    <img src="https://img.shields.io/badge/Real--Time%20X%20Sentiment-Enabled-blueviolet?style=for-the-badge&logo=twitter" alt="Real-Time X Sentiment" />
+    <img src="https://img.shields.io/badge/TypeScript-Strict-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
+  </p>
+</div>
+
+---
+
+🚀 **Outperform Bitcoin. Every Day.**
+
+> GROK420 is your daily edge: the only crypto intelligence platform built to help you find assets that beat BTC—automatically.
+
+---
 
 ## Core Purpose
 
-**GROK420 is an AI-powered crypto market intelligence system with a single mission:**
+**GROK420 and the entire LiveTheLifeTV platform are built around a single mission:**
 > **Help you find assets that outperform Bitcoin (BTC).**
 
-Every feature—real-time X (Twitter) sentiment, curated market reports, and daily “gm” briefings—is designed to surface and highlight altcoins, stocks, and narratives that are beating BTC. The system automatically checks and displays which tracked assets are outperforming Bitcoin over multiple timeframes (24h, 7d, YTD, etc.), making BTC outperformance the centerpiece of your daily crypto intelligence.
+Every feature—real-time X (Twitter) sentiment, curated market reports, and daily “gm” briefings—is designed to surface and highlight altcoins, stocks, and narratives that are beating BTC. The system automatically checks and displays which tracked assets are outperforming Bitcoin over multiple timeframes (24h, 7d, YTD, etc.), making BTC outperformance the centerpiece of your daily crypto intelligence and the guiding principle of the site.
 
 **Key Features:**
 - 🏆 **BTC Outperformance Detection:** Instantly see which assets are beating Bitcoin, every day.
@@ -15,7 +33,7 @@ Every feature—real-time X (Twitter) sentiment, curated market reports, and dai
 - 🤖 **Modern AI & Tooling:** Built with Next.js, TypeScript, and Grok 4’s real-time X data integration.
 
 **Bottom line:**  
-If your goal is to beat Bitcoin, GROK420 is your daily edge.
+If your goal is to beat Bitcoin, GROK420 and LiveTheLifeTV are your daily edge.
 
 ---
 
