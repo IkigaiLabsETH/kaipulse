@@ -1067,7 +1067,6 @@ export async function POST(request: Request) {
           logger.warn('Grok4 X sentiment analysis failed:', error);
           // Generate fallback X sentiment summary based on market data
           const btcChange = typeof btcPrice === 'number' ? btcPrice : null;
-          let altcoinSummary = '';
           let stockSummary = '';
 
           // Parse BTC outperformers for top movers
@@ -1089,7 +1088,7 @@ export async function POST(request: Request) {
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
             }).filter(Boolean) as string[];
             if (altcoinMovers.length) {
-              altcoinSummary = `Memecoins and top altcoins like ${altcoinMovers.join(', ')} are making noise, with degens and whales alike watching closely.`;
+              stockSummary = `Memecoins and top altcoins like ${altcoinMovers.join(', ')} are making noise, with degens and whales alike watching closely.`;
             }
           }
 
@@ -1116,9 +1115,19 @@ export async function POST(request: Request) {
           const opener = openers[Math.floor(Math.random() * openers.length)];
 
           const btcSentence = btcChange !== null ? `Bitcoin is trading at $${btcChange.toLocaleString()}, still the main character in today's market drama.` : '';
-          const outperformerSentence = btcOutperformersList.length > 0 ? 
-            `But the real flex? Outperformers like ${btcOutperformersList.slice(0, 3).join(', ')}—they're the talk of the town, leaving BTC maximalists sweating.` : '';
-          const altcoinSentence = altcoinSummary;
+          // Only mention outperformers in one place
+          let outperformerSentence = '';
+          let altcoinSentence = '';
+          if (btcOutperformersList.length > 0) {
+            // 50% chance: weave into main narrative, 50% as punchline
+            if (Math.random() < 0.5) {
+              altcoinSentence = `Memecoins and top altcoins like ${btcOutperformersList.slice(0, 3).join(', ')} are making noise, with degens and whales alike watching closely.`;
+              outperformerSentence = '';
+            } else {
+              altcoinSentence = '';
+              outperformerSentence = `But the real flex? Outperformers like ${btcOutperformersList.slice(0, 3).join(', ')}—they're the talk of the town, leaving BTC maximalists sweating.`;
+            }
+          }
           const stockSentence = stockSummary;
           const hypeSentences = [
             `Everyone's got an opinion on ETF flows, airdrops, and the next memecoin moonshot.`,
@@ -1128,13 +1137,24 @@ export async function POST(request: Request) {
           ];
           const hypeSentence = hypeSentences[Math.floor(Math.random() * hypeSentences.length)];
 
-          // Shuffle the order for variety
-          const summaryParts = [opener, btcSentence, outperformerSentence, altcoinSentence, stockSentence, hypeSentence]
+          // Unique, witty closing lines
+          const closers = [
+            `Crypto Twitter's got more energy than a double espresso on options expiry day.`,
+            `The only thing more volatile than the charts is the meme feed.`,
+            `Stay sharp, stay caffeinated, and don't get rekt.`,
+            `If you're not outperforming BTC, at least outperform your own FOMO.`,
+            `Remember: in this market, conviction is good, but exit liquidity is better.`
+          ];
+          const closer = closers[Math.floor(Math.random() * closers.length)];
+
+          // Shuffle the order for variety, but always end with the closer
+          const summaryParts = [opener, btcSentence, altcoinSentence, stockSentence, hypeSentence, outperformerSentence]
             .filter(Boolean);
           for (let i = summaryParts.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [summaryParts[i], summaryParts[j]] = [summaryParts[j], summaryParts[i]];
           }
+          summaryParts.push(closer);
 
           xSentimentAnalysis = summaryParts.join(' ');
         }
