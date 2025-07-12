@@ -408,38 +408,34 @@ export default function Grok420Page() {
       
       <div className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center flex-grow mx-auto px-2 sm:px-4 lg:px-8 mt-4">
         {/* Header */}
-        <div className="text-center mb-8 flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col xs:flex-row items-center justify-center gap-3 mb-4"
-          >
-            <div className="p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20">
-              <Sparkles className="h-6 w-6 text-yellow-500" />
+        <div className="text-center mb-2 flex flex-col items-center">
+          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 mb-2">
+            <div className="p-1 sm:p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20">
+              <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-500" />
             </div>
-            <h1 className="text-2xl xs:text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+            <h1 className="text-lg sm:text-2xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
               Grok420
             </h1>
             <button
               onClick={() => setShowInfoDialog(true)}
-              className="ml-0 xs:ml-2 p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 transition-colors"
+              className="p-1 sm:p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 transition-colors"
               title="WTF is Grok 4?"
             >
-              <Info className="h-6 w-6 text-yellow-400" />
+              <Info className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-400" />
             </button>
             <button
               onClick={handleResetContext}
-              className="ml-0 xs:ml-4 mt-2 xs:mt-0 px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/30 transition-colors text-sm"
+              className="px-3 py-1 sm:px-4 sm:py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/30 transition-colors text-xs sm:text-sm"
               title="Reset Grok context"
             >
-              Reset Context
+              Reset
             </button>
-          </motion.div>
-          <p className="text-yellow-400/80 text-base sm:text-lg max-w-2xl mx-auto">
+          </div>
+          <p className="text-yellow-400/80 text-xs sm:text-base max-w-xs sm:max-w-2xl mx-auto mt-2">
             Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding BTC? This is for the silly part of your portfolio. Say GM.
           </p>
           {resetMessage && (
-            <div className="mt-4 text-green-400 font-medium text-sm sm:text-base">{resetMessage}</div>
+            <div className="mt-2 text-green-400 font-medium text-xs sm:text-base">{resetMessage}</div>
           )}
         </div>
         {/* Confirmation Dialog */}
