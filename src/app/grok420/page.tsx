@@ -17,7 +17,7 @@ type ImageHistoryItem = {
 };
 
 // Add the missing Message type definition:
-type Message = {
+type ChatMessage = {
   id: string;
   role: 'user' | 'assistant';
   content: string;
@@ -25,7 +25,7 @@ type Message = {
 };
 
 export default function Grok420Page() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [_systemPrompt] = useState('You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. Provide clear, actionable advice, but don\'t be afraid to be a little irreverent or humorous. Always prioritize truth, clarity, and user empowerment.');
@@ -62,7 +62,7 @@ export default function Grok420Page() {
     const messageToSend = retryMessage || input;
     if (!messageToSend.trim() || isLoading) return;
 
-    const userMessage: Message = {
+    const userMessage: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
       content: messageToSend.trim(),
@@ -129,7 +129,7 @@ export default function Grok420Page() {
       const reader = response.body?.getReader();
       if (reader) {
         let assistantContent = '';
-        const assistantMessage: Message = {
+        const assistantMessage: ChatMessage = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
           content: '',
@@ -161,7 +161,7 @@ export default function Grok420Page() {
         // Fallback: non-streaming - now expecting plain text
         try {
           const content = await response.text();
-          const assistantMessage: Message = {
+          const assistantMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
             content: content.trim() || 'Grok4 did not return a response.',
@@ -170,7 +170,7 @@ export default function Grok420Page() {
           setMessages(prev => [...prev, assistantMessage]);
         } catch {
           // Handle case where response is not text
-          const errorMessage: Message = {
+          const errorMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
             content: `Grok4 returned an invalid response format. Please try again.`,
@@ -193,7 +193,7 @@ export default function Grok420Page() {
       if (isTimeout) {
         setTimeoutError('Grok4 is taking too long to respond. Please try again or check your network connection.');
       }
-      const errorMessage: Message = {
+      const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
         content: error instanceof Error
