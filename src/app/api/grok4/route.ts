@@ -44,9 +44,70 @@ const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 10; // 10 requests per minute
 const MAX_MESSAGE_LENGTH = 2000; // Prevent extremely long messages
 
+// Prioritized stocks from @/stocks components
+const PRIORITIZED_STOCKS = {
+  // Crypto-related stocks
+  crypto: ['MSTR', 'COIN', 'HOOD', 'NVDA', 'TSLA', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'CRCL', 'BLOCK', 'PYPL'],
+  
+  // Bitcoin mining stocks
+  mining: ['IREN', 'CORZ', 'CIFR', 'RIOT', 'CLSK', 'WULF', 'HUT', 'MARA', 'GLXY'],
+  
+  // High-growth watchlist stocks
+  growth: ['QBTS', 'CRSP', 'RGTI', 'QUBT', 'KTOS', 'DRS', 'IONQ'],
+  
+  // Innovating equities
+  innovation: ['IONQ', 'RGTI', 'QBTS', 'IBM', 'NVDA', 'MSFT', 'GOOGL', 'AMZN', 'PLTR', 'VRTX', 'REGN', 'CRSP', 'MRNA', 'LMT', 'RTX', 'NOC', 'KTOS', 'DRS', 'GD', 'BA', 'TSM'],
+  
+  // Nuclear energy stocks
+  nuclear: ['CCJ', 'CEG', 'ETR', 'UEC'],
+  
+  // All prioritized stocks combined
+  all: [
+    // Crypto & Tech
+    'MSTR', 'COIN', 'HOOD', 'NVDA', 'TSLA', 'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'CRCL', 'BLOCK', 'PYPL',
+    // Mining
+    'IREN', 'CORZ', 'CIFR', 'RIOT', 'CLSK', 'WULF', 'HUT', 'MARA', 'GLXY',
+    // Growth
+    'QBTS', 'CRSP', 'RGTI', 'QUBT', 'KTOS', 'DRS', 'IONQ',
+    // Innovation
+    'IBM', 'PLTR', 'VRTX', 'REGN', 'MRNA', 'LMT', 'RTX', 'NOC', 'GD', 'BA', 'TSM',
+    // Nuclear
+    'CCJ', 'CEG', 'ETR', 'UEC'
+  ]
+};
+
+// Remove duplicates and create final prioritized list
+const PRIORITIZED_STOCK_LIST = Array.from(new Set(PRIORITIZED_STOCKS.all));
+
 // Caches
 let cachedBTCPrice: BTCPriceCache | null = null;
 const rateLimitCache = new Map<string, RateLimitEntry>();
+
+// Finnhub data caching (5 minute TTL)
+interface FinnhubCacheEntry {
+  data: unknown;
+  timestamp: number;
+}
+
+const FINNHUB_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const finnhubCache = new Map<string, FinnhubCacheEntry>();
+
+// Get cached Finnhub data
+function getCachedFinnhubData(key: string): unknown | null {
+  const entry = finnhubCache.get(key);
+  if (entry && (Date.now() - entry.timestamp) < FINNHUB_CACHE_TTL) {
+    return entry.data;
+  }
+  return null;
+}
+
+// Set cached Finnhub data
+function setCachedFinnhubData(key: string, data: unknown): void {
+  finnhubCache.set(key, {
+    data,
+    timestamp: Date.now()
+  });
+}
 
 // Performance tracking
 class PerformanceTracker {
@@ -71,7 +132,7 @@ class PerformanceTracker {
   }
 }
 
-// Rate limiting
+// Rate limiting for client requests
 function checkRateLimit(clientId: string): boolean {
   const now = Date.now();
   const entry = rateLimitCache.get(clientId);
@@ -90,6 +151,39 @@ function checkRateLimit(clientId: string): boolean {
   
   entry.count++;
   return true;
+}
+
+// Finnhub API rate limiting (30 calls/second)
+const FINNHUB_RATE_LIMIT = 30; // calls per second
+const FINNHUB_RATE_WINDOW = 1000; // 1 second window
+const finnhubRateLimitCache = new Map<string, { count: number; resetTime: number }>();
+
+function checkFinnhubRateLimit(): boolean {
+  const now = Date.now();
+  const key = 'finnhub_global';
+  const entry = finnhubRateLimitCache.get(key);
+  
+  if (!entry || now > entry.resetTime) {
+    finnhubRateLimitCache.set(key, {
+      count: 1,
+      resetTime: now + FINNHUB_RATE_WINDOW
+    });
+    return true;
+  }
+  
+  if (entry.count >= FINNHUB_RATE_LIMIT) {
+    return false;
+  }
+  
+  entry.count++;
+  return true;
+}
+
+// Wait for Finnhub rate limit if needed
+async function waitForFinnhubRateLimit(): Promise<void> {
+  while (!checkFinnhubRateLimit()) {
+    await new Promise(resolve => setTimeout(resolve, 100)); // Wait 100ms
+  }
 }
 
 function getClientId(request: Request): string {
@@ -447,7 +541,7 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
     type: 'function',
     function: {
       name: 'get_stock_price',
-      description: 'Get real-time stock and crypto stock prices via Yahoo Finance. Track the most important crypto-related stocks: MSTR, COIN, HOOD, MARA, RIOT, NVDA, TSLA, etc.',
+      description: 'Get real-time stock and crypto stock prices via Yahoo Finance. Prioritizes stocks from @/stocks components: MSTR, COIN, HOOD, NVDA, TSLA, AAPL, MSFT, GOOGL, AMZN, META, CRCL, BLOCK, PYPL, IREN, CORZ, CIFR, RIOT, CLSK, WULF, HUT, MARA, GLXY, QBTS, CRSP, RGTI, QUBT, KTOS, DRS, IONQ, IBM, PLTR, VRTX, REGN, MRNA, LMT, RTX, NOC, GD, BA, TSM, CCJ, CEG, ETR, UEC, etc.',
       parameters: {
         type: 'object',
         properties: {
@@ -457,6 +551,162 @@ const ENHANCED_TOOLS: ChatCompletionTool[] = [
           }
         },
         required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_insider_sentiment',
+      description: 'Get insider trading sentiment data from Finnhub API. This provides insights into executive trading patterns that can signal future stock movements. The Monthly Share Purchase Ratio (MSPR) indicates whether insiders are buying or selling, with values closer to 1 indicating bullish sentiment and values closer to -1 indicating bearish sentiment. Prioritizes stocks from @/stocks components.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The stock symbol to analyze (e.g., MSTR, COIN, HOOD, NVDA, TSLA, AAPL)'
+          },
+          from: {
+            type: 'string',
+            description: 'Start date in YYYY-MM-DD format (optional, defaults to 3 months ago)',
+            default: '2024-01-01'
+          },
+          to: {
+            type: 'string',
+            description: 'End date in YYYY-MM-DD format (optional, defaults to today)',
+            default: '2024-12-31'
+          }
+        },
+        required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_insider_transactions',
+      description: 'Get detailed insider trading transactions from Finnhub API. This provides specific information about executive and insider trading activities including transaction types, amounts, and dates. Useful for analyzing individual insider moves and their potential impact on stock prices. Prioritizes stocks from @/stocks components.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The stock symbol to analyze (e.g., MSTR, COIN, HOOD, NVDA, TSLA, AAPL)'
+          },
+          from: {
+            type: 'string',
+            description: 'Start date in YYYY-MM-DD format (optional, defaults to 1 month ago)',
+            default: '2024-01-01'
+          },
+          to: {
+            type: 'string',
+            description: 'End date in YYYY-MM-DD format (optional, defaults to today)',
+            default: '2024-12-31'
+          }
+        },
+        required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_ipo_calendar',
+      description: 'Get upcoming and recent IPO calendar data from Finnhub API. Track new market entrants, their expected pricing, and market reception. Useful for identifying new investment opportunities and market sentiment towards new listings.',
+      parameters: {
+        type: 'object',
+        properties: {
+          from: {
+            type: 'string',
+            description: 'Start date in YYYY-MM-DD format (optional, defaults to 1 month ago)',
+            default: '2024-01-01'
+          },
+          to: {
+            type: 'string',
+            description: 'End date in YYYY-MM-DD format (optional, defaults to 3 months from now)',
+            default: '2024-12-31'
+          }
+        },
+        required: []
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_company_earnings',
+      description: 'Get company earnings data from Finnhub API. Track quarterly earnings, revenue, EPS, and analyst estimates. Essential for fundamental analysis and understanding company financial performance. Prioritizes stocks from @/stocks components.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The stock symbol to analyze (e.g., MSTR, COIN, NVDA, AAPL, TSLA)'
+          }
+        },
+        required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_company_news',
+      description: 'Get company news and press releases from Finnhub API. Track recent announcements, corporate events, and market-moving news. Useful for understanding company developments and market sentiment. Prioritizes stocks from @/stocks components.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The stock symbol to analyze (e.g., MSTR, COIN, NVDA, AAPL, TSLA)'
+          },
+          from: {
+            type: 'string',
+            description: 'Start date in YYYY-MM-DD format (optional, defaults to 1 week ago)',
+            default: '2024-01-01'
+          },
+          to: {
+            type: 'string',
+            description: 'End date in YYYY-MM-DD format (optional, defaults to today)',
+            default: '2024-12-31'
+          }
+        },
+        required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_company_profile',
+      description: 'Get comprehensive company profile data from Finnhub API. Access company fundamentals, financial metrics, and business information. Essential for fundamental analysis and company research. Prioritizes stocks from @/stocks components.',
+      parameters: {
+        type: 'object',
+        properties: {
+          symbol: {
+            type: 'string',
+            description: 'The stock symbol to analyze (e.g., MSTR, COIN, HOOD, NVDA, TSLA, AAPL)'
+          }
+        },
+        required: ['symbol']
+      }
+    }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_market_status',
+      description: 'Get real-time market status and trading information from Finnhub API. Track market hours, holidays, and trading sessions. Useful for understanding market timing and trading opportunities.',
+      parameters: {
+        type: 'object',
+        properties: {
+          exchange: {
+            type: 'string',
+            description: 'The exchange to check (optional, defaults to US markets)',
+            default: 'US'
+          }
+        },
+        required: []
       }
     }
   }
@@ -668,16 +918,17 @@ async function _getCryptoStocksData(btcChange: number): Promise<string> {
       return '**📈 Crypto Stocks:**\n_Unable to fetch stock data - API key not configured_';
     }
 
-    // Focus on the most important crypto stocks
-    const stocks = [
-      'MSTR', 'COIN', 'HOOD', 'MARA', 'RIOT', 'NVDA', 'TSLA'
-    ];
+    // Focus on prioritized stocks from @/stocks components
+    const stocks = PRIORITIZED_STOCK_LIST.slice(0, 12); // Limit to 12 for API efficiency
     
     logger.info('Fetching crypto stocks data for symbols:', stocks);
     
     // Fetch each stock individually (Finnhub free tier limitation)
     const stockPromises = stocks.map(async (symbol) => {
       try {
+        // Wait for Finnhub rate limit before each request
+        await waitForFinnhubRateLimit();
+        
         const response = await fetchWithTimeout(
           `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
           {},
@@ -782,6 +1033,964 @@ interface MacroStockQuote {
   currentPrice: number;
   changePercent: number;
 }
+
+// Insider sentiment data interface
+
+// Insider sentiment function using Finnhub API
+async function getInsiderSentiment(symbol: string, from?: string, to?: string): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for insider sentiment');
+      return `Unable to fetch insider sentiment for ${symbol} - API key not configured`;
+    }
+
+    // Set default date range if not provided
+    const fromDate = from || new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 3 months ago
+    const toDate = to || new Date().toISOString().split('T')[0]; // today
+
+    // Check cache first
+    const cacheKey = `insider_sentiment_${symbol}_${fromDate}_${toDate}`;
+    const cachedData = getCachedFinnhubData(cacheKey);
+    if (typeof cachedData === 'string') {
+      logger.info(`Using cached insider sentiment data for ${symbol}`);
+      return cachedData;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    logger.info(`Fetching insider sentiment for ${symbol} from ${fromDate} to ${toDate}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub insider sentiment API error for ${symbol}:`, response.status, response.statusText);
+      return `Unable to fetch insider sentiment data for ${symbol} - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || !Array.isArray(data.data) || data.data.length === 0) {
+      return `No insider sentiment data available for ${symbol} in the specified date range`;
+    }
+
+    // Process the insider sentiment data
+    const sentimentData = data.data as Array<{
+      symbol: string;
+      year: number;
+      month: number;
+      mspr: number;
+      change: number;
+    }>;
+
+    // Sort by date (most recent first)
+    sentimentData.sort((a, b) => {
+      if (a.year !== b.year) return b.year - a.year;
+      return b.month - a.month;
+    });
+
+    // Get the most recent data point
+    const latest = sentimentData[0];
+    
+    // Determine sentiment based on MSPR value
+    let sentiment: 'bullish' | 'bearish' | 'neutral';
+    let sentimentEmoji: string;
+    let description: string;
+
+    if (latest.mspr > 0.5) {
+      sentiment = 'bullish';
+      sentimentEmoji = '🟢';
+      description = 'Strong insider buying activity detected';
+    } else if (latest.mspr < -0.5) {
+      sentiment = 'bearish';
+      sentimentEmoji = '🔴';
+      description = 'Strong insider selling activity detected';
+    } else {
+      sentiment = 'neutral';
+      sentimentEmoji = '🟡';
+      description = 'Mixed or neutral insider activity';
+    }
+
+    // Calculate average MSPR for context
+    const avgMspr = sentimentData.reduce((sum, item) => sum + item.mspr, 0) / sentimentData.length;
+    
+    // Format the response
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    let result = `**${symbol} Insider Sentiment Analysis**\n\n`;
+    result += `${sentimentEmoji} **Current Sentiment:** ${sentiment.toUpperCase()}\n`;
+    result += `📊 **Latest MSPR (${monthNames[latest.month - 1]} ${latest.year}):** ${latest.mspr.toFixed(3)}\n`;
+    result += `📈 **Price Change:** ${latest.change >= 0 ? '+' : ''}${latest.change.toFixed(2)}%\n`;
+    result += `📋 **Description:** ${description}\n\n`;
+    
+    if (sentimentData.length > 1) {
+      result += `**Historical Context:**\n`;
+      result += `📊 **Average MSPR:** ${avgMspr.toFixed(3)}\n`;
+      result += `📅 **Data Points:** ${sentimentData.length} months\n\n`;
+    }
+
+    // Add interpretation based on MSPR methodology
+    result += `**MSPR Interpretation:**\n`;
+    result += `• MSPR closer to 1: Strong insider buying (bullish signal)\n`;
+    result += `• MSPR closer to -1: Strong insider selling (bearish signal)\n`;
+    result += `• MSPR near 0: Neutral or mixed activity\n\n`;
+    
+    result += `**💡 Investment Insight:**\n`;
+    if (sentiment === 'bullish') {
+      result += `Executives are showing confidence in ${symbol}. Consider this a positive signal for long-term investors.`;
+    } else if (sentiment === 'bearish') {
+      result += `Executives are reducing their positions in ${symbol}. This could signal concerns about future performance.`;
+    } else {
+      result += `Insider activity is mixed for ${symbol}. Monitor for clearer signals in upcoming months.`;
+    }
+
+    logger.info(`Insider sentiment analysis completed for ${symbol}:`, {
+      sentiment,
+      mspr: latest.mspr,
+      change: latest.change,
+      dataPoints: sentimentData.length
+    });
+
+    // Cache the result
+    setCachedFinnhubData(cacheKey, result);
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching insider sentiment for ${symbol}:`, error);
+    return `Error analyzing insider sentiment for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// Insider transactions function using Finnhub API
+async function getInsiderTransactions(symbol: string, from?: string, to?: string): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for insider transactions');
+      return `Unable to fetch insider transactions for ${symbol} - API key not configured`;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    // Set default date range if not provided
+    const fromDate = from || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 1 month ago
+    const toDate = to || new Date().toISOString().split('T')[0]; // today
+
+    logger.info(`Fetching insider transactions for ${symbol} from ${fromDate} to ${toDate}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/stock/insider-transactions?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub insider transactions API error for ${symbol}:`, response.status, response.statusText);
+      return `Unable to fetch insider transactions data for ${symbol} - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || !Array.isArray(data.data) || data.data.length === 0) {
+      return `No insider transactions data available for ${symbol} in the specified date range`;
+    }
+
+    // Process the insider transactions data
+    const transactions = data.data as Array<{
+      name: string;
+      share: number;
+      change: number;
+      filingDate: string;
+      transactionDate: string;
+      transactionCode: string;
+      transactionPrice: number;
+      transactionValue: number;
+      transactionType: string;
+    }>;
+
+    // Sort by transaction date (most recent first)
+    transactions.sort((a, b) => new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime());
+
+    // Calculate summary statistics
+    const totalBuyValue = transactions
+      .filter(t => t.transactionType === 'P' || t.change > 0)
+      .reduce((sum, t) => sum + Math.abs(t.transactionValue), 0);
+    
+    const totalSellValue = transactions
+      .filter(t => t.transactionType === 'S' || t.change < 0)
+      .reduce((sum, t) => sum + Math.abs(t.transactionValue), 0);
+    
+    const netFlow = totalBuyValue - totalSellValue;
+    const totalTransactions = transactions.length;
+    const uniqueInsiders = new Set(transactions.map(t => t.name)).size;
+
+    // Determine overall sentiment
+    let sentiment: 'bullish' | 'bearish' | 'neutral';
+    let sentimentEmoji: string;
+
+    if (netFlow > 1000000) { // $1M threshold
+      sentiment = 'bullish';
+      sentimentEmoji = '🟢';
+    } else if (netFlow < -1000000) {
+      sentiment = 'bearish';
+      sentimentEmoji = '🔴';
+    } else {
+      sentiment = 'neutral';
+      sentimentEmoji = '🟡';
+    }
+
+    // Format the response
+    let result = `**${symbol} Insider Transactions Analysis**\n\n`;
+    result += `${sentimentEmoji} **Overall Sentiment:** ${sentiment.toUpperCase()}\n`;
+    result += `📊 **Net Flow:** ${netFlow >= 0 ? '+' : ''}$${(netFlow / 1000000).toFixed(2)}M\n`;
+    result += `💰 **Total Buy Value:** $${(totalBuyValue / 1000000).toFixed(2)}M\n`;
+    result += `💸 **Total Sell Value:** $${(totalSellValue / 1000000).toFixed(2)}M\n`;
+    result += `📅 **Period:** ${fromDate} to ${toDate}\n`;
+    result += `👥 **Unique Insiders:** ${uniqueInsiders}\n`;
+    result += `📋 **Total Transactions:** ${totalTransactions}\n\n`;
+    
+    result += `**📋 Recent Transactions (Top 5):**\n`;
+    result += `| Insider | Type | Shares | Value | Date |\n`;
+    result += `|---------|------|--------|-------|------|\n`;
+    
+    transactions.slice(0, 5).forEach(transaction => {
+      const type = transaction.transactionType === 'P' ? '🟢 BUY' : '🔴 SELL';
+      const shares = Math.abs(transaction.change).toLocaleString();
+      const value = `$${(Math.abs(transaction.transactionValue) / 1000).toFixed(1)}K`;
+      const date = new Date(transaction.transactionDate).toLocaleDateString();
+      
+      result += `| ${transaction.name} | ${type} | ${shares} | ${value} | ${date} |\n`;
+    });
+
+    // Add interpretation
+    result += `\n**💡 Investment Insight:**\n`;
+    if (sentiment === 'bullish') {
+      result += `Executives are showing strong confidence in ${symbol} with significant buying activity. This could signal positive future developments.`;
+    } else if (sentiment === 'bearish') {
+      result += `Executives are reducing their positions in ${symbol}. Monitor for potential negative developments or strategic changes.`;
+    } else {
+      result += `Insider activity is mixed for ${symbol}. Monitor for clearer signals in upcoming transactions.`;
+    }
+
+    // Add transaction code explanations
+    result += `\n**📖 Transaction Codes:**\n`;
+    result += `• P: Purchase | S: Sale | A: Acquisition | D: Disposition\n`;
+    result += `• G: Gift | M: Merger | X: Exercise | W: Warrant\n`;
+
+    logger.info(`Insider transactions analysis completed for ${symbol}:`, {
+      sentiment,
+      netFlow,
+      totalTransactions,
+      uniqueInsiders
+    });
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching insider transactions for ${symbol}:`, error);
+    return `Error analyzing insider transactions for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// IPO Calendar function using Finnhub API
+async function getIPOCalendar(from?: string, to?: string): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for IPO calendar');
+      return `Unable to fetch IPO calendar data - API key not configured`;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    // Set default date range if not provided
+    const fromDate = from || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 1 month ago
+    const toDate = to || new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 3 months from now
+
+    logger.info(`Fetching IPO calendar from ${fromDate} to ${toDate}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/calendar/ipo?from=${fromDate}&to=${toDate}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub IPO calendar API error:`, response.status, response.statusText);
+      return `Unable to fetch IPO calendar data - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || !Array.isArray(data.ipoCalendar) || data.ipoCalendar.length === 0) {
+      return `No IPO calendar data available for the specified date range`;
+    }
+
+    // Process the IPO calendar data
+    const ipos = data.ipoCalendar as Array<{
+      date: string;
+      exchange: string;
+      name: string;
+      numberOfShares: number;
+      price: string;
+      status: string;
+      symbol: string;
+      totalSharesValue: number;
+    }>;
+
+    // Sort by date (most recent first)
+    ipos.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    // Categorize IPOs by status
+    const upcoming = ipos.filter(ipo => ipo.status === 'expected' || ipo.status === 'filed');
+    const completed = ipos.filter(ipo => ipo.status === 'priced' || ipo.status === 'withdrawn');
+    const recent = completed.slice(0, 10); // Last 10 completed IPOs
+
+    // Calculate summary statistics
+    const totalUpcoming = upcoming.length;
+    const totalCompleted = completed.length;
+    const totalValue = completed.reduce((sum, ipo) => sum + (ipo.totalSharesValue || 0), 0);
+    const avgValue = totalCompleted > 0 ? totalValue / totalCompleted : 0;
+
+    // Format the response
+    let result = `**📈 IPO Calendar Analysis**\n\n`;
+    result += `📅 **Period:** ${fromDate} to ${toDate}\n`;
+    result += `🚀 **Upcoming IPOs:** ${totalUpcoming}\n`;
+    result += `✅ **Completed IPOs:** ${totalCompleted}\n`;
+    result += `💰 **Total Value:** $${(totalValue / 1000000).toFixed(2)}M\n`;
+    result += `📊 **Average IPO Value:** $${(avgValue / 1000000).toFixed(2)}M\n\n`;
+
+    // Show upcoming IPOs
+    if (upcoming.length > 0) {
+      result += `**🚀 Upcoming IPOs (Next 10):**\n`;
+      result += `| Company | Symbol | Exchange | Expected Price | Shares | Value |\n`;
+      result += `|---------|--------|----------|----------------|--------|-------|\n`;
+      
+      upcoming.slice(0, 10).forEach(ipo => {
+        const price = ipo.price || 'TBD';
+        const shares = ipo.numberOfShares ? ipo.numberOfShares.toLocaleString() : 'TBD';
+        const value = ipo.totalSharesValue ? `$${(ipo.totalSharesValue / 1000000).toFixed(2)}M` : 'TBD';
+        
+        result += `| ${ipo.name} | ${ipo.symbol} | ${ipo.exchange} | ${price} | ${shares} | ${value} |\n`;
+      });
+      result += `\n`;
+    }
+
+    // Show recent completed IPOs
+    if (recent.length > 0) {
+      result += `**✅ Recent Completed IPOs:**\n`;
+      result += `| Company | Symbol | Exchange | Price | Status | Date |\n`;
+      result += `|---------|--------|----------|-------|--------|------|\n`;
+      
+      recent.forEach(ipo => {
+        const price = ipo.price || 'N/A';
+        const status = ipo.status === 'priced' ? '✅ Priced' : '❌ Withdrawn';
+        const date = new Date(ipo.date).toLocaleDateString();
+        
+        result += `| ${ipo.name} | ${ipo.symbol} | ${ipo.exchange} | ${price} | ${status} | ${date} |\n`;
+      });
+      result += `\n`;
+    }
+
+    // Add market insights
+    result += `**💡 Market Insights:**\n`;
+    if (totalUpcoming > 0) {
+      result += `• ${totalUpcoming} IPOs are expected in the coming months\n`;
+    }
+    if (totalCompleted > 0) {
+      result += `• Average IPO size: $${(avgValue / 1000000).toFixed(2)}M\n`;
+    }
+    
+    // Identify trends
+    const techIPOs = ipos.filter(ipo => 
+      ipo.name.toLowerCase().includes('tech') || 
+      ipo.name.toLowerCase().includes('software') ||
+      ipo.name.toLowerCase().includes('ai') ||
+      ipo.name.toLowerCase().includes('digital')
+    );
+    
+    if (techIPOs.length > 0) {
+      result += `• ${techIPOs.length} tech-related IPOs detected\n`;
+    }
+
+    // Add investment considerations
+    result += `\n**🎯 Investment Considerations:**\n`;
+    result += `• Monitor upcoming IPOs for potential opportunities\n`;
+    result += `• Consider market sentiment and timing\n`;
+    result += `• Research company fundamentals before investing\n`;
+    result += `• Watch for lock-up expiration dates\n`;
+
+    logger.info(`IPO calendar analysis completed:`, {
+      totalIPOs: ipos.length,
+      upcoming: totalUpcoming,
+      completed: totalCompleted,
+      totalValue: totalValue
+    });
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching IPO calendar:`, error);
+    return `Error analyzing IPO calendar: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// Company earnings function using Finnhub API
+async function getCompanyEarnings(symbol: string): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for company earnings');
+      return `Unable to fetch earnings data for ${symbol} - API key not configured`;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    logger.info(`Fetching earnings data for ${symbol}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/stock/earnings?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub earnings API error for ${symbol}:`, response.status, response.statusText);
+      return `Unable to fetch earnings data for ${symbol} - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || !Array.isArray(data) || data.length === 0) {
+      return `No earnings data available for ${symbol}`;
+    }
+
+    // Process the earnings data
+    const earnings = data as Array<{
+      actual: number;
+      estimate: number;
+      period: string;
+      quarter: number;
+      surprise: number;
+      surprisePercent: number;
+      symbol: string;
+      year: number;
+    }>;
+
+    // Sort by date (most recent first)
+    earnings.sort((a, b) => {
+      if (a.year !== b.year) return b.year - a.year;
+      return b.quarter - a.quarter;
+    });
+
+    // Get the most recent earnings
+    const latest = earnings[0];
+
+    // Calculate earnings surprise
+    const surprise = latest.surprisePercent;
+    let surpriseEmoji: string;
+    let surpriseDescription: string;
+
+    if (surprise > 10) {
+      surpriseEmoji = '🚀';
+      surpriseDescription = 'Significant beat';
+    } else if (surprise > 5) {
+      surpriseEmoji = '🟢';
+      surpriseDescription = 'Beat estimates';
+    } else if (surprise < -10) {
+      surpriseEmoji = '🔴';
+      surpriseDescription = 'Significant miss';
+    } else if (surprise < -5) {
+      surpriseEmoji = '🟡';
+      surpriseDescription = 'Missed estimates';
+    } else {
+      surpriseEmoji = '⚪';
+      surpriseDescription = 'Met estimates';
+    }
+
+    // Format the response
+    let result = `**📊 ${symbol} Earnings Analysis**\n\n`;
+    result += `**Latest Earnings (Q${latest.quarter} ${latest.year})**\n`;
+    result += `${surpriseEmoji} **EPS:** $${latest.actual.toFixed(2)} (Estimate: $${latest.estimate.toFixed(2)})\n`;
+    result += `📈 **Surprise:** ${surprise >= 0 ? '+' : ''}${surprise.toFixed(1)}%\n`;
+    result += `📋 **Description:** ${surpriseDescription}\n\n`;
+
+    // Show earnings history
+    if (earnings.length > 1) {
+      result += `**📈 Earnings History (Last 4 Quarters):**\n`;
+      result += `| Quarter | EPS | Estimate | Surprise |\n`;
+      result += `|---------|-----|----------|----------|\n`;
+      
+      earnings.slice(0, 4).forEach(earning => {
+        const surpriseEmoji = earning.surprisePercent > 5 ? '🟢' : 
+                             earning.surprisePercent < -5 ? '🔴' : '⚪';
+        const surprise = earning.surprisePercent >= 0 ? 
+          `+${earning.surprisePercent.toFixed(1)}%` : 
+          `${earning.surprisePercent.toFixed(1)}%`;
+        
+        result += `| Q${earning.quarter} ${earning.year} | $${earning.actual.toFixed(2)} | $${earning.estimate.toFixed(2)} | ${surpriseEmoji} ${surprise} |\n`;
+      });
+      result += `\n`;
+    }
+
+    // Calculate trends
+    const recentEarnings = earnings.slice(0, 4);
+    const avgSurprise = recentEarnings.reduce((sum, e) => sum + e.surprisePercent, 0) / recentEarnings.length;
+    const beatRate = recentEarnings.filter(e => e.surprisePercent > 0).length / recentEarnings.length * 100;
+
+    result += `**📊 Performance Trends:**\n`;
+    result += `• **Average Surprise:** ${avgSurprise >= 0 ? '+' : ''}${avgSurprise.toFixed(1)}%\n`;
+    result += `• **Beat Rate:** ${beatRate.toFixed(0)}% of quarters\n`;
+    result += `• **Consistency:** ${avgSurprise > 5 ? 'Consistent beats' : avgSurprise < -5 ? 'Consistent misses' : 'Mixed results'}\n\n`;
+
+    // Add investment insights
+    result += `**💡 Investment Insights:**\n`;
+    if (surprise > 10) {
+      result += `Strong earnings performance suggests positive momentum. Consider this a bullish signal.`;
+    } else if (surprise > 5) {
+      result += `Solid earnings beat indicates good execution. Monitor for continued strength.`;
+    } else if (surprise < -10) {
+      result += `Significant earnings miss may indicate challenges. Monitor for improvement.`;
+    } else if (surprise < -5) {
+      result += `Earnings miss suggests some weakness. Watch for turnaround signs.`;
+    } else {
+      result += `Earnings in line with estimates. Monitor for future catalysts.`;
+    }
+
+    logger.info(`Company earnings analysis completed for ${symbol}:`, {
+      latestQuarter: `Q${latest.quarter} ${latest.year}`,
+      surprise: surprise,
+      beatRate: beatRate
+    });
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching company earnings for ${symbol}:`, error);
+    return `Error analyzing earnings for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// Company news function using Finnhub API
+async function getCompanyNews(symbol: string, from?: string, to?: string): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for company news');
+      return `Unable to fetch news data for ${symbol} - API key not configured`;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    // Set default date range if not provided
+    const fromDate = from || new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]; // 1 week ago
+    const toDate = to || new Date().toISOString().split('T')[0]; // today
+
+    logger.info(`Fetching news data for ${symbol} from ${fromDate} to ${toDate}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub news API error for ${symbol}:`, response.status, response.statusText);
+      return `Unable to fetch news data for ${symbol} - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || !Array.isArray(data) || data.length === 0) {
+      return `No news data available for ${symbol} in the specified date range`;
+    }
+
+    // Process the news data
+    const news = data as Array<{
+      category: string;
+      datetime: number;
+      headline: string;
+      id: number;
+      image: string;
+      related: string;
+      source: string;
+      summary: string;
+      url: string;
+    }>;
+
+    // Sort by date (most recent first)
+    news.sort((a, b) => b.datetime - a.datetime);
+
+    // Categorize news by sentiment (simple keyword analysis)
+    const positiveKeywords = ['beat', 'rise', 'gain', 'positive', 'growth', 'strong', 'up', 'higher', 'increase', 'profit'];
+    const negativeKeywords = ['fall', 'drop', 'decline', 'negative', 'weak', 'down', 'lower', 'decrease', 'loss', 'miss'];
+
+    const categorizeNews = (headline: string, summary: string) => {
+      const text = (headline + ' ' + summary).toLowerCase();
+      const positiveCount = positiveKeywords.filter(keyword => text.includes(keyword)).length;
+      const negativeCount = negativeKeywords.filter(keyword => text.includes(keyword)).length;
+      
+      if (positiveCount > negativeCount) return 'positive';
+      if (negativeCount > positiveCount) return 'negative';
+      return 'neutral';
+    };
+
+    // Get top news items
+    const topNews = news.slice(0, 5);
+    const sentimentCounts = topNews.map(item => categorizeNews(item.headline, item.summary));
+    const positiveCount = sentimentCounts.filter(s => s === 'positive').length;
+    const negativeCount = sentimentCounts.filter(s => s === 'negative').length;
+    const neutralCount = sentimentCounts.filter(s => s === 'neutral').length;
+
+    // Determine overall sentiment
+    let overallSentiment: 'positive' | 'negative' | 'neutral';
+    let sentimentEmoji: string;
+    let sentimentDescription: string;
+
+    if (positiveCount > negativeCount && positiveCount > neutralCount) {
+      overallSentiment = 'positive';
+      sentimentEmoji = '🟢';
+      sentimentDescription = 'Positive news sentiment';
+    } else if (negativeCount > positiveCount && negativeCount > neutralCount) {
+      overallSentiment = 'negative';
+      sentimentEmoji = '🔴';
+      sentimentDescription = 'Negative news sentiment';
+    } else {
+      overallSentiment = 'neutral';
+      sentimentEmoji = '🟡';
+      sentimentDescription = 'Mixed news sentiment';
+    }
+
+    // Format the response
+    let result = `**📰 ${symbol} News Analysis**\n\n`;
+    result += `📅 **Period:** ${fromDate} to ${toDate}\n`;
+    result += `${sentimentEmoji} **Overall Sentiment:** ${sentimentDescription}\n`;
+    result += `📊 **News Breakdown:** ${positiveCount} positive, ${negativeCount} negative, ${neutralCount} neutral\n`;
+    result += `📈 **Total Articles:** ${news.length}\n\n`;
+
+    // Show top news items
+    result += `**📋 Top News Headlines:**\n`;
+    topNews.forEach((item, index) => {
+      const sentiment = categorizeNews(item.headline, item.summary);
+      const sentimentEmoji = sentiment === 'positive' ? '🟢' : 
+                             sentiment === 'negative' ? '🔴' : '🟡';
+      const date = new Date(item.datetime * 1000).toLocaleDateString();
+      const source = item.source;
+      
+      result += `${index + 1}. ${sentimentEmoji} **${item.headline}**\n`;
+      result += `   📅 ${date} | 📰 ${source}\n`;
+      if (item.summary && item.summary.length > 100) {
+        result += `   📝 ${item.summary.substring(0, 100)}...\n`;
+      } else if (item.summary) {
+        result += `   📝 ${item.summary}\n`;
+      }
+      result += `\n`;
+    });
+
+    // Add market insights
+    result += `**💡 Market Insights:**\n`;
+    if (overallSentiment === 'positive') {
+      result += `• Recent news flow is positive, which may support stock performance\n`;
+      result += `• Monitor for continued positive developments\n`;
+    } else if (overallSentiment === 'negative') {
+      result += `• Recent news flow is negative, which may pressure stock performance\n`;
+      result += `• Watch for potential catalysts or positive developments\n`;
+    } else {
+      result += `• News sentiment is mixed, suggesting balanced market view\n`;
+      result += `• Monitor for clearer directional signals\n`;
+    }
+
+    // Add investment considerations
+    result += `\n**🎯 Investment Considerations:**\n`;
+    result += `• News sentiment can impact short-term price movements\n`;
+    result += `• Consider news in context of broader market trends\n`;
+    result += `• Monitor for earnings announcements and corporate events\n`;
+    result += `• Watch for regulatory or industry-specific news\n`;
+
+    logger.info(`Company news analysis completed for ${symbol}:`, {
+      totalNews: news.length,
+      sentiment: overallSentiment,
+      positiveCount,
+      negativeCount,
+      neutralCount
+    });
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching company news for ${symbol}:`, error);
+    return `Error analyzing news for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// Company profile function using Finnhub API
+async function getCompanyProfile(symbol: string): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for company profile');
+      return `Unable to fetch company profile for ${symbol} - API key not configured`;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    logger.info(`Fetching company profile for ${symbol}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub company profile API error for ${symbol}:`, response.status, response.statusText);
+      return `Unable to fetch company profile for ${symbol} - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || Object.keys(data).length === 0) {
+      return `No company profile data available for ${symbol}`;
+    }
+
+    // Process the company profile data
+    const profile = data as {
+      country: string;
+      currency: string;
+      exchange: string;
+      ipo: string;
+      marketCapitalization: number;
+      name: string;
+      phone: string;
+      shareOutstanding: number;
+      ticker: string;
+      weburl: string;
+      logo: string;
+      finnhubIndustry: string;
+      cik?: string;
+      isin?: string;
+      lei?: string;
+    };
+
+    // Format the response
+    let result = `**🏢 ${symbol} Company Profile**\n\n`;
+    result += `**📋 Basic Information:**\n`;
+    result += `• **Company Name:** ${profile.name}\n`;
+    result += `• **Ticker:** ${profile.ticker}\n`;
+    result += `• **Exchange:** ${profile.exchange}\n`;
+    result += `• **Country:** ${profile.country}\n`;
+    result += `• **Currency:** ${profile.currency}\n`;
+    result += `• **Industry:** ${profile.finnhubIndustry}\n\n`;
+
+    // Financial metrics
+    result += `**💰 Financial Metrics:**\n`;
+    if (profile.marketCapitalization) {
+      const marketCap = profile.marketCapitalization / 1000000; // Convert to millions
+      result += `• **Market Cap:** $${marketCap >= 1000 ? (marketCap / 1000).toFixed(2) + 'B' : marketCap.toFixed(2) + 'M'}\n`;
+    }
+    if (profile.shareOutstanding) {
+      result += `• **Shares Outstanding:** ${(profile.shareOutstanding / 1000000).toFixed(2)}M\n`;
+    }
+    if (profile.ipo) {
+      result += `• **IPO Date:** ${profile.ipo}\n`;
+    }
+    result += `\n`;
+
+    // Contact and website
+    result += `**📞 Contact Information:**\n`;
+    if (profile.phone) {
+      result += `• **Phone:** ${profile.phone}\n`;
+    }
+    if (profile.weburl) {
+      result += `• **Website:** ${profile.weburl}\n`;
+    }
+    result += `\n`;
+
+    // Additional identifiers
+    if (profile.cik || profile.isin || profile.lei) {
+      result += `**🆔 Identifiers:**\n`;
+      if (profile.cik) {
+        result += `• **CIK:** ${profile.cik}\n`;
+      }
+      if (profile.isin) {
+        result += `• **ISIN:** ${profile.isin}\n`;
+      }
+      if (profile.lei) {
+        result += `• **LEI:** ${profile.lei}\n`;
+      }
+      result += `\n`;
+    }
+
+    // Add investment insights
+    result += `**💡 Investment Insights:**\n`;
+    if (profile.marketCapitalization) {
+      const marketCap = profile.marketCapitalization / 1000000;
+      if (marketCap > 10000) {
+        result += `• Large-cap company with significant market presence\n`;
+      } else if (marketCap > 2000) {
+        result += `• Mid-cap company with growth potential\n`;
+      } else {
+        result += `• Small-cap company with higher volatility potential\n`;
+      }
+    }
+    
+    if (profile.ipo) {
+      const ipoYear = new Date(profile.ipo).getFullYear();
+      const currentYear = new Date().getFullYear();
+      const yearsSinceIPO = currentYear - ipoYear;
+      if (yearsSinceIPO < 5) {
+        result += `• Recent IPO (${yearsSinceIPO} years ago) - monitor lock-up expirations\n`;
+      } else {
+        result += `• Established company (${yearsSinceIPO} years since IPO)\n`;
+      }
+    }
+
+    result += `• Industry: ${profile.finnhubIndustry} - monitor sector trends\n`;
+    result += `• Exchange: ${profile.exchange} - consider trading hours and liquidity\n`;
+
+    logger.info(`Company profile analysis completed for ${symbol}:`, {
+      name: profile.name,
+      marketCap: profile.marketCapitalization,
+      industry: profile.finnhubIndustry
+    });
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching company profile for ${symbol}:`, error);
+    return `Error analyzing company profile for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
+// Market status function using Finnhub API
+async function getMarketStatus(exchange: string = 'US'): Promise<string> {
+  try {
+    const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
+    if (!FINNHUB_API_KEY) {
+      logger.warn('Finnhub API key not configured for market status');
+      return `Unable to fetch market status - API key not configured`;
+    }
+
+    // Wait for Finnhub rate limit
+    await waitForFinnhubRateLimit();
+
+    logger.info(`Fetching market status for ${exchange}`);
+
+    const response = await fetchWithTimeout(
+      `https://finnhub.io/api/v1/stock/market-status?exchange=${exchange}&token=${FINNHUB_API_KEY}`,
+      {},
+      5000 // 5 second timeout
+    );
+
+    if (!response.ok) {
+      logger.warn(`Finnhub market status API error:`, response.status, response.statusText);
+      return `Unable to fetch market status - API error ${response.status}`;
+    }
+
+    const data = await response.json();
+    
+    if (!data || !Array.isArray(data) || data.length === 0) {
+      return `No market status data available for ${exchange}`;
+    }
+
+    // Process the market status data
+    const markets = data as Array<{
+      exchange: string;
+      holiday: string;
+      isOpen: boolean;
+      sessionOpen: string;
+      sessionClose: string;
+      timezone: string;
+    }>;
+
+    // Get current time
+    const now = new Date();
+    const currentTime = now.toLocaleTimeString('en-US', { 
+      timeZone: 'America/New_York',
+      hour12: false 
+    });
+
+    // Format the response
+    let result = `**📈 Market Status (${exchange})**\n\n`;
+    result += `🕐 **Current Time (ET):** ${currentTime}\n\n`;
+
+    // Show market status for each exchange
+    markets.forEach(market => {
+      const statusEmoji = market.isOpen ? '🟢' : '🔴';
+      const statusText = market.isOpen ? 'OPEN' : 'CLOSED';
+      
+      result += `${statusEmoji} **${market.exchange}:** ${statusText}\n`;
+      
+      if (market.sessionOpen && market.sessionClose) {
+        const openTime = new Date(market.sessionOpen).toLocaleTimeString('en-US', { 
+          timeZone: market.timezone,
+          hour12: false 
+        });
+        const closeTime = new Date(market.sessionClose).toLocaleTimeString('en-US', { 
+          timeZone: market.timezone,
+          hour12: false 
+        });
+        result += `   📅 **Hours:** ${openTime} - ${closeTime} (${market.timezone})\n`;
+      }
+      
+      if (market.holiday) {
+        result += `   🎉 **Holiday:** ${market.holiday}\n`;
+      }
+      
+      result += `\n`;
+    });
+
+    // Calculate overall market status
+    const openMarkets = markets.filter(m => m.isOpen).length;
+    const totalMarkets = markets.length;
+    const overallStatus = openMarkets > 0 ? 'OPEN' : 'CLOSED';
+    const overallEmoji = openMarkets > 0 ? '🟢' : '🔴';
+
+    result += `**📊 Summary:**\n`;
+    result += `${overallEmoji} **Overall Status:** ${overallStatus}\n`;
+    result += `📈 **Open Markets:** ${openMarkets}/${totalMarkets}\n`;
+    result += `📉 **Closed Markets:** ${totalMarkets - openMarkets}/${totalMarkets}\n\n`;
+
+    // Add trading insights
+    result += `**💡 Trading Insights:**\n`;
+    if (openMarkets > 0) {
+      result += `• Markets are currently open - active trading available\n`;
+      result += `• Monitor for intraday opportunities and volatility\n`;
+    } else {
+      result += `• Markets are currently closed - limited trading activity\n`;
+      result += `• Focus on pre/post-market analysis and planning\n`;
+    }
+    
+    result += `• Consider timezone differences for global markets\n`;
+    result += `• Watch for holiday impacts on trading volume\n`;
+
+    logger.info(`Market status analysis completed:`, {
+      exchange,
+      openMarkets,
+      totalMarkets,
+      overallStatus
+    });
+
+    return result;
+
+  } catch (error) {
+    logger.error(`Error fetching market status:`, error);
+    return `Error analyzing market status: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
+}
+
 // Macro market data using Finnhub
 async function _getMacroMarketData(): Promise<MacroMarketData | null> {
   try {
@@ -791,11 +2000,14 @@ async function _getMacroMarketData(): Promise<MacroMarketData | null> {
       return null;
     }
 
-    // Fetch S&P 500 and Magnificent 7 stocks individually
-    const symbols = ['SPY', 'MSFT', 'AAPL', 'GOOGL', 'AMZN', 'NVDA', 'META', 'TSLA', 'AVGO'];
+    // Fetch prioritized stocks from @/stocks components
+    const symbols = ['SPY', ...PRIORITIZED_STOCK_LIST.slice(0, 8)]; // Include SPY + top 8 prioritized stocks
     
     const stockPromises = symbols.map(async (symbol) => {
       try {
+        // Wait for Finnhub rate limit before each request
+        await waitForFinnhubRateLimit();
+        
         const response = await fetchWithTimeout(
           `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_API_KEY}`,
           {},
@@ -1370,6 +2582,27 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
                     } catch (error) {
                       toolResult = `Error fetching stock data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
                     }
+                  } else if (toolCallFunction === 'get_insider_sentiment') {
+                    const { symbol, from, to } = JSON.parse(toolCallArguments);
+                    toolResult = await getInsiderSentiment(symbol, from, to);
+                  } else if (toolCallFunction === 'get_insider_transactions') {
+                    const { symbol, from, to } = JSON.parse(toolCallArguments);
+                    toolResult = await getInsiderTransactions(symbol, from, to);
+                  } else if (toolCallFunction === 'get_ipo_calendar') {
+                    const { from, to } = JSON.parse(toolCallArguments);
+                    toolResult = await getIPOCalendar(from, to);
+                  } else if (toolCallFunction === 'get_company_earnings') {
+                    const { symbol } = JSON.parse(toolCallArguments);
+                    toolResult = await getCompanyEarnings(symbol);
+                  } else if (toolCallFunction === 'get_company_news') {
+                    const { symbol, from, to } = JSON.parse(toolCallArguments);
+                    toolResult = await getCompanyNews(symbol, from, to);
+                  } else if (toolCallFunction === 'get_company_profile') {
+                    const { symbol } = JSON.parse(toolCallArguments);
+                    toolResult = await getCompanyProfile(symbol);
+                  } else if (toolCallFunction === 'get_market_status') {
+                    const { exchange } = JSON.parse(toolCallArguments);
+                    toolResult = await getMarketStatus(exchange);
                   }
                   // Push tool response message
                   const toolResponseMsg: ChatCompletionMessageParam = {
@@ -1530,6 +2763,27 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
           } catch (error) {
             toolResult = `Error fetching stock data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
           }
+        } else if (toolCallFunction === 'get_insider_sentiment') {
+          const { symbol, from, to } = JSON.parse(toolCallArguments);
+          toolResult = await getInsiderSentiment(symbol, from, to);
+        } else if (toolCallFunction === 'get_insider_transactions') {
+          const { symbol, from, to } = JSON.parse(toolCallArguments);
+          toolResult = await getInsiderTransactions(symbol, from, to);
+        } else if (toolCallFunction === 'get_ipo_calendar') {
+          const { from, to } = JSON.parse(toolCallArguments);
+          toolResult = await getIPOCalendar(from, to);
+        } else if (toolCallFunction === 'get_company_earnings') {
+          const { symbol } = JSON.parse(toolCallArguments);
+          toolResult = await getCompanyEarnings(symbol);
+        } else if (toolCallFunction === 'get_company_news') {
+          const { symbol, from, to } = JSON.parse(toolCallArguments);
+          toolResult = await getCompanyNews(symbol, from, to);
+        } else if (toolCallFunction === 'get_company_profile') {
+          const { symbol } = JSON.parse(toolCallArguments);
+          toolResult = await getCompanyProfile(symbol);
+        } else if (toolCallFunction === 'get_market_status') {
+          const { exchange } = JSON.parse(toolCallArguments);
+          toolResult = await getMarketStatus(exchange);
         } else {
           toolResult = `Unknown tool: ${toolCallFunction}`;
         }
