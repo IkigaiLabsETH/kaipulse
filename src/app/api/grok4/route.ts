@@ -660,7 +660,7 @@ async function getBTCOutperformersAndAltcoinTables(period: "24h" | "7d" | "ytd" 
 // Enhanced crypto stocks data with Yahoo Finance
 
 
-async function _getCryptoStocksData(): Promise<string> {
+async function _getCryptoStocksData(btcChange: number): Promise<string> {
   try {
     const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
     if (!FINNHUB_API_KEY) {
@@ -719,12 +719,14 @@ async function _getCryptoStocksData(): Promise<string> {
         result.status === 'fulfilled' && result.value !== null
       )
       .map(result => result.value)
-      .sort((a, b) => Math.abs(b.changePercent) - Math.abs(a.changePercent))
+      // Only show stocks outperforming BTC
+      .filter(stock => typeof stock.changePercent === 'number' && stock.changePercent > btcChange)
+      .sort((a, b) => b.changePercent - a.changePercent)
       .slice(0, 10);
     
     if (validStocks.length === 0) {
-      logger.warn('No valid stock quotes found from Finnhub');
-      return '**📈 Crypto Stocks:**\n_Unable to fetch stock data_';
+      logger.info('No crypto stocks are outperforming BTC today');
+      return '**📈 Crypto Stocks:**\n_No crypto stocks are outperforming BTC today_';
     }
     
     let table = '| Symbol | Price | 24h Change |\n|--------|-------|------------|\n';
@@ -964,11 +966,11 @@ export async function POST(request: Request) {
         const fetchStart = Date.now();
 
         // Fetch essential market data in parallel
-        const [btcPrice, cryptoStocks, btcTables] = await Promise.all([
+        const [btcPrice, btcTables] = await Promise.all([
           getFastBTCPrice(),
-          _getCryptoStocksData(),
           getBTCOutperformersAndAltcoinTables(period)
         ]);
+        const cryptoStocks = await _getCryptoStocksData(btcTables.btcChange);
         
         // Only fetch additional data if specifically requested
         // let additionalOutperformers = '';
@@ -1081,7 +1083,7 @@ export async function POST(request: Request) {
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
             }).filter(Boolean) as string[];
             if (altcoinMovers.length) {
-              altcoinSummary = `Memecoins and top altcoins like ${altcoinMovers.join(', ')} are leading the charge.`;
+              altcoinSummary = `Memecoins and top altcoins like ${altcoinMovers.join(', ')} are making noise, with degens and whales alike watching closely.`;
             }
           }
 
@@ -1094,21 +1096,41 @@ export async function POST(request: Request) {
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
             }).filter(Boolean) as string[];
             if (stockMovers.length) {
-              stockSummary = `Crypto stocks in focus include ${stockMovers.join(', ')}.`;
+              stockSummary = `Wall Street's crypto darlings—${stockMovers.join(', ')}—are in the spotlight, with traders debating if the rally has legs or is just another head fake.`;
             }
           }
 
-          // Compose a narrative-style paragraph
-          const btcSentence = btcChange !== null ? `Bitcoin is trading at $${btcChange.toLocaleString()} and remains the center of attention on X.` : '';
+          // Compose a narrative-style, on-brand paragraph with randomized structure
+          const openers = [
+            `On X, the vibes are anything but neutral.`,
+            `Crypto Twitter woke up caffeinated and ready to rumble.`,
+            `The timeline is buzzing louder than a mining farm in Sichuan.`,
+            `If you blinked, you missed a meme war and a new all-time high for engagement.`
+          ];
+          const opener = openers[Math.floor(Math.random() * openers.length)];
+
+          const btcSentence = btcChange !== null ? `Bitcoin is trading at $${btcChange.toLocaleString()}, still the main character in today's market drama.` : '';
           const outperformerSentence = btcOutperformersList.length > 0 ? 
-            `Assets outperforming BTC today include ${btcOutperformersList.slice(0, 3).join(', ')} - these are the real winners on socials.` : '';
+            `But the real flex? Outperformers like ${btcOutperformersList.slice(0, 3).join(', ')}—they're the talk of the town, leaving BTC maximalists sweating.` : '';
           const altcoinSentence = altcoinSummary;
           const stockSentence = stockSummary;
-          const hypeSentence = `Socials are hyped about ETF inflows, record AUM, and the latest airdrops and regulatory news.`;
+          const hypeSentences = [
+            `Everyone's got an opinion on ETF flows, airdrops, and the next memecoin moonshot.`,
+            `Regulatory FUD is trending, but so are diamond hands and laser eyes.`,
+            `If you missed the latest airdrop, don't worry—there's always another narrative brewing.`,
+            `The only thing moving faster than prices is the meme cycle.`
+          ];
+          const hypeSentence = hypeSentences[Math.floor(Math.random() * hypeSentences.length)];
 
-          xSentimentAnalysis = [btcSentence, outperformerSentence, altcoinSentence, stockSentence, hypeSentence]
-            .filter(Boolean)
-            .join(' ');
+          // Shuffle the order for variety
+          const summaryParts = [opener, btcSentence, outperformerSentence, altcoinSentence, stockSentence, hypeSentence]
+            .filter(Boolean);
+          for (let i = summaryParts.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [summaryParts[i], summaryParts[j]] = [summaryParts[j], summaryParts[i]];
+          }
+
+          xSentimentAnalysis = summaryParts.join(' ');
         }
         
         // Combine market data with X sentiment analysis
