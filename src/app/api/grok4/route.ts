@@ -564,7 +564,7 @@ async function fetchWithTimeout(resource: RequestInfo, options: RequestInit = {}
   }
 }
 
-// Bitcoin network data interface
+// Add/extend these interfaces near the top:
 interface BitcoinNetworkData {
   hashRate?: number;
   difficulty?: number;
@@ -572,15 +572,16 @@ interface BitcoinNetworkData {
   mempoolSize?: number;
 }
 
-// CoinGecko API response interface
-interface CoinGeckoCoin {
-  usd?: number;
+interface CoinData {
+  id?: string;
   usd_24h_change?: number;
   usd_market_cap?: number;
-  usd_24h_vol?: number;
+  price_change_percentage_7d_in_currency?: number;
+  ytd_change?: number;
+  [key: string]: unknown;
 }
 
-// Bitcoin network data fetching
+// In _getBitcoinNetworkData:
 async function _getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
   try {
     const response = await fetchWithTimeout('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false', {}, 5000);
@@ -641,7 +642,7 @@ async function getAltcoinsData(): Promise<string> {
     if (!response.ok) {
       return '_Unable to fetch altcoins data_';
     }
-    const data: Record<string, CoinGeckoCoin> = await response.json();
+    const data: Record<string, CoinData> = await response.json();
     // Sort by 24h change (descending)
     const sortedAltcoins = Object.entries(data)
       .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
@@ -676,7 +677,7 @@ async function getAltcoinsData(): Promise<string> {
 async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): Promise<string> {
   try {
     let btcChange = 0;
-    let data: Record<string, any> = {};
+    let data: Record<string, CoinData> = {};
     let changeKey = '';
     let label = '';
     if (period === "24h") {
@@ -711,10 +712,10 @@ async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): 
         5000
       );
       if (!response.ok) return '**🚀 BTC OUTPERFORMERS (7d):**\n_Unable to fetch data_';
-      const arr = await response.json();
+      const arr: CoinData[] = await response.json();
       data = {};
-      arr.forEach((coin: any) => {
-        data[coin.id] = coin;
+      arr.forEach((coin: CoinData) => {
+        data[coin.id ?? ''] = coin;
       });
       btcChange = data['bitcoin']?.price_change_percentage_7d_in_currency || 0;
       changeKey = 'price_change_percentage_7d_in_currency';
@@ -731,7 +732,7 @@ async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): 
         const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range?vs_currency=usd&from=${jan1}&to=${now}`;
         const resp = await fetchWithTimeout(url, {}, 7000);
         if (!resp.ok) return null;
-        const prices = (await resp.json()).prices;
+        const prices: [number, number][] = (await resp.json()).prices;
         if (!prices || prices.length < 2) return null;
         const start = prices[0][1];
         const end = prices[prices.length - 1][1];
@@ -751,10 +752,14 @@ async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): 
     // Filter for outperformers
     const outperformers = Object.entries(data)
       .filter(([id, coinData]) => {
-        const change = coinData[changeKey] || 0;
-        return change > btcChange && id !== 'bitcoin';
+        const change = typeof coinData[changeKey] === 'number' ? (coinData[changeKey] as number) : undefined;
+        return typeof change === 'number' && change > btcChange && id !== 'bitcoin';
       })
-      .sort(([, a], [, b]) => ((b[changeKey] || 0) - (a[changeKey] || 0)))
+      .sort(([, a], [, b]) => {
+        const aChange = typeof a[changeKey] === 'number' ? (a[changeKey] as number) : -Infinity;
+        const bChange = typeof b[changeKey] === 'number' ? (b[changeKey] as number) : -Infinity;
+        return bChange - aChange;
+      })
       .slice(0, 10);
     if (outperformers.length === 0) {
       return `**🚀 BTC OUTPERFORMERS (${label}):**\n_No assets currently outperforming Bitcoin (${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)_`;
@@ -771,7 +776,7 @@ async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): 
     };
     let table = `| Symbol | ${label} Change | vs BTC |\n|--------|--------------|--------|\n`;
     outperformers.forEach(([id, coinData]) => {
-      const change = coinData[changeKey] || 0;
+      const change = typeof coinData[changeKey] === 'number' ? (coinData[changeKey] as number) : 0;
       const vsBTC = change - btcChange;
       const emoji = change >= 0 ? '🟢' : '🔴';
       const symbol = symbolMap[id] || id.toUpperCase();
@@ -1048,7 +1053,7 @@ export async function POST(request: Request) {
       try {
         // Extract period from message if present
         let period: "24h" | "7d" | "ytd" = "24h";
-        let additionalPeriods: ("7d" | "ytd")[] = [];
+        const additionalPeriods: ("7d" | "ytd")[] = [];
         
         const messageLower = message.toLowerCase();
         
@@ -1142,6 +1147,7 @@ export async function POST(request: Request) {
         
         // BTC Outperformers section (CORE LOGIC)
         marketSummary += btcOutperformers || '_Unable to fetch BTC outperformers_\n\n';
+        marketSummary += additionalOutperformers;
         
         // Altcoins section
         marketSummary += altcoins || '_Unable to fetch altcoin data_\n\n';
