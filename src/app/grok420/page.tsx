@@ -5,15 +5,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Info } from 'lucide-react';
 import Image from 'next/image';
 
-interface Message {
+// Restore the ImageHistoryItem type definition:
+type ImageHistoryItem = {
+  id: string;
+  url: string;
+  prompt: string;
+  revisedPrompt?: string;
+  size: string;
+  moderation: boolean;
+  timestamp: Date;
+};
+
+// Add the missing Message type definition:
+type ChatMessage = {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-}
+};
 
 export default function Grok420Page() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [_systemPrompt] = useState('You are Grok, an AI assistant for LiveTheLifeTV. Your role is to help users understand Bitcoin-first investing, market analysis, and financial freedom. Be witty, insightful, and creative—channel the spirit of Satoshi Nakamoto. Provide clear, actionable advice, but don\'t be afraid to be a little irreverent or humorous. Always prioritize truth, clarity, and user empowerment.');
@@ -24,15 +36,6 @@ export default function Grok420Page() {
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [imagePrompt, setImagePrompt] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(false);
-  type ImageHistoryItem = {
-    id: string;
-    url: string;
-    prompt: string;
-    revisedPrompt?: string;
-    size: string;
-    moderation: boolean;
-    timestamp: Date;
-  };
   const [imageHistory, setImageHistory] = useState<ImageHistoryItem[]>([]);
   const [lastImagePrompt, setLastImagePrompt] = useState('');
   const [isPolling, setIsPolling] = useState(false);
@@ -42,6 +45,9 @@ export default function Grok420Page() {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [lastUserMessage, setLastUserMessage] = useState<string | null>(null);
   const [timeoutError, setTimeoutError] = useState<string | null>(null);
+  const [structuredOutput, setStructuredOutput] = useState(false);
+  const [outputSchema, setOutputSchema] = useState('analysis');
+  const [functionCalling, setFunctionCalling] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +62,7 @@ export default function Grok420Page() {
     const messageToSend = retryMessage || input;
     if (!messageToSend.trim() || isLoading) return;
 
-    const userMessage: Message = {
+    const userMessage: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
       content: messageToSend.trim(),
@@ -82,6 +88,9 @@ export default function Grok420Page() {
           systemPrompt: _systemPrompt,
           temperature: _temperature,
           stream: true,
+          structuredOutput,
+          outputSchema,
+          functionCalling,
         }),
       });
 
@@ -120,7 +129,7 @@ export default function Grok420Page() {
       const reader = response.body?.getReader();
       if (reader) {
         let assistantContent = '';
-        const assistantMessage: Message = {
+        const assistantMessage: ChatMessage = {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
           content: '',
@@ -152,7 +161,7 @@ export default function Grok420Page() {
         // Fallback: non-streaming - now expecting plain text
         try {
           const content = await response.text();
-          const assistantMessage: Message = {
+          const assistantMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
             content: content.trim() || 'Grok4 did not return a response.',
@@ -161,7 +170,7 @@ export default function Grok420Page() {
           setMessages(prev => [...prev, assistantMessage]);
         } catch {
           // Handle case where response is not text
-          const errorMessage: Message = {
+          const errorMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
             role: 'assistant',
             content: `Grok4 returned an invalid response format. Please try again.`,
@@ -184,7 +193,7 @@ export default function Grok420Page() {
       if (isTimeout) {
         setTimeoutError('Grok4 is taking too long to respond. Please try again or check your network connection.');
       }
-      const errorMessage: Message = {
+      const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
         content: error instanceof Error
@@ -611,6 +620,41 @@ export default function Grok420Page() {
                 )}
                 
                 <div ref={messagesEndRef} />
+              </div>
+
+              {/* Structured Output Controls */}
+              <div className="flex flex-wrap gap-2 mb-3 w-full">
+                <label className="flex items-center gap-2 text-xs text-yellow-400">
+                  <input
+                    type="checkbox"
+                    checked={structuredOutput}
+                    onChange={(e) => setStructuredOutput(e.target.checked)}
+                    className="w-4 h-4 text-yellow-500 bg-black border-yellow-500 rounded focus:ring-yellow-500"
+                  />
+                  Structured Output
+                </label>
+                {structuredOutput && (
+                  <>
+                    <select
+                      value={outputSchema}
+                      onChange={(e) => setOutputSchema(e.target.value)}
+                      className="text-xs bg-black/60 border border-yellow-500/30 rounded px-2 py-1 text-yellow-400 focus:border-yellow-500 focus:outline-none"
+                    >
+                      <option value="analysis">Analysis</option>
+                      <option value="market">Market Data</option>
+                      <option value="image">Image Generation</option>
+                    </select>
+                    <label className="flex items-center gap-2 text-xs text-yellow-400">
+                      <input
+                        type="checkbox"
+                        checked={functionCalling}
+                        onChange={(e) => setFunctionCalling(e.target.checked)}
+                        className="w-4 h-4 text-yellow-500 bg-black border-yellow-500 rounded focus:ring-yellow-500"
+                      />
+                      Function Calling
+                    </label>
+                  </>
+                )}
               </div>
 
               {/* Input Form */}
