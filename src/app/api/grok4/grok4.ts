@@ -226,34 +226,32 @@ export async function enhancedWebSearch(query: string): Promise<string> {
     return await getCryptoPrice(query);
   }
 
-  // Special handling for travel/hotel/restaurant/surf queries
-  const travelPattern = /(hotel|restaurant|dining|eat|surf|beach|stay|accommodation|where to eat|where to stay|where to surf).*biarritz/i;
+  // Generalized handling for travel/hotel/restaurant/surf queries (any location)
+  const travelPattern = /(hotel|restaurant|dining|eat|surf|beach|stay|accommodation|where to eat|where to stay|where to surf)/i;
   if (travelPattern.test(query)) {
     const raw = await duckDuckGoSearch(query);
-    return postProcessBiarritzTravelResult(query, raw);
+    return postProcessTravelResult(query, raw);
   }
 
   // Fallback to DuckDuckGo for non-crypto queries
   return await duckDuckGoSearch(query);
 }
 
-// Post-process Biarritz travel/hotel/restaurant/surf results
-function postProcessBiarritzTravelResult(query: string, raw: string): string {
-  // Only recommend 5-star hotels, Michelin-starred restaurants, fine dining, and well-known surf spots
-  // Never mention BTC payment
-  let result = raw;
-  // Remove any mention of bitcoin, btc, or crypto payment
-  result = result.replace(/(bitcoin|btc|crypto( currency)?|pay in btc|accepts btc|accepts bitcoin)/gi, '');
+// Generalized post-processing for travel/hotel/restaurant/surf results (any location)
+function postProcessTravelResult(query: string, raw: string): string {
+  // Remove any mention of bitcoin, btc, crypto payment, Travala, crypto angle, or crypto nomad
+  let result = raw.replace(/(bitcoin|btc|crypto( currency)?|pay in btc|accepts btc|accepts bitcoin|travala|crypto angle|crypto nomad|blockchain nomad|crypto-friendly|crypto friendly|open to bitcoin payments|open to crypto payments|book via travala|book via a crypto-friendly travel app|book via a crypto friendly travel app)/gi, '');
 
   // Focus on 5-star hotels
   if (/hotel|stay|accommodation/i.test(query)) {
     // Try to extract only 5-star hotels
-    const fiveStarPattern = /(\b5[- ]star\b.*?)(\.|\n|$)/gi;
+    const fiveStarPattern = /([\b5][- ]star\b.*?)(\.|\n|$)/gi;
     const matches = result.match(fiveStarPattern);
     if (matches && matches.length > 0) {
-      result = 'Top 5-star hotels in Biarritz:\n' + matches.join('\n');
+      result = `Top 5-star hotels:
+${matches.join('\n')}`;
     } else {
-      result = 'No 5-star hotels found in the search result. Try Hotel du Palais, the iconic 5-star palace in Biarritz.';
+      result = 'No 5-star hotels found in the search result.';
     }
   }
   // Focus on Michelin/fine dining
@@ -261,15 +259,17 @@ function postProcessBiarritzTravelResult(query: string, raw: string): string {
     const michelinPattern = /(Michelin[- ]star(?:red)?|fine dining|gourmet|chef|\b1[- ]star\b|\b2[- ]star\b|\b3[- ]star\b).*?(\.|\n|$)/gi;
     const matches = result.match(michelinPattern);
     if (matches && matches.length > 0) {
-      result = 'Michelin-starred and fine dining in Biarritz:\n' + matches.join('\n');
+      result = `Michelin-starred and fine dining:
+${matches.join('\n')}`;
     } else {
-      result = 'No Michelin-starred restaurants found in the search result. Try L\'Impertinent (1 Michelin star) or Les Rosiers (1 Michelin star) in Biarritz.';
+      result = 'No Michelin-starred restaurants found in the search result.';
     }
   }
   // Focus on surf spots
   if (/surf|beach/i.test(query)) {
-    // List only well-known surf spots
-    result = 'Top surf spots in Biarritz:\n- Grande Plage\n- Côte des Basques\n- Plage de Marbella\n- Plage de la Milady';
+    // List only well-known surf spots (keep generic for any location)
+    // Optionally, could add a location-aware list here
+    result = 'Top surf spots (check local guides for details).';
   }
   // Always remove any generic payment or crypto hallucination
   result = result.replace(/(accepts.*payment|pay with.*|crypto.*accepted)/gi, '');
