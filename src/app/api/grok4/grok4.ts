@@ -242,25 +242,49 @@ function postProcessTravelResult(query: string, raw: string): string {
   // Remove any mention of bitcoin, btc, crypto payment, Travala, crypto angle, or crypto nomad
   let result = raw.replace(/(bitcoin|btc|crypto( currency)?|pay in btc|accepts btc|accepts bitcoin|travala|crypto angle|crypto nomad|blockchain nomad|crypto-friendly|crypto friendly|open to bitcoin payments|open to crypto payments|book via travala|book via a crypto-friendly travel app|book via a crypto friendly travel app)/gi, '');
 
-  // Focus on 5-star hotels
+  // Remove any lines or sections containing 'bitcoin-friendly angle', 'crypto angle', 'bitcoin-friendly', 'crypto-friendly', etc.
+  const forbiddenPhrases = [
+    'bitcoin-friendly angle',
+    'crypto angle',
+    'bitcoin-friendly',
+    'crypto-friendly',
+    'bitcoin friendly',
+    'crypto friendly',
+    'btc payment',
+    'accepts btc',
+    'accepts bitcoin',
+    'travala',
+    'blockchain nomad',
+    'crypto nomad',
+    'open to bitcoin payments',
+    'open to crypto payments',
+    'book via travala',
+    'book via a crypto-friendly travel app',
+    'book via a crypto friendly travel app'
+  ];
+  result = result
+    .split('\n')
+    .filter(line => !forbiddenPhrases.some(phrase => line.toLowerCase().includes(phrase)))
+    .join('\n');
+
+  // Focus strictly on 5-star hotels
   if (/hotel|stay|accommodation/i.test(query)) {
-    // Try to extract only 5-star hotels
+    // Only extract lines with '5-star' (case-insensitive)
     const fiveStarPattern = /([\b5][- ]star\b.*?)(\.|\n|$)/gi;
     const matches = result.match(fiveStarPattern);
     if (matches && matches.length > 0) {
-      result = `Top 5-star hotels:
-${matches.join('\n')}`;
+      result = `Top 5-star hotels:\n${matches.join('\n')}`;
     } else {
       result = 'No 5-star hotels found in the search result.';
     }
   }
-  // Focus on Michelin/fine dining
+  // Focus strictly on Michelin-starred restaurants
   if (/restaurant|dining|eat/i.test(query)) {
-    const michelinPattern = /(Michelin[- ]star(?:red)?|fine dining|gourmet|chef|\b1[- ]star\b|\b2[- ]star\b|\b3[- ]star\b).*?(\.|\n|$)/gi;
+    // Only extract lines with 'Michelin-star' (case-insensitive, allow 'Michelin star' or 'Michelin-starred')
+    const michelinPattern = /(Michelin[- ]star(?:red)?|Michelin star(?:red)?).*?(\.|\n|$)/gi;
     const matches = result.match(michelinPattern);
     if (matches && matches.length > 0) {
-      result = `Michelin-starred and fine dining:
-${matches.join('\n')}`;
+      result = `Michelin-starred restaurants:\n${matches.join('\n')}`;
     } else {
       result = 'No Michelin-starred restaurants found in the search result.';
     }
@@ -281,31 +305,65 @@ ${matches.join('\n')}`;
  * @param tweetUrl - The URL of the tweet to analyze
  * @returns A formatted string with key points, title, and tags
  */
-export async function getXSentiment(tweetUrl: string): Promise<string> {
-  if (!tweetUrl || typeof tweetUrl !== 'string') {
-    return 'Please provide a valid X (Twitter) post URL.';
+export async function getXSentiment(input: string): Promise<string> {
+  // Helper to check if input is a valid X/Twitter URL
+  function isTweetUrl(str: string): boolean {
+    return /^https?:\/\/(x|twitter)\.com\/.+\/status\/[0-9]+/i.test(str.trim());
   }
-  try {
-    const analysis = await TweetAnalyzer.analyzeTweet(tweetUrl);
-    let result = '';
-    if (analysis.suggestedTitle) {
-      result += `Title: ${analysis.suggestedTitle}\n`;
-    }
-    if (analysis.keyPoints && analysis.keyPoints.length > 0) {
-      result += 'Key Points:\n';
-      for (const point of analysis.keyPoints) {
-        result += `- ${point}\n`;
+
+  if (!input || typeof input !== 'string') {
+    return 'Please provide a topic or X (Twitter) post URL.';
+  }
+
+  // If input is a tweet URL, use the old logic
+  if (isTweetUrl(input)) {
+    try {
+      const analysis = await TweetAnalyzer.analyzeTweet(input);
+      let result = '';
+      if (analysis.suggestedTitle) {
+        result += `Title: ${analysis.suggestedTitle}\n`;
       }
+      if (analysis.keyPoints && analysis.keyPoints.length > 0) {
+        result += 'Key Points:\n';
+        for (const point of analysis.keyPoints) {
+          result += `- ${point}\n`;
+        }
+      }
+      if (analysis.suggestedTags && analysis.suggestedTags.length > 0) {
+        result += `Tags: ${analysis.suggestedTags.map(t => `#${t}`).join(' ')}\n`;
+      }
+      return result.trim() || 'No analysis available.';
+    } catch (error) {
+      if (error instanceof Error) {
+        return `Failed to analyze X post: ${error.message}`;
+      }
+      return 'Failed to analyze X post.';
     }
-    if (analysis.suggestedTags && analysis.suggestedTags.length > 0) {
-      result += `Tags: ${analysis.suggestedTags.map(t => `#${t}`).join(' ')}\n`;
+  }
+
+  // Otherwise, treat input as a topic: search X/Twitter for top tweets and synthesize alpha
+  try {
+    // Use DuckDuckGo to search X for the topic (e.g., site:x.com <topic>)
+    const query = `site:x.com ${input}`;
+    const raw = await duckDuckGoSearch(query);
+    // Extract snippets/lines that look like tweet content
+    const lines = raw.split('\n').filter(l => l.length > 40 && !l.startsWith('Title:') && !l.startsWith('URL:'));
+    // Synthesize a narrative summary
+    let summary = '';
+    if (lines.length === 0) {
+      summary = `No recent X/Twitter alpha found for "${input}". Try a more specific topic or check X directly.`;
+    } else {
+      // Pick up to 3 of the most relevant lines
+      const topLines = lines.slice(0, 3);
+      summary = `Here's the latest X/Twitter alpha on "${input}":\n`;
+      topLines.forEach(line => {
+        summary += `- ${line.trim()}\n`;
+      });
+      summary += '\n(Summarized from top X/Twitter results. For more, check X directly.)';
     }
-    return result.trim() || 'No analysis available.';
-  } catch (error) {
-    if (error instanceof Error) {
-      return `Failed to analyze X post: ${error.message}`;
-    }
-    return 'Failed to analyze X post.';
+    return summary.trim();
+  } catch {
+    return `Failed to fetch X/Twitter sentiment for topic: ${input}`;
   }
 }
 
