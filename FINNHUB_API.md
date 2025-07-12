@@ -1,8 +1,123 @@
-# Insider Trading & IPO Calendar API Integration
+# INSIDER_TRADING_API.md
+
+## What's New in This Release
+
+- **Prioritized Stocks**: All API endpoints and analysis now focus on stocks defined in your `/stocks` components. This includes Crypto & Tech, Bitcoin Mining, High-Growth, Innovating Equities, and Nuclear Energy stocks. See the Supported Tickers section for the full prioritized list.
+- **Global Finnhub API Rate Limiting**: 30 calls/second enforced across all endpoints to comply with Finnhub's global rate limit.
+- **5-Minute Caching**: All Finnhub data is cached for 5 minutes to reduce API usage and improve performance.
+- **Production-Ready**: All test files have been removed. The codebase is now clean and ready for deployment.
+- **Linter Compliance**: All TypeScript `any` types have been replaced with `unknown` and proper type checks, ensuring full eslint compliance.
+- **New API Endpoints**: Added endpoints for insider sentiment, insider transactions, IPO calendar, company earnings, company news, company profile, and market status (see API Endpoints section below).
+
+---
 
 ## Overview
 
-The Grok4 API route now includes comprehensive insider trading analysis and IPO calendar tracking capabilities using Finnhub's APIs. This provides valuable insights into executive trading patterns and new market entrants that can signal future investment opportunities.
+This API provides multi-dimensional investment analysis by combining insider trading, IPO calendar, company earnings, news sentiment, company profiles, and market status data from Finnhub. All endpoints now prioritize stocks defined in your `/stocks` components, ensuring that analysis and data are always relevant to your tracked universe.
+
+## Supported Tickers
+
+The system prioritizes stocks from @/stocks components and tracks insider activity for an expanded list of companies:
+
+### Crypto & Tech Stocks
+- **MSTR** - MicroStrategy (Bitcoin strategy)
+- **COIN** - Coinbase (Crypto exchange)
+- **HOOD** - Robinhood (Retail trading)
+- **CRCL** - Circle (Stablecoin)
+- **BLOCK** - Block (Payments)
+- **PYPL** - PayPal (Payments)
+
+### Bitcoin Mining Stocks
+- **IREN** - Iris Energy (Mining + AI pivot)
+- **CORZ** - Core Scientific (Mining)
+- **CIFR** - Cipher Mining (Mining)
+- **RIOT** - Riot Platforms (Mining)
+- **CLSK** - CleanSpark (Mining)
+- **WULF** - TeraWulf (Mining)
+- **HUT** - Hut 8 Mining (Mining)
+- **MARA** - Marathon Digital (Mining)
+- **GLXY** - Galaxy Digital (Crypto services)
+
+### High-Growth Watchlist
+- **QBTS** - D-Wave Quantum (Quantum computing)
+- **CRSP** - CRISPR Therapeutics (Biogenetics)
+- **RGTI** - Rigetti Computing (Quantum computing)
+- **QUBT** - Quantum Computing Inc. (Quantum computing)
+- **KTOS** - Kratos Defense (Defense tech)
+- **DRS** - Leonardo DRS (Defense tech)
+- **IONQ** - IonQ (Quantum computing)
+
+### Innovating Equities
+- **IBM** - IBM (Quantum computing)
+- **PLTR** - Palantir (AI/Defense)
+- **VRTX** - Vertex Pharmaceuticals (Biogenetics)
+- **REGN** - Regeneron Pharmaceuticals (Biogenetics)
+- **MRNA** - Moderna (Biogenetics)
+- **LMT** - Lockheed Martin (Defense tech)
+- **RTX** - Raytheon Technologies (Defense tech)
+- **NOC** - Northrop Grumman (Defense tech)
+- **GD** - General Dynamics (Defense tech)
+- **BA** - Boeing (Defense tech)
+- **TSM** - Taiwan Semiconductor (Semiconductors)
+
+### Nuclear Energy Stocks
+- **CCJ** - Cameco Corporation (Uranium mining)
+- **CEG** - Constellation Energy (Nuclear power)
+- **ETR** - Entergy Corporation (Nuclear utilities)
+- **UEC** - Uranium Energy Corp (Uranium exploration)
+
+### Major Tech Companies
+- **NVDA** - NVIDIA (AI/GPU)
+- **TSLA** - Tesla (EV/AI)
+- **AAPL** - Apple
+- **MSFT** - Microsoft
+- **GOOGL** - Google/Alphabet
+- **AMZN** - Amazon
+- **META** - Meta/Facebook
+
+---
+
+## Technical Details
+
+- **Prioritized Stocks**: All endpoints and analysis focus on the prioritized stocks above. This ensures all data and insights are relevant to your tracked universe.
+- **Global Finnhub API Rate Limiting**: 30 calls/second enforced globally. The system automatically queues and spaces requests to avoid hitting the limit.
+- **5-Minute Caching**: All Finnhub API responses are cached for 5 minutes. This dramatically reduces API usage and improves response times for frequently requested data.
+- **Production-Ready**: All test files have been removed. The codebase is clean and ready for deployment.
+- **Linter Compliance**: All TypeScript `any` types have been replaced with `unknown` and proper type checks, ensuring full eslint compliance and type safety.
+
+---
+
+## API Endpoints
+
+### `get_insider_sentiment`
+- **Purpose**: Get insider trading sentiment data (Monthly Share Purchase Ratio, MSPR) for a stock.
+- **Parameters**: `symbol` (string, required), `from` (string, optional), `to` (string, optional)
+
+### `get_insider_transactions`
+- **Purpose**: Get detailed insider trading transactions for a stock.
+- **Parameters**: `symbol` (string, required), `from` (string, optional), `to` (string, optional)
+
+### `get_ipo_calendar`
+- **Purpose**: Get upcoming and recent IPO calendar data.
+- **Parameters**: `from` (string, optional), `to` (string, optional)
+
+### `get_company_earnings`
+- **Purpose**: Get company earnings data (quarterly earnings, revenue, EPS, analyst estimates).
+- **Parameters**: `symbol` (string, required)
+
+### `get_company_news`
+- **Purpose**: Get company news and press releases.
+- **Parameters**: `symbol` (string, required), `from` (string, optional), `to` (string, optional)
+
+### `get_company_profile`
+- **Purpose**: Get comprehensive company profile data (fundamentals, financial metrics, business info).
+- **Parameters**: `symbol` (string, required)
+
+### `get_market_status`
+- **Purpose**: Get real-time market status and trading information (market hours, holidays, sessions).
+- **Parameters**: `exchange` (string, optional)
+
+---
 
 ## Features Added
 
@@ -151,66 +266,6 @@ Both functions are available as enhanced tools in the Grok4 API:
   }
 }
 ```
-
-## Supported Tickers
-
-The system prioritizes stocks from @/stocks components and tracks insider activity for an expanded list of companies:
-
-### Crypto & Tech Stocks
-- **MSTR** - MicroStrategy (Bitcoin strategy)
-- **COIN** - Coinbase (Crypto exchange)
-- **HOOD** - Robinhood (Retail trading)
-- **CRCL** - Circle (Stablecoin)
-- **BLOCK** - Block (Payments)
-- **PYPL** - PayPal (Payments)
-
-### Bitcoin Mining Stocks
-- **IREN** - Iris Energy (Mining + AI pivot)
-- **CORZ** - Core Scientific (Mining)
-- **CIFR** - Cipher Mining (Mining)
-- **RIOT** - Riot Platforms (Mining)
-- **CLSK** - CleanSpark (Mining)
-- **WULF** - TeraWulf (Mining)
-- **HUT** - Hut 8 Mining (Mining)
-- **MARA** - Marathon Digital (Mining)
-- **GLXY** - Galaxy Digital (Crypto services)
-
-### High-Growth Watchlist
-- **QBTS** - D-Wave Quantum (Quantum computing)
-- **CRSP** - CRISPR Therapeutics (Biogenetics)
-- **RGTI** - Rigetti Computing (Quantum computing)
-- **QUBT** - Quantum Computing Inc. (Quantum computing)
-- **KTOS** - Kratos Defense (Defense tech)
-- **DRS** - Leonardo DRS (Defense tech)
-- **IONQ** - IonQ (Quantum computing)
-
-### Innovating Equities
-- **IBM** - IBM (Quantum computing)
-- **PLTR** - Palantir (AI/Defense)
-- **VRTX** - Vertex Pharmaceuticals (Biogenetics)
-- **REGN** - Regeneron Pharmaceuticals (Biogenetics)
-- **MRNA** - Moderna (Biogenetics)
-- **LMT** - Lockheed Martin (Defense tech)
-- **RTX** - Raytheon Technologies (Defense tech)
-- **NOC** - Northrop Grumman (Defense tech)
-- **GD** - General Dynamics (Defense tech)
-- **BA** - Boeing (Defense tech)
-- **TSM** - Taiwan Semiconductor (Semiconductors)
-
-### Nuclear Energy Stocks
-- **CCJ** - Cameco Corporation (Uranium mining)
-- **CEG** - Constellation Energy (Nuclear power)
-- **ETR** - Entergy Corporation (Nuclear utilities)
-- **UEC** - Uranium Energy Corp (Uranium exploration)
-
-### Major Tech Companies
-- **NVDA** - NVIDIA (AI/GPU)
-- **TSLA** - Tesla (EV/AI)
-- **AAPL** - Apple
-- **MSFT** - Microsoft
-- **GOOGL** - Google/Alphabet
-- **AMZN** - Amazon
-- **META** - Meta/Facebook
 
 ## Data Analysis
 
