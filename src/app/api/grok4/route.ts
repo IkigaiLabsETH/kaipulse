@@ -1257,19 +1257,25 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
       transactionType: string;
     }>;
 
+    // Helper to check for valid numbers
+    const isValidNumber = (n: unknown) => typeof n === 'number' && !isNaN(n) && isFinite(n);
+
     // Sort by transaction date (most recent first)
     transactions.sort((a, b) => new Date(b.transactionDate).getTime() - new Date(a.transactionDate).getTime());
 
     // Calculate summary statistics
     const totalBuyValue = transactions
       .filter(t => t.transactionType === 'P' || t.change > 0)
-      .reduce((sum, t) => sum + Math.abs(t.transactionValue), 0);
+      .reduce((sum, t) => isValidNumber(t.transactionValue) ? sum + Math.abs(t.transactionValue) : sum, 0);
     
     const totalSellValue = transactions
       .filter(t => t.transactionType === 'S' || t.change < 0)
-      .reduce((sum, t) => sum + Math.abs(t.transactionValue), 0);
+      .reduce((sum, t) => isValidNumber(t.transactionValue) ? sum + Math.abs(t.transactionValue) : sum, 0);
     
-    const netFlow = totalBuyValue - totalSellValue;
+    let netFlow: number | null = null;
+    if (isValidNumber(totalBuyValue) && isValidNumber(totalSellValue)) {
+      netFlow = totalBuyValue - totalSellValue;
+    }
     const totalTransactions = transactions.length;
     const uniqueInsiders = new Set(transactions.map(t => t.name)).size;
 
@@ -1277,10 +1283,10 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
     let sentiment: 'bullish' | 'bearish' | 'neutral';
     let sentimentEmoji: string;
 
-    if (netFlow > 1000000) { // $1M threshold
+    if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow > 1000000) { // $1M threshold
       sentiment = 'bullish';
       sentimentEmoji = '🟢';
-    } else if (netFlow < -1000000) {
+    } else if (typeof netFlow === 'number' && isValidNumber(netFlow) && netFlow < -1000000) {
       sentiment = 'bearish';
       sentimentEmoji = '🔴';
     } else {
@@ -1291,28 +1297,35 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
     // Format the response
     let result = `**${symbol} Insider Transactions Analysis**\n\n`;
     result += `${sentimentEmoji} **Overall Sentiment:** ${sentiment.toUpperCase()}\n`;
-    result += `📊 **Net Flow:** ${netFlow >= 0 ? '+' : ''}$${(netFlow / 1000000).toFixed(2)}M\n`;
-    result += `💰 **Total Buy Value:** $${(totalBuyValue / 1000000).toFixed(2)}M\n`;
-    result += `💸 **Total Sell Value:** $${(totalSellValue / 1000000).toFixed(2)}M\n`;
+    if (netFlow != null && typeof netFlow === 'number' && !isNaN(netFlow)) {
+      const safeNetFlow: number = netFlow as number;
+      result += `📊 **Net Flow:** $${(safeNetFlow / 1_000_000).toFixed(2)}M\n`;
+    }
+    if (isValidNumber(totalBuyValue)) result += `💰 **Total Buy Value:** $${(totalBuyValue / 1_000_000).toFixed(2)}M\n`;
+    if (isValidNumber(totalSellValue)) result += `💸 **Total Sell Value:** $${(totalSellValue / 1_000_000).toFixed(2)}M\n`;
     result += `📅 **Period:** ${fromDate} to ${toDate}\n`;
     result += `👥 **Unique Insiders:** ${uniqueInsiders}\n`;
     result += `📋 **Total Transactions:** ${totalTransactions}\n\n`;
     
-    result += `**📋 Recent Transactions (Top 5):**\n`;
-    result += `| Insider | Type | Shares | Value | Date |\n`;
-    result += `|---------|------|--------|-------|------|\n`;
-    
-    transactions.slice(0, 5).forEach(transaction => {
-      const type = transaction.transactionType === 'P' ? '🟢 BUY' : '🔴 SELL';
-      const shares = Math.abs(transaction.change).toLocaleString();
-      const value = `$${(Math.abs(transaction.transactionValue) / 1000).toFixed(1)}K`;
-      const date = new Date(transaction.transactionDate).toLocaleDateString();
-      
-      result += `| ${transaction.name} | ${type} | ${shares} | ${value} | ${date} |\n`;
-    });
+    // Filter valid transactions for the table
+    const validTransactions = transactions
+      .filter(t => isValidNumber(t.transactionValue) && isValidNumber(t.change));
+    if (validTransactions.length > 0) {
+      result += `**📋 Recent Transactions (Top 5):**\n`;
+      result += `| Insider | Type | Shares | Value | Date |\n`;
+      result += `|---------|------|--------|-------|------|\n`;
+      validTransactions.slice(0, 5).forEach(transaction => {
+        const type = transaction.transactionType === 'P' ? '🟢 BUY' : '🔴 SELL';
+        const shares = Math.abs(transaction.change).toLocaleString();
+        const value = isValidNumber(transaction.transactionValue) ? `$${(Math.abs(transaction.transactionValue) / 1000).toFixed(1)}K` : '';
+        const date = new Date(transaction.transactionDate).toLocaleDateString();
+        result += `| ${transaction.name} | ${type} | ${shares} | ${value} | ${date} |\n`;
+      });
+      result += `\n`;
+    }
 
     // Add interpretation
-    result += `\n**💡 Investment Insight:**\n`;
+    result += `**💡 Investment Insight:**\n`;
     if (sentiment === 'bullish') {
       result += `Executives are showing strong confidence in ${symbol} with significant buying activity. This could signal positive future developments.`;
     } else if (sentiment === 'bearish') {
@@ -1334,7 +1347,6 @@ async function getInsiderTransactions(symbol: string, from?: string, to?: string
     });
 
     return result;
-
   } catch (error) {
     logger.error(`Error fetching insider transactions for ${symbol}:`, error);
     return `Error analyzing insider transactions for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -1827,37 +1839,24 @@ async function getCompanyProfile(symbol: string): Promise<string> {
 
     // Format the response
     let result = `**🏢 ${symbol} Company Profile**\n\n`;
-    result += `**📋 Basic Information:**\n`;
-    result += `• **Company Name:** ${profile.name}\n`;
-    result += `• **Ticker:** ${profile.ticker}\n`;
-    result += `• **Exchange:** ${profile.exchange}\n`;
-    result += `• **Country:** ${profile.country}\n`;
-    result += `• **Currency:** ${profile.currency}\n`;
-    result += `• **Industry:** ${profile.finnhubIndustry}\n\n`;
+    result += `**Company:** ${profile.name} (${profile.ticker})\n`;
+    result += `**Exchange:** ${profile.exchange}\n`;
+    result += `**Industry:** ${profile.finnhubIndustry}\n\n`;
 
     // Financial metrics
-    result += `**💰 Financial Metrics:**\n`;
     if (profile.marketCapitalization) {
       const marketCap = profile.marketCapitalization / 1000000; // Convert to millions
-      result += `• **Market Cap:** $${marketCap >= 1000 ? (marketCap / 1000).toFixed(2) + 'B' : marketCap.toFixed(2) + 'M'}\n`;
-    }
-    if (profile.shareOutstanding) {
-      result += `• **Shares Outstanding:** ${(profile.shareOutstanding / 1000000).toFixed(2)}M\n`;
+      result += `**Market Cap:** $${marketCap >= 1000 ? (marketCap / 1000).toFixed(2) + 'B' : marketCap.toFixed(2) + 'M'}\n`;
     }
     if (profile.ipo) {
-      result += `• **IPO Date:** ${profile.ipo}\n`;
+      result += `**IPO:** ${profile.ipo}\n`;
     }
-    result += `\n`;
+    result += `**Website:** ${profile.weburl || 'N/A'}\n\n`;
 
     // Contact and website
-    result += `**📞 Contact Information:**\n`;
     if (profile.phone) {
-      result += `• **Phone:** ${profile.phone}\n`;
+      result += `**Phone:** ${profile.phone}\n`;
     }
-    if (profile.weburl) {
-      result += `• **Website:** ${profile.weburl}\n`;
-    }
-    result += `\n`;
 
     // Additional identifiers
     if (profile.cik || profile.isin || profile.lei) {
@@ -1875,15 +1874,15 @@ async function getCompanyProfile(symbol: string): Promise<string> {
     }
 
     // Add investment insights
-    result += `**💡 Investment Insights:**\n`;
+    result += `**💡 Quick Take:**\n`;
     if (profile.marketCapitalization) {
       const marketCap = profile.marketCapitalization / 1000000;
       if (marketCap > 10000) {
-        result += `• Large-cap company with significant market presence\n`;
+        result += `Large-cap company with significant market presence. `;
       } else if (marketCap > 2000) {
-        result += `• Mid-cap company with growth potential\n`;
+        result += `Mid-cap company with growth potential. `;
       } else {
-        result += `• Small-cap company with higher volatility potential\n`;
+        result += `Small-cap company with higher volatility potential. `;
       }
     }
     
@@ -1892,14 +1891,14 @@ async function getCompanyProfile(symbol: string): Promise<string> {
       const currentYear = new Date().getFullYear();
       const yearsSinceIPO = currentYear - ipoYear;
       if (yearsSinceIPO < 5) {
-        result += `• Recent IPO (${yearsSinceIPO} years ago) - monitor lock-up expirations\n`;
+        result += `Recent IPO (${yearsSinceIPO} years ago). `;
       } else {
-        result += `• Established company (${yearsSinceIPO} years since IPO)\n`;
+        result += `Established company (${yearsSinceIPO} years since IPO). `;
       }
     }
 
-    result += `• Industry: ${profile.finnhubIndustry} - monitor sector trends\n`;
-    result += `• Exchange: ${profile.exchange} - consider trading hours and liquidity\n`;
+    result += `Monitor ${profile.finnhubIndustry} sector trends.\n`;
+    result += `Exchange: ${profile.exchange} - consider trading hours and liquidity\n`;
 
     logger.info(`Company profile analysis completed for ${symbol}:`, {
       name: profile.name,
@@ -2150,34 +2149,40 @@ export async function POST(request: Request) {
       if (finnhubErrors.length > 0) {
         response += `⚠️ _Some live data could not be loaded: ${finnhubErrors.join(', ')}. Showing available data below._\n\n`;
       }
-      if (profile) {
-        response += `🏢 **Company Profile**\n${profile}\n`;
-      } else {
-        response += '🏢 **Company Profile**\n_Live profile data unavailable._\n';
+      // Only include sections with valid data
+      const sections = [];
+      
+      if (profile && !profile.includes('No company profile data available') && !profile.includes('Unable to fetch')) {
+        sections.push({ title: '🏢 **Company Profile**', content: profile });
       }
-      response += '\n';
-      if (sentiment) {
-        response += `📊 **Insider Sentiment**\n${sentiment}\n`;
-      } else {
-        response += '📊 **Insider Sentiment**\n_Live sentiment data unavailable._\n';
+      
+      if (sentiment && !sentiment.includes('No insider sentiment data available') && !sentiment.includes('Unable to fetch')) {
+        sections.push({ title: '📊 **Insider Sentiment**', content: sentiment });
       }
-      response += '\n';
-      if (transactions) {
-        response += `💸 **Insider Transactions**\n${transactions}\n`;
-      } else {
-        response += '💸 **Insider Transactions**\n_Live transactions data unavailable._\n';
+      
+      if (transactions && !transactions.includes('No insider transactions data available') && !transactions.includes('Unable to fetch') && !transactions.includes('$NaN')) {
+        sections.push({ title: '💸 **Insider Transactions**', content: transactions });
       }
-      response += '\n';
-      if (earnings) {
-        response += `💰 **Earnings**\n${earnings}\n`;
-      } else {
-        response += '💰 **Earnings**\n_Live earnings data unavailable._\n';
+      
+      if (earnings && !earnings.includes('No earnings data available') && !earnings.includes('Unable to fetch')) {
+        sections.push({ title: '💰 **Earnings**', content: earnings });
       }
-      response += '\n';
-      if (news) {
-        response += `📰 **Recent News**\n${news}\n`;
-      } else {
-        response += '📰 **Recent News**\n_Live news data unavailable._\n';
+      
+      if (news && !news.includes('No news data available') && !news.includes('Unable to fetch')) {
+        sections.push({ title: '📰 **Recent News**', content: news });
+      }
+      
+      // Format sections with clean spacing
+      sections.forEach((section, index) => {
+        response += `${section.title}\n${section.content}\n`;
+        if (index < sections.length - 1) {
+          response += '\n';
+        }
+      });
+      
+      // If no valid data, show a simple message
+      if (sections.length === 0) {
+        response += `_No live data available for ${symbol} at this time. Please try again later._\n`;
       }
       tracker.end('total');
       tracker.logTimings();
