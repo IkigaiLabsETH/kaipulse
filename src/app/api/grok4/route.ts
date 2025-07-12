@@ -729,7 +729,7 @@ async function _getCryptoStocksData(btcChange: number): Promise<string> {
       return '**📈 Crypto Stocks:**\n_No crypto stocks are outperforming BTC today_';
     }
     
-    let table = '| Symbol | Price | 24h Change |\n|--------|-------|------------|\n';
+    let table = '| Symbol | Price | 24h Change | vs BTC |\n|--------|-------|------------|--------|\n';
     validStocks.forEach((stock) => {
       const emoji = stock.changePercent >= 0 ? '🟢' : '🔴';
       const price = stock.currentPrice.toFixed(2);
@@ -737,7 +737,13 @@ async function _getCryptoStocksData(btcChange: number): Promise<string> {
         `+${stock.changePercent.toFixed(2)}%` : 
         `${stock.changePercent.toFixed(2)}%`;
       
-      table += `| ${emoji} ${stock.symbol} | $${price} | ${changePercent} |\n`;
+      // Calculate vs BTC performance
+      const vsBTC = stock.changePercent - btcChange;
+      const vsBTCFormatted = vsBTC >= 0 ? 
+        `+${vsBTC.toFixed(2)}%` : 
+        `${vsBTC.toFixed(2)}%`;
+      
+      table += `| ${emoji} ${stock.symbol} | $${price} | ${changePercent} | ${vsBTCFormatted} |\n`;
     });
     
     logger.info('Crypto stocks data successfully fetched from Finnhub:', {
