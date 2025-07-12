@@ -16,6 +16,14 @@ type ImageHistoryItem = {
   timestamp: Date;
 };
 
+// Add the missing Message type definition:
+type Message = {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+};
+
 export default function Grok420Page() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
