@@ -5,6 +5,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Info } from 'lucide-react';
 import Image from 'next/image';
 
+// Restore the ImageHistoryItem type definition:
+type ImageHistoryItem = {
+  id: string;
+  url: string;
+  prompt: string;
+  revisedPrompt?: string;
+  size: string;
+  moderation: boolean;
+  timestamp: Date;
+};
+
 export default function Grok420Page() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -17,15 +28,6 @@ export default function Grok420Page() {
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [imagePrompt, setImagePrompt] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(false);
-  type ImageHistoryItem = {
-    id: string;
-    url: string;
-    prompt: string;
-    revisedPrompt?: string;
-    size: string;
-    moderation: boolean;
-    timestamp: Date;
-  };
   const [imageHistory, setImageHistory] = useState<ImageHistoryItem[]>([]);
   const [lastImagePrompt, setLastImagePrompt] = useState('');
   const [isPolling, setIsPolling] = useState(false);
