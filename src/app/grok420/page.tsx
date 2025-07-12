@@ -406,7 +406,7 @@ export default function Grok420Page() {
       {/* Background with DNA yellow accent */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))] opacity-30 backdrop-blur-[200px]" />
       
-      <div className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center flex-grow mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center flex-grow mx-auto px-4 sm:px-6 lg:px-8 mt-4">
         {/* Header */}
         <div className="text-center mb-8 flex flex-col items-center">
           <motion.div
@@ -414,10 +414,10 @@ export default function Grok420Page() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center justify-center gap-3 mb-4"
           >
-            <div className="p-3 rounded-full bg-yellow-500/10 border border-yellow-500/20">
-              <Sparkles className="h-8 w-8 text-yellow-500" />
+            <div className="p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20">
+              <Sparkles className="h-6 w-6 text-yellow-500" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
               Grok420
             </h1>
             <button
@@ -436,7 +436,7 @@ export default function Grok420Page() {
             </button>
           </motion.div>
           <p className="text-yellow-400/80 text-lg max-w-2xl mx-auto">
-            Bitcoin is the signal. Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding HYPE & BTC? This is for the silly part of your portfolio. Outperform the maxis, catch the next meme, and never miss a moonshot.
+            Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding HYPE & BTC? This is for the silly part of your portfolio.
           </p>
           {resetMessage && (
             <div className="mt-4 text-green-400 font-medium">{resetMessage}</div>
@@ -479,21 +479,16 @@ export default function Grok420Page() {
               <div className="text-yellow-300 text-md leading-relaxed space-y-3">
                 <div className="font-bold text-yellow-400 text-lg mb-2">🚀 Insane AI DeFi Energy 🚀</div>
                 <div>
-                  <span className="font-bold text-yellow-500">Elon did it again.</span> Grok 4 just absolutely <span className="font-bold text-yellow-400">nuked</span> the AI leaderboard. This isn’t just another LLM—this is the giga-brain, meme-fueled, degen-coded, Satoshi-approved AI that’s here to <span className="underline">liquidate the competition</span>.
+                  <span className="font-bold text-yellow-500">Grok 4 is not your average AI.</span> It’s meme-fueled, Satoshi-approved, and degen-coded for the new era of market intelligence. Built for crypto, stocks, and macro, Grok4 is your edge for outsmarting the market, catching the next narrative, and never missing a moonshot.
                 </div>
-                <ul className="list-disc pl-6 text-yellow-200 text-sm space-y-1">
-                  <li>🧠 <b>Post-training RL spend = pretraining spend</b> (Elon just YOLO’d the budget)</li>
-                  <li>💸 <b>$3/M input toks, $15/M output toks</b> (256k context, 2x price after 128k—max bag size)</li>
-                  <li>🏆 <b>#1 on Humanity’s Last Exam</b> (44.4%—next best is 26.9%)</li>
-                  <li>🎓 <b>#1 on GPQA (grad problems)</b> 88.9% (next best 86.4%)</li>
-                  <li>🧮 <b>#1 on AIME 2025 (Math)</b> 100% (next best 98.4%)</li>
-                  <li>🧑‍🎓 <b>#1 on Harvard MIT Math</b> 96.7% (next best 82.5%)</li>
-                  <li>🇺🇸 <b>#1 on USAMO25 (Math)</b> 61.9% (next best 49.4%)</li>
-                  <li>🤖 <b>#1 on ARC-AGI-2</b> (15.9%—next best 8.6%)</li>
-                  <li>💻 <b>#1 on LiveCodeBench</b> (79.4%—next best 75.8%)</li>
-                </ul>
+                <div>
+                  <span className="font-bold text-yellow-400">Why Grok4?</span> It’s fast, witty, and always on-brand. Grok4 cuts through the noise, delivers actionable insights in real time, and speaks fluent CT. Whether you’re tracking Bitcoin, hunting alt-beta, or just want the latest meme, Grok4’s got you covered.
+                </div>
+                <div>
+                  <span className="font-bold text-yellow-400">The Vibe:</span> Think Satoshi meets Elon, with a dash of meme magic and a relentless drive to help you outperform the maxis. No dry stats, no boring reports—just pure, narrative-driven alpha.
+                </div>
                 <div className="mt-3 text-yellow-400 text-sm">
-                  Grok 4 is <span className="font-bold">potentially better than PhD level in every subject</span>—no exceptions. It’s fast, it’s cheap, and it’s here to <span className="font-bold">wreak havoc</span> in the AI wars. <span className="italic">Elon has entered the chat.</span>
+                  <span className="font-bold">Grok4 is your secret weapon for the silly part of your portfolio.</span> Stay sharp, stay caffeinated, and let’s get this bread.
                 </div>
               </div>
             </div>
