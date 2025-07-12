@@ -1141,20 +1141,16 @@ async function getInsiderSentiment(symbol: string, from?: string, to?: string): 
     // Determine sentiment based on MSPR value
     let sentiment: 'bullish' | 'bearish' | 'neutral';
     let sentimentEmoji: string;
-    let description: string;
 
     if (latest.mspr > 0.5) {
       sentiment = 'bullish';
       sentimentEmoji = '🟢';
-      description = 'Strong insider buying activity detected';
     } else if (latest.mspr < -0.5) {
       sentiment = 'bearish';
       sentimentEmoji = '🔴';
-      description = 'Strong insider selling activity detected';
     } else {
       sentiment = 'neutral';
       sentimentEmoji = '🟡';
-      description = 'Mixed or neutral insider activity';
     }
 
     // Calculate average MSPR for context
@@ -1163,32 +1159,29 @@ async function getInsiderSentiment(symbol: string, from?: string, to?: string): 
     // Format the response
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
-    let result = `**${symbol} Insider Sentiment Analysis**\n\n`;
-    result += `${sentimentEmoji} **Current Sentiment:** ${sentiment.toUpperCase()}\n`;
-    result += `📊 **Latest MSPR (${monthNames[latest.month - 1]} ${latest.year}):** ${latest.mspr.toFixed(3)}\n`;
-    result += `📈 **Price Change:** ${latest.change >= 0 ? '+' : ''}${latest.change.toFixed(2)}%\n`;
-    result += `📋 **Description:** ${description}\n\n`;
-    
-    if (sentimentData.length > 1) {
-      result += `**Historical Context:**\n`;
-      result += `📊 **Average MSPR:** ${avgMspr.toFixed(3)}\n`;
-      result += `📅 **Data Points:** ${sentimentData.length} months\n\n`;
-    }
-
-    // Add interpretation based on MSPR methodology
-    result += `**MSPR Interpretation:**\n`;
-    result += `• MSPR closer to 1: Strong insider buying (bullish signal)\n`;
-    result += `• MSPR closer to -1: Strong insider selling (bearish signal)\n`;
-    result += `• MSPR near 0: Neutral or mixed activity\n\n`;
-    
-    result += `**💡 Investment Insight:**\n`;
+    let result = '';
+    // Humanized, crypto-native summary
     if (sentiment === 'bullish') {
-      result += `Executives are showing confidence in ${symbol}. Consider this a positive signal for long-term investors.`;
+      result += `Insiders are stacking shares like sats—bullish vibes from the C-suite. ${sentimentEmoji}\n`;
     } else if (sentiment === 'bearish') {
-      result += `Executives are reducing their positions in ${symbol}. This could signal concerns about future performance.`;
+      result += `Insiders are offloading faster than a degen in a rug pull. ${sentimentEmoji}\n`;
     } else {
-      result += `Insider activity is mixed for ${symbol}. Monitor for clearer signals in upcoming months.`;
+      result += `Insider activity is neutral—looks like the execs are just watching the charts. ${sentimentEmoji}\n`;
+    }
+    result += `\n`;
+    result += `- **Latest MSPR (${monthNames[latest.month - 1]} ${latest.year}):** ${latest.mspr.toFixed(3)}\n`;
+    result += `- **Price Change:** ${latest.change >= 0 ? '+' : ''}${latest.change.toFixed(2)}%\n`;
+    if (sentimentData.length > 1) {
+      result += `- **Avg MSPR (last ${sentimentData.length} months):** ${avgMspr.toFixed(3)}\n`;
+    }
+    result += `\n`;
+    result += `MSPR closer to 1 = execs are buying; closer to -1 = execs are dumping.\n`;
+    if (sentiment === 'bullish') {
+      result += `\n💡 **Takeaway:** Execs are showing conviction—could be a signal for the diamond hands out there.`;
+    } else if (sentiment === 'bearish') {
+      result += `\n💡 **Takeaway:** Execs are heading for the exit—watch for more volatility.`;
+    } else {
+      result += `\n💡 **Takeaway:** No strong signal from insiders. Stay nimble.`;
     }
 
     logger.info(`Insider sentiment analysis completed for ${symbol}:`, {
@@ -1202,7 +1195,6 @@ async function getInsiderSentiment(symbol: string, from?: string, to?: string): 
     setCachedFinnhubData(cacheKey, result);
 
     return result;
-
   } catch (error) {
     logger.error(`Error fetching insider sentiment for ${symbol}:`, error);
     return `Error analyzing insider sentiment for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -1837,68 +1829,54 @@ async function getCompanyProfile(symbol: string): Promise<string> {
       lei?: string;
     };
 
-    // Format the response
-    let result = `**🏢 ${symbol} Company Profile**\n\n`;
-    result += `**Company:** ${profile.name} (${profile.ticker})\n`;
-    result += `**Exchange:** ${profile.exchange}\n`;
-    result += `**Industry:** ${profile.finnhubIndustry}\n\n`;
-
-    // Financial metrics
-    if (profile.marketCapitalization) {
-      const marketCap = profile.marketCapitalization / 1000000; // Convert to millions
-      result += `**Market Cap:** $${marketCap >= 1000 ? (marketCap / 1000).toFixed(2) + 'B' : marketCap.toFixed(2) + 'M'}\n`;
-    }
-    if (profile.ipo) {
-      result += `**IPO:** ${profile.ipo}\n`;
-    }
-    result += `**Website:** ${profile.weburl || 'N/A'}\n\n`;
-
-    // Contact and website
-    if (profile.phone) {
-      result += `**Phone:** ${profile.phone}\n`;
+    // Humanized, crypto-native narrative intro
+    let intro = '';
+    if (symbol.toUpperCase() === 'MSTR') {
+      intro = `MicroStrategy (MSTR) is the OG corporate Bitcoin maxi. Saylor's crew turned a sleepy software company into a leveraged BTC ETF—on NASDAQ, no less.`;
+    } else {
+      intro = `${profile.name} (${profile.ticker}) is a ${profile.finnhubIndustry?.toLowerCase() || 'public'} company trading on ${profile.exchange}.`;
     }
 
-    // Additional identifiers
-    if (profile.cik || profile.isin || profile.lei) {
-      result += `**🆔 Identifiers:**\n`;
-      if (profile.cik) {
-        result += `• **CIK:** ${profile.cik}\n`;
-      }
-      if (profile.isin) {
-        result += `• **ISIN:** ${profile.isin}\n`;
-      }
-      if (profile.lei) {
-        result += `• **LEI:** ${profile.lei}\n`;
-      }
-      result += `\n`;
+    // Market cap logic
+    let marketCapLine = '';
+    if (typeof profile.marketCapitalization === 'number' && profile.marketCapitalization > 100_000_000) {
+      const marketCap = profile.marketCapitalization;
+      const marketCapStr = marketCap >= 1_000_000_000
+        ? `$${(marketCap / 1_000_000_000).toFixed(2)}B`
+        : `$${(marketCap / 1_000_000).toFixed(2)}M`;
+      marketCapLine = `- **Market Cap:** ${marketCapStr}`;
+    } else {
+      marketCapLine = `- **Market Cap:** Data unavailable`;
     }
 
-    // Add investment insights
-    result += `**💡 Quick Take:**\n`;
-    if (profile.marketCapitalization) {
-      const marketCap = profile.marketCapitalization / 1000000;
-      if (marketCap > 10000) {
-        result += `Large-cap company with significant market presence. `;
-      } else if (marketCap > 2000) {
-        result += `Mid-cap company with growth potential. `;
-      } else {
-        result += `Small-cap company with higher volatility potential. `;
-      }
-    }
-    
-    if (profile.ipo) {
-      const ipoYear = new Date(profile.ipo).getFullYear();
-      const currentYear = new Date().getFullYear();
-      const yearsSinceIPO = currentYear - ipoYear;
-      if (yearsSinceIPO < 5) {
-        result += `Recent IPO (${yearsSinceIPO} years ago). `;
-      } else {
-        result += `Established company (${yearsSinceIPO} years since IPO). `;
-      }
-    }
+    // Website markdown link
+    const websiteLine = profile.weburl ? `- **Website:** [${profile.weburl.replace(/^https?:\/\//, '')}](${profile.weburl})` : '';
 
-    result += `Monitor ${profile.finnhubIndustry} sector trends.\n`;
-    result += `Exchange: ${profile.exchange} - consider trading hours and liquidity\n`;
+    // Phone (optional)
+    const phoneLine = profile.phone ? `- **Phone:** ${profile.phone}` : '';
+
+    // IPO
+    const ipoLine = profile.ipo ? `- **IPO:** ${profile.ipo}` : '';
+
+    // Industry
+    const industryLine = profile.finnhubIndustry ? `- **Industry:** ${profile.finnhubIndustry}` : '';
+
+    // Exchange
+    const exchangeLine = profile.exchange ? `- **Exchange:** ${profile.exchange}` : '';
+
+    // Build the main output
+    let result = `🏢 **Company Profile**\n\n`;
+    result += `${intro}\n\n`;
+    result += [industryLine, marketCapLine, ipoLine, exchangeLine, websiteLine, phoneLine].filter(Boolean).join('\n') + '\n\n';
+
+    // Human, crypto-native quick take
+    let quickTake = '';
+    if (symbol.toUpperCase() === 'MSTR') {
+      quickTake = `💡 **Quick Take:**\nIf you're bullish on Bitcoin, you're watching MSTR. Volatility? That's just another day at the office for Saylor. When the market zigs, MSTR zags—with laser eyes.`;
+    } else {
+      quickTake = `💡 **Quick Take:**\n${profile.name} is a ${profile.finnhubIndustry?.toLowerCase() || 'public'} company. Keep an eye on sector trends and macro moves—volatility is always in play.`;
+    }
+    result += quickTake + '\n';
 
     logger.info(`Company profile analysis completed for ${symbol}:`, {
       name: profile.name,
@@ -1907,7 +1885,6 @@ async function getCompanyProfile(symbol: string): Promise<string> {
     });
 
     return result;
-
   } catch (error) {
     logger.error(`Error fetching company profile for ${symbol}:`, error);
     return `Error analyzing company profile for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`;
