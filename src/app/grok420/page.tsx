@@ -406,57 +406,57 @@ export default function Grok420Page() {
       {/* Background with DNA yellow accent */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,199,0,0.15),rgba(0,0,0,0))] opacity-30 backdrop-blur-[200px]" />
       
-      <div className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center flex-grow mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+      <div className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center flex-grow mx-auto px-2 sm:px-4 lg:px-8 mt-4">
         {/* Header */}
         <div className="text-center mb-8 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-center gap-3 mb-4"
+            className="flex flex-col xs:flex-row items-center justify-center gap-3 mb-4"
           >
             <div className="p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20">
               <Sparkles className="h-6 w-6 text-yellow-500" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl xs:text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
               Grok420
             </h1>
             <button
               onClick={() => setShowInfoDialog(true)}
-              className="ml-2 p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 transition-colors"
+              className="ml-0 xs:ml-2 p-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 transition-colors"
               title="WTF is Grok 4?"
             >
               <Info className="h-6 w-6 text-yellow-400" />
             </button>
             <button
               onClick={handleResetContext}
-              className="ml-4 px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/30 transition-colors text-sm"
+              className="ml-0 xs:ml-4 mt-2 xs:mt-0 px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/30 transition-colors text-sm"
               title="Reset Grok context"
             >
               Reset Context
             </button>
           </motion.div>
-          <p className="text-yellow-400/80 text-lg max-w-2xl mx-auto">
+          <p className="text-yellow-400/80 text-base sm:text-lg max-w-2xl mx-auto">
             Grok420 is your edge for finding the altcoins with the best beta to BTC during price discovery. Already holding BTC? This is for the silly part of your portfolio. Say GM.
           </p>
           {resetMessage && (
-            <div className="mt-4 text-green-400 font-medium">{resetMessage}</div>
+            <div className="mt-4 text-green-400 font-medium text-sm sm:text-base">{resetMessage}</div>
           )}
         </div>
         {/* Confirmation Dialog */}
         {showResetDialog && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
-            <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center">
-              <p className="text-lg text-yellow-400 mb-6">Are you sure you want to reset your Grok context?<br/>This will make Grok treat you as a new user.</p>
-              <div className="flex gap-4">
+            <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-4 sm:p-8 shadow-lg flex flex-col items-center w-[95vw] max-w-xs sm:max-w-md">
+              <p className="text-base sm:text-lg text-yellow-400 mb-6 text-center">Are you sure you want to reset your Grok context?<br/>This will make Grok treat you as a new user.</p>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full">
                 <button
                   onClick={confirmResetContext}
-                  className="px-6 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors"
+                  className="w-full sm:w-auto px-6 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors"
                 >
                   Yes, Reset
                 </button>
                 <button
                   onClick={cancelResetContext}
-                  className="px-6 py-2 bg-gray-700 text-yellow-400 rounded-lg font-medium hover:bg-gray-600 transition-colors"
+                  className="w-full sm:w-auto px-6 py-2 bg-gray-700 text-yellow-400 rounded-lg font-medium hover:bg-gray-600 transition-colors"
                 >
                   Cancel
                 </button>
@@ -466,7 +466,7 @@ export default function Grok420Page() {
         )}
         {showInfoDialog && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/80">
-            <div className="bg-[#181818] border-2 border-yellow-500 rounded-xl p-8 shadow-2xl max-w-lg w-full relative">
+            <div className="bg-[#181818] border-2 border-yellow-500 rounded-xl p-4 sm:p-8 shadow-2xl max-w-xs sm:max-w-lg w-full relative">
               <button
                 onClick={() => setShowInfoDialog(false)}
                 className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-200 text-2xl font-bold"
@@ -474,10 +474,10 @@ export default function Grok420Page() {
               >×</button>
               <div className="flex items-center gap-3 mb-4">
                 <Info className="h-7 w-7 text-yellow-400" />
-                <span className="text-2xl font-bold text-yellow-400">What is Grok 4?</span>
+                <span className="text-xl sm:text-2xl font-bold text-yellow-400">What is Grok 4?</span>
               </div>
-              <div className="text-yellow-300 text-md leading-relaxed space-y-3">
-                <div className="font-bold text-yellow-400 text-lg mb-2">🚀 Grok 4 is the new Grok 3 🚀</div>
+              <div className="text-yellow-300 text-sm sm:text-md leading-relaxed space-y-3">
+                <div className="font-bold text-yellow-400 text-base sm:text-lg mb-2">🚀 Grok 4 is the new Grok 3 🚀</div>
                 <div>
                   <span className="font-bold text-yellow-500">Grok 4 is not your average AI.</span> It’s meme-fueled, Satoshi-approved, and degen-coded for the new era of market intelligence. Built for crypto, stocks, and macro, Grok4 is your edge for outsmarting the market, catching the next narrative, and never missing a moonshot.
                 </div>
@@ -487,7 +487,7 @@ export default function Grok420Page() {
                 <div>
                   <span className="font-bold text-yellow-400">The Vibe:</span> Think Satoshi meets Elon, with a dash of meme magic and a relentless drive to help you outperform the maxis. No dry stats, no boring reports—just pure, narrative-driven alpha.
                 </div>
-                <div className="mt-3 text-yellow-400 text-sm">
+                <div className="mt-3 text-yellow-400 text-xs sm:text-sm">
                   <span className="font-bold">Grok4 is your secret weapon for the silly part of your portfolio.</span> Stay sharp, stay caffeinated, and let’s get this bread.
                 </div>
               </div>
@@ -496,11 +496,9 @@ export default function Grok420Page() {
         )}
 
         <div className="w-full flex justify-center">
-          {/* Settings Panel is hidden, but state is preserved for systemPrompt and temperature */}
-
           {/* Chat Interface */}
-          <div className="flex-1 flex justify-center">
-            <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-6 h-[70vh] flex flex-col w-full max-w-7xl mx-auto">
+          <div className="flex-1 flex justify-center w-full">
+            <div className="bg-[#1c1f26] backdrop-blur-sm border-2 border-yellow-500 shadow-[5px_5px_0px_0px_rgba(234,179,8,1)] rounded-lg p-2 sm:p-6 h-[50vh] sm:h-[70vh] flex flex-col w-full max-w-full sm:max-w-7xl mx-auto">
               {/* Messages */}
               <div className="flex-1 overflow-y-auto space-y-4 mb-4 scrollbar-thin scrollbar-thumb-yellow-500/20 scrollbar-track-transparent">
                 {messages.length === 0 ? (
@@ -509,8 +507,8 @@ export default function Grok420Page() {
                       <div className="inline-block p-4 rounded-full bg-yellow-500/10 border border-yellow-500/20 mb-4">
                         <Bot className="h-8 w-8 text-yellow-500" />
                       </div>
-                      <p className="text-yellow-400/80 text-lg font-bold">Talk to Satoshi</p>
-                      <p className="text-white/50 text-sm mt-2">“If you don&#39;t believe it or don&#39;t get it, I don&#39;t have the time to try to convince you, sorry.”</p>
+                      <p className="text-yellow-400/80 text-base sm:text-lg font-bold">Talk to Satoshi</p>
+                      <p className="text-white/50 text-xs sm:text-sm mt-2">“If you don&#39;t believe it or don&#39;t get it, I don&#39;t have the time to try to convince you, sorry.”</p>
                     </div>
                   </div>
                 ) : (
@@ -522,19 +520,19 @@ export default function Grok420Page() {
                         animate={{ opacity: 1, y: 0 }}
                         className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
-                        <div className={`flex gap-3 max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                          <div className={`p-2 rounded-full ${message.role === 'user' ? 'bg-yellow-500/20' : 'bg-yellow-500/10'}`}>
+                        <div className={`flex gap-3 max-w-[95vw] sm:max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                          <div className={`p-2 rounded-full ${message.role === 'user' ? 'bg-yellow-500/20' : 'bg-yellow-500/10'}`}> 
                             {message.role === 'user' ? (
                               <User className="h-4 w-4 text-yellow-500" />
                             ) : (
                               <Bot className="h-4 w-4 text-yellow-500" />
                             )}
                           </div>
-                          <div className={`p-4 rounded-lg ${
+                          <div className={`p-3 sm:p-4 rounded-lg ${
                             message.role === 'user' 
                               ? 'bg-yellow-500/20 border border-yellow-500/30' 
                               : 'bg-black/40 border border-yellow-500/20'
-                          } relative`}>
+                          } relative break-words text-sm sm:text-base`}>
                             <button
                               className="absolute top-2 right-2 p-1 rounded bg-yellow-500/10 hover:bg-yellow-500/30 transition-colors"
                               title="Copy message"
@@ -545,7 +543,7 @@ export default function Grok420Page() {
                             {copiedMessageId === message.id && (
                               <span className="absolute top-2 right-10 text-xs text-yellow-400 bg-black/80 px-2 py-1 rounded shadow">Copied!</span>
                             )}
-                            <p className="text-white/90 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: message.content }} />
+                            <p className="text-white/90 whitespace-pre-wrap break-words" dangerouslySetInnerHTML={{ __html: message.content }} />
                             <p className="text-xs text-yellow-400/50 mt-2">
                               {message.timestamp.toLocaleTimeString()}
                             </p>
@@ -620,19 +618,19 @@ export default function Grok420Page() {
               </div>
 
               {/* Input Form */}
-              <form onSubmit={handleSubmit} className="flex gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask Grok4 anything..."
-                  className="flex-1 bg-black/60 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-yellow-400/50 focus:border-yellow-500 focus:outline-none"
+                  className="w-full sm:flex-1 bg-black/60 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-yellow-400/50 focus:border-yellow-500 focus:outline-none text-sm sm:text-base"
                   disabled={isLoading || isImageLoading}
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="bg-yellow-500 hover:bg-yellow-400 disabled:bg-yellow-500/50 text-black font-bold px-6 py-3 rounded-lg transition-colors disabled:cursor-not-allowed"
+                  className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 disabled:bg-yellow-500/50 text-black font-bold px-6 py-3 rounded-lg transition-colors disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   <Send className="h-5 w-5" />
                 </button>
@@ -640,7 +638,7 @@ export default function Grok420Page() {
                   type="button"
                   onClick={() => setShowImageDialog(true)}
                   disabled={isImageLoading}
-                  className="bg-yellow-500/20 hover:bg-yellow-400/30 text-yellow-500 font-bold px-4 py-3 rounded-lg border border-yellow-500/30 transition-colors disabled:cursor-not-allowed flex items-center justify-center"
+                  className="w-full sm:w-auto bg-yellow-500/20 hover:bg-yellow-400/30 text-yellow-500 font-bold px-4 py-3 rounded-lg border border-yellow-500/30 transition-colors disabled:cursor-not-allowed flex items-center justify-center text-sm sm:text-base"
                   title="Generate image with art direction prompt"
                 >
                   <ImageIcon className="h-5 w-5" />
@@ -649,8 +647,8 @@ export default function Grok420Page() {
               {/* Image Prompt Dialog */}
               {showImageDialog && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
-                  <form onSubmit={e => handleImageGenerate(e)} className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center w-full max-w-md">
-                    <h2 className="text-xl font-bold text-yellow-500 mb-4">Generate Art</h2>
+                  <form onSubmit={e => handleImageGenerate(e)} className="bg-[#222] border-2 border-yellow-500 rounded-lg p-4 sm:p-8 shadow-lg flex flex-col items-center w-[95vw] max-w-xs sm:max-w-md">
+                    <h2 className="text-lg sm:text-xl font-bold text-yellow-500 mb-4">Generate Art</h2>
                     <div className="flex flex-wrap gap-2 mb-4 w-full">
                       {samplePrompts.map((prompt, idx) => (
                         <button
@@ -666,25 +664,25 @@ export default function Grok420Page() {
                     <textarea
                       value={imagePrompt}
                       onChange={e => setImagePrompt(e.target.value)}
-                      className="w-full h-24 bg-black/60 border border-yellow-500/30 rounded-lg p-3 text-white text-sm resize-none focus:border-yellow-500 focus:outline-none mb-4"
+                      className="w-full h-24 bg-black/60 border border-yellow-500/30 rounded-lg p-3 text-white text-xs sm:text-sm resize-none focus:border-yellow-500 focus:outline-none mb-4"
                       placeholder="Describe the art direction..."
                       autoFocus
                     />
                     <div className="text-yellow-400/60 text-xs mb-4 text-center">
                       xAI generates images at 1024x1024 resolution
                     </div>
-                    <div className="flex gap-4 w-full justify-end">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full justify-end">
                       <button
                         type="button"
                         onClick={() => setShowImageDialog(false)}
-                        className="px-6 py-2 bg-gray-700 text-yellow-400 rounded-lg font-medium hover:bg-gray-600 transition-colors"
+                        className="w-full sm:w-auto px-6 py-2 bg-gray-700 text-yellow-400 rounded-lg font-medium hover:bg-gray-600 transition-colors"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={isImageLoading || !imagePrompt.trim()}
-                        className="px-6 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors disabled:opacity-50"
+                        className="w-full sm:w-auto px-6 py-2 bg-yellow-500 text-black rounded-lg font-bold hover:bg-yellow-400 transition-colors disabled:opacity-50"
                       >
                         {isImageLoading ? 'Generating...' : 'Generate'}
                       </button>
@@ -695,7 +693,7 @@ export default function Grok420Page() {
               {/* Show loading indicator for image generation */}
               {isImageLoading && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/60">
-                  <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-8 shadow-lg flex flex-col items-center">
+                  <div className="bg-[#222] border-2 border-yellow-500 rounded-lg p-4 sm:p-8 shadow-lg flex flex-col items-center w-[95vw] max-w-xs sm:max-w-md">
                     <Loader2 className="h-8 w-8 text-yellow-500 animate-spin mb-4" />
                     <p className="text-yellow-400">Generating image...</p>
                   </div>
@@ -710,15 +708,15 @@ export default function Grok420Page() {
                   onTouchStart={handleTouchStart}
                   onTouchEnd={handleTouchEnd}
                 >
-                  <div className="bg-[#222] border-2 border-yellow-500 rounded-2xl p-6 shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto relative flex flex-col items-center">
+                  <div className="bg-[#222] border-2 border-yellow-500 rounded-2xl p-4 sm:p-6 shadow-2xl max-w-[95vw] sm:max-w-4xl w-full max-h-[80vh] sm:max-h-[95vh] overflow-y-auto relative flex flex-col items-center">
                     <button
                       onClick={() => setShowImagePreview(false)}
-                      className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-200 text-3xl font-bold z-10"
+                      className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-200 text-2xl sm:text-3xl font-bold z-10"
                       title="Close"
                     >×</button>
                     <div
                       className="flex-1 flex items-center justify-center w-full h-full relative overflow-hidden"
-                      style={{ minHeight: 400 }}
+                      style={{ minHeight: 200, maxHeight: '60vh' }}
                       onWheel={handleWheel}
                       onMouseDown={handleMouseDown}
                       onMouseUp={handleMouseUp}
@@ -735,11 +733,12 @@ export default function Grok420Page() {
                           transition: dragging ? 'none' : 'transform 0.2s',
                           cursor: zoom > 1 ? 'grab' : 'zoom-in',
                           maxWidth: '90vw',
-                          maxHeight: '80vh',
+                          maxHeight: '60vh',
                           borderRadius: 16,
                           boxShadow: '0 8px 32px 0 rgba(247,181,0,0.25)',
                           border: '2px solid #F7B500',
                           background: '#111',
+                          objectFit: 'contain',
                         }}
                         draggable={false}
                         onDoubleClick={() => { setZoom(zoom === 1 ? 2 : 1); setOffset({ x: 0, y: 0 }); }}
@@ -794,7 +793,7 @@ export default function Grok420Page() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="relative bg-black/60 backdrop-blur-lg border-2 border-yellow-500 shadow-[0_8px_32px_0_rgba(247,181,0,0.25)] rounded-2xl p-8 flex flex-col items-center max-w-2xl w-full mb-8 group hover:shadow-yellow-500/40 hover:border-yellow-400 transition-all cursor-pointer"
+                    className="relative bg-black/60 backdrop-blur-lg border-2 border-yellow-500 shadow-[0_8px_32px_0_rgba(247,181,0,0.25)] rounded-2xl p-4 sm:p-8 flex flex-col items-center max-w-xs sm:max-w-2xl w-full mb-8 group hover:shadow-yellow-500/40 hover:border-yellow-400 transition-all cursor-pointer"
                     onClick={() => handleModalOpen(mainImageIdx)}
                     title="Click to view full size"
                   >
@@ -803,8 +802,8 @@ export default function Grok420Page() {
                         <Image
                           src={imageHistory[mainImageIdx].url}
                           alt={imageHistory[mainImageIdx].prompt}
-                          width={512}
-                          height={512}
+                          width={256}
+                          height={256}
                           className={`rounded-xl border-2 border-yellow-500 shadow-lg max-w-full h-auto transition-all duration-300 ${imageHistory[mainImageIdx].moderation ? 'blur-md' : ''} group-hover:scale-105`}
                           unoptimized
                         />
@@ -856,20 +855,20 @@ export default function Grok420Page() {
                   </motion.div>
                   {/* Horizontal Gallery */}
                   {imageHistory.length > 1 && (
-                    <div className="w-full max-w-2xl overflow-x-auto flex gap-4 py-2 px-1 scrollbar-thin scrollbar-thumb-yellow-500/30 scrollbar-track-transparent">
+                    <div className="w-full max-w-xs sm:max-w-2xl overflow-x-auto flex gap-2 sm:gap-4 py-2 px-1 scrollbar-thin scrollbar-thumb-yellow-500/30 scrollbar-track-transparent snap-x">
                       {imageHistory.map((img, idx) => (
                         <div
                           key={img.id}
                           className={`flex-shrink-0 rounded-lg border-2 transition-all duration-200 cursor-pointer ${mainImageIdx === idx ? 'border-yellow-500 shadow-lg scale-105' : 'border-yellow-700 opacity-70 hover:opacity-100 hover:scale-105'}`}
-                          style={{ width: 80, height: 80 }}
+                          style={{ width: 64, height: 64 }}
                           onClick={() => handleModalOpen(idx)}
                           title={img.prompt}
                         >
                           <Image
                             src={img.url}
                             alt={img.prompt}
-                            width={80}
-                            height={80}
+                            width={64}
+                            height={64}
                             className={`rounded-lg w-full h-full object-cover ${img.moderation ? 'blur-md' : ''}`}
                             unoptimized
                           />
