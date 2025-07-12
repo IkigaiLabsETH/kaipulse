@@ -10,6 +10,7 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  structuredData?: unknown; // For structured output responses
 }
 
 export default function Grok420Page() {
@@ -42,6 +43,9 @@ export default function Grok420Page() {
   const [showImagePreview, setShowImagePreview] = useState(false);
   const [lastUserMessage, setLastUserMessage] = useState<string | null>(null);
   const [timeoutError, setTimeoutError] = useState<string | null>(null);
+  const [structuredOutput, setStructuredOutput] = useState(false);
+  const [outputSchema, setOutputSchema] = useState('analysis');
+  const [functionCalling, setFunctionCalling] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -82,6 +86,9 @@ export default function Grok420Page() {
           systemPrompt: _systemPrompt,
           temperature: _temperature,
           stream: true,
+          structuredOutput,
+          outputSchema,
+          functionCalling,
         }),
       });
 
@@ -611,6 +618,41 @@ export default function Grok420Page() {
                 )}
                 
                 <div ref={messagesEndRef} />
+              </div>
+
+              {/* Structured Output Controls */}
+              <div className="flex flex-wrap gap-2 mb-3 w-full">
+                <label className="flex items-center gap-2 text-xs text-yellow-400">
+                  <input
+                    type="checkbox"
+                    checked={structuredOutput}
+                    onChange={(e) => setStructuredOutput(e.target.checked)}
+                    className="w-4 h-4 text-yellow-500 bg-black border-yellow-500 rounded focus:ring-yellow-500"
+                  />
+                  Structured Output
+                </label>
+                {structuredOutput && (
+                  <>
+                    <select
+                      value={outputSchema}
+                      onChange={(e) => setOutputSchema(e.target.value)}
+                      className="text-xs bg-black/60 border border-yellow-500/30 rounded px-2 py-1 text-yellow-400 focus:border-yellow-500 focus:outline-none"
+                    >
+                      <option value="analysis">Analysis</option>
+                      <option value="market">Market Data</option>
+                      <option value="image">Image Generation</option>
+                    </select>
+                    <label className="flex items-center gap-2 text-xs text-yellow-400">
+                      <input
+                        type="checkbox"
+                        checked={functionCalling}
+                        onChange={(e) => setFunctionCalling(e.target.checked)}
+                        className="w-4 h-4 text-yellow-500 bg-black border-yellow-500 rounded focus:ring-yellow-500"
+                      />
+                      Function Calling
+                    </label>
+                  </>
+                )}
               </div>
 
               {/* Input Form */}

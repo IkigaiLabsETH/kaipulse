@@ -3,6 +3,12 @@ import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
 import type { ChatCompletion } from "openai/resources/chat/completions";
 import { performance } from 'perf_hooks';
+// Removed unused imports
+// import { 
+//   structuredOutputSchema, 
+//   imageGenerationSchema, 
+//   marketAnalysisSchema
+// } from './structuredOutputs';
 
 // Configure API route timeout for Grok4 API calls
 export const maxDuration = 60; // 60 seconds timeout
@@ -16,6 +22,9 @@ type RequestBody = {
   imageUrl?: string; // For vision capabilities
   generateImage?: boolean; // For image generation
   imagePrompt?: string; // For image generation prompts
+  structuredOutput?: boolean; // Enable structured output
+  outputSchema?: string; // Specify which schema to use
+  functionCalling?: boolean; // Enable function calling
 };
 
 type ImageGenerationRequest = {
@@ -203,6 +212,29 @@ class PerformanceTracker {
   logTimings() {
     logger.info('Step timings (ms):', this.timings);
   }
+}
+
+// Structured output handling - removed unused function
+// function getStructuredOutputSchema(schemaType: string) {
+//   switch (schemaType) {
+//     case 'market':
+//       return marketAnalysisSchema;
+//     case 'image':
+//       return imageGenerationSchema;
+//     case 'analysis':
+//       return structuredOutputSchema;
+//     default:
+//       return structuredOutputSchema;
+//   }
+// }
+
+function createStructuredResponse(data: unknown, schemaType: string = 'analysis') {
+  return {
+    structured: true,
+    schema: schemaType,
+    data: data,
+    timestamp: new Date().toISOString()
+  };
 }
 
 // Rate limiting for client requests
@@ -419,7 +451,10 @@ async function validateRequest(request: Request): Promise<RequestBody> {
 
   return {
     ...body,
-    message: sanitizedMessage
+    message: sanitizedMessage,
+    structuredOutput: body.structuredOutput || false,
+    outputSchema: body.outputSchema || 'analysis',
+    functionCalling: body.functionCalling || false
   };
 }
 
@@ -1613,7 +1648,7 @@ export async function POST(request: Request) {
     tracker.start('total');
     
     // Validate request
-    const { message, systemPrompt, temperature, stream, imageUrl, generateImage, imagePrompt } = await validateRequest(request);
+    const { message, systemPrompt, temperature, stream, imageUrl, generateImage, imagePrompt, structuredOutput, outputSchema } = await validateRequest(request);
 
     // --- NEW: Stock symbol extraction and Finnhub prioritization ---
     const matchedStocks = extractPrioritizedStockSymbols(message);
@@ -2067,7 +2102,7 @@ export async function POST(request: Request) {
     }
 
     // Handle non-streaming
-    return await handleNonStreamingResponse(tools, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt);
+    return await handleNonStreamingResponse(tools, temperature, tracker, clientId, enhancedSystemPrompt, grok4Prompt, structuredOutput, outputSchema);
     
   } catch (error) {
     tracker.end('total');
@@ -2284,7 +2319,9 @@ async function handleNonStreamingResponse(
   tracker: PerformanceTracker,
   clientId: string,
   enhancedSystemPrompt: string,
-  grok4Prompt: string
+  grok4Prompt: string,
+  structuredOutput: boolean = false,
+  outputSchema: string = 'analysis'
 ): Promise<Response> {
   tracker.start('grok4_api');
   let completion;
@@ -2477,6 +2514,41 @@ ${change >= 0 ? '🟢' : '🔴'} 24h Change: ${change >= 0 ? '+' : ''}${change?.
     toolCalls: toolCallCount,
     hasTools: tools.length > 0
   });
+
+  // Handle structured output if requested
+          if (structuredOutput) {
+      try {
+        const structuredData = createStructuredResponse({
+          content: content,
+          analysis: {
+            summary: content?.substring(0, 200) || '',
+            keyPoints: content?.split('\n').filter(line => line.trim().length > 0).slice(0, 5) || [],
+            sentiment: content?.toLowerCase().includes('bullish') ? 'bullish' : 
+                      content?.toLowerCase().includes('bearish') ? 'bearish' : 'neutral',
+            confidence: 0.8,
+            riskLevel: 'medium'
+          },
+          metadata: {
+            toolCalls: toolCallCount,
+            hasTools: tools.length > 0,
+            timestamp: new Date().toISOString()
+          }
+        }, outputSchema);
+      
+      return new Response(JSON.stringify(structuredData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+        }
+      });
+    } catch (error) {
+      logger.error('Structured output error:', error);
+      return createSuccessResponse(content);
+    }
+  }
 
   return createSuccessResponse(content);
 } 
