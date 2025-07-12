@@ -1,5 +1,7 @@
 # INSIDER_TRADING_API.md
 
+While the premium plans are costly (e.g., $2,000/month for All-In-One), they unlock institutional-grade features that competitors like Alpha Vantage or Yahoo Finance can’t match
+
 ## What's New in This Release
 
 - **Prioritized Stocks**: All API endpoints and analysis now focus on stocks defined in your `/stocks` components. This includes Crypto & Tech, Bitcoin Mining, High-Growth, Innovating Equities, and Nuclear Energy stocks. See the Supported Tickers section for the full prioritized list.

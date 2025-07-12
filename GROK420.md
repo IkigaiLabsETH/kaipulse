@@ -1,3 +1,15 @@
+# What's New: July 2024
+
+- All Finnhub-powered sections (insider sentiment, transactions, earnings, news, profile, macro, IPO, market status) now use a short, punchy, human, crypto-native analyst narrative style.
+- Data dumps and tables are gone unless specifically requested; every section leads with a narrative, weaves in key data points, and ends with a strong, opinionated closer.
+- The system now omits any section or data point that is missing, zero, or adds no value (e.g., no more $0.00M totals, no 'Data unavailable' fields).
+- Macro, IPO, and market status sections are now also narrative-driven.
+- The codebase was refactored to ensure all function hoisting/linter errors are resolved.
+- Analyst output is now always on-brand, never robotic or generic.
+- See below for full details and architecture.
+
+---
+
 # GROK420: Real-Time Crypto Market Intelligence with X Sentiment Analysis
 
 ## Overview
@@ -9,6 +21,7 @@ GROK420 is a sophisticated AI-powered crypto market intelligence system with a c
 ## Recent Developments (May–July 2024)
 
 ### **Backend & API Evolution**
+- **Big Narrative Refactor (July 2024):** All Finnhub-powered sections (insider sentiment, transactions, earnings, news, profile, macro, IPO, market status) now use a short, punchy, human, crypto-native analyst narrative style. Data dumps and tables are gone unless specifically requested; every section leads with a narrative, weaves in key data points, and ends with a strong, opinionated closer. The system omits any section or data point that is missing, zero, or adds no value (e.g., no more $0.00M totals, no 'Data unavailable' fields). Macro, IPO, and market status sections are now also narrative-driven. Analyst output is always on-brand, never robotic or generic.
 - **GM Handler Refactoring:** The GM handler was refactored to return plain text (not JSON) and stream responses, aligning with frontend expectations.
 - **Parallel Market Data Fetching:** Market data (BTC, altcoins, crypto stocks) is fetched in parallel for speed, with timeouts and fallback logic to prevent 504 errors.
 - **Data Provider Migration:** Yahoo Finance was replaced by Finnhub for stock data due to API reliability and free access.
