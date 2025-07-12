@@ -1,4 +1,3 @@
-
 import { Grok4Service, enhancedWebSearch, getXSentiment } from './grok4';
 import { logger } from '@/lib/logger';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources/index";
@@ -564,228 +563,97 @@ async function fetchWithTimeout(resource: RequestInfo, options: RequestInit = {}
   }
 }
 
-// Add/extend these interfaces near the top:
-interface BitcoinNetworkData {
-  hashRate?: number;
-  difficulty?: number;
-  blockHeight?: number;
-  mempoolSize?: number;
-}
-
-interface CoinData {
-  id?: string;
-  usd_24h_change?: number;
-  usd_market_cap?: number;
-  price_change_percentage_7d_in_currency?: number;
-  ytd_change?: number;
+interface CoinGeckoMarket {
+  id: string;
+  symbol: string;
+  name: string;
+  market_cap: number;
+  price_change_percentage_24h?: number;
+  price_change_percentage_7d?: number;
+  'price_change_percentage_1y_in_currency.usd'?: number;
   [key: string]: unknown;
 }
 
-// In _getBitcoinNetworkData:
-async function _getBitcoinNetworkData(): Promise<BitcoinNetworkData | null> {
+/**
+ * Fetches BTC outperformers and returns a single comprehensive table.
+ * Returns: { btcOutperformersTable, btcChange, label }
+ */
+async function getBTCOutperformersAndAltcoinTables(period: "24h" | "7d" | "ytd" = "24h"): Promise<{ btcOutperformersTable: string; btcChange: number; label: string }> {
   try {
-    const response = await fetchWithTimeout('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false', {}, 5000);
-    if (!response.ok) return null;
-    const data = await response.json();
-    return {
-      hashRate: data.market_data?.hash_rate_24h,
-      difficulty: data.market_data?.difficulty,
-      blockHeight: data.block_time_in_minutes,
-      mempoolSize: data.community_data?.reddit_subscribers
-    };
-  } catch {
-    return null;
-  }
-}
-
-// Enhanced altcoins data with curated list from GROK420.md
-enum AltcoinId {
-  Bitcoin = 'bitcoin',
-  Ethereum = 'ethereum',
-  Solana = 'solana',
-  Sui = 'sui',
-  Aave = 'aave',
-  Maker = 'maker',
-  Uniswap = 'uniswap',
-  Pendle = 'pendle',
-  Liquity = 'liquity',
-  Syrup = 'syrup',
-  Eigenlayer = 'eigenlayer',
-  Chainlink = 'chainlink',
-  Hyperliquid = 'hyperliquid',
-  Blockstack = 'blockstack',
-  Injective = 'injective-protocol',
-  Sei = 'sei-network',
-  Dogecoin = 'dogecoin',
-  Pepe = 'pepe',
-  Mog = 'mog-coin',
-  Wif = 'dogwifcoin',
-  Rekt = 'rekt-4',
-  Spx6900 = 'spx6900',
-  Fart = 'fartcoin',
-  Tao = 'bittensor',
-  Rndr = 'render-token',
-  Rail = 'railgun',
-  Ondo = 'ondo-finance',
-  USDe = 'ethena'
-}
-
-async function getAltcoinsData(): Promise<string> {
-  try {
-    const altcoins = Object.values(AltcoinId);
-    const idsParam = altcoins.join(',');
-    const response = await fetchWithTimeout(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true`,
-      {},
-      5000
-    );
+    const changeKey = period === "24h" ? "price_change_percentage_24h" : 
+                     period === "7d" ? "price_change_percentage_7d" : 
+                     "price_change_percentage_1y_in_currency.usd";
+    
+    const label = period === "24h" ? "24h" : period === "7d" ? "7d" : "YTD";
+    
+    // Fetch top 100 coins by market cap
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h,7d,1y_in_currency');
+    
     if (!response.ok) {
-      return '_Unable to fetch altcoins data_';
+      throw new Error(`CoinGecko API error: ${response.status}`);
     }
-    const data: Record<string, CoinData> = await response.json();
-    // Sort by 24h change (descending)
-    const sortedAltcoins = Object.entries(data)
-      .filter(([_, coinData]) => coinData && typeof coinData.usd_24h_change === 'number')
-      .sort(([, a], [, b]) => (b.usd_24h_change || 0) - (a.usd_24h_change || 0))
-      .slice(0, 15);
-    const symbolMap: { [key: string]: string } = {
-      'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI',
-      'aave': 'AAVE', 'maker': 'MKR', 'uniswap': 'UNI', 'pendle': 'PENDLE',
-      'liquity': 'LQTY', 'syrup': 'SYRUP', 'eigenlayer': 'EIGEN', 'chainlink': 'LINK',
-      'hyperliquid': 'HYPER', 'blockstack': 'STX', 'injective-protocol': 'INJ', 'sei-network': 'SEI',
-      'dogecoin': 'DOGE', 'pepe': 'PEPE', 'mog-coin': 'MOG', 'dogwifcoin': 'WIF',
-      'rekt-4': 'REKT', 'spx6900': 'SPX6900', 'fartcoin': 'FART',
-      'bittensor': 'TAO', 'render-token': 'RNDR', 'railgun': 'RAIL',
-      'ondo-finance': 'ONDO', 'ethena': 'USDe'
-    };
-    let table = '| Symbol | 24h Change | Market Cap |\n|--------|------------|------------|\n';
-    sortedAltcoins.forEach(([id, coinData]) => {
-      const change = coinData.usd_24h_change || 0;
-      const emoji = change >= 0 ? '🟢' : '🔴';
-      const symbol = symbolMap[id] || id.toUpperCase();
-      const marketCap = coinData.usd_market_cap ? 
-        new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(coinData.usd_market_cap) : 'N/A';
-      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | $${marketCap} |\n`;
-    });
-    return `**🪙 Top Altcoins (24h):**\n${table}`;
-  } catch {
-    return '_Unable to fetch altcoins data_';
-  }
-}
-
-// New function to check for assets outperforming Bitcoin for a given period
-async function getBTCOutperformersPeriod(period: "24h" | "7d" | "ytd" = "24h"): Promise<string> {
-  try {
-    let btcChange = 0;
-    let data: Record<string, CoinData> = {};
-    let changeKey = '';
-    let label = '';
-    if (period === "24h") {
-      // Use current logic
-      const btcResponse = await fetchWithTimeout(
-        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true',
-        {},
-        3000
-      );
-      if (!btcResponse.ok) return '**🚀 BTC OUTPERFORMERS:**\n_Unable to fetch Bitcoin data_';
-      const btcData = await btcResponse.json();
-      btcChange = btcData.bitcoin?.usd_24h_change || 0;
-      changeKey = 'usd_24h_change';
-      label = '24h';
-      // Get all tracked assets performance
-      const altcoins = Object.values(AltcoinId);
-      const idsParam = altcoins.join(',');
-      const response = await fetchWithTimeout(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${idsParam}&vs_currencies=usd&include_24hr_change=true&include_market_cap=true`,
-        {},
-        5000
-      );
-      if (!response.ok) return '**🚀 BTC OUTPERFORMERS:**\n_Unable to fetch altcoin data_';
-      data = await response.json();
-    } else if (period === "7d") {
-      // Use CoinGecko's markets endpoint for 7d change
-      const altcoins = Object.values(AltcoinId);
-      const idsParam = altcoins.join(',');
-      const response = await fetchWithTimeout(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${idsParam}&price_change_percentage=7d`,
-        {},
-        5000
-      );
-      if (!response.ok) return '**🚀 BTC OUTPERFORMERS (7d):**\n_Unable to fetch data_';
-      const arr: CoinData[] = await response.json();
-      data = {};
-      arr.forEach((coin: CoinData) => {
-        data[coin.id ?? ''] = coin;
-      });
-      btcChange = data['bitcoin']?.price_change_percentage_7d_in_currency || 0;
-      changeKey = 'price_change_percentage_7d_in_currency';
-      label = '7d';
-    } else if (period === "ytd") {
-      // YTD: fetch daily prices, calculate YTD change
-      const year = new Date().getFullYear();
-      const jan1 = new Date(`${year}-01-01T00:00:00Z`).getTime() / 1000;
-      const now = Math.floor(Date.now() / 1000);
-      const altcoins = Object.values(AltcoinId);
-      // Only fetch for BTC and each altcoin one by one (API rate limit risk!)
-      // So, only do this if explicitly requested
-      const getYTD = async (id: string) => {
-        const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range?vs_currency=usd&from=${jan1}&to=${now}`;
-        const resp = await fetchWithTimeout(url, {}, 7000);
-        if (!resp.ok) return null;
-        const prices: [number, number][] = (await resp.json()).prices;
-        if (!prices || prices.length < 2) return null;
-        const start = prices[0][1];
-        const end = prices[prices.length - 1][1];
-        return ((end - start) / start) * 100;
-      };
-      // Fetch BTC YTD
-      btcChange = await getYTD('bitcoin') || 0;
-      // Fetch all altcoins YTD
-      data = {};
-      for (const id of altcoins) {
-        const ytd = await getYTD(id);
-        if (ytd !== null) data[id] = { ytd_change: ytd };
-      }
-      changeKey = 'ytd_change';
-      label = 'YTD';
+    
+    const data: CoinGeckoMarket[] = await response.json();
+    
+    // Find BTC data
+    const btcData = data.find((coin: CoinGeckoMarket) => coin.id === 'bitcoin');
+    if (!btcData) {
+      throw new Error('Bitcoin data not found');
     }
-    // Filter for outperformers
-    const outperformers = Object.entries(data)
-      .filter(([id, coinData]) => {
-        const change = typeof coinData[changeKey] === 'number' ? (coinData[changeKey] as number) : undefined;
-        return typeof change === 'number' && change > btcChange && id !== 'bitcoin';
+    
+    const btcChange = typeof btcData[changeKey] === 'number' ? btcData[changeKey] as number : 0;
+    
+    // Filter and sort outperformers
+    const outperformers = data
+      .filter((coin: CoinGeckoMarket) => {
+        const change = typeof coin[changeKey] === 'number' ? coin[changeKey] as number : undefined;
+        return typeof change === 'number' && change > btcChange && coin.id !== 'bitcoin';
       })
-      .sort(([, a], [, b]) => {
-        const aChange = typeof a[changeKey] === 'number' ? (a[changeKey] as number) : -Infinity;
-        const bChange = typeof b[changeKey] === 'number' ? (b[changeKey] as number) : -Infinity;
-        return bChange - aChange;
+      .sort((a: CoinGeckoMarket, b: CoinGeckoMarket) => {
+        const aChange = typeof a[changeKey] === 'number' ? a[changeKey] as number : -Infinity;
+        const bChange = typeof b[changeKey] === 'number' ? b[changeKey] as number : -Infinity;
+        return bChange - aChange; // Sort by change descending
       })
-      .slice(0, 10);
+      .slice(0, 10); // Top 10 outperformers
+    
     if (outperformers.length === 0) {
-      return `**🚀 BTC OUTPERFORMERS (${label}):**\n_No assets currently outperforming Bitcoin (${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)_`;
+      return {
+        btcOutperformersTable: `No assets outperforming BTC (${label}: ${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)`,
+        btcChange,
+        label
+      };
     }
-    const symbolMap: { [key: string]: string } = {
-      'bitcoin': 'BTC', 'ethereum': 'ETH', 'solana': 'SOL', 'sui': 'SUI',
-      'aave': 'AAVE', 'maker': 'MKR', 'uniswap': 'UNI', 'pendle': 'PENDLE',
-      'liquity': 'LQTY', 'syrup': 'SYRUP', 'eigenlayer': 'EIGEN', 'chainlink': 'LINK',
-      'hyperliquid': 'HYPER', 'blockstack': 'STX', 'injective-protocol': 'INJ', 'sei-network': 'SEI',
-      'dogecoin': 'DOGE', 'pepe': 'PEPE', 'mog-coin': 'MOG', 'dogwifcoin': 'WIF',
-      'rekt-4': 'REKT', 'spx6900': 'SPX6900', 'fartcoin': 'FART',
-      'bittensor': 'TAO', 'render-token': 'RNDR', 'railgun': 'RAIL',
-      'ondo-finance': 'ONDO', 'ethena': 'USDe'
-    };
-    let table = `| Symbol | ${label} Change | vs BTC |\n|--------|--------------|--------|\n`;
-    outperformers.forEach(([id, coinData]) => {
-      const change = typeof coinData[changeKey] === 'number' ? (coinData[changeKey] as number) : 0;
+    
+    // Build comprehensive table with all columns
+    let table = `**BTC Outperformers (${label})**\n\n`;
+    table += `| Symbol | ${label} Change | vs BTC | Market Cap |\n`;
+    table += `|--------|----------------|--------|------------|\n`;
+    
+    outperformers.forEach((coin: CoinGeckoMarket) => {
+      const change = typeof coin[changeKey] === 'number' ? coin[changeKey] as number : 0;
       const vsBTC = change - btcChange;
-      const emoji = change >= 0 ? '🟢' : '🔴';
-      const symbol = symbolMap[id] || id.toUpperCase();
-      table += `| ${emoji} ${symbol} | ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | +${vsBTC.toFixed(2)}% |\n`;
+      const marketCap = coin.market_cap ? new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        notation: 'compact',
+        maximumFractionDigits: 1
+      }).format(coin.market_cap) : 'N/A';
+      
+      const changeEmoji = change >= 0 ? '🟢' : '🔴';
+      const vsBTCEmoji = vsBTC >= 0 ? '🟢' : '🔴';
+      
+      table += `| ${coin.symbol.toUpperCase()} | ${changeEmoji} ${change >= 0 ? '+' : ''}${change.toFixed(2)}% | ${vsBTCEmoji} ${vsBTC >= 0 ? '+' : ''}${vsBTC.toFixed(2)}% | ${marketCap} |\n`;
     });
-    return `**🚀 BTC OUTPERFORMERS (${label}: ${btcChange >= 0 ? '+' : ''}${btcChange.toFixed(2)}%)**\n${table}`;
+    
+    return { btcOutperformersTable: table, btcChange, label };
+    
   } catch (error) {
     logger.error('Error fetching BTC outperformers:', error);
-    return `**🚀 BTC OUTPERFORMERS (${period}):**\n_Unable to fetch outperformance data_`;
+    return {
+      btcOutperformersTable: 'Failed to fetch market data.',
+      btcChange: 0,
+      label: period === "24h" ? "24h" : period === "7d" ? "7d" : "YTD"
+    };
   }
 }
 
@@ -1096,20 +964,17 @@ export async function POST(request: Request) {
         const fetchStart = Date.now();
 
         // Fetch essential market data in parallel
-        const [btcPrice, altcoins, cryptoStocks, btcOutperformers] = await Promise.all([
+        const [btcPrice, cryptoStocks, btcTables] = await Promise.all([
           getFastBTCPrice(),
-          getAltcoinsData(),
           _getCryptoStocksData(),
-          getBTCOutperformersPeriod(period)
+          getBTCOutperformersAndAltcoinTables(period)
         ]);
         
-        // Fetch additional periods if requested
-        let additionalOutperformers = '';
-        if (additionalPeriods.length > 0) {
-          const additionalPromises = additionalPeriods.map(p => getBTCOutperformersPeriod(p));
-          const additionalResults = await Promise.all(additionalPromises);
-          additionalOutperformers = '\n\n' + additionalResults.join('\n\n');
-        }
+        // Only fetch additional data if specifically requested
+        // let additionalOutperformers = '';
+        // if (hasOutperformersRequest && (has7dRequest || hasYtdRequest)) {
+        //   additionalOutperformers = btcTables.btcOutperformersTable;
+        // }
         
         logger.info('Market data fetched in', Date.now() - fetchStart, 'ms');
         
@@ -1145,19 +1010,21 @@ export async function POST(request: Request) {
         marketSummary += `- **Current Price:** $${btcPrice ? btcPrice.toLocaleString() : 'unavailable'}\n`;
         marketSummary += `\n`;
         
-        // BTC Outperformers section (CORE LOGIC)
-        marketSummary += btcOutperformers || '_Unable to fetch BTC outperformers_\n\n';
-        marketSummary += additionalOutperformers;
+        // Market summary section
+        marketSummary += `**📊 Market Summary (${btcTables.label})**\n`;
+        marketSummary += `Bitcoin: ${btcTables.btcChange >= 0 ? '🟢' : '🔴'} ${btcTables.btcChange >= 0 ? '+' : ''}${btcTables.btcChange.toFixed(2)}%\n\n`;
         
-        // Altcoins section
-        marketSummary += altcoins || '_Unable to fetch altcoin data_\n\n';
+        // BTC Outperformers section (now includes market cap)
+        marketSummary += btcTables.btcOutperformersTable + '\n\n';
+        
+        // Remove the separate altcoins section since it's now merged into the outperformers table
         
         // Crypto stocks section
         marketSummary += `\n`;
         marketSummary += cryptoStocks || '_Unable to fetch stock data_\n\n';
         
         // Enhanced X sentiment analysis prompt with specific asset focus
-        const xSentimentPrompt = `Write a single, concise paragraph summarizing today’s hottest crypto news, memes, and sentiment as seen on X. Focus on the most important narratives, price action, and viral stories for BTC, ETH, top altcoins, and crypto stocks. Make it sound like a social media recap, not a list. Mention at least one X meme, thread, or influencer per asset if possible. If nothing is trending, say so, but always provide a narrative summary.`;
+        const xSentimentPrompt = `Write a single, concise paragraph summarizing today's hottest crypto news, memes, and sentiment as seen on X. Focus on the most important narratives, price action, and viral stories for BTC, ETH, top altcoins, and crypto stocks. Make it sound like a social media recap, not a list. Mention at least one X meme, thread, or influencer per asset if possible. If nothing is trending, say so, but always provide a narrative summary.`;
 
         // Try Grok4 for X sentiment analysis with timeout
         
@@ -1197,8 +1064,8 @@ export async function POST(request: Request) {
 
           // Parse BTC outperformers for top movers
           let btcOutperformersList: string[] = [];
-          if (btcOutperformers && !btcOutperformers.includes('_Unable to fetch')) {
-            const outperformerLines = btcOutperformers.split('\n').filter(l => l.includes('|'));
+          if (btcTables.btcOutperformersTable && !btcTables.btcOutperformersTable.includes('_Unable to fetch')) {
+            const outperformerLines = btcTables.btcOutperformersTable.split('\n').filter(l => l.includes('|'));
             btcOutperformersList = outperformerLines.slice(2, 7).map(line => {
               const parts = line.split('|').map(s => s.trim());
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
@@ -1207,9 +1074,9 @@ export async function POST(request: Request) {
 
           // Parse altcoins table for top movers
           let altcoinMovers: string[] = [];
-          if (altcoins) {
-            const altcoinLines = altcoins.split('\n').filter(l => l.includes('|'));
-            altcoinMovers = altcoinLines.slice(2, 7).map(line => {
+          if (btcTables.btcOutperformersTable) { // Use btcOutperformersTable for altcoin movers
+            const outperformerLines = btcTables.btcOutperformersTable.split('\n').filter(l => l.includes('|'));
+            altcoinMovers = outperformerLines.slice(2, 7).map(line => {
               const parts = line.split('|').map(s => s.trim());
               return parts[1] ? `${parts[1]} (${parts[2]})` : null;
             }).filter(Boolean) as string[];
