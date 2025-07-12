@@ -5,14 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Loader2, Sparkles, Image as ImageIcon, Copy, Info } from 'lucide-react';
 import Image from 'next/image';
 
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-  structuredData?: unknown; // For structured output responses
-}
-
 export default function Grok420Page() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');

@@ -99,34 +99,34 @@ export async function validateRequest(request: Request): Promise<{
     throw new Error('Content-Type must be application/json');
   }
 
-  let body: any;
+  let body: unknown;
   try {
     body = await request.json();
   } catch {
     throw new Error('Invalid JSON in request body');
   }
-
-  if (!body.message || typeof body.message !== 'string') {
+  if (typeof body !== 'object' || body === null) {
+    throw new Error('Request body must be an object');
+  }
+  const b = body as Record<string, unknown>;
+  if (!('message' in b) || typeof b.message !== 'string') {
     throw new Error('Message is required and must be a string');
   }
-
   // Sanitize and validate message
-  const sanitizedMessage = sanitizeMessage(body.message);
+  const sanitizedMessage = sanitizeMessage(b.message as string);
   if (!sanitizedMessage) {
     throw new Error('Message cannot be empty after sanitization');
   }
-
   // Validate temperature range
-  if (body.temperature !== undefined && (body.temperature < 0 || body.temperature > 2)) {
+  if ('temperature' in b && typeof b.temperature === 'number' && (b.temperature < 0 || b.temperature > 2)) {
     throw new Error('Temperature must be between 0 and 2');
   }
-
   return {
-    ...body,
+    ...b,
     message: sanitizedMessage,
-    structuredOutput: body.structuredOutput || false,
-    outputSchema: body.outputSchema || 'analysis',
-    functionCalling: body.functionCalling || false
+    structuredOutput: typeof b.structuredOutput === 'boolean' ? b.structuredOutput : false,
+    outputSchema: typeof b.outputSchema === 'string' ? b.outputSchema : 'analysis',
+    functionCalling: typeof b.functionCalling === 'boolean' ? b.functionCalling : false
   };
 }
 

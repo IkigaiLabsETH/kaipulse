@@ -35,31 +35,14 @@ export function isPricePredictionQuery(q: string): boolean {
 }
 
 // Price prediction handler with improved prompts
-export async function handlePricePrediction(message: string, systemPrompt?: string, temperature?: number): Promise<string> {
+export async function handlePricePrediction(message: string, _systemPrompt?: string, _temperature?: number): Promise<string> {
   const btcPrice = await getFastBTCPrice();
   const isPredictionQuery = /price target|prediction|end of q4|end of year|forecast|target/i.test(message);
   
   if (isPredictionQuery) {
     let prediction = '';
     try {
-      const predictionPrompt = `Bitcoin is currently priced at $${btcPrice ? btcPrice.toLocaleString() : 'unknown'}. What is your price target for the end of Q4? Please answer in 2 sentences, and add a witty Satoshi-style remark.`;
-      const predictionResp = await Promise.race([
-        // This would need to be imported from grok4.ts
-        // Grok4Service.chatCompletion({
-        //   messages: [
-        //     { role: 'system', content: systemPrompt || 'You are Grok, an AI assistant for LiveTheLifeTV.' },
-        //     { role: 'user', content: predictionPrompt }
-        //   ],
-        //   temperature: temperature || 0.7,
-        //   max_tokens: 120,
-        // }),
-        new Promise<never>((_, reject) => 
-          setTimeout(() => reject(new Error('Prediction timeout')), 5000)
-        )
-      ]);
-      
-      // prediction = predictionResp.choices?.[0]?.message?.content || '';
-      
+      // Removed unused predictionPrompt and predictionResp
       if (!prediction || !prediction.trim()) {
         prediction = `As Satoshi might say: "Predicting Bitcoin's price is like predicting the weather in a quantum storm. HODL on!"`;
       }
