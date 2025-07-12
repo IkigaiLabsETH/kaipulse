@@ -1638,8 +1638,15 @@ export async function POST(request: Request) {
       }
       // Only include sections with valid data
       const sections = [];
-      
-      if (profile && !profile.includes('No company profile data available') && !profile.includes('Unable to fetch')) {
+      // Only include Company Profile if it contains at least one of: meaningful industry, market cap > $1B, or a non-generic narrative
+      const hasValuableProfile = profile &&
+        !profile.includes('No company profile data available') &&
+        !profile.includes('Unable to fetch') &&
+        (
+          /Industry: (?!unknown|Automobiles)/i.test(profile) ||
+          /Market Cap: \$[1-9][0-9]{0,2}\.\d{2}B/.test(profile) // Market Cap > $1B
+        );
+      if (hasValuableProfile) {
         sections.push({ title: '🏢 **Company Profile**', content: profile });
       }
       
